@@ -8,7 +8,7 @@ namespace PrimeFuncPack.Extensions.Primitives
             =>
             ReferenceEquals(boxA, boxB);
 
-        public bool Same(in Box<T> other)
+        public bool Same(in Box<T>? other)
             =>
             Same(this, other);
 

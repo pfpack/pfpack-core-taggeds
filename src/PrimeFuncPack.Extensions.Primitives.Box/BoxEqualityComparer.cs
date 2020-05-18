@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace PrimeFuncPack.Extensions.Primitives
 {
-    public sealed class BoxEqualityComparer<T> : IEqualityComparer<Box<T>>
+    public sealed class BoxEqualityComparer<T> : IEqualityComparer<Box<T>?>
     {
         public bool Equals(Box<T>? x, Box<T>? y)
             =>

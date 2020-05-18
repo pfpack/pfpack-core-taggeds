@@ -4,7 +4,7 @@ using System;
 
 namespace PrimeFuncPack.Extensions.Primitives
 {
-    public sealed partial class Box<T> : IEquatable<Box<T>>, ISamenessPossessor<Box<T>>
+    public sealed partial class Box<T> : IEquatable<Box<T>?>, ISamenessPossessor<Box<T>?>
     {
         public T Value { get; }
 
