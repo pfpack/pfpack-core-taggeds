@@ -20,7 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="PrimeFuncPack.Extensions.Primitives.Box" Version="1.0.*" />
+		<PackageReference Include="PrimeFuncPack.Extensions.Primitives.Box" Version="1.0.0-preview.*" />
 	</ItemGroup>
 
 </Project>
