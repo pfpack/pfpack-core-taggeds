@@ -12,10 +12,11 @@ namespace PrimeFuncPack.Extensions.Primitives
             =>
             Box.Equals(x, y);
 
-        public int GetHashCode(Box<T>? obj)
-            =>
-            obj?.GetHashCode() ??
-            throw new ArgumentNullException(nameof(obj));
+        public int GetHashCode(Box<T>? obj) => obj switch
+        {
+            null => throw new ArgumentNullException(nameof(obj)),
+            var value => value.GetHashCode()
+        };
 
         public static BoxEqualityComparer<T> Default => BoxEqualityComparerDefault<T>.Value;
     }

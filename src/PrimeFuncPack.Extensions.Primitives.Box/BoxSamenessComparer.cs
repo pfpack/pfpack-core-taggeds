@@ -12,10 +12,11 @@ namespace PrimeFuncPack.Extensions.Primitives
             =>
             Box.Same(x, y);
 
-        public int GetHashCode(Box<T>? obj)
-            =>
-            obj?.SamenessHashCode() ??
-            throw new ArgumentNullException(nameof(obj));
+        public int GetHashCode(Box<T>? obj) => obj switch
+        {
+            null => throw new ArgumentNullException(nameof(obj)),
+            var value => value.SamenessHashCode()
+        };
 
         public static BoxSamenessComparer<T> Default => BoxSamenessComparerDefault<T>.Value;
     }
