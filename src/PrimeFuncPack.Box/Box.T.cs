@@ -2,7 +2,7 @@
 
 using System;
 
-namespace PrimeFuncPack.Extensions.Primitives
+namespace PrimeFuncPack
 {
     public sealed partial class Box<T> : IEquatable<Box<T>?>, ISamenessPossessor<Box<T>?>
     {

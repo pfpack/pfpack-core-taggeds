@@ -1,10 +1,9 @@
 ﻿#nullable enable
 
-using PrimeFuncPack.Extensions.Primitives.Internal;
 using System;
 using System.Collections.Generic;
 
-namespace PrimeFuncPack.Extensions.Primitives
+namespace PrimeFuncPack
 {
     public sealed class BoxEqualityComparer<T> : IEqualityComparer<Box<T>?>
     {

@@ -1,6 +1,5 @@
 ﻿#nullable enable
 
-using PrimeFuncPack.Internal;
 using System.Collections.Generic;
 
 namespace PrimeFuncPack

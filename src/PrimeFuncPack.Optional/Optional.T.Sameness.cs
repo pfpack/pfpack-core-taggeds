@@ -1,7 +1,5 @@
 ﻿#nullable enable
 
-using PrimeFuncPack.Extensions.Primitives;
-
 namespace PrimeFuncPack
 {
     partial struct Optional<T>

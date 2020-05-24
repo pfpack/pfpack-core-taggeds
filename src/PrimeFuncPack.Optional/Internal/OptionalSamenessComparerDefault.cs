@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace PrimeFuncPack.Internal
+namespace PrimeFuncPack
 {
     internal static class OptionalSamenessComparerDefault<T>
     {
