@@ -6,7 +6,7 @@ namespace PrimeFuncPack
     {
         public static bool Same(in Optional<T> optionalA, in Optional<T> optionalB)
             =>
-            Box.Same(optionalA.box, optionalB.box);
+            Box<T>.Same(optionalA.box, optionalB.box);
 
         public bool Same(in Optional<T> other)
             =>

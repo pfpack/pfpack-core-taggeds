@@ -8,7 +8,7 @@ namespace PrimeFuncPack
     {
         public bool Equals(Optional<T> x, Optional<T> y)
             =>
-            Optional.Equals(x, y);
+            Optional<T>.Equals(x, y);
 
         public int GetHashCode(Optional<T> obj)
             =>

@@ -9,7 +9,7 @@ namespace PrimeFuncPack
     {
         public bool Equals(Box<T>? x, Box<T>? y)
             =>
-            Box.Equals(x, y);
+            Box<T>.Equals(x, y);
 
         public int GetHashCode(Box<T>? obj) => obj switch
         {
