@@ -22,7 +22,7 @@ namespace PrimeFuncPack
                 }
                 while (enumerator.MoveNext());
 
-                return Optional.PresentEvenIfNull(result);
+                return Optional.Present(result);
             }
 
             return default;
@@ -43,7 +43,7 @@ namespace PrimeFuncPack
 
             if (result is object)
             {
-                return Optional.PresentEvenIfNull(result.Value);
+                return Optional.Present(result.Value);
             }
 
             return default;

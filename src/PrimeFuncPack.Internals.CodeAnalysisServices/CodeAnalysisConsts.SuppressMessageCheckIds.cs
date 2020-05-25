@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace PrimeFuncPack.Internals.CodeAnalysis
+namespace PrimeFuncPack.Internals.CodeAnalysisServices
 {
     partial class CodeAnalysisConsts
     {

@@ -14,7 +14,7 @@ namespace PrimeFuncPack
 
             if (enumerator.MoveNext())
             {
-                return Optional.PresentEvenIfNull(enumerator.Current);
+                return Optional.Present(enumerator.Current);
             }
 
             return default;
@@ -27,7 +27,7 @@ namespace PrimeFuncPack
             {
                 if (predicate(item))
                 {
-                    return Optional.PresentEvenIfNull(item);
+                    return Optional.Present(item);
                 }
             }
 

@@ -1,9 +1,9 @@
 ﻿#nullable enable
 
 using System.Diagnostics.CodeAnalysis;
-using static PrimeFuncPack.Internals.CodeAnalysis.CodeAnalysisConsts.SuppressMessageCategories;
-using static PrimeFuncPack.Internals.CodeAnalysis.CodeAnalysisConsts.SuppressMessageCheckIds;
-using static PrimeFuncPack.Internals.CodeAnalysis.CodeAnalysisConsts.SuppressMessageJustifications;
+using static PrimeFuncPack.Internals.CodeAnalysisServices.CodeAnalysisConsts.SuppressMessageCategories;
+using static PrimeFuncPack.Internals.CodeAnalysisServices.CodeAnalysisConsts.SuppressMessageCheckIds;
+using static PrimeFuncPack.Internals.CodeAnalysisServices.CodeAnalysisConsts.SuppressMessageJustifications;
 
 namespace PrimeFuncPack
 {

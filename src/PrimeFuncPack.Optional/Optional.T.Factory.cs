@@ -12,20 +12,30 @@ namespace PrimeFuncPack
             =>
             box = value;
 
-        public static Optional<T> PresentEvenIfNull(in T value)
+        public static Optional<T> Present(in T value)
             =>
             new Optional<T>(value);
 
-        public static Optional<T> PresentOrThrowIfNull(in T value) => value switch
+        public static Optional<T> PresentOrThrow(in T value) => value switch
         {
-            null => throw new ArgumentNullException(nameof(value)),
-            var present => new Optional<T>(present)
+            null
+            =>
+            throw new ArgumentNullException(nameof(value)),
+
+            var present
+            =>
+            new Optional<T>(present)
         };
 
-        public static Optional<T> PresentOrAbsentIfNull(in T value) => value switch
+        public static Optional<T> PresentOrAbsent(in T value) => value switch
         {
-            null => Absent,
-            var present => new Optional<T>(present)
+            null
+            =>
+            Absent,
+
+            var present
+            =>
+            new Optional<T>(present)
         };
     }
 }

@@ -8,16 +8,16 @@ namespace PrimeFuncPack
             =>
             Optional<T>.Absent;
 
-        public static Optional<T> PresentEvenIfNull<T>(in T value)
+        public static Optional<T> Present<T>(in T value)
             =>
-            Optional<T>.PresentEvenIfNull(value);
+            Optional<T>.Present(value);
 
-        public static Optional<T> PresentOrThrowIfNull<T>(in T value)
+        public static Optional<T> PresentOrThrow<T>(in T value)
             =>
-            Optional<T>.PresentOrThrowIfNull(value);
+            Optional<T>.PresentOrThrow(value);
 
-        public static Optional<T> PresentOrAbsentIfNull<T>(in T value)
+        public static Optional<T> PresentOrAbsent<T>(in T value)
             =>
-            Optional<T>.PresentOrAbsentIfNull(value);
+            Optional<T>.PresentOrAbsent(value);
     }
 }

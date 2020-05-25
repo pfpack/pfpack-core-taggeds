@@ -12,7 +12,7 @@ namespace PrimeFuncPack
         {
             if (source.Count > 0)
             {
-                return Optional.PresentEvenIfNull(source[0]);
+                return Optional.Present(source[0]);
             }
 
             return default;
@@ -27,7 +27,7 @@ namespace PrimeFuncPack
 
                 if (predicate(item))
                 {
-                    return Optional.PresentEvenIfNull(item);
+                    return Optional.Present(item);
                 }
             }
 
