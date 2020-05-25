@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Box", "PrimeF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Optional", "PrimeFuncPack.Optional\PrimeFuncPack.Optional.csproj", "{AFD05554-E872-4C47-834C-57867E2742EA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Primitives.ISamenessPossessor", "PrimeFuncPack.Primitives.ISamenessPossessor\PrimeFuncPack.Primitives.ISamenessPossessor.csproj", "{1246B6C9-7403-43C7-810D-7597D814C86D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.ISamenessPossessor", "PrimeFuncPack.ISamenessPossessor\PrimeFuncPack.ISamenessPossessor.csproj", "{1246B6C9-7403-43C7-810D-7597D814C86D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Linq", "PrimeFuncPack.Linq\PrimeFuncPack.Linq.csproj", "{7A1B326D-F5C7-465B-829E-E50C649A8AEE}"
 EndProject

@@ -20,7 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="PrimeFuncPack.Primitives.ISamenessPossessor" Version="1.0.0-preview.1.0.*" />
+	  <PackageReference Include="PrimeFuncPack.ISamenessPossessor" Version="1.0.0-preview.1.0.*" />
 	</ItemGroup>
 
 </Project>
