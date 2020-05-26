@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace PrimeFuncPack.Extensions.Primitives
+namespace PrimeFuncPack
 {
     partial class Box<T>
     {

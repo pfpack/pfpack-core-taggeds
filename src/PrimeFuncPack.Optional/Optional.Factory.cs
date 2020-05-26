@@ -1,38 +1,23 @@
 ﻿#nullable enable
 
-using System;
-
 namespace PrimeFuncPack
 {
     partial class Optional
     {
-        public static Optional<T> Of<T>(in T value)
+        public static Optional<T> Absent<T>()
             =>
-            value;
+            Optional<T>.Absent;
 
         public static Optional<T> Present<T>(in T value)
             =>
-            value ??
-            throw CreateNullValueException(paramName: nameof(value));
+            Optional<T>.Present(value);
 
-        public static Optional<T> Absent<T>()
+        public static Optional<T> PresentOrThrow<T>(in T value)
             =>
-            default;
+            Optional<T>.PresentOrThrow(value);
 
-        public static Optional<T> OfNullable<T>(in T? value)
-            where T : class
+        public static Optional<T> PresentOrAbsent<T>(in T value)
             =>
-            value ??
-            Optional<T>.Absent;
-
-        public static Optional<T> OfNullable<T>(in T? value)
-            where T : struct
-            =>
-            value ??
-            Optional<T>.Absent;
-
-        private static Exception CreateNullValueException(in string paramName)
-            =>
-            new ArgumentNullException(paramName: paramName, message: "Value must be not null.");
+            Optional<T>.PresentOrAbsent(value);
     }
 }
