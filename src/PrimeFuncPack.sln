@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Optional", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Extensions.Primitives.ISamenessPossessor", "PrimeFuncPack.Extensions.Primitives.ISamenessPossessor\PrimeFuncPack.Extensions.Primitives.ISamenessPossessor.csproj", "{1246B6C9-7403-43C7-810D-7597D814C86D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeFuncPack.Extensions.DependencyInjection", "PrimeFuncPack.Extensions.DependencyInjection\PrimeFuncPack.Extensions.DependencyInjection.csproj", "{7628AC63-CC91-45A9-903F-38F867DB0292}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1246B6C9-7403-43C7-810D-7597D814C86D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1246B6C9-7403-43C7-810D-7597D814C86D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1246B6C9-7403-43C7-810D-7597D814C86D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7628AC63-CC91-45A9-903F-38F867DB0292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7628AC63-CC91-45A9-903F-38F867DB0292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7628AC63-CC91-45A9-903F-38F867DB0292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7628AC63-CC91-45A9-903F-38F867DB0292}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
