@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace PrimeFuncPack
+namespace System.Linq
 {
     public static partial class CollectionsExtensions
     {

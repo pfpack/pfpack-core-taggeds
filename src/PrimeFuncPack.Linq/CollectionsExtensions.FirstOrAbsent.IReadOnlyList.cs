@@ -1,9 +1,10 @@
 ﻿#nullable enable
 
-using System;
+using PrimeFuncPack;
+using PrimeFuncPack.Extensions.System.Linq.Internal;
 using System.Collections.Generic;
 
-namespace PrimeFuncPack
+namespace System.Linq
 {
     partial class CollectionsExtensions
     {
