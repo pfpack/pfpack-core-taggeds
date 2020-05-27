@@ -9,19 +9,7 @@ namespace PrimeFuncPack.Extensions.DependencyInjection
     {
         public static IServiceBuilder<TService> UseBuilder<TService>(this IServiceCollection services, ServiceResolver<TService> serviceResolver)
             where TService : class
-        {
-            if (services is null)
-            {
-                throw new ArgumentNullException(nameof(services));
-            }
-
-            if (serviceResolver is null)
-            {
-                throw new ArgumentNullException(nameof(serviceResolver));
-            }
-
-            return new DefaultServiceBuilder<TService>(services, serviceResolver);
-        }
+            => new DefaultServiceBuilder<TService>(services, serviceResolver);
 
         public static TServiceCollectionProvider Do<TServiceCollectionProvider>(this TServiceCollectionProvider provider, in Action<TServiceCollectionProvider> action)
             where TServiceCollectionProvider : notnull, IServiceCollectionProvider
