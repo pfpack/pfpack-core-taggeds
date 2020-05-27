@@ -23,11 +23,11 @@ namespace PrimeFuncPack
         {
             for (var i = 0; i < source.Count; i++)
             {
-                var item = source[i];
+                var current = source[i];
 
-                if (predicate(item))
+                if (predicate(current))
                 {
-                    return Optional.Present(item);
+                    return Optional.Present(current);
                 }
             }
 
