@@ -7,7 +7,7 @@ namespace PrimeFuncPack.Extensions.DependencyInjection
 {
     public static class DependencyInjectionBuilderExtensions
     {
-        public static IServiceBuilder<TService> UseBuilder<TService>(this IServiceCollection services, ServiceResolver<TService> serviceResolver)
+        public static IServiceBuilder<TService> UseBuilder<TService>(this IServiceCollection services, in ServiceResolver<TService> serviceResolver)
             where TService : class
             => new DefaultServiceBuilder<TService>(services, serviceResolver);
 
