@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PrimeFuncPack
+namespace PrimeFuncPack.Extensions.System.Linq.Internal
 {
     partial class InternalCollectionsExtensions
     {
@@ -23,11 +23,11 @@ namespace PrimeFuncPack
         public static Optional<TSource> InternalFirstOrAbsent<TSource>(
             this IEnumerable<TSource> source, in Func<TSource, bool> predicate)
         {
-            foreach (var item in source)
+            foreach (var current in source)
             {
-                if (predicate(item))
+                if (predicate(current))
                 {
-                    return Optional.Present(item);
+                    return Optional.Present(current);
                 }
             }
 

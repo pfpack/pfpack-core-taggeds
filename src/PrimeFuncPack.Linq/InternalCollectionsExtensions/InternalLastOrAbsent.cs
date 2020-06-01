@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PrimeFuncPack
+namespace PrimeFuncPack.Extensions.System.Linq.Internal
 {
     partial class InternalCollectionsExtensions
     {
@@ -33,11 +33,11 @@ namespace PrimeFuncPack
         {
             Box<TSource>? result = null;
 
-            foreach (var item in source)
+            foreach (var current in source)
             {
-                if (predicate(item))
+                if (predicate(current))
                 {
-                    result = item;
+                    result = current;
                 }
             }
 
