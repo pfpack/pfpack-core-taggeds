@@ -1,6 +1,5 @@
 ﻿#nullable enable
 
-using PrimeFuncPack.Internal;
 using System.Collections.Generic;
 
 namespace PrimeFuncPack
@@ -9,7 +8,7 @@ namespace PrimeFuncPack
     {
         public bool Equals(Optional<T> x, Optional<T> y)
             =>
-            Optional.Same(x, y);
+            Optional<T>.Same(x, y);
 
         public int GetHashCode(Optional<T> obj)
             =>

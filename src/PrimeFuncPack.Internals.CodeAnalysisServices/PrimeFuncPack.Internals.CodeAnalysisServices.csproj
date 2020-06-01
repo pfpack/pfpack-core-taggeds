@@ -4,7 +4,7 @@
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<Description>PrimeFuncPack: A Functional Programming Pack for .NET Standard</Description>
@@ -17,10 +17,6 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\PrimeFuncPack.Internals.CodeAnalysisServices\PrimeFuncPack.Internals.CodeAnalysisServices.csproj" />
 	</ItemGroup>
 
 </Project>

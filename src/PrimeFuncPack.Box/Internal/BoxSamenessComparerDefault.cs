@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace PrimeFuncPack.Extensions.Primitives.Internal
+namespace PrimeFuncPack
 {
     internal static class BoxSamenessComparerDefault<T>
     {

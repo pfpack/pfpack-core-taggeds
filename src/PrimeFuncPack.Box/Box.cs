@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace PrimeFuncPack.Extensions.Primitives
+namespace PrimeFuncPack
 {
     public static partial class Box
     {

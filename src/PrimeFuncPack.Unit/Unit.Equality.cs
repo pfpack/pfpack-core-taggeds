@@ -1,36 +1,44 @@
 ﻿#nullable enable
 
 using System.Diagnostics.CodeAnalysis;
-using static PrimeFuncPack.Internals.CodeAnalysis.SuppressMessageCategories;
-using static PrimeFuncPack.Internals.CodeAnalysis.SuppressMessageCheckIds;
-using static PrimeFuncPack.Internals.CodeAnalysis.SuppressMessageJustifications;
+using static PrimeFuncPack.Internals.CodeAnalysisServices.CodeAnalysisConsts.SuppressMessageCategories;
+using static PrimeFuncPack.Internals.CodeAnalysisServices.CodeAnalysisConsts.SuppressMessageCheckIds;
+using static PrimeFuncPack.Internals.CodeAnalysisServices.CodeAnalysisConsts.SuppressMessageJustifications;
 
 namespace PrimeFuncPack
 {
     partial struct Unit
     {
+        private const bool EqualsResult = true;
+
+        private const bool NotEqualsResult = false;
+
         [SuppressMessage(category: Style, checkId: RemoveUnusedParameter, Justification = ShippedPublicAPI)]
         public static bool Equals(in Unit valueA, in Unit valueB)
             =>
-            true;
+            EqualsResult;
 
         [SuppressMessage(category: Style, checkId: RemoveUnusedParameter, Justification = ShippedPublicAPI)]
         public static bool operator ==(in Unit valueA, in Unit valueB)
             =>
-            true;
+            EqualsResult;
 
         [SuppressMessage(category: Style, checkId: RemoveUnusedParameter, Justification = ShippedPublicAPI)]
         public static bool operator !=(in Unit valueA, in Unit valueB)
             =>
-            false;
+            NotEqualsResult;
 
         public bool Equals(Unit other)
             =>
-            true;
+            EqualsResult;
 
-        public override bool Equals(object obj)
-            =>
-            obj is Unit;
+        public override bool Equals(object? obj) => obj switch
+        {
+            Unit _ =>
+            EqualsResult,
+
+            _ => false
+        };
 
         public override int GetHashCode() => default;
     }
