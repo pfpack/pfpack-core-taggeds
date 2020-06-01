@@ -2,7 +2,7 @@
 
 using System;
 
-namespace PrimeFuncPack.Extensions.DependencyInjection
+namespace PrimeFuncPack.DependencyInjection
 {
     public delegate TService ServiceResolver<out TService>(IServiceProvider serviceProvider)
         where TService : class;

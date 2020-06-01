@@ -2,7 +2,7 @@
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace PrimeFuncPack.Extensions.DependencyInjection
+namespace PrimeFuncPack.DependencyInjection
 {
     public interface IServiceCollectionProvider
     {

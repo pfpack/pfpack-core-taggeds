@@ -3,7 +3,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace PrimeFuncPack.Extensions.DependencyInjection
+namespace PrimeFuncPack.DependencyInjection
 {
     internal sealed class DefaultServiceBuilder<TService> : IServiceBuilder<TService>
         where TService : class
