@@ -13,14 +13,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\LICENSE">
+		<None Include="..\..\..\LICENSE">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="PrimeFuncPack.Optional" Version="1.0.0-preview.1.0.*" />
+	  <PackageReference Include="PrimeFuncPack.Internals.CodeAnalysisServices" Version="1.0.0-preview.1.0.*" />
 	</ItemGroup>
 
 </Project>
