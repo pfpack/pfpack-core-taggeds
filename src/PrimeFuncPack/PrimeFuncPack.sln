@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Unit", "PrimeFuncPack.Unit\PrimeFuncPack.Unit.csproj", "{F3348D56-6954-45C7-93FD-ACE0E466C7D8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Internals.CodeAnalysisServices", "PrimeFuncPack.Internals.CodeAnalysisServices\PrimeFuncPack.Internals.CodeAnalysisServices.csproj", "{3EE6F637-9CDC-486F-9B9F-A2116285B14C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Box", "PrimeFuncPack.Box\PrimeFuncPack.Box.csproj", "{03CEE7F7-CB29-4998-A359-4643172B5E58}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Optional", "PrimeFuncPack.Optional\PrimeFuncPack.Optional.csproj", "{AFD05554-E872-4C47-834C-57867E2742EA}"
@@ -15,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.ISamenessPoss
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Linq", "PrimeFuncPack.Linq\PrimeFuncPack.Linq.csproj", "{7A1B326D-F5C7-465B-829E-E50C649A8AEE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.DependencyInjection", "PrimeFuncPack.DependencyInjection\PrimeFuncPack.DependencyInjection.csproj", "{7628AC63-CC91-45A9-903F-38F867DB0292}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeFuncPack", "PrimeFuncPack\PrimeFuncPack.csproj", "{B4E78FF8-0946-4206-85D8-1C846CA680D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +25,6 @@ Global
 		{F3348D56-6954-45C7-93FD-ACE0E466C7D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3348D56-6954-45C7-93FD-ACE0E466C7D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3348D56-6954-45C7-93FD-ACE0E466C7D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3EE6F637-9CDC-486F-9B9F-A2116285B14C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3EE6F637-9CDC-486F-9B9F-A2116285B14C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3EE6F637-9CDC-486F-9B9F-A2116285B14C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3EE6F637-9CDC-486F-9B9F-A2116285B14C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03CEE7F7-CB29-4998-A359-4643172B5E58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{03CEE7F7-CB29-4998-A359-4643172B5E58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03CEE7F7-CB29-4998-A359-4643172B5E58}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,10 +41,10 @@ Global
 		{7A1B326D-F5C7-465B-829E-E50C649A8AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A1B326D-F5C7-465B-829E-E50C649A8AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A1B326D-F5C7-465B-829E-E50C649A8AEE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7628AC63-CC91-45A9-903F-38F867DB0292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7628AC63-CC91-45A9-903F-38F867DB0292}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7628AC63-CC91-45A9-903F-38F867DB0292}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7628AC63-CC91-45A9-903F-38F867DB0292}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4E78FF8-0946-4206-85D8-1C846CA680D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4E78FF8-0946-4206-85D8-1C846CA680D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4E78FF8-0946-4206-85D8-1C846CA680D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4E78FF8-0946-4206-85D8-1C846CA680D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

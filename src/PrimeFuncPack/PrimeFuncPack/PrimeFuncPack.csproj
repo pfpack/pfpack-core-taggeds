@@ -13,14 +13,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\LICENSE">
+		<None Include="..\..\..\LICENSE">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="PrimeFuncPack.ISamenessPossessor" Version="1.0.0-preview.1.0.*" />
+	  <PackageReference Include="PrimeFuncPack.Linq" Version="1.0.0-preview.1.0.*" />
+	  <PackageReference Include="PrimeFuncPack.Unit" Version="1.0.0-preview.1.0.*" />
 	</ItemGroup>
 
 </Project>
