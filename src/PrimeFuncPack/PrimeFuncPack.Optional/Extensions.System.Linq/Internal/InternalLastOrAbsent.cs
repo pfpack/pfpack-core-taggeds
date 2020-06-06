@@ -41,7 +41,7 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
                 {
                     var current = enumerator.Current;
 
-                    if (predicate(current))
+                    if (predicate.Invoke(current))
                     {
                         result = current;
                     }

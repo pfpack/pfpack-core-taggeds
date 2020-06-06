@@ -25,7 +25,7 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
             {
                 var current = source[i];
 
-                if (predicate(current))
+                if (predicate.Invoke(current))
                 {
                     return Optional.Present(current);
                 }
