@@ -22,20 +22,22 @@ namespace System.Linq
                 throw new ArgumentException(nameof(action));
             }
 
-            return source switch
+            switch (source)
             {
-                IReadOnlyList<TSource> list
-                =>
-                (TCollection)list.InternalForEach(action),
+                case IReadOnlyList<TSource> list:
+                    list.InternalForEach(action);
+                    break;
 
-                IList<TSource> list
-                =>
-                (TCollection)list.InternalForEach(action),
+                case IList<TSource> list:
+                    list.InternalForEach(action);
+                    break;
 
-                var enumerable
-                =>
-                (TCollection)enumerable.InternalForEach(action)
-            };
+                case var collection:
+                    collection.InternalForEach(action);
+                    break;
+            }
+
+            return source;
         }
 
         public static TCollection ForEach<TCollection, TSource>(
@@ -53,20 +55,22 @@ namespace System.Linq
                 throw new ArgumentException(nameof(action));
             }
 
-            return source switch
+            switch (source)
             {
-                IReadOnlyList<TSource> list
-                =>
-                (TCollection)list.InternalForEach(action),
+                case IReadOnlyList<TSource> list:
+                    list.InternalForEach(action);
+                    break;
 
-                IList<TSource> list
-                =>
-                (TCollection)list.InternalForEach(action),
+                case IList<TSource> list:
+                    list.InternalForEach(action);
+                    break;
 
-                var enumerable
-                =>
-                (TCollection)enumerable.InternalForEach(action)
-            };
+                case var collection:
+                    collection.InternalForEach(action);
+                    break;
+            }
+
+            return source;
         }
 
         public static TCollection ForEach<TCollection, TSource>(
@@ -84,20 +88,22 @@ namespace System.Linq
                 throw new ArgumentException(nameof(action));
             }
 
-            return source switch
+            switch (source)
             {
-                IReadOnlyList<TSource> list
-                =>
-                (TCollection)list.InternalForEach(action),
+                case IReadOnlyList<TSource> list:
+                    list.InternalForEach(action);
+                    break;
 
-                IList<TSource> list
-                =>
-                (TCollection)list.InternalForEach(action),
+                case IList<TSource> list:
+                    list.InternalForEach(action);
+                    break;
 
-                var enumerable
-                =>
-                (TCollection)enumerable.InternalForEach(action)
-            };
+                case var collection:
+                    collection.InternalForEach(action);
+                    break;
+            }
+
+            return source;
         }
     }
 }

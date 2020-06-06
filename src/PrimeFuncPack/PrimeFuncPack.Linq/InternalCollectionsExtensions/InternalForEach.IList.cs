@@ -7,7 +7,7 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
 {
     partial class InternalCollectionsExtensions
     {
-        public static IList<TSource> InternalForEach<TSource>(
+        public static void InternalForEach<TSource>(
            this IList<TSource> source,
            in Action<TSource> action)
         {
@@ -15,11 +15,9 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
             {
                 action.Invoke(source[i]);
             }
-
-            return source;
         }
 
-        public static IList<TSource> InternalForEach<TSource>(
+        public static void InternalForEach<TSource>(
            this IList<TSource> source,
            in Action<int, TSource> action)
         {
@@ -27,11 +25,9 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
             {
                 action.Invoke(i, source[i]);
             }
-
-            return source;
         }
 
-        public static IList<TSource> InternalForEach<TSource>(
+        public static void InternalForEach<TSource>(
            this IList<TSource> source,
            in Action<long, TSource> action)
         {
@@ -39,8 +35,6 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
             {
                 action.Invoke(i, source[i]);
             }
-
-            return source;
         }
     }
 }

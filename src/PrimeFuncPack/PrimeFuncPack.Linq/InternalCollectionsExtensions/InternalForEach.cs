@@ -7,7 +7,7 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
 {
     partial class InternalCollectionsExtensions
     {
-        public static IEnumerable<TSource> InternalForEach<TSource>(
+        public static void InternalForEach<TSource>(
            this IEnumerable<TSource> source,
            in Action<TSource> action)
         {
@@ -15,11 +15,9 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
             {
                 action.Invoke(current);
             }
-
-            return source;
         }
 
-        public static IEnumerable<TSource> InternalForEach<TSource>(
+        public static void InternalForEach<TSource>(
            this IEnumerable<TSource> source,
            in Action<int, TSource> action)
         {
@@ -31,11 +29,9 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
 
                 checked { currentIndex++; }
             }
-
-            return source;
         }
 
-        public static IEnumerable<TSource> InternalForEach<TSource>(
+        public static void InternalForEach<TSource>(
            this IEnumerable<TSource> source,
            in Action<long, TSource> action)
         {
@@ -47,8 +43,6 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
 
                 checked { currentIndex++; }
             }
-
-            return source;
         }
     }
 }
