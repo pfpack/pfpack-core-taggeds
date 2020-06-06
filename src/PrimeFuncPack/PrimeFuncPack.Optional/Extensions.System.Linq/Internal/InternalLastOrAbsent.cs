@@ -31,19 +31,27 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
         public static Optional<TSource> InternalLastOrAbsent<TSource>(
             this IEnumerable<TSource> source, in Func<TSource, bool> predicate)
         {
-            Box<TSource>? result = null;
+            using var enumerator = source.GetEnumerator();
 
-            foreach (var current in source)
+            if (enumerator.MoveNext())
             {
-                if (predicate(current))
+                Box<TSource>? result = null;
+
+                do
                 {
-                    result = current;
-                }
-            }
+                    var current = enumerator.Current;
 
-            if (result is object)
-            {
-                return Optional.Present(result.Value);
+                    if (predicate(current))
+                    {
+                        result = current;
+                    }
+                }
+                while (enumerator.MoveNext());
+
+                if (result is object)
+                {
+                    return Optional.Present(result.Value);
+                }
             }
 
             return default;

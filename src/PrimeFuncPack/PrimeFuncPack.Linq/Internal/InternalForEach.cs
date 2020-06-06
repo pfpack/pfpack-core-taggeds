@@ -21,13 +21,19 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
            this IEnumerable<TSource> source,
            in Action<int, TSource> action)
         {
-            int currentIndex = -1;
+            using var enumerator = source.GetEnumerator();
 
-            foreach (var current in source)
+            if (enumerator.MoveNext())
             {
-                checked { currentIndex++; }
+                int currentIndex = -1;
 
-                action.Invoke(currentIndex, current);
+                do
+                {
+                    checked { currentIndex++; }
+
+                    action.Invoke(currentIndex, enumerator.Current);
+                }
+                while (enumerator.MoveNext());
             }
         }
 
@@ -35,13 +41,19 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
            this IEnumerable<TSource> source,
            in Action<long, TSource> action)
         {
-            long currentIndex = -1;
+            using var enumerator = source.GetEnumerator();
 
-            foreach (var current in source)
+            if (enumerator.MoveNext())
             {
-                checked { currentIndex++; }
+                long currentIndex = -1;
 
-                action.Invoke(currentIndex, current);
+                do
+                {
+                    checked { currentIndex++; }
+
+                    action.Invoke(currentIndex, enumerator.Current);
+                }
+                while (enumerator.MoveNext());
             }
         }
     }
