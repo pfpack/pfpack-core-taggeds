@@ -23,8 +23,6 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
             this IList<TSource> source,
             in Func<TSource, bool> predicate)
         {
-            Optional<TSource> result = default;
-
             for (var i = 0; i < source.Count; i++)
             {
                 var current = source[i];
@@ -43,7 +41,7 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
                 }
             }
 
-            return result;
+            return default;
         }
     }
 }
