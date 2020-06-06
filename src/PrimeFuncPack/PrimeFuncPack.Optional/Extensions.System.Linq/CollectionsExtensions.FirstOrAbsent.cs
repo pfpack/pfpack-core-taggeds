@@ -33,7 +33,8 @@ namespace System.Linq
         }
 
         public static Optional<TSource> FirstOrAbsent<TSource>(
-            this IEnumerable<TSource> source, in Func<TSource, bool> predicate)
+            this IEnumerable<TSource> source,
+            in Func<TSource, bool> predicate)
         {
             if (source is null)
             {

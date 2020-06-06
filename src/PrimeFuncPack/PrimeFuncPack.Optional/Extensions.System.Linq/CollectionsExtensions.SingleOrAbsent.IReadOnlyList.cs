@@ -8,7 +8,7 @@ namespace System.Linq
 {
     partial class CollectionsExtensions
     {
-        public static Optional<TSource> FirstOrAbsent<TSource>(
+        public static Optional<TSource> SingleOrAbsent<TSource>(
             this IReadOnlyList<TSource> source)
         {
             if (source is null)
@@ -16,11 +16,12 @@ namespace System.Linq
                 throw new ArgumentNullException(nameof(source));
             }
 
-            return source.InternalFirstOrAbsent();
+            return source.InternalSingleOrAbsent();
         }
 
-        public static Optional<TSource> FirstOrAbsent<TSource>(
-            this IReadOnlyList<TSource> source, in Func<TSource, bool> predicate)
+        public static Optional<TSource> SingleOrAbsent<TSource>(
+            this IReadOnlyList<TSource> source,
+            in Func<TSource, bool> predicate)
         {
             if (source is null)
             {
@@ -32,7 +33,7 @@ namespace System.Linq
                 throw new ArgumentNullException(nameof(predicate));
             }
 
-            return source.InternalFirstOrAbsent(predicate);
+            return source.InternalSingleOrAbsent(predicate);
         }
     }
 }
