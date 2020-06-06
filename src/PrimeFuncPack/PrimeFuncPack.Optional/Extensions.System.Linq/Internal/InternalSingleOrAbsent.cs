@@ -14,14 +14,14 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
 
             if (enumerator.MoveNext())
             {
-                var result = Optional.Present(enumerator.Current);
+                var current = enumerator.Current;
 
                 if (enumerator.MoveNext())
                 {
                     throw CreateMoreThanOneElementException();
                 }
 
-                return result;
+                return Optional.Present(current);
             }
 
             return default;
@@ -31,22 +31,27 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
             this IEnumerable<TSource> source,
             in Func<TSource, bool> predicate)
         {
-            Optional<TSource> result = default;
+            using var enumerator = source.GetEnumerator();
 
-            foreach (var current in source)
+            while (enumerator.MoveNext())
             {
+                var current = enumerator.Current;
+
                 if (predicate.Invoke(current))
                 {
-                    if (result.IsPresent)
+                    while (enumerator.MoveNext())
                     {
-                        throw CreateMoreThanOneMatchException();
+                        if (predicate.Invoke(enumerator.Current))
+                        {
+                            throw CreateMoreThanOneMatchException();
+                        }
                     }
 
-                    result = Optional.Present(current);
+                    return Optional.Present(current);
                 }
             }
 
-            return result;
+            return default;
         }
     }
 }

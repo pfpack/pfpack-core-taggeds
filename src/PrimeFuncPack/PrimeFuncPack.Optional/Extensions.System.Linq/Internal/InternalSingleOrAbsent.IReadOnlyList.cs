@@ -31,12 +31,15 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
 
                 if (predicate.Invoke(current))
                 {
-                    if (result.IsPresent)
+                    for (var j = i + 1; j < source.Count; j++)
                     {
-                        throw CreateMoreThanOneMatchException();
+                        if (predicate.Invoke(source[j]))
+                        {
+                            throw CreateMoreThanOneMatchException();
+                        }
                     }
 
-                    result = Optional.Present(current);
+                    return Optional.Present(current);
                 }
             }
 
