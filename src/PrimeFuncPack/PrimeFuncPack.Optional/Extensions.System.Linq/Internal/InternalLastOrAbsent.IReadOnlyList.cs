@@ -21,7 +21,17 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
         public static Optional<TSource> InternalLastOrAbsent<TSource>(
             this IReadOnlyList<TSource> source, in Func<TSource, bool> predicate)
         {
-            throw new NotImplementedException();
+            for (var i = source.Count - 1; i >= 0; i--)
+            {
+                var current = source[i];
+
+                if (predicate.Invoke(current))
+                {
+                    return Optional.Present(current);
+                }
+            }
+
+            return default;
         }
     }
 }
