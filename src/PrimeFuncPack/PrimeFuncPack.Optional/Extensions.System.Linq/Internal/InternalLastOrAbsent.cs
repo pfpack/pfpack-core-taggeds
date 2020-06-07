@@ -32,17 +32,29 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
             this IEnumerable<TSource> source,
             in Func<TSource, bool> predicate)
         {
-            Optional<TSource> result = default;
+            using var enumerator = source.GetEnumerator();
 
-            foreach (var current in source)
+            while (enumerator.MoveNext())
             {
+                var current = enumerator.Current;
+
                 if (predicate.Invoke(current))
                 {
-                    result = Optional.Present(current);
+                    while (enumerator.MoveNext())
+                    {
+                        TSource next = enumerator.Current;
+
+                        if (predicate.Invoke(next))
+                        {
+                            current = next;
+                        }
+                    }
+
+                    return Optional.Present(current);
                 }
             }
 
-            return result;
+            return default;
         }
     }
 }
