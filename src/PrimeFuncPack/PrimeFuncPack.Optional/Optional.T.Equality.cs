@@ -27,6 +27,6 @@ namespace PrimeFuncPack
 
         public override int GetHashCode()
             =>
-            box switch { object present => present.GetHashCode(), _ => default };
+            box switch { null => default, var present => present.GetHashCode() };
     }
 }
