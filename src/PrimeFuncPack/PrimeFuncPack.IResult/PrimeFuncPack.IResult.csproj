@@ -19,9 +19,4 @@
 		</None>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <PackageReference Include="PrimeFuncPack.Linq" Version="1.0.0-preview.1.0.*" />
-	  <PackageReference Include="PrimeFuncPack.Optional" Version="1.0.0-preview.1.0.*" />
-	</ItemGroup>
-
 </Project>
