@@ -10,14 +10,22 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
         public static Optional<TSource> InternalLastOrAbsent<TSource>(
             this IEnumerable<TSource> source)
         {
-            Optional<TSource> result = default;
+            using var enumerator = source.GetEnumerator();
 
-            foreach (var current in source)
+            if (enumerator.MoveNext())
             {
-                result = Optional.Present(current);
+                TSource current;
+
+                do
+                {
+                    current = enumerator.Current;
+                }
+                while (enumerator.MoveNext());
+
+                return Optional.Present(current);
             }
 
-            return result;
+            return default;
         }
 
         public static Optional<TSource> InternalLastOrAbsent<TSource>(
