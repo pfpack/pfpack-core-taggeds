@@ -29,14 +29,11 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
 
                 if (predicate.Invoke(current))
                 {
-                    if (i < source.Count - 1)
+                    for (var j = i + 1; j < source.Count; j++)
                     {
-                        for (var j = i + 1; j < source.Count; j++)
+                        if (predicate.Invoke(source[j]))
                         {
-                            if (predicate.Invoke(source[j]))
-                            {
-                                throw CreateMoreThanOneMatchException();
-                            }
+                            throw CreateMoreThanOneMatchException();
                         }
                     }
 
