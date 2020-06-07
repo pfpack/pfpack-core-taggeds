@@ -8,14 +8,6 @@ namespace PrimeFuncPack
     {
         public T Value { get; }
 
-        public Box(in T value)
-            =>
-            Value = value;
-
-        public static implicit operator Box<T>(in T value)
-            =>
-            new Box<T>(value);
-
         public static implicit operator T(in Box<T> box)
             =>
             box.Value;

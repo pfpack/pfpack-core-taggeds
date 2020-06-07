@@ -4,7 +4,10 @@ using System;
 
 namespace PrimeFuncPack
 {
-    public readonly partial struct Optional<T> : IEquatable<Optional<T>>, ISamenessPossessor<Optional<T>>
+    public readonly partial struct Optional<T> :
+        IEquatable<Optional<T>>,
+        ISamenessPossessor<Optional<T>>,
+        IResult<T, Unit>
     {
         private readonly Box<T>? box;
 

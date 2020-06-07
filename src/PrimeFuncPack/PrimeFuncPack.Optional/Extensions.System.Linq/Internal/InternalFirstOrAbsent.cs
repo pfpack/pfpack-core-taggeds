@@ -8,24 +8,25 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
     partial class InternalCollectionsExtensions
     {
         public static Optional<TSource> InternalFirstOrAbsent<TSource>(
-            this IList<TSource> source)
+            this IEnumerable<TSource> source)
         {
-            if (source.Count > 0)
+            using var enumerator = source.GetEnumerator();
+
+            if (enumerator.MoveNext())
             {
-                return Optional.Present(source[0]);
+                return Optional.Present(enumerator.Current);
             }
 
             return default;
         }
 
         public static Optional<TSource> InternalFirstOrAbsent<TSource>(
-            this IList<TSource> source, in Func<TSource, bool> predicate)
+            this IEnumerable<TSource> source,
+            in Func<TSource, bool> predicate)
         {
-            for (var i = 0; i < source.Count; i++)
+            foreach (var current in source)
             {
-                var current = source[i];
-
-                if (predicate(current))
+                if (predicate.Invoke(current))
                 {
                     return Optional.Present(current);
                 }

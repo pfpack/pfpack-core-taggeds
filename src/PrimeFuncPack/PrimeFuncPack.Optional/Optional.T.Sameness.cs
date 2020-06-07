@@ -14,6 +14,6 @@ namespace PrimeFuncPack
 
         public int SamenessHashCode()
             =>
-            box switch { Box<T> present => present.SamenessHashCode(), _ => default };
+            box switch { null => default, var present => present.SamenessHashCode() };
     }
 }
