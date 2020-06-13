@@ -1,14 +1,13 @@
 ﻿#nullable enable
 
 using PrimeFuncPack;
-using PrimeFuncPack.Extensions.System.Linq.Internal;
 using System.Collections.Generic;
 
 namespace System.Linq
 {
     partial class CollectionsExtensions
     {
-        public static Optional<TSource> LastOrAbsent<TSource>(
+        public static Optional<TSource> FirstOrAbsent<TSource>(
             this IReadOnlyList<TSource> source)
         {
             if (source is null)
@@ -16,10 +15,10 @@ namespace System.Linq
                 throw new ArgumentNullException(nameof(source));
             }
 
-            return source.InternalLastOrAbsent();
+            return source.InternalFirstOrAbsent();
         }
 
-        public static Optional<TSource> LastOrAbsent<TSource>(
+        public static Optional<TSource> FirstOrAbsent<TSource>(
             this IReadOnlyList<TSource> source,
             in Func<TSource, bool> predicate)
         {
@@ -33,7 +32,7 @@ namespace System.Linq
                 throw new ArgumentNullException(nameof(predicate));
             }
 
-            return source.InternalLastOrAbsent(predicate);
+            return source.InternalFirstOrAbsent(predicate);
         }
     }
 }

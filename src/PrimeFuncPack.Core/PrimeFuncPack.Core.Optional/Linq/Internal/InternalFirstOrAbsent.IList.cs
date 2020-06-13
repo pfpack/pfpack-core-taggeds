@@ -1,31 +1,31 @@
 ﻿#nullable enable
 
-using System;
+using PrimeFuncPack;
 using System.Collections.Generic;
 
-namespace PrimeFuncPack.Extensions.System.Linq.Internal
+namespace System.Linq
 {
     partial class InternalCollectionsExtensions
     {
         public static Optional<TSource> InternalFirstOrAbsent<TSource>(
-            this IEnumerable<TSource> source)
+            this IList<TSource> source)
         {
-            using var enumerator = source.GetEnumerator();
-
-            if (enumerator.MoveNext())
+            if (source.Count > 0)
             {
-                return Optional.Present(enumerator.Current);
+                return Optional.Present(source[0]);
             }
 
             return default;
         }
 
         public static Optional<TSource> InternalFirstOrAbsent<TSource>(
-            this IEnumerable<TSource> source,
+            this IList<TSource> source,
             in Func<TSource, bool> predicate)
         {
-            foreach (var current in source)
+            for (var i = 0; i < source.Count; i++)
             {
+                var current = source[i];
+
                 if (predicate.Invoke(current))
                 {
                     return Optional.Present(current);

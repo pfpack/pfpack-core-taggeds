@@ -1,14 +1,14 @@
 ﻿#nullable enable
 
-using System;
+using PrimeFuncPack;
 using System.Collections.Generic;
 
-namespace PrimeFuncPack.Extensions.System.Linq.Internal
+namespace System.Linq
 {
     partial class InternalCollectionsExtensions
     {
         public static Optional<TSource> InternalSingleOrAbsent<TSource>(
-            this IReadOnlyList<TSource> source)
+            this IList<TSource> source)
             =>
             source.Count switch
             {
@@ -20,7 +20,7 @@ namespace PrimeFuncPack.Extensions.System.Linq.Internal
             };
 
         public static Optional<TSource> InternalSingleOrAbsent<TSource>(
-            this IReadOnlyList<TSource> source,
+            this IList<TSource> source,
             in Func<TSource, bool> predicate)
         {
             for (var i = 0; i < source.Count; i++)
