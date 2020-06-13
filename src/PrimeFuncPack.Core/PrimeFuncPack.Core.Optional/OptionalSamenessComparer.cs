@@ -12,7 +12,7 @@ namespace System
 
         public int GetHashCode(Optional<T> obj)
             =>
-            obj.SamenessHashCode();
+            obj.GetSamenessHashCode();
 
         public static OptionalSamenessComparer<T> Default => OptionalSamenessComparerDefault<T>.Value;
     }

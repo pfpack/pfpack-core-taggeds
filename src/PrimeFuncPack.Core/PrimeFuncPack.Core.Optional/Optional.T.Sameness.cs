@@ -12,8 +12,8 @@ namespace System
             =>
             Same(this, other);
 
-        public int SamenessHashCode()
+        public int GetSamenessHashCode()
             =>
-            box switch { null => default, var present => present.SamenessHashCode() };
+            box switch { null => default, var present => present.GetSamenessHashCode() };
     }
 }

@@ -12,7 +12,7 @@ namespace System
             =>
             Same(this, other);
 
-        public int SamenessHashCode()
+        public int GetSamenessHashCode()
             =>
             base.GetHashCode();
     }

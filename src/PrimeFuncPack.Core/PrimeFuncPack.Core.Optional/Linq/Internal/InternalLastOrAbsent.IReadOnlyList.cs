@@ -1,6 +1,5 @@
 ﻿#nullable enable
 
-using PrimeFuncPack;
 using System.Collections.Generic;
 
 namespace System.Linq

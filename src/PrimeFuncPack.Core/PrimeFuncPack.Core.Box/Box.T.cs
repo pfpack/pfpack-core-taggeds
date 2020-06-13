@@ -2,7 +2,9 @@
 
 namespace System
 {
-    public sealed partial class Box<T> : IEquatable<Box<T>?>, ISamenessPossessor<Box<T>?>
+    public sealed partial class Box<T> :
+        IEquatable<Box<T>?>,
+        ISamenessEquatable<Box<T>?>
     {
         public T Value { get; }
 

@@ -2,10 +2,10 @@
 
 namespace System
 {
-    public interface ISamenessPossessor<T>
+    public interface ISamenessEquatable<T>
     {
         bool Same(in T other);
 
-        int SamenessHashCode();
+        int GetSamenessHashCode();
     }
 }

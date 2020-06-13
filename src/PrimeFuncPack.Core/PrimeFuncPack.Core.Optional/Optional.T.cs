@@ -4,7 +4,7 @@ namespace System
 {
     public readonly partial struct Optional<T> :
         IEquatable<Optional<T>>,
-        ISamenessPossessor<Optional<T>>
+        ISamenessEquatable<Optional<T>>
     {
         private readonly Box<T>? box;
 
