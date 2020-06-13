@@ -1,8 +1,6 @@
 ﻿#nullable enable
 
-using System;
-
-namespace PrimeFuncPack
+namespace System
 {
     public readonly partial struct Unit : IEquatable<Unit>
     {

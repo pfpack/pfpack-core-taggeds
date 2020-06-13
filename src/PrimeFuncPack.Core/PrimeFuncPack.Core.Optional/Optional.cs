@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace PrimeFuncPack
+namespace System
 {
     public static partial class Optional
     {

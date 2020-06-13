@@ -1,8 +1,6 @@
 ﻿#nullable enable
 
-using System;
-
-namespace PrimeFuncPack
+namespace System
 {
     partial struct Optional<T>
     {

@@ -1,9 +1,8 @@
 ﻿#nullable enable
 
-using System;
 using System.Threading.Tasks;
 
-namespace PrimeFuncPack
+namespace System
 {
     partial struct Optional<T>
     {

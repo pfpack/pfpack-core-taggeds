@@ -1,9 +1,8 @@
 ﻿#nullable enable
 
-using System;
 using System.Collections.Generic;
 
-namespace PrimeFuncPack
+namespace System
 {
     public sealed class BoxSamenessComparer<T> : IEqualityComparer<Box<T>?>
     {

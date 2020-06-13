@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace PrimeFuncPack
+namespace System
 {
     public sealed class OptionalSamenessComparer<T> : IEqualityComparer<Optional<T>>
     {

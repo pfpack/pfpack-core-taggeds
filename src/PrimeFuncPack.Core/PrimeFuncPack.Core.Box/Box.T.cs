@@ -1,8 +1,6 @@
 ﻿#nullable enable
 
-using System;
-
-namespace PrimeFuncPack
+namespace System
 {
     public sealed partial class Box<T> : IEquatable<Box<T>?>, ISamenessPossessor<Box<T>?>
     {

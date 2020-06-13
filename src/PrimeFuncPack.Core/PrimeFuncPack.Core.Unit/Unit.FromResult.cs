@@ -5,7 +5,7 @@ using static PrimeFuncPack.Internals.CodeAnalysisServices.CodeAnalysisConsts.Sup
 using static PrimeFuncPack.Internals.CodeAnalysisServices.CodeAnalysisConsts.SuppressMessageCheckIds;
 using static PrimeFuncPack.Internals.CodeAnalysisServices.CodeAnalysisConsts.SuppressMessageJustifications;
 
-namespace PrimeFuncPack
+namespace System
 {
     partial struct Unit
     {
