@@ -16,4 +16,9 @@ namespace PrimeFuncPack
 
         public static OptionalEqualityComparer<T> Default => OptionalEqualityComparerDefault<T>.Value;
     }
+
+    internal static class OptionalEqualityComparerDefault<T>
+    {
+        public static readonly OptionalEqualityComparer<T> Value = new OptionalEqualityComparer<T>();
+    }
 }

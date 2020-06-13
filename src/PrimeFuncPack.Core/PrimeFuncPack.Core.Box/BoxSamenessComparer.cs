@@ -19,4 +19,9 @@ namespace PrimeFuncPack
 
         public static BoxSamenessComparer<T> Default => BoxSamenessComparerDefault<T>.Value;
     }
+
+    internal static class BoxSamenessComparerDefault<T>
+    {
+        public static readonly BoxSamenessComparer<T> Value = new BoxSamenessComparer<T>();
+    }
 }

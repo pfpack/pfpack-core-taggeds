@@ -19,4 +19,9 @@ namespace PrimeFuncPack
 
         public static BoxEqualityComparer<T> Default => BoxEqualityComparerDefault<T>.Value;
     }
+
+    internal static class BoxEqualityComparerDefault<T>
+    {
+        public static readonly BoxEqualityComparer<T> Value = new BoxEqualityComparer<T>();
+    }
 }
