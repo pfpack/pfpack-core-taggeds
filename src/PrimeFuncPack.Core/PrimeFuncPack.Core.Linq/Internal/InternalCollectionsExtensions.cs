@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace PrimeFuncPack.Extensions.System.Linq.Internal
+namespace System.Linq
 {
     internal static partial class InternalCollectionsExtensions
     {
