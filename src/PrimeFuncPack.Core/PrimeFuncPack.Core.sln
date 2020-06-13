@@ -3,19 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Unit", "PrimeFuncPack.Unit\PrimeFuncPack.Unit.csproj", "{F3348D56-6954-45C7-93FD-ACE0E466C7D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Core.Unit", "PrimeFuncPack.Core.Unit\PrimeFuncPack.Core.Unit.csproj", "{F3348D56-6954-45C7-93FD-ACE0E466C7D8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Box", "PrimeFuncPack.Box\PrimeFuncPack.Box.csproj", "{03CEE7F7-CB29-4998-A359-4643172B5E58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Core.Box", "PrimeFuncPack.Core.Box\PrimeFuncPack.Core.Box.csproj", "{03CEE7F7-CB29-4998-A359-4643172B5E58}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Optional", "PrimeFuncPack.Optional\PrimeFuncPack.Optional.csproj", "{AFD05554-E872-4C47-834C-57867E2742EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Core.Optional", "PrimeFuncPack.Core.Optional\PrimeFuncPack.Core.Optional.csproj", "{AFD05554-E872-4C47-834C-57867E2742EA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.ISamenessPossessor", "PrimeFuncPack.ISamenessPossessor\PrimeFuncPack.ISamenessPossessor.csproj", "{1246B6C9-7403-43C7-810D-7597D814C86D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Core.ISamenessPossessor", "PrimeFuncPack.Core.ISamenessPossessor\PrimeFuncPack.Core.ISamenessPossessor.csproj", "{1246B6C9-7403-43C7-810D-7597D814C86D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Linq", "PrimeFuncPack.Linq\PrimeFuncPack.Linq.csproj", "{7A1B326D-F5C7-465B-829E-E50C649A8AEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Core.Linq", "PrimeFuncPack.Core.Linq\PrimeFuncPack.Core.Linq.csproj", "{7A1B326D-F5C7-465B-829E-E50C649A8AEE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack", "PrimeFuncPack\PrimeFuncPack.csproj", "{B4E78FF8-0946-4206-85D8-1C846CA680D9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeFuncPack.IResult", "PrimeFuncPack.IResult\PrimeFuncPack.IResult.csproj", "{E0ABEFBC-B40C-48BA-99C5-5C07BC6F6D2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Core", "PrimeFuncPack.Core\PrimeFuncPack.Core.csproj", "{B4E78FF8-0946-4206-85D8-1C846CA680D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +45,6 @@ Global
 		{B4E78FF8-0946-4206-85D8-1C846CA680D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4E78FF8-0946-4206-85D8-1C846CA680D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4E78FF8-0946-4206-85D8-1C846CA680D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0ABEFBC-B40C-48BA-99C5-5C07BC6F6D2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0ABEFBC-B40C-48BA-99C5-5C07BC6F6D2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0ABEFBC-B40C-48BA-99C5-5C07BC6F6D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0ABEFBC-B40C-48BA-99C5-5C07BC6F6D2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

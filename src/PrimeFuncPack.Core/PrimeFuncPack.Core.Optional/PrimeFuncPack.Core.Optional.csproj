@@ -20,9 +20,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="PrimeFuncPack.Box" Version="1.0.0-preview.1.0.*" />
-		<PackageReference Include="PrimeFuncPack.IResult" Version="1.0.0-preview.1.0.*" />
-		<PackageReference Include="PrimeFuncPack.Unit" Version="1.0.0-preview.1.0.*" />
+		<PackageReference Include="PrimeFuncPack.Core.Box" Version="1.0.0-preview.1.0.*" />
+		<PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.0.0-preview.1.0.*" />
 	</ItemGroup>
 
 </Project>

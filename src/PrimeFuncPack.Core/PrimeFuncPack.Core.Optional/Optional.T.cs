@@ -6,8 +6,7 @@ namespace PrimeFuncPack
 {
     public readonly partial struct Optional<T> :
         IEquatable<Optional<T>>,
-        ISamenessPossessor<Optional<T>>,
-        IResult<T, Unit>
+        ISamenessPossessor<Optional<T>>
     {
         private readonly Box<T>? box;
 

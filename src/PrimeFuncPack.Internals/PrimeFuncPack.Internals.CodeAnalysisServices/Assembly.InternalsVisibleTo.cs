@@ -2,4 +2,4 @@
 
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo(assemblyName: "PrimeFuncPack.Unit")]
+[assembly: InternalsVisibleTo(assemblyName: "PrimeFuncPack.Core.Unit")]
