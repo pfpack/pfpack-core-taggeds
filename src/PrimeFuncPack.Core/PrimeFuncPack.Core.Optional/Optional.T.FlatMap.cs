@@ -1,15 +1,25 @@
 ﻿#nullable enable
 
+using System.Threading.Tasks;
+
 namespace System
 {
     partial struct Optional<T>
     {
         public Optional<TResult> FlatMap<TResult>(in Func<T, Optional<TResult>> map)
             =>
-            IsPresent switch
+            box switch
             {
-                true => map.Invoke(Value),
-                _ => default
+                null => default,
+                var present => map.Invoke(present)
+            };
+
+        public Task<Optional<TResult>> FlatMapAsync<TResult>(in Func<T, Task<Optional<TResult>>> map)
+            =>
+            box switch
+            {
+                null => Task.FromResult<Optional<TResult>>(default),
+                var present => map.Invoke(present)
             };
     }
 }

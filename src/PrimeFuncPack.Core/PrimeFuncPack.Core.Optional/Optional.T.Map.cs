@@ -6,10 +6,10 @@ namespace System
     {
         public Optional<TResult> Map<TResult>(in Func<T, TResult> map)
             =>
-            IsPresent switch
+            box switch
             {
-                true => Optional<TResult>.Present(map.Invoke(Value)),
-                _ => default
+                null => default,
+                var present => Optional<TResult>.Present(map.Invoke(present))
             };
     }
 }

@@ -6,9 +6,10 @@ namespace System
     {
         public Optional<T> Filter(in Func<T, bool> predicate)
             =>
-            IsPresent switch
+            box switch
             {
-                true when predicate.Invoke(Value) => this,
+                null => default,
+                var present when predicate.Invoke(present) => this,
                 _ => default
             };
     }
