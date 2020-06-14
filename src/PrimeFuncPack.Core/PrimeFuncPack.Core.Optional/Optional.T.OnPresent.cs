@@ -5,33 +5,61 @@ namespace System
     partial struct Optional<T>
     {
         public Unit OnPresent(in Func<T, Unit> func)
-            =>
-            box switch
+        {
+            if (func is null)
+            {
+                throw new ArgumentNullException(nameof(func));
+            }
+
+            return box switch
             {
                 null => default,
                 var present => func.Invoke(present)
             };
+        }
 
-        public Unit OnPresent(Action<T> action) => OnPresent(
-            func: present =>
+        public Unit OnPresent(Action<T> action)
+        {
+            if (action is null)
             {
-                action.Invoke(present);
-                return default;
-            });
+                throw new ArgumentNullException(nameof(action));
+            }
+
+            return OnPresent(
+                func: present =>
+                {
+                    action.Invoke(present);
+                    return default;
+                });
+        }
 
         public Unit OnPresent(in Func<Unit> func)
-            =>
-            box switch
+        {
+            if (func is null)
+            {
+                throw new ArgumentNullException(nameof(func));
+            }
+
+            return box switch
             {
                 null => default,
                 _ => func.Invoke()
             };
+        }
 
-        public Unit OnPresent(Action action) => OnPresent(
-            func: () =>
+        public Unit OnPresent(Action action)
+        {
+            if (action is null)
             {
-                action.Invoke();
-                return default;
-            });
+                throw new ArgumentNullException(nameof(action));
+            }
+
+            return OnPresent(
+                func: () =>
+                {
+                    action.Invoke();
+                    return default;
+                });
+        }
     }
 }

@@ -5,18 +5,32 @@ namespace System
     partial struct Optional<T>
     {
         public Unit OnAbsent(in Func<Unit> func)
-            =>
-            box switch
+        {
+            if (func is null)
+            {
+                throw new ArgumentNullException(nameof(func));
+            }
+
+            return box switch
             {
                 null => func.Invoke(),
                 _ => default
             };
+        }
 
-        public Unit OnAbsent(Action action) => OnAbsent(
-            func: () =>
+        public Unit OnAbsent(Action action)
+        {
+            if (action is null)
             {
-                action.Invoke();
-                return default;
-            });
+                throw new ArgumentNullException(nameof(action));
+            }
+
+            return OnAbsent(
+                func: () =>
+                {
+                    action.Invoke();
+                    return default;
+                });
+        }
     }
 }

@@ -15,19 +15,31 @@ namespace System
             };
 
         public T OrElse(in Func<T> otherFactory)
-            =>
-            box switch
+        {
+            if (otherFactory is null)
+            {
+                throw new ArgumentNullException(nameof(otherFactory));
+            }
+
+            return box switch
             {
                 null => otherFactory.Invoke(),
                 var present => present
             };
+        }
 
         public Task<T> OrElseAsync(in Func<Task<T>> otherFactory)
-            =>
-            box switch
+        {
+            if (otherFactory is null)
+            {
+                throw new ArgumentNullException(nameof(otherFactory));
+            }
+
+            return box switch
             {
                 null => otherFactory.Invoke(),
                 var present => Task.FromResult<T>(present)
             };
+        }
     }
 }

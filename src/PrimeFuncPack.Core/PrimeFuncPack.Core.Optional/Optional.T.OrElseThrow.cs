@@ -9,7 +9,13 @@ namespace System
             box ?? throw new InvalidOperationException("The optional does not have a value.");
 
         public T OrElseThrow(in Func<Exception> exceptionFactory)
-            =>
-            box ?? throw exceptionFactory.Invoke();
+        {
+            if (exceptionFactory is null)
+            {
+                throw new ArgumentNullException(nameof(exceptionFactory));
+            }
+
+            return box ?? throw exceptionFactory.Invoke();
+        }
     }
 }
