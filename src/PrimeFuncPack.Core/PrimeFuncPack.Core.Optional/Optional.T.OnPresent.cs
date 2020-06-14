@@ -25,12 +25,7 @@ namespace System
                 throw new ArgumentNullException(nameof(action));
             }
 
-            return OnPresent(
-                func: present =>
-                {
-                    action.Invoke(present);
-                    return default;
-                });
+            return OnPresent(func: present => action.InvokeToUnit(present));
         }
 
         public Unit OnPresent(in Func<Unit> func)
@@ -54,12 +49,7 @@ namespace System
                 throw new ArgumentNullException(nameof(action));
             }
 
-            return OnPresent(
-                func: () =>
-                {
-                    action.Invoke();
-                    return default;
-                });
+            return OnPresent(func: () => action.InvokeToUnit());
         }
     }
 }

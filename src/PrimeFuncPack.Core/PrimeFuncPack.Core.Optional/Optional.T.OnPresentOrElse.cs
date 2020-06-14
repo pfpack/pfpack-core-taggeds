@@ -36,16 +36,8 @@ namespace System
             }
 
             return OnPresentOrElse(
-                func: present =>
-                {
-                    action.Invoke(present);
-                    return default;
-                },
-                elseFunc: () =>
-                {
-                    elseAction.Invoke();
-                    return default;
-                });
+                func: present => action.InvokeToUnit(present),
+                elseFunc: () => elseAction.InvokeToUnit());
         }
 
         public Unit OnPresentOrElse(in Func<Unit> func, in Func<Unit> elseFunc)
@@ -80,16 +72,8 @@ namespace System
             }
 
             return OnPresentOrElse(
-                func: () =>
-                {
-                    action.Invoke();
-                    return default;
-                },
-                elseFunc: () =>
-                {
-                    elseAction.Invoke();
-                    return default;
-                });
+                func: () => action.InvokeToUnit(),
+                elseFunc: () => elseAction.InvokeToUnit());
         }
     }
 }

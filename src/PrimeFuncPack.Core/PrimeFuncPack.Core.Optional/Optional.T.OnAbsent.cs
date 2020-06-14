@@ -25,12 +25,7 @@ namespace System
                 throw new ArgumentNullException(nameof(action));
             }
 
-            return OnAbsent(
-                func: () =>
-                {
-                    action.Invoke();
-                    return default;
-                });
+            return OnAbsent(func: () => action.InvokeToUnit());
         }
     }
 }
