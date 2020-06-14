@@ -4,11 +4,11 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public T OrElseThrow()
+        public T OrThrow()
             =>
             box ?? throw new InvalidOperationException("The optional does not have a value.");
 
-        public T OrElseThrow(in Func<Exception> exceptionFactory)
+        public T OrThrow(in Func<Exception> exceptionFactory)
         {
             if (exceptionFactory is null)
             {
