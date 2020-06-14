@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using System.Threading.Tasks;
+
 namespace System
 {
     partial struct Optional<T>
@@ -26,6 +28,20 @@ namespace System
             }
 
             return OnAbsent(func: () => action.InvokeToUnit());
+        }
+
+        public Task<Unit> OnAbsentAsync(in Func<Task<Unit>> funcAsync)
+        {
+            if (funcAsync is null)
+            {
+                throw new ArgumentNullException(nameof(funcAsync));
+            }
+
+            return box switch
+            {
+                null => funcAsync.Invoke(),
+                _ => Task.FromResult<Unit>(default)
+            };
         }
     }
 }

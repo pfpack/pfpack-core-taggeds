@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using System.Threading.Tasks;
+
 namespace System
 {
     partial struct Optional<T>
@@ -74,6 +76,44 @@ namespace System
             return OnPresentOrElse(
                 func: () => action.InvokeToUnit(),
                 elseFunc: () => elseAction.InvokeToUnit());
+        }
+
+        public Task<Unit> OnPresentOrElseAsync(in Func<T, Task<Unit>> funcAsync, in Func<Task<Unit>> elseFuncAsync)
+        {
+            if (funcAsync is null)
+            {
+                throw new ArgumentNullException(nameof(funcAsync));
+            }
+
+            if (elseFuncAsync is null)
+            {
+                throw new ArgumentNullException(nameof(elseFuncAsync));
+            }
+
+            return box switch
+            {
+                null => elseFuncAsync.Invoke(),
+                var present => funcAsync.Invoke(present)
+            };
+        }
+
+        public Task<Unit> OnPresentOrElseAsync(in Func<Task<Unit>> funcAsync, in Func<Task<Unit>> elseFuncAsync)
+        {
+            if (funcAsync is null)
+            {
+                throw new ArgumentNullException(nameof(funcAsync));
+            }
+
+            if (elseFuncAsync is null)
+            {
+                throw new ArgumentNullException(nameof(elseFuncAsync));
+            }
+
+            return box switch
+            {
+                null => elseFuncAsync.Invoke(),
+                _ => funcAsync.Invoke()
+            };
         }
     }
 }
