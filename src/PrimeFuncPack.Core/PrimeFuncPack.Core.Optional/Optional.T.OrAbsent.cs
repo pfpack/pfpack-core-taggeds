@@ -4,6 +4,6 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public Optional<T> OrAbsent() => Filter(value => value is object);
+        public Optional<T> OrAbsent() => Filter(predicate: value => value is object);
     }
 }
