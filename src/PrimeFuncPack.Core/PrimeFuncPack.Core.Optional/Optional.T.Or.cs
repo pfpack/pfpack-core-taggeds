@@ -20,16 +20,16 @@ namespace System
             };
         }
 
-        public Task<Optional<T>> OrAsync(in Func<Task<Optional<T>>> otherFactory)
+        public Task<Optional<T>> OrAsync(in Func<Task<Optional<T>>> otherFactoryAsync)
         {
-            if (otherFactory is null)
+            if (otherFactoryAsync is null)
             {
-                throw new ArgumentNullException(nameof(otherFactory));
+                throw new ArgumentNullException(nameof(otherFactoryAsync));
             }
 
             return box switch
             {
-                null => otherFactory.Invoke(),
+                null => otherFactoryAsync.Invoke(),
                 _ => Task.FromResult(this)
             };
         }

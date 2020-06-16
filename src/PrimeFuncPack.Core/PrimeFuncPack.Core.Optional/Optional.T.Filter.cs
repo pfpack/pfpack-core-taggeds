@@ -13,7 +13,7 @@ namespace System
 
             return box switch
             {
-                null => default,
+                null => this,
                 var present when predicate.Invoke(present) => this,
                 _ => default
             };
