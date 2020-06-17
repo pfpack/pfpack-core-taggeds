@@ -20,17 +20,17 @@ namespace System
             };
         }
 
-        public Task<Optional<TResult>> FlatMapAsync<TResult>(in Func<T, Task<Optional<TResult>>> map)
+        public Task<Optional<TResult>> FlatMapAsync<TResult>(in Func<T, Task<Optional<TResult>>> mapAsync)
         {
-            if (map is null)
+            if (mapAsync is null)
             {
-                throw new ArgumentNullException(nameof(map));
+                throw new ArgumentNullException(nameof(mapAsync));
             }
 
             return box switch
             {
                 null => Task.FromResult<Optional<TResult>>(default),
-                var present => map.Invoke(present)
+                var present => mapAsync.Invoke(present)
             };
         }
     }
