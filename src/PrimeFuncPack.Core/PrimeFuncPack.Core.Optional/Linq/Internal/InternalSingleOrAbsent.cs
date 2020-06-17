@@ -7,7 +7,8 @@ namespace System.Linq
     partial class InternalCollectionsExtensions
     {
         public static Optional<TSource> InternalSingleOrAbsent<TSource>(
-            this IEnumerable<TSource> source)
+            this IEnumerable<TSource> source,
+            in Func<Exception> moreThanOneElementExceptionFactory)
         {
             using var enumerator = source.GetEnumerator();
 
@@ -17,7 +18,7 @@ namespace System.Linq
 
                 if (enumerator.MoveNext())
                 {
-                    throw CreateMoreThanOneElementException();
+                    throw moreThanOneElementExceptionFactory.Invoke();
                 }
 
                 return Optional.Present(current);
@@ -28,7 +29,8 @@ namespace System.Linq
 
         public static Optional<TSource> InternalSingleOrAbsent<TSource>(
             this IEnumerable<TSource> source,
-            in Func<TSource, bool> predicate)
+            in Func<TSource, bool> predicate,
+            in Func<Exception> moreThanOneMatchExceptionFactory)
         {
             using var enumerator = source.GetEnumerator();
 
@@ -42,7 +44,7 @@ namespace System.Linq
                     {
                         if (predicate.Invoke(enumerator.Current))
                         {
-                            throw CreateMoreThanOneMatchException();
+                            throw moreThanOneMatchExceptionFactory.Invoke();
                         }
                     }
 

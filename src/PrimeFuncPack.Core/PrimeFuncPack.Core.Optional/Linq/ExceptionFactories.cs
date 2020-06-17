@@ -2,7 +2,7 @@
 
 namespace System.Linq
 {
-    partial class InternalCollectionsExtensions
+    partial class CollectionsExtensions
     {
         private static Exception CreateMoreThanOneElementException()
             =>
@@ -10,6 +10,6 @@ namespace System.Linq
 
         private static Exception CreateMoreThanOneMatchException()
             =>
-            new InvalidOperationException("The collection contains more than one element matching the predicate.");
+            new InvalidOperationException("The collection contains more than one element matching to the predicate.");
     }
 }
