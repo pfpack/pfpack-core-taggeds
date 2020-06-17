@@ -18,7 +18,7 @@ namespace System.Linq
             return dictionary.InternalGetValueOrAbsent(key);
         }
 
-        [Obsolete("This method is obsolete. Call GetValueOrAbsent instead.", error: true)]
+        [Obsolete(ObsoleteMessages.TryGetValueOrAbsent, error: true)]
         public static Optional<TValue> TryGetValueOrAbsent<TKey, TValue>(
             this IReadOnlyDictionary<TKey, TValue> dictionary,
             in TKey key)
