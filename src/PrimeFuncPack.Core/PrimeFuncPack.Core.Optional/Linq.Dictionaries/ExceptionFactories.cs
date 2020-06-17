@@ -4,8 +4,8 @@ namespace System.Linq
 {
     partial class DictionariesExtensions
     {
-        private static Func<Exception> GetMoreThanOneMatchExceptionFactory()
+        private static Exception CreateMoreThanOneMatchException()
             =>
-            () => new InvalidOperationException("The dictionary contains more than one key equal to the specified.");
+            new InvalidOperationException("The dictionary contains more than one key equal to the specified.");
     }
 }

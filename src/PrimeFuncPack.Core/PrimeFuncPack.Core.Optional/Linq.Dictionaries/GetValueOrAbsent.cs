@@ -27,7 +27,7 @@ namespace System.Linq
 
                 var dict
                 =>
-                dict.InternalGetValueOrAbsent(key, GetMoreThanOneMatchExceptionFactory()),
+                dict.InternalGetValueOrAbsent(key, () => CreateMoreThanOneMatchException()),
             };
         }
 

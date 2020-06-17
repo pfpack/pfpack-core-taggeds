@@ -9,7 +9,7 @@ namespace System.Linq
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IReadOnlyList<TSource> source)
             =>
-            source.SingleOrAbsent(GetMoreThanOneElementExceptionFactory());
+            source.SingleOrAbsent(() => CreateMoreThanOneElementException());
 
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IReadOnlyList<TSource> source,
@@ -32,7 +32,7 @@ namespace System.Linq
             this IReadOnlyList<TSource> source,
             in Func<TSource, bool> predicate)
             =>
-            source.SingleOrAbsent(predicate, GetMoreThanOneMatchExceptionFactory());
+            source.SingleOrAbsent(predicate, () => CreateMoreThanOneMatchException());
 
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IReadOnlyList<TSource> source,

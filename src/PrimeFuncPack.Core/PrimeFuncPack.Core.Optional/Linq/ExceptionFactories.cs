@@ -4,12 +4,12 @@ namespace System.Linq
 {
     partial class CollectionsExtensions
     {
-        private static Func<Exception> GetMoreThanOneElementExceptionFactory()
+        private static Exception CreateMoreThanOneElementException()
             =>
-            () => new InvalidOperationException("The collection contains more than one element.");
+            new InvalidOperationException("The collection contains more than one element.");
 
-        private static Func<Exception> GetMoreThanOneMatchExceptionFactory()
+        private static Exception CreateMoreThanOneMatchException()
             =>
-            () => new InvalidOperationException("The collection contains more than one element matching to the predicate.");
+            new InvalidOperationException("The collection contains more than one element matching to the predicate.");
     }
 }
