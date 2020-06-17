@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using System.Collections.Generic;
+
 namespace System
 {
     partial class Box<T>
@@ -9,7 +11,7 @@ namespace System
             ReferenceEquals(boxA, boxB) ||
             boxA is object &&
             boxB is object &&
-            ValueEquals(boxA, boxB);
+            EqualityComparer<T>.Default.Equals(boxA, boxB);
 
         public static bool operator ==(in Box<T>? boxA, in Box<T>? boxB)
             =>

@@ -29,7 +29,7 @@ namespace System
         {
             null
             =>
-            Absent,
+            default,
 
             var present
             =>

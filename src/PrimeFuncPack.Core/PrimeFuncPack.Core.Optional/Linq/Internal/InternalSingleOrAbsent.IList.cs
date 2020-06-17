@@ -7,11 +7,12 @@ namespace System.Linq
     partial class InternalCollectionsExtensions
     {
         public static Optional<TSource> InternalSingleOrAbsent<TSource>(
-            this IList<TSource> source)
+            this IList<TSource> source,
+            in Func<Exception> moreThanOneElementExceptionFactory)
             =>
             source.Count switch
             {
-                var count when count > 1 => throw CreateMoreThanOneElementException(),
+                var count when count > 1 => throw moreThanOneElementExceptionFactory.Invoke(),
 
                 1 => Optional.Present(source[0]),
 
@@ -20,7 +21,8 @@ namespace System.Linq
 
         public static Optional<TSource> InternalSingleOrAbsent<TSource>(
             this IList<TSource> source,
-            in Func<TSource, bool> predicate)
+            in Func<TSource, bool> predicate,
+            in Func<Exception> moreThanOneMatchExceptionFactory)
         {
             for (var i = 0; i < source.Count; i++)
             {
@@ -32,7 +34,7 @@ namespace System.Linq
                     {
                         if (predicate.Invoke(source[j]))
                         {
-                            throw CreateMoreThanOneMatchException();
+                            throw moreThanOneMatchExceptionFactory.Invoke();
                         }
                     }
 
