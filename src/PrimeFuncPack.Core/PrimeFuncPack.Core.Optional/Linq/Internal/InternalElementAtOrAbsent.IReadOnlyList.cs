@@ -23,11 +23,11 @@ namespace System.Linq
             this IReadOnlyList<TSource> source,
             in long index)
             =>
-            index switch
+            unchecked((int)index) switch
             {
-                _ when index >= 0 && index < source.Count
+                var indexNormalized when indexNormalized == index
                 =>
-                Optional.Present(source[(int)index]),
+                source.InternalElementAtOrAbsent(indexNormalized),
 
                 _ => default
             };
