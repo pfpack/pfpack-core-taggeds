@@ -18,7 +18,7 @@ namespace System.Linq
 
             if (action is null)
             {
-                throw new ArgumentException(nameof(action));
+                throw new ArgumentNullException(nameof(action));
             }
 
             switch (source)
@@ -51,7 +51,7 @@ namespace System.Linq
 
             if (action is null)
             {
-                throw new ArgumentException(nameof(action));
+                throw new ArgumentNullException(nameof(action));
             }
 
             switch (source)
@@ -84,7 +84,7 @@ namespace System.Linq
 
             if (action is null)
             {
-                throw new ArgumentException(nameof(action));
+                throw new ArgumentNullException(nameof(action));
             }
 
             switch (source)

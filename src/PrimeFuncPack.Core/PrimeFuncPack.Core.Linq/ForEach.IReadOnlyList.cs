@@ -17,7 +17,7 @@ namespace System.Linq
 
             if (action is null)
             {
-                throw new ArgumentException(nameof(action));
+                throw new ArgumentNullException(nameof(action));
             }
 
             source.InternalForEach(action);
@@ -36,7 +36,7 @@ namespace System.Linq
 
             if (action is null)
             {
-                throw new ArgumentException(nameof(action));
+                throw new ArgumentNullException(nameof(action));
             }
 
             source.InternalForEach(action);
@@ -55,7 +55,7 @@ namespace System.Linq
 
             if (action is null)
             {
-                throw new ArgumentException(nameof(action));
+                throw new ArgumentNullException(nameof(action));
             }
 
             source.InternalForEach(action);
