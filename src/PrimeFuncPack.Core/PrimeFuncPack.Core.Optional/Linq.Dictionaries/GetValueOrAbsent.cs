@@ -36,6 +36,6 @@ namespace System.Linq
             this IEnumerable<KeyValuePair<TKey, TValue>> dictionary,
             in TKey key)
             =>
-            GetValueOrAbsent(dictionary, key);
+            dictionary.GetValueOrAbsent(key);
     }
 }

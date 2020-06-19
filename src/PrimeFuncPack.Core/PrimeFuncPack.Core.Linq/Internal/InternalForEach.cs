@@ -24,7 +24,7 @@ namespace System.Linq
 
             foreach (var current in source)
             {
-                checked { currentIndex++; }
+                currentIndex = unchecked(++currentIndex) & int.MaxValue;
 
                 action.Invoke(currentIndex, current);
             }
@@ -38,7 +38,7 @@ namespace System.Linq
 
             foreach (var current in source)
             {
-                checked { currentIndex++; }
+                currentIndex = unchecked(++currentIndex) & long.MaxValue;
 
                 action.Invoke(currentIndex, current);
             }

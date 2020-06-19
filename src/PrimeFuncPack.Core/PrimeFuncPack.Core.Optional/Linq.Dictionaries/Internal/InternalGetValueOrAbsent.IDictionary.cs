@@ -12,7 +12,7 @@ namespace System.Linq
             =>
             dictionary.TryGetValue(key, out var value) switch
             {
-                true => Optional<TValue>.Present(value),
+                true => Optional.Present(value),
                 _ => default
             };
     }
