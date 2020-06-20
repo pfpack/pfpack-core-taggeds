@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Core.Linq", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Core", "PrimeFuncPack.Core\PrimeFuncPack.Core.csproj", "{B4E78FF8-0946-4206-85D8-1C846CA680D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeFuncPack.Core.Result", "PrimeFuncPack.Core.Result\PrimeFuncPack.Core.Result.csproj", "{7EA6F20A-53C8-4235-8C40-77C50C0F28D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{B4E78FF8-0946-4206-85D8-1C846CA680D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4E78FF8-0946-4206-85D8-1C846CA680D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4E78FF8-0946-4206-85D8-1C846CA680D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EA6F20A-53C8-4235-8C40-77C50C0F28D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EA6F20A-53C8-4235-8C40-77C50C0F28D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EA6F20A-53C8-4235-8C40-77C50C0F28D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EA6F20A-53C8-4235-8C40-77C50C0F28D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
