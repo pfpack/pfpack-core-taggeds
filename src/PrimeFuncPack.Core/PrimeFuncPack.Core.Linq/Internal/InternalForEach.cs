@@ -20,13 +20,19 @@ namespace System.Linq
            this IEnumerable<TSource> source,
            in Action<int, TSource> action)
         {
-            int currentIndex = -1;
+            using var enumerator = source.GetEnumerator();
 
-            foreach (var current in source)
+            if (enumerator.MoveNext())
             {
-                checked { currentIndex++; }
+                int currentIndex = 0;
 
-                action.Invoke(currentIndex, current);
+                do
+                {
+                    action.Invoke(currentIndex, enumerator.Current);
+
+                    currentIndex = unchecked(++currentIndex) & int.MaxValue;
+                }
+                while (enumerator.MoveNext());
             }
         }
 
@@ -34,13 +40,19 @@ namespace System.Linq
            this IEnumerable<TSource> source,
            in Action<long, TSource> action)
         {
-            long currentIndex = -1;
+            using var enumerator = source.GetEnumerator();
 
-            foreach (var current in source)
+            if (enumerator.MoveNext())
             {
-                checked { currentIndex++; }
+                long currentIndex = 0;
 
-                action.Invoke(currentIndex, current);
+                do
+                {
+                    action.Invoke(currentIndex, enumerator.Current);
+
+                    currentIndex = unchecked(++currentIndex) & long.MaxValue;
+                }
+                while (enumerator.MoveNext());
             }
         }
     }

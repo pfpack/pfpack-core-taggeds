@@ -23,6 +23,6 @@ namespace System.Linq
             this IReadOnlyDictionary<TKey, TValue> dictionary,
             in TKey key)
             =>
-            GetValueOrAbsent(dictionary, key);
+            dictionary.GetValueOrAbsent(key);
     }
 }
