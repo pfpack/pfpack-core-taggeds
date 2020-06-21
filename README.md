@@ -1,2 +1,2 @@
 # PrimeFuncPack
-A Functional Programming Pack for .NET Standard
+A Functional Programming Pack for .NET

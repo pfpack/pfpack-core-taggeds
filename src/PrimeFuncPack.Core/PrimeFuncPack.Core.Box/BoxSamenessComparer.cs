@@ -1,16 +1,17 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace System
 {
-    public sealed class BoxSamenessComparer<T> : IEqualityComparer<Box<T>?>
+    public sealed class BoxSamenessComparer<T> : IEqualityComparer<Box<T>>
     {
-        public bool Equals(Box<T>? x, Box<T>? y)
+        public bool Equals([AllowNull] Box<T> x, [AllowNull] Box<T> y)
             =>
             Box<T>.Same(x, y);
 
-        public int GetHashCode(Box<T>? obj) => obj switch
+        public int GetHashCode([DisallowNull] Box<T> obj) => obj switch
         {
             null => throw new ArgumentNullException(nameof(obj)),
             var present => present.GetSamenessHashCode()
