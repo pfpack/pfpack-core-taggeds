@@ -12,8 +12,8 @@ namespace System
 
         public bool IsAbsent => box is null;
 
-        public override string? ToString()
+        public override string ToString()
             =>
-            box switch { null => string.Empty, var present => present.ToString() };
+            box?.ToString() ?? string.Empty;
     }
 }

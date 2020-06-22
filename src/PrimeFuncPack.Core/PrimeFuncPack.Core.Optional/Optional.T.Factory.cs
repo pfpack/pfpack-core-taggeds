@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace System
 {
     partial struct Optional<T>
@@ -14,7 +16,7 @@ namespace System
             =>
             new Optional<T>(value);
 
-        public static Optional<T> PresentOrThrow(in T value) => value switch
+        public static Optional<T> PresentOrThrow([DisallowNull] in T value) => value switch
         {
             null
             =>

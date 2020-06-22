@@ -3,8 +3,8 @@
 namespace System
 {
     public sealed partial class Box<T> :
-        IEquatable<Box<T>?>,
-        ISamenessEquatable<Box<T>?>
+        IEquatable<Box<T>>,
+        ISamenessEquatable<Box<T>>
     {
         public T Value { get; }
 
@@ -12,8 +12,8 @@ namespace System
             =>
             box.Value;
 
-        public override string? ToString()
+        public override string ToString()
             =>
-            Value switch { null => string.Empty, var present => present.ToString() };
+            Value?.ToString() ?? string.Empty;
     }
 }

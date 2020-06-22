@@ -1,27 +1,28 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace System
 {
     partial class Box<T>
     {
-        public static bool Equals(in Box<T>? boxA, in Box<T>? boxB)
+        public static bool Equals([AllowNull] in Box<T> boxA, [AllowNull] in Box<T> boxB)
             =>
             ReferenceEquals(boxA, boxB) ||
             boxA is object &&
             boxB is object &&
             EqualityComparer<T>.Default.Equals(boxA, boxB);
 
-        public static bool operator ==(in Box<T>? boxA, in Box<T>? boxB)
+        public static bool operator ==([AllowNull] in Box<T> boxA, [AllowNull] in Box<T> boxB)
             =>
             Equals(boxA, boxB);
 
-        public static bool operator !=(in Box<T>? boxA, in Box<T>? boxB)
+        public static bool operator !=([AllowNull] in Box<T> boxA, [AllowNull] in Box<T> boxB)
             =>
             Equals(boxA, boxB) is false;
 
-        public bool Equals(Box<T>? other)
+        public bool Equals([AllowNull] Box<T> other)
             =>
             Equals(this, other);
 
