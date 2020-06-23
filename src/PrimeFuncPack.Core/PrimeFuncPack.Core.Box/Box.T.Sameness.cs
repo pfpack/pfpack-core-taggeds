@@ -1,14 +1,16 @@
 ﻿#nullable enable
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace System
 {
     partial class Box<T>
     {
-        public static bool Same(in Box<T>? boxA, in Box<T>? boxB)
+        public static bool Same([AllowNull] in Box<T> boxA, [AllowNull] in Box<T> boxB)
             =>
             ReferenceEquals(boxA, boxB);
 
-        public bool Same(in Box<T>? other)
+        public bool Same([AllowNull] in Box<T> other)
             =>
             Same(this, other);
 

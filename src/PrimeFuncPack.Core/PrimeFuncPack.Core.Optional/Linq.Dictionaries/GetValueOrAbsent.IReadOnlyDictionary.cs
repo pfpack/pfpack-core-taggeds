@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace System.Linq
 {
@@ -19,10 +20,11 @@ namespace System.Linq
         }
 
         [Obsolete(ObsoleteMessages.TryGetValueOrAbsent, error: true)]
+        [DoesNotReturn]
         public static Optional<TValue> TryGetValueOrAbsent<TKey, TValue>(
             this IReadOnlyDictionary<TKey, TValue> dictionary,
             in TKey key)
             =>
-            dictionary.GetValueOrAbsent(key);
+            throw new NotImplementedException(ObsoleteMessages.TryGetValueOrAbsent);
     }
 }
