@@ -6,6 +6,8 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public Optional<T> NotNullOrAbsent() => Filter(IsNotNull);
+        public Optional<T> NotNullOrAbsent()
+            =>
+            Filter(IsNotNull);
     }
 }

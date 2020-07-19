@@ -6,7 +6,9 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public Optional<T> NotNullOrAbsentOrThrow() => NotNullOrAbsentOrThrow(CreateNoNotNullOrAbsentValueException);
+        public Optional<T> NotNullOrAbsentOrThrow()
+            =>
+            NotNullOrAbsentOrThrow(CreateNoNotNullOrAbsentValueException);
 
         public Optional<T> NotNullOrAbsentOrThrow(Func<Exception> exceptionFactory)
         {
