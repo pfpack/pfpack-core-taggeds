@@ -8,18 +8,22 @@ namespace System
     {
         public Optional<T> NotNullOrThrow() => NotNullOrThrow(CreateNoNotNullValueException);
 
-        public Optional<T> NotNullOrThrow(in Func<Exception> exceptionFactory)
+        public Optional<T> NotNullOrThrow(Func<Exception> exceptionFactory)
         {
             if (exceptionFactory is null)
             {
                 throw new ArgumentNullException(nameof(exceptionFactory));
             }
 
-            return (box is object && box.Value is object) switch
-            {
-                true => this,
-                _ => throw exceptionFactory.Invoke()
-            };
+            OnAbsent(
+                () => throw exceptionFactory.Invoke());
+
+            return Filter(
+                value => value switch
+                {
+                    null => throw exceptionFactory.Invoke(),
+                    _ => true
+                });
         }
     }
 }
