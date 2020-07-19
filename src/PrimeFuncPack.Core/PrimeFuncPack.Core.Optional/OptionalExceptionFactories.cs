@@ -6,14 +6,14 @@ namespace System
     {
         public static Exception CreateNoValueException()
             =>
-            new InvalidOperationException("The optional does not have a value.");
+            new InvalidOperationException("The optional does not have a present value.");
 
         public static Exception CreateNoNotNullValueException()
             =>
-            new InvalidOperationException("The optional does not have a not null value.");
+            new InvalidOperationException("The optional does not have a not null present value.");
 
         public static Exception CreateNoNotNullOrAbsentValueException()
             =>
-            new InvalidOperationException("The optional does not have a not null or absent value.");
+            new InvalidOperationException("The optional does not have a not null present or the absent value.");
     }
 }
