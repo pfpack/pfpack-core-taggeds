@@ -9,7 +9,7 @@ namespace System.Linq
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IEnumerable<TSource> source)
             =>
-            source.SingleOrAbsent(() => CreateMoreThanOneElementException());
+            source.SingleOrAbsent(CreateMoreThanOneElementException);
 
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IEnumerable<TSource> source,
@@ -45,7 +45,7 @@ namespace System.Linq
             this IEnumerable<TSource> source,
             in Func<TSource, bool> predicate)
             =>
-            source.SingleOrAbsent(predicate, () => CreateMoreThanOneMatchException());
+            source.SingleOrAbsent(predicate, CreateMoreThanOneMatchException);
 
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IEnumerable<TSource> source,

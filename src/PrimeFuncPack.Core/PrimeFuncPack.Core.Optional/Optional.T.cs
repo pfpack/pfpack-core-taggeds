@@ -6,7 +6,7 @@ namespace System
         IEquatable<Optional<T>>,
         ISamenessEquatable<Optional<T>>
     {
-        private readonly Box<T>? box;
+        internal readonly Box<T>? box;
 
         public bool IsPresent => box is object;
 

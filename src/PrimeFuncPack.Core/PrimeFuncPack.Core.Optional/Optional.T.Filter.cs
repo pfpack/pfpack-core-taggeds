@@ -11,10 +11,9 @@ namespace System
                 throw new ArgumentNullException(nameof(predicate));
             }
 
-            return box switch
+            return (box is null || predicate.Invoke(box)) switch
             {
-                null => this,
-                var present when predicate.Invoke(present) => this,
+                true => this,
                 _ => default
             };
         }
