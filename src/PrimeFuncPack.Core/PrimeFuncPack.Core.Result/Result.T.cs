@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public sealed class Result<TSuccess, TFailure>
+    public readonly struct Result<TSuccess, TFailure>
     {
     }
 }
