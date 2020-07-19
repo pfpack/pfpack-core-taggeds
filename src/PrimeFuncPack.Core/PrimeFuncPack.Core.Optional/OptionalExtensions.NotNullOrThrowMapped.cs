@@ -19,17 +19,15 @@ namespace System
                 throw new ArgumentNullException(nameof(exceptionFactory));
             }
 
-            return optional.box switch
-            {
-                null => throw exceptionFactory.Invoke(),
+            optional.OnAbsent(
+                () => throw exceptionFactory.Invoke());
 
-                var present => present.Value switch
+            return optional.FlatMap(
+                value => value switch
                 {
                     null => throw exceptionFactory.Invoke(),
-
                     var notnull => Optional<T>.Present(notnull)
-                }
-            };
+                });
         }
 
         public static Optional<T> NotNullOrThrowMapped<T>(this in Optional<T?> optional)
@@ -45,17 +43,15 @@ namespace System
                 throw new ArgumentNullException(nameof(exceptionFactory));
             }
 
-            return optional.box switch
-            {
-                null => throw exceptionFactory.Invoke(),
+            optional.OnAbsent(
+                () => throw exceptionFactory.Invoke());
 
-                var present => present.Value switch
+            return optional.FlatMap(
+                value => value switch
                 {
                     null => throw exceptionFactory.Invoke(),
-
                     T notnull => Optional<T>.Present(notnull)
-                }
-            };
+                });
         }
     }
 }
