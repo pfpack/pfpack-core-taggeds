@@ -19,12 +19,9 @@ namespace System
                 throw new ArgumentNullException(nameof(exceptionFactory));
             }
 
-            return optional.FlatMap(
-                value => value switch
-                {
-                    null => throw exceptionFactory.Invoke(),
-                    var notnull => Optional<T>.Present(notnull)
-                });
+            return optional
+                .NotNullOrAbsentOrThrow(exceptionFactory)
+                .Map(value => value ?? throw new ArgumentNullException(nameof(value))); // Just to not to use ! (null-forgiving) operator
         }
 
         public static Optional<T> NotNullOrAbsentOrThrowMapped<T>(this in Optional<T?> optional)
@@ -40,12 +37,9 @@ namespace System
                 throw new ArgumentNullException(nameof(exceptionFactory));
             }
 
-            return optional.FlatMap(
-                value => value switch
-                {
-                    null => throw exceptionFactory.Invoke(),
-                    T notnull => Optional<T>.Present(notnull)
-                });
+            return optional
+                .NotNullOrAbsentOrThrow(exceptionFactory)
+                .Map(value => value ?? throw new ArgumentNullException(nameof(value))); // Just to not to use ! (null-forgiving) operator
         }
     }
 }

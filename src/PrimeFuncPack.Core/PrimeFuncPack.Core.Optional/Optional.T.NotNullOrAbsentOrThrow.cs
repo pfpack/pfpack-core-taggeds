@@ -17,12 +17,10 @@ namespace System
                 throw new ArgumentNullException(nameof(exceptionFactory));
             }
 
-            return Filter(
-                value => value switch
-                {
-                    null => throw exceptionFactory.Invoke(),
-                    _ => true
-                });
+            OnPresent(
+                value => (value ?? throw exceptionFactory.Invoke()).ToUnit());
+
+            return this;
         }
     }
 }

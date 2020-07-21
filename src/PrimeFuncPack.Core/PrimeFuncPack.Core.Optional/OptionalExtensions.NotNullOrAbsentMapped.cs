@@ -1,25 +1,21 @@
 ﻿#nullable enable
 
+using static System.OptionalExceptionFactories;
+
 namespace System
 {
     partial class OptionalExtensions
     {
         public static Optional<T> NotNullOrAbsentMapped<T>(this in Optional<T?> optional) where T : class
             =>
-            optional.FlatMap(
-                value => value switch
-                {
-                    null => default,
-                    var notnull => Optional<T>.Present(notnull)
-                });
+            optional
+            .NotNullOrAbsent()
+            .Map(value => value ?? throw new ArgumentNullException(nameof(value))); // Just to not to use ! (null-forgiving) operator
 
         public static Optional<T> NotNullOrAbsentMapped<T>(this in Optional<T?> optional) where T : struct
             =>
-            optional.FlatMap(
-                value => value switch
-                {
-                    null => default,
-                    T notnull => Optional<T>.Present(notnull)
-                });
+            optional
+            .NotNullOrAbsent()
+            .Map(value => value ?? throw new ArgumentNullException(nameof(value))); // Just to not to use ! (null-forgiving) operator
     }
 }
