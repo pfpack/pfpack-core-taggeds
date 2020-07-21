@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace System
 {
     partial class Optional
@@ -12,7 +14,7 @@ namespace System
             =>
             Optional<T>.Present(value);
 
-        public static Optional<T> PresentOrThrow<T>(in T value)
+        public static Optional<T> PresentOrThrow<T>([DisallowNull] in T value)
             =>
             Optional<T>.PresentOrThrow(value);
 
