@@ -15,12 +15,11 @@ namespace System
                 throw new ArgumentNullException(nameof(exceptionFactory));
             }
 
-            return optional.Filter(
-                value => value switch
-                {
-                    null => throw exceptionFactory.Invoke(),
-                    _ => true
-                });
+            return optional.Filter(value => value switch
+            {
+                null => throw exceptionFactory.Invoke(),
+                _ => true
+            });
         }
     }
 }
