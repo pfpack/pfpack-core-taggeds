@@ -1,7 +1,5 @@
 ﻿#nullable enable
 
-using static System.OptionalExceptionFactories;
-
 namespace System
 {
     partial class OptionalExtensions
