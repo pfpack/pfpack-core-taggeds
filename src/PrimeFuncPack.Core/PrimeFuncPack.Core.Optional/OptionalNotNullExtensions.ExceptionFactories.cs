@@ -6,6 +6,6 @@ namespace System
     {
         private static InvalidOperationException CreatePresentAndNullException()
             =>
-            new InvalidOperationException("The optional has a present value and the value is null.");
+            new InvalidOperationException("The optional has a present value, and the value is null.");
     }
 }
