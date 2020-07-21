@@ -7,7 +7,7 @@ namespace System
         public static Optional<T> MapToNotNullOrThrow<T>(this in Optional<T?> optional)
             where T : class
             =>
-            optional.MapToNotNullOrThrow(CreateNoNotnullPresentOrAbsentException);
+            optional.MapToNotNullOrThrow(CreatePresentAndNullException);
 
         public static Optional<T> MapToNotNullOrThrow<T>(this in Optional<T?> optional, Func<Exception> exceptionFactory)
             where T : class
@@ -17,7 +17,7 @@ namespace System
         public static Optional<T> MapToNotNullOrThrow<T>(this in Optional<T?> optional)
             where T : struct
             =>
-            optional.MapToNotNullOrThrow(CreateNoNotnullPresentOrAbsentException);
+            optional.MapToNotNullOrThrow(CreatePresentAndNullException);
 
         public static Optional<T> MapToNotNullOrThrow<T>(this in Optional<T?> optional, Func<Exception> exceptionFactory)
             where T : struct

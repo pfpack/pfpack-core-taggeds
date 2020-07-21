@@ -4,12 +4,8 @@ namespace System
 {
     partial class OptionalNotNullExtensions
     {
-        private static InvalidOperationException CreateNoNotnullPresentException()
+        private static InvalidOperationException CreatePresentAndNullException()
             =>
-            new InvalidOperationException("The optional does not have a not null present value.");
-
-        private static InvalidOperationException CreateNoNotnullPresentOrAbsentException()
-            =>
-            new InvalidOperationException("The optional does not have a not null present or the absent value.");
+            new InvalidOperationException("The optional has a present value and the value is null.");
     }
 }
