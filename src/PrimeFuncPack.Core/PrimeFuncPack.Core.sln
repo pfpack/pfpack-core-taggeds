@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Core.TaggedUn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Core.NullPredicates", "PrimeFuncPack.Core.NullPredicates\PrimeFuncPack.Core.NullPredicates.csproj", "{7CE6A4C1-A17E-4A39-B29A-7F3D7C617180}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeFuncPack.Core.TaggedUnions.All", "PrimeFuncPack.Core.TaggedUnions.All\PrimeFuncPack.Core.TaggedUnions.All.csproj", "{DE4D330A-BBE9-4EEC-BF95-185E989BD792}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Core.TaggedUnions.All", "PrimeFuncPack.Core.TaggedUnions.All\PrimeFuncPack.Core.TaggedUnions.All.csproj", "{DE4D330A-BBE9-4EEC-BF95-185E989BD792}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
