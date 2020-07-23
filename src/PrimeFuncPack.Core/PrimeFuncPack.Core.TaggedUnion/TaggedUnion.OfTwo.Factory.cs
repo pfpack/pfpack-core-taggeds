@@ -32,7 +32,7 @@ namespace System
 
         private static Unit AssertInvariant(in TaggedUnion<TTag, TFirst, TSecond> tagged)
             =>
-            tagged.IsInitializedProperly switch
+            tagged.IsProperInvariant switch
             {
                 true => default,
                 _ => throw new InvalidOperationException("The tagged union is not initialized properly.")

@@ -10,7 +10,7 @@ namespace System
 
         private readonly Box<TSecond>? boxSecond;
 
-        private bool IsInitializedProperly => IsFirst ^ IsSecond;
+        private bool IsProperInvariant => IsFirst ^ IsSecond;
 
         public bool IsInitialized => IsFirst || IsSecond;
 
