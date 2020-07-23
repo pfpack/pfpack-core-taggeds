@@ -16,16 +16,14 @@ namespace System
 
         public static Optional<T> PresentOrThrow<T>([DisallowNull] in T? value) where T : struct
             =>
-            PresentOrThrow<T?>(value).MapToNotNullOrThrow();
+            Optional<T>.Present(value ?? throw new ArgumentNullException(nameof(value)));
 
-        public static Optional<T> PresentOrElse<T>([DisallowNull] in T value) => value switch
-        {
-            null => default,
-            var present => Optional<T>.Present(present)
-        };
+        public static Optional<T> PresentOrElse<T>([DisallowNull] in T value)
+            =>
+            value switch { null => default, var present => Optional<T>.Present(present) };
 
         public static Optional<T> PresentOrElse<T>([DisallowNull] in T? value) where T : struct
             =>
-            PresentOrElse<T?>(value).MapToNotNullOrThrow();
+            value switch { null => default, T present => Optional<T>.Present(present) };
     }
 }

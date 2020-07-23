@@ -4,8 +4,8 @@ namespace System
 {
     partial struct Optional<T>
     {
-        private static InvalidOperationException CreateNoPresentException()
+        private static InvalidOperationException CreateExpectedToHaveValueException()
             =>
-            new InvalidOperationException("The optional does not have a present value.");
+            new InvalidOperationException("The optional is expected to have a value.");
     }
 }

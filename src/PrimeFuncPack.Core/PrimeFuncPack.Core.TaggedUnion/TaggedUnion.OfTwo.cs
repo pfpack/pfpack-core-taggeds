@@ -16,26 +16,24 @@ namespace System
 
         public bool IsSecond => boxSecond is object;
 
-        public Optional<TTag> GetTag()
+        public TTag GetTag()
         {
             var @this = this;
 
-            return
-                default(Optional<TTag>)
+            return default(Optional<TTag>)
                 .Or(() => @this.TryGetFirst().Map<TTag>(value => value))
-                .Or(() => @this.TryGetSecond().Map<TTag>(value => value));
+                .Or(() => @this.TryGetSecond().Map<TTag>(value => value))
+                .OrThrow(CreateNotInitializedException);
         }
 
-        public Optional<TFirst> TryGetFirst() => boxFirst switch
-        {
-            null => default,
-            var present => Optional<TFirst>.Present(present)
-        };
+        public Optional<TFirst> TryGetFirst() => TryGetItem(boxFirst);
 
-        public Optional<TSecond> TryGetSecond() => boxSecond switch
+        public Optional<TSecond> TryGetSecond() => TryGetItem(boxSecond);
+
+        private Optional<TItem> TryGetItem<TItem>(in Box<TItem>? box) => IsInitialized switch
         {
-            null => default,
-            var present => Optional<TSecond>.Present(present)
+            true => box.ToOptional(),
+            _ => throw CreateNotInitializedException()
         };
     }
 }

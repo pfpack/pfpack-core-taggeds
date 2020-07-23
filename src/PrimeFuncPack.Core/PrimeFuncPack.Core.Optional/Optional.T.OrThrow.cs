@@ -4,7 +4,7 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public T OrThrow() => OrThrow(CreateNoPresentException);
+        public T OrThrow() => OrThrow(CreateExpectedToHaveValueException);
 
         public T OrThrow(in Func<Exception> exceptionFactory)
         {
