@@ -5,18 +5,14 @@ namespace System
     partial struct TaggedUnion<TTag, TFirst, TSecond>
     {
         public static TaggedUnion<TTag, TFirst, TSecond> CreateFirst(in TFirst first)
-        {
-            var result = new TaggedUnion<TTag, TFirst, TSecond>(first: first);
-            AssertInvariant(result);
-            return result;
-        }
+            =>
+            new TaggedUnion<TTag, TFirst, TSecond>(first: first)
+            .AssertInvariant();
 
         public static TaggedUnion<TTag, TFirst, TSecond> CreateSecond(in TSecond second)
-        {
-            var result = new TaggedUnion<TTag, TFirst, TSecond>(second: second);
-            AssertInvariant(result);
-            return result;
-        }
+            =>
+            new TaggedUnion<TTag, TFirst, TSecond>(second: second)
+            .AssertInvariant();
 
         private TaggedUnion(in TFirst first)
         {
@@ -30,12 +26,10 @@ namespace System
             boxSecond = second;
         }
 
-        private static Unit AssertInvariant(in TaggedUnion<TTag, TFirst, TSecond> tagged)
-            =>
-            tagged.IsProperInvariant switch
-            {
-                true => default,
-                _ => throw new InvalidOperationException("The tagged union is not initialized properly.")
-            };
+        private TaggedUnion<TTag, TFirst, TSecond> AssertInvariant() => IsProperInvariant switch
+        {
+            true => this,
+            _ => throw new InvalidOperationException("The tagged union is not initialized properly.")
+        };
     }
 }
