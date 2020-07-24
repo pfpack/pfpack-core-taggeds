@@ -8,8 +8,8 @@ namespace System
             =>
             new InvalidOperationException("The tagged union is not initialized.");
 
-        private static InvalidOperationException CreateNotProperInvariantException()
+        private static InvalidOperationException CreateExpectValidInvariantException()
             =>
-            new InvalidOperationException("The tagged union is not initialized properly.");
+            new InvalidOperationException("The tagged union is expected to have valid invariant.");
     }
 }

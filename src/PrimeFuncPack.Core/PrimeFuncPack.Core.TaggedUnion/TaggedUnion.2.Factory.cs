@@ -26,10 +26,10 @@ namespace System
             boxSecond = second;
         }
 
-        private TaggedUnion<TTag, TFirst, TSecond> AssertInvariant() => IsProperInvariant switch
+        private TaggedUnion<TTag, TFirst, TSecond> AssertInvariant() => HasValidInvariant switch
         {
             true => this,
-            _ => throw CreateNotProperInvariantException()
+            _ => throw CreateExpectValidInvariantException()
         };
     }
 }
