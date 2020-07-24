@@ -29,7 +29,7 @@ namespace System
         private TaggedUnion<TTag, TFirst, TSecond> AssertInvariant() => HasValidInvariant switch
         {
             true => this,
-            _ => throw CreateExpectValidInvariantException()
+            _ => throw CreateExpectedValidInvariantException()
         };
     }
 }
