@@ -29,7 +29,7 @@ namespace System
         private TaggedUnion<TTag, TFirst, TSecond> AssertInvariant() => IsProperInvariant switch
         {
             true => this,
-            _ => throw new InvalidOperationException("The tagged union is not initialized properly.")
+            _ => throw CreateNotProperInvariantException()
         };
     }
 }
