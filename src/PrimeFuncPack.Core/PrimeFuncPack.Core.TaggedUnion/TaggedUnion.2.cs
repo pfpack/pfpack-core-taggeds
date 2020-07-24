@@ -18,16 +18,6 @@ namespace System
 
         public bool IsSecond => boxSecond is object;
 
-        public TTag GetTag()
-        {
-            var @this = this;
-
-            return default(Optional<TTag>)
-                .Or(() => @this.TryGetFirst().Map<TTag>(value => value))
-                .Or(() => @this.TryGetSecond().Map<TTag>(value => value))
-                .OrThrow(CreateNotInitializedException);
-        }
-
         public Optional<TFirst> TryGetFirst() => TryGetItem(boxFirst);
 
         public Optional<TSecond> TryGetSecond() => TryGetItem(boxSecond);
