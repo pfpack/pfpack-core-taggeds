@@ -6,7 +6,7 @@ namespace System
     {
         public static Optional<T> FilterNotNullOrThrow<T>(this in Optional<T> optional)
             =>
-            optional.FilterNotNullOrThrow(CreateExpectedToHaveNotNullOrBeAbsentException);
+            optional.FilterNotNullOrThrow(CreateExpectedNotNullOrAbsentException);
 
         public static Optional<T> FilterNotNullOrThrow<T>(this in Optional<T> optional, Func<Exception> exceptionFactory)
         {

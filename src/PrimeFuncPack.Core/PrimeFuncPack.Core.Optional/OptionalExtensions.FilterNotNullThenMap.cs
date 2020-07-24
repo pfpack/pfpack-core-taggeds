@@ -8,12 +8,12 @@ namespace System
             =>
             optional
             .FilterNotNull()
-            .Map(value => value ?? throw CreateExpectedToHaveNotNullOrBeAbsentException());
+            .Map(value => value ?? throw CreateExpectedNotNullOrAbsentException());
 
         public static Optional<T> FilterNotNullThenMap<T>(this in Optional<T?> optional) where T : struct
             =>
             optional
             .FilterNotNull()
-            .Map(value => value ?? throw CreateExpectedToHaveNotNullOrBeAbsentException());
+            .Map(value => value ?? throw CreateExpectedNotNullOrAbsentException());
     }
 }
