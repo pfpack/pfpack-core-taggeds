@@ -18,7 +18,7 @@ namespace System
             =>
             InternalFlatMap<TResult, ValueTask<Optional<TResult>>>(mapAsync, default);
 
-        private TResult InternalFlatMap<TInnerResult, TResult>(in Func<T, TResult> map, in TResult defaultResult)
+        private TOuterResult InternalFlatMap<TResult, TOuterResult>(in Func<T, TOuterResult> map, in TOuterResult defaultOuter)
         {
             if (map is null)
             {
@@ -27,7 +27,7 @@ namespace System
 
             return box switch
             {
-                null => defaultResult,
+                null => defaultOuter,
                 var present => map.Invoke(present)
             };
         }

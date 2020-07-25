@@ -30,7 +30,7 @@ namespace System
             =>
             InternalOnAbsent<Unit, ValueTask>(funcAsync, default);
 
-        private TResult InternalOnAbsent<TInnerResult, TResult>(in Func<TResult> func, in TResult defaultResult)
+        private TOuterResult InternalOnAbsent<TResult, TOuterResult>(in Func<TOuterResult> func, in TOuterResult defaultOuter)
         {
             if (func is null)
             {
@@ -40,7 +40,7 @@ namespace System
             return box switch
             {
                 null => func.Invoke(),
-                _ => defaultResult
+                _ => defaultOuter
             };
         }
     }

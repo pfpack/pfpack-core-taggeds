@@ -28,13 +28,13 @@ namespace System
             =>
             InternalFold<TResult, ValueTask<TResult>>(mapFirst, mapSecond);
 
-        private TResult InternalFold<TInnerResult, TResult>(
-            Func<TFirst, TResult> mapFirst,
-            Func<TSecond, TResult> mapSecond)
+        private TOuterResult InternalFold<TResult, TOuterResult>(
+            Func<TFirst, TOuterResult> mapFirst,
+            Func<TSecond, TOuterResult> mapSecond)
         {
             var @this = this;
 
-            return default(Optional<TResult>)
+            return default(Optional<TOuterResult>)
                 .Or(() => @this.TryGetFirst().Map(mapFirst))
                 .Or(() => @this.TryGetSecond().Map(mapSecond))
                 .OrThrow(CreateNotInitializedException);
