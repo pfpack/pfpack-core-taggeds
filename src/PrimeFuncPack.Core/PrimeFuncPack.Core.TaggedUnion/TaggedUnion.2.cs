@@ -17,15 +17,5 @@ namespace System
         public bool IsFirst => boxFirst is object;
 
         public bool IsSecond => boxSecond is object;
-
-        public Optional<TFirst> TryGetFirst() => TryGetItem(boxFirst);
-
-        public Optional<TSecond> TryGetSecond() => TryGetItem(boxSecond);
-
-        private Optional<TItem> TryGetItem<TItem>(in Box<TItem>? box) => IsInitialized switch
-        {
-            true => box.ToOptional(),
-            _ => throw CreateNotInitializedException()
-        };
     }
 }
