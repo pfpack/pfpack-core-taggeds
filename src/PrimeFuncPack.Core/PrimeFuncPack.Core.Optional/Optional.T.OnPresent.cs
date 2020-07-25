@@ -8,13 +8,13 @@ namespace System
     {
         // Parameterized
 
-        public Unit OnPresent(in Func<T, Unit> func)
+        public Optional<T> OnPresent(in Func<T, Unit> func)
             =>
-            InternalFold<Unit, Unit>(func, () => default);
+            InternalFold<Unit, Unit>(func, () => default).ToResult(this);
 
-        public Unit OnPresent(in Action<T> action)
+        public Optional<T> OnPresent(in Action<T> action)
             =>
-            InternalFold<Unit, Unit>(action.InvokeToUnit, () => default);
+            InternalFold<Unit, Unit>(action.InvokeToUnit, () => default).ToResult(this);
 
         public Task<Unit> OnPresentAsync(in Func<T, Task<Unit>> funcAsync)
             =>
@@ -34,13 +34,13 @@ namespace System
 
         // Non-Parameterized
 
-        public Unit OnPresent(in Func<Unit> func)
+        public Optional<T> OnPresent(in Func<Unit> func)
             =>
-            InternalFold<Unit, Unit>(func, () => default);
+            InternalFold<Unit, Unit>(func, () => default).ToResult(this);
 
-        public Unit OnPresent(in Action action)
+        public Optional<T> OnPresent(in Action action)
             =>
-            InternalFold<Unit, Unit>(action.InvokeToUnit, () => default);
+            InternalFold<Unit, Unit>(action.InvokeToUnit, () => default).ToResult(this);
 
         public Task<Unit> OnPresentAsync(in Func<Task<Unit>> funcAsync)
             =>

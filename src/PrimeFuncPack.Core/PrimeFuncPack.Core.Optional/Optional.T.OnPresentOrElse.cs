@@ -8,13 +8,13 @@ namespace System
     {
         // Parameterized
 
-        public Unit OnPresentOrElse(in Func<T, Unit> func, in Func<Unit> elseFunc)
+        public Optional<T> OnPresentOrElse(in Func<T, Unit> func, in Func<Unit> elseFunc)
             =>
-            InternalFold<Unit, Unit>(func, elseFunc);
+            InternalFold<Unit, Unit>(func, elseFunc).ToResult(this);
 
-        public Unit OnPresentOrElse(Action<T> action, Action elseAction)
+        public Optional<T> OnPresentOrElse(Action<T> action, Action elseAction)
             =>
-            InternalFold<Unit, Unit>(action.InvokeToUnit, elseAction.InvokeToUnit);
+            InternalFold<Unit, Unit>(action.InvokeToUnit, elseAction.InvokeToUnit).ToResult(this);
 
         public Task<Unit> OnPresentOrElseAsync(in Func<T, Task<Unit>> funcAsync, in Func<Task<Unit>> elseFuncAsync)
             =>
@@ -34,13 +34,13 @@ namespace System
 
         // Non-Parameterized
 
-        public Unit OnPresentOrElse(in Func<Unit> func, in Func<Unit> elseFunc)
+        public Optional<T> OnPresentOrElse(in Func<Unit> func, in Func<Unit> elseFunc)
             =>
-            InternalFold<Unit, Unit>(func, elseFunc);
+            InternalFold<Unit, Unit>(func, elseFunc).ToResult(this);
 
-        public Unit OnPresentOrElse(Action action, Action elseAction)
+        public Optional<T> OnPresentOrElse(Action action, Action elseAction)
             =>
-            InternalFold<Unit, Unit>(action.InvokeToUnit, elseAction.InvokeToUnit);
+            InternalFold<Unit, Unit>(action.InvokeToUnit, elseAction.InvokeToUnit).ToResult(this);
 
         public Task<Unit> OnPresentOrElseAsync(in Func<Task<Unit>> funcAsync, in Func<Task<Unit>> elseFuncAsync)
             =>

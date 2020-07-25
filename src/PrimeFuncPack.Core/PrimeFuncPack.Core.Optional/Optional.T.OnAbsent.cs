@@ -6,13 +6,13 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public Unit OnAbsent(in Func<Unit> func)
+        public Optional<T> OnAbsent(in Func<Unit> func)
             =>
-            InternalFold<Unit, Unit>(func, () => default);
+            InternalFold<Unit, Unit>(func, () => default).ToResult(this);
 
-        public Unit OnAbsent(in Action action)
+        public Optional<T> OnAbsent(in Action action)
             =>
-            InternalFold<Unit, Unit>(action.InvokeToUnit, () => default);
+            InternalFold<Unit, Unit>(action.InvokeToUnit, () => default).ToResult(this);
 
         public Task<Unit> OnAbsentAsync(in Func<Task<Unit>> funcAsync)
             =>
