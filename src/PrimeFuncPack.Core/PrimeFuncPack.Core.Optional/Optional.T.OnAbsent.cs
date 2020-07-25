@@ -10,7 +10,7 @@ namespace System
             =>
             InternalOnAbsent<Unit, Unit>(func, () => default);
 
-        public Unit OnAbsent(Action action)
+        public Unit OnAbsent(in Action action)
             =>
             InternalOnAbsent<Unit, Unit>(action.InvokeToUnit, () => default);
 

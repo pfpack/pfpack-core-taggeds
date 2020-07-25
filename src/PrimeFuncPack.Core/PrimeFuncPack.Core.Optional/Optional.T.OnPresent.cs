@@ -12,7 +12,7 @@ namespace System
             =>
             InternalOnPresent<Unit, Unit>(func, () => default);
 
-        public Unit OnPresent(Action<T> action)
+        public Unit OnPresent(in Action<T> action)
             =>
             InternalOnPresent<Unit, Unit>(action.InvokeToUnit, () => default);
 
@@ -38,7 +38,7 @@ namespace System
             =>
             InternalOnPresent<Unit, Unit>(func, () => default);
 
-        public Unit OnPresent(Action action)
+        public Unit OnPresent(in Action action)
             =>
             InternalOnPresent<Unit, Unit>(action.InvokeToUnit, () => default);
 
