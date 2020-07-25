@@ -7,6 +7,18 @@ namespace System
     partial struct Optional<T>
     {
         public Optional<TResult> FlatMap<TResult>(in Func<T, Optional<TResult>> map)
+            =>
+            InternalFlatMap<TResult, Optional<TResult>>(map, default);
+
+        public Task<Optional<TResult>> FlatMapAsync<TResult>(in Func<T, Task<Optional<TResult>>> mapAsync)
+            =>
+            InternalFlatMap<TResult, Task<Optional<TResult>>>(mapAsync, Task.FromResult<Optional<TResult>>(default));
+
+        public ValueTask<Optional<TResult>> FlatMapAsync<TResult>(in Func<T, ValueTask<Optional<TResult>>> mapAsync)
+            =>
+            InternalFlatMap<TResult, ValueTask<Optional<TResult>>>(mapAsync, default);
+
+        private TResult InternalFlatMap<TInnerResult, TResult>(in Func<T, TResult> map, in TResult defaultResult)
         {
             if (map is null)
             {
@@ -15,36 +27,8 @@ namespace System
 
             return box switch
             {
-                null => default,
+                null => defaultResult,
                 var present => map.Invoke(present)
-            };
-        }
-
-        public Task<Optional<TResult>> FlatMapAsync<TResult>(in Func<T, Task<Optional<TResult>>> mapAsync)
-        {
-            if (mapAsync is null)
-            {
-                throw new ArgumentNullException(nameof(mapAsync));
-            }
-
-            return box switch
-            {
-                null => Task.FromResult<Optional<TResult>>(default),
-                var present => mapAsync.Invoke(present)
-            };
-        }
-
-        public ValueTask<Optional<TResult>> FlatMapAsync<TResult>(in Func<T, ValueTask<Optional<TResult>>> mapAsync)
-        {
-            if (mapAsync is null)
-            {
-                throw new ArgumentNullException(nameof(mapAsync));
-            }
-
-            return box switch
-            {
-                null => default,
-                var present => mapAsync.Invoke(present)
             };
         }
     }

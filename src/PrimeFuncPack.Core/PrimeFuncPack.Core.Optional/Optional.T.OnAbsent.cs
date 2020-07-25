@@ -7,6 +7,30 @@ namespace System
     partial struct Optional<T>
     {
         public Unit OnAbsent(in Func<Unit> func)
+            =>
+            InternalOnAbsent<Unit, Unit>(func, default);
+
+        public Unit OnAbsent(Action action)
+            =>
+            InternalOnAbsent<Unit, Unit>(() => action.InvokeToUnit(), default);
+
+        public Task<Unit> OnAbsentAsync(in Func<Task<Unit>> funcAsync)
+            =>
+            InternalOnAbsent<Unit, Task<Unit>>(funcAsync, Task.FromResult<Unit>(default));
+
+        public Task OnAbsentAsync(in Func<Task> funcAsync)
+            =>
+            InternalOnAbsent<Unit, Task>(funcAsync, Task.CompletedTask);
+
+        public ValueTask<Unit> OnAbsentAsync(in Func<ValueTask<Unit>> funcAsync)
+            =>
+            InternalOnAbsent<Unit, ValueTask<Unit>>(funcAsync, default);
+
+        public ValueTask OnAbsentAsync(in Func<ValueTask> funcAsync)
+            =>
+            InternalOnAbsent<Unit, ValueTask>(funcAsync, default);
+
+        private TResult InternalOnAbsent<TInnerResult, TResult>(in Func<TResult> func, in TResult defaultResult)
         {
             if (func is null)
             {
@@ -16,73 +40,7 @@ namespace System
             return box switch
             {
                 null => func.Invoke(),
-                _ => default
-            };
-        }
-
-        public Unit OnAbsent(Action action)
-        {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
-
-            return OnAbsent(func: () => action.InvokeToUnit());
-        }
-
-        public Task<Unit> OnAbsentAsync(in Func<Task<Unit>> funcAsync)
-        {
-            if (funcAsync is null)
-            {
-                throw new ArgumentNullException(nameof(funcAsync));
-            }
-
-            return box switch
-            {
-                null => funcAsync.Invoke(),
-                _ => Task.FromResult<Unit>(default)
-            };
-        }
-
-        public Task OnAbsentAsync(in Func<Task> funcAsync)
-        {
-            if (funcAsync is null)
-            {
-                throw new ArgumentNullException(nameof(funcAsync));
-            }
-
-            return box switch
-            {
-                null => funcAsync.Invoke(),
-                _ => Task.CompletedTask
-            };
-        }
-
-        public ValueTask<Unit> OnAbsentAsync(in Func<ValueTask<Unit>> funcAsync)
-        {
-            if (funcAsync is null)
-            {
-                throw new ArgumentNullException(nameof(funcAsync));
-            }
-
-            return box switch
-            {
-                null => funcAsync.Invoke(),
-                _ => default
-            };
-        }
-
-        public ValueTask OnAbsentAsync(in Func<ValueTask> funcAsync)
-        {
-            if (funcAsync is null)
-            {
-                throw new ArgumentNullException(nameof(funcAsync));
-            }
-
-            return box switch
-            {
-                null => funcAsync.Invoke(),
-                _ => default
+                _ => defaultResult
             };
         }
     }
