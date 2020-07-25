@@ -19,17 +19,7 @@ namespace System
             InternalFlatMap<TResult, ValueTask<Optional<TResult>>>(mapAsync, () => default);
 
         private TOuterResult InternalFlatMap<TResult, TOuterResult>(in Func<T, TOuterResult> map, in Func<TOuterResult> defaultOuterFactory)
-        {
-            if (map is null)
-            {
-                throw new ArgumentNullException(nameof(map));
-            }
-
-            return box switch
-            {
-                null => defaultOuterFactory.Invoke(),
-                var present => map.Invoke(present)
-            };
-        }
+            =>
+            InternalOnPresentOrElse<TResult, TOuterResult>(map, defaultOuterFactory);
     }
 }
