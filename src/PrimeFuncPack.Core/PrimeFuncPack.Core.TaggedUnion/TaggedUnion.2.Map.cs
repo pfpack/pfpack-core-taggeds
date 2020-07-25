@@ -8,13 +8,17 @@ namespace System
             in Func<TFirst, TResultFirst> mapFirst)
             where TResultFirst : TTag
             =>
-            Map(mapFirst, second => second);
+            Map(
+                mapFirst,
+                second => second);
 
         public TaggedUnion<TTag, TFirst, TResultSecond> MapSecond<TResultSecond>(
             in Func<TSecond, TResultSecond> mapSecond)
             where TResultSecond : TTag
             =>
-            Map(first => first, mapSecond);
+            Map(
+                first => first,
+                mapSecond);
 
         public TaggedUnion<TTag, TResultFirst, TResultSecond> Map<TResultFirst, TResultSecond>(
             in Func<TFirst, TResultFirst> mapFirst,
@@ -22,7 +26,9 @@ namespace System
             where TResultFirst : TTag
             where TResultSecond : TTag
             =>
-            Map<TTag, TResultFirst, TResultSecond>(mapFirst, mapSecond);
+            Map<TTag, TResultFirst, TResultSecond>(
+                mapFirst,
+                mapSecond);
 
         public TaggedUnion<TResultTag, TResultFirst, TResultSecond> Map<TResultTag, TResultFirst, TResultSecond>(
             in Func<TFirst, TResultFirst> mapFirst,
