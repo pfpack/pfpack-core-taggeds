@@ -8,18 +8,14 @@ namespace System
     {
         public Optional<TResult> FlatMap<TResult>(in Func<T, Optional<TResult>> map)
             =>
-            InternalFlatMap<TResult, Optional<TResult>>(map, () => default);
+            InternalFold<TResult, Optional<TResult>>(map, () => default);
 
         public Task<Optional<TResult>> FlatMapAsync<TResult>(in Func<T, Task<Optional<TResult>>> mapAsync)
             =>
-            InternalFlatMap<TResult, Task<Optional<TResult>>>(mapAsync, () => Task.FromResult<Optional<TResult>>(default));
+            InternalFold<TResult, Task<Optional<TResult>>>(mapAsync, () => Task.FromResult<Optional<TResult>>(default));
 
         public ValueTask<Optional<TResult>> FlatMapAsync<TResult>(in Func<T, ValueTask<Optional<TResult>>> mapAsync)
             =>
-            InternalFlatMap<TResult, ValueTask<Optional<TResult>>>(mapAsync, () => default);
-
-        private TOuterResult InternalFlatMap<TResult, TOuterResult>(in Func<T, TOuterResult> map, in Func<TOuterResult> defaultOuterFactory)
-            =>
-            InternalOnPresentOrElse<TResult, TOuterResult>(map, defaultOuterFactory);
+            InternalFold<TResult, ValueTask<Optional<TResult>>>(mapAsync, () => default);
     }
 }
