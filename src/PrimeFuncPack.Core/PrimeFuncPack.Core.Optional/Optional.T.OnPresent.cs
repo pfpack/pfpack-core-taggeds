@@ -58,6 +58,8 @@ namespace System
             =>
             InternalOnPresent<Unit, ValueTask>(funcAsync, () => default);
 
+        // Internal
+
         private TOuterResult InternalOnPresent<TResult, TOuterResult>(in Func<T, TOuterResult> func, in Func<TOuterResult> defaultOuterFactory)
             =>
             InternalOnPresentOrElse<TResult, TOuterResult>(func, defaultOuterFactory);
