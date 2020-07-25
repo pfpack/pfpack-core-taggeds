@@ -115,5 +115,43 @@ namespace System
                 _ => funcAsync.Invoke()
             };
         }
+
+        private TOuterResult InternalOnPresentOrElse<TResult, TOuterResult>(in Func<T, TOuterResult> func, in Func<TOuterResult> elseFunc)
+        {
+            if (func is null)
+            {
+                throw new ArgumentNullException(nameof(func));
+            }
+
+            if (elseFunc is null)
+            {
+                throw new ArgumentNullException(nameof(elseFunc));
+            }
+
+            return box switch
+            {
+                null => elseFunc.Invoke(),
+                var present => func.Invoke(present)
+            };
+        }
+
+        private TOuterResult InternalOnPresentOrElse<TResult, TOuterResult>(in Func<TOuterResult> func, in Func<TOuterResult> elseFunc)
+        {
+            if (func is null)
+            {
+                throw new ArgumentNullException(nameof(func));
+            }
+
+            if (elseFunc is null)
+            {
+                throw new ArgumentNullException(nameof(elseFunc));
+            }
+
+            return box switch
+            {
+                null => elseFunc.Invoke(),
+                _ => func.Invoke()
+            };
+        }
     }
 }
