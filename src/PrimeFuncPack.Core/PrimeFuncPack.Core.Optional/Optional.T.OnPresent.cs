@@ -40,7 +40,7 @@ namespace System
 
         public Unit OnPresent(Action action)
             =>
-            InternalOnPresent<Unit, Unit>(() => action.InvokeToUnit(), default);
+            InternalOnPresent<Unit, Unit>(action.InvokeToUnit, default);
 
         public Task<Unit> OnPresentAsync(in Func<Task<Unit>> funcAsync)
             =>

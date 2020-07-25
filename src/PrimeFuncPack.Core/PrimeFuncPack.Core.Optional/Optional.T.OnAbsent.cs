@@ -12,7 +12,7 @@ namespace System
 
         public Unit OnAbsent(Action action)
             =>
-            InternalOnAbsent<Unit, Unit>(() => action.InvokeToUnit(), default);
+            InternalOnAbsent<Unit, Unit>(action.InvokeToUnit, default);
 
         public Task<Unit> OnAbsentAsync(in Func<Task<Unit>> funcAsync)
             =>
