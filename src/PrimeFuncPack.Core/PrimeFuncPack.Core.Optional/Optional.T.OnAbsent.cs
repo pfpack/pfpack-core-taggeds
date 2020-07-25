@@ -43,5 +43,47 @@ namespace System
                 _ => Task.FromResult<Unit>(default)
             };
         }
+
+        public Task OnAbsentAsync(in Func<Task> funcAsync)
+        {
+            if (funcAsync is null)
+            {
+                throw new ArgumentNullException(nameof(funcAsync));
+            }
+
+            return box switch
+            {
+                null => funcAsync.Invoke(),
+                _ => Task.CompletedTask
+            };
+        }
+
+        public ValueTask<Unit> OnAbsentAsync(in Func<ValueTask<Unit>> funcAsync)
+        {
+            if (funcAsync is null)
+            {
+                throw new ArgumentNullException(nameof(funcAsync));
+            }
+
+            return box switch
+            {
+                null => funcAsync.Invoke(),
+                _ => default
+            };
+        }
+
+        public ValueTask OnAbsentAsync(in Func<ValueTask> funcAsync)
+        {
+            if (funcAsync is null)
+            {
+                throw new ArgumentNullException(nameof(funcAsync));
+            }
+
+            return box switch
+            {
+                null => funcAsync.Invoke(),
+                _ => default
+            };
+        }
     }
 }

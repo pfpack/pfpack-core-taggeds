@@ -33,5 +33,19 @@ namespace System
                 var present => mapAsync.Invoke(present)
             };
         }
+
+        public ValueTask<Optional<TResult>> FlatMapAsync<TResult>(in Func<T, ValueTask<Optional<TResult>>> mapAsync)
+        {
+            if (mapAsync is null)
+            {
+                throw new ArgumentNullException(nameof(mapAsync));
+            }
+
+            return box switch
+            {
+                null => default,
+                var present => mapAsync.Invoke(present)
+            };
+        }
     }
 }
