@@ -2,9 +2,7 @@
 
 namespace System
 {
-    public readonly partial struct TaggedUnion<TTag, TFirst, TSecond>
-        where TFirst : TTag
-        where TSecond : TTag
+    public readonly partial struct TaggedUnion<TFirst, TSecond>
     {
         private readonly Box<TFirst>? boxFirst;
 

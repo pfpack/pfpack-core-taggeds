@@ -4,28 +4,24 @@ using System.Threading.Tasks;
 
 namespace System
 {
-    partial struct TaggedUnion<TTag, TFirst, TSecond>
+    partial struct TaggedUnion<TFirst, TSecond>
     {
-        public TTag Fold() => Fold<TTag>(
-            value => value,
-            value => value);
-
         public TResult Fold<TResult>(
             in Func<TFirst, TResult> mapFirst,
             in Func<TSecond, TResult> mapSecond)
             =>
-            InternalFold<TResult, TResult>(mapFirst, mapSecond);
+            ImplFold(mapFirst, mapSecond);
 
         public Task<TResult> FoldAsync<TResult>(
-            in Func<TFirst, Task<TResult>> mapFirst,
-            in Func<TSecond, Task<TResult>> mapSecond)
+            in Func<TFirst, Task<TResult>> mapFirstAsync,
+            in Func<TSecond, Task<TResult>> mapSecondAsync)
             =>
-            InternalFold<TResult, Task<TResult>>(mapFirst, mapSecond);
+            ImplFold(mapFirstAsync, mapSecondAsync);
 
         public ValueTask<TResult> FoldAsync<TResult>(
-            in Func<TFirst, ValueTask<TResult>> mapFirst,
-            in Func<TSecond, ValueTask<TResult>> mapSecond)
+            in Func<TFirst, ValueTask<TResult>> mapFirstAsync,
+            in Func<TSecond, ValueTask<TResult>> mapSecondAsync)
             =>
-            InternalFold<TResult, ValueTask<TResult>>(mapFirst, mapSecond);
+            ImplFold(mapFirstAsync, mapSecondAsync);
     }
 }

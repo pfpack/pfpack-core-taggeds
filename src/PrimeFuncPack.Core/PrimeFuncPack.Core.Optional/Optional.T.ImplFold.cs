@@ -4,7 +4,7 @@ namespace System
 {
     partial struct Optional<T>
     {
-        private TOuterResult InternalFold<TResult, TOuterResult>(in Func<T, TOuterResult> onPresent, in Func<TOuterResult> onAbsent)
+        private TResult ImplFold<TResult>(in Func<T, TResult> onPresent, in Func<TResult> onAbsent)
         {
             if (onPresent is null)
             {
@@ -23,7 +23,7 @@ namespace System
             };
         }
 
-        private TOuterResult InternalFold<TResult, TOuterResult>(in Func<TOuterResult> onPresent, in Func<TOuterResult> onAbsent)
+        private TResult ImplFold<TResult>(in Func<TResult> onPresent, in Func<TResult> onAbsent)
         {
             if (onPresent is null)
             {

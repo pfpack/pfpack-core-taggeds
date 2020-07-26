@@ -2,13 +2,13 @@
 
 namespace System
 {
-    partial struct TaggedUnion<TTag, TFirst, TSecond>
+    partial struct TaggedUnion<TFirst, TSecond>
     {
-        public Optional<TFirst> TryGetFirst() => TryGetItem(boxFirst);
+        private Optional<TFirst> TryGetFirst() => TryGet(boxFirst);
 
-        public Optional<TSecond> TryGetSecond() => TryGetItem(boxSecond);
+        private Optional<TSecond> TryGetSecond() => TryGet(boxSecond);
 
-        private Optional<TItem> TryGetItem<TItem>(in Box<TItem>? box) => IsInitialized switch
+        private Optional<TItem> TryGet<TItem>(in Box<TItem>? box) => IsInitialized switch
         {
             true => box.ToOptional(),
             _ => throw CreateNotInitializedException()

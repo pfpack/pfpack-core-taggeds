@@ -8,26 +8,26 @@ namespace System
     {
         public Optional<T> OnAbsent(in Func<Unit> func)
             =>
-            InternalFold<Unit, Unit>(func, () => default).ToResult(this);
+            ImplFold(func, () => default).ToResult(this);
 
         public Optional<T> OnAbsent(in Action action)
             =>
-            InternalFold<Unit, Unit>(action.InvokeToUnit, () => default).ToResult(this);
+            ImplFold(action.InvokeToUnit, () => default).ToResult(this);
 
         public Task<Unit> OnAbsentAsync(in Func<Task<Unit>> funcAsync)
             =>
-            InternalFold<Unit, Task<Unit>>(funcAsync, () => Task.FromResult<Unit>(default));
+            ImplFold(funcAsync, () => Task.FromResult<Unit>(default));
 
         public Task OnAbsentAsync(in Func<Task> funcAsync)
             =>
-            InternalFold<Unit, Task>(funcAsync, () => Task.CompletedTask);
+            ImplFold(funcAsync, () => Task.CompletedTask);
 
         public ValueTask<Unit> OnAbsentAsync(in Func<ValueTask<Unit>> funcAsync)
             =>
-            InternalFold<Unit, ValueTask<Unit>>(funcAsync, () => default);
+            ImplFold(funcAsync, () => default);
 
         public ValueTask OnAbsentAsync(in Func<ValueTask> funcAsync)
             =>
-            InternalFold<Unit, ValueTask>(funcAsync, () => default);
+            ImplFold(funcAsync, () => default);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace System
 {
-    partial struct TaggedUnion<TTag, TFirst, TSecond>
+    partial struct TaggedUnion<TFirst, TSecond>
     {
         private static InvalidOperationException CreateNotInitializedException()
             =>
