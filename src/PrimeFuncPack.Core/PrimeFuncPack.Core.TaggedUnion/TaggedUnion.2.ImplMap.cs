@@ -9,7 +9,9 @@ namespace System
             Func<TSecond, TResultSecond> mapSecond)
             =>
             ImplFold(
-                first => TaggedUnion<TResultFirst, TResultSecond>.CreateFirst(mapFirst.Invoke(first)),
-                second => TaggedUnion<TResultFirst, TResultSecond>.CreateSecond(mapSecond.Invoke(second)));
+                first
+                => TaggedUnion<TResultFirst, TResultSecond>.CreateFirst(mapFirst.Invoke(first)),
+                second
+                => TaggedUnion<TResultFirst, TResultSecond>.CreateSecond(mapSecond.Invoke(second)));
     }
 }
