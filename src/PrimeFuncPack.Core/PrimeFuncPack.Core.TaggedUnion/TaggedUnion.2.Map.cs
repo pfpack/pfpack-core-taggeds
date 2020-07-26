@@ -2,39 +2,25 @@
 
 namespace System
 {
-    partial struct TaggedUnion<TTag, TFirst, TSecond>
+    partial struct TaggedUnion<TFirst, TSecond>
     {
-        public TaggedUnion<TTag, TResultFirst, TSecond> MapFirst<TResultFirst>(
+        public TaggedUnion<TResultFirst, TSecond> MapFirst<TResultFirst>(
             in Func<TFirst, TResultFirst> mapFirst)
-            where TResultFirst : TTag
             =>
             Map(
                 mapFirst,
                 second => second);
 
-        public TaggedUnion<TTag, TFirst, TResultSecond> MapSecond<TResultSecond>(
+        public TaggedUnion<TFirst, TResultSecond> MapSecond<TResultSecond>(
             in Func<TSecond, TResultSecond> mapSecond)
-            where TResultSecond : TTag
             =>
             Map(
                 first => first,
                 mapSecond);
 
-        public TaggedUnion<TTag, TResultFirst, TResultSecond> Map<TResultFirst, TResultSecond>(
+        public TaggedUnion<TResultFirst, TResultSecond> Map<TResultFirst, TResultSecond>(
             in Func<TFirst, TResultFirst> mapFirst,
             in Func<TSecond, TResultSecond> mapSecond)
-            where TResultFirst : TTag
-            where TResultSecond : TTag
-            =>
-            Map<TTag, TResultFirst, TResultSecond>(
-                mapFirst,
-                mapSecond);
-
-        public TaggedUnion<TResultTag, TResultFirst, TResultSecond> Map<TResultTag, TResultFirst, TResultSecond>(
-            in Func<TFirst, TResultFirst> mapFirst,
-            in Func<TSecond, TResultSecond> mapSecond)
-            where TResultFirst : TResultTag
-            where TResultSecond : TResultTag
         {
             if (mapFirst is null)
             {
@@ -50,11 +36,11 @@ namespace System
             {
                 (Box<TFirst> presentFirst, _)
                 =>
-                TaggedUnion<TResultTag, TResultFirst, TResultSecond>.CreateFirst(mapFirst(presentFirst)),
+                TaggedUnion<TResultFirst, TResultSecond>.CreateFirst(mapFirst(presentFirst)),
 
                 (_, Box<TSecond> presentSecond)
                 =>
-                TaggedUnion<TResultTag, TResultFirst, TResultSecond>.CreateSecond(mapSecond(presentSecond)),
+                TaggedUnion<TResultFirst, TResultSecond>.CreateSecond(mapSecond(presentSecond)),
 
                 _ => throw CreateNotInitializedException()
             };

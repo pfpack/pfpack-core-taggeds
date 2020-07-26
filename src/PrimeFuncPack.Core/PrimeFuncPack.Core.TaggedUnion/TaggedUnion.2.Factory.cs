@@ -2,16 +2,16 @@
 
 namespace System
 {
-    partial struct TaggedUnion<TTag, TFirst, TSecond>
+    partial struct TaggedUnion<TFirst, TSecond>
     {
-        public static TaggedUnion<TTag, TFirst, TSecond> CreateFirst(in TFirst first)
+        public static TaggedUnion<TFirst, TSecond> CreateFirst(in TFirst first)
             =>
-            new TaggedUnion<TTag, TFirst, TSecond>(first: first)
+            new TaggedUnion<TFirst, TSecond>(first: first)
             .AssertInvariant();
 
-        public static TaggedUnion<TTag, TFirst, TSecond> CreateSecond(in TSecond second)
+        public static TaggedUnion<TFirst, TSecond> CreateSecond(in TSecond second)
             =>
-            new TaggedUnion<TTag, TFirst, TSecond>(second: second)
+            new TaggedUnion<TFirst, TSecond>(second: second)
             .AssertInvariant();
 
         private TaggedUnion(in TFirst first)
@@ -26,7 +26,7 @@ namespace System
             boxSecond = second;
         }
 
-        private TaggedUnion<TTag, TFirst, TSecond> AssertInvariant() => HasValidInvariant switch
+        private TaggedUnion<TFirst, TSecond> AssertInvariant() => HasValidInvariant switch
         {
             true => this,
             _ => throw CreateExpectedValidInvariantException()
