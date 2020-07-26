@@ -18,11 +18,11 @@ namespace System
                 throw new ArgumentNullException(nameof(mapSecond));
             }
 
-            var This = this;
+            var @this = this;
 
             return default(Optional<TResult>)
-                .Or(() => This.TryGetFirst().Map(mapFirst))
-                .Or(() => This.TryGetSecond().Map(mapSecond))
+                .Or(() => @this.TryGetFirst().Map(mapFirst))
+                .Or(() => @this.TryGetSecond().Map(mapSecond))
                 .OrThrow(CreateNotInitializedException);
         }
     }
