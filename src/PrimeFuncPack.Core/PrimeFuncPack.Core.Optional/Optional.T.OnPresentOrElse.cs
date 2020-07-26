@@ -6,114 +6,56 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public Unit OnPresentOrElse(in Func<T, Unit> func, in Func<Unit> elseFunc)
-        {
-            if (func is null)
-            {
-                throw new ArgumentNullException(nameof(func));
-            }
+        // Parameterized
 
-            if (elseFunc is null)
-            {
-                throw new ArgumentNullException(nameof(elseFunc));
-            }
+        public Optional<T> OnPresentOrElse(in Func<T, Unit> func, in Func<Unit> elseFunc)
+            =>
+            InternalFold<Unit, Unit>(func, elseFunc).ToResult(this);
 
-            return box switch
-            {
-                null => elseFunc.Invoke(),
-                var present => func.Invoke(present)
-            };
-        }
-
-        public Unit OnPresentOrElse(Action<T> action, Action elseAction)
-        {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
-
-            if (elseAction is null)
-            {
-                throw new ArgumentNullException(nameof(elseAction));
-            }
-
-            return OnPresentOrElse(
-                func: present => action.InvokeToUnit(present),
-                elseFunc: () => elseAction.InvokeToUnit());
-        }
-
-        public Unit OnPresentOrElse(in Func<Unit> func, in Func<Unit> elseFunc)
-        {
-            if (func is null)
-            {
-                throw new ArgumentNullException(nameof(func));
-            }
-
-            if (elseFunc is null)
-            {
-                throw new ArgumentNullException(nameof(elseFunc));
-            }
-
-            return box switch
-            {
-                null => elseFunc.Invoke(),
-                _ => func.Invoke()
-            };
-        }
-
-        public Unit OnPresentOrElse(Action action, Action elseAction)
-        {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
-
-            if (elseAction is null)
-            {
-                throw new ArgumentNullException(nameof(elseAction));
-            }
-
-            return OnPresentOrElse(
-                func: () => action.InvokeToUnit(),
-                elseFunc: () => elseAction.InvokeToUnit());
-        }
+        public Optional<T> OnPresentOrElse(Action<T> action, Action elseAction)
+            =>
+            InternalFold<Unit, Unit>(action.InvokeToUnit, elseAction.InvokeToUnit).ToResult(this);
 
         public Task<Unit> OnPresentOrElseAsync(in Func<T, Task<Unit>> funcAsync, in Func<Task<Unit>> elseFuncAsync)
-        {
-            if (funcAsync is null)
-            {
-                throw new ArgumentNullException(nameof(funcAsync));
-            }
+            =>
+            InternalFold<Unit, Task<Unit>>(funcAsync, elseFuncAsync);
 
-            if (elseFuncAsync is null)
-            {
-                throw new ArgumentNullException(nameof(elseFuncAsync));
-            }
+        public Task OnPresentOrElseAsync(in Func<T, Task> funcAsync, in Func<Task> elseFuncAsync)
+            =>
+            InternalFold<Unit, Task>(funcAsync, elseFuncAsync);
 
-            return box switch
-            {
-                null => elseFuncAsync.Invoke(),
-                var present => funcAsync.Invoke(present)
-            };
-        }
+        public ValueTask<Unit> OnPresentOrElseAsync(in Func<T, ValueTask<Unit>> funcAsync, in Func<ValueTask<Unit>> elseFuncAsync)
+            =>
+            InternalFold<Unit, ValueTask<Unit>>(funcAsync, elseFuncAsync);
+
+        public ValueTask OnPresentOrElseAsync(in Func<T, ValueTask> funcAsync, in Func<ValueTask> elseFuncAsync)
+            =>
+            InternalFold<Unit, ValueTask>(funcAsync, elseFuncAsync);
+
+        // Non-Parameterized
+
+        public Optional<T> OnPresentOrElse(in Func<Unit> func, in Func<Unit> elseFunc)
+            =>
+            InternalFold<Unit, Unit>(func, elseFunc).ToResult(this);
+
+        public Optional<T> OnPresentOrElse(Action action, Action elseAction)
+            =>
+            InternalFold<Unit, Unit>(action.InvokeToUnit, elseAction.InvokeToUnit).ToResult(this);
 
         public Task<Unit> OnPresentOrElseAsync(in Func<Task<Unit>> funcAsync, in Func<Task<Unit>> elseFuncAsync)
-        {
-            if (funcAsync is null)
-            {
-                throw new ArgumentNullException(nameof(funcAsync));
-            }
+            =>
+            InternalFold<Unit, Task<Unit>>(funcAsync, elseFuncAsync);
 
-            if (elseFuncAsync is null)
-            {
-                throw new ArgumentNullException(nameof(elseFuncAsync));
-            }
+        public Task OnPresentOrElseAsync(in Func<Task> funcAsync, in Func<Task> elseFuncAsync)
+            =>
+            InternalFold<Unit, Task>(funcAsync, elseFuncAsync);
 
-            return box switch
-            {
-                null => elseFuncAsync.Invoke(),
-                _ => funcAsync.Invoke()
-            };
-        }
+        public ValueTask<Unit> OnPresentOrElseAsync(in Func<ValueTask<Unit>> funcAsync, in Func<ValueTask<Unit>> elseFuncAsync)
+            =>
+            InternalFold<Unit, ValueTask<Unit>>(funcAsync, elseFuncAsync);
+
+        public ValueTask OnPresentOrElseAsync(in Func<ValueTask> funcAsync, in Func<ValueTask> elseFuncAsync)
+            =>
+            InternalFold<Unit, ValueTask>(funcAsync, elseFuncAsync);
     }
 }

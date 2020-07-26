@@ -6,26 +6,26 @@ namespace System
 {
     partial struct TaggedUnion<TTag, TFirst, TSecond>
     {
+        public TTag Fold() => Fold<TTag>(
+            value => value,
+            value => value);
+
         public TResult Fold<TResult>(
             in Func<TFirst, TResult> mapFirst,
             in Func<TSecond, TResult> mapSecond)
             =>
-            (boxFirst, boxSecond) switch
-            {
-                (Box<TFirst> first, _) => mapFirst(first),
-                (_, Box<TSecond> second) => mapSecond(second),
-                _ => throw CreateNotInitializedException()
-            };
+            InternalFold<TResult, TResult>(mapFirst, mapSecond);
 
         public Task<TResult> FoldAsync<TResult>(
             in Func<TFirst, Task<TResult>> mapFirst,
             in Func<TSecond, Task<TResult>> mapSecond)
             =>
-            (boxFirst, boxSecond) switch
-            {
-                (Box<TFirst> first, _) => mapFirst(first),
-                (_, Box<TSecond> second) => mapSecond(second),
-                _ => throw CreateNotInitializedException()
-            };
+            InternalFold<TResult, Task<TResult>>(mapFirst, mapSecond);
+
+        public ValueTask<TResult> FoldAsync<TResult>(
+            in Func<TFirst, ValueTask<TResult>> mapFirst,
+            in Func<TSecond, ValueTask<TResult>> mapSecond)
+            =>
+            InternalFold<TResult, ValueTask<TResult>>(mapFirst, mapSecond);
     }
 }
