@@ -13,11 +13,7 @@ namespace System
                 throw new ArgumentNullException(nameof(otherFactory));
             }
 
-            return box switch
-            {
-                null => otherFactory.Invoke(),
-                _ => this
-            };
+            return ImplFold(This, otherFactory);
         }
 
         public Task<Optional<T>> OrAsync(in Func<Task<Optional<T>>> otherFactoryAsync)
@@ -27,11 +23,7 @@ namespace System
                 throw new ArgumentNullException(nameof(otherFactoryAsync));
             }
 
-            return box switch
-            {
-                null => otherFactoryAsync.Invoke(),
-                _ => Task.FromResult(this)
-            };
+            return ImplFold(ThisAsync, otherFactoryAsync);
         }
     }
 }

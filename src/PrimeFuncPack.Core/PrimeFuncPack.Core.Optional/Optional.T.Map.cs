@@ -11,11 +11,11 @@ namespace System
                 throw new ArgumentNullException(nameof(map));
             }
 
-            return box switch
-            {
-                null => default,
-                var present => Optional<TResult>.Present(map.Invoke(present))
-            };
+            var theMap = map;
+
+            return ImplFold(Map, () => default);
+
+            Optional<TResult> Map(T value) => Optional<TResult>.Present(theMap.Invoke(value));
         }
     }
 }

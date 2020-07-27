@@ -7,12 +7,11 @@ namespace System
     partial struct Optional<T>
     {
         public T OrElse(in T other)
-            =>
-            box switch
-            {
-                null => other,
-                var present => present
-            };
+        {
+            var theOther = other;
+
+            return ImplFold(value => value, () => theOther);
+        }
 
         public T OrElse(in Func<T> otherFactory)
         {
@@ -21,11 +20,7 @@ namespace System
                 throw new ArgumentNullException(nameof(otherFactory));
             }
 
-            return box switch
-            {
-                null => otherFactory.Invoke(),
-                var present => present
-            };
+            return ImplFold(value => value, otherFactory);
         }
 
         public Task<T> OrElseAsync(in Func<Task<T>> otherFactoryAsync)
@@ -35,11 +30,7 @@ namespace System
                 throw new ArgumentNullException(nameof(otherFactoryAsync));
             }
 
-            return box switch
-            {
-                null => otherFactoryAsync.Invoke(),
-                var present => Task.FromResult<T>(present)
-            };
+            return ImplFold(Task.FromResult, otherFactoryAsync);
         }
     }
 }

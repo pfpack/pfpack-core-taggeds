@@ -11,9 +11,14 @@ namespace System
                 throw new ArgumentNullException(nameof(predicate));
             }
 
-            return (box is null || predicate.Invoke(box)) switch
+            var @this = this;
+            var thePredicate = predicate;
+
+            return ImplFold(Filter, This);
+
+            Optional<T> Filter(T value) => thePredicate(value) switch
             {
-                true => this,
+                true => @this,
                 _ => default
             };
         }
