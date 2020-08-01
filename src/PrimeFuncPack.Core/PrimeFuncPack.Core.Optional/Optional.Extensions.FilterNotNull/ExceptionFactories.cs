@@ -2,7 +2,7 @@
 
 namespace System
 {
-    partial class OptionalExtensions
+    partial class OptionalFilterNotNullExtensions
     {
         private static InvalidOperationException CreateExpectedNotNullOrAbsentException()
             =>

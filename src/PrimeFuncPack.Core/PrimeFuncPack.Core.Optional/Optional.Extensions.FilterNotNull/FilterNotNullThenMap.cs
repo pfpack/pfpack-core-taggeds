@@ -2,7 +2,7 @@
 
 namespace System
 {
-    partial class OptionalExtensions
+    partial class OptionalFilterNotNullExtensions
     {
         public static Optional<T> FilterNotNullThenMap<T>(this in Optional<T?> optional) where T : class
             =>
