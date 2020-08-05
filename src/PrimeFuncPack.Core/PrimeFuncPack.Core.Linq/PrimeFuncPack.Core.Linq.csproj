@@ -20,4 +20,9 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="PrimeFuncPack.Core.Linq.Collections" Version="1.0.0-preview.1.0.*" />
+	  <PackageReference Include="PrimeFuncPack.Core.Linq.Yield" Version="1.0.0-preview.1.0.*" />
+	</ItemGroup>
+
 </Project>

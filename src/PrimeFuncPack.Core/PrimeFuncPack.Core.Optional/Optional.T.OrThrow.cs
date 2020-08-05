@@ -13,7 +13,9 @@ namespace System
                 throw new ArgumentNullException(nameof(exceptionFactory));
             }
 
-            return box ?? throw exceptionFactory.Invoke();
+            var theExceptionFactory = exceptionFactory;
+
+            return ImplFold(value => value, () => throw theExceptionFactory.Invoke());
         }
     }
 }
