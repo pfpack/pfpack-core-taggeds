@@ -12,8 +12,8 @@ namespace System
 
         public bool IsInitialized => IsFirst || IsSecond;
 
-        public bool IsFirst => boxFirst is object;
+        public bool IsFirst => boxFirst is not null;
 
-        public bool IsSecond => boxSecond is object;
+        public bool IsSecond => boxSecond is not null;
     }
 }

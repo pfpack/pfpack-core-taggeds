@@ -4,7 +4,7 @@ namespace System
 {
     public static class NullPredicates
     {
-        public static bool IsNotNull<T>(in T value) => value is object;
+        public static bool IsNotNull<T>(in T value) => value is not null;
 
         public static bool IsNotNull<T>(T value) => IsNotNull(in value);
 

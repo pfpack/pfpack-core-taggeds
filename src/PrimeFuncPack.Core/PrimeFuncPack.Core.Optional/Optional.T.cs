@@ -8,7 +8,7 @@ namespace System
     {
         private readonly Box<T>? box;
 
-        public bool IsPresent => box is object;
+        public bool IsPresent => box is not null;
 
         public bool IsAbsent => box is null;
 
