@@ -10,12 +10,9 @@ namespace System.Linq
             this IReadOnlyList<TSource> source,
             in int index)
             =>
-            index switch
+            (index >= 0 && index < source.Count) switch
             {
-                _ when index >= 0 && index < source.Count
-                =>
-                Optional.Present(source[index]),
-
+                true => Optional.Present(source[index]),
                 _ => default
             };
 
@@ -25,9 +22,9 @@ namespace System.Linq
             =>
             unchecked((int)index) switch
             {
-                var indexNormalized when indexNormalized == index
+                var indexShortened when indexShortened == index
                 =>
-                source.InternalElementAtOrAbsent(indexNormalized),
+                source.InternalElementAtOrAbsent(indexShortened),
 
                 _ => default
             };
