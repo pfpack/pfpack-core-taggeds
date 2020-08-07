@@ -12,8 +12,8 @@ namespace System
         public static bool Equals([AllowNull] in Box<T> boxA, [AllowNull] in Box<T> boxB)
             =>
             ReferenceEquals(boxA, boxB) ||
-            boxA is object &&
-            boxB is object &&
+            boxA is not null &&
+            boxB is not null &&
             ValueEqualityComparer.Equals(boxA, boxB);
 
         public static bool operator ==([AllowNull] in Box<T> boxA, [AllowNull] in Box<T> boxB)

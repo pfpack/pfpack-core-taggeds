@@ -10,12 +10,9 @@ namespace System.Linq
             this IList<TSource> source,
             in int index)
             =>
-            index switch
+            InternalIsInRange(index, source.Count) switch
             {
-                _ when index >= 0 && index < source.Count
-                =>
-                Optional.Present(source[index]),
-
+                true => Optional.Present(source[index]),
                 _ => default
             };
 
@@ -23,11 +20,11 @@ namespace System.Linq
             this IList<TSource> source,
             in long index)
             =>
-            unchecked((int)index) switch
+            InternalShortenIndex(index) switch
             {
-                var indexNormalized when indexNormalized == index
+                int indexShortened when indexShortened == index
                 =>
-                source.InternalElementAtOrAbsent(indexNormalized),
+                source.InternalElementAtOrAbsent(indexShortened),
 
                 _ => default
             };

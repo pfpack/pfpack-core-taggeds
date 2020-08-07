@@ -10,15 +10,8 @@ namespace System.Linq
             this IReadOnlyList<TSource> source,
             in Action<TSource> action)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = source ?? throw new ArgumentNullException(nameof(source));
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             source.InternalForEach(action);
 
@@ -29,15 +22,8 @@ namespace System.Linq
             this IReadOnlyList<TSource> source,
             in Action<int, TSource> action)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = source ?? throw new ArgumentNullException(nameof(source));
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             source.InternalForEach(action);
 
@@ -48,15 +34,8 @@ namespace System.Linq
             this IReadOnlyList<TSource> source,
             in Action<long, TSource> action)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = source ?? throw new ArgumentNullException(nameof(source));
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             source.InternalForEach(action);
 

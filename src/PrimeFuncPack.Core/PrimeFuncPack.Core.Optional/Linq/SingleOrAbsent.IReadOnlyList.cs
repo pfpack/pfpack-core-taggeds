@@ -15,15 +15,8 @@ namespace System.Linq
             this IReadOnlyList<TSource> source,
             in Func<Exception> moreThanOneElementExceptionFactory)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (moreThanOneElementExceptionFactory is null)
-            {
-                throw new ArgumentNullException(nameof(moreThanOneElementExceptionFactory));
-            }
+            _ = source ?? throw new ArgumentNullException(nameof(source));
+            _ = moreThanOneElementExceptionFactory ?? throw new ArgumentNullException(nameof(moreThanOneElementExceptionFactory));
 
             return source.InternalSingleOrAbsent(moreThanOneElementExceptionFactory);
         }
@@ -39,20 +32,9 @@ namespace System.Linq
             in Func<TSource, bool> predicate,
             in Func<Exception> moreThanOneMatchExceptionFactory)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (predicate is null)
-            {
-                throw new ArgumentNullException(nameof(predicate));
-            }
-
-            if (moreThanOneMatchExceptionFactory is null)
-            {
-                throw new ArgumentNullException(nameof(moreThanOneMatchExceptionFactory));
-            }
+            _ = source ?? throw new ArgumentNullException(nameof(source));
+            _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
+            _ = moreThanOneMatchExceptionFactory ?? throw new ArgumentNullException(nameof(moreThanOneMatchExceptionFactory));
 
             return source.InternalSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory);
         }

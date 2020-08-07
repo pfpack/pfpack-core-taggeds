@@ -15,20 +15,14 @@ namespace System
 
         public T OrElse(in Func<T> otherFactory)
         {
-            if (otherFactory is null)
-            {
-                throw new ArgumentNullException(nameof(otherFactory));
-            }
+            _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
             return ImplFold(value => value, otherFactory);
         }
 
         public Task<T> OrElseAsync(in Func<Task<T>> otherFactoryAsync)
         {
-            if (otherFactoryAsync is null)
-            {
-                throw new ArgumentNullException(nameof(otherFactoryAsync));
-            }
+            _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
             return ImplFold(Task.FromResult, otherFactoryAsync);
         }

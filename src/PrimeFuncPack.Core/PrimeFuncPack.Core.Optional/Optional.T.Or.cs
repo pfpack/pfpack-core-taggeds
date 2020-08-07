@@ -8,20 +8,14 @@ namespace System
     {
         public Optional<T> Or(in Func<Optional<T>> otherFactory)
         {
-            if (otherFactory is null)
-            {
-                throw new ArgumentNullException(nameof(otherFactory));
-            }
+            _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
             return ImplFold(This, otherFactory);
         }
 
         public Task<Optional<T>> OrAsync(in Func<Task<Optional<T>>> otherFactoryAsync)
         {
-            if (otherFactoryAsync is null)
-            {
-                throw new ArgumentNullException(nameof(otherFactoryAsync));
-            }
+            _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
             return ImplFold(ThisAsync, otherFactoryAsync);
         }

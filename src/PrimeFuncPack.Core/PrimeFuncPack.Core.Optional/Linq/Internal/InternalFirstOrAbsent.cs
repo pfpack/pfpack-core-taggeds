@@ -11,12 +11,11 @@ namespace System.Linq
         {
             using var enumerator = source.GetEnumerator();
 
-            if (enumerator.MoveNext())
+            return enumerator.MoveNext() switch
             {
-                return Optional.Present(enumerator.Current);
-            }
-
-            return default;
+                true => Optional.Present(enumerator.Current),
+                _ => default
+            };
         }
 
         public static Optional<TSource> InternalFirstOrAbsent<TSource>(

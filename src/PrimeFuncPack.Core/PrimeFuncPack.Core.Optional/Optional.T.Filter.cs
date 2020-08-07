@@ -6,10 +6,7 @@ namespace System
     {
         public Optional<T> Filter(in Func<T, bool> predicate)
         {
-            if (predicate is null)
-            {
-                throw new ArgumentNullException(nameof(predicate));
-            }
+            _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
 
             var @this = this;
             var thePredicate = predicate;

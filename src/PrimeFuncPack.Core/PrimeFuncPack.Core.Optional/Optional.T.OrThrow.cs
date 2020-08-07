@@ -8,10 +8,7 @@ namespace System
 
         public T OrThrow(in Func<Exception> exceptionFactory)
         {
-            if (exceptionFactory is null)
-            {
-                throw new ArgumentNullException(nameof(exceptionFactory));
-            }
+            _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
 
             var theExceptionFactory = exceptionFactory;
 

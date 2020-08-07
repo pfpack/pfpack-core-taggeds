@@ -10,10 +10,7 @@ namespace System.Linq
             this IReadOnlyList<TSource> source,
             in int index)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
+            _ = source ?? throw new ArgumentNullException(nameof(source));
 
             return source.InternalElementAtOrAbsent(index);
         }
@@ -22,10 +19,7 @@ namespace System.Linq
             this IReadOnlyList<TSource> source,
             in long index)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
+            _ = source ?? throw new ArgumentNullException(nameof(source));
 
             return source.InternalElementAtOrAbsent(index);
         }

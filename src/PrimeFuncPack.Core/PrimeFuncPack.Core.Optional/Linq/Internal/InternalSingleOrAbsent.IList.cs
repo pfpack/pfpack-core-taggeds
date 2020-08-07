@@ -12,7 +12,7 @@ namespace System.Linq
             =>
             source.Count switch
             {
-                var count when count > 1 => throw moreThanOneElementExceptionFactory.Invoke(),
+                > 1 => throw moreThanOneElementExceptionFactory.Invoke(),
 
                 1 => Optional.Present(source[0]),
 
