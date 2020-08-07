@@ -9,10 +9,7 @@ namespace System.Linq
         public static Optional<TSource> FirstOrAbsent<TSource>(
             this IReadOnlyList<TSource> source)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
+            _ = source ?? throw new ArgumentNullException(nameof(source));
 
             return source.InternalFirstOrAbsent();
         }
@@ -21,15 +18,8 @@ namespace System.Linq
             this IReadOnlyList<TSource> source,
             in Func<TSource, bool> predicate)
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (predicate is null)
-            {
-                throw new ArgumentNullException(nameof(predicate));
-            }
+            _ = source ?? throw new ArgumentNullException(nameof(source));
+            _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
 
             return source.InternalFirstOrAbsent(predicate);
         }

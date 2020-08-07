@@ -11,10 +11,7 @@ namespace System.Linq
             this IEnumerable<KeyValuePair<TKey, TValue>> dictionary,
             in TKey key)
         {
-            if (dictionary is null)
-            {
-                throw new ArgumentNullException(nameof(dictionary));
-            }
+            _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
 
             return dictionary switch
             {

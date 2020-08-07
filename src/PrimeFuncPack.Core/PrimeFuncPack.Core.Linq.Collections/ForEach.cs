@@ -11,15 +11,8 @@ namespace System.Linq
             in Action<TSource> action)
             where TCollection : IEnumerable<TSource>
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = source ?? throw new ArgumentNullException(nameof(source));
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             switch (source)
             {
@@ -44,15 +37,8 @@ namespace System.Linq
             in Action<int, TSource> action)
             where TCollection : IEnumerable<TSource>
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = source ?? throw new ArgumentNullException(nameof(source));
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             switch (source)
             {
@@ -77,15 +63,8 @@ namespace System.Linq
             in Action<long, TSource> action)
             where TCollection : IEnumerable<TSource>
         {
-            if (source is null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = source ?? throw new ArgumentNullException(nameof(source));
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             switch (source)
             {

@@ -6,10 +6,7 @@ namespace System
     {
         public Optional<TResult> Map<TResult>(in Func<T, TResult> map)
         {
-            if (map is null)
-            {
-                throw new ArgumentNullException(nameof(map));
-            }
+            _ = map ?? throw new ArgumentNullException(nameof(map));
 
             var theMap = map;
 

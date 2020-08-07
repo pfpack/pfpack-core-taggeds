@@ -8,15 +8,8 @@ namespace System
             Func<TFirst, TResult> mapFirst,
             Func<TSecond, TResult> mapSecond)
         {
-            if (mapFirst is null)
-            {
-                throw new ArgumentNullException(nameof(mapFirst));
-            }
-
-            if (mapSecond is null)
-            {
-                throw new ArgumentNullException(nameof(mapSecond));
-            }
+            _ = mapFirst ?? throw new ArgumentNullException(nameof(mapFirst));
+            _ = mapSecond ?? throw new ArgumentNullException(nameof(mapSecond));
 
             var @this = this;
 

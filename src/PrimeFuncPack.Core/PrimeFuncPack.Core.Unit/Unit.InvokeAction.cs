@@ -6,10 +6,7 @@ namespace System
     {
         public static Unit InvokeAction(in Action action)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke();
 
@@ -18,10 +15,7 @@ namespace System
 
         public static Unit InvokeAction<T>(in Action<T> action, in T obj)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(obj);
 
@@ -33,10 +27,7 @@ namespace System
             in T1 arg1,
             in T2 arg2)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,
@@ -51,10 +42,7 @@ namespace System
             in T2 arg2,
             in T3 arg3)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,
@@ -71,10 +59,7 @@ namespace System
             in T3 arg3,
             in T4 arg4)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,
@@ -93,10 +78,7 @@ namespace System
             in T4 arg4,
             in T5 arg5)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,
@@ -117,10 +99,7 @@ namespace System
             in T5 arg5,
             in T6 arg6)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,
@@ -143,10 +122,7 @@ namespace System
             in T6 arg6,
             in T7 arg7)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,
@@ -171,10 +147,7 @@ namespace System
             in T7 arg7,
             in T8 arg8)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,
@@ -201,10 +174,7 @@ namespace System
             in T8 arg8,
             in T9 arg9)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,
@@ -233,10 +203,7 @@ namespace System
             in T9 arg9,
             in T10 arg10)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,
@@ -267,10 +234,7 @@ namespace System
             in T10 arg10,
             in T11 arg11)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,
@@ -303,10 +267,7 @@ namespace System
             in T11 arg11,
             in T12 arg12)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,
@@ -341,10 +302,7 @@ namespace System
             in T12 arg12,
             in T13 arg13)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,
@@ -381,10 +339,7 @@ namespace System
             in T13 arg13,
             in T14 arg14)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,
@@ -423,10 +378,7 @@ namespace System
             in T14 arg14,
             in T15 arg15)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,
@@ -467,10 +419,7 @@ namespace System
             in T15 arg15,
             in T16 arg16)
         {
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(
                 arg1,

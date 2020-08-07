@@ -6,15 +6,8 @@ namespace System
     {
         private TResult ImplFold<TResult>(in Func<T, TResult> onPresent, in Func<TResult> onAbsent)
         {
-            if (onPresent is null)
-            {
-                throw new ArgumentNullException(nameof(onPresent));
-            }
-
-            if (onAbsent is null)
-            {
-                throw new ArgumentNullException(nameof(onAbsent));
-            }
+            _ = onPresent ?? throw new ArgumentNullException(nameof(onPresent));
+            _ = onAbsent ?? throw new ArgumentNullException(nameof(onAbsent));
 
             return box switch
             {
@@ -25,15 +18,8 @@ namespace System
 
         private TResult ImplFold<TResult>(in Func<TResult> onPresent, in Func<TResult> onAbsent)
         {
-            if (onPresent is null)
-            {
-                throw new ArgumentNullException(nameof(onPresent));
-            }
-
-            if (onAbsent is null)
-            {
-                throw new ArgumentNullException(nameof(onAbsent));
-            }
+            _ = onPresent ?? throw new ArgumentNullException(nameof(onPresent));
+            _ = onAbsent ?? throw new ArgumentNullException(nameof(onAbsent));
 
             return box switch
             {
