@@ -18,15 +18,8 @@ namespace Microsoft.Extensions.DependencyInjection
             in Action<TServiceCollectionProvider> action)
             where TServiceCollectionProvider : notnull, IServiceCollectionProvider
         {
-            if (provider is null)
-            {
-                throw new ArgumentNullException(nameof(provider));
-            }
-
-            if (action is null)
-            {
-                throw new ArgumentNullException(nameof(action));
-            }
+            _ = provider ?? throw new ArgumentNullException(nameof(provider));
+            _ = action ?? throw new ArgumentNullException(nameof(action));
 
             action.Invoke(provider);
             return provider;
@@ -38,15 +31,8 @@ namespace Microsoft.Extensions.DependencyInjection
             where TSourceProvider : notnull, IServiceCollectionProvider
             where TResultProvider : notnull, IServiceCollectionProvider
         {
-            if (provider is null)
-            {
-                throw new ArgumentNullException(nameof(provider));
-            }
-
-            if (pipe is null)
-            {
-                throw new ArgumentNullException(nameof(pipe));
-            }
+            _ = provider ?? throw new ArgumentNullException(nameof(provider));
+            _ = pipe ?? throw new ArgumentNullException(nameof(pipe));
 
             return pipe.Invoke(provider);
         }
