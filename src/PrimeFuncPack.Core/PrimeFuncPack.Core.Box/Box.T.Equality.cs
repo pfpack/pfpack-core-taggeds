@@ -30,6 +30,6 @@ namespace System
 
         public override int GetHashCode()
             =>
-            Value switch { null => default, var present => ValueEqualityComparer.GetHashCode(present) };
+            Value switch { not null => ValueEqualityComparer.GetHashCode(Value), _ => default };
     }
 }
