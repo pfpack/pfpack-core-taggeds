@@ -12,6 +12,6 @@ namespace System
 
         public override string ToString()
             =>
-            Value?.ToString() ?? string.Empty;
+            Value switch { null => string.Empty, var present => present.ToString() ?? string.Empty };
     }
 }
