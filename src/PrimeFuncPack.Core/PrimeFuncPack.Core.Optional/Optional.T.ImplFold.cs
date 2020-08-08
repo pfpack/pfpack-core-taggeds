@@ -11,8 +11,8 @@ namespace System
 
             return box switch
             {
-                null => onAbsent.Invoke(),
-                _ => onPresent.Invoke(box)
+                not null => onPresent.Invoke(box),
+                _ => onAbsent.Invoke()
             };
         }
 
@@ -23,8 +23,8 @@ namespace System
 
             return box switch
             {
-                null => onAbsent.Invoke(),
-                _ => onPresent.Invoke()
+                not null => onPresent.Invoke(),
+                _ => onAbsent.Invoke()
             };
         }
     }

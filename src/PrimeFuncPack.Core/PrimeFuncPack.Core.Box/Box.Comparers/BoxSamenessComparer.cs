@@ -13,8 +13,8 @@ namespace System
 
         public int GetHashCode([DisallowNull] Box<T> obj) => obj switch
         {
-            null => throw new ArgumentNullException(nameof(obj)),
-            _ => obj.GetSamenessHashCode()
+            not null => obj.GetSamenessHashCode(),
+            _ => throw new ArgumentNullException(nameof(obj))
         };
 
         public static BoxSamenessComparer<T> Default => BoxSamenessComparerDefault<T>.Value;

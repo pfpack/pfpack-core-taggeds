@@ -14,8 +14,8 @@ namespace System
 
             return optional.Filter(value => value switch
             {
-                null => throw exceptionFactory.Invoke(),
-                _ => true
+                not null => true,
+                _ => throw exceptionFactory.Invoke()
             });
         }
     }
