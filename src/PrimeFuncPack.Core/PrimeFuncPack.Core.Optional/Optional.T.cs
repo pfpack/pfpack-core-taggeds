@@ -14,6 +14,6 @@ namespace System
 
         public override string ToString()
             =>
-            box switch { null => string.Empty, var present => present.ToString() };
+            box switch { null => string.Empty, _ => box.ToString() };
     }
 }

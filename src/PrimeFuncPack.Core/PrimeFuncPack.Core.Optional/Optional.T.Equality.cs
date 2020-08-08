@@ -27,6 +27,6 @@ namespace System
 
         public override int GetHashCode()
             =>
-            box switch { null => default, var present => present.GetHashCode() };
+            box switch { null => default, _ => box.GetHashCode() };
     }
 }

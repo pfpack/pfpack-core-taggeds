@@ -12,7 +12,7 @@ namespace System
             return box switch
             {
                 null => onAbsent.Invoke(),
-                var present => onPresent.Invoke(present)
+                _ => onPresent.Invoke(box)
             };
         }
 
