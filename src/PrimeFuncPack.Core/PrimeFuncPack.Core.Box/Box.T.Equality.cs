@@ -29,7 +29,19 @@ namespace System
             Equals(this, other);
 
         public override int GetHashCode()
-            =>
-            Value switch { not null => ValueEqualityComparer.GetHashCode(Value), _ => default };
+        {
+            const int factor = -1521134295;
+
+            int result = GetType().GetHashCode();
+
+            unchecked { result *= factor; }
+
+            if (Value is not null)
+            {
+                unchecked { result += ValueEqualityComparer.GetHashCode(Value); }
+            }
+
+            return result;
+        }
     }
 }

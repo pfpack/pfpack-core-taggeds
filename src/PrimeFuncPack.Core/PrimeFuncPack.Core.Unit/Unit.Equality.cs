@@ -23,6 +23,15 @@ namespace System
             obj is Unit other &&
             Equals(this, other);
 
-        public override int GetHashCode() => default;
+        public override int GetHashCode()
+        {
+            const int factor = -1521134295;
+
+            int result = GetType().GetHashCode();
+
+            unchecked { result *= factor; }
+
+            return result;
+        }
     }
 }

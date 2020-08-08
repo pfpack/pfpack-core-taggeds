@@ -26,7 +26,19 @@ namespace System
             Equals(this, other);
 
         public override int GetHashCode()
-            =>
-            box switch { not null => box.GetHashCode(), _ => default };
+        {
+            const int factor = -1521134295;
+
+            int result = GetType().GetHashCode();
+
+            unchecked { result *= factor; }
+
+            if (box is not null)
+            {
+                unchecked { result += box.GetHashCode(); }
+            }
+
+            return result;
+        }
     }
 }
