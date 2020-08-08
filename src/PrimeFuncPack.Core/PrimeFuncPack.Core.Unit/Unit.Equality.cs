@@ -4,7 +4,9 @@ namespace System
 {
     partial struct Unit
     {
-        public static bool Equals(in Unit valueA, in Unit valueB) => true;
+        public static bool Equals(in Unit valueA, in Unit valueB)
+            =>
+            (valueA, valueB) switch { _ => true };
 
         public static bool operator ==(in Unit valueA, in Unit valueB)
             =>
