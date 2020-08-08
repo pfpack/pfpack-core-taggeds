@@ -2,7 +2,7 @@
 
 namespace System
 {
-    partial class Box<T>
+    partial record Box<T>
     {
         public Box(in T value)
             =>

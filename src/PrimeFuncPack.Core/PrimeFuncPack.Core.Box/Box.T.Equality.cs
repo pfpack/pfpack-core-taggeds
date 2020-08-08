@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace System
 {
-    partial class Box<T>
+    partial record Box<T>
     {
         private static IEqualityComparer<T> ValueEqualityComparer => EqualityComparer<T>.Default;
 
@@ -26,11 +26,6 @@ namespace System
 
         public bool Equals([AllowNull] Box<T> other)
             =>
-            Equals(this, other);
-
-        public override bool Equals(object? obj)
-            =>
-            obj is Box<T> other &&
             Equals(this, other);
 
         public override int GetHashCode()
