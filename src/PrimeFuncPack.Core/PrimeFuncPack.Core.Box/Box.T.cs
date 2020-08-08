@@ -2,9 +2,7 @@
 
 namespace System
 {
-    public sealed partial record Box<T> :
-        IEquatable<Box<T>>,
-        ISamenessEquatable<Box<T>>
+    public sealed partial record Box<T> : ISamenessEquatable<Box<T>>
     {
         public T Value { get; }
 
