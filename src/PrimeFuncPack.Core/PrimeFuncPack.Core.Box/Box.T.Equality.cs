@@ -30,8 +30,8 @@ namespace System
 
         public override int GetHashCode()
             =>
-            HashCode.Combine(
-                GetType(),
-                Value switch { not null => ValueEqualityComparer.GetHashCode(Value), _ => default });
+            HashCode.Combine(GetType(), GetValueHashCode());
+
+        private int GetValueHashCode() => Value switch { not null => ValueEqualityComparer.GetHashCode(Value), _ => default };
     }
 }
