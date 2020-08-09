@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public sealed partial class Box<T> :
+    public sealed partial record Box<T> :
         IEquatable<Box<T>>,
         ISamenessEquatable<Box<T>>
     {
@@ -14,6 +14,6 @@ namespace System
 
         public override string ToString()
             =>
-            Value?.ToString() ?? string.Empty;
+            Value switch { not null => Value.ToString() ?? string.Empty, _ => string.Empty };
     }
 }

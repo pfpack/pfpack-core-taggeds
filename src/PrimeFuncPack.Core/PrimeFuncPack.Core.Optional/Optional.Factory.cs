@@ -20,10 +20,10 @@ namespace System
 
         public static Optional<T> PresentOrElse<T>([DisallowNull] in T value)
             =>
-            value switch { null => default, var present => Optional<T>.Present(present) };
+            value switch { not null => Optional<T>.Present(value), _ => default };
 
         public static Optional<T> PresentOrElse<T>([DisallowNull] in T? value) where T : struct
             =>
-            value switch { null => default, T present => Optional<T>.Present(present) };
+            value switch { not null => Optional<T>.Present((T)value), _ => default };
     }
 }

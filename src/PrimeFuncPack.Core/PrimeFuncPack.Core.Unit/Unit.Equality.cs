@@ -4,7 +4,9 @@ namespace System
 {
     partial struct Unit
     {
-        public static bool Equals(in Unit valueA, in Unit valueB) => true;
+        public static bool Equals(in Unit valueA, in Unit valueB)
+            =>
+            (valueA, valueB) switch { _ => true };
 
         public static bool operator ==(in Unit valueA, in Unit valueB)
             =>
@@ -23,6 +25,10 @@ namespace System
             obj is Unit other &&
             Equals(this, other);
 
-        public override int GetHashCode() => default;
+        public override int GetHashCode()
+            =>
+            HashCode.Combine(EqualityContract);
+
+        private static Type EqualityContract => typeof(Unit);
     }
 }

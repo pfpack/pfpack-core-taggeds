@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace System
 {
-    partial class Box<T>
+    partial record Box<T>
     {
         public static bool Same([AllowNull] in Box<T> boxA, [AllowNull] in Box<T> boxB)
             =>

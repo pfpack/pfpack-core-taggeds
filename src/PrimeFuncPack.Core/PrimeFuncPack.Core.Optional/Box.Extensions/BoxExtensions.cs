@@ -6,8 +6,8 @@ namespace System
     {
         public static Optional<T> ToOptional<T>(this Box<T>? box) => box switch
         {
-            null => default,
-            var present => Optional<T>.Present(present)
+            not null => Optional<T>.Present(box),
+            _ => default
         };
     }
 }

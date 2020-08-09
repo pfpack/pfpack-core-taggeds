@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Core.TaggedUn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Core.Linq.Yield", "PrimeFuncPack.Core.Linq.Yield\PrimeFuncPack.Core.Linq.Yield.csproj", "{B98AC3D6-1FDC-410D-A794-26C25B077FFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeFuncPack.Core.Linq", "PrimeFuncPack.Core.Linq\PrimeFuncPack.Core.Linq.csproj", "{A46DA21C-F5C0-4D0B-95DF-D8F91815EAD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeFuncPack.Core.Linq", "PrimeFuncPack.Core.Linq\PrimeFuncPack.Core.Linq.csproj", "{A46DA21C-F5C0-4D0B-95DF-D8F91815EAD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
