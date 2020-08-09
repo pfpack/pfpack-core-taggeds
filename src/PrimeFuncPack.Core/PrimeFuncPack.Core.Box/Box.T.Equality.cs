@@ -32,6 +32,8 @@ namespace System
             =>
             HashCode.Combine(GetType(), GetValueHashCode());
 
-        private int GetValueHashCode() => Value switch { not null => ValueEqualityComparer.GetHashCode(Value), _ => default };
+        private int GetValueHashCode()
+            =>
+            Value switch { not null => ValueEqualityComparer.GetHashCode(Value), _ => default };
     }
 }
