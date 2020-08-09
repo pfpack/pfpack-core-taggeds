@@ -29,17 +29,9 @@ namespace System
             Equals(this, other);
 
         public override int GetHashCode()
-        {
-            var result = new HashCode();
-
-            result.Add(GetType());
-
-            if (Value is not null)
-            {
-                result.Add(Value, ValueEqualityComparer);
-            }
-
-            return result.ToHashCode();
-        }
+            =>
+            HashCode.Combine(
+                GetType(),
+                Value switch { not null => ValueEqualityComparer.GetHashCode(Value), _ => default });
     }
 }
