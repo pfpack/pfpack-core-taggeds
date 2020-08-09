@@ -30,18 +30,16 @@ namespace System
 
         public override int GetHashCode()
         {
-            const int factor = -1521134295;
+            var result = new HashCode();
 
-            int result = GetType().GetHashCode();
-
-            unchecked { result *= factor; }
+            result.Add(GetType());
 
             if (Value is not null)
             {
-                unchecked { result += ValueEqualityComparer.GetHashCode(Value); }
+                result.Add(Value, ValueEqualityComparer);
             }
 
-            return result;
+            return result.ToHashCode();
         }
     }
 }

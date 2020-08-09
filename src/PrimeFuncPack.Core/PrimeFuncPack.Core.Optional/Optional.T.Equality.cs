@@ -27,18 +27,16 @@ namespace System
 
         public override int GetHashCode()
         {
-            const int factor = -1521134295;
+            var result = new HashCode();
 
-            int result = GetType().GetHashCode();
-
-            unchecked { result *= factor; }
+            result.Add(GetType());
 
             if (box is not null)
             {
-                unchecked { result += box.GetHashCode(); }
+                result.Add(box);
             }
 
-            return result;
+            return result.ToHashCode();
         }
     }
 }
