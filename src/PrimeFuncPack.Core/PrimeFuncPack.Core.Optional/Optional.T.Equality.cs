@@ -26,17 +26,7 @@ namespace System
             Equals(this, other);
 
         public override int GetHashCode()
-        {
-            var result = new HashCode();
-
-            result.Add(GetType());
-
-            if (box is not null)
-            {
-                result.Add(box);
-            }
-
-            return result.ToHashCode();
-        }
+            =>
+            HashCode.Combine(GetType(), box);
     }
 }
