@@ -7,8 +7,6 @@ namespace System
 {
     partial record Box<T>
     {
-        private static IEqualityComparer<T> ValueEqualityComparer => EqualityComparer<T>.Default;
-
         public static bool Equals([AllowNull] in Box<T> boxA, [AllowNull] in Box<T> boxB)
             =>
             ReferenceEquals(boxA, boxB) ||
@@ -31,6 +29,8 @@ namespace System
         public override int GetHashCode()
             =>
             HashCode.Combine(GetType(), GetValueHashCode());
+
+        private static IEqualityComparer<T> ValueEqualityComparer => EqualityComparer<T>.Default;
 
         private int GetValueHashCode()
             =>
