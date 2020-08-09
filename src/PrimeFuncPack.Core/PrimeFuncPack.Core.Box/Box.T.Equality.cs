@@ -28,7 +28,7 @@ namespace System
 
         public override int GetHashCode()
             =>
-            HashCode.Combine(GetType(), GetValueHashCode());
+            HashCode.Combine(EqualityContract, GetValueHashCode());
 
         private static IEqualityComparer<T> ValueEqualityComparer => EqualityComparer<T>.Default;
 
