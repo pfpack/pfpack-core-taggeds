@@ -10,7 +10,7 @@ namespace System
             =>
             new Optional<T>(value);
 
-        public static Optional<T> FromBox(in Box<T>? box)
+        public static Optional<T> WrapBox(in Box<T>? box)
             =>
             new Optional<T>(box);
 
