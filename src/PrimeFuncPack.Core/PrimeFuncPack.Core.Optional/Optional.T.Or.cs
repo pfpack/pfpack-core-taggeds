@@ -19,5 +19,12 @@ namespace System
 
             return ImplFold(ThisAsync, otherFactoryAsync);
         }
+
+        public ValueTask<Optional<T>> OrAsync(in Func<ValueTask<Optional<T>>> otherFactoryAsync)
+        {
+            _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
+
+            return ImplFold(ThisValueAsync, otherFactoryAsync);
+        }
     }
 }

@@ -9,5 +9,7 @@ namespace System
         private Optional<T> This() => this;
 
         private Task<Optional<T>> ThisAsync() => Task.FromResult(this);
+
+        private ValueTask<Optional<T>> ThisValueAsync() => new ValueTask<Optional<T>>(this);
     }
 }

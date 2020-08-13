@@ -4,26 +4,48 @@ namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        public TaggedUnion<TResultFirst, TSecond> MapFirst<TResultFirst>(
-            in Func<TFirst, TResultFirst> mapFirst)
+        public TaggedUnion<TResultFirst, TSecond> MapFirstOrThrow<TResultFirst>(
+            in Func<TFirst, TResultFirst> onFirst)
             =>
-            ImplMap(
-                mapFirst,
-                second => second);
+            ImplMapOrThrow(
+                onFirst,
+                value => value);
 
-        public TaggedUnion<TFirst, TResultSecond> MapSecond<TResultSecond>(
-            in Func<TSecond, TResultSecond> mapSecond)
+        public TaggedUnion<TFirst, TResultSecond> MapSecondOrThrow<TResultSecond>(
+            in Func<TSecond, TResultSecond> onSecond)
             =>
-            ImplMap(
-                first => first,
-                mapSecond);
+            ImplMapOrThrow(
+                value => value,
+                onSecond);
 
-        public TaggedUnion<TResultFirst, TResultSecond> Map<TResultFirst, TResultSecond>(
-            in Func<TFirst, TResultFirst> mapFirst,
-            in Func<TSecond, TResultSecond> mapSecond)
+        public TaggedUnion<TResultFirst, TResultSecond> MapOrThrow<TResultFirst, TResultSecond>(
+            in Func<TFirst, TResultFirst> onFirst,
+            in Func<TSecond, TResultSecond> onSecond)
             =>
-            ImplMap(
-                mapFirst,
-                mapSecond);
+            ImplMapOrThrow(
+                onFirst,
+                onSecond);
+
+        public TaggedUnion<TResultFirst, TSecond> MapFirstOrElse<TResultFirst>(
+            in Func<TFirst, TResultFirst> onFirst)
+            =>
+            ImplMapOrElse(
+                onFirst,
+                value => value);
+
+        public TaggedUnion<TFirst, TResultSecond> MapSecondOrElse<TResultSecond>(
+            in Func<TSecond, TResultSecond> onSecond)
+            =>
+            ImplMapOrElse(
+                value => value,
+                onSecond);
+
+        public TaggedUnion<TResultFirst, TResultSecond> MapOrElse<TResultFirst, TResultSecond>(
+            in Func<TFirst, TResultFirst> onFirst,
+            in Func<TSecond, TResultSecond> onSecond)
+            =>
+            ImplMapOrElse(
+                onFirst,
+                onSecond);
     }
 }

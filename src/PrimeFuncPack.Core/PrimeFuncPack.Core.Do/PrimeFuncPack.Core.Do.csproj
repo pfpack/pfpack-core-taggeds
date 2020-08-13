@@ -21,8 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="PrimeFuncPack.Core.ISamenessEquatable" Version="1.0.0-preview.1.0.*" />
-		<PackageReference Include="PrimeFuncPack.Core.ToStringExtensions" Version="1.0.0-preview.1.0.*" />
+	  <PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.0.0-preview.1.0.*" />
 	</ItemGroup>
 
 </Project>

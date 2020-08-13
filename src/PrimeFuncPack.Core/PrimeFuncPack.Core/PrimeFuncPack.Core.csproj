@@ -21,6 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="PrimeFuncPack.Core.Do" Version="1.0.0-preview.1.0.0" />
 		<PackageReference Include="PrimeFuncPack.Core.Linq" Version="1.0.0-preview.1.0.*" />
 		<PackageReference Include="PrimeFuncPack.Core.TaggedTypes.All" Version="1.0.0-preview.1.0.*" />
 	</ItemGroup>
