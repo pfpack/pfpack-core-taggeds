@@ -37,8 +37,8 @@ namespace System
             var @this = this;
 
             return default(Optional<TResult>)
-                .Or(() => @this.First().Map(onFirst))
-                .Or(() => @this.Second().Map(onSecond));
+                .Or(() => @this.WrapFirst().Map(onFirst))
+                .Or(() => @this.WrapSecond().Map(onSecond));
         }
     }
 }

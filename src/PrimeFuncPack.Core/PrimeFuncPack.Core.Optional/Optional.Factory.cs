@@ -26,8 +26,8 @@ namespace System
             =>
             value switch { not null => Optional<T>.Present((T)value), _ => default };
 
-        public static Optional<T> WrapBox<T>(in Box<T>? box)
+        public static Optional<T> Wrap<T>(in Box<T>? box)
             =>
-            Optional<T>.WrapBox(box);
+            Optional<T>.Wrap(box);
     }
 }
