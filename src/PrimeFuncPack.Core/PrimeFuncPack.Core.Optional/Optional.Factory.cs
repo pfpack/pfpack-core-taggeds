@@ -28,6 +28,6 @@ namespace System
 
         public static Optional<T> FromBox<T>(in Box<T>? box)
             =>
-            box switch { not null => Optional<T>.Present(box), _ => default };
+            Optional<T>.FromBox(box);
     }
 }

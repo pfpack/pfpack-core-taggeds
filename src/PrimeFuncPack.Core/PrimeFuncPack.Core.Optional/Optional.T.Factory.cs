@@ -10,8 +10,16 @@ namespace System
             =>
             new Optional<T>(value);
 
+        public static Optional<T> FromBox(in Box<T>? box)
+            =>
+            new Optional<T>(box);
+
         private Optional(in T value)
             =>
             box = value;
+
+        private Optional(in Box<T>? box)
+            =>
+            this.box = box;
     }
 }
