@@ -10,7 +10,7 @@ namespace System
 
         public TFirst FirstOrThrow(in Func<Exception> exceptionFactory)
             =>
-            OrThrow(First, exceptionFactory);
+            ImplOrThrow(First, exceptionFactory);
 
         public TSecond SecondOrThrow()
             =>
@@ -18,9 +18,9 @@ namespace System
 
         public TSecond SecondOrThrow(in Func<Exception> exceptionFactory)
             =>
-            OrThrow(Second, exceptionFactory);
+            ImplOrThrow(Second, exceptionFactory);
 
-        private TCategory OrThrow<TCategory>(
+        private TCategory ImplOrThrow<TCategory>(
             in Func<Optional<TCategory>> instanceFactory,
             in Func<Exception> exceptionFactory)
         {
