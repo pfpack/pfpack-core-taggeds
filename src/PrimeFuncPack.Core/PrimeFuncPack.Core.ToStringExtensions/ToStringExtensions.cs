@@ -12,7 +12,7 @@ namespace System
         {
             _ = fromNotNull ?? throw new ArgumentNullException(nameof(fromNotNull));
 
-            return value switch { not null => fromNotNull.Invoke(value) ?? string.Empty, _ => string.Empty };
+            return value switch { not null => fromNotNull.Invoke(value).OrEmpty(), _ => string.Empty };
         }
     }
 }

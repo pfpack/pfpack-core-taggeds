@@ -20,11 +20,4 @@
 		</None>
 	</ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="PrimeFuncPack.Core.Box" Version="1.0.0-preview.1.0.*" />
-		<PackageReference Include="PrimeFuncPack.Core.Linq.Yield" Version="1.0.0-preview.1.0.*" />
-		<PackageReference Include="PrimeFuncPack.Core.ObjectPredicates" Version="1.0.0-preview.1.0.*" />
-		<PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.0.0-preview.1.0.*" />
-	</ItemGroup>
-
 </Project>
