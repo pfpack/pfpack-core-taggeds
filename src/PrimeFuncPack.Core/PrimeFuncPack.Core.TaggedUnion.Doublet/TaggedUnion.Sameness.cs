@@ -15,13 +15,9 @@ namespace System
 
         public int GetSamenessHashCode()
             =>
-            HashCode.Combine(SamenessContract, GetFirstSamenessHashCode(), GetSecondSamenessHashCode());
+            HashCode.Combine(SamenessContract, GetBoxSamenessHashCode(boxFirst), GetBoxSamenessHashCode(boxSecond));
 
         private static Type SamenessContract => typeof(TaggedUnion<TFirst, TSecond>);
-
-        private int GetFirstSamenessHashCode() => GetBoxSamenessHashCode(boxFirst);
-
-        private int GetSecondSamenessHashCode() => GetBoxSamenessHashCode(boxSecond);
 
         private static int GetBoxSamenessHashCode<TCategory>(in Box<TCategory>? box)
             =>
