@@ -14,6 +14,12 @@ namespace System
 
         public int GetSamenessHashCode()
             =>
+            HashCode.Combine(SamenessContract, GetBoxSamenessHashCode());
+
+        private static Type SamenessContract => typeof(Optional<T>);
+
+        private int GetBoxSamenessHashCode()
+            =>
             box switch { not null => box.GetSamenessHashCode(), _ => default };
     }
 }

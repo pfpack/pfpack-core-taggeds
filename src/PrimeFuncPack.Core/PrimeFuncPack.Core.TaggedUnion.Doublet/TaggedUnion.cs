@@ -2,7 +2,9 @@
 
 namespace System
 {
-    public readonly partial struct TaggedUnion<TFirst, TSecond>
+    public readonly partial struct TaggedUnion<TFirst, TSecond> :
+        IEquatable<TaggedUnion<TFirst, TSecond>>,
+        ISamenessEquatable<TaggedUnion<TFirst, TSecond>>
     {
         private const string CategoryFirst = nameof(TFirst);
 

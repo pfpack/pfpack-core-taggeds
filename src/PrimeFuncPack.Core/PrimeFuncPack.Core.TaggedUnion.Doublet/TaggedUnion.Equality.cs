@@ -1,20 +1,34 @@
 ﻿#nullable enable
 
-using System.Collections.Generic;
-
 namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        // TODO: Implement
-
-        public static bool Equals(in TaggedUnion<TFirst, TSecond> taggedUnionA, in TaggedUnion<TFirst, TSecond> taggedUnionB)
+        public static bool Equals(in TaggedUnion<TFirst, TSecond> unionA, in TaggedUnion<TFirst, TSecond> unionB)
             =>
-            throw new NotImplementedException();
+            Box.Equals(unionA.boxFirst, unionB.boxFirst) &&
+            Box.Equals(unionA.boxSecond, unionB.boxSecond);
 
-        private static IEqualityComparer<TFirst> FirstEqualityComparer => EqualityComparer<TFirst>.Default;
+        public static bool operator ==(in TaggedUnion<TFirst, TSecond> unionA, in TaggedUnion<TFirst, TSecond> unionB)
+            =>
+            Equals(unionA, unionB);
 
-        private static IEqualityComparer<TSecond> SecondEqualityComparer => EqualityComparer<TSecond>.Default;
+        public static bool operator !=(in TaggedUnion<TFirst, TSecond> unionA, in TaggedUnion<TFirst, TSecond> unionB)
+            =>
+            Equals(unionA, unionB) is false;
+
+        public bool Equals(TaggedUnion<TFirst, TSecond> other)
+            =>
+            Equals(this, other);
+
+        public override bool Equals(object? obj)
+            =>
+            obj is TaggedUnion<TFirst, TSecond> other &&
+            Equals(this, other);
+
+        public override int GetHashCode()
+            =>
+            HashCode.Combine(EqualityContract, boxFirst, boxSecond);
 
         private static Type EqualityContract => typeof(TaggedUnion<TFirst, TSecond>);
     }
