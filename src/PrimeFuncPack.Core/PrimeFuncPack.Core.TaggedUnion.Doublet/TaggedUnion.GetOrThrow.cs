@@ -10,7 +10,7 @@ namespace System
 
         public TFirst FirstOrThrow(in Func<Exception> exceptionFactory)
             =>
-            ImplOrThrow(WrapFirst, exceptionFactory);
+            ImplGetOrThrow(WrapFirst, exceptionFactory);
 
         public TSecond SecondOrThrow()
             =>
@@ -18,18 +18,18 @@ namespace System
 
         public TSecond SecondOrThrow(in Func<Exception> exceptionFactory)
             =>
-            ImplOrThrow(WrapSecond, exceptionFactory);
+            ImplGetOrThrow(WrapSecond, exceptionFactory);
 
-        private TCategory ImplOrThrow<TCategory>(
-            in Func<Optional<TCategory>> instanceFactory,
+        private TCategory ImplGetOrThrow<TCategory>(
+            in Func<Optional<TCategory>> resultFactory,
             in Func<Exception> exceptionFactory)
         {
-            _ = instanceFactory ?? throw new ArgumentNullException(nameof(instanceFactory));
+            _ = resultFactory ?? throw new ArgumentNullException(nameof(resultFactory));
             _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
 
             return IsInitialized switch
             {
-                true => instanceFactory.Invoke().OrThrow(exceptionFactory),
+                true => resultFactory.Invoke().OrThrow(exceptionFactory),
                 _ => throw CreateNotInitializedException()
             };
         }
