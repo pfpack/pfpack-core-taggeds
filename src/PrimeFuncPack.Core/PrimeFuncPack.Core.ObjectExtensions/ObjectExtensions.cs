@@ -25,5 +25,9 @@ namespace System
         public static string OrEmpty(this string? value)
             =>
             value ?? string.Empty;
+
+        public static string ToStringOrEmpty<T>(this T value)
+            =>
+            value switch { not null => value.ToString().OrEmpty(), _ => string.Empty };
     }
 }
