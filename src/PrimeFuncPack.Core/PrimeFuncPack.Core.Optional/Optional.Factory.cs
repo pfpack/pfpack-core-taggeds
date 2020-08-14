@@ -25,5 +25,9 @@ namespace System
         public static Optional<T> PresentOrElse<T>([DisallowNull] in T? value) where T : struct
             =>
             value switch { not null => Optional<T>.Present((T)value), _ => default };
+
+        public static Optional<T> Wrap<T>(in Box<T>? box)
+            =>
+            Optional<T>.Wrap(box);
     }
 }

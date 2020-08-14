@@ -4,19 +4,41 @@ namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        private TResult ImplFold<TResult>(
-            Func<TFirst, TResult> mapFirst,
-            Func<TSecond, TResult> mapSecond)
+        private TResult ImplFoldOrThrow<TResult>(
+            in Func<TFirst, TResult> onFirst,
+            in Func<TSecond, TResult> onSecond)
+            =>
+            ImplFold(onFirst, onSecond).OrThrow(CreateNotInitializedException);
+
+        private TResult ImplFoldOrElse<TResult>(
+            in Func<TFirst, TResult> onFirst,
+            in Func<TSecond, TResult> onSecond,
+            in TResult other)
+            =>
+            ImplFold(onFirst, onSecond).OrElse(other);
+
+        private TResult ImplFoldOrElse<TResult>(
+            in Func<TFirst, TResult> onFirst,
+            in Func<TSecond, TResult> onSecond,
+            in Func<TResult> otherFactory)
         {
-            _ = mapFirst ?? throw new ArgumentNullException(nameof(mapFirst));
-            _ = mapSecond ?? throw new ArgumentNullException(nameof(mapSecond));
+            _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
+
+            return ImplFold(onFirst, onSecond).OrElse(otherFactory);
+        }
+
+        private Optional<TResult> ImplFold<TResult>(
+            Func<TFirst, TResult> onFirst,
+            Func<TSecond, TResult> onSecond)
+        {
+            _ = onFirst ?? throw new ArgumentNullException(nameof(onFirst));
+            _ = onSecond ?? throw new ArgumentNullException(nameof(onSecond));
 
             var @this = this;
 
             return default(Optional<TResult>)
-                .Or(() => @this.TryGetFirst().Map(mapFirst))
-                .Or(() => @this.TryGetSecond().Map(mapSecond))
-                .OrThrow(CreateNotInitializedException);
+                .Or(() => @this.WrapFirst().Map(onFirst))
+                .Or(() => @this.WrapSecond().Map(onSecond));
         }
     }
 }

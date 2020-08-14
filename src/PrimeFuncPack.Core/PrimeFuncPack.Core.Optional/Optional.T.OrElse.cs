@@ -26,5 +26,12 @@ namespace System
 
             return ImplFold(Task.FromResult, otherFactoryAsync);
         }
+
+        public ValueTask<T> OrElseAsync(in Func<ValueTask<T>> otherFactoryAsync)
+        {
+            _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
+
+            return ImplFold(value => new ValueTask<T>(value), otherFactoryAsync);
+        }
     }
 }

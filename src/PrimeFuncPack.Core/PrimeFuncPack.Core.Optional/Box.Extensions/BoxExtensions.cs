@@ -4,10 +4,8 @@ namespace System
 {
     public static class BoxExtensions
     {
-        public static Optional<T> ToOptional<T>(this Box<T>? box) => box switch
-        {
-            not null => Optional<T>.Present(box),
-            _ => default
-        };
+        public static Optional<T> AsOptional<T>(this Box<T>? box)
+            =>
+            Optional<T>.Wrap(box);
     }
 }
