@@ -4,11 +4,11 @@ namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        private static InvalidOperationException CreateNotFirstException()
+        private static InvalidOperationException CreateNotTheFirstException()
             =>
             CreateNotACategoryException(CategoryFirst);
 
-        private static InvalidOperationException CreateNotSecondException()
+        private static InvalidOperationException CreateNotTheSecondException()
             =>
             CreateNotACategoryException(CategorySecond);
 
