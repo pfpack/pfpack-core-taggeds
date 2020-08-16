@@ -8,9 +8,10 @@ namespace System
             Func<TFirst, TResultFirst> onFirst,
             Func<TSecond, TResultSecond> onSecond)
             =>
-            ImplFoldOrElse(
+            ImplFold(
                 value => TaggedUnion<TResultFirst, TResultSecond>.CreateFirst(onFirst.Invoke(value)),
-                value => TaggedUnion<TResultFirst, TResultSecond>.CreateSecond(onSecond.Invoke(value)),
+                value => TaggedUnion<TResultFirst, TResultSecond>.CreateSecond(onSecond.Invoke(value)))
+            .OrElse(
                 () => default);
     }
 }

@@ -19,7 +19,5 @@ namespace System
         public bool IsSecond => boxSecond is not null;
 
         public bool IsInitialized => IsFirst || IsSecond;
-
-        private bool HasValidInvariant => IsFirst ^ IsSecond;
     }
 }

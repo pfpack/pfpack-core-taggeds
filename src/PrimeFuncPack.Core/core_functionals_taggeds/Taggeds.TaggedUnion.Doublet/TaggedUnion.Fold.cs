@@ -6,25 +6,25 @@ namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        // FoldOrThrow(Async)
+        // FoldOrAbsent(Async)
 
-        public TResult FoldOrThrow<TResult>(
+        public Optional<TResult> FoldOrAbsent<TResult>(
             in Func<TFirst, TResult> onFirst,
             in Func<TSecond, TResult> onSecond)
             =>
-            ImplFoldOrThrow(onFirst, onSecond);
+            ImplFold(onFirst, onSecond);
 
-        public Task<TResult> FoldOrThrowAsync<TResult>(
+        public Optional<Task<TResult>> FoldOrAbsentAsync<TResult>(
             in Func<TFirst, Task<TResult>> onFirstAsync,
             in Func<TSecond, Task<TResult>> onSecondAsync)
             =>
-            ImplFoldOrThrow(onFirstAsync, onSecondAsync);
+            ImplFold(onFirstAsync, onSecondAsync);
 
-        public ValueTask<TResult> FoldOrThrowAsync<TResult>(
+        public Optional<ValueTask<TResult>> FoldOrAbsentAsync<TResult>(
             in Func<TFirst, ValueTask<TResult>> onFirstAsync,
             in Func<TSecond, ValueTask<TResult>> onSecondAsync)
             =>
-            ImplFoldOrThrow(onFirstAsync, onSecondAsync);
+            ImplFold(onFirstAsync, onSecondAsync);
 
         // FoldOrElse
 
@@ -33,14 +33,14 @@ namespace System
             in Func<TSecond, TResult> onSecond,
             in TResult other)
             =>
-            ImplFoldOrElse(onFirst, onSecond, other);
+            ImplFold(onFirst, onSecond).OrElse(other);
 
         public TResult FoldOrElse<TResult>(
             in Func<TFirst, TResult> onFirst,
             in Func<TSecond, TResult> onSecond,
             in Func<TResult> otherFactory)
             =>
-            ImplFoldOrElse(onFirst, onSecond, otherFactory);
+            ImplFold(onFirst, onSecond).OrElse(otherFactory);
 
         // FoldOrElseAsync / Task
 
@@ -49,7 +49,7 @@ namespace System
             in Func<TSecond, Task<TResult>> onSecondAsync,
             in TResult other)
             =>
-            ImplFoldOrElse(onFirstAsync, onSecondAsync, Task.FromResult(other));
+            ImplFold(onFirstAsync, onSecondAsync).OrElse(Task.FromResult(other));
 
         public Task<TResult> FoldOrElseAsync<TResult>(
             in Func<TFirst, Task<TResult>> onFirstAsync,
@@ -60,7 +60,7 @@ namespace System
 
             var theOtherFactory = otherFactory;
 
-            return ImplFoldOrElse(onFirstAsync, onSecondAsync, () => Task.FromResult(theOtherFactory.Invoke()));
+            return ImplFold(onFirstAsync, onSecondAsync).OrElse(() => Task.FromResult(theOtherFactory.Invoke()));
         }
 
         public Task<TResult> FoldOrElseAsync<TResult>(
@@ -68,7 +68,7 @@ namespace System
             in Func<TSecond, Task<TResult>> onSecondAsync,
             in Func<Task<TResult>> otherFactoryAsync)
             =>
-            ImplFoldOrElse(onFirstAsync, onSecondAsync, otherFactoryAsync);
+            ImplFold(onFirstAsync, onSecondAsync).OrElse(otherFactoryAsync);
 
         // FoldOrElseAsync / ValueTask
 
@@ -77,7 +77,7 @@ namespace System
             in Func<TSecond, ValueTask<TResult>> onSecondAsync,
             in TResult other)
             =>
-            ImplFoldOrElse(onFirstAsync, onSecondAsync, new ValueTask<TResult>(other));
+            ImplFold(onFirstAsync, onSecondAsync).OrElse(new ValueTask<TResult>(other));
 
         public ValueTask<TResult> FoldOrElseAsync<TResult>(
             in Func<TFirst, ValueTask<TResult>> onFirstAsync,
@@ -88,7 +88,7 @@ namespace System
 
             var theOtherFactory = otherFactory;
 
-            return ImplFoldOrElse(onFirstAsync, onSecondAsync, () => new ValueTask<TResult>(theOtherFactory.Invoke()));
+            return ImplFold(onFirstAsync, onSecondAsync).OrElse(() => new ValueTask<TResult>(theOtherFactory.Invoke()));
         }
 
         public ValueTask<TResult> FoldOrElseAsync<TResult>(
@@ -96,6 +96,6 @@ namespace System
             in Func<TSecond, ValueTask<TResult>> onSecondAsync,
             in Func<ValueTask<TResult>> otherFactoryAsync)
             =>
-            ImplFoldOrElse(onFirstAsync, onSecondAsync, otherFactoryAsync);
+            ImplFold(onFirstAsync, onSecondAsync).OrElse(otherFactoryAsync);
     }
 }

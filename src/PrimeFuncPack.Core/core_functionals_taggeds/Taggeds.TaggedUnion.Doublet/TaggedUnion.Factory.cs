@@ -6,13 +6,11 @@ namespace System
     {
         public static TaggedUnion<TFirst, TSecond> CreateFirst(in TFirst first)
             =>
-            new TaggedUnion<TFirst, TSecond>(first: first)
-            .AssertInvariant();
+            new TaggedUnion<TFirst, TSecond>(first: first);
 
         public static TaggedUnion<TFirst, TSecond> CreateSecond(in TSecond second)
             =>
-            new TaggedUnion<TFirst, TSecond>(second: second)
-            .AssertInvariant();
+            new TaggedUnion<TFirst, TSecond>(second: second);
 
         private TaggedUnion(in TFirst first)
         {
@@ -25,11 +23,5 @@ namespace System
             boxFirst = null;
             boxSecond = second;
         }
-
-        private TaggedUnion<TFirst, TSecond> AssertInvariant() => HasValidInvariant switch
-        {
-            true => this,
-            _ => throw CreateExpectedValidInvariantException()
-        };
     }
 }
