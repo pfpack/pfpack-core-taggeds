@@ -18,18 +18,16 @@ namespace System.Linq
             {
                 case IReadOnlyList<TSource> list:
                     list.InternalForEach(action);
-                    break;
+                    return source;
 
                 case IList<TSource> list:
                     list.InternalForEach(action);
-                    break;
+                    return source;
 
-                case var collection:
-                    collection.InternalForEach(action);
-                    break;
+                default:
+                    source.InternalForEach(action);
+                    return source;
             }
-
-            return source;
         }
 
         public static TCollection ForEach<TCollection, TSource>(
@@ -44,18 +42,16 @@ namespace System.Linq
             {
                 case IReadOnlyList<TSource> list:
                     list.InternalForEach(action);
-                    break;
+                    return source;
 
                 case IList<TSource> list:
                     list.InternalForEach(action);
-                    break;
+                    return source;
 
-                case var collection:
-                    collection.InternalForEach(action);
-                    break;
+                default:
+                    source.InternalForEach(action);
+                    return source;
             }
-
-            return source;
         }
 
         public static TCollection ForEach<TCollection, TSource>(
@@ -70,18 +66,16 @@ namespace System.Linq
             {
                 case IReadOnlyList<TSource> list:
                     list.InternalForEach(action);
-                    break;
+                    return source;
 
                 case IList<TSource> list:
                     list.InternalForEach(action);
-                    break;
+                    return source;
 
-                case var collection:
-                    collection.InternalForEach(action);
-                    break;
+                default:
+                    source.InternalForEach(action);
+                    return source;
             }
-
-            return source;
         }
     }
 }

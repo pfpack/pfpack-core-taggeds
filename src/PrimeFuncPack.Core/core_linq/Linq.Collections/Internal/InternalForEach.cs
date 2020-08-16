@@ -7,8 +7,8 @@ namespace System.Linq
     partial class InternalCollectionsExtensions
     {
         public static void InternalForEach<TSource>(
-           this IEnumerable<TSource> source,
-           in Action<TSource> action)
+            this IEnumerable<TSource> source,
+            in Action<TSource> action)
         {
             foreach (var current in source)
             {
@@ -17,8 +17,8 @@ namespace System.Linq
         }
 
         public static void InternalForEach<TSource>(
-           this IEnumerable<TSource> source,
-           in Action<int, TSource> action)
+            this IEnumerable<TSource> source,
+            in Action<int, TSource> action)
         {
             using var enumerator = source.GetEnumerator();
 
@@ -37,8 +37,8 @@ namespace System.Linq
         }
 
         public static void InternalForEach<TSource>(
-           this IEnumerable<TSource> source,
-           in Action<long, TSource> action)
+            this IEnumerable<TSource> source,
+            in Action<long, TSource> action)
         {
             using var enumerator = source.GetEnumerator();
 
