@@ -21,9 +21,8 @@ namespace System.Linq
                 =>
                 list.InternalFirstOrAbsent(),
 
-                var enumerable
-                =>
-                enumerable.InternalFirstOrAbsent()
+                _ =>
+                source.InternalFirstOrAbsent()
             };
         }
 
@@ -44,9 +43,8 @@ namespace System.Linq
                 =>
                 list.InternalFirstOrAbsent(predicate),
 
-                var enumerable
-                =>
-                enumerable.InternalFirstOrAbsent(predicate)
+                _ =>
+                source.InternalFirstOrAbsent(predicate)
             };
         }
     }

@@ -28,9 +28,8 @@ namespace System.Linq
                 =>
                 list.InternalSingleOrAbsent(moreThanOneElementExceptionFactory),
 
-                var enumerable
-                =>
-                enumerable.InternalSingleOrAbsent(moreThanOneElementExceptionFactory)
+                _ =>
+                source.InternalSingleOrAbsent(moreThanOneElementExceptionFactory)
             };
         }
 
@@ -59,9 +58,8 @@ namespace System.Linq
                 =>
                 list.InternalSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
 
-                var enumerable
-                =>
-                enumerable.InternalSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory)
+                _ =>
+                source.InternalSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory)
             };
         }
     }

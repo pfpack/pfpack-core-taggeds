@@ -22,9 +22,8 @@ namespace System.Linq
                 =>
                 list.InternalElementAtOrAbsent(index),
 
-                var enumerable
-                =>
-                enumerable.InternalElementAtOrAbsent(index)
+                _ =>
+                source.InternalElementAtOrAbsent(index)
             };
         }
 
@@ -44,9 +43,8 @@ namespace System.Linq
                 =>
                 list.InternalElementAtOrAbsent(index),
 
-                var enumerable
-                =>
-                enumerable.InternalElementAtOrAbsent(index)
+                _ =>
+                source.InternalElementAtOrAbsent(index)
             };
         }
     }
