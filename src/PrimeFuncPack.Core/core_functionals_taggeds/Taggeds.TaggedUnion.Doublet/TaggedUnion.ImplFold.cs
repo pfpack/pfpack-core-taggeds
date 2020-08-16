@@ -14,8 +14,8 @@ namespace System
             var @this = this;
 
             return default(Optional<TResult>)
-                .Or(() => @this.WrapFirst().Map(onFirst))
-                .Or(() => @this.WrapSecond().Map(onSecond));
+                .Or(() => @this.First().Map(onFirst))
+                .Or(() => @this.Second().Map(onSecond));
         }
     }
 }
