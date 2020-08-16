@@ -10,7 +10,7 @@ namespace System
 
         public TFirst FirstOrThrow(in Func<Exception> exceptionFactory)
             =>
-            ImplGetOrThrow(WrapFirst, exceptionFactory);
+            WrapFirst().OrThrow(exceptionFactory);
 
         public TSecond SecondOrThrow()
             =>
@@ -18,6 +18,6 @@ namespace System
 
         public TSecond SecondOrThrow(in Func<Exception> exceptionFactory)
             =>
-            ImplGetOrThrow(WrapSecond, exceptionFactory);
+            WrapSecond().OrThrow(exceptionFactory);
     }
 }
