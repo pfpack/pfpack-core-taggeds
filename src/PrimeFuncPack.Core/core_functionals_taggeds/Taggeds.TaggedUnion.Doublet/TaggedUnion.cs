@@ -19,5 +19,17 @@ namespace System
         public bool IsSecond => boxSecond is not null;
 
         public bool IsInitialized => IsFirst || IsSecond;
+
+        private TaggedUnion(in TFirst first)
+        {
+            boxFirst = first;
+            boxSecond = null;
+        }
+
+        private TaggedUnion(in TSecond second)
+        {
+            boxFirst = null;
+            boxSecond = second;
+        }
     }
 }

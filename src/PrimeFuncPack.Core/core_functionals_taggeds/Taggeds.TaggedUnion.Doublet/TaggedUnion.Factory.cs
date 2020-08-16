@@ -11,17 +11,5 @@ namespace System
         public static TaggedUnion<TFirst, TSecond> CreateSecond(in TSecond second)
             =>
             new TaggedUnion<TFirst, TSecond>(second: second);
-
-        private TaggedUnion(in TFirst first)
-        {
-            boxFirst = first;
-            boxSecond = null;
-        }
-
-        private TaggedUnion(in TSecond second)
-        {
-            boxFirst = null;
-            boxSecond = second;
-        }
     }
 }
