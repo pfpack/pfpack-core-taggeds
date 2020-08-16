@@ -2,7 +2,7 @@
 
 namespace System
 {
-    internal static class ImplDoExtensions
+    partial class DoExtensions
     {
         public static T ImplDo<T>(this T value, in Func<T, Unit> func)
         {
