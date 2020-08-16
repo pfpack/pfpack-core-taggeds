@@ -1,57 +1,45 @@
 ﻿#nullable enable
 
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        // FoldOrAbsent(Async)
+        // Fold
 
-        public Optional<TResult> FoldOrAbsent<TResult>(
+        [return: MaybeNull]
+        public TResult Fold<TResult>(
             in Func<TFirst, TResult> onFirst,
             in Func<TSecond, TResult> onSecond)
             =>
-            ImplFold(onFirst, onSecond);
+            ImplFold(onFirst, onSecond).OrElse(() => default!);
 
-        public Optional<Task<TResult>> FoldOrAbsentAsync<TResult>(
-            in Func<TFirst, Task<TResult>> onFirstAsync,
-            in Func<TSecond, Task<TResult>> onSecondAsync)
-            =>
-            ImplFold(onFirstAsync, onSecondAsync);
-
-        public Optional<ValueTask<TResult>> FoldOrAbsentAsync<TResult>(
-            in Func<TFirst, ValueTask<TResult>> onFirstAsync,
-            in Func<TSecond, ValueTask<TResult>> onSecondAsync)
-            =>
-            ImplFold(onFirstAsync, onSecondAsync);
-
-        // FoldOrElse
-
-        public TResult FoldOrElse<TResult>(
+        public TResult Fold<TResult>(
             in Func<TFirst, TResult> onFirst,
             in Func<TSecond, TResult> onSecond,
             in TResult other)
             =>
             ImplFold(onFirst, onSecond).OrElse(other);
 
-        public TResult FoldOrElse<TResult>(
+        public TResult Fold<TResult>(
             in Func<TFirst, TResult> onFirst,
             in Func<TSecond, TResult> onSecond,
             in Func<TResult> otherFactory)
             =>
             ImplFold(onFirst, onSecond).OrElse(otherFactory);
 
-        // FoldOrElseAsync / Task
+        // FoldAsync / Task
 
-        public Task<TResult> FoldOrElseAsync<TResult>(
+        public Task<TResult> FoldAsync<TResult>(
             in Func<TFirst, Task<TResult>> onFirstAsync,
             in Func<TSecond, Task<TResult>> onSecondAsync,
             in TResult other)
             =>
             ImplFold(onFirstAsync, onSecondAsync).OrElse(Task.FromResult(other));
 
-        public Task<TResult> FoldOrElseAsync<TResult>(
+        public Task<TResult> FoldAsync<TResult>(
             in Func<TFirst, Task<TResult>> onFirstAsync,
             in Func<TSecond, Task<TResult>> onSecondAsync,
             in Func<TResult> otherFactory)
@@ -63,23 +51,23 @@ namespace System
             return ImplFold(onFirstAsync, onSecondAsync).OrElse(() => Task.FromResult(theOtherFactory.Invoke()));
         }
 
-        public Task<TResult> FoldOrElseAsync<TResult>(
+        public Task<TResult> FoldAsync<TResult>(
             in Func<TFirst, Task<TResult>> onFirstAsync,
             in Func<TSecond, Task<TResult>> onSecondAsync,
             in Func<Task<TResult>> otherFactoryAsync)
             =>
             ImplFold(onFirstAsync, onSecondAsync).OrElse(otherFactoryAsync);
 
-        // FoldOrElseAsync / ValueTask
+        // FoldAsync / ValueTask
 
-        public ValueTask<TResult> FoldOrElseAsync<TResult>(
+        public ValueTask<TResult> FoldAsync<TResult>(
             in Func<TFirst, ValueTask<TResult>> onFirstAsync,
             in Func<TSecond, ValueTask<TResult>> onSecondAsync,
             in TResult other)
             =>
             ImplFold(onFirstAsync, onSecondAsync).OrElse(new ValueTask<TResult>(other));
 
-        public ValueTask<TResult> FoldOrElseAsync<TResult>(
+        public ValueTask<TResult> FoldAsync<TResult>(
             in Func<TFirst, ValueTask<TResult>> onFirstAsync,
             in Func<TSecond, ValueTask<TResult>> onSecondAsync,
             in Func<TResult> otherFactory)
@@ -91,7 +79,7 @@ namespace System
             return ImplFold(onFirstAsync, onSecondAsync).OrElse(() => new ValueTask<TResult>(theOtherFactory.Invoke()));
         }
 
-        public ValueTask<TResult> FoldOrElseAsync<TResult>(
+        public ValueTask<TResult> FoldAsync<TResult>(
             in Func<TFirst, ValueTask<TResult>> onFirstAsync,
             in Func<TSecond, ValueTask<TResult>> onSecondAsync,
             in Func<ValueTask<TResult>> otherFactoryAsync)
