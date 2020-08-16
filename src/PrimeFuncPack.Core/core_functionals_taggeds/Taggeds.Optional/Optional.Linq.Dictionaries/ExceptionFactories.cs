@@ -6,6 +6,6 @@ namespace System.Linq
     {
         private static InvalidOperationException CreateMoreThanOneMatchException()
             =>
-            new InvalidOperationException("The dictionary contains more than one key equal to the specified.");
+            new InvalidOperationException("The pairs contains more than one key equal to the specified.");
     }
 }
