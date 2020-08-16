@@ -10,6 +10,6 @@ namespace System
 
         private Task<Optional<T>> ThisAsync() => Task.FromResult(this);
 
-        private ValueTask<Optional<T>> ThisValueAsync() => new ValueTask<Optional<T>>(this);
+        private ValueTask<Optional<T>> ThisValueAsync() => ValueTask.FromResult(this);
     }
 }

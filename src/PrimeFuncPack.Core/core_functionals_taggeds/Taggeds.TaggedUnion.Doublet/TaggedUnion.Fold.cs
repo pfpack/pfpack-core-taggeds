@@ -65,7 +65,7 @@ namespace System
             in Func<TSecond, ValueTask<TResult>> onSecondAsync,
             in TResult other)
             =>
-            ImplFold(onFirstAsync, onSecondAsync).OrElse(new ValueTask<TResult>(other));
+            ImplFold(onFirstAsync, onSecondAsync).OrElse(ValueTask.FromResult(other));
 
         public ValueTask<TResult> FoldAsync<TResult>(
             in Func<TFirst, ValueTask<TResult>> onFirstAsync,
@@ -76,7 +76,7 @@ namespace System
 
             var theOtherFactory = otherFactory;
 
-            return ImplFold(onFirstAsync, onSecondAsync).OrElse(() => new ValueTask<TResult>(theOtherFactory.Invoke()));
+            return ImplFold(onFirstAsync, onSecondAsync).OrElse(() => ValueTask.FromResult(theOtherFactory.Invoke()));
         }
 
         public ValueTask<TResult> FoldAsync<TResult>(
