@@ -11,11 +11,7 @@ namespace System
             _ = resultFactory ?? throw new ArgumentNullException(nameof(resultFactory));
             _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
 
-            return IsInitialized switch
-            {
-                true => resultFactory.Invoke().OrThrow(exceptionFactory),
-                _ => throw CreateNotInitializedException()
-            };
+            return resultFactory.Invoke().OrThrow(exceptionFactory);
         }
     }
 }
