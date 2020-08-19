@@ -9,8 +9,8 @@ namespace System
             Func<TSecond, TResultSecond> onSecond)
             =>
             ImplFold(
-                value => TaggedUnion<TResultFirst, TResultSecond>.CreateFirst(onFirst.Invoke(value)),
-                value => TaggedUnion<TResultFirst, TResultSecond>.CreateSecond(onSecond.Invoke(value)))
+                value => value.DoPipe(onFirst).DoPipe(TaggedUnion<TResultFirst, TResultSecond>.CreateFirst),
+                value => value.DoPipe(onSecond).DoPipe(TaggedUnion<TResultFirst, TResultSecond>.CreateSecond))
             .OrElse(
                 () => default);
     }

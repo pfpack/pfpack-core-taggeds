@@ -4,11 +4,11 @@ namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        public static TaggedUnion<TFirst, TSecond> CreateFirst(in TFirst first)
+        public static TaggedUnion<TFirst, TSecond> CreateFirst(TFirst first)
             =>
             new TaggedUnion<TFirst, TSecond>(first: first);
 
-        public static TaggedUnion<TFirst, TSecond> CreateSecond(in TSecond second)
+        public static TaggedUnion<TFirst, TSecond> CreateSecond(TSecond second)
             =>
             new TaggedUnion<TFirst, TSecond>(second: second);
     }

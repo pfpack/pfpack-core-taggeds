@@ -7,7 +7,7 @@ namespace System
 {
     partial record Box<T>
     {
-        public static bool Equals([AllowNull] in Box<T> boxA, [AllowNull] in Box<T> boxB)
+        public static bool Equals([AllowNull] Box<T> boxA, [AllowNull] Box<T> boxB)
             =>
             ReferenceEquals(boxA, boxB) ||
             boxA is not null &&

@@ -4,7 +4,7 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public Optional<TResult> Map<TResult>(in Func<T, TResult> map)
+        public Optional<TResult> Map<TResult>(Func<T, TResult> map)
         {
             _ = map ?? throw new ArgumentNullException(nameof(map));
 

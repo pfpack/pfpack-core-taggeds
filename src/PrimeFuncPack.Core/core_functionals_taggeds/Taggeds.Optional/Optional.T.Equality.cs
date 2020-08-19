@@ -4,7 +4,7 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public static bool Equals(in Optional<T> optionalA, in Optional<T> optionalB)
+        public static bool Equals(Optional<T> optionalA, Optional<T> optionalB)
             =>
             Box<T>.Equals(optionalA.box, optionalB.box);
 

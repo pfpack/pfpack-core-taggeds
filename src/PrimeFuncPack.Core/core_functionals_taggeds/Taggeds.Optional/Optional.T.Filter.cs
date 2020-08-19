@@ -4,7 +4,7 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public Optional<T> Filter(in Func<T, bool> predicate)
+        public Optional<T> Filter(Func<T, bool> predicate)
         {
             _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
 

@@ -5,25 +5,19 @@ namespace System
     partial struct TaggedUnion<TFirst, TSecond>
     {
         public TaggedUnion<TResultFirst, TSecond> MapFirst<TResultFirst>(
-            in Func<TFirst, TResultFirst> onFirst)
+            Func<TFirst, TResultFirst> onFirst)
             =>
-            ImplMap(
-                onFirst,
-                value => value);
+            ImplMap(onFirst, Do.Pass);
 
         public TaggedUnion<TFirst, TResultSecond> MapSecond<TResultSecond>(
-            in Func<TSecond, TResultSecond> onSecond)
+            Func<TSecond, TResultSecond> onSecond)
             =>
-            ImplMap(
-                value => value,
-                onSecond);
+            ImplMap(Do.Pass, onSecond);
 
         public TaggedUnion<TResultFirst, TResultSecond> Map<TResultFirst, TResultSecond>(
-            in Func<TFirst, TResultFirst> onFirst,
-            in Func<TSecond, TResultSecond> onSecond)
+            Func<TFirst, TResultFirst> onFirst,
+            Func<TSecond, TResultSecond> onSecond)
             =>
-            ImplMap(
-                onFirst,
-                onSecond);
+            ImplMap(onFirst, onSecond);
     }
 }
