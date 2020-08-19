@@ -14,17 +14,14 @@ namespace System.Linq
 
             return source switch
             {
-                IReadOnlyList<TSource> list
-                =>
-                list.InternalElementAtOrAbsent(index),
+                IReadOnlyList<TSource> list => list
+                .InternalElementAtOrAbsent(index),
 
-                IList<TSource> list
-                =>
-                list.InternalElementAtOrAbsent(index),
+                IList<TSource> list => list
+                .InternalElementAtOrAbsent(index),
 
-                var enumerable
-                =>
-                enumerable.InternalElementAtOrAbsent(index)
+                _ => source
+                .InternalElementAtOrAbsent(index)
             };
         }
 
@@ -36,17 +33,14 @@ namespace System.Linq
 
             return source switch
             {
-                IReadOnlyList<TSource> list
-                =>
-                list.InternalElementAtOrAbsent(index),
+                IReadOnlyList<TSource> list => list
+                .InternalElementAtOrAbsent(index),
 
-                IList<TSource> list
-                =>
-                list.InternalElementAtOrAbsent(index),
+                IList<TSource> list => list
+                .InternalElementAtOrAbsent(index),
 
-                var enumerable
-                =>
-                enumerable.InternalElementAtOrAbsent(index)
+                _ => source
+                .InternalElementAtOrAbsent(index)
             };
         }
     }

@@ -13,13 +13,5 @@ namespace System
         public static Optional<T> Wrap(in Box<T>? box)
             =>
             new Optional<T>(box);
-
-        private Optional(in T value)
-            =>
-            box = value;
-
-        private Optional(in Box<T>? box)
-            =>
-            this.box = box;
     }
 }

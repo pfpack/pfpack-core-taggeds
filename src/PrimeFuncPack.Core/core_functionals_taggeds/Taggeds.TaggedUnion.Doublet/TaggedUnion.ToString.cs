@@ -4,9 +4,12 @@ namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        public override string ToString() => ImplFoldOrElse(
-            value => value.ToStringOrEmpty(),
-            value => value.ToStringOrEmpty(),
-            () => string.Empty);
+        public override string ToString()
+            =>
+            ImplFold(
+                value => value.ToStringOrEmpty(),
+                value => value.ToStringOrEmpty())
+            .OrElse(
+                () => string.Empty);
     }
 }

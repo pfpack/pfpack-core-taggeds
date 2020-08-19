@@ -11,5 +11,13 @@ namespace System
         public bool IsPresent => box is not null;
 
         public bool IsAbsent => box is null;
+
+        private Optional(in T value)
+            =>
+            box = value;
+
+        private Optional(in Box<T>? box)
+            =>
+            this.box = box;
     }
 }

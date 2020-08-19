@@ -7,8 +7,8 @@ namespace System.Linq
     partial class InternalCollectionsExtensions
     {
         public static void InternalForEach<TSource>(
-           this IReadOnlyList<TSource> source,
-           in Action<TSource> action)
+            this IReadOnlyList<TSource> source,
+            in Action<TSource> action)
         {
             for (var i = 0; i < source.Count; i++)
             {
@@ -17,8 +17,8 @@ namespace System.Linq
         }
 
         public static void InternalForEach<TSource>(
-           this IReadOnlyList<TSource> source,
-           in Action<int, TSource> action)
+            this IReadOnlyList<TSource> source,
+            in Action<int, TSource> action)
         {
             for (var i = 0; i < source.Count; i++)
             {
@@ -27,8 +27,8 @@ namespace System.Linq
         }
 
         public static void InternalForEach<TSource>(
-           this IReadOnlyList<TSource> source,
-           in Action<long, TSource> action)
+            this IReadOnlyList<TSource> source,
+            in Action<long, TSource> action)
         {
             for (var i = 0; i < source.Count; i++)
             {

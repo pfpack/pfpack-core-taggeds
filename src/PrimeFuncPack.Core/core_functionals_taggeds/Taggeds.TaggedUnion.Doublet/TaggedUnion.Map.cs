@@ -4,47 +4,25 @@ namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        public TaggedUnion<TResultFirst, TSecond> MapFirstOrThrow<TResultFirst>(
+        public TaggedUnion<TResultFirst, TSecond> MapFirst<TResultFirst>(
             in Func<TFirst, TResultFirst> onFirst)
             =>
-            ImplMapOrThrow(
+            ImplMap(
                 onFirst,
                 value => value);
 
-        public TaggedUnion<TFirst, TResultSecond> MapSecondOrThrow<TResultSecond>(
+        public TaggedUnion<TFirst, TResultSecond> MapSecond<TResultSecond>(
             in Func<TSecond, TResultSecond> onSecond)
             =>
-            ImplMapOrThrow(
+            ImplMap(
                 value => value,
                 onSecond);
 
-        public TaggedUnion<TResultFirst, TResultSecond> MapOrThrow<TResultFirst, TResultSecond>(
+        public TaggedUnion<TResultFirst, TResultSecond> Map<TResultFirst, TResultSecond>(
             in Func<TFirst, TResultFirst> onFirst,
             in Func<TSecond, TResultSecond> onSecond)
             =>
-            ImplMapOrThrow(
-                onFirst,
-                onSecond);
-
-        public TaggedUnion<TResultFirst, TSecond> MapFirstOrElse<TResultFirst>(
-            in Func<TFirst, TResultFirst> onFirst)
-            =>
-            ImplMapOrElse(
-                onFirst,
-                value => value);
-
-        public TaggedUnion<TFirst, TResultSecond> MapSecondOrElse<TResultSecond>(
-            in Func<TSecond, TResultSecond> onSecond)
-            =>
-            ImplMapOrElse(
-                value => value,
-                onSecond);
-
-        public TaggedUnion<TResultFirst, TResultSecond> MapOrElse<TResultFirst, TResultSecond>(
-            in Func<TFirst, TResultFirst> onFirst,
-            in Func<TSecond, TResultSecond> onSecond)
-            =>
-            ImplMapOrElse(
+            ImplMap(
                 onFirst,
                 onSecond);
     }

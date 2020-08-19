@@ -6,32 +6,18 @@ namespace System
     {
         public TFirst FirstOrThrow()
             =>
-            FirstOrThrow(CreateNotFirstException);
+            FirstOrThrow(CreateNotTheFirstException);
 
         public TFirst FirstOrThrow(in Func<Exception> exceptionFactory)
             =>
-            ImplGetOrThrow(WrapFirst, exceptionFactory);
+            First().OrThrow(exceptionFactory);
 
         public TSecond SecondOrThrow()
             =>
-            SecondOrThrow(CreateNotSecondException);
+            SecondOrThrow(CreateNotTheSecondException);
 
         public TSecond SecondOrThrow(in Func<Exception> exceptionFactory)
             =>
-            ImplGetOrThrow(WrapSecond, exceptionFactory);
-
-        private TCategory ImplGetOrThrow<TCategory>(
-            in Func<Optional<TCategory>> resultFactory,
-            in Func<Exception> exceptionFactory)
-        {
-            _ = resultFactory ?? throw new ArgumentNullException(nameof(resultFactory));
-            _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
-
-            return IsInitialized switch
-            {
-                true => resultFactory.Invoke().OrThrow(exceptionFactory),
-                _ => throw CreateNotInitializedException()
-            };
-        }
+            Second().OrThrow(exceptionFactory);
     }
 }

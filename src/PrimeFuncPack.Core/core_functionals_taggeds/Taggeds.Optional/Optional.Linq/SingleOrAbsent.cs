@@ -20,17 +20,14 @@ namespace System.Linq
 
             return source switch
             {
-                IReadOnlyList<TSource> list
-                =>
-                list.InternalSingleOrAbsent(moreThanOneElementExceptionFactory),
+                IReadOnlyList<TSource> list => list
+                .InternalSingleOrAbsent(moreThanOneElementExceptionFactory),
 
-                IList<TSource> list
-                =>
-                list.InternalSingleOrAbsent(moreThanOneElementExceptionFactory),
+                IList<TSource> list => list
+                .InternalSingleOrAbsent(moreThanOneElementExceptionFactory),
 
-                var enumerable
-                =>
-                enumerable.InternalSingleOrAbsent(moreThanOneElementExceptionFactory)
+                _ => source
+                .InternalSingleOrAbsent(moreThanOneElementExceptionFactory)
             };
         }
 
@@ -51,17 +48,14 @@ namespace System.Linq
 
             return source switch
             {
-                IReadOnlyList<TSource> list
-                =>
-                list.InternalSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
+                IReadOnlyList<TSource> list => list
+                .InternalSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
 
-                IList<TSource> list
-                =>
-                list.InternalSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
+                IList<TSource> list => list
+                .InternalSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
 
-                var enumerable
-                =>
-                enumerable.InternalSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory)
+                _ => source
+                .InternalSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory)
             };
         }
     }

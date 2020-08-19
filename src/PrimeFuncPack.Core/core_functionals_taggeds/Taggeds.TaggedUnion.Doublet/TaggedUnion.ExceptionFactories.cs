@@ -4,19 +4,11 @@ namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        private static InvalidOperationException CreateExpectedValidInvariantException()
-            =>
-            new InvalidOperationException("The tagged union is expected to have the valid invariant.");
-
-        private static InvalidOperationException CreateNotInitializedException()
-            =>
-            new InvalidOperationException("The tagged union is not initialized.");
-
-        private static InvalidOperationException CreateNotFirstException()
+        private static InvalidOperationException CreateNotTheFirstException()
             =>
             CreateNotACategoryException(CategoryFirst);
 
-        private static InvalidOperationException CreateNotSecondException()
+        private static InvalidOperationException CreateNotTheSecondException()
             =>
             CreateNotACategoryException(CategorySecond);
 

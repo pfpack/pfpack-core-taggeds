@@ -4,8 +4,8 @@ namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        private Optional<TFirst> WrapFirst() => Optional.Wrap(boxFirst);
+        private Optional<TFirst> First() => Optional.Wrap(boxFirst);
 
-        private Optional<TSecond> WrapSecond() => Optional.Wrap(boxSecond);
+        private Optional<TSecond> Second() => Optional.Wrap(boxSecond);
     }
 }
