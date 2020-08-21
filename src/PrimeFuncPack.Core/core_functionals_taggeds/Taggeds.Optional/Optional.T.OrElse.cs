@@ -7,11 +7,8 @@ namespace System
     partial struct Optional<T>
     {
         public T OrElse(T other)
-        {
-            var theOther = other;
-
-            return ImplFold(Do.Pass, () => theOther);
-        }
+            =>
+            ImplFold(Do.Pass, () => other);
 
         public T OrElse(Func<T> otherFactory)
         {

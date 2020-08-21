@@ -9,11 +9,10 @@ namespace System
             _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
 
             var @this = this;
-            var thePredicate = predicate;
 
             return ImplFold(Filter, This);
 
-            Optional<T> Filter(T value) => thePredicate(value) switch
+            Optional<T> Filter(T value) => predicate(value) switch
             {
                 true => @this,
                 _ => default

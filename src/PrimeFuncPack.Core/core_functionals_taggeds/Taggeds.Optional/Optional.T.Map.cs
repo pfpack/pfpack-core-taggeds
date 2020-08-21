@@ -8,11 +8,9 @@ namespace System
         {
             _ = map ?? throw new ArgumentNullException(nameof(map));
 
-            var theMap = map;
-
             return ImplFold(Map, () => default);
 
-            Optional<TResult> Map(T value) => Optional<TResult>.Present(theMap.Invoke(value));
+            Optional<TResult> Map(T value) => Optional<TResult>.Present(map.Invoke(value));
         }
     }
 }

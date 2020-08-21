@@ -46,9 +46,7 @@ namespace System
         {
             _ = defaultFactory ?? throw new ArgumentNullException(nameof(defaultFactory));
 
-            var theDefaultFactory = defaultFactory;
-
-            return ImplFold(onFirstAsync, onSecondAsync).OrElse(() => Task.FromResult(theDefaultFactory.Invoke()));
+            return ImplFold(onFirstAsync, onSecondAsync).OrElse(() => Task.FromResult(defaultFactory.Invoke()));
         }
 
         public Task<TResult> FoldAsync<TResult>(
@@ -74,9 +72,7 @@ namespace System
         {
             _ = defaultFactory ?? throw new ArgumentNullException(nameof(defaultFactory));
 
-            var theDefaultFactory = defaultFactory;
-
-            return ImplFold(onFirstAsync, onSecondAsync).OrElse(() => ValueTask.FromResult(theDefaultFactory.Invoke()));
+            return ImplFold(onFirstAsync, onSecondAsync).OrElse(() => ValueTask.FromResult(defaultFactory.Invoke()));
         }
 
         public ValueTask<TResult> FoldAsync<TResult>(
