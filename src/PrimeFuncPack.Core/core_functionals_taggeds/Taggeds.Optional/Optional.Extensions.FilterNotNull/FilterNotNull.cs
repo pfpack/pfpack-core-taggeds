@@ -4,7 +4,7 @@ using static System.ObjectPredicates;
 
 namespace System
 {
-    partial class OptionalFilterNotNullExtensions
+    partial class FilterNotNullOptionalExtensions
     {
         public static Optional<T> FilterNotNull<T>(this in Optional<T> optional)
             =>

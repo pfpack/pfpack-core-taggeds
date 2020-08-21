@@ -2,7 +2,7 @@
 
 namespace System
 {
-    partial class OptionalFilterNotNullExtensions
+    partial class FilterNotNullOptionalExtensions
     {
         public static Optional<T> FilterNotNullOrThrow<T>(this in Optional<T> optional)
             =>

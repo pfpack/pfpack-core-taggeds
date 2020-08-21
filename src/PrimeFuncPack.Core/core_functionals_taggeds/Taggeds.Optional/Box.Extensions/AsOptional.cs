@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public static class BoxExtensions
+    partial class BoxExtensions
     {
         public static Optional<T> AsOptional<T>(this Box<T>? box)
             =>
