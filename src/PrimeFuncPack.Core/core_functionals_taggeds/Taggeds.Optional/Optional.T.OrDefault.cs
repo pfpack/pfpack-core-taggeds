@@ -9,6 +9,6 @@ namespace System
         [return: MaybeNull]
         public T OrDefault()
             =>
-            ImplFold(Do.Pass, () => default);
+            ImplFold(Pipeline.Pipe, () => default);
     }
 }
