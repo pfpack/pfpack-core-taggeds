@@ -4,12 +4,12 @@ namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        public static bool Same(in TaggedUnion<TFirst, TSecond> unionA, in TaggedUnion<TFirst, TSecond> unionB)
+        public static bool Same(TaggedUnion<TFirst, TSecond> unionA, TaggedUnion<TFirst, TSecond> unionB)
             =>
             Box.Same(unionA.boxFirst, unionB.boxFirst) &&
             Box.Same(unionA.boxSecond, unionB.boxSecond);
 
-        public bool Same(in TaggedUnion<TFirst, TSecond> other)
+        public bool Same(TaggedUnion<TFirst, TSecond> other)
             =>
             Same(this, other);
 
@@ -19,7 +19,7 @@ namespace System
 
         private static Type SamenessContract => typeof(TaggedUnion<TFirst, TSecond>);
 
-        private static int GetBoxSamenessHashCode<TCategory>(in Box<TCategory>? box)
+        private static int GetBoxSamenessHashCode<TCategory>(Box<TCategory>? box)
             =>
             box switch { not null => box.GetSamenessHashCode(), _ => default };
     }

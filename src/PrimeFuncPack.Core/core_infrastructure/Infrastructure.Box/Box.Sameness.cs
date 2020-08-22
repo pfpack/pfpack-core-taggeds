@@ -6,7 +6,7 @@ namespace System
 {
     partial class Box
     {
-        public static bool Same<T>([AllowNull] in Box<T> boxA, [AllowNull] in Box<T> boxB)
+        public static bool Same<T>([AllowNull] Box<T> boxA, [AllowNull] Box<T> boxB)
             =>
             Box<T>.Same(boxA, boxB);
     }

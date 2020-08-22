@@ -6,27 +6,27 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public TResult Fold<TResult>(in Func<T, TResult> onPresent, in Func<TResult> onAbsent)
+        public TResult Fold<TResult>(Func<T, TResult> onPresent, Func<TResult> onAbsent)
             =>
             ImplFold(onPresent, onAbsent);
 
-        public Task<TResult> FoldAsync<TResult>(in Func<T, Task<TResult>> onPresentAsync, in Func<Task<TResult>> onAbsentAsync)
+        public Task<TResult> FoldAsync<TResult>(Func<T, Task<TResult>> onPresentAsync, Func<Task<TResult>> onAbsentAsync)
             =>
             ImplFold(onPresentAsync, onAbsentAsync);
 
-        public ValueTask<TResult> FoldAsync<TResult>(in Func<T, ValueTask<TResult>> onPresentAsync, in Func<ValueTask<TResult>> onAbsentAsync)
+        public ValueTask<TResult> FoldAsync<TResult>(Func<T, ValueTask<TResult>> onPresentAsync, Func<ValueTask<TResult>> onAbsentAsync)
             =>
             ImplFold(onPresentAsync, onAbsentAsync);
 
-        public TResult Fold<TResult>(in Func<TResult> onPresent, in Func<TResult> onAbsent)
+        public TResult Fold<TResult>(Func<TResult> onPresent, Func<TResult> onAbsent)
             =>
             ImplFold(onPresent, onAbsent);
 
-        public Task<TResult> FoldAsync<TResult>(in Func<Task<TResult>> onPresentAsync, in Func<Task<TResult>> onAbsentAsync)
+        public Task<TResult> FoldAsync<TResult>(Func<Task<TResult>> onPresentAsync, Func<Task<TResult>> onAbsentAsync)
             =>
             ImplFold(onPresentAsync, onAbsentAsync);
 
-        public ValueTask<TResult> FoldAsync<TResult>(in Func<ValueTask<TResult>> onPresentAsync, in Func<ValueTask<TResult>> onAbsentAsync)
+        public ValueTask<TResult> FoldAsync<TResult>(Func<ValueTask<TResult>> onPresentAsync, Func<ValueTask<TResult>> onAbsentAsync)
             =>
             ImplFold(onPresentAsync, onAbsentAsync);
     }

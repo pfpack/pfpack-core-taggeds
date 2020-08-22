@@ -31,5 +31,9 @@ namespace System
             boxFirst = null;
             boxSecond = second;
         }
+
+        private Optional<TFirst> First() => Optional.Wrap(boxFirst);
+
+        private Optional<TSecond> Second() => Optional.Wrap(boxSecond);
     }
 }

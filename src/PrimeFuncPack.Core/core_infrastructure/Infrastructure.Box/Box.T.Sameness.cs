@@ -6,11 +6,11 @@ namespace System
 {
     partial record Box<T>
     {
-        public static bool Same([AllowNull] in Box<T> boxA, [AllowNull] in Box<T> boxB)
+        public static bool Same([AllowNull] Box<T> boxA, [AllowNull] Box<T> boxB)
             =>
             ReferenceEquals(boxA, boxB);
 
-        public bool Same([AllowNull] in Box<T> other)
+        public bool Same([AllowNull] Box<T> other)
             =>
             Same(this, other);
 

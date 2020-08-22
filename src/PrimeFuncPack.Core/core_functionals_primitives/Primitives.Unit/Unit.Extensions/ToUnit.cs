@@ -4,8 +4,8 @@ namespace System
 {
     partial class UnitExtensions
     {
-        public static Unit InvokeToUnit(this Action action)
+        public static Unit ToUnit<TResult>(this TResult result)
             =>
-            Unit.InvokeAction(action);
+            Unit.FromResult(result);
     }
 }

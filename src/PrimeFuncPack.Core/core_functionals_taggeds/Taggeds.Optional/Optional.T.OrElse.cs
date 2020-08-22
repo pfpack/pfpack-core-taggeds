@@ -6,28 +6,25 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public T OrElse(in T other)
-        {
-            var theOther = other;
+        public T OrElse(T other)
+            =>
+            ImplFold(Do.Pass, () => other);
 
-            return ImplFold(value => value, () => theOther);
-        }
-
-        public T OrElse(in Func<T> otherFactory)
+        public T OrElse(Func<T> otherFactory)
         {
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return ImplFold(value => value, otherFactory);
+            return ImplFold(Do.Pass, otherFactory);
         }
 
-        public Task<T> OrElseAsync(in Func<Task<T>> otherFactoryAsync)
+        public Task<T> OrElseAsync(Func<Task<T>> otherFactoryAsync)
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
             return ImplFold(Task.FromResult, otherFactoryAsync);
         }
 
-        public ValueTask<T> OrElseAsync(in Func<ValueTask<T>> otherFactoryAsync)
+        public ValueTask<T> OrElseAsync(Func<ValueTask<T>> otherFactoryAsync)
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 

@@ -4,7 +4,7 @@ namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        public static bool Equals(in TaggedUnion<TFirst, TSecond> unionA, in TaggedUnion<TFirst, TSecond> unionB)
+        public static bool Equals(TaggedUnion<TFirst, TSecond> unionA, TaggedUnion<TFirst, TSecond> unionB)
             =>
             Box.Equals(unionA.boxFirst, unionB.boxFirst) &&
             Box.Equals(unionA.boxSecond, unionB.boxSecond);

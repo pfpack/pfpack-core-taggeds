@@ -11,79 +11,75 @@ namespace System
 
         [return: MaybeNull]
         public TResult Fold<TResult>(
-            in Func<TFirst, TResult> onFirst,
-            in Func<TSecond, TResult> onSecond)
+            Func<TFirst, TResult> onFirst,
+            Func<TSecond, TResult> onSecond)
             =>
             ImplFold(onFirst, onSecond).OrElse(() => default!);
 
         public TResult Fold<TResult>(
-            in Func<TFirst, TResult> onFirst,
-            in Func<TSecond, TResult> onSecond,
-            in TResult other)
+            Func<TFirst, TResult> onFirst,
+            Func<TSecond, TResult> onSecond,
+            TResult @default)
             =>
-            ImplFold(onFirst, onSecond).OrElse(other);
+            ImplFold(onFirst, onSecond).OrElse(@default);
 
         public TResult Fold<TResult>(
-            in Func<TFirst, TResult> onFirst,
-            in Func<TSecond, TResult> onSecond,
-            in Func<TResult> otherFactory)
+            Func<TFirst, TResult> onFirst,
+            Func<TSecond, TResult> onSecond,
+            Func<TResult> defaultFactory)
             =>
-            ImplFold(onFirst, onSecond).OrElse(otherFactory);
+            ImplFold(onFirst, onSecond).OrElse(defaultFactory);
 
         // FoldAsync / Task
 
         public Task<TResult> FoldAsync<TResult>(
-            in Func<TFirst, Task<TResult>> onFirstAsync,
-            in Func<TSecond, Task<TResult>> onSecondAsync,
-            in TResult other)
+            Func<TFirst, Task<TResult>> onFirstAsync,
+            Func<TSecond, Task<TResult>> onSecondAsync,
+            TResult @default)
             =>
-            ImplFold(onFirstAsync, onSecondAsync).OrElse(Task.FromResult(other));
+            ImplFold(onFirstAsync, onSecondAsync).OrElse(Task.FromResult(@default));
 
         public Task<TResult> FoldAsync<TResult>(
-            in Func<TFirst, Task<TResult>> onFirstAsync,
-            in Func<TSecond, Task<TResult>> onSecondAsync,
-            in Func<TResult> otherFactory)
+            Func<TFirst, Task<TResult>> onFirstAsync,
+            Func<TSecond, Task<TResult>> onSecondAsync,
+            Func<TResult> defaultFactory)
         {
-            _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
+            _ = defaultFactory ?? throw new ArgumentNullException(nameof(defaultFactory));
 
-            var theOtherFactory = otherFactory;
-
-            return ImplFold(onFirstAsync, onSecondAsync).OrElse(() => Task.FromResult(theOtherFactory.Invoke()));
+            return ImplFold(onFirstAsync, onSecondAsync).OrElse(() => Task.FromResult(defaultFactory.Invoke()));
         }
 
         public Task<TResult> FoldAsync<TResult>(
-            in Func<TFirst, Task<TResult>> onFirstAsync,
-            in Func<TSecond, Task<TResult>> onSecondAsync,
-            in Func<Task<TResult>> otherFactoryAsync)
+            Func<TFirst, Task<TResult>> onFirstAsync,
+            Func<TSecond, Task<TResult>> onSecondAsync,
+            Func<Task<TResult>> defaultFactoryAsync)
             =>
-            ImplFold(onFirstAsync, onSecondAsync).OrElse(otherFactoryAsync);
+            ImplFold(onFirstAsync, onSecondAsync).OrElse(defaultFactoryAsync);
 
         // FoldAsync / ValueTask
 
         public ValueTask<TResult> FoldAsync<TResult>(
-            in Func<TFirst, ValueTask<TResult>> onFirstAsync,
-            in Func<TSecond, ValueTask<TResult>> onSecondAsync,
-            in TResult other)
+            Func<TFirst, ValueTask<TResult>> onFirstAsync,
+            Func<TSecond, ValueTask<TResult>> onSecondAsync,
+            TResult @default)
             =>
-            ImplFold(onFirstAsync, onSecondAsync).OrElse(ValueTask.FromResult(other));
+            ImplFold(onFirstAsync, onSecondAsync).OrElse(ValueTask.FromResult(@default));
 
         public ValueTask<TResult> FoldAsync<TResult>(
-            in Func<TFirst, ValueTask<TResult>> onFirstAsync,
-            in Func<TSecond, ValueTask<TResult>> onSecondAsync,
-            in Func<TResult> otherFactory)
+            Func<TFirst, ValueTask<TResult>> onFirstAsync,
+            Func<TSecond, ValueTask<TResult>> onSecondAsync,
+            Func<TResult> defaultFactory)
         {
-            _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
+            _ = defaultFactory ?? throw new ArgumentNullException(nameof(defaultFactory));
 
-            var theOtherFactory = otherFactory;
-
-            return ImplFold(onFirstAsync, onSecondAsync).OrElse(() => ValueTask.FromResult(theOtherFactory.Invoke()));
+            return ImplFold(onFirstAsync, onSecondAsync).OrElse(() => ValueTask.FromResult(defaultFactory.Invoke()));
         }
 
         public ValueTask<TResult> FoldAsync<TResult>(
-            in Func<TFirst, ValueTask<TResult>> onFirstAsync,
-            in Func<TSecond, ValueTask<TResult>> onSecondAsync,
-            in Func<ValueTask<TResult>> otherFactoryAsync)
+            Func<TFirst, ValueTask<TResult>> onFirstAsync,
+            Func<TSecond, ValueTask<TResult>> onSecondAsync,
+            Func<ValueTask<TResult>> defaultFactoryAsync)
             =>
-            ImplFold(onFirstAsync, onSecondAsync).OrElse(otherFactoryAsync);
+            ImplFold(onFirstAsync, onSecondAsync).OrElse(defaultFactoryAsync);
     }
 }
