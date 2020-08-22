@@ -11,11 +11,11 @@ namespace PrimeFuncPack.DependencyPipeline
             =>
             serviceProvider switch
             {
-                not null => ResolveImpl(serviceProvider),
+                not null => ImplResolve(serviceProvider),
                 _ => throw new ArgumentNullException(nameof(serviceProvider))
             };
 
-        private T ResolveImpl(in IServiceProvider serviceProvider)
+        private T ImplResolve(in IServiceProvider serviceProvider)
             =>
             serviceProvider.GetService(typeof(T)) switch
             {
