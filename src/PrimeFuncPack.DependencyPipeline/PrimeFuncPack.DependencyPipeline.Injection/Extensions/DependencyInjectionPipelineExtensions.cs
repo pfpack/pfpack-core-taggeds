@@ -15,7 +15,7 @@ namespace PrimeFuncPack.DependencyPipeline.Extensions
             _ = sourcePipeline ?? throw new ArgumentNullException(nameof(sourcePipeline));
             _ = services ?? throw new ArgumentNullException(nameof(services));
 
-            return services.AddSingleton(sp => sourcePipeline.Resolve(sp)) switch
+            return services.AddSingleton(sourcePipeline.Resolve) switch
             {
                 _ => new RegisteredDependencyPipeline<TService>()
             };
@@ -29,7 +29,7 @@ namespace PrimeFuncPack.DependencyPipeline.Extensions
             _ = sourcePipeline ?? throw new ArgumentNullException(nameof(sourcePipeline));
             _ = services ?? throw new ArgumentNullException(nameof(services));
 
-            return services.AddScoped(sp => sourcePipeline.Resolve(sp)) switch
+            return services.AddScoped(sourcePipeline.Resolve) switch
             {
                 _ => new RegisteredDependencyPipeline<TService>()
             };
@@ -43,7 +43,7 @@ namespace PrimeFuncPack.DependencyPipeline.Extensions
             _ = sourcePipeline ?? throw new ArgumentNullException(nameof(sourcePipeline));
             _ = services ?? throw new ArgumentNullException(nameof(services));
 
-            return services.AddTransient(sp => sourcePipeline.Resolve(sp)) switch
+            return services.AddTransient(sourcePipeline.Resolve) switch
             {
                 _ => new RegisteredDependencyPipeline<TService>()
             };

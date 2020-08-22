@@ -7,7 +7,7 @@ namespace PrimeFuncPack.DependencyPipeline
 {
     internal sealed class RegisteredDependencyPipeline<T> : IDependencyPipeline<T>
     {
-        T IDependencyPipeline<T>.Resolve(in IServiceProvider serviceProvider)
+        T IDependencyPipeline<T>.Resolve(IServiceProvider serviceProvider)
             =>
             serviceProvider switch
             {

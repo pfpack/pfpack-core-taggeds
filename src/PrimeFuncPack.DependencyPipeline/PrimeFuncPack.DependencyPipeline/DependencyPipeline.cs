@@ -14,8 +14,8 @@ namespace PrimeFuncPack.DependencyPipeline
             =>
             resolver switch
             {
-                null => throw new ArgumentNullException(nameof(resolver)),
-                _ => new ImplDependencyPipeline<T>(resolver)
+                not null => new ImplDependencyPipeline<T>(resolver),
+                _ => throw new ArgumentNullException(nameof(resolver))
             };
     }
 }

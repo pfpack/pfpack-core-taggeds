@@ -11,12 +11,12 @@ namespace PrimeFuncPack.DependencyPipeline
         public ImplDependencyPipeline(in Resolver<T> resolver)
             => this.resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
 
-        T IDependencyPipeline<T>.Resolve(in IServiceProvider serviceProvider)
+        T IDependencyPipeline<T>.Resolve(IServiceProvider serviceProvider)
             =>
             serviceProvider switch
             {
                 not null => resolver.Invoke(serviceProvider),
-                null => throw new ArgumentNullException(nameof(serviceProvider))
+                _ => throw new ArgumentNullException(nameof(serviceProvider))
             };
     }
 }

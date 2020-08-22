@@ -12,7 +12,7 @@ namespace PrimeFuncPack.DependencyPipeline.Tests.Stubs
         public StubDependencyPipeline(in IResolver<T> resolver)
             => this.resolver = resolver;
 
-        public T Resolve(in IServiceProvider serviceProvider)
+        public T Resolve(IServiceProvider serviceProvider)
             => resolver.Resolve(serviceProvider);
     }
 }

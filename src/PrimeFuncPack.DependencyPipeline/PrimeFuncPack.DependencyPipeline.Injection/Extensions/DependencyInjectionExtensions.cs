@@ -18,7 +18,7 @@ namespace Microsoft.Extensions.DependencyInjection
             _ = sourcePipeline ?? throw new ArgumentNullException(nameof(sourcePipeline));
             _ = services ?? throw new ArgumentNullException(nameof(services));
 
-            return new ImplDependencyInjection<TService>(services, sp => sourcePipeline.Resolve(sp));
+            return new ImplDependencyInjection<TService>(services, sourcePipeline.Resolve);
         }
     }
 }
