@@ -14,7 +14,7 @@ namespace System
 
         public Optional<T> OnPresent(Action<T> action)
             =>
-            ImplFold(action.InvokeToUnit, () => default).ToResult(this);
+            ImplFold(action.InvokeThenToUnit, () => default).ToResult(this);
 
         public Task<Unit> OnPresentAsync(Func<T, Task<Unit>> funcAsync)
             =>
@@ -40,7 +40,7 @@ namespace System
 
         public Optional<T> OnPresent(Action action)
             =>
-            ImplFold(action.InvokeToUnit, () => default).ToResult(this);
+            ImplFold(action.InvokeThenToUnit, () => default).ToResult(this);
 
         public Task<Unit> OnPresentAsync(Func<Task<Unit>> funcAsync)
             =>

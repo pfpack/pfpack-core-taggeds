@@ -12,7 +12,7 @@ namespace System
 
         public Optional<T> OnAbsent(Action action)
             =>
-            ImplFold(action.InvokeToUnit, () => default).ToResult(this);
+            ImplFold(action.InvokeThenToUnit, () => default).ToResult(this);
 
         public Task<Unit> OnAbsentAsync(Func<Task<Unit>> funcAsync)
             =>
