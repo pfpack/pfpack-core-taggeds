@@ -18,6 +18,16 @@ namespace System
                 .Or(() => @this.Second().Map(onSecond));
         }
 
+        private Optional<TResult> ImplFold<TResult>(
+            Func<TResult> onFirst,
+            Func<TResult> onSecond)
+        {
+            _ = onFirst ?? throw new ArgumentNullException(nameof(onFirst));
+            _ = onSecond ?? throw new ArgumentNullException(nameof(onSecond));
+
+            return ImplFold(_ => onFirst.Invoke(), _ => onSecond.Invoke());
+        }
+
         private TResult ImplFold<TResult>(
             in Func<TaggedUnion<TFirst, TSecond>, TResult> onAny,
             in Func<TResult> onDefault)
