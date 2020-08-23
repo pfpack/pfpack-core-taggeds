@@ -9,11 +9,11 @@ namespace System
             Box.Equals(unionA.boxFirst, unionB.boxFirst) &&
             Box.Equals(unionA.boxSecond, unionB.boxSecond);
 
-        public static bool operator ==(in TaggedUnion<TFirst, TSecond> unionA, in TaggedUnion<TFirst, TSecond> unionB)
+        public static bool operator ==(TaggedUnion<TFirst, TSecond> unionA, TaggedUnion<TFirst, TSecond> unionB)
             =>
             Equals(unionA, unionB);
 
-        public static bool operator !=(in TaggedUnion<TFirst, TSecond> unionA, in TaggedUnion<TFirst, TSecond> unionB)
+        public static bool operator !=(TaggedUnion<TFirst, TSecond> unionA, TaggedUnion<TFirst, TSecond> unionB)
             =>
             Equals(unionA, unionB) is false;
 
