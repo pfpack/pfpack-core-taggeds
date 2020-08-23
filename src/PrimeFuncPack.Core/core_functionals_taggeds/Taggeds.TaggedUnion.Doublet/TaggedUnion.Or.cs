@@ -8,7 +8,7 @@ namespace System
     {
         public TaggedUnion<TFirst, TSecond> Or(Func<TaggedUnion<TFirst, TSecond>> otherFactory)
             =>
-            ImplFold(Do.Pass, otherFactory);
+            ImplFold(Pipeline.Pipe, otherFactory);
 
         public Task<TaggedUnion<TFirst, TSecond>> OrAsync(Func<Task<TaggedUnion<TFirst, TSecond>>> otherFactoryAsync)
             =>

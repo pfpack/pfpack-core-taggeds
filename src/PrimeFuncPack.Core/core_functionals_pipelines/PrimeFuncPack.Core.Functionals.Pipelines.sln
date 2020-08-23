@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pipelines", "Pipelines\Pipelines.csproj", "{8EC4D5FC-1403-49D5-A069-9ADEF9400CFB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pipelines.Do", "Pipelines.Do\Pipelines.Do.csproj", "{DB4C7E1F-917F-4053-BEF4-E35CCA607000}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pipelines.Pipeline", "Pipelines.Pipeline\Pipelines.Pipeline.csproj", "{DB4C7E1F-917F-4053-BEF4-E35CCA607000}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

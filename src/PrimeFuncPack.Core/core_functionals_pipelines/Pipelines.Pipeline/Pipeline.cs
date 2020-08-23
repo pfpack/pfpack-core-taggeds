@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public static partial class Do
+    public static partial class Pipeline
     {
     }
 }

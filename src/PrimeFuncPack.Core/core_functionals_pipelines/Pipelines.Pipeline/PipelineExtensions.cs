@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public static partial class DoExtensions
+    public static partial class PipelineExtensions
     {
     }
 }
