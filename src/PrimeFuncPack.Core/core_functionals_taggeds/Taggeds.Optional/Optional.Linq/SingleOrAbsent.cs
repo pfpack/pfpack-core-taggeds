@@ -13,7 +13,7 @@ namespace System.Linq
 
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IEnumerable<TSource> source,
-            in Func<Exception> moreThanOneElementExceptionFactory)
+            Func<Exception> moreThanOneElementExceptionFactory)
         {
             _ = source ?? throw new ArgumentNullException(nameof(source));
             _ = moreThanOneElementExceptionFactory ?? throw new ArgumentNullException(nameof(moreThanOneElementExceptionFactory));
@@ -33,14 +33,14 @@ namespace System.Linq
 
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IEnumerable<TSource> source,
-            in Func<TSource, bool> predicate)
+            Func<TSource, bool> predicate)
             =>
             source.SingleOrAbsent(predicate, CreateMoreThanOneMatchException);
 
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IEnumerable<TSource> source,
-            in Func<TSource, bool> predicate,
-            in Func<Exception> moreThanOneMatchExceptionFactory)
+            Func<TSource, bool> predicate,
+            Func<Exception> moreThanOneMatchExceptionFactory)
         {
             _ = source ?? throw new ArgumentNullException(nameof(source));
             _ = predicate ?? throw new ArgumentNullException(nameof(predicate));

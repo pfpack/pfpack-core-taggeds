@@ -8,7 +8,7 @@ namespace System.Linq
     {
         public static Optional<TSource> ElementAtOrAbsent<TSource>(
             this IEnumerable<TSource> source,
-            in int index)
+            int index)
         {
             _ = source ?? throw new ArgumentNullException(nameof(source));
 
@@ -27,7 +27,7 @@ namespace System.Linq
 
         public static Optional<TSource> ElementAtOrAbsent<TSource>(
             this IEnumerable<TSource> source,
-            in long index)
+            long index)
         {
             _ = source ?? throw new ArgumentNullException(nameof(source));
 

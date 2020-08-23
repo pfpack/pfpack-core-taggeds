@@ -16,7 +16,7 @@ namespace System.Linq
 
         public static Optional<TSource> FirstOrAbsent<TSource>(
             this IReadOnlyList<TSource> source,
-            in Func<TSource, bool> predicate)
+            Func<TSource, bool> predicate)
         {
             _ = source ?? throw new ArgumentNullException(nameof(source));
             _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
