@@ -8,7 +8,7 @@ namespace System.Linq
     {
         public static TCollection ForEach<TCollection, TSource>(
             this TCollection source,
-            in Action<TSource> action)
+            Action<TSource> action)
             where TCollection : IEnumerable<TSource>
         {
             _ = source ?? throw new ArgumentNullException(nameof(source));
@@ -32,7 +32,7 @@ namespace System.Linq
 
         public static TCollection ForEach<TCollection, TSource>(
             this TCollection source,
-            in Action<int, TSource> action)
+            Action<int, TSource> action)
             where TCollection : IEnumerable<TSource>
         {
             _ = source ?? throw new ArgumentNullException(nameof(source));
@@ -56,7 +56,7 @@ namespace System.Linq
 
         public static TCollection ForEach<TCollection, TSource>(
             this TCollection source,
-            in Action<long, TSource> action)
+            Action<long, TSource> action)
             where TCollection : IEnumerable<TSource>
         {
             _ = source ?? throw new ArgumentNullException(nameof(source));

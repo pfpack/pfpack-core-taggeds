@@ -4,11 +4,11 @@ namespace System
 {
     partial class FilterNotNullOptionalExtensions
     {
-        public static Optional<T> FilterNotNullOrThrow<T>(this in Optional<T> optional)
+        public static Optional<T> FilterNotNullOrThrow<T>(this Optional<T> optional)
             =>
             optional.FilterNotNullOrThrow(CreateExpectedNotNullOrAbsentException);
 
-        public static Optional<T> FilterNotNullOrThrow<T>(this in Optional<T> optional, Func<Exception> exceptionFactory)
+        public static Optional<T> FilterNotNullOrThrow<T>(this Optional<T> optional, Func<Exception> exceptionFactory)
         {
             _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
 

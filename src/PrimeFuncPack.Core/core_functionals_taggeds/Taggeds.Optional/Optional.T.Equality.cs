@@ -8,11 +8,11 @@ namespace System
             =>
             Box<T>.Equals(optionalA.box, optionalB.box);
 
-        public static bool operator ==(in Optional<T> optionalA, in Optional<T> optionalB)
+        public static bool operator ==(Optional<T> optionalA, Optional<T> optionalB)
             =>
             Equals(optionalA, optionalB);
 
-        public static bool operator !=(in Optional<T> optionalA, in Optional<T> optionalB)
+        public static bool operator !=(Optional<T> optionalA, Optional<T> optionalB)
             =>
             Equals(optionalA, optionalB) is false;
 

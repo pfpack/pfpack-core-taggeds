@@ -4,6 +4,6 @@ namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        // TODO: Implement
+        private TaggedUnion<TFirst, TSecond> UnitToThis(Unit unit) => unit.ToResult(this);
     }
 }
