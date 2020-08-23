@@ -4,13 +4,13 @@ namespace System
 {
     partial class FilterNotNullOptionalExtensions
     {
-        public static Optional<T> FilterNotNullThenMap<T>(this in Optional<T?> optional) where T : class
+        public static Optional<T> FilterNotNullThenMap<T>(this Optional<T?> optional) where T : class
             =>
             optional
             .FilterNotNull()
             .Map(value => value ?? throw CreateExpectedNotNullOrAbsentException());
 
-        public static Optional<T> FilterNotNullThenMap<T>(this in Optional<T?> optional) where T : struct
+        public static Optional<T> FilterNotNullThenMap<T>(this Optional<T?> optional) where T : struct
             =>
             optional
             .FilterNotNull()

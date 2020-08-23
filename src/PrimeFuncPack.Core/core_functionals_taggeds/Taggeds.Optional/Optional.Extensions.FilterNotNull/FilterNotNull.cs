@@ -6,7 +6,7 @@ namespace System
 {
     partial class FilterNotNullOptionalExtensions
     {
-        public static Optional<T> FilterNotNull<T>(this in Optional<T> optional)
+        public static Optional<T> FilterNotNull<T>(this Optional<T> optional)
             =>
             optional.Filter(IsNotNull);
     }
