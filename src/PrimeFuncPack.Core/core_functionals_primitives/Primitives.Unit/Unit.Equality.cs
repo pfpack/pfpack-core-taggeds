@@ -8,11 +8,11 @@ namespace System
             =>
             (valueA, valueB) switch { _ => true };
 
-        public static bool operator ==(in Unit valueA, in Unit valueB)
+        public static bool operator ==(Unit valueA, Unit valueB)
             =>
             Equals(valueA, valueB);
 
-        public static bool operator !=(in Unit valueA, in Unit valueB)
+        public static bool operator !=(Unit valueA, Unit valueB)
             =>
             Equals(valueA, valueB) is false;
 

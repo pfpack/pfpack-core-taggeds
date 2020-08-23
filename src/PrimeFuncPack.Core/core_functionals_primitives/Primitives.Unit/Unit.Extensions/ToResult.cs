@@ -4,7 +4,7 @@ namespace System
 {
     partial class UnitExtensions
     {
-        public static TResult ToResult<TResult>(this in Unit unit, in TResult result)
+        public static TResult ToResult<TResult>(this Unit unit, TResult result)
             =>
             Unit.ToResult(unit, result);
     }
