@@ -14,11 +14,11 @@ namespace System
             boxB is not null &&
             ValueEqualityComparer.Equals(boxA, boxB);
 
-        public static bool operator ==([AllowNull] in Box<T> boxA, [AllowNull] in Box<T> boxB)
+        public static bool operator ==([AllowNull] Box<T> boxA, [AllowNull] Box<T> boxB)
             =>
             Equals(boxA, boxB);
 
-        public static bool operator !=([AllowNull] in Box<T> boxA, [AllowNull] in Box<T> boxB)
+        public static bool operator !=([AllowNull] Box<T> boxA, [AllowNull] Box<T> boxB)
             =>
             Equals(boxA, boxB) is false;
 
