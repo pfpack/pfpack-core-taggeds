@@ -9,7 +9,7 @@ namespace System.Linq
     {
         public static Optional<TValue> GetValueOrAbsent<TKey, TValue>(
             this IReadOnlyDictionary<TKey, TValue> dictionary,
-            in TKey key)
+            TKey key)
         {
             _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
 
@@ -20,7 +20,7 @@ namespace System.Linq
         [DoesNotReturn]
         public static Optional<TValue> TryGetValueOrAbsent<TKey, TValue>(
             this IReadOnlyDictionary<TKey, TValue> dictionary,
-            in TKey key)
+            TKey key)
             =>
             throw new NotImplementedException(ObsoleteMessages.TryGetValueOrAbsent);
     }

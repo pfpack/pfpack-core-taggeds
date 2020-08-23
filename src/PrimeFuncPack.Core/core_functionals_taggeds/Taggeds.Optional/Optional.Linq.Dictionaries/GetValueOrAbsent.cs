@@ -9,7 +9,7 @@ namespace System.Linq
     {
         public static Optional<TValue> GetValueOrAbsent<TKey, TValue>(
             this IEnumerable<KeyValuePair<TKey, TValue>> pairs,
-            in TKey key)
+            TKey key)
         {
             _ = pairs ?? throw new ArgumentNullException(nameof(pairs));
 
@@ -30,7 +30,7 @@ namespace System.Linq
         [DoesNotReturn]
         public static Optional<TValue> TryGetValueOrAbsent<TKey, TValue>(
             this IEnumerable<KeyValuePair<TKey, TValue>> pairs,
-            in TKey key)
+            TKey key)
             =>
             throw new NotImplementedException(ObsoleteMessages.TryGetValueOrAbsent);
     }
