@@ -4,7 +4,6 @@ using System;
 
 namespace PrimeFuncPack.Core.Result.Builders
 {
-    // Targeted for use in the Result factory methods only
     // Not supposed for explicit use in a client code
     public sealed class SuccessBuilder<TSuccess> where TSuccess : notnull
     {
