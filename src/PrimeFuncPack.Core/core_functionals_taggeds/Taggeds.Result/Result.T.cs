@@ -24,11 +24,7 @@ namespace System
 
         private TaggedUnion<TSuccess, TFailure> Union()
             =>
-            union.IsInitialized switch
-            {
-                true => union,
-                _ => UnionFailure(new TFailure())
-            };
+            union.Or(() => UnionFailure(new TFailure()));
 
         private static TaggedUnion<TSuccess, TFailure> UnionSuccess(in TSuccess success)
             =>
