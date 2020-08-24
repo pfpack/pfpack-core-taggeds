@@ -6,25 +6,25 @@ namespace System
         where TSuccess : notnull
         where TFailure : notnull, new()
     {
-        private readonly TaggedUnion<TSuccess, TFailure> _union;
+        private readonly TaggedUnion<TSuccess, TFailure> union;
 
-        public bool IsSuccess => _union.IsFirst;
+        public bool IsSuccess => union.IsFirst;
 
-        public bool IsFailure => _union.IsSecond;
+        public bool IsFailure => union.IsSecond;
 
         private Result(in TSuccess success)
             =>
-            _union = UnionSuccess(success);
+            union = UnionSuccess(success);
 
         private Result(in TFailure failure)
             =>
-            _union = UnionFailure(failure);
+            union = UnionFailure(failure);
 
         private TaggedUnion<TSuccess, TFailure> Union()
             =>
-            _union.IsInitialized switch
+            union.IsInitialized switch
             {
-                true => _union,
+                true => union,
                 _ => UnionFailure(new TFailure())
             };
 
