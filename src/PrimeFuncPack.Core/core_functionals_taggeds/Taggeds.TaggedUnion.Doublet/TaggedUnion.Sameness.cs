@@ -19,7 +19,7 @@ namespace System
 
         private static Type SamenessContract => typeof(TaggedUnion<TFirst, TSecond>);
 
-        private static int GetBoxSamenessHashCode<TCategory>(Box<TCategory>? box)
+        private static int GetBoxSamenessHashCode<TCategory>(in Box<TCategory>? box)
             =>
             box switch { not null => box.GetSamenessHashCode(), _ => default };
     }

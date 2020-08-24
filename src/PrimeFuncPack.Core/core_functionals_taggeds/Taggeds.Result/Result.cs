@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public static class Result
+    public static partial class Result
     {
     }
 }

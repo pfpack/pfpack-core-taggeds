@@ -6,6 +6,6 @@ namespace System
     {
         public static TaggedUnion<T, Unit> ToTaggedUnion<T>(this Optional<T> optional)
             =>
-            optional.Fold(TaggedUnion<T, Unit>.CreateFirst, () => TaggedUnion<T, Unit>.CreateSecond(default));
+            optional.Fold(TaggedUnion<T, Unit>.First, () => TaggedUnion<T, Unit>.Second(default));
     }
 }

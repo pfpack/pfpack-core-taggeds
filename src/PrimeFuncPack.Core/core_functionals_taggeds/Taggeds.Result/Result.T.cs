@@ -14,26 +14,26 @@ namespace System
 
         private Result(in TSuccess success)
             =>
-            _union = CreateSuccess(success);
+            _union = UnionSuccess(success);
 
         private Result(in TFailure failure)
             =>
-            _union = CreateFailure(failure);
+            _union = UnionFailure(failure);
 
         private TaggedUnion<TSuccess, TFailure> Union()
             =>
             _union.IsInitialized switch
             {
                 true => _union,
-                _ => CreateFailure(new TFailure())
+                _ => UnionFailure(new TFailure())
             };
 
-        private static TaggedUnion<TSuccess, TFailure> CreateSuccess(in TSuccess success)
+        private static TaggedUnion<TSuccess, TFailure> UnionSuccess(in TSuccess success)
             =>
-            TaggedUnion<TSuccess, TFailure>.CreateFirst(success);
+            TaggedUnion<TSuccess, TFailure>.First(success);
 
-        private static TaggedUnion<TSuccess, TFailure> CreateFailure(in TFailure failure)
+        private static TaggedUnion<TSuccess, TFailure> UnionFailure(in TFailure failure)
             =>
-            TaggedUnion<TSuccess, TFailure>.CreateSecond(failure);
+            TaggedUnion<TSuccess, TFailure>.Second(failure);
     }
 }
