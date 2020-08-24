@@ -28,6 +28,7 @@ namespace PrimeFuncPack.Core.Objects.Tests
         [Test]
         [TestCase(" ")]
         [TestCase("   ")]
+        [TestCase("\t")]
         public void IsNullOrWhiteSpace_SourceIsWhiteSpace_ExpectTrue(
             in string source)
         {

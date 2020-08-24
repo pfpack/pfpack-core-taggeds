@@ -27,6 +27,7 @@ namespace PrimeFuncPack.Core.Objects.Tests
 
         [Test]
         [TestCase(" ")]
+        [TestCase("\t")]
         [TestCase("some")]
         public void IsNullOrEmpty_SourceIsNotEmpty_ExpectFalse(
             in string source)
