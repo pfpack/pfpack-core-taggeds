@@ -18,7 +18,7 @@ namespace PrimeFuncPack.Core.Result.Builders
             this.success = success;
         }
 
-        // Targeted for use in the Result Success factory method only
+        // Targeted for use in the Result factory / From wrapper methods only
         internal static SuccessBuilder<TSuccess> From(in TSuccess success)
             =>
             new SuccessBuilder<TSuccess>(success ?? throw new ArgumentNullException(nameof(success)));

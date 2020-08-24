@@ -18,7 +18,7 @@ namespace PrimeFuncPack.Core.Result.Builders
             this.failure = failure;
         }
 
-        // Targeted for use in the Result Failure factory method only
+        // Targeted for use in the Result factory / From wrapper methods only
         internal static FailureBuilder<TFailure> From(in TFailure failure)
             =>
             new FailureBuilder<TFailure>(failure ?? throw new ArgumentNullException(nameof(failure)));
