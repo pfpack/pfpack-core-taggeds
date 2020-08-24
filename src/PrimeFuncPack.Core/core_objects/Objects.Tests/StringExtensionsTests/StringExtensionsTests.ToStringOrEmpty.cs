@@ -32,6 +32,7 @@ namespace PrimeFuncPack.Core.Objects.Tests
         [Test]
         [TestCase("")]
         [TestCase(" ")]
+        [TestCase("\t")]
         [TestCase("some value")]
         public void ToStringOrEmpty_SourceToStringIsNotNull_ExpectActualToStringValue(
             in string sourceToStringValue)

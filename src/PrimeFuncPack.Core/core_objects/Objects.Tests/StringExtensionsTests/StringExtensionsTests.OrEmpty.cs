@@ -19,6 +19,7 @@ namespace PrimeFuncPack.Core.Objects.Tests
         [Test]
         [TestCase("")]
         [TestCase(" ")]
+        [TestCase("\t")]
         [TestCase("some")]
         public void OrEmpty_SourceIsNotNull_ExpectSourceValue(
             in string source)
