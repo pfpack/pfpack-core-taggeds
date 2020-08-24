@@ -7,11 +7,17 @@ namespace System
     partial struct Result<TSuccess, TFailure>
     {
         public static implicit operator Result<TSuccess, TFailure>(in SuccessBuilder<TSuccess> success)
-            =>
-            success.Build<TFailure>();
+        {
+            _ = success ?? throw new ArgumentNullException(nameof(success));
+
+            return success.Build<TFailure>();
+        }
 
         public static implicit operator Result<TSuccess, TFailure>(in FailureBuilder<TFailure> failure)
-            =>
-            failure.Build<TSuccess>();
+        {
+            _ = failure ?? throw new ArgumentNullException(nameof(failure));
+
+            return failure.Build<TSuccess>();
+        }
     }
 }
