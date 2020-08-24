@@ -2,7 +2,9 @@
 
 namespace System
 {
-    public readonly partial struct Result<TSuccess, TFailure>
+    public readonly partial struct Result<TSuccess, TFailure> :
+        IEquatable<Result<TSuccess, TFailure>>,
+        ISamenessEquatable<Result<TSuccess, TFailure>>
         where TSuccess : notnull
         where TFailure : notnull, new()
     {
