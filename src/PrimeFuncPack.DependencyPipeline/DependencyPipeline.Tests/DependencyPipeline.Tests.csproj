@@ -6,7 +6,8 @@
     <IsPackable>false</IsPackable>
     <Description>PrimeFuncPack: A Functional Programming Pack for .NET</Description>
     <Copyright>Copyright © 2020 Andrei Sergeev, Pavel Moskovoy</Copyright>
-    <RootNamespace>PrimeFuncPack.DependencyPipeline</RootNamespace>
+    <RootNamespace>PrimeFuncPack.DependencyPipeline.Tests</RootNamespace>
+    <AssemblyName>PrimeFuncPack.DependencyPipeline.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PrimeFuncPack.DependencyPipeline.Injection\PrimeFuncPack.DependencyPipeline.Injection.csproj" />
-    <ProjectReference Include="..\PrimeFuncPack.DependencyPipeline\PrimeFuncPack.DependencyPipeline.csproj" />
+    <ProjectReference Include="..\DependencyPipeline.Injection\DependencyPipeline.Injection.csproj" />
+    <ProjectReference Include="..\DependencyPipeline\DependencyPipeline.csproj" />
   </ItemGroup>
 
 </Project>
