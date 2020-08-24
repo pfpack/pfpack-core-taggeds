@@ -4,6 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <IsPackable>false</IsPackable>
+    <Description>PrimeFuncPack: A Functional Programming Pack for .NET</Description>
+    <Copyright>Copyright © 2020 Andrei Sergeev, Pavel Moskovoy</Copyright>
+    <RootNamespace>PrimeFuncPack.DependencyPipeline</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
