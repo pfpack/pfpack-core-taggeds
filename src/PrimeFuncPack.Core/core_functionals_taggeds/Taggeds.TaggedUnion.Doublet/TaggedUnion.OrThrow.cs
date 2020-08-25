@@ -6,18 +6,24 @@ namespace System
     {
         public TFirst FirstOrThrow()
             =>
-            FirstOrThrow(CreateNotTheFirstException);
+            FirstOrThrow(CreateNotFirstException);
 
         public TFirst FirstOrThrow(Func<Exception> exceptionFactory)
-            =>
-            First().OrThrow(exceptionFactory);
+        {
+            _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
+
+            return First().OrThrow(exceptionFactory);
+        }
 
         public TSecond SecondOrThrow()
             =>
-            SecondOrThrow(CreateNotTheSecondException);
+            SecondOrThrow(CreateNotSecondException);
 
         public TSecond SecondOrThrow(Func<Exception> exceptionFactory)
-            =>
-            Second().OrThrow(exceptionFactory);
+        {
+            _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
+
+            return Second().OrThrow(exceptionFactory);
+        }
     }
 }

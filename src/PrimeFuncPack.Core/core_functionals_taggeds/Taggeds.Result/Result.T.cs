@@ -2,38 +2,36 @@
 
 namespace System
 {
-    public readonly partial struct Result<TSuccess, TFailure>
+    public readonly partial struct Result<TSuccess, TFailure> :
+        IEquatable<Result<TSuccess, TFailure>>,
+        ISamenessEquatable<Result<TSuccess, TFailure>>
         where TSuccess : notnull
         where TFailure : notnull, new()
     {
-        private readonly TaggedUnion<TSuccess, TFailure> _union;
+        private const string CategorySuccess = "Success";
 
-        public bool IsSuccess => _union.IsFirst;
+        private const string CategoryFailure = "Failure";
 
-        public bool IsFailure => _union.IsSecond;
+        private readonly TaggedUnion<TSuccess, TFailure> unionRaw;
+
+        private TaggedUnion<TSuccess, TFailure> Union
+            =>
+            unionRaw.Or(() => UnionFailure(new TFailure()));
+
+        public bool IsSuccess
+            =>
+            unionRaw.IsFirst;
+
+        public bool IsFailure
+            =>
+            IsSuccess is false;
 
         private Result(in TSuccess success)
             =>
-            _union = UnionSuccess(success);
+            unionRaw = UnionSuccess(success);
 
         private Result(in TFailure failure)
             =>
-            _union = UnionFailure(failure);
-
-        private TaggedUnion<TSuccess, TFailure> Union()
-            =>
-            _union.IsInitialized switch
-            {
-                true => _union,
-                _ => UnionFailure(new TFailure())
-            };
-
-        private static TaggedUnion<TSuccess, TFailure> UnionSuccess(in TSuccess success)
-            =>
-            TaggedUnion<TSuccess, TFailure>.First(success);
-
-        private static TaggedUnion<TSuccess, TFailure> UnionFailure(in TFailure failure)
-            =>
-            TaggedUnion<TSuccess, TFailure>.Second(failure);
+            unionRaw = UnionFailure(failure);
     }
 }
