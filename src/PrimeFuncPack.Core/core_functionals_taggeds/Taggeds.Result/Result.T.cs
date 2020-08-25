@@ -8,6 +8,10 @@ namespace System
         where TSuccess : notnull
         where TFailure : notnull, new()
     {
+        private const string CategorySuccess = "Success";
+
+        private const string CategoryFailure = "Failure";
+
         private readonly TaggedUnion<TSuccess, TFailure> unionRaw;
 
         private TaggedUnion<TSuccess, TFailure> Union

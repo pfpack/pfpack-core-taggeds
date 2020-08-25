@@ -6,9 +6,9 @@ namespace System
         IEquatable<TaggedUnion<TFirst, TSecond>>,
         ISamenessEquatable<TaggedUnion<TFirst, TSecond>>
     {
-        private const string CategoryFirst = nameof(TFirst);
+        private const string CategoryFirst = "First";
 
-        private const string CategorySecond = nameof(TSecond);
+        private const string CategorySecond = "Second";
 
         private readonly Box<TFirst>? boxFirst;
 
