@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objects.Strings", "Objects.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objects.Strings.Extras", "Objects.Strings.Extras\Objects.Strings.Extras.csproj", "{69179AF0-2FC4-4244-8812-15D7541BE1EA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FE3B90B7-16BF-4E18-BD28-E007CD45F39E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Objects.Tests", "Objects.Tests\Objects.Tests.csproj", "{A70BD1E1-4066-4CD7-80A1-D2BAD8DD8CE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +37,16 @@ Global
 		{69179AF0-2FC4-4244-8812-15D7541BE1EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69179AF0-2FC4-4244-8812-15D7541BE1EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69179AF0-2FC4-4244-8812-15D7541BE1EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A70BD1E1-4066-4CD7-80A1-D2BAD8DD8CE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A70BD1E1-4066-4CD7-80A1-D2BAD8DD8CE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A70BD1E1-4066-4CD7-80A1-D2BAD8DD8CE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A70BD1E1-4066-4CD7-80A1-D2BAD8DD8CE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A70BD1E1-4066-4CD7-80A1-D2BAD8DD8CE6} = {FE3B90B7-16BF-4E18-BD28-E007CD45F39E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8BE62696-366A-4D93-9A1A-D09EEE968B10}
