@@ -8,30 +8,26 @@ namespace System
         where TSuccess : notnull
         where TFailure : notnull, new()
     {
-        private readonly TaggedUnion<TSuccess, TFailure> union;
+        private readonly TaggedUnion<TSuccess, TFailure> unionRaw;
 
-        public bool IsSuccess => union.IsFirst;
+        private TaggedUnion<TSuccess, TFailure> Union
+            =>
+            unionRaw.Or(() => UnionFailure(new TFailure()));
 
-        public bool IsFailure => union.IsSecond;
+        public bool IsSuccess
+            =>
+            unionRaw.IsFirst;
+
+        public bool IsFailure
+            =>
+            unionRaw.IsSecond;
 
         private Result(in TSuccess success)
             =>
-            union = UnionSuccess(success);
+            unionRaw = UnionSuccess(success);
 
         private Result(in TFailure failure)
             =>
-            union = UnionFailure(failure);
-
-        private TaggedUnion<TSuccess, TFailure> Union()
-            =>
-            union.Or(() => UnionFailure(new TFailure()));
-
-        private static TaggedUnion<TSuccess, TFailure> UnionSuccess(in TSuccess success)
-            =>
-            TaggedUnion<TSuccess, TFailure>.First(success);
-
-        private static TaggedUnion<TSuccess, TFailure> UnionFailure(in TFailure failure)
-            =>
-            TaggedUnion<TSuccess, TFailure>.Second(failure);
+            unionRaw = UnionFailure(failure);
     }
 }

@@ -6,7 +6,7 @@ namespace System
     {
         public static bool Same(Result<TSuccess, TFailure> resultA, Result<TSuccess, TFailure> resultB)
             =>
-            TaggedUnion<TSuccess, TFailure>.Same(resultA.SamenessUnion(), resultB.SamenessUnion());
+            TaggedUnion.Same(resultA.SamenessUnion, resultB.SamenessUnion);
 
         public bool Same(Result<TSuccess, TFailure> other)
             =>
@@ -14,10 +14,10 @@ namespace System
 
         public int GetSamenessHashCode()
             =>
-            HashCode.Combine(SamenessContract, SamenessUnion());
+            HashCode.Combine(SamenessContract, SamenessUnion);
 
         private static Type SamenessContract => typeof(Result<TSuccess, TFailure>);
 
-        private TaggedUnion<TSuccess, TFailure> SamenessUnion() => union;
+        private TaggedUnion<TSuccess, TFailure> SamenessUnion => unionRaw;
     }
 }

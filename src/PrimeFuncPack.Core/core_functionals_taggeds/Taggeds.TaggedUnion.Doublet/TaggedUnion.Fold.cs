@@ -27,8 +27,11 @@ namespace System
             Func<TFirst, TResult> onFirst,
             Func<TSecond, TResult> onSecond,
             Func<TResult> defaultFactory)
-            =>
-            ImplFold(onFirst, onSecond).OrElse(defaultFactory);
+        {
+            _ = defaultFactory ?? throw new ArgumentNullException(nameof(defaultFactory));
+
+            return ImplFold(onFirst, onSecond).OrElse(defaultFactory);
+        }
 
         // FoldAsync / Task
 
@@ -53,8 +56,11 @@ namespace System
             Func<TFirst, Task<TResult>> onFirstAsync,
             Func<TSecond, Task<TResult>> onSecondAsync,
             Func<Task<TResult>> defaultFactoryAsync)
-            =>
-            ImplFold(onFirstAsync, onSecondAsync).OrElse(defaultFactoryAsync);
+        {
+            _ = defaultFactoryAsync ?? throw new ArgumentNullException(nameof(defaultFactoryAsync));
+
+            return ImplFold(onFirstAsync, onSecondAsync).OrElse(defaultFactoryAsync);
+        }
 
         // FoldAsync / ValueTask
 
@@ -79,7 +85,10 @@ namespace System
             Func<TFirst, ValueTask<TResult>> onFirstAsync,
             Func<TSecond, ValueTask<TResult>> onSecondAsync,
             Func<ValueTask<TResult>> defaultFactoryAsync)
-            =>
-            ImplFold(onFirstAsync, onSecondAsync).OrElse(defaultFactoryAsync);
+        {
+            _ = defaultFactoryAsync ?? throw new ArgumentNullException(nameof(defaultFactoryAsync));
+
+            return ImplFold(onFirstAsync, onSecondAsync).OrElse(defaultFactoryAsync);
+        }
     }
 }
