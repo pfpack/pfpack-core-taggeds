@@ -20,7 +20,7 @@ namespace System
 
         public bool IsFailure
             =>
-            unionRaw.IsSecond;
+            IsSuccess is false;
 
         private Result(in TSuccess success)
             =>
