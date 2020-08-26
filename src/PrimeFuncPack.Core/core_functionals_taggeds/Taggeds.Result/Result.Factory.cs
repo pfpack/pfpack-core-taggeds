@@ -14,11 +14,11 @@ namespace System
             =>
             FailureBuilder.From(failure);
 
-        public static Result<TSuccess, Unit> True<TSuccess>(TSuccess success) where TSuccess : notnull
+        public static Result<TSuccess, Unit> Present<TSuccess>(TSuccess success) where TSuccess : notnull
             =>
             SuccessBuilder.From(success);
 
-        public static Result<TSuccess, Unit> False<TSuccess>() where TSuccess : notnull
+        public static Result<TSuccess, Unit> Absent<TSuccess>() where TSuccess : notnull
             =>
             FailureBuilder.From<Unit>(default);
 
