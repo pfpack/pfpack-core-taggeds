@@ -11,10 +11,10 @@ namespace System
             =>
             Box<T>.Same(x, y);
 
-        public int GetHashCode([DisallowNull] Box<T> obj) => obj switch
+        public int GetHashCode([DisallowNull] Box<T> box) => box switch
         {
-            not null => obj.GetSamenessHashCode(),
-            _ => throw new ArgumentNullException(nameof(obj))
+            not null => box.GetSamenessHashCode(),
+            _ => throw new ArgumentNullException(nameof(box))
         };
 
         public static BoxSamenessComparer<T> Default => BoxSamenessComparerDefault<T>.Value;
