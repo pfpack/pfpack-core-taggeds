@@ -6,16 +6,16 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public TResult Fold<TResult>(Func<T, TResult> onPresent, Func<TResult> onAbsent)
+        public TResult Fold<TResult>(Func<T, TResult> map, Func<TResult> otherFactory)
             =>
-            ImplFold(onPresent, onAbsent);
+            ImplFold(map, otherFactory);
 
-        public Task<TResult> FoldAsync<TResult>(Func<T, Task<TResult>> onPresentAsync, Func<Task<TResult>> onAbsentAsync)
+        public Task<TResult> FoldAsync<TResult>(Func<T, Task<TResult>> mapAsync, Func<Task<TResult>> otherFactoryAsync)
             =>
-            ImplFold(onPresentAsync, onAbsentAsync);
+            ImplFold(mapAsync, otherFactoryAsync);
 
-        public ValueTask<TResult> FoldAsync<TResult>(Func<T, ValueTask<TResult>> onPresentAsync, Func<ValueTask<TResult>> onAbsentAsync)
+        public ValueTask<TResult> FoldAsync<TResult>(Func<T, ValueTask<TResult>> mapAsync, Func<ValueTask<TResult>> otherFactoryAsync)
             =>
-            ImplFold(onPresentAsync, onAbsentAsync);
+            ImplFold(mapAsync, otherFactoryAsync);
     }
 }
