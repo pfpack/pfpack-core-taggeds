@@ -5,15 +5,15 @@ namespace System
     partial struct TaggedUnion<TFirst, TSecond>
     {
         private TaggedUnion<TResultFirst, TResultSecond> ImplMap<TResultFirst, TResultSecond>(
-            Func<TFirst, TResultFirst> onFirst,
-            Func<TSecond, TResultSecond> onSecond)
+            Func<TFirst, TResultFirst> mapFirst,
+            Func<TSecond, TResultSecond> mapSecond)
         {
-            _ = onFirst ?? throw new ArgumentNullException(nameof(onFirst));
-            _ = onSecond ?? throw new ArgumentNullException(nameof(onSecond));
+            _ = mapFirst ?? throw new ArgumentNullException(nameof(mapFirst));
+            _ = mapSecond ?? throw new ArgumentNullException(nameof(mapSecond));
 
             return ImplFold(
-                value => value.InvokePipe(onFirst).InvokePipe(TaggedUnion<TResultFirst, TResultSecond>.First),
-                value => value.InvokePipe(onSecond).InvokePipe(TaggedUnion<TResultFirst, TResultSecond>.Second))
+                value => value.InvokePipe(mapFirst).InvokePipe(TaggedUnion<TResultFirst, TResultSecond>.First),
+                value => value.InvokePipe(mapSecond).InvokePipe(TaggedUnion<TResultFirst, TResultSecond>.Second))
             .OrElse(
                 () => default);
         }
