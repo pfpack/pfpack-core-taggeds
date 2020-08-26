@@ -8,14 +8,14 @@ namespace System
     {
         public TaggedUnion<TFirst, TSecond> Or(Func<TaggedUnion<TFirst, TSecond>> otherFactory)
             =>
-            ImplFold(Pipeline.Pipe, otherFactory);
+            ImplOr(Pipeline.Pipe, otherFactory);
 
         public Task<TaggedUnion<TFirst, TSecond>> OrAsync(Func<Task<TaggedUnion<TFirst, TSecond>>> otherFactoryAsync)
             =>
-            ImplFold(Task.FromResult, otherFactoryAsync);
+            ImplOr(Task.FromResult, otherFactoryAsync);
 
         public ValueTask<TaggedUnion<TFirst, TSecond>> OrAsync(Func<ValueTask<TaggedUnion<TFirst, TSecond>>> otherFactoryAsync)
             =>
-            ImplFold(ValueTask.FromResult, otherFactoryAsync);
+            ImplOr(ValueTask.FromResult, otherFactoryAsync);
     }
 }

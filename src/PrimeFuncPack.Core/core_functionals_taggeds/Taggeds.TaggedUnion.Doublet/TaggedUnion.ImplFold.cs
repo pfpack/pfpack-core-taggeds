@@ -17,19 +17,5 @@ namespace System
                 .Or(() => @this.First().Map(onFirst))
                 .Or(() => @this.Second().Map(onSecond));
         }
-
-        private TResult ImplFold<TResult>(
-            in Func<TaggedUnion<TFirst, TSecond>, TResult> onAny,
-            in Func<TResult> onDefault)
-        {
-            _ = onAny ?? throw new ArgumentNullException(nameof(onAny));
-            _ = onDefault ?? throw new ArgumentNullException(nameof(onDefault));
-
-            return IsInitialized switch
-            {
-                true => onAny.Invoke(this),
-                _ => onDefault.Invoke()
-            };
-        }
     }
 }
