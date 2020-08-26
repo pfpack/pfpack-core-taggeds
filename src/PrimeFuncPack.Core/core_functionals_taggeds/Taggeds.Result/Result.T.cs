@@ -12,26 +12,18 @@ namespace System
 
         private const string CategoryFailure = "Failure";
 
-        private readonly TaggedUnion<TSuccess, TFailure> unionRaw;
+        private readonly TaggedUnion<TSuccess, TFailure> union;
 
-        private TaggedUnion<TSuccess, TFailure> Union
-            =>
-            unionRaw.Or(() => UnionFailure(new TFailure()));
+        public bool IsSuccess => union.IsFirst;
 
-        public bool IsSuccess
-            =>
-            unionRaw.IsFirst;
-
-        public bool IsFailure
-            =>
-            IsSuccess is false;
+        public bool IsFailure => union.IsFirst is false;
 
         private Result(in TSuccess success)
             =>
-            unionRaw = UnionSuccess(success);
+            union = ResultUnion<TSuccess, TFailure>.Success(success);
 
         private Result(in TFailure failure)
             =>
-            unionRaw = UnionFailure(failure);
+            union = ResultUnion<TSuccess, TFailure>.Failure(failure);
     }
 }

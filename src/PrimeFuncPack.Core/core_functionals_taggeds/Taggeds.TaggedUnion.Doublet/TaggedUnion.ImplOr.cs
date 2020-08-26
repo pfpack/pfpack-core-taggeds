@@ -2,16 +2,18 @@
 
 namespace System
 {
-    partial struct Optional<T>
+    partial struct TaggedUnion<TFirst, TSecond>
     {
-        private TResult ImplFold<TResult>(in Func<T, TResult> map, in Func<TResult> otherFactory)
+        private TResult ImplOr<TResult>(
+            in Func<TaggedUnion<TFirst, TSecond>, TResult> map,
+            in Func<TResult> otherFactory)
         {
             _ = map ?? throw new ArgumentNullException(nameof(map));
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return box switch
+            return IsInitialized switch
             {
-                not null => map.Invoke(box),
+                true => map.Invoke(this),
                 _ => otherFactory.Invoke()
             };
         }

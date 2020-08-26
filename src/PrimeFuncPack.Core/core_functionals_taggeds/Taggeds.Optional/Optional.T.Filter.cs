@@ -10,7 +10,7 @@ namespace System
 
             var @this = this;
 
-            return ImplFold(Filter, This);
+            return ImplFold(Filter, () => @this);
 
             Optional<T> Filter(T value) => predicate(value) switch
             {

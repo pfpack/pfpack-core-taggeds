@@ -26,8 +26,8 @@ namespace System
             return FailureSource.SecondOrThrow(exceptionFactory);
         }
 
-        private TaggedUnion<TSuccess, TFailure> SuccessSource => unionRaw;
+        private TaggedUnion<TSuccess, TFailure> SuccessSource => union;
 
-        private TaggedUnion<TSuccess, TFailure> FailureSource => Union;
+        private TaggedUnion<TSuccess, TFailure> FailureSource => union.OrInited();
     }
 }

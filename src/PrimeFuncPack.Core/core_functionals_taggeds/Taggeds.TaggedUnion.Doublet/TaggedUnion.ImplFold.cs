@@ -5,31 +5,17 @@ namespace System
     partial struct TaggedUnion<TFirst, TSecond>
     {
         private Optional<TResult> ImplFold<TResult>(
-            Func<TFirst, TResult> onFirst,
-            Func<TSecond, TResult> onSecond)
+            Func<TFirst, TResult> mapFirst,
+            Func<TSecond, TResult> mapSecond)
         {
-            _ = onFirst ?? throw new ArgumentNullException(nameof(onFirst));
-            _ = onSecond ?? throw new ArgumentNullException(nameof(onSecond));
+            _ = mapFirst ?? throw new ArgumentNullException(nameof(mapFirst));
+            _ = mapSecond ?? throw new ArgumentNullException(nameof(mapSecond));
 
             var @this = this;
 
             return default(Optional<TResult>)
-                .Or(() => @this.First().Map(onFirst))
-                .Or(() => @this.Second().Map(onSecond));
-        }
-
-        private TResult ImplFold<TResult>(
-            in Func<TaggedUnion<TFirst, TSecond>, TResult> onAny,
-            in Func<TResult> onDefault)
-        {
-            _ = onAny ?? throw new ArgumentNullException(nameof(onAny));
-            _ = onDefault ?? throw new ArgumentNullException(nameof(onDefault));
-
-            return IsInitialized switch
-            {
-                true => onAny.Invoke(this),
-                _ => onDefault.Invoke()
-            };
+                .Or(() => @this.First().Map(mapFirst))
+                .Or(() => @this.Second().Map(mapSecond));
         }
     }
 }
