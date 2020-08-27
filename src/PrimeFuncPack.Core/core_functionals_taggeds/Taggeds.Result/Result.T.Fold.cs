@@ -14,7 +14,7 @@ namespace System
             FoldSource.Fold(
                 mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess)),
                 mapFailure ?? throw new ArgumentNullException(nameof(mapFailure)),
-                AssertInitialized<TResult>);
+                FoldOtherFactory<TResult>);
 
         public Task<TResult> FoldAsync<TResult>(
             Func<TSuccess, Task<TResult>> mapSuccessAsync,
@@ -23,7 +23,7 @@ namespace System
             FoldSource.FoldAsync(
                 mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync)),
                 mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync)),
-                AssertInitialized<TResult>);
+                FoldOtherFactory<TResult>);
 
         public ValueTask<TResult> FoldAsync<TResult>(
             Func<TSuccess, ValueTask<TResult>> mapSuccessAsync,
@@ -32,13 +32,13 @@ namespace System
             FoldSource.FoldAsync(
                 mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync)),
                 mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync)),
-                AssertInitialized<TResult>);
+                FoldOtherFactory<TResult>);
 
         private TaggedUnion<TSuccess, TFailure> FoldSource => union.OrFailure();
 
         // Must never throw
         [DoesNotReturn]
-        private static TResult AssertInitialized<TResult>()
+        private static TResult FoldOtherFactory<TResult>()
             =>
             throw new InvalidOperationException("The result is not initialized.");
     }
