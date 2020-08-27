@@ -6,6 +6,6 @@ namespace System
     {
         public static Optional<T> ToOptional<T>(this TaggedUnion<T, Unit> union)
             =>
-            union.Fold(Optional<T>.Present, _ => default);
+            union.Fold(Optional<T>.Present, _ => Optional<T>.Absent);
     }
 }
