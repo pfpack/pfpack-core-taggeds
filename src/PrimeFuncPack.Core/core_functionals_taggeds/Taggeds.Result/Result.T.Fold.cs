@@ -36,7 +36,7 @@ namespace System
 
         private TaggedUnion<TSuccess, TFailure> FoldSource => union.OrFailure();
 
-        // Must never throw
+        // Must never be invoked
         [DoesNotReturn]
         private static TResult FoldOtherFactory<TResult>()
             =>
