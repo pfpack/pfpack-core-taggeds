@@ -31,6 +31,6 @@ namespace System
 
         private static Type EqualityContract => typeof(Result<TSuccess, TFailure>);
 
-        private TaggedUnion<TSuccess, TFailure> EqualitySource => union.OrInited();
+        private TaggedUnion<TSuccess, TFailure> EqualitySource => union.OrFailure();
     }
 }

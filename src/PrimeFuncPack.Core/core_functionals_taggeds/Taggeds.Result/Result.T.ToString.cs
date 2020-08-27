@@ -6,6 +6,6 @@ namespace System
     {
         public override string ToString()
             =>
-            union.OrInited().ToString();
+            union.OrFailure().ToString();
     }
 }
