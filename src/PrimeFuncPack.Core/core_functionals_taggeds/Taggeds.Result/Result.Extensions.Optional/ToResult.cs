@@ -7,6 +7,6 @@ namespace System
     {
         public static Result<T, Unit> ToResult<T>(this Optional<T> optional) where T : notnull
             =>
-            optional.Fold(Result<T, Unit>.Success, () => Result<T, Unit>.Failure(default));
+            optional.Fold(Result.Present<T>, Result.Absent<T>);
     }
 }
