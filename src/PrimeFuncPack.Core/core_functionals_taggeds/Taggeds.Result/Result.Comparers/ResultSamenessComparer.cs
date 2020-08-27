@@ -8,13 +8,13 @@ namespace System
         where TSuccess : notnull
         where TFailure : notnull, new()
     {
-        public bool Equals(Result<TSuccess, TFailure> x, Result<TSuccess, TFailure> y)
+        public bool Equals(Result<TSuccess, TFailure> resultA, Result<TSuccess, TFailure> resultB)
             =>
-            Result<TSuccess, TFailure>.Same(x, y);
+            Result<TSuccess, TFailure>.Same(resultA, resultB);
 
-        public int GetHashCode(Result<TSuccess, TFailure> obj)
+        public int GetHashCode(Result<TSuccess, TFailure> result)
             =>
-            obj.GetSamenessHashCode();
+            result.GetSamenessHashCode();
 
         public static ResultSamenessComparer<TSuccess, TFailure> Default => ResultSamenessComparerDefault<TSuccess, TFailure>.Value;
     }

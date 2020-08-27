@@ -6,13 +6,13 @@ namespace System
 {
     public sealed class OptionalEqualityComparer<T> : IEqualityComparer<Optional<T>>
     {
-        public bool Equals(Optional<T> x, Optional<T> y)
+        public bool Equals(Optional<T> optionalA, Optional<T> optionalB)
             =>
-            Optional<T>.Equals(x, y);
+            Optional<T>.Equals(optionalA, optionalB);
 
-        public int GetHashCode(Optional<T> obj)
+        public int GetHashCode(Optional<T> optional)
             =>
-            obj.GetHashCode();
+            optional.GetHashCode();
 
         public static OptionalEqualityComparer<T> Default => OptionalEqualityComparerDefault<T>.Value;
     }

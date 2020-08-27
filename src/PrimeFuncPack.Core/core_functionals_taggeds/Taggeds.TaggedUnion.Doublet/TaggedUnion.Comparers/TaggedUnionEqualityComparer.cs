@@ -6,13 +6,13 @@ namespace System
 {
     public sealed class TaggedUnionEqualityComparer<TFirst, TSecond> : IEqualityComparer<TaggedUnion<TFirst, TSecond>>
     {
-        public bool Equals(TaggedUnion<TFirst, TSecond> x, TaggedUnion<TFirst, TSecond> y)
+        public bool Equals(TaggedUnion<TFirst, TSecond> unionA, TaggedUnion<TFirst, TSecond> unionB)
             =>
-            TaggedUnion<TFirst, TSecond>.Equals(x, y);
+            TaggedUnion<TFirst, TSecond>.Equals(unionA, unionB);
 
-        public int GetHashCode(TaggedUnion<TFirst, TSecond> obj)
+        public int GetHashCode(TaggedUnion<TFirst, TSecond> union)
             =>
-            obj.GetHashCode();
+            union.GetHashCode();
 
         public static TaggedUnionEqualityComparer<TFirst, TSecond> Default => TaggedUnionEqualityComparerDefault<TFirst, TSecond>.Value;
     }
