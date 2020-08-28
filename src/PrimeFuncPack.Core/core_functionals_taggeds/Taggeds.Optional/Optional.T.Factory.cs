@@ -9,9 +9,5 @@ namespace System
         public static Optional<T> Present(T value)
             =>
             new Optional<T>(value);
-
-        public static Optional<T> Wrap(Box<T>? box)
-            =>
-            new Optional<T>(box);
     }
 }

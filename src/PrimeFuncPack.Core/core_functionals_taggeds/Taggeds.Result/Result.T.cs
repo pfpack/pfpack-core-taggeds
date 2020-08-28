@@ -16,7 +16,7 @@ namespace System
 
         public bool IsSuccess => union.IsFirst;
 
-        public bool IsFailure => union.IsFirst is false;
+        public bool IsFailure => union.IsSecond || (union.IsInitialized is false);
 
         private Result(in TSuccess success)
             =>
@@ -25,5 +25,9 @@ namespace System
         private Result(in TFailure failure)
             =>
             union = ResultUnion<TSuccess, TFailure>.Failure(failure);
+
+        private Result(in TaggedUnion<TSuccess, TFailure> union)
+            =>
+            this.union = union;
     }
 }

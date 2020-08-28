@@ -15,9 +15,5 @@ namespace System
         private Optional(in T value)
             =>
             box = value;
-
-        private Optional(in Box<T>? box)
-            =>
-            this.box = box;
     }
 }
