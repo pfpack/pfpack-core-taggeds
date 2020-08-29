@@ -3,6 +3,7 @@
 namespace System
 {
     public readonly partial struct Result<TSuccess, TFailure> :
+        IResultFlow<TSuccess, TFailure>,
         IEquatable<Result<TSuccess, TFailure>>,
         ISamenessEquatable<Result<TSuccess, TFailure>>
         where TSuccess : notnull
