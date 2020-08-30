@@ -8,26 +8,26 @@ namespace System
     {
         public static SuccessBuilder<TSuccess> Success<TSuccess>(TSuccess success) where TSuccess : notnull
             =>
-            SuccessBuilder.From(success);
+            ResultBuilder.Success(success);
 
         public static FailureBuilder<TFailure> Failure<TFailure>(TFailure failure) where TFailure : notnull, new()
             =>
-            FailureBuilder.From(failure);
+            ResultBuilder.Failure(failure);
 
         public static Result<TSuccess, Unit> Present<TSuccess>(TSuccess success) where TSuccess : notnull
             =>
-            SuccessBuilder.From(success);
+            ResultBuilder.Success(success);
 
         public static Result<TSuccess, Unit> Absent<TSuccess>() where TSuccess : notnull
             =>
-            FailureBuilder.From<Unit>(default);
+            ResultBuilder.Failure<Unit>(default);
 
         public static Result<Unit, Unit> True()
             =>
-            SuccessBuilder.From<Unit>(default);
+            ResultBuilder.Success<Unit>(default);
 
         public static Result<Unit, Unit> False()
             =>
-            FailureBuilder.From<Unit>(default);
+            ResultBuilder.Failure<Unit>(default);
     }
 }
