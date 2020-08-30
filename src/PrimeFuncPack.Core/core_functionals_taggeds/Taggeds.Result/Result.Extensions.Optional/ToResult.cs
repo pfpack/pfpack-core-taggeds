@@ -7,6 +7,8 @@ namespace System
     {
         public static Result<T, Unit> ToResult<T>(this Optional<T> optional) where T : notnull
             =>
-            optional.Fold(Result.Present<T>, Result.Absent<T>);
+            optional
+            .FilterNotNull()
+            .Fold(Result.Present<T>, Result.Absent<T>);
     }
 }
