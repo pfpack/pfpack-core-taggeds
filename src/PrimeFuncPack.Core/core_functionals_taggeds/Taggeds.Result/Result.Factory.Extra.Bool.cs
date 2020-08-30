@@ -8,10 +8,10 @@ namespace System
     {
         public static Result<Unit, Unit> True()
             =>
-            ImplSuccessBuilder<Unit>.Create(default);
+            SuccessBuilderImpl<Unit>.Create(default);
 
         public static Result<Unit, Unit> False()
             =>
-            ImplFailureBuilder<Unit>.Create(default);
+            FailureBuilderImpl<Unit>.Create(default);
     }
 }
