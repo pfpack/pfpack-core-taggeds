@@ -8,10 +8,10 @@ namespace System
     {
         public static SuccessBuilder<TSuccess> Success<TSuccess>(TSuccess success) where TSuccess : notnull
             =>
-            SuccessBuilderImpl<TSuccess>.Create(success);
+            ImplSuccessBuilder<TSuccess>.Create(success);
 
         public static FailureBuilder<TFailure> Failure<TFailure>(TFailure failure) where TFailure : notnull, new()
             =>
-            FailureBuilderImpl<TFailure>.Create(failure);
+            ImplFailureBuilder<TFailure>.Create(failure);
     }
 }
