@@ -4,13 +4,17 @@ using System;
 
 namespace PrimeFuncPack.Core.Result.Builders
 {
-    public abstract class FailureBuilder<TFailure> where TFailure : notnull, new()
+    public sealed class FailureBuilder<TFailure> where TFailure : notnull, new()
     {
         private readonly TFailure failure;
 
-        private protected FailureBuilder(in TFailure failure)
+        private FailureBuilder(in TFailure failure)
             =>
             this.failure = failure;
+
+        internal static FailureBuilder<TFailure> Create(in TFailure failure)
+            =>
+            new FailureBuilder<TFailure>(failure ?? throw new ArgumentNullException(nameof(failure)));
 
         public Result<TSuccess, TFailure> Build<TSuccess>() where TSuccess : notnull
             =>

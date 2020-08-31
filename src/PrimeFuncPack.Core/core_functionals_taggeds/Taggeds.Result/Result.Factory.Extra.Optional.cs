@@ -8,10 +8,10 @@ namespace System
     {
         public static Result<TSuccess, Unit> Present<TSuccess>(TSuccess success) where TSuccess : notnull
             =>
-            ImplSuccessBuilder<TSuccess>.Create(success);
+            SuccessBuilder<TSuccess>.Create(success);
 
         public static Result<TSuccess, Unit> Absent<TSuccess>() where TSuccess : notnull
             =>
-            ImplFailureBuilder<Unit>.Create(default);
+            FailureBuilder<Unit>.Create(default);
     }
 }
