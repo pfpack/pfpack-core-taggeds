@@ -4,8 +4,8 @@ namespace System
 {
     partial interface IResultFlow<TSuccess, TFailure>
     {
-        public Result<TSuccess, TFailure> Current => CurrentSource;
+        public Result<TSuccess, TFailure> Current => CurrentOrigin;
 
-        private protected Result<TSuccess, TFailure> CurrentSource { get; }
+        private protected Result<TSuccess, TFailure> CurrentOrigin { get; }
     }
 }
