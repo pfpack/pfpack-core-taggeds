@@ -12,7 +12,7 @@ namespace System
 
             return ImplFold(Filter, () => @this);
 
-            Optional<T> Filter(T value) => predicate(value) switch
+            Optional<T> Filter(T value) => predicate.Invoke(value) switch
             {
                 true => @this,
                 _ => default
