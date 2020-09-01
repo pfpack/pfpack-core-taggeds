@@ -4,6 +4,6 @@ namespace System
 {
     partial struct Result<TSuccess, TFailure>
     {
-        Result<TSuccess, TFailure> IResultFlow<TSuccess, TFailure>.Current => this;
+        Result<TSuccess, TFailure> IResultFlow<TSuccess, TFailure>.CurrentSource => this;
     }
 }

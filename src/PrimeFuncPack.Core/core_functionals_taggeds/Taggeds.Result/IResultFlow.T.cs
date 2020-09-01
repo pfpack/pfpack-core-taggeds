@@ -6,6 +6,5 @@ namespace System
         where TSuccess : notnull
         where TFailure : notnull, new()
     {
-        private protected Result<TSuccess, TFailure> Current { get; }
     }
 }
