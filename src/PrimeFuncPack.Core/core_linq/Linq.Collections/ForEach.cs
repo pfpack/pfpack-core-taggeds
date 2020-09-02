@@ -6,10 +6,9 @@ namespace System.Linq
 {
     partial class CollectionsExtensions
     {
-        public static TCollection ForEach<TCollection, TSource>(
-            this TCollection source,
+        public static void ForEach<TSource>(
+            this IEnumerable<TSource> source,
             Action<TSource> action)
-            where TCollection : IEnumerable<TSource>
         {
             _ = source ?? throw new ArgumentNullException(nameof(source));
             _ = action ?? throw new ArgumentNullException(nameof(action));
@@ -18,22 +17,21 @@ namespace System.Linq
             {
                 case IReadOnlyList<TSource> list:
                     list.InternalForEach(action);
-                    return source;
+                    break;
 
                 case IList<TSource> list:
                     list.InternalForEach(action);
-                    return source;
+                    break;
 
                 default:
                     source.InternalForEach(action);
-                    return source;
+                    break;
             }
         }
 
-        public static TCollection ForEach<TCollection, TSource>(
-            this TCollection source,
+        public static void ForEach<TSource>(
+            this IEnumerable<TSource> source,
             Action<int, TSource> action)
-            where TCollection : IEnumerable<TSource>
         {
             _ = source ?? throw new ArgumentNullException(nameof(source));
             _ = action ?? throw new ArgumentNullException(nameof(action));
@@ -42,22 +40,21 @@ namespace System.Linq
             {
                 case IReadOnlyList<TSource> list:
                     list.InternalForEach(action);
-                    return source;
+                    break;
 
                 case IList<TSource> list:
                     list.InternalForEach(action);
-                    return source;
+                    break;
 
                 default:
                     source.InternalForEach(action);
-                    return source;
+                    break;
             }
         }
 
-        public static TCollection ForEach<TCollection, TSource>(
-            this TCollection source,
+        public static void ForEach<TSource>(
+            this IEnumerable<TSource> source,
             Action<long, TSource> action)
-            where TCollection : IEnumerable<TSource>
         {
             _ = source ?? throw new ArgumentNullException(nameof(source));
             _ = action ?? throw new ArgumentNullException(nameof(action));
@@ -66,15 +63,15 @@ namespace System.Linq
             {
                 case IReadOnlyList<TSource> list:
                     list.InternalForEach(action);
-                    return source;
+                    break;
 
                 case IList<TSource> list:
                     list.InternalForEach(action);
-                    return source;
+                    break;
 
                 default:
                     source.InternalForEach(action);
-                    return source;
+                    break;
             }
         }
     }
