@@ -16,7 +16,9 @@ namespace System
             _ = failureFactory ?? throw new ArgumentNullException(nameof(failureFactory));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return Current.Fold(Filter, failure => Failure(mapFailure.Invoke(failure)));
+            return Current.Fold(
+                Filter,
+                failure => Failure(mapFailure.Invoke(failure)));
 
             Result<TSuccess, TNextFailure> Filter(TSuccess success) => predicate.Invoke(success) switch
             {
@@ -32,7 +34,9 @@ namespace System
             _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
             _ = failureFactory ?? throw new ArgumentNullException(nameof(failureFactory));
 
-            return Current.Fold(Filter, failure => Failure(failure));
+            return Current.Fold(
+                Filter,
+                failure => Failure(failure));
 
             Result<TSuccess, TFailure> Filter(TSuccess success) => predicate.Invoke(success) switch
             {

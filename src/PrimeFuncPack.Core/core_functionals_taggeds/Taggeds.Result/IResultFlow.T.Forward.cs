@@ -16,7 +16,9 @@ namespace System
             _ = nextFactory ?? throw new ArgumentNullException(nameof(nextFactory));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return Current.Fold(nextFactory, failure => Failure(mapFailure.Invoke(failure)));
+            return Current.Fold(
+                nextFactory,
+                failure => Failure(mapFailure.Invoke(failure)));
         }
 
         public Result<TNextSuccess, TFailure> Forward<TNextSuccess>(
@@ -25,7 +27,9 @@ namespace System
         {
             _ = nextFactory ?? throw new ArgumentNullException(nameof(nextFactory));
 
-            return Current.Fold(nextFactory, failure => Failure(failure));
+            return Current.Fold(
+                nextFactory,
+                failure => Failure(failure));
         }
 
         public Result<TSuccess, TFailure> Forward(
@@ -33,7 +37,9 @@ namespace System
         {
             _ = nextFactory ?? throw new ArgumentNullException(nameof(nextFactory));
 
-            return Current.Fold(nextFactory, _ => Current);
+            return Current.Fold(
+                nextFactory,
+                _ => Current);
         }
 
         public Task<Result<TNextSuccess, TNextFailure>> ForwardAsync<TNextSuccess, TNextFailure>(
@@ -45,7 +51,9 @@ namespace System
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return Current.Fold(nextFactoryAsync, failure => Task.FromResult(Failure(mapFailure.Invoke(failure)).Build<TNextSuccess>()));
+            return Current.Fold(
+                nextFactoryAsync,
+                failure => Task.FromResult(Failure(mapFailure.Invoke(failure)).Build<TNextSuccess>()));
         }
 
         public Task<Result<TNextSuccess, TFailure>> ForwardAsync<TNextSuccess>(
@@ -54,7 +62,9 @@ namespace System
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
 
-            return Current.Fold(nextFactoryAsync, failure => Task.FromResult(Failure(failure).Build<TNextSuccess>()));
+            return Current.Fold(
+                nextFactoryAsync,
+                failure => Task.FromResult(Failure(failure).Build<TNextSuccess>()));
         }
 
         public Task<Result<TSuccess, TFailure>> ForwardAsync(
@@ -62,7 +72,9 @@ namespace System
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
 
-            return Current.Fold(nextFactoryAsync, _ => Task.FromResult(Current));
+            return Current.Fold(
+                nextFactoryAsync,
+                _ => Task.FromResult(Current));
         }
 
         public ValueTask<Result<TNextSuccess, TNextFailure>> ForwardAsync<TNextSuccess, TNextFailure>(
@@ -74,7 +86,9 @@ namespace System
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return Current.Fold(nextFactoryAsync, failure => ValueTask.FromResult(Failure(mapFailure.Invoke(failure)).Build<TNextSuccess>()));
+            return Current.Fold(
+                nextFactoryAsync,
+                failure => ValueTask.FromResult(Failure(mapFailure.Invoke(failure)).Build<TNextSuccess>()));
         }
 
         public ValueTask<Result<TNextSuccess, TFailure>> ForwardAsync<TNextSuccess>(
@@ -83,7 +97,9 @@ namespace System
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
 
-            return Current.Fold(nextFactoryAsync, failure => ValueTask.FromResult(Failure(failure).Build<TNextSuccess>()));
+            return Current.Fold(
+                nextFactoryAsync,
+                failure => ValueTask.FromResult(Failure(failure).Build<TNextSuccess>()));
         }
 
         public ValueTask<Result<TSuccess, TFailure>> ForwardAsync(
@@ -91,7 +107,9 @@ namespace System
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
 
-            return Current.Fold(nextFactoryAsync, _ => ValueTask.FromResult(Current));
+            return Current.Fold(
+                nextFactoryAsync,
+                _ => ValueTask.FromResult(Current));
         }
     }
 }

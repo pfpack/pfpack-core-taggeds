@@ -16,7 +16,9 @@ namespace System
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
-            return Current.Fold(success => Success(mapSuccess.Invoke(success)), otherFactory);
+            return Current.Fold(
+                success => Success(mapSuccess.Invoke(success)),
+                otherFactory);
         }
 
         public Result<TSuccess, TNextFailure> Recover<TNextFailure>(
@@ -25,7 +27,9 @@ namespace System
         {
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return Current.Fold(success => Success(success), otherFactory);
+            return Current.Fold(
+                success => Success(success),
+                otherFactory);
         }
 
         public Result<TSuccess, TFailure> Recover(
@@ -33,7 +37,9 @@ namespace System
         {
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return Current.Fold(_ => Current, otherFactory);
+            return Current.Fold(
+                _ => Current,
+                otherFactory);
         }
 
         public Task<Result<TNextSuccess, TNextFailure>> RecoverAsync<TNextSuccess, TNextFailure>(
@@ -45,7 +51,9 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
-            return Current.Fold(success => Task.FromResult(Success(mapSuccess.Invoke(success)).Build<TNextFailure>()), otherFactoryAsync);
+            return Current.Fold(
+                success => Task.FromResult(Success(mapSuccess.Invoke(success)).Build<TNextFailure>()),
+                otherFactoryAsync);
         }
 
         public Task<Result<TSuccess, TNextFailure>> RecoverAsync<TNextFailure>(
@@ -54,7 +62,9 @@ namespace System
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return Current.Fold(success => Task.FromResult(Success(success).Build<TNextFailure>()), otherFactoryAsync);
+            return Current.Fold(
+                success => Task.FromResult(Success(success).Build<TNextFailure>()),
+                otherFactoryAsync);
         }
 
         public Task<Result<TSuccess, TFailure>> RecoverAsync(
@@ -62,7 +72,9 @@ namespace System
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return Current.Fold(_ => Task.FromResult(Current), otherFactoryAsync);
+            return Current.Fold(
+                _ => Task.FromResult(Current),
+                otherFactoryAsync);
         }
 
         public ValueTask<Result<TNextSuccess, TNextFailure>> RecoverAsync<TNextSuccess, TNextFailure>(
@@ -74,7 +86,9 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
-            return Current.Fold(success => ValueTask.FromResult(Success(mapSuccess.Invoke(success)).Build<TNextFailure>()), otherFactoryAsync);
+            return Current.Fold(
+                success => ValueTask.FromResult(Success(mapSuccess.Invoke(success)).Build<TNextFailure>()),
+                otherFactoryAsync);
         }
 
         public ValueTask<Result<TSuccess, TNextFailure>> RecoverAsync<TNextFailure>(
@@ -83,7 +97,9 @@ namespace System
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return Current.Fold(success => ValueTask.FromResult(Success(success).Build<TNextFailure>()), otherFactoryAsync);
+            return Current.Fold(
+                success => ValueTask.FromResult(Success(success).Build<TNextFailure>()),
+                otherFactoryAsync);
         }
 
         public ValueTask<Result<TSuccess, TFailure>> RecoverAsync(
@@ -91,7 +107,9 @@ namespace System
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return Current.Fold(_ => ValueTask.FromResult(Current), otherFactoryAsync);
+            return Current.Fold(
+                _ => ValueTask.FromResult(Current),
+                otherFactoryAsync);
         }
     }
 }
