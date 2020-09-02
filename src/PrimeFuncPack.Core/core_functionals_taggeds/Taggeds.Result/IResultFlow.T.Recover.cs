@@ -7,11 +7,11 @@ namespace System
 {
     partial interface IResultFlow<TSuccess, TFailure>
     {
-        public Result<TNextSuccess, TNextFailure> Recover<TNextSuccess, TNextFailure>(
-            Func<TFailure, Result<TNextSuccess, TNextFailure>> otherFactory,
-            Func<TSuccess, TNextSuccess> mapSuccess)
-            where TNextSuccess : notnull
-            where TNextFailure : notnull, new()
+        public Result<TOtherSuccess, TOtherFailure> Recover<TOtherSuccess, TOtherFailure>(
+            Func<TFailure, Result<TOtherSuccess, TOtherFailure>> otherFactory,
+            Func<TSuccess, TOtherSuccess> mapSuccess)
+            where TOtherSuccess : notnull
+            where TOtherFailure : notnull, new()
         {
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
@@ -21,9 +21,9 @@ namespace System
                 otherFactory);
         }
 
-        public Result<TSuccess, TNextFailure> Recover<TNextFailure>(
-            Func<TFailure, Result<TSuccess, TNextFailure>> otherFactory)
-            where TNextFailure : notnull, new()
+        public Result<TSuccess, TOtherFailure> Recover<TOtherFailure>(
+            Func<TFailure, Result<TSuccess, TOtherFailure>> otherFactory)
+            where TOtherFailure : notnull, new()
         {
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
@@ -42,28 +42,28 @@ namespace System
                 otherFactory);
         }
 
-        public Task<Result<TNextSuccess, TNextFailure>> RecoverAsync<TNextSuccess, TNextFailure>(
-            Func<TFailure, Task<Result<TNextSuccess, TNextFailure>>> otherFactoryAsync,
-            Func<TSuccess, TNextSuccess> mapSuccess)
-            where TNextSuccess : notnull
-            where TNextFailure : notnull, new()
+        public Task<Result<TOtherSuccess, TOtherFailure>> RecoverAsync<TOtherSuccess, TOtherFailure>(
+            Func<TFailure, Task<Result<TOtherSuccess, TOtherFailure>>> otherFactoryAsync,
+            Func<TSuccess, TOtherSuccess> mapSuccess)
+            where TOtherSuccess : notnull
+            where TOtherFailure : notnull, new()
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
             return Current.Fold(
-                success => Task.FromResult(Success(mapSuccess.Invoke(success)).Build<TNextFailure>()),
+                success => Task.FromResult(Success(mapSuccess.Invoke(success)).Build<TOtherFailure>()),
                 otherFactoryAsync);
         }
 
-        public Task<Result<TSuccess, TNextFailure>> RecoverAsync<TNextFailure>(
-            Func<TFailure, Task<Result<TSuccess, TNextFailure>>> otherFactoryAsync)
-            where TNextFailure : notnull, new()
+        public Task<Result<TSuccess, TOtherFailure>> RecoverAsync<TOtherFailure>(
+            Func<TFailure, Task<Result<TSuccess, TOtherFailure>>> otherFactoryAsync)
+            where TOtherFailure : notnull, new()
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
             return Current.Fold(
-                success => Task.FromResult(Success(success).Build<TNextFailure>()),
+                success => Task.FromResult(Success(success).Build<TOtherFailure>()),
                 otherFactoryAsync);
         }
 
@@ -77,28 +77,28 @@ namespace System
                 otherFactoryAsync);
         }
 
-        public ValueTask<Result<TNextSuccess, TNextFailure>> RecoverAsync<TNextSuccess, TNextFailure>(
-            Func<TFailure, ValueTask<Result<TNextSuccess, TNextFailure>>> otherFactoryAsync,
-            Func<TSuccess, TNextSuccess> mapSuccess)
-            where TNextSuccess : notnull
-            where TNextFailure : notnull, new()
+        public ValueTask<Result<TOtherSuccess, TOtherFailure>> RecoverAsync<TOtherSuccess, TOtherFailure>(
+            Func<TFailure, ValueTask<Result<TOtherSuccess, TOtherFailure>>> otherFactoryAsync,
+            Func<TSuccess, TOtherSuccess> mapSuccess)
+            where TOtherSuccess : notnull
+            where TOtherFailure : notnull, new()
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
             return Current.Fold(
-                success => ValueTask.FromResult(Success(mapSuccess.Invoke(success)).Build<TNextFailure>()),
+                success => ValueTask.FromResult(Success(mapSuccess.Invoke(success)).Build<TOtherFailure>()),
                 otherFactoryAsync);
         }
 
-        public ValueTask<Result<TSuccess, TNextFailure>> RecoverAsync<TNextFailure>(
-            Func<TFailure, ValueTask<Result<TSuccess, TNextFailure>>> otherFactoryAsync)
-            where TNextFailure : notnull, new()
+        public ValueTask<Result<TSuccess, TOtherFailure>> RecoverAsync<TOtherFailure>(
+            Func<TFailure, ValueTask<Result<TSuccess, TOtherFailure>>> otherFactoryAsync)
+            where TOtherFailure : notnull, new()
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
             return Current.Fold(
-                success => ValueTask.FromResult(Success(success).Build<TNextFailure>()),
+                success => ValueTask.FromResult(Success(success).Build<TOtherFailure>()),
                 otherFactoryAsync);
         }
 
