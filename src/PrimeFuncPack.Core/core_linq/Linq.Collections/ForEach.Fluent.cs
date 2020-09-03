@@ -23,14 +23,5 @@ namespace System.Linq
             source.ForEach<TSource>(action);
             return source;
         }
-
-        public static TCollection ForEach<TCollection, TSource>(
-            this TCollection source,
-            Action<long, TSource> action)
-            where TCollection : IEnumerable<TSource>
-        {
-            source.ForEach<TSource>(action);
-            return source;
-        }
     }
 }
