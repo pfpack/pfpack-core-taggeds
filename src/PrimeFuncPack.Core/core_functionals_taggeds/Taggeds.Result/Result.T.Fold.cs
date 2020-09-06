@@ -14,7 +14,7 @@ namespace System
             FoldSource.Fold(
                 mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess)),
                 mapFailure ?? throw new ArgumentNullException(nameof(mapFailure)),
-                FoldOtherFactory<TResult>);
+                Fold_OtherFactory_MustNeverBeInvoked<TResult>);
 
         public Task<TResult> FoldAsync<TResult>(
             Func<TSuccess, Task<TResult>> mapSuccessAsync,
@@ -23,7 +23,7 @@ namespace System
             FoldSource.FoldAsync(
                 mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync)),
                 mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync)),
-                FoldOtherFactory<TResult>);
+                Fold_OtherFactory_MustNeverBeInvoked<TResult>);
 
         public ValueTask<TResult> FoldAsync<TResult>(
             Func<TSuccess, ValueTask<TResult>> mapSuccessAsync,
@@ -32,13 +32,12 @@ namespace System
             FoldSource.FoldAsync(
                 mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync)),
                 mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync)),
-                FoldOtherFactory<TResult>);
+                Fold_OtherFactory_MustNeverBeInvoked<TResult>);
 
         private TaggedUnion<TSuccess, TFailure> FoldSource => union.OrFailure();
 
-        // Must never be invoked
         [DoesNotReturn]
-        private static TResult FoldOtherFactory<TResult>()
+        private static TResult Fold_OtherFactory_MustNeverBeInvoked<TResult>()
             =>
             throw new InvalidOperationException("The result is not initialized.");
     }
