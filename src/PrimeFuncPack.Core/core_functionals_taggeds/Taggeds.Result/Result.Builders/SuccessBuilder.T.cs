@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Threading.Tasks;
 
 namespace PrimeFuncPack.Core.Result.Builders
 {
@@ -19,5 +20,15 @@ namespace PrimeFuncPack.Core.Result.Builders
         public Result<TSuccess, TFailure> Build<TFailure>() where TFailure : notnull, new()
             =>
             Result<TSuccess, TFailure>.Success(success);
+
+        public Task<Result<TSuccess, TFailure>> BuildAsync<TFailure>() where TFailure : notnull, new()
+            =>
+            Task.FromResult(
+                Result<TSuccess, TFailure>.Success(success));
+
+        public ValueTask<Result<TSuccess, TFailure>> BuildValueAsync<TFailure>() where TFailure : notnull, new()
+            =>
+            ValueTask.FromResult(
+                Result<TSuccess, TFailure>.Success(success));
     }
 }
