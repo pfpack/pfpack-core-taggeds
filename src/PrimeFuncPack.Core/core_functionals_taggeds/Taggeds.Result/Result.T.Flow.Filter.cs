@@ -16,9 +16,7 @@ namespace System
 
             var @this = this;
 
-            return Fold(
-                Filter,
-                failure => mapFailure.Invoke(failure));
+            return Fold(Filter, failure => mapFailure.Invoke(failure));
 
             Result<TSuccess, TCauseFailure> Filter(TSuccess success) => predicate.Invoke(success) switch
             {
@@ -36,9 +34,7 @@ namespace System
 
             var @this = this;
 
-            return Fold(
-                Filter,
-                _ => @this);
+            return Fold(Filter, _ => @this);
 
             Result<TSuccess, TFailure> Filter(TSuccess success) => predicate.Invoke(success) switch
             {
