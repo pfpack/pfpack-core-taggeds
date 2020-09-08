@@ -2,7 +2,7 @@
 
 namespace System
 {
-    partial interface IResultFlow<TSuccess, TFailure>
+    partial struct Result<TSuccess, TFailure>
     {
         public Result<TSuccess, TCauseFailure> Filter<TCauseFailure>(
             Func<TSuccess, bool> predicate,
@@ -14,13 +14,15 @@ namespace System
             _ = causeFactory ?? throw new ArgumentNullException(nameof(causeFactory));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return Current.Fold(
+            var @this = this;
+
+            return Fold(
                 Filter,
                 failure => mapFailure.Invoke(failure));
 
             Result<TSuccess, TCauseFailure> Filter(TSuccess success) => predicate.Invoke(success) switch
             {
-                true => Current.MapFailure(mapFailure),
+                true => @this.MapFailure(mapFailure),
                 _ => causeFactory.Invoke(success)
             };
         }
@@ -32,13 +34,15 @@ namespace System
             _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
             _ = causeFactory ?? throw new ArgumentNullException(nameof(causeFactory));
 
-            return Current.Fold(
+            var @this = this;
+
+            return Fold(
                 Filter,
-                _ => Current);
+                _ => @this);
 
             Result<TSuccess, TFailure> Filter(TSuccess success) => predicate.Invoke(success) switch
             {
-                true => Current,
+                true => @this,
                 _ => causeFactory.Invoke(success)
             };
         }

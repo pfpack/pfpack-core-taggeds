@@ -1,11 +1,10 @@
 ﻿#nullable enable
 
 using System.Threading.Tasks;
-using static System.Result;
 
 namespace System
 {
-    partial interface IResultFlow<TSuccess, TFailure>
+    partial struct Result<TSuccess, TFailure>
     {
         public Result<TOtherSuccess, TOtherFailure> Recover<TOtherSuccess, TOtherFailure>(
             Func<TFailure, Result<TOtherSuccess, TOtherFailure>> otherFactory,
@@ -16,7 +15,7 @@ namespace System
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
-            return Current.Fold(
+            return Fold(
                 success => mapSuccess.Invoke(success),
                 otherFactory);
         }
@@ -27,7 +26,7 @@ namespace System
         {
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return Current.Fold(
+            return Fold(
                 success => success,
                 otherFactory);
         }
@@ -37,8 +36,10 @@ namespace System
         {
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return Current.Fold(
-                _ => Current,
+            var @this = this;
+
+            return Fold(
+                _ => @this,
                 otherFactory);
         }
 
@@ -51,8 +52,8 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
-            return Current.Fold(
-                success => Success(mapSuccess.Invoke(success)).Build<TOtherFailure>(),
+            return Fold(
+                success => Result.Success(mapSuccess.Invoke(success)).Build<TOtherFailure>(),
                 otherFactoryAsync);
         }
 
@@ -62,8 +63,8 @@ namespace System
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return Current.Fold(
-                success => Success(success).Build<TOtherFailure>(),
+            return Fold(
+                success => Result.Success(success).Build<TOtherFailure>(),
                 otherFactoryAsync);
         }
 
@@ -72,8 +73,10 @@ namespace System
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return Current.Fold(
-                _ => Current,
+            var @this = this;
+
+            return Fold(
+                _ => @this,
                 otherFactoryAsync);
         }
 
@@ -86,8 +89,8 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
-            return Current.Fold(
-                success => Success(mapSuccess.Invoke(success)).Build<TOtherFailure>(),
+            return Fold(
+                success => Result.Success(mapSuccess.Invoke(success)).Build<TOtherFailure>(),
                 otherFactoryAsync);
         }
 
@@ -97,8 +100,8 @@ namespace System
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return Current.Fold(
-                success => Success(success).Build<TOtherFailure>(),
+            return Fold(
+                success => Result.Success(success).Build<TOtherFailure>(),
                 otherFactoryAsync);
         }
 
@@ -107,8 +110,10 @@ namespace System
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return Current.Fold(
-                _ => Current,
+            var @this = this;
+
+            return Fold(
+                _ => @this,
                 otherFactoryAsync);
         }
     }
