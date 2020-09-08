@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using System;
-using System.Threading.Tasks;
 
 namespace PrimeFuncPack.Core.Result.Builders
 {
