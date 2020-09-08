@@ -53,7 +53,7 @@ namespace System
 
             return Current.Fold(
                 nextFactoryAsync,
-                failure => Failure(mapFailure.Invoke(failure)).BuildAsync<TNextSuccess>());
+                failure => Failure(mapFailure.Invoke(failure)).Build<TNextSuccess>());
         }
 
         public Task<Result<TNextSuccess, TFailure>> ForwardAsync<TNextSuccess>(
@@ -64,7 +64,7 @@ namespace System
 
             return Current.Fold(
                 nextFactoryAsync,
-                failure => Failure(failure).BuildAsync<TNextSuccess>());
+                failure => Failure(failure).Build<TNextSuccess>());
         }
 
         public Task<Result<TSuccess, TFailure>> ForwardAsync(
@@ -88,7 +88,7 @@ namespace System
 
             return Current.Fold(
                 nextFactoryAsync,
-                failure => Failure(mapFailure.Invoke(failure)).BuildValueAsync<TNextSuccess>());
+                failure => Failure(mapFailure.Invoke(failure)).Build<TNextSuccess>());
         }
 
         public ValueTask<Result<TNextSuccess, TFailure>> ForwardAsync<TNextSuccess>(
@@ -99,7 +99,7 @@ namespace System
 
             return Current.Fold(
                 nextFactoryAsync,
-                failure => Failure(failure).BuildValueAsync<TNextSuccess>());
+                failure => Failure(failure).Build<TNextSuccess>());
         }
 
         public ValueTask<Result<TSuccess, TFailure>> ForwardAsync(
