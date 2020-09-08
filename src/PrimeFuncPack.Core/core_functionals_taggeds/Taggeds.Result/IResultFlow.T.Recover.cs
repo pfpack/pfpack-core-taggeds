@@ -73,7 +73,7 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
             return Current.Fold(
-                _ => Task.FromResult(Current),
+                _ => Current,
                 otherFactoryAsync);
         }
 
@@ -108,7 +108,7 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
             return Current.Fold(
-                _ => ValueTask.FromResult(Current),
+                _ => Current,
                 otherFactoryAsync);
         }
     }

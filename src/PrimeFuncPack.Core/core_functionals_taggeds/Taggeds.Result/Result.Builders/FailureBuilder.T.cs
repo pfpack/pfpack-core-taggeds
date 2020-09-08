@@ -23,12 +23,10 @@ namespace PrimeFuncPack.Core.Result.Builders
 
         public Task<Result<TSuccess, TFailure>> BuildAsync<TSuccess>() where TSuccess : notnull
             =>
-            Task.FromResult(
-                Result<TSuccess, TFailure>.Failure(failure));
+            Result<TSuccess, TFailure>.Failure(failure).ThisAsync();
 
         public ValueTask<Result<TSuccess, TFailure>> BuildValueAsync<TSuccess>() where TSuccess : notnull
             =>
-            ValueTask.FromResult(
-                Result<TSuccess, TFailure>.Failure(failure));
+            Result<TSuccess, TFailure>.Failure(failure).ThisValueAsync();
     }
 }

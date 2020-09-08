@@ -74,7 +74,7 @@ namespace System
 
             return Current.Fold(
                 nextFactoryAsync,
-                _ => Task.FromResult(Current));
+                _ => Current);
         }
 
         public ValueTask<Result<TNextSuccess, TNextFailure>> ForwardAsync<TNextSuccess, TNextFailure>(
@@ -109,7 +109,7 @@ namespace System
 
             return Current.Fold(
                 nextFactoryAsync,
-                _ => ValueTask.FromResult(Current));
+                _ => Current);
         }
     }
 }
