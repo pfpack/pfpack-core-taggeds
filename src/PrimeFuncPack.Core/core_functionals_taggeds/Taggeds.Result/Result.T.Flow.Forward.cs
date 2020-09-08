@@ -46,7 +46,7 @@ namespace System
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return Fold(
+            return FoldAsync(
                 nextFactoryAsync,
                 failure => Result.Failure(mapFailure.Invoke(failure)).Build<TNextSuccess>());
         }
@@ -57,7 +57,7 @@ namespace System
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
 
-            return Fold(
+            return FoldAsync(
                 nextFactoryAsync,
                 failure => Result.Failure(failure).Build<TNextSuccess>());
         }
@@ -69,7 +69,7 @@ namespace System
 
             var @this = this;
 
-            return Fold(nextFactoryAsync, _ => @this);
+            return FoldAsync(nextFactoryAsync, _ => @this);
         }
 
         public ValueTask<Result<TNextSuccess, TNextFailure>> ForwardAsync<TNextSuccess, TNextFailure>(
@@ -81,7 +81,7 @@ namespace System
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return Fold(
+            return FoldAsync(
                 nextFactoryAsync,
                 failure => Result.Failure(mapFailure.Invoke(failure)).Build<TNextSuccess>());
         }
@@ -92,7 +92,7 @@ namespace System
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
 
-            return Fold(
+            return FoldAsync(
                 nextFactoryAsync,
                 failure => Result.Failure(failure).Build<TNextSuccess>());
         }
@@ -104,7 +104,7 @@ namespace System
 
             var @this = this;
 
-            return Fold(nextFactoryAsync, _ => @this);
+            return FoldAsync(nextFactoryAsync, _ => @this);
         }
     }
 }
