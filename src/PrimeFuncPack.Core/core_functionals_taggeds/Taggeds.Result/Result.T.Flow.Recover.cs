@@ -15,9 +15,7 @@ namespace System
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
-            return Fold(
-                success => mapSuccess.Invoke(success),
-                otherFactory);
+            return Fold(success => mapSuccess.Invoke(success), otherFactory);
         }
 
         public Result<TSuccess, TOtherFailure> Recover<TOtherFailure>(
@@ -26,9 +24,7 @@ namespace System
         {
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return Fold(
-                success => success,
-                otherFactory);
+            return Fold(success => success, otherFactory);
         }
 
         public Result<TSuccess, TFailure> Recover(
@@ -38,9 +34,7 @@ namespace System
 
             var @this = this;
 
-            return Fold(
-                _ => @this,
-                otherFactory);
+            return Fold(_ => @this, otherFactory);
         }
 
         public Task<Result<TOtherSuccess, TOtherFailure>> RecoverAsync<TOtherSuccess, TOtherFailure>(
@@ -75,9 +69,7 @@ namespace System
 
             var @this = this;
 
-            return Fold(
-                _ => @this,
-                otherFactoryAsync);
+            return Fold(_ => @this, otherFactoryAsync);
         }
 
         public ValueTask<Result<TOtherSuccess, TOtherFailure>> RecoverAsync<TOtherSuccess, TOtherFailure>(
@@ -112,9 +104,7 @@ namespace System
 
             var @this = this;
 
-            return Fold(
-                _ => @this,
-                otherFactoryAsync);
+            return Fold(_ => @this, otherFactoryAsync);
         }
     }
 }

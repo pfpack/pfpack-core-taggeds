@@ -15,9 +15,7 @@ namespace System
             _ = nextFactory ?? throw new ArgumentNullException(nameof(nextFactory));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return Fold(
-                nextFactory,
-                failure => mapFailure.Invoke(failure));
+            return Fold(nextFactory, failure => mapFailure.Invoke(failure));
         }
 
         public Result<TNextSuccess, TFailure> Forward<TNextSuccess>(
@@ -26,9 +24,7 @@ namespace System
         {
             _ = nextFactory ?? throw new ArgumentNullException(nameof(nextFactory));
 
-            return Fold(
-                nextFactory,
-                failure => failure);
+            return Fold(nextFactory, failure => failure);
         }
 
         public Result<TSuccess, TFailure> Forward(
@@ -38,9 +34,7 @@ namespace System
 
             var @this = this;
 
-            return Fold(
-                nextFactory,
-                _ => @this);
+            return Fold(nextFactory, _ => @this);
         }
 
         public Task<Result<TNextSuccess, TNextFailure>> ForwardAsync<TNextSuccess, TNextFailure>(
@@ -75,9 +69,7 @@ namespace System
 
             var @this = this;
 
-            return Fold(
-                nextFactoryAsync,
-                _ => @this);
+            return Fold(nextFactoryAsync, _ => @this);
         }
 
         public ValueTask<Result<TNextSuccess, TNextFailure>> ForwardAsync<TNextSuccess, TNextFailure>(
@@ -112,9 +104,7 @@ namespace System
 
             var @this = this;
 
-            return Fold(
-                nextFactoryAsync,
-                _ => @this);
+            return Fold(nextFactoryAsync, _ => @this);
         }
     }
 }
