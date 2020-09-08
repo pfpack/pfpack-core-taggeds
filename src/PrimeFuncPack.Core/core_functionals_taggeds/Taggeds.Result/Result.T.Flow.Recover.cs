@@ -47,7 +47,7 @@ namespace System
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
             return FoldAsync(
-                success => Result.Success(mapSuccess.Invoke(success)).Build<TOtherFailure>(),
+                success => (Result<TOtherSuccess, TOtherFailure>)mapSuccess.Invoke(success),
                 otherFactoryAsync);
         }
 
@@ -58,7 +58,7 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
             return FoldAsync(
-                success => Result.Success(success).Build<TOtherFailure>(),
+                success => (Result<TSuccess, TOtherFailure>)success,
                 otherFactoryAsync);
         }
 
@@ -82,7 +82,7 @@ namespace System
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
             return FoldAsync(
-                success => Result.Success(mapSuccess.Invoke(success)).Build<TOtherFailure>(),
+                success => (Result<TOtherSuccess, TOtherFailure>)mapSuccess.Invoke(success),
                 otherFactoryAsync);
         }
 
@@ -93,7 +93,7 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
             return FoldAsync(
-                success => Result.Success(success).Build<TOtherFailure>(),
+                success => (Result<TSuccess, TOtherFailure>)success,
                 otherFactoryAsync);
         }
 
