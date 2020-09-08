@@ -17,7 +17,7 @@ namespace System
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
             return Current.Fold(
-                success => Success(mapSuccess.Invoke(success)),
+                success => mapSuccess.Invoke(success),
                 otherFactory);
         }
 
@@ -28,7 +28,7 @@ namespace System
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
             return Current.Fold(
-                success => Success(success),
+                success => success,
                 otherFactory);
         }
 

@@ -18,7 +18,7 @@ namespace System
 
             return Current.Fold(
                 nextFactory,
-                failure => Failure(mapFailure.Invoke(failure)));
+                failure => mapFailure.Invoke(failure));
         }
 
         public Result<TNextSuccess, TFailure> Forward<TNextSuccess>(
@@ -29,7 +29,7 @@ namespace System
 
             return Current.Fold(
                 nextFactory,
-                failure => Failure(failure));
+                failure => failure);
         }
 
         public Result<TSuccess, TFailure> Forward(

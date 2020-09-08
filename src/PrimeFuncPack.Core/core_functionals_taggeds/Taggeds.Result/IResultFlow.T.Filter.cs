@@ -1,7 +1,5 @@
 ﻿#nullable enable
 
-using static System.Result;
-
 namespace System
 {
     partial interface IResultFlow<TSuccess, TFailure>
@@ -18,12 +16,12 @@ namespace System
 
             return Current.Fold(
                 Filter,
-                failure => Failure(mapFailure.Invoke(failure)));
+                failure => mapFailure.Invoke(failure));
 
             Result<TSuccess, TCauseFailure> Filter(TSuccess success) => predicate.Invoke(success) switch
             {
                 true => Current.MapFailure(mapFailure),
-                _ => Failure(causeFactory.Invoke(success))
+                _ => causeFactory.Invoke(success)
             };
         }
 
@@ -36,12 +34,12 @@ namespace System
 
             return Current.Fold(
                 Filter,
-                failure => Failure(failure));
+                _ => Current);
 
             Result<TSuccess, TFailure> Filter(TSuccess success) => predicate.Invoke(success) switch
             {
                 true => Current,
-                _ => Failure(causeFactory.Invoke(success))
+                _ => causeFactory.Invoke(success)
             };
         }
     }
