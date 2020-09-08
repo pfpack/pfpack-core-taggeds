@@ -32,8 +32,12 @@ namespace System
             boxSecond = second;
         }
 
-        private Optional<TFirst> First() => Optional.Wrap(boxFirst);
+        private Optional<TFirst> First() => ToOptional(boxFirst);
 
-        private Optional<TSecond> Second() => Optional.Wrap(boxSecond);
+        private Optional<TSecond> Second() => ToOptional(boxSecond);
+
+        private static Optional<T> ToOptional<T>(in Box<T>? box)
+            =>
+            box switch { not null => Optional<T>.Present(box), _ => Optional<T>.Absent };
     }
 }

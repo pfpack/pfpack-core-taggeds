@@ -7,9 +7,9 @@ namespace System
 {
     public sealed class BoxSamenessComparer<T> : IEqualityComparer<Box<T>>
     {
-        public bool Equals([AllowNull] Box<T> x, [AllowNull] Box<T> y)
+        public bool Equals([AllowNull] Box<T> boxA, [AllowNull] Box<T> boxB)
             =>
-            Box<T>.Same(x, y);
+            Box<T>.Same(boxA, boxB);
 
         public int GetHashCode([DisallowNull] Box<T> box) => box switch
         {

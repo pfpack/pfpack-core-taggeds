@@ -12,8 +12,8 @@ namespace System
             _ = mapSecond ?? throw new ArgumentNullException(nameof(mapSecond));
 
             return ImplFold(
-                value => value.InvokePipe(mapFirst).InvokePipe(TaggedUnion<TResultFirst, TResultSecond>.First),
-                value => value.InvokePipe(mapSecond).InvokePipe(TaggedUnion<TResultFirst, TResultSecond>.Second))
+                value => TaggedUnion<TResultFirst, TResultSecond>.First(mapFirst.Invoke(value)),
+                value => TaggedUnion<TResultFirst, TResultSecond>.Second(mapSecond.Invoke(value)))
             .OrElse(
                 () => default);
         }

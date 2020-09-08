@@ -28,6 +28,6 @@ namespace System
 
         private TaggedUnion<TSuccess, TFailure> SuccessSource => union;
 
-        private TaggedUnion<TSuccess, TFailure> FailureSource => union.OrInited();
+        private TaggedUnion<TSuccess, TFailure> FailureSource => union.OrFailure();
     }
 }

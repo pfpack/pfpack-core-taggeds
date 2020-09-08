@@ -12,7 +12,7 @@ namespace System
 
         public Task<Optional<TResult>> FlatMapAsync<TResult>(Func<T, Task<Optional<TResult>>> mapAsync)
             =>
-            ImplFold(mapAsync, () => Task.FromResult<Optional<TResult>>(default));
+            ImplFold(mapAsync, () => default(Optional<TResult>));
 
         public ValueTask<Optional<TResult>> FlatMapAsync<TResult>(Func<T, ValueTask<Optional<TResult>>> mapAsync)
             =>

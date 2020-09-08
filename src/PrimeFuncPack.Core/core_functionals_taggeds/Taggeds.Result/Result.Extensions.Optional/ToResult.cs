@@ -7,6 +7,8 @@ namespace System
     {
         public static Result<T, Unit> ToResult<T>(this Optional<T> optional) where T : notnull
             =>
-            throw new NotImplementedException(); // TODO: Implement
+            optional
+            .FilterNotNull()
+            .Fold(Result.Present<T>, Result.Absent<T>);
     }
 }

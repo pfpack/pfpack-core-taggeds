@@ -11,9 +11,5 @@ namespace System
         public static Optional<T> Absent<T>()
             =>
             Optional<T>.Absent;
-
-        public static Optional<T> Wrap<T>(Box<T>? box)
-            =>
-            Optional<T>.Wrap(box);
     }
 }

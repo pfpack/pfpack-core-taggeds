@@ -6,13 +6,13 @@ namespace System
 {
     public sealed class OptionalSamenessComparer<T> : IEqualityComparer<Optional<T>>
     {
-        public bool Equals(Optional<T> x, Optional<T> y)
+        public bool Equals(Optional<T> optionalA, Optional<T> optionalB)
             =>
-            Optional<T>.Same(x, y);
+            Optional<T>.Same(optionalA, optionalB);
 
-        public int GetHashCode(Optional<T> obj)
+        public int GetHashCode(Optional<T> optional)
             =>
-            obj.GetSamenessHashCode();
+            optional.GetSamenessHashCode();
 
         public static OptionalSamenessComparer<T> Default => OptionalSamenessComparerDefault<T>.Value;
     }
