@@ -14,7 +14,7 @@ namespace System
             =>
             ImplOr(Task.FromResult, otherFactoryAsync);
 
-        public ValueTask<TaggedUnion<TFirst, TSecond>> OrAsync(Func<ValueTask<TaggedUnion<TFirst, TSecond>>> otherFactoryAsync)
+        public ValueTask<TaggedUnion<TFirst, TSecond>> OrValueAsync(Func<ValueTask<TaggedUnion<TFirst, TSecond>>> otherFactoryAsync)
             =>
             ImplOr(ValueTask.FromResult, otherFactoryAsync);
     }

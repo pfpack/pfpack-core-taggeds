@@ -14,7 +14,7 @@ namespace System
             =>
             ImplFold(mapAsync, () => default(Optional<TResult>));
 
-        public ValueTask<Optional<TResult>> FlatMapAsync<TResult>(Func<T, ValueTask<Optional<TResult>>> mapAsync)
+        public ValueTask<Optional<TResult>> FlatMapValueAsync<TResult>(Func<T, ValueTask<Optional<TResult>>> mapAsync)
             =>
             ImplFold(mapAsync, () => default);
     }

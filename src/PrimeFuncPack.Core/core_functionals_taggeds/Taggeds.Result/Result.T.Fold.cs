@@ -25,11 +25,11 @@ namespace System
                 mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync)),
                 Fold_OtherFactory_MustNeverBeInvoked<TResult>);
 
-        public ValueTask<TResult> FoldAsync<TResult>(
+        public ValueTask<TResult> FoldValueAsync<TResult>(
             Func<TSuccess, ValueTask<TResult>> mapSuccessAsync,
             Func<TFailure, ValueTask<TResult>> mapFailureAsync)
             =>
-            FoldSource.FoldAsync(
+            FoldSource.FoldValueAsync(
                 mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync)),
                 mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync)),
                 Fold_OtherFactory_MustNeverBeInvoked<TResult>);

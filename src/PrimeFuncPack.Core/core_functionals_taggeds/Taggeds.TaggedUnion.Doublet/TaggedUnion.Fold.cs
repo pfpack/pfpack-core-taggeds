@@ -64,14 +64,14 @@ namespace System
 
         // FoldAsync / ValueTask
 
-        public ValueTask<TResult> FoldAsync<TResult>(
+        public ValueTask<TResult> FoldValueAsync<TResult>(
             Func<TFirst, ValueTask<TResult>> mapFirstAsync,
             Func<TSecond, ValueTask<TResult>> mapSecondAsync,
             TResult other)
             =>
             ImplFold(mapFirstAsync, mapSecondAsync).OrElse(ValueTask.FromResult(other));
 
-        public ValueTask<TResult> FoldAsync<TResult>(
+        public ValueTask<TResult> FoldValueAsync<TResult>(
             Func<TFirst, ValueTask<TResult>> mapFirstAsync,
             Func<TSecond, ValueTask<TResult>> mapSecondAsync,
             Func<TResult> otherFactory)
@@ -81,7 +81,7 @@ namespace System
             return ImplFold(mapFirstAsync, mapSecondAsync).OrElse(() => ValueTask.FromResult(otherFactory.Invoke()));
         }
 
-        public ValueTask<TResult> FoldAsync<TResult>(
+        public ValueTask<TResult> FoldValueAsync<TResult>(
             Func<TFirst, ValueTask<TResult>> mapFirstAsync,
             Func<TSecond, ValueTask<TResult>> mapSecondAsync,
             Func<ValueTask<TResult>> otherFactoryAsync)

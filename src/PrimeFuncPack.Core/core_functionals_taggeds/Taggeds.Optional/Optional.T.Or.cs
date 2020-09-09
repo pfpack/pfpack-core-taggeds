@@ -14,7 +14,7 @@ namespace System
             =>
             ImplOr(Task.FromResult, otherFactoryAsync);
 
-        public ValueTask<Optional<T>> OrAsync(Func<ValueTask<Optional<T>>> otherFactoryAsync)
+        public ValueTask<Optional<T>> OrValueAsync(Func<ValueTask<Optional<T>>> otherFactoryAsync)
             =>
             ImplOr(ValueTask.FromResult, otherFactoryAsync);
     }

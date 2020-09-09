@@ -18,7 +18,7 @@ namespace System
             =>
             ImplFold(Task.FromResult, otherFactoryAsync);
 
-        public ValueTask<T> OrElseAsync(Func<ValueTask<T>> otherFactoryAsync)
+        public ValueTask<T> OrElseValueAsync(Func<ValueTask<T>> otherFactoryAsync)
             =>
             ImplFold(ValueTask.FromResult, otherFactoryAsync);
     }

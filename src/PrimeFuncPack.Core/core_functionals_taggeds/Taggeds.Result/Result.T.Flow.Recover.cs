@@ -6,6 +6,8 @@ namespace System
 {
     partial struct Result<TSuccess, TFailure>
     {
+        // Recover
+
         public Result<TOtherSuccess, TOtherFailure> Recover<TOtherSuccess, TOtherFailure>(
             Func<TFailure, Result<TOtherSuccess, TOtherFailure>> otherFactory,
             Func<TSuccess, TOtherSuccess> mapSuccess)
@@ -36,6 +38,8 @@ namespace System
 
             return Fold(_ => @this, otherFactory);
         }
+
+        // RecoverAsync / Task
 
         public Task<Result<TOtherSuccess, TOtherFailure>> RecoverAsync<TOtherSuccess, TOtherFailure>(
             Func<TFailure, Task<Result<TOtherSuccess, TOtherFailure>>> otherFactoryAsync,
@@ -72,7 +76,9 @@ namespace System
             return FoldAsync(_ => @this, otherFactoryAsync);
         }
 
-        public ValueTask<Result<TOtherSuccess, TOtherFailure>> RecoverAsync<TOtherSuccess, TOtherFailure>(
+        // RecoverAsync / ValueTask
+
+        public ValueTask<Result<TOtherSuccess, TOtherFailure>> RecoverValueAsync<TOtherSuccess, TOtherFailure>(
             Func<TFailure, ValueTask<Result<TOtherSuccess, TOtherFailure>>> otherFactoryAsync,
             Func<TSuccess, TOtherSuccess> mapSuccess)
             where TOtherSuccess : notnull
@@ -81,30 +87,30 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
-            return FoldAsync(
+            return FoldValueAsync(
                 success => (Result<TOtherSuccess, TOtherFailure>)mapSuccess.Invoke(success),
                 otherFactoryAsync);
         }
 
-        public ValueTask<Result<TSuccess, TOtherFailure>> RecoverAsync<TOtherFailure>(
+        public ValueTask<Result<TSuccess, TOtherFailure>> RecoverValueAsync<TOtherFailure>(
             Func<TFailure, ValueTask<Result<TSuccess, TOtherFailure>>> otherFactoryAsync)
             where TOtherFailure : notnull, new()
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return FoldAsync(
+            return FoldValueAsync(
                 success => (Result<TSuccess, TOtherFailure>)success,
                 otherFactoryAsync);
         }
 
-        public ValueTask<Result<TSuccess, TFailure>> RecoverAsync(
+        public ValueTask<Result<TSuccess, TFailure>> RecoverValueAsync(
             Func<TFailure, ValueTask<Result<TSuccess, TFailure>>> otherFactoryAsync)
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
             var @this = this;
 
-            return FoldAsync(_ => @this, otherFactoryAsync);
+            return FoldValueAsync(_ => @this, otherFactoryAsync);
         }
     }
 }
