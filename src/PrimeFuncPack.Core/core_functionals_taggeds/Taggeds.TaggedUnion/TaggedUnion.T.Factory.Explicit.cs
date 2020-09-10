@@ -6,10 +6,10 @@ namespace System
     {
         public static TaggedUnion<TFirst, TSecond> First(TFirst first)
             =>
-            new TaggedUnion<TFirst, TSecond>(first: first);
+            new TaggedUnion<TFirst, TSecond>(first);
 
         public static TaggedUnion<TFirst, TSecond> Second(TSecond second)
             =>
-            new TaggedUnion<TFirst, TSecond>(second: second);
+            new TaggedUnion<TFirst, TSecond>(second);
     }
 }
