@@ -39,7 +39,7 @@ namespace System
             return Fold(nextFactory, _ => @this);
         }
 
-        // ForwardAsync / Task
+        // Forward Async / Task
 
         public Task<Result<TNextSuccess, TNextFailure>> ForwardAsync<TNextSuccess, TNextFailure>(
             Func<TSuccess, Task<Result<TNextSuccess, TNextFailure>>> nextFactoryAsync,
@@ -76,7 +76,7 @@ namespace System
             return FoldAsync(nextFactoryAsync, _ => @this);
         }
 
-        // ForwardAsync / ValueTask
+        // Forward Async / ValueTask
 
         public ValueTask<Result<TNextSuccess, TNextFailure>> ForwardValueAsync<TNextSuccess, TNextFailure>(
             Func<TSuccess, ValueTask<Result<TNextSuccess, TNextFailure>>> nextFactoryAsync,

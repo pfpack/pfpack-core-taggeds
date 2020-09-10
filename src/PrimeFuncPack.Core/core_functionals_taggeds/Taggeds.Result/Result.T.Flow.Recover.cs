@@ -39,7 +39,7 @@ namespace System
             return Fold(_ => @this, otherFactory);
         }
 
-        // RecoverAsync / Task
+        // Recover Async / Task
 
         public Task<Result<TOtherSuccess, TOtherFailure>> RecoverAsync<TOtherSuccess, TOtherFailure>(
             Func<TFailure, Task<Result<TOtherSuccess, TOtherFailure>>> otherFactoryAsync,
@@ -76,7 +76,7 @@ namespace System
             return FoldAsync(_ => @this, otherFactoryAsync);
         }
 
-        // RecoverAsync / ValueTask
+        // Recover Async / ValueTask
 
         public ValueTask<Result<TOtherSuccess, TOtherFailure>> RecoverValueAsync<TOtherSuccess, TOtherFailure>(
             Func<TFailure, ValueTask<Result<TOtherSuccess, TOtherFailure>>> otherFactoryAsync,
