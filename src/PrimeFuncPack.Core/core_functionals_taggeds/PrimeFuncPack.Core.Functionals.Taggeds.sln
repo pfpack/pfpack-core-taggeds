@@ -9,9 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taggeds.Optional", "Taggeds
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taggeds.Result", "Taggeds.Result\Taggeds.Result.csproj", "{D1383954-01D8-4919-969A-9EE9A761331D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taggeds.TaggedUnion.Doublet", "Taggeds.TaggedUnion.Doublet\Taggeds.TaggedUnion.Doublet.csproj", "{3D3517FB-125D-4FB7-9067-92D1FB1C450C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taggeds.TaggedUnions", "Taggeds.TaggedUnions\Taggeds.TaggedUnions.csproj", "{F7CE9051-6049-4210-A751-5E55E3B529E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taggeds.TaggedUnion", "Taggeds.TaggedUnion\Taggeds.TaggedUnion.csproj", "{3D3517FB-125D-4FB7-9067-92D1FB1C450C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{3D3517FB-125D-4FB7-9067-92D1FB1C450C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D3517FB-125D-4FB7-9067-92D1FB1C450C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D3517FB-125D-4FB7-9067-92D1FB1C450C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7CE9051-6049-4210-A751-5E55E3B529E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7CE9051-6049-4210-A751-5E55E3B529E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7CE9051-6049-4210-A751-5E55E3B529E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7CE9051-6049-4210-A751-5E55E3B529E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

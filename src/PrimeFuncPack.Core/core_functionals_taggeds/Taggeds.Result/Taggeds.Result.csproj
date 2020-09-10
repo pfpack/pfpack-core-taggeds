@@ -22,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="PrimeFuncPack.Core.Functionals.Taggeds.TaggedUnions" Version="1.0.0-preview.1.0.*" />
+	  <PackageReference Include="PrimeFuncPack.Core.Functionals.Taggeds.TaggedUnion" Version="1.0.0-preview.1.0.*" />
 	</ItemGroup>
 
 </Project>
