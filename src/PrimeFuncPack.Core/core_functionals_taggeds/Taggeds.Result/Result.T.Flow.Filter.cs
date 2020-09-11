@@ -18,15 +18,13 @@ namespace System
             _ = causeFactory ?? throw new ArgumentNullException(nameof(causeFactory));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            var @this = this;
-
             return Fold(FilterSuccess, failure => mapFailure.Invoke(failure));
 
             Result<TSuccess, TCauseFailure> FilterSuccess(TSuccess success)
                 =>
                 predicate.Invoke(success) switch
                 {
-                    true => @this.MapFailure(mapFailure),
+                    true => success,
                     _ => causeFactory.Invoke(success)
                 };
         }
@@ -63,15 +61,13 @@ namespace System
             _ = causeFactoryAsync ?? throw new ArgumentNullException(nameof(causeFactoryAsync));
             _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-            var @this = this;
-
             return FoldAsync(FilterSuccessAsync, MapFailureAsync);
 
             async Task<Result<TSuccess, TCauseFailure>> FilterSuccessAsync(TSuccess success)
                 =>
                 await predicateAsync.Invoke(success).ConfigureAwait(false) switch
                 {
-                    true => await @this.MapFailureAsync(mapFailureAsync).ConfigureAwait(false),
+                    true => success,
                     _ => await causeFactoryAsync.Invoke(success).ConfigureAwait(false)
                 };
 
@@ -112,15 +108,13 @@ namespace System
             _ = causeFactoryAsync ?? throw new ArgumentNullException(nameof(causeFactoryAsync));
             _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-            var @this = this;
-
             return FoldValueAsync(FilterSuccessValueAsync, MapFailureValueAsync);
 
             async ValueTask<Result<TSuccess, TCauseFailure>> FilterSuccessValueAsync(TSuccess success)
                 =>
                 await predicateAsync.Invoke(success).ConfigureAwait(false) switch
                 {
-                    true => await @this.MapFailureValueAsync(mapFailureAsync).ConfigureAwait(false),
+                    true => success,
                     _ => await causeFactoryAsync.Invoke(success).ConfigureAwait(false)
                 };
 
