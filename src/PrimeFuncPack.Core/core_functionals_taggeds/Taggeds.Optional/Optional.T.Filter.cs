@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using System.Threading.Tasks;
+
 namespace System
 {
     partial struct Optional<T>
@@ -10,13 +12,49 @@ namespace System
 
             var @this = this;
 
-            return ImplFold(Filter, () => @this);
+            return ImplFold(FilterPresent, () => @this);
 
-            Optional<T> Filter(T value) => predicate.Invoke(value) switch
-            {
-                true => @this,
-                _ => default
-            };
+            Optional<T> FilterPresent(T value)
+                =>
+                predicate.Invoke(value) switch
+                {
+                    true => @this,
+                    _ => default
+                };
+        }
+
+        public Task<Optional<T>> FilterAsync(Func<T, Task<bool>> predicateAsync)
+        {
+            _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
+
+            var @this = this;
+
+            return ImplFold(FilterPresentAsync, () => @this);
+
+            async Task<Optional<T>> FilterPresentAsync(T value)
+                =>
+                await predicateAsync.Invoke(value).ConfigureAwait(false) switch
+                {
+                    true => @this,
+                    _ => default
+                };
+        }
+
+        public ValueTask<Optional<T>> FilterValueAsync(Func<T, ValueTask<bool>> predicateAsync)
+        {
+            _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
+
+            var @this = this;
+
+            return ImplFold(FilterPresentValueAsync, () => @this);
+
+            async ValueTask<Optional<T>> FilterPresentValueAsync(T value)
+                =>
+                await predicateAsync.Invoke(value).ConfigureAwait(false) switch
+                {
+                    true => @this,
+                    _ => default
+                };
         }
     }
 }

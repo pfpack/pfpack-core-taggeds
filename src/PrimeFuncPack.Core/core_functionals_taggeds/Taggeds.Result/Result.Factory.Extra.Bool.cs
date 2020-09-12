@@ -1,17 +1,15 @@
 ﻿#nullable enable
 
-using PrimeFuncPack.Core.Result.Builders;
-
 namespace System
 {
     partial class Result
     {
         public static Result<Unit, Unit> True()
             =>
-            SuccessBuilder<Unit>.Create(default);
+            Result<Unit, Unit>.Success(default);
 
         public static Result<Unit, Unit> False()
             =>
-            FailureBuilder<Unit>.Create(default);
+            Result<Unit, Unit>.Failure(default);
     }
 }
