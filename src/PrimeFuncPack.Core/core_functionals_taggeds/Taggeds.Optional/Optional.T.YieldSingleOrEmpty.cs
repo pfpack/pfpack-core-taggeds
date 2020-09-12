@@ -9,6 +9,6 @@ namespace System
     {
         public IEnumerable<T> YieldSingleOrEmpty()
             =>
-            ImplFold(YieldSingle, YieldEmpty<T>);
+            Fold(YieldSingle, YieldEmpty<T>);
     }
 }

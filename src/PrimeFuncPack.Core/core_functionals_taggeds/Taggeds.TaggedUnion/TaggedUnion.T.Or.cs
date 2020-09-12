@@ -8,14 +8,20 @@ namespace System
     {
         public TaggedUnion<TFirst, TSecond> Or(Func<TaggedUnion<TFirst, TSecond>> otherFactory)
             =>
-            ImplOr(Pipeline.Pipe, otherFactory);
+            InternalOr(
+                Pipeline.Pipe,
+                otherFactory ?? throw new ArgumentNullException(nameof(otherFactory)));
 
         public Task<TaggedUnion<TFirst, TSecond>> OrAsync(Func<Task<TaggedUnion<TFirst, TSecond>>> otherFactoryAsync)
             =>
-            ImplOr(Task.FromResult, otherFactoryAsync);
+            InternalOr(
+                Task.FromResult,
+                otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 
         public ValueTask<TaggedUnion<TFirst, TSecond>> OrValueAsync(Func<ValueTask<TaggedUnion<TFirst, TSecond>>> otherFactoryAsync)
             =>
-            ImplOr(ValueTask.FromResult, otherFactoryAsync);
+            InternalOr(
+                ValueTask.FromResult,
+                otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
     }
 }
