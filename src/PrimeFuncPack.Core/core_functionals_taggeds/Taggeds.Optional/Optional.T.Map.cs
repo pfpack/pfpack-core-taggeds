@@ -10,7 +10,7 @@ namespace System
         {
             _ = map ?? throw new ArgumentNullException(nameof(map));
 
-            return ImplFold(MapPresent, () => default);
+            return Fold(MapPresent, () => default);
 
             Optional<TResult> MapPresent(T value)
                 =>
@@ -21,7 +21,7 @@ namespace System
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return ImplFold(MapPresentAsync, () => default(Optional<TResult>));
+            return FoldAsync(MapPresentAsync, () => default(Optional<TResult>));
 
             async Task<Optional<TResult>> MapPresentAsync(T value)
                 =>
@@ -32,7 +32,7 @@ namespace System
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return ImplFold(MapPresentValueAsync, () => default(Optional<TResult>));
+            return FoldValueAsync(MapPresentValueAsync, () => default(Optional<TResult>));
 
             async ValueTask<Optional<TResult>> MapPresentValueAsync(T value)
                 =>

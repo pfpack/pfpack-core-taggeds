@@ -12,7 +12,7 @@ namespace System
 
             var @this = this;
 
-            return ImplFold(FilterPresent, () => @this);
+            return Fold(FilterPresent, () => @this);
 
             Optional<T> FilterPresent(T value)
                 =>
@@ -29,7 +29,7 @@ namespace System
 
             var @this = this;
 
-            return ImplFold(FilterPresentAsync, () => @this);
+            return FoldAsync(FilterPresentAsync, () => @this);
 
             async Task<Optional<T>> FilterPresentAsync(T value)
                 =>
@@ -46,7 +46,7 @@ namespace System
 
             var @this = this;
 
-            return ImplFold(FilterPresentValueAsync, () => @this);
+            return FoldValueAsync(FilterPresentValueAsync, () => @this);
 
             async ValueTask<Optional<T>> FilterPresentValueAsync(T value)
                 =>

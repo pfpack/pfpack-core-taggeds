@@ -8,18 +8,18 @@ namespace System
     {
         public T OrElse(T other)
             =>
-            ImplFold(Pipeline.Pipe, () => other);
+            Fold(Pipeline.Pipe, () => other);
 
         public T OrElse(Func<T> otherFactory)
             =>
-            ImplFold(Pipeline.Pipe, otherFactory);
+            Fold(Pipeline.Pipe, otherFactory);
 
         public Task<T> OrElseAsync(Func<Task<T>> otherFactoryAsync)
             =>
-            ImplFold(Task.FromResult, otherFactoryAsync);
+            FoldAsync(Task.FromResult, otherFactoryAsync);
 
         public ValueTask<T> OrElseValueAsync(Func<ValueTask<T>> otherFactoryAsync)
             =>
-            ImplFold(ValueTask.FromResult, otherFactoryAsync);
+            FoldValueAsync(ValueTask.FromResult, otherFactoryAsync);
     }
 }

@@ -8,6 +8,6 @@ namespace System
     {
         public override string ToString()
             =>
-            ImplFold(ToStringOrEmpty, ToStringOrEmpty).OrElse(GetEmpty);
+            Fold(ToStringOrEmpty, ToStringOrEmpty, GetEmpty);
     }
 }
