@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace PrimeFuncPack.DependencyPipeline.Tests
+namespace PrimeFuncPack.Tests
 {
     public sealed partial class DependencyPipelineTests
     {

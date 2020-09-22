@@ -2,7 +2,7 @@
 
 using System;
 
-namespace PrimeFuncPack.DependencyPipeline
+namespace PrimeFuncPack
 {
     public delegate T Resolver<out T>(IServiceProvider serviceProvider);
 }

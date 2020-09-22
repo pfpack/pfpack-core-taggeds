@@ -1,25 +1,23 @@
 ﻿#nullable enable
 
 using Moq;
-using PrimeFuncPack.DependencyPipeline.Extensions;
-using PrimeFuncPack.DependencyPipeline.Tests.Stubs;
-using PrimeFuncPack.DependencyPipeline.Tests.TestEntities;
 using PrimeFuncPack.UnitTest.Moq;
 using System;
 using Xunit;
+using static PrimeFuncPack.Tests.TestEntityDateGenerator;
 using static PrimeFuncPack.UnitTest.Data.DataGenerator;
 
-namespace PrimeFuncPack.DependencyPipeline.Tests
+namespace PrimeFuncPack.Tests
 {
     partial class PipelineExtensionsTests
     {
         [Fact]
         public void AndFourth_SourcePipelineIsNull_ExpectArgumentNullException()
         {
-            IDependencyPipeline<(RefType, int, DateTime, string)> sourcePipeline = null!;
+            DependencyPipeline<(RefType, int, DateTime, string)> sourcePipeline = null!;
 
-            var mockOtherResolver = MockFuncFactory.CreateMockResolver(new StructType());
-            var otherPipeline = new StubDependencyPipeline<StructType>(mockOtherResolver.Object);
+            var mockOtherResolver = MockFuncFactory.CreateMockResolver(GenerateStructType());
+            var otherPipeline = new DependencyPipeline<StructType>(mockOtherResolver.Object.Resolve);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.And(otherPipeline));
             Assert.Equal("sourcePipeline", ex.ParamName);
@@ -28,8 +26,8 @@ namespace PrimeFuncPack.DependencyPipeline.Tests
         [Fact]
         public void AndFourth_OtherPipelineIsNull_ExpectArgumentNullException()
         {
-            var mockSourceResolver = MockFuncFactory.CreateMockResolver((new RefType(), GenerateInteger(), DateTime.Now, GenerateText()));
-            var sourcePipeline = new StubDependencyPipeline<(RefType, int, DateTime, string)>(mockSourceResolver.Object);
+            var mockSourceResolver = MockFuncFactory.CreateMockResolver((GenerateRefType(), GenerateInteger(), DateTime.Now, GenerateText()));
+            var sourcePipeline = new DependencyPipeline<(RefType, int, DateTime, string)>(mockSourceResolver.Object.Resolve);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.And<RefType, int, DateTime, string, StructType>(null!));
             Assert.Equal("otherPipeline", ex.ParamName);
@@ -38,11 +36,11 @@ namespace PrimeFuncPack.DependencyPipeline.Tests
         [Fact]
         public void AndFourth_ThenResolve_ExpectCallResolveSourceOnce()
         {
-            var mockSourceResolver = MockFuncFactory.CreateMockResolver((new RefType(), GenerateInteger(), DateTime.Now, GenerateText()));
-            var sourcePipeline = new StubDependencyPipeline<(RefType, int, DateTime, string)>(mockSourceResolver.Object);
+            var mockSourceResolver = MockFuncFactory.CreateMockResolver((GenerateRefType(), GenerateInteger(), DateTime.Now, GenerateText()));
+            var sourcePipeline = new DependencyPipeline<(RefType, int, DateTime, string)>(mockSourceResolver.Object.Resolve);
 
-            var mockOtherResolver = MockFuncFactory.CreateMockResolver(new StructType());
-            var otherPipeline = new StubDependencyPipeline<StructType>(mockOtherResolver.Object);
+            var mockOtherResolver = MockFuncFactory.CreateMockResolver(GenerateStructType());
+            var otherPipeline = new DependencyPipeline<StructType>(mockOtherResolver.Object.Resolve);
 
             var actualPipeline = sourcePipeline.And(otherPipeline);
 
@@ -55,11 +53,11 @@ namespace PrimeFuncPack.DependencyPipeline.Tests
         [Fact]
         public void AndFourth_ThenResolve_ExpectCallResolveOtherOnce()
         {
-            var mockSourceResolver = MockFuncFactory.CreateMockResolver((new RefType(), GenerateInteger(), DateTime.Now, GenerateText()));
-            var sourcePipeline = new StubDependencyPipeline<(RefType, int, DateTime, string)>(mockSourceResolver.Object);
+            var mockSourceResolver = MockFuncFactory.CreateMockResolver((GenerateRefType(), GenerateInteger(), DateTime.Now, GenerateText()));
+            var sourcePipeline = new DependencyPipeline<(RefType, int, DateTime, string)>(mockSourceResolver.Object.Resolve);
 
-            var mockOtherResolver = MockFuncFactory.CreateMockResolver(new StructType());
-            var otherPipeline = new StubDependencyPipeline<StructType>(mockOtherResolver.Object);
+            var mockOtherResolver = MockFuncFactory.CreateMockResolver(GenerateStructType());
+            var otherPipeline = new DependencyPipeline<StructType>(mockOtherResolver.Object.Resolve);
 
             var actualPipeline = sourcePipeline.And(otherPipeline);
 
@@ -70,26 +68,22 @@ namespace PrimeFuncPack.DependencyPipeline.Tests
         }
 
         [Theory]
-        [MemberData(nameof(TestEntityTestData.StructTypeTestSource), MemberType = typeof(TestEntityTestData))]
+        [MemberData(nameof(StructTypeTestSource), MemberType = typeof(TestEntityDateGenerator))]
         public void AndFourth_ThenResolve_ExpectResolvedtupleValue(
             in StructType firstValue)
         {
             var secondValue = GenerateDecimal();
-            DateTime thirdValue = DateTime.Now.AddYears(5);
+            var thirdValue = DateTime.Now.AddYears(5);
 
             var fourthValue = GenerateText();
             var sourceValue = (firstValue, secondValue, thirdValue, fourthValue);
 
             var mockSourceResolver = MockFuncFactory.CreateMockResolver(sourceValue);
-            var sourcePipeline = new StubDependencyPipeline<(StructType, decimal, DateTime, string)>(mockSourceResolver.Object);
+            var sourcePipeline = new DependencyPipeline<(StructType, decimal, DateTime, string)>(mockSourceResolver.Object.Resolve);
 
-            var otherValue = new RefType
-            {
-                Id = GenerateInteger()
-            };
-
+            var otherValue = GenerateRefType();
             var mockOtherResolver = MockFuncFactory.CreateMockResolver(otherValue);
-            var otherPipeline = new StubDependencyPipeline<RefType>(mockOtherResolver.Object);
+            var otherPipeline = new DependencyPipeline<RefType>(mockOtherResolver.Object.Resolve);
 
             var actualPipeline = sourcePipeline.And(otherPipeline);
 

@@ -3,12 +3,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace PrimeFuncPack.DependencyPipeline.Extensions
+namespace PrimeFuncPack
 {
-    public static class DependencyInjectionPipelineExtensions
+    public static class DependencyPipelineInjectionExtensions
     {
-        public static IDependencyPipeline<TService> InjectSingleton<TService>(
-            this IDependencyPipeline<TService> sourcePipeline,
+        public static DependencyPipeline<TService> InjectSingleton<TService>(
+            this DependencyPipeline<TService> sourcePipeline,
             in IServiceCollection services)
             where TService : class
         {
@@ -17,12 +17,12 @@ namespace PrimeFuncPack.DependencyPipeline.Extensions
 
             return services.AddSingleton(sourcePipeline.Resolve) switch
             {
-                _ => new RegisteredDependencyPipeline<TService>()
+                _ => InjectedDependencyPipeline.ContinueFromServiceProvider<TService>()
             };
         }
 
-        public static IDependencyPipeline<TService> InjectScoped<TService>(
-            this IDependencyPipeline<TService> sourcePipeline,
+        public static DependencyPipeline<TService> InjectScoped<TService>(
+            this DependencyPipeline<TService> sourcePipeline,
             in IServiceCollection services)
             where TService : class
         {
@@ -31,12 +31,12 @@ namespace PrimeFuncPack.DependencyPipeline.Extensions
 
             return services.AddScoped(sourcePipeline.Resolve) switch
             {
-                _ => new RegisteredDependencyPipeline<TService>()
+                _ => InjectedDependencyPipeline.ContinueFromServiceProvider<TService>()
             };
         }
 
-        public static IDependencyPipeline<TService> InjectTransient<TService>(
-            this IDependencyPipeline<TService> sourcePipeline,
+        public static DependencyPipeline<TService> InjectTransient<TService>(
+            this DependencyPipeline<TService> sourcePipeline,
             in IServiceCollection services)
             where TService : class
         {
@@ -45,7 +45,7 @@ namespace PrimeFuncPack.DependencyPipeline.Extensions
 
             return services.AddTransient(sourcePipeline.Resolve) switch
             {
-                _ => new RegisteredDependencyPipeline<TService>()
+                _ => InjectedDependencyPipeline.ContinueFromServiceProvider<TService>()
             };
         }
     }
