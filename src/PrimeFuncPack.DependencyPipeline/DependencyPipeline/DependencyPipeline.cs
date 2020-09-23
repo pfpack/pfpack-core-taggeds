@@ -5,17 +5,32 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("PrimeFuncPack.DependencyPipeline.Tests")]
 
-namespace PrimeFuncPack.DependencyPipeline
+namespace PrimeFuncPack
 {
     public static class DependencyPipeline
     {
-        public static IDependencyPipeline<T> Start<T>(
+        public static DependencyPipeline<Unit> Start()
+            =>
+            InternalStart(
+                _ => Unit.Value);
+
+        public static DependencyPipeline<T> Start<T>(
+            in T sourceValue)
+            =>
+            sourceValue switch
+            {
+                var resolved => InternalStart(_ => resolved)
+            };
+
+        public static DependencyPipeline<T> Start<T>(
             in Resolver<T> resolver)
             =>
-            resolver switch
-            {
-                not null => new ImplDependencyPipeline<T>(resolver),
-                _ => throw new ArgumentNullException(nameof(resolver))
-            };
+            InternalStart(
+                resolver ?? throw new ArgumentNullException(nameof(resolver)));
+
+        internal static DependencyPipeline<T> InternalStart<T>(
+            in Resolver<T> resolver)
+            =>
+            new DependencyPipeline<T>(resolver);
     }
 }

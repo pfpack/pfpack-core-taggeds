@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace PrimeFuncPack.DependencyPipeline.Tests.TestEntities
+namespace PrimeFuncPack.Tests
 {
     public struct StructType
     {

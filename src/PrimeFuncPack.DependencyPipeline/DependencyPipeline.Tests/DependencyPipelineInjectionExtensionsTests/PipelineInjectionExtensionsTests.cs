@@ -3,18 +3,18 @@
 using Moq;
 using System;
 
-namespace PrimeFuncPack.DependencyPipeline.Tests
+namespace PrimeFuncPack.Tests
 {
-    public sealed partial class RegisteredDependencyPipelineTests
+    public sealed partial class PipelineInjectionExtensionsTests
     {
         private static Mock<IServiceProvider> CreateMockServiceProvider(
-            in object result)
+            in object? resultValue)
         {
             var mock = new Mock<IServiceProvider>();
 
             _ = mock
                 .Setup(sp => sp.GetService(It.IsAny<Type>()))
-                .Returns(result);
+                .Returns(resultValue);
 
             return mock;
         }

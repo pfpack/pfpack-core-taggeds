@@ -1,34 +1,38 @@
 ﻿#nullable enable
 
 using Moq;
-using PrimeFuncPack.DependencyPipeline.Tests.TestEntities;
 using PrimeFuncPack.UnitTest.Moq;
 using System;
 using Xunit;
-using static PrimeFuncPack.UnitTest.Data.DataGenerator;
+using static PrimeFuncPack.Tests.TestEntityDateGenerator;
 
-namespace PrimeFuncPack.DependencyPipeline.Tests
+namespace PrimeFuncPack.Tests
 {
     public sealed partial class DependencyPipelineTests
     {
         [Fact]
         public void Start_ResolverIsNull_ExpectArgumentNullException()
         {
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = DependencyPipeline.Start<StructType>(null!));
+            Resolver<StructType> resolver = null!;
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = DependencyPipeline.Start(resolver));
+
             Assert.Equal("resolver", ex.ParamName);
         }
 
         [Fact]
-        public void Start_ExpectImplDependencyPipeline()
+        public void Start_ThenResolve_ServiceProviderIsNull_ExpectArgumentNullException()
         {
-            var actual = DependencyPipeline.Start(_ => new RefType());
-            _ = Assert.IsType<ImplDependencyPipeline<RefType>>(actual);
+            var mockResolver = MockFuncFactory.CreateMockResolver(GenerateStructType());
+            var actualPipeline = DependencyPipeline.Start(mockResolver.Object.Resolve);
+
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = actualPipeline.Resolve(null!));
+            Assert.Equal("serviceProvider", ex.ParamName);
         }
 
         [Fact]
         public void Start_ThenResolve_ExpectCallResolverOnce()
         {
-            var mockResolver = MockFuncFactory.CreateMockResolver(new StructType());
+            var mockResolver = MockFuncFactory.CreateMockResolver(GenerateStructType());
             var actualPipeline = DependencyPipeline.Start(mockResolver.Object.Resolve);
 
             var serviceProvider = Mock.Of<IServiceProvider>();
@@ -37,18 +41,69 @@ namespace PrimeFuncPack.DependencyPipeline.Tests
             mockResolver.Verify(r => r.Resolve(serviceProvider), Times.Once);
         }
 
-        [Fact]
-        public void Start_ThenResolve_ExpectResolvedValue()
+        [Theory]
+        [MemberData(nameof(RefTypeTestSource), MemberType = typeof(TestEntityDateGenerator))]
+        public void Start_ThenResolve_ExpectResolvedValue(
+            in RefType? source)
         {
-            var source = new RefType
-            {
-                Id = GenerateInteger()
-            };
+            var sourceValue = source;
+            var actualPipeline = DependencyPipeline.Start(_ => sourceValue);
 
-            var actualPipeline = DependencyPipeline.Start(_ => source);
             var actual = actualPipeline.Resolve(Mock.Of<IServiceProvider>());
+            Assert.Same(source, actual);
+        }
 
+        [Fact]
+        public void StartFromValue_ThenResolve_ServiceProviderIsNull_ExpectArgumentNullException()
+        {
+            var actualPipeline = DependencyPipeline.Start(GenerateStructType());
+
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = actualPipeline.Resolve(null!));
+            Assert.Equal("serviceProvider", ex.ParamName);
+        }
+
+        [Theory]
+        [MemberData(nameof(RefTypeTestSource), MemberType = typeof(TestEntityDateGenerator))]
+        public void StartFromRefType_ThenResolve_ExpectResolvedValue(
+            in RefType? source)
+        {
+            var actualPipeline = DependencyPipeline.Start(source);
+
+            var actual = actualPipeline.Resolve(Mock.Of<IServiceProvider>());
+            Assert.Same(source, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(StructTypeTestSource), MemberType = typeof(TestEntityDateGenerator))]
+        public void StartFromStructType_ThenResolve_ExpectResolvedValue(
+            in StructType source)
+        {
+            var actualPipeline = DependencyPipeline.Start(source);
+
+            var actual = actualPipeline.Resolve(Mock.Of<IServiceProvider>());
             Assert.Equal(source, actual);
+        }
+
+        [Fact]
+        public void StartUnitPipeline_ThenResolve_ServiceProviderIsNull_ExpectArgumentNullException()
+        {
+            var actualPipeline = DependencyPipeline.Start();
+
+            var ex = Assert.Throws<ArgumentNullException>(() =>
+            {
+                _ = actualPipeline.Resolve(null!);
+            });
+
+            Assert.Equal("serviceProvider", ex.ParamName);
+        }
+
+        [Fact]
+        public void StartUnitPipeline_ThenResolve_ExpectUnit()
+        {
+            var actualPipeline = DependencyPipeline.Start();
+
+            var actual = actualPipeline.Resolve(Mock.Of<IServiceProvider>());
+            Assert.Equal(Unit.Value, actual);
         }
     }
 }

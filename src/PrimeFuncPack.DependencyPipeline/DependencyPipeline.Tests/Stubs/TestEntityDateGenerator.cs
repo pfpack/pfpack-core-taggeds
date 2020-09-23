@@ -4,19 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using static PrimeFuncPack.UnitTest.Data.DataGenerator;
 
-namespace PrimeFuncPack.DependencyPipeline.Tests.TestEntities
+namespace PrimeFuncPack.Tests
 {
-    internal static class TestEntityTestData
+    internal static class TestEntityDateGenerator
     {
         public static IEnumerable<object?[]> RefTypeTestSource
             =>
             new[]
             {
-                new RefType(),
-                new RefType
-                {
-                    Id = GenerateInteger()
-                },
+                GenerateRefType(),
+                GenerateRefType(),
                 null
             }
             .Select(
@@ -26,14 +23,25 @@ namespace PrimeFuncPack.DependencyPipeline.Tests.TestEntities
             =>
             new[]
             {
-                new StructType(),
-                new StructType
-                {
-                    Text = GenerateText()
-                },
+                GenerateStructType(),
+                GenerateStructType(),
                 default
             }
             .Select(
                 value => new object[] { value });
+
+        public static RefType GenerateRefType()
+            =>
+            new RefType
+            {
+                Id = GenerateInteger()
+            };
+
+        public static StructType GenerateStructType()
+            =>
+            new StructType
+            {
+                Text = GenerateText()
+            };
     }
 }
