@@ -51,7 +51,7 @@ namespace System
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
             return FoldAsync(
-                success => (Result<TOtherSuccess, TOtherFailure>)mapSuccess.Invoke(success),
+                success => Task.FromResult<Result<TOtherSuccess, TOtherFailure>>(mapSuccess.Invoke(success)),
                 otherFactoryAsync);
         }
 
@@ -62,7 +62,7 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
             return FoldAsync(
-                success => (Result<TSuccess, TOtherFailure>)success,
+                success => Task.FromResult<Result<TSuccess, TOtherFailure>>(success),
                 otherFactoryAsync);
         }
 
@@ -73,7 +73,7 @@ namespace System
 
             var @this = this;
 
-            return FoldAsync(_ => @this, otherFactoryAsync);
+            return FoldAsync(_ => Task.FromResult(@this), otherFactoryAsync);
         }
 
         // Recover Async / ValueTask
@@ -88,7 +88,7 @@ namespace System
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
             return FoldValueAsync(
-                success => (Result<TOtherSuccess, TOtherFailure>)mapSuccess.Invoke(success),
+                success => ValueTask.FromResult<Result<TOtherSuccess, TOtherFailure>>(mapSuccess.Invoke(success)),
                 otherFactoryAsync);
         }
 
@@ -99,7 +99,7 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
             return FoldValueAsync(
-                success => (Result<TSuccess, TOtherFailure>)success,
+                success => ValueTask.FromResult<Result<TSuccess, TOtherFailure>>(success),
                 otherFactoryAsync);
         }
 
@@ -110,7 +110,7 @@ namespace System
 
             var @this = this;
 
-            return FoldValueAsync(_ => @this, otherFactoryAsync);
+            return FoldValueAsync(_ => ValueTask.FromResult(@this), otherFactoryAsync);
         }
     }
 }
