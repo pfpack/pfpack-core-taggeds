@@ -52,7 +52,7 @@ namespace System
 
             return FoldAsync(
                 nextFactoryAsync,
-                failure => (Result<TNextSuccess, TNextFailure>)mapFailure.Invoke(failure));
+                failure => Task.FromResult<Result<TNextSuccess, TNextFailure>>(mapFailure.Invoke(failure)));
         }
 
         public Task<Result<TNextSuccess, TFailure>> ForwardAsync<TNextSuccess>(
@@ -63,7 +63,7 @@ namespace System
 
             return FoldAsync(
                 nextFactoryAsync,
-                failure => (Result<TNextSuccess, TFailure>)failure);
+                failure => Task.FromResult<Result<TNextSuccess, TFailure>>(failure));
         }
 
         public Task<Result<TSuccess, TFailure>> ForwardAsync(
@@ -73,7 +73,7 @@ namespace System
 
             var @this = this;
 
-            return FoldAsync(nextFactoryAsync, _ => @this);
+            return FoldAsync(nextFactoryAsync, _ => Task.FromResult(@this));
         }
 
         // Forward Async / ValueTask
@@ -89,7 +89,7 @@ namespace System
 
             return FoldValueAsync(
                 nextFactoryAsync,
-                failure => (Result<TNextSuccess, TNextFailure>)mapFailure.Invoke(failure));
+                failure => ValueTask.FromResult<Result<TNextSuccess, TNextFailure>>(mapFailure.Invoke(failure)));
         }
 
         public ValueTask<Result<TNextSuccess, TFailure>> ForwardValueAsync<TNextSuccess>(
@@ -100,7 +100,7 @@ namespace System
 
             return FoldValueAsync(
                 nextFactoryAsync,
-                failure => (Result<TNextSuccess, TFailure>)failure);
+                failure => ValueTask.FromResult<Result<TNextSuccess, TFailure>>(failure));
         }
 
         public ValueTask<Result<TSuccess, TFailure>> ForwardValueAsync(
@@ -110,7 +110,7 @@ namespace System
 
             var @this = this;
 
-            return FoldValueAsync(nextFactoryAsync, _ => @this);
+            return FoldValueAsync(nextFactoryAsync, _ => ValueTask.FromResult(@this));
         }
     }
 }

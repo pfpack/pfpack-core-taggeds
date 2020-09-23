@@ -29,7 +29,7 @@ namespace System
 
             var @this = this;
 
-            return FoldAsync(FilterPresentAsync, () => @this);
+            return FoldAsync(FilterPresentAsync, () => Task.FromResult(@this));
 
             async Task<Optional<T>> FilterPresentAsync(T value)
                 =>
@@ -46,7 +46,7 @@ namespace System
 
             var @this = this;
 
-            return FoldValueAsync(FilterPresentValueAsync, () => @this);
+            return FoldValueAsync(FilterPresentValueAsync, () => ValueTask.FromResult(@this));
 
             async ValueTask<Optional<T>> FilterPresentValueAsync(T value)
                 =>

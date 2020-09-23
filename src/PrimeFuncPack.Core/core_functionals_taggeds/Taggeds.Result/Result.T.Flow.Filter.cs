@@ -85,7 +85,7 @@ namespace System
 
             var @this = this;
 
-            return FoldAsync(FilterSuccessAsync, _ => @this);
+            return FoldAsync(FilterSuccessAsync, _ => Task.FromResult(@this));
 
             async Task<Result<TSuccess, TFailure>> FilterSuccessAsync(TSuccess success)
                 =>
@@ -132,7 +132,7 @@ namespace System
 
             var @this = this;
 
-            return FoldValueAsync(FilterSuccessValueAsync, _ => @this);
+            return FoldValueAsync(FilterSuccessValueAsync, _ => ValueTask.FromResult(@this));
 
             async ValueTask<Result<TSuccess, TFailure>> FilterSuccessValueAsync(TSuccess success)
                 =>

@@ -21,7 +21,7 @@ namespace System
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return FoldAsync(MapPresentAsync, () => default(Optional<TResult>));
+            return FoldAsync(MapPresentAsync, () => Task.FromResult<Optional<TResult>>(default));
 
             async Task<Optional<TResult>> MapPresentAsync(T value)
                 =>
@@ -32,7 +32,7 @@ namespace System
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return FoldValueAsync(MapPresentValueAsync, () => default(Optional<TResult>));
+            return FoldValueAsync(MapPresentValueAsync, () => default);
 
             async ValueTask<Optional<TResult>> MapPresentValueAsync(T value)
                 =>
