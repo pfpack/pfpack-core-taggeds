@@ -12,7 +12,7 @@ namespace PrimeFuncPack.UnitTest.Data
 
         private static Faker Faker { get; }
 
-        public static ArgumentOutOfRangeException CreateMaxMustBeGreaterThenMinException(in string paramName)
+        private static ArgumentOutOfRangeException CreateMaxMustBeGreaterThenMinException(in string paramName)
             => new ArgumentOutOfRangeException(paramName: paramName, message: "Max must be greater than min.");
     }
 }

@@ -6,7 +6,7 @@ using static PrimeFuncPack.UnitTest.Data.DataGenerator;
 
 namespace PrimeFuncPack.Tests
 {
-    internal static class TestEntityDateGenerator
+    internal static class TestEntitySource
     {
         public static IEnumerable<object?[]> RefTypeTestSource
             =>
@@ -29,19 +29,5 @@ namespace PrimeFuncPack.Tests
             }
             .Select(
                 value => new object[] { value });
-
-        public static RefType GenerateRefType()
-            =>
-            new RefType
-            {
-                Id = GenerateInteger()
-            };
-
-        public static StructType GenerateStructType()
-            =>
-            new StructType
-            {
-                Text = GenerateText()
-            };
     }
 }

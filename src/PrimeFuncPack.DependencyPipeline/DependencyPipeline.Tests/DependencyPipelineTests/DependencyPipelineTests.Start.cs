@@ -1,10 +1,11 @@
 ﻿#nullable enable
 
 using Moq;
+using PrimeFuncPack.UnitTest.Data;
 using PrimeFuncPack.UnitTest.Moq;
 using System;
 using Xunit;
-using static PrimeFuncPack.Tests.TestEntityDateGenerator;
+using static PrimeFuncPack.UnitTest.Data.DataGenerator;
 
 namespace PrimeFuncPack.Tests
 {
@@ -42,7 +43,7 @@ namespace PrimeFuncPack.Tests
         }
 
         [Theory]
-        [MemberData(nameof(RefTypeTestSource), MemberType = typeof(TestEntityDateGenerator))]
+        [MemberData(nameof(TestEntitySource.RefTypeTestSource), MemberType = typeof(TestEntitySource))]
         public void Start_ThenResolve_ExpectResolvedValue(
             in RefType? source)
         {
@@ -63,7 +64,7 @@ namespace PrimeFuncPack.Tests
         }
 
         [Theory]
-        [MemberData(nameof(RefTypeTestSource), MemberType = typeof(TestEntityDateGenerator))]
+        [MemberData(nameof(TestEntitySource.RefTypeTestSource), MemberType = typeof(TestEntitySource))]
         public void StartFromRefType_ThenResolve_ExpectResolvedValue(
             in RefType? source)
         {
@@ -74,7 +75,7 @@ namespace PrimeFuncPack.Tests
         }
 
         [Theory]
-        [MemberData(nameof(StructTypeTestSource), MemberType = typeof(TestEntityDateGenerator))]
+        [MemberData(nameof(TestEntitySource.StructTypeTestSource), MemberType = typeof(TestEntitySource))]
         public void StartFromStructType_ThenResolve_ExpectResolvedValue(
             in StructType source)
         {
