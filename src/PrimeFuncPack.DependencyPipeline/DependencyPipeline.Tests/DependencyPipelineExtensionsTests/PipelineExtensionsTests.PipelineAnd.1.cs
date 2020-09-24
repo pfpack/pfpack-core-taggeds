@@ -1,10 +1,11 @@
 ﻿#nullable enable
 
 using Moq;
+using PrimeFuncPack.UnitTest.Data;
 using PrimeFuncPack.UnitTest.Moq;
 using System;
 using Xunit;
-using static PrimeFuncPack.Tests.TestEntityDateGenerator;
+using static PrimeFuncPack.UnitTest.Data.DataGenerator;
 
 namespace PrimeFuncPack.Tests
 {
@@ -67,7 +68,7 @@ namespace PrimeFuncPack.Tests
         }
 
         [Theory]
-        [MemberData(nameof(RefTypeTestSource), MemberType = typeof(TestEntityDateGenerator))]
+        [MemberData(nameof(TestEntitySource.RefTypeTestSource), MemberType = typeof(TestEntitySource))]
         public void AndFirst_ThenResolve_ExpectResolvedtupleValue(
             in RefType sourceValue)
         {

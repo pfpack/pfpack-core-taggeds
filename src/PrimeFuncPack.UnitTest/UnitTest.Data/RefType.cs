@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace PrimeFuncPack.Tests
+namespace PrimeFuncPack.UnitTest.Data
 {
     public sealed class RefType
     {

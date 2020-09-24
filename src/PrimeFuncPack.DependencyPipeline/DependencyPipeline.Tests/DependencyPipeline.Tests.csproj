@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*" />
-    <PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="1.0.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0-preview-*" />
+    <PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="1.2.*" />
     <PackageReference Include="PrimeFuncPack.UnitTest.Moq" Version="1.0.*" />
     <PackageReference Include="xunit" Version="2.*" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.*">

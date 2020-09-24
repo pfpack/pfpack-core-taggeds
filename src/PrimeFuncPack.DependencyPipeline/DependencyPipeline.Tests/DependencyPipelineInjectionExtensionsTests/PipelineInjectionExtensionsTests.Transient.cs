@@ -2,10 +2,11 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
+using PrimeFuncPack.UnitTest.Data;
 using PrimeFuncPack.UnitTest.Moq;
 using System;
 using Xunit;
-using static PrimeFuncPack.Tests.TestEntityDateGenerator;
+using static PrimeFuncPack.UnitTest.Data.DataGenerator;
 
 namespace PrimeFuncPack.Tests
 {
