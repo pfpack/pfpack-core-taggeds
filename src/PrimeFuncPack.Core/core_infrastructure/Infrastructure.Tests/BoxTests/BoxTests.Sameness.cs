@@ -2,8 +2,8 @@
 
 using NUnit.Framework;
 using PrimeFuncPack.Core.Infrastructure.Tests.Stubs;
+using PrimeFuncPack.UnitTest.Data;
 using System;
-using static PrimeFuncPack.UnitTest.Data.DataGenerator;
 
 namespace PrimeFuncPack.Core.Infrastructure.Tests
 {
@@ -24,7 +24,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var value = new StructType
             {
-                Text = GenerateText()
+                Text = "Some Text"
             };
             var source = new Box<StructType>(value);
             var other = source;
@@ -36,7 +36,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Same_SourceValueSameOtherValue_ExpectFalse()
         {
-            var text = GenerateText();
+            var text = "Some Text";
 
             var sorceValue = new StructType
             {
@@ -57,7 +57,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Same_SourceValueIsNotEqualOtherValue_ExpectFalse()
         {
-            var id = GenerateInteger();
+            var id = -1;
 
             var sorceValue = new RefType
             {
@@ -92,7 +92,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
 
             var otherValue = new RefType
             {
-                Id = GenerateInteger()
+                Id = 0
             };
             var other = new Box<RefType>(otherValue);
 
@@ -105,7 +105,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var sorceValue = new RefType
             {
-                Id = GenerateInteger()
+                Id = 55
             };
 
             var source = new Box<RefType?>(sorceValue);
@@ -150,7 +150,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var value = new StructType
             {
-                Text = GenerateText()
+                Text = "Some Text"
             };
             var source = new Box<StructType>(value);
 
@@ -161,7 +161,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void SameStaticOfT_ValueASameValueB_ExpectFalse()
         {
-            var text = GenerateText();
+            var text = "Some Text";
 
             var a = new StructType
             {
@@ -182,7 +182,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void SameStaticOfT_ValueAIsNotEqualValueB_ExpectFalse()
         {
-            var id = GenerateInteger();
+            var id = 11;
 
             var a = new RefType
             {
@@ -217,7 +217,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
 
             var b = new RefType
             {
-                Id = GenerateInteger()
+                Id = 31
             };
             var boxB = new Box<RefType>(b);
 
@@ -230,7 +230,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var a = new RefType
             {
-                Id = GenerateInteger()
+                Id = 45
             };
 
             var boxA = new Box<RefType?>(a);
@@ -275,7 +275,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var value = new StructType
             {
-                Text = GenerateText()
+                Text = "Some Text"
             };
             var source = new Box<StructType>(value);
 
@@ -286,7 +286,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void SameStatic_ValueASameValueB_ExpectFalse()
         {
-            var text = GenerateText();
+            var text = "Some Text";
 
             var a = new StructType
             {
@@ -307,7 +307,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void SameStatic_ValueAIsNotEqualValueB_ExpectFalse()
         {
-            var id = GenerateInteger();
+            var id = 47;
 
             var a = new RefType
             {
@@ -342,7 +342,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
 
             var b = new RefType
             {
-                Id = GenerateInteger()
+                Id = 95
             };
             var boxB = new Box<RefType>(b);
 
@@ -355,7 +355,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var a = new RefType
             {
-                Id = GenerateInteger()
+                Id = 125
             };
 
             var boxA = new Box<RefType?>(a);

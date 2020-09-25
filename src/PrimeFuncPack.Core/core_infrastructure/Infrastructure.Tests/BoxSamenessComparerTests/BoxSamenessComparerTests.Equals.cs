@@ -2,8 +2,8 @@
 
 using NUnit.Framework;
 using PrimeFuncPack.Core.Infrastructure.Tests.Stubs;
+using PrimeFuncPack.UnitTest.Data;
 using System;
-using static PrimeFuncPack.UnitTest.Data.DataGenerator;
 
 namespace PrimeFuncPack.Core.Infrastructure.Tests
 {
@@ -44,7 +44,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var value = new StructType
             {
-                Text = GenerateText()
+                Text = "Some Text"
             };
             var source = new Box<StructType>(value);
 
@@ -55,7 +55,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equals_ValueASameValueB_ExpectFalse()
         {
-            var text = GenerateText();
+            var text = "Some Text";
 
             var x = new StructType
             {
@@ -76,7 +76,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equals_ValueXIsNotEqualValueB_ExpectFalse()
         {
-            var id = GenerateInteger();
+            var id = 21;
 
             var x = new RefType
             {
@@ -111,7 +111,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
 
             var y = new RefType
             {
-                Id = GenerateInteger()
+                Id = 11
             };
             var boxY = new Box<RefType>(y);
 
@@ -124,7 +124,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var x = new RefType
             {
-                Id = GenerateInteger()
+                Id = 5
             };
 
             var boxX = new Box<RefType?>(x);
