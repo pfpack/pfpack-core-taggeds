@@ -2,8 +2,8 @@
 
 using NUnit.Framework;
 using PrimeFuncPack.Core.Infrastructure.Tests.Stubs;
+using PrimeFuncPack.UnitTest.Data;
 using System;
-using static PrimeFuncPack.UnitTest.Data.DataGenerator;
 
 namespace PrimeFuncPack.Core.Infrastructure.Tests
 {
@@ -44,7 +44,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var value = new StructType
             {
-                Text = GenerateText()
+                Text = "Some Text"
             };
             var boxA = new Box<StructType>(value);
             var boxB = boxA;
@@ -56,7 +56,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equality_ValueAEqualsValueB_ExpectTrue()
         {
-            var text = GenerateText();
+            var text = "Some Text";
 
             var a = new StructType
             {
@@ -77,7 +77,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equality_ValueAIsNotEqualValueB_ExpectFalse()
         {
-            var id = GenerateInteger();
+            var id = int.MaxValue;
 
             var a = new RefType
             {
@@ -112,7 +112,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
 
             var b = new RefType
             {
-                Id = GenerateInteger()
+                Id = 21
             };
             var boxB = new Box<RefType>(b);
 
@@ -125,7 +125,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var a = new RefType
             {
-                Id = GenerateInteger()
+                Id = 15
             };
 
             var boxA = new Box<RefType?>(a);
@@ -134,8 +134,6 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
             var actual = (boxA == boxB);
             Assert.False(actual);
         }
-
-        //
 
         [Test]
         public void Inequality_AIsNullAndBIsNull_ExpectFalse()
@@ -172,7 +170,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var value = new StructType
             {
-                Text = GenerateText()
+                Text = "Some Text"
             };
             var boxA = new Box<StructType>(value);
             var boxB = boxA;
@@ -184,7 +182,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Inequality_ValueAEqualsValueB_ExpectFalse()
         {
-            var text = GenerateText();
+            var text = "Some Text";
 
             var a = new StructType
             {
@@ -205,7 +203,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Inequality_ValueAIsNotEqualValueB_ExpectTrue()
         {
-            var id = GenerateInteger();
+            var id = 51;
 
             var a = new RefType
             {
@@ -240,7 +238,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
 
             var b = new RefType
             {
-                Id = GenerateInteger()
+                Id = 21
             };
             var boxB = new Box<RefType>(b);
 
@@ -253,7 +251,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var a = new RefType
             {
-                Id = GenerateInteger()
+                Id = -101
             };
 
             var boxA = new Box<RefType?>(a);

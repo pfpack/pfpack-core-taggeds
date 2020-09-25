@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using NUnit.Framework;
-using PrimeFuncPack.Core.Infrastructure.Tests.Stubs;
+using PrimeFuncPack.UnitTest.Data;
 using System;
 
 namespace PrimeFuncPack.Core.Infrastructure.Tests
