@@ -1,8 +1,9 @@
 ﻿#nullable enable
 
 using NUnit.Framework;
-using PrimeFuncPack.UnitTest.Data;
+using PrimeFuncPack.UnitTest;
 using System;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Infrastructure.Tests
 {
@@ -31,9 +32,9 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         }
 
         [Test]
-        public void GetHashCode_BoxValueIsNtNull_ExpectResultIsBoxHashCode()
+        public void GetHashCode_BoxValueIsNotNull_ExpectResultIsBoxHashCode()
         {
-            var box = new Box<StructType>(new StructType());
+            var box = new Box<StructType>(SomeTextStructType);
             var comparer = new BoxEqualityComparer<StructType>();
 
             var actual = comparer.GetHashCode(box);

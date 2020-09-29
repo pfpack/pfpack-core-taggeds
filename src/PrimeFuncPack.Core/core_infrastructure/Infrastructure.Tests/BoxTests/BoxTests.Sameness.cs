@@ -2,8 +2,9 @@
 
 using NUnit.Framework;
 using PrimeFuncPack.Core.Infrastructure.Tests.Stubs;
-using PrimeFuncPack.UnitTest.Data;
+using PrimeFuncPack.UnitTest;
 using System;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Infrastructure.Tests
 {
@@ -22,10 +23,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Same_OtherIsSame_ExpectTrue()
         {
-            var value = new StructType
-            {
-                Text = "Some Text"
-            };
+            var value = SomeTextStructType;
             var source = new Box<StructType>(value);
             var other = source;
 
@@ -36,7 +34,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Same_SourceValueSameOtherValue_ExpectFalse()
         {
-            var text = "Some Text";
+            var text = SomeString;
 
             var sorceValue = new StructType
             {
@@ -57,7 +55,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Same_SourceValueIsNotEqualOtherValue_ExpectFalse()
         {
-            var id = -1;
+            var id = MinusFifteen;
 
             var sorceValue = new RefType
             {
@@ -90,10 +88,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var source = new Box<RefType>(null!);
 
-            var otherValue = new RefType
-            {
-                Id = 0
-            };
+            var otherValue = ZeroIdRefType;
             var other = new Box<RefType>(otherValue);
 
             var actual = source.Same(other);
@@ -103,10 +98,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Same_SourceValueIsNotNullAndOtherValueIsNull_ExpectFalse()
         {
-            var sorceValue = new RefType
-            {
-                Id = 55
-            };
+            var sorceValue = PlusFifteenIdRefType;
 
             var source = new Box<RefType?>(sorceValue);
             var other = new Box<RefType?>(null);
@@ -139,7 +131,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         public void SameStaticOfT_AIsNotNullAndBIsNull_ExpectFalse()
         {
             Box<RefType>? boxA = null;
-            Box<RefType>? boxB = new Box<RefType>(new RefType());
+            Box<RefType>? boxB = new Box<RefType>(PlusFifteenIdRefType);
 
             var actual = Box<RefType>.Same(boxA, boxB);
             Assert.False(actual);
@@ -148,10 +140,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void SameStaticOfT_AIsSameAsB_ExpectTrue()
         {
-            var value = new StructType
-            {
-                Text = "Some Text"
-            };
+            var value = SomeTextStructType;
             var source = new Box<StructType>(value);
 
             var actual = Box<StructType>.Same(source, source);
@@ -161,7 +150,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void SameStaticOfT_ValueASameValueB_ExpectFalse()
         {
-            var text = "Some Text";
+            var text = SomeString;
 
             var a = new StructType
             {
@@ -182,7 +171,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void SameStaticOfT_ValueAIsNotEqualValueB_ExpectFalse()
         {
-            var id = 11;
+            var id = PlusFifteen;
 
             var a = new RefType
             {
@@ -215,10 +204,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var boxA = new Box<RefType>(null!);
 
-            var b = new RefType
-            {
-                Id = 31
-            };
+            var b = MinusFifteenIdRefType;
             var boxB = new Box<RefType>(b);
 
             var actual = Box<RefType>.Same(boxA, boxB);
@@ -228,10 +214,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void SameStaticOfT_ValueAIsNotNullAndValueBIsNull_ExpectFalse()
         {
-            var a = new RefType
-            {
-                Id = 45
-            };
+            var a = PlusFifteenIdRefType;
 
             var boxA = new Box<RefType?>(a);
             var boxB = new Box<RefType?>(null);
@@ -264,7 +247,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         public void SameStatic_AIsNotNullAndBIsNull_ExpectFalse()
         {
             Box<RefType>? boxA = null;
-            Box<RefType>? boxB = new Box<RefType>(new RefType());
+            Box<RefType>? boxB = new Box<RefType>(ZeroIdRefType);
 
             var actual = Box.Same(boxA, boxB);
             Assert.False(actual);
@@ -273,10 +256,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void SameStatic_AIsSameAsB_ExpectTrue()
         {
-            var value = new StructType
-            {
-                Text = "Some Text"
-            };
+            var value = SomeTextStructType;
             var source = new Box<StructType>(value);
 
             var actual = Box.Same(source, source);
@@ -286,7 +266,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void SameStatic_ValueASameValueB_ExpectFalse()
         {
-            var text = "Some Text";
+            var text = SomeString;
 
             var a = new StructType
             {
@@ -307,7 +287,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void SameStatic_ValueAIsNotEqualValueB_ExpectFalse()
         {
-            var id = 47;
+            var id = PlusFifteen;
 
             var a = new RefType
             {
@@ -340,10 +320,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var boxA = new Box<RefType>(null!);
 
-            var b = new RefType
-            {
-                Id = 95
-            };
+            var b = PlusFifteenIdRefType;
             var boxB = new Box<RefType>(b);
 
             var actual = Box.Same(boxA, boxB);
@@ -353,10 +330,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void SameStatic_ValueAIsNotNullAndValueBIsNull_ExpectFalse()
         {
-            var a = new RefType
-            {
-                Id = 125
-            };
+            var a = MinusFifteenIdRefType;
 
             var boxA = new Box<RefType?>(a);
             var boxB = new Box<RefType?>(null);

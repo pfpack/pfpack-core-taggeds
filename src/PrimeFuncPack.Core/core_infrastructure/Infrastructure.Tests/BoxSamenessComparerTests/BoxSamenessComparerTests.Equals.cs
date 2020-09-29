@@ -2,8 +2,9 @@
 
 using NUnit.Framework;
 using PrimeFuncPack.Core.Infrastructure.Tests.Stubs;
-using PrimeFuncPack.UnitTest.Data;
+using PrimeFuncPack.UnitTest;
 using System;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Infrastructure.Tests
 {
@@ -33,7 +34,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         public void Equals_XIsNotNullAndYIsNull_ExpectFalse()
         {
             Box<RefType>? boxX = null;
-            Box<RefType>? boxY = new Box<RefType>(new RefType());
+            Box<RefType>? boxY = new Box<RefType>(PlusFifteenIdRefType);
 
             var actual = BoxSamenessComparer<RefType>.Default.Equals(boxX, boxY);
             Assert.False(actual);
@@ -42,10 +43,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equals_XIsSameAsB_ExpectTrue()
         {
-            var value = new StructType
-            {
-                Text = "Some Text"
-            };
+            var value = SomeTextStructType;
             var source = new Box<StructType>(value);
 
             var actual = new BoxSamenessComparer<StructType>().Equals(source, source);
@@ -55,7 +53,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equals_ValueASameValueB_ExpectFalse()
         {
-            var text = "Some Text";
+            var text = SomeString;
 
             var x = new StructType
             {
@@ -76,7 +74,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equals_ValueXIsNotEqualValueB_ExpectFalse()
         {
-            var id = 21;
+            var id = PlusFifteen;
 
             var x = new RefType
             {
@@ -109,10 +107,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var boxX = new Box<RefType>(null!);
 
-            var y = new RefType
-            {
-                Id = 11
-            };
+            var y = MinusFifteenIdRefType;
             var boxY = new Box<RefType>(y);
 
             var actual = BoxSamenessComparer<RefType>.Default.Equals(boxX, boxY);
@@ -122,10 +117,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equals_ValueXIsNotNullAndValueYIsNull_ExpectFalse()
         {
-            var x = new RefType
-            {
-                Id = 5
-            };
+            var x = PlusFifteenIdRefType;
 
             var boxX = new Box<RefType?>(x);
             var boxY = new Box<RefType?>(null);

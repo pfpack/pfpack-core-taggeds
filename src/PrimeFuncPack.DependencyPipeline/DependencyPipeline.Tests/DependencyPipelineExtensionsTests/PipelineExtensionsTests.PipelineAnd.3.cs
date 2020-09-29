@@ -1,11 +1,11 @@
 ﻿#nullable enable
 
 using Moq;
-using PrimeFuncPack.UnitTest.Data;
+using PrimeFuncPack.UnitTest;
 using PrimeFuncPack.UnitTest.Moq;
 using System;
 using Xunit;
-using static PrimeFuncPack.UnitTest.Data.DataGenerator;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Tests
 {
@@ -16,7 +16,7 @@ namespace PrimeFuncPack.Tests
         {
             DependencyPipeline<(RefType, int, DateTime)> sourcePipeline = null!;
 
-            var mockOtherResolver = MockFuncFactory.CreateMockResolver(GenerateStructType());
+            var mockOtherResolver = MockFuncFactory.CreateMockResolver(SomeTextStructType);
             var otherPipeline = new DependencyPipeline<StructType>(mockOtherResolver.Object.Resolve);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.And(otherPipeline));
@@ -26,20 +26,20 @@ namespace PrimeFuncPack.Tests
         [Fact]
         public void AndThird_OtherPipelineIsNull_ExpectArgumentNullException()
         {
-            var mockSourceResolver = MockFuncFactory.CreateMockResolver((GenerateRefType(), GenerateInteger(), DateTime.Now));
-            var sourcePipeline = new DependencyPipeline<(RefType, int, DateTime)>(mockSourceResolver.Object.Resolve);
+            var mockSourceResolver = MockFuncFactory.CreateMockResolver((PlusFifteenIdRefType, int.MinValue, SomeTextStructType));
+            var sourcePipeline = new DependencyPipeline<(RefType, int, StructType)>(mockSourceResolver.Object.Resolve);
 
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.And<RefType, int, DateTime, StructType>(null!));
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.And<RefType, int, StructType, DateTime>(null!));
             Assert.Equal("otherPipeline", ex.ParamName);
         }
 
         [Fact]
         public void AndThird_ThenResolve_ExpectCallResolveSourceOnce()
         {
-            var mockSourceResolver = MockFuncFactory.CreateMockResolver((GenerateRefType(), GenerateInteger(), DateTime.Now));
-            var sourcePipeline = new DependencyPipeline<(RefType, int, DateTime)>(mockSourceResolver.Object.Resolve);
+            var mockSourceResolver = MockFuncFactory.CreateMockResolver((PlusFifteenIdRefType, int.MinValue, MinusFifteenIdRefType));
+            var sourcePipeline = new DependencyPipeline<(RefType, int, RefType)>(mockSourceResolver.Object.Resolve);
 
-            var mockOtherResolver = MockFuncFactory.CreateMockResolver(GenerateStructType());
+            var mockOtherResolver = MockFuncFactory.CreateMockResolver(SomeTextStructType);
             var otherPipeline = new DependencyPipeline<StructType>(mockOtherResolver.Object.Resolve);
 
             var actualPipeline = sourcePipeline.And(otherPipeline);
@@ -53,10 +53,10 @@ namespace PrimeFuncPack.Tests
         [Fact]
         public void AndThird_ThenResolve_ExpectCallResolveOtherOnce()
         {
-            var mockSourceResolver = MockFuncFactory.CreateMockResolver((GenerateRefType(), GenerateInteger(), DateTime.Now));
-            var sourcePipeline = new DependencyPipeline<(RefType, int, DateTime)>(mockSourceResolver.Object.Resolve);
+            var mockSourceResolver = MockFuncFactory.CreateMockResolver((PlusFifteenIdRefType, int.MinValue, MinusFifteenIdRefType));
+            var sourcePipeline = new DependencyPipeline<(RefType, int, RefType?)>(mockSourceResolver.Object.Resolve);
 
-            var mockOtherResolver = MockFuncFactory.CreateMockResolver(GenerateStructType());
+            var mockOtherResolver = MockFuncFactory.CreateMockResolver(SomeTextStructType);
             var otherPipeline = new DependencyPipeline<StructType>(mockOtherResolver.Object.Resolve);
 
             var actualPipeline = sourcePipeline.And(otherPipeline);
@@ -72,14 +72,14 @@ namespace PrimeFuncPack.Tests
         public void AndThird_ThenResolve_ExpectResolvedtupleValue(
             in RefType? firstValue)
         {
-            var secondValue = GenerateDecimal();
-            var thirdValue = DateTime.Now.AddYears(5);
+            var secondValue = decimal.MinValue;
+            var thirdValue = new DateTime(2020, 10, 15);
             var sourceValue = (firstValue, secondValue, thirdValue);
 
             var mockSourceResolver = MockFuncFactory.CreateMockResolver(sourceValue);
             var sourcePipeline = new DependencyPipeline<(RefType?, decimal, DateTime)>(mockSourceResolver.Object.Resolve);
 
-            var otherValue = GenerateStructType();
+            var otherValue = SomeTextStructType;
             var mockOtherResolver = MockFuncFactory.CreateMockResolver(otherValue);
             var otherPipeline = new DependencyPipeline<StructType>(mockOtherResolver.Object.Resolve);
 

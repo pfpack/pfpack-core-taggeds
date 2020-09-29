@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace PrimeFuncPack.UnitTest.Tests.TestData
+namespace PrimeFuncPack.UnitTest.Tests
 {
     public struct SomeStruct
     {

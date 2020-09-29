@@ -1,11 +1,11 @@
 ﻿#nullable enable
 
 using Moq;
-using PrimeFuncPack.UnitTest.Data;
+using PrimeFuncPack.UnitTest;
 using PrimeFuncPack.UnitTest.Moq;
 using System;
 using Xunit;
-using static PrimeFuncPack.UnitTest.Data.DataGenerator;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Tests
 {
@@ -23,7 +23,7 @@ namespace PrimeFuncPack.Tests
         [Fact]
         public void Start_ThenResolve_ServiceProviderIsNull_ExpectArgumentNullException()
         {
-            var mockResolver = MockFuncFactory.CreateMockResolver(GenerateStructType());
+            var mockResolver = MockFuncFactory.CreateMockResolver(SomeTextStructType);
             var actualPipeline = DependencyPipeline.Start(mockResolver.Object.Resolve);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = actualPipeline.Resolve(null!));
@@ -33,7 +33,7 @@ namespace PrimeFuncPack.Tests
         [Fact]
         public void Start_ThenResolve_ExpectCallResolverOnce()
         {
-            var mockResolver = MockFuncFactory.CreateMockResolver(GenerateStructType());
+            var mockResolver = MockFuncFactory.CreateMockResolver(NullTextStructType);
             var actualPipeline = DependencyPipeline.Start(mockResolver.Object.Resolve);
 
             var serviceProvider = Mock.Of<IServiceProvider>();
@@ -57,7 +57,7 @@ namespace PrimeFuncPack.Tests
         [Fact]
         public void StartFromValue_ThenResolve_ServiceProviderIsNull_ExpectArgumentNullException()
         {
-            var actualPipeline = DependencyPipeline.Start(GenerateStructType());
+            var actualPipeline = DependencyPipeline.Start(SomeTextStructType);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = actualPipeline.Resolve(null!));
             Assert.Equal("serviceProvider", ex.ParamName);

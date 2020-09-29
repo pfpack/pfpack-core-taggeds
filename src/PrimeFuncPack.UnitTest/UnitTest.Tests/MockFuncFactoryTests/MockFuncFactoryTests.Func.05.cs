@@ -2,7 +2,6 @@
 
 using Moq;
 using PrimeFuncPack.UnitTest.Moq;
-using PrimeFuncPack.UnitTest.Tests.TestData;
 using Xunit;
 
 namespace PrimeFuncPack.UnitTest.Tests

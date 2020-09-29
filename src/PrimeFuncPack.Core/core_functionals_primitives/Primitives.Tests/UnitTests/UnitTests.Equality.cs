@@ -3,7 +3,7 @@
 
 using NUnit.Framework;
 using System;
-using static PrimeFuncPack.UnitTest.Data.DataGenerator;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
 {
@@ -63,7 +63,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         public void EqualsWithObject_ObjIsNotUnit_ExpectFalse()
         {
             var source = Unit.Value;
-            object? obj = GenerateStructType();
+            object? obj = SomeTextStructType;
 
             var actual = source.Equals(obj);
             Assert.False(actual);

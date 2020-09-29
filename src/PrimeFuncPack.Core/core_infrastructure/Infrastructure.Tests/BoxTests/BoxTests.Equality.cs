@@ -2,8 +2,9 @@
 
 using NUnit.Framework;
 using PrimeFuncPack.Core.Infrastructure.Tests.Stubs;
-using PrimeFuncPack.UnitTest.Data;
+using PrimeFuncPack.UnitTest;
 using System;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Infrastructure.Tests
 {
@@ -33,7 +34,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         public void Equality_AIsNotNullAndBIsNull_ExpectFalse()
         {
             Box<RefType>? boxA = null!;
-            Box<RefType>? boxB = new Box<RefType>(new RefType());
+            Box<RefType>? boxB = new Box<RefType>(PlusFifteenIdRefType);
 
             var actual = (boxA == boxB);
             Assert.False(actual);
@@ -42,10 +43,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equality_AIsSameAsB_ExpectTrue()
         {
-            var value = new StructType
-            {
-                Text = "Some Text"
-            };
+            var value = SomeTextStructType;
             var boxA = new Box<StructType>(value);
             var boxB = boxA;
 
@@ -56,7 +54,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equality_ValueAEqualsValueB_ExpectTrue()
         {
-            var text = "Some Text";
+            var text = SomeString;
 
             var a = new StructType
             {
@@ -110,10 +108,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var boxA = new Box<RefType>(null!);
 
-            var b = new RefType
-            {
-                Id = 21
-            };
+            var b = PlusFifteenIdRefType;
             var boxB = new Box<RefType>(b);
 
             var actual = (boxA == boxB);
@@ -123,10 +118,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equality_ValueAIsNotNullAndValueBIsNull_ExpectFalse()
         {
-            var a = new RefType
-            {
-                Id = 15
-            };
+            var a = MinusFifteenIdRefType;
 
             var boxA = new Box<RefType?>(a);
             var boxB = new Box<RefType?>(null);
@@ -159,7 +151,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         public void Inequality_AIsNotNullAndBIsNull_ExpectTrue()
         {
             Box<RefType>? boxA = null!;
-            Box<RefType>? boxB = new Box<RefType>(new RefType());
+            Box<RefType>? boxB = new Box<RefType>(ZeroIdRefType);
 
             var actual = (boxA != boxB);
             Assert.True(actual);
@@ -168,10 +160,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Inequality_AIsSameAsB_ExpectFalse()
         {
-            var value = new StructType
-            {
-                Text = "Some Text"
-            };
+            var value = SomeTextStructType;
             var boxA = new Box<StructType>(value);
             var boxB = boxA;
 
@@ -182,7 +171,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Inequality_ValueAEqualsValueB_ExpectFalse()
         {
-            var text = "Some Text";
+            var text = SomeString;
 
             var a = new StructType
             {
@@ -203,7 +192,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Inequality_ValueAIsNotEqualValueB_ExpectTrue()
         {
-            var id = 51;
+            var id = PlusFifteen;
 
             var a = new RefType
             {
@@ -236,10 +225,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var boxA = new Box<RefType>(null!);
 
-            var b = new RefType
-            {
-                Id = 21
-            };
+            var b = MinusFifteenIdRefType;
             var boxB = new Box<RefType>(b);
 
             var actual = (boxA != boxB);
@@ -249,10 +235,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Inequality_ValueAIsNotNullAndValueBIsNull_ExpectTrue()
         {
-            var a = new RefType
-            {
-                Id = -101
-            };
+            var a = MinusFifteenIdRefType;
 
             var boxA = new Box<RefType?>(a);
             var boxB = new Box<RefType?>(null);

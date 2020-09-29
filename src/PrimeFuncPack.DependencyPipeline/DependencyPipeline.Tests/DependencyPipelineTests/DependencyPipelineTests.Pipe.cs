@@ -1,11 +1,11 @@
 ﻿#nullable enable
 
 using Moq;
-using PrimeFuncPack.UnitTest.Data;
+using PrimeFuncPack.UnitTest;
 using PrimeFuncPack.UnitTest.Moq;
 using System;
 using Xunit;
-using static PrimeFuncPack.UnitTest.Data.DataGenerator;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Tests
 {
@@ -14,7 +14,7 @@ namespace PrimeFuncPack.Tests
         [Fact]
         public void Pipe_PipeFunctionIsNull_ExpectArgumentNullException()
         {
-            var mockResolver = MockFuncFactory.CreateMockResolver(GenerateRefType());
+            var mockResolver = MockFuncFactory.CreateMockResolver(PlusFifteenIdRefType);
             var pipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
             Func<RefType, StructType> pipeFunc = null!;
@@ -26,10 +26,10 @@ namespace PrimeFuncPack.Tests
         [Fact]
         public void Pipe_ThenResolve_ExpectCallResolveSourceOnce()
         {
-            var mockResolver = MockFuncFactory.CreateMockResolver(GenerateStructType());
+            var mockResolver = MockFuncFactory.CreateMockResolver(SomeTextStructType);
             var sourcePipeline = new DependencyPipeline<StructType>(mockResolver.Object.Resolve);
 
-            var actualPipeline = sourcePipeline.Pipe(_ => GenerateRefType());
+            var actualPipeline = sourcePipeline.Pipe(_ => MinusFifteenIdRefType);
 
             var serviceProvider = Mock.Of<IServiceProvider>();
             _ = actualPipeline.Resolve(serviceProvider);
@@ -45,7 +45,7 @@ namespace PrimeFuncPack.Tests
             var mockResolver = MockFuncFactory.CreateMockResolver(sourceValue);
             var sourcePipeline = new DependencyPipeline<RefType?>(mockResolver.Object.Resolve);
 
-            var mockPipeFunc = MockFuncFactory.CreateMockFunc<RefType?, StructType>(GenerateStructType());
+            var mockPipeFunc = MockFuncFactory.CreateMockFunc<RefType?, StructType>(SomeTextStructType);
             var actualPipeline = sourcePipeline.Pipe(mockPipeFunc.Object.Invoke);
 
             var serviceProvider = Mock.Of<IServiceProvider>();
@@ -60,7 +60,7 @@ namespace PrimeFuncPack.Tests
         public void Pipe_ThenResolve_ExpectMappedValue(
             in StructType mappedValue)
         {
-            var mockResolver = MockFuncFactory.CreateMockResolver(GenerateRefType());
+            var mockResolver = MockFuncFactory.CreateMockResolver(ZeroIdRefType);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
             var mockPipeFunc = MockFuncFactory.CreateMockFunc<RefType, StructType>(mappedValue);

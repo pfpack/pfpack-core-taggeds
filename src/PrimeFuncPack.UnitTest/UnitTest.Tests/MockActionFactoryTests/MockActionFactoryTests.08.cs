@@ -2,7 +2,6 @@
 
 using Moq;
 using PrimeFuncPack.UnitTest.Moq;
-using PrimeFuncPack.UnitTest.Tests.TestData;
 using System;
 using Xunit;
 
@@ -27,7 +26,7 @@ namespace PrimeFuncPack.UnitTest.Tests
             var arg4 = default(string?);
             var arg5 = 15;
             var arg6 = default(SomeStruct);
-            var arg7 = DateTime.Now;
+            var arg7 = Year2020May11;
             var arg8 = new SomeType();
 
             actualMock.Object.Invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);

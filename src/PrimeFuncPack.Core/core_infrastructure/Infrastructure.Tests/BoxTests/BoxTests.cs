@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
-using PrimeFuncPack.UnitTest.Data;
 using System.Collections.Generic;
 using System.Linq;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Infrastructure.Tests
 {
@@ -12,12 +12,9 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
             =>
             new[]
             {
-                new RefType(),
+                PlusFifteenIdRefType,
                 null,
-                new RefType
-                {
-                    Id = 21
-                }
+                ZeroIdRefType
             }
             .Select(v => new object?[] { v });
     }

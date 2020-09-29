@@ -2,10 +2,10 @@
 
 using Moq;
 using NUnit.Framework;
-using PrimeFuncPack.UnitTest.Data;
+using PrimeFuncPack.UnitTest;
 using PrimeFuncPack.UnitTest.Moq;
 using System;
-using static PrimeFuncPack.UnitTest.Data.DataGenerator;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
 {
@@ -16,8 +16,8 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         {
             Action<StructType, RefType> action = null!;
 
-            var arg1 = GenerateStructType();
-            var arg2 = GenerateRefType();
+            var arg1 = SomeTextStructType;
+            var arg2 = PlusFifteenIdRefType;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = Unit.InvokeAction(action, arg1, arg2));
             Assert.AreEqual("action", ex.ParamName);
@@ -28,7 +28,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         {
             var mockAction = MockActionFactory.CreateMockAction<StructType, RefType?>();
 
-            var arg1 = GenerateStructType();
+            var arg1 = SomeTextStructType;
             var arg2 = (RefType?)null;
 
             var actual = Unit.InvokeAction(mockAction.Object.Invoke, arg1, arg2);

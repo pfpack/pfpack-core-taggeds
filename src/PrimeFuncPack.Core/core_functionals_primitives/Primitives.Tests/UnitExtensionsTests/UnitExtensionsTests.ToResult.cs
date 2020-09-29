@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
 using NUnit.Framework;
-using PrimeFuncPack.UnitTest.Data;
 using System;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
 {
@@ -14,7 +14,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         public void ToResult_ExpectResultValue(
             bool isResultNull)
         {
-            var result = isResultNull ? null : DataGenerator.GenerateRefType();
+            var result = isResultNull ? null : PlusFifteenIdRefType;
             var source = Unit.Value;
 
             var actual = source.ToResult(result);

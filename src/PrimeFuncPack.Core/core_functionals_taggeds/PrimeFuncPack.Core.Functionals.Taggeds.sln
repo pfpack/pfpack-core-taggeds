@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taggeds.Result", "Taggeds.R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taggeds.TaggedUnion", "Taggeds.TaggedUnion\Taggeds.TaggedUnion.csproj", "{3D3517FB-125D-4FB7-9067-92D1FB1C450C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EBC558E9-9AB2-42C1-BA06-3A7AED05BC6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taggeds.Tests", "Taggeds.Tests\Taggeds.Tests.csproj", "{1A9F3331-46C1-4A01-A1CF-241A7E2BDA8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +37,16 @@ Global
 		{3D3517FB-125D-4FB7-9067-92D1FB1C450C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D3517FB-125D-4FB7-9067-92D1FB1C450C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D3517FB-125D-4FB7-9067-92D1FB1C450C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A9F3331-46C1-4A01-A1CF-241A7E2BDA8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A9F3331-46C1-4A01-A1CF-241A7E2BDA8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A9F3331-46C1-4A01-A1CF-241A7E2BDA8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A9F3331-46C1-4A01-A1CF-241A7E2BDA8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1A9F3331-46C1-4A01-A1CF-241A7E2BDA8C} = {EBC558E9-9AB2-42C1-BA06-3A7AED05BC6B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8BE62696-366A-4D93-9A1A-D09EEE968B10}

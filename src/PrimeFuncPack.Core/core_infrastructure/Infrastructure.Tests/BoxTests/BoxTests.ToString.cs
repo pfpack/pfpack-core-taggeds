@@ -3,9 +3,10 @@
 using Moq;
 using NUnit.Framework;
 using PrimeFuncPack.Core.Infrastructure.Tests.Stubs;
-using PrimeFuncPack.UnitTest.Data;
+using PrimeFuncPack.UnitTest;
 using PrimeFuncPack.UnitTest.Moq;
 using System;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Infrastructure.Tests
 {
@@ -24,7 +25,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void ToString_ValueIsNotNull_ExpectCallSourceToStringOnce()
         {
-            var mockStringFactory = MockFuncFactory.CreateMockFunc("Some Text");
+            var mockStringFactory = MockFuncFactory.CreateMockFunc(SomeString);
             var source = new StubType(mockStringFactory.Object);
 
             var box = new Box<StubType>(source);
@@ -34,9 +35,9 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         }
 
         [Test]
-        [TestCase("")]
-        [TestCase("\t")]
-        [TestCase("Some Value")]
+        [TestCase(EmptyString)]
+        [TestCase(TabString)]
+        [TestCase(SomeString)]
         public void ToString_ValueToStringIsNotNull_ExpectResultIsValueToString(
             in string? valueToStringResult)
         {

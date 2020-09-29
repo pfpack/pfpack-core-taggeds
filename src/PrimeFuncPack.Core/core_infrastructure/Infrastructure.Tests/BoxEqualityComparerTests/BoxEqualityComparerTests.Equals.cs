@@ -2,8 +2,9 @@
 
 using NUnit.Framework;
 using PrimeFuncPack.Core.Infrastructure.Tests.Stubs;
-using PrimeFuncPack.UnitTest.Data;
+using PrimeFuncPack.UnitTest;
 using System;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Infrastructure.Tests
 {
@@ -42,10 +43,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equals_XIsSameAsY_ExpectTrue()
         {
-            var value = new StructType
-            {
-                Text = "Some Text"
-            };
+            var value = SomeTextStructType;
             var source = new Box<StructType>(value);
 
             var actual = new BoxEqualityComparer<StructType>().Equals(source, source);
@@ -55,7 +53,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equals_ValueXEqualsValueY_ExpectTrue()
         {
-            var text = "Some Text";
+            var text = SomeString;
 
             var x = new StructType
             {
@@ -76,7 +74,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equals_ValueXIsNotEqualValueY_ExpectFalse()
         {
-            var id = 25;
+            var id = PlusFifteen;
 
             var x = new RefType
             {
@@ -109,10 +107,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var boxX = new Box<RefType>(null!);
 
-            var y = new RefType
-            {
-                Id = 25
-            };
+            var y = MinusFifteenIdRefType;
             var boxY = new Box<RefType>(y);
 
             var actual = BoxEqualityComparer<RefType>.Default.Equals(boxX, boxY);
@@ -122,10 +117,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         public void Equals_ValueXIsNotNullAndValueYIsNull_ExpectFalse()
         {
-            var x = new RefType
-            {
-                Id = 15
-            };
+            var x = PlusFifteenIdRefType;
 
             var boxX = new Box<RefType?>(x);
             var boxY = new Box<RefType?>(null);

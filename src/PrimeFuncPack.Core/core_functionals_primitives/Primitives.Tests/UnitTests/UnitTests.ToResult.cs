@@ -1,8 +1,9 @@
 ﻿#nullable enable
 
 using NUnit.Framework;
-using PrimeFuncPack.UnitTest.Data;
+using PrimeFuncPack.UnitTest;
 using System;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
 {
@@ -14,7 +15,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         public void ToResult_ExpectResultValue(
             bool isResultNull)
         {
-            StructType? result = isResultNull ? null : DataGenerator.GenerateStructType();
+            StructType? result = isResultNull ? null : SomeTextStructType;
             var source = Unit.Value;
 
             var actual = Unit.ToResult(source, result);

@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using static PrimeFuncPack.UnitTest.Data.DataGenerator;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Tests
 {
@@ -12,8 +12,8 @@ namespace PrimeFuncPack.Tests
             =>
             new[]
             {
-                GenerateRefType(),
-                GenerateRefType(),
+                PlusFifteenIdRefType,
+                MinusFifteenIdRefType,
                 null
             }
             .Select(
@@ -23,8 +23,8 @@ namespace PrimeFuncPack.Tests
             =>
             new[]
             {
-                GenerateStructType(),
-                GenerateStructType(),
+                SomeTextStructType,
+                NullTextStructType,
                 default
             }
             .Select(
