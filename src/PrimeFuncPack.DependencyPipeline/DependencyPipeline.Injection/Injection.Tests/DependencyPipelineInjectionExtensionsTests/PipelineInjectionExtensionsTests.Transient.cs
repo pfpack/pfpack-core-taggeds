@@ -13,50 +13,50 @@ namespace PrimeFuncPack.Tests
     partial class PipelineInjectionExtensionsTests
     {
         [Fact]
-        public void InjectScoped_SourcePipelineIsNull_ExpectArgumentNullException()
+        public void InjectTransient_SourcePipelineIsNull_ExpectArgumentNullException()
         {
             DependencyPipeline<RefType> sourcePipeline = null!;
-            var mockServices = MockServiceCollection.Create();
+            var mockServices = CreateMockServiceCollection();
 
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.InjectScoped(mockServices.Object));
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.InjectTransient(mockServices.Object));
             Assert.Equal("sourcePipeline", ex.ParamName);
         }
 
         [Fact]
-        public void InjectScoped_ServicesAreNull_ExpectArgumentNullException()
+        public void InjectTransient_ServicesAreNull_ExpectArgumentNullException()
         {
             var mockResolver = MockFuncFactory.CreateMockResolver(ZeroIdRefType);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.InjectScoped(null!));
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.InjectTransient(null!));
             Assert.Equal("services", ex.ParamName);
         }
 
         [Fact]
-        public void InjectScoped_ExpectCallAddScopedOnce()
+        public void InjectTransient_ExpectCallAddTransientOnce()
         {
             var mockResolver = MockFuncFactory.CreateMockResolver(PlusFifteenIdRefType);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var mockServices = MockServiceCollection.Create(actualDescriptor =>
+            var mockServices = CreateMockServiceCollection(actualDescriptor =>
             {
                 Assert.Equal(typeof(RefType), actualDescriptor.ServiceType);
-                Assert.Equal(ServiceLifetime.Scoped, actualDescriptor.Lifetime);
+                Assert.Equal(ServiceLifetime.Transient, actualDescriptor.Lifetime);
                 Assert.NotNull(actualDescriptor.ImplementationFactory);
             });
 
-            _ = sourcePipeline.InjectScoped(mockServices.Object);
+            _ = sourcePipeline.InjectTransient(mockServices.Object);
             mockServices.Verify(s => s.Add(It.IsAny<ServiceDescriptor>()), Times.Once);
         }
 
         [Fact]
-        public void InjectScoped_ThenInvokeImplementationFactory_ExpectResolvedValue()
+        public void InjectTransient_ThenInvokeImplementationFactory_ExpectResolvedValue()
         {
             var resolved = MinusFifteenIdRefType;
             var mockResolver = MockFuncFactory.CreateMockResolver(resolved);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var mockServices = MockServiceCollection.Create(sd =>
+            var mockServices = CreateMockServiceCollection(sd =>
             {
                 var actualFactory = sd.ImplementationFactory!;
                 var serviceProvider = Mock.Of<IServiceProvider>();
@@ -65,17 +65,17 @@ namespace PrimeFuncPack.Tests
                 Assert.Equal(resolved, actual);
             });
 
-            _ = sourcePipeline.InjectScoped(mockServices.Object);
+            _ = sourcePipeline.InjectTransient(mockServices.Object);
         }
 
         [Fact]
-        public void InjectScoped_ThenResolve_ExpectGetServiceFromProviderOnce()
+        public void InjectTransient_ThenResolve_ExpectGetServiceFromProviderOnce()
         {
             var mockResolver = MockFuncFactory.CreateMockResolver(ZeroIdRefType);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var mockServices = MockServiceCollection.Create();
-            var actualPipeline = sourcePipeline.InjectScoped(mockServices.Object);
+            var mockServices = CreateMockServiceCollection();
+            var actualPipeline = sourcePipeline.InjectTransient(mockServices.Object);
 
             var mockServiceProvider = CreateMockServiceProvider(PlusFifteenIdRefType);
             _ = actualPipeline.Resolve(mockServiceProvider.Object);
@@ -84,14 +84,14 @@ namespace PrimeFuncPack.Tests
         }
 
         [Fact]
-        public void InjectScoped_ThenResolve_ServiceFromProviderIsNull_ExpectInvalidOperationException()
+        public void InjectTransient_ThenResolve_ServiceFromProviderIsNull_ExpectInvalidOperationException()
         {
             var resolved = PlusFifteenIdRefType;
             var mockResolver = MockFuncFactory.CreateMockResolver(resolved);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var mockServices = MockServiceCollection.Create();
-            var actualPipeline = sourcePipeline.InjectScoped(mockServices.Object);
+            var mockServices = CreateMockServiceCollection();
+            var actualPipeline = sourcePipeline.InjectTransient(mockServices.Object);
 
             var mockServiceProvider = CreateMockServiceProvider(null);
             var ex = Assert.Throws<InvalidOperationException>(() => _ = actualPipeline.Resolve(mockServiceProvider.Object));
@@ -100,13 +100,13 @@ namespace PrimeFuncPack.Tests
         }
 
         [Fact]
-        public void InjectScoped_ThenResolve_ExpectValueFromServiceProvider()
+        public void InjectTransient_ThenResolve_ExpectValueFromServiceProvider()
         {
             var resolved = ZeroIdRefType;
             var sourcePipeline = new DependencyPipeline<RefType>(_ => resolved);
 
-            var mockServices = MockServiceCollection.Create();
-            var actualPipeline = sourcePipeline.InjectScoped(mockServices.Object);
+            var mockServices = CreateMockServiceCollection();
+            var actualPipeline = sourcePipeline.InjectTransient(mockServices.Object);
 
             var valueFromProvider = PlusFifteenIdRefType;
             var mockServiceProvider = CreateMockServiceProvider(valueFromProvider);
@@ -116,50 +116,50 @@ namespace PrimeFuncPack.Tests
         }
 
         [Fact]
-        public void CompleteScoped_SourcePipelineIsNull_ExpectArgumentNullException()
+        public void CompleteTransient_SourcePipelineIsNull_ExpectArgumentNullException()
         {
             DependencyPipeline<string> sourcePipeline = null!;
-            var mockServices = MockServiceCollection.Create();
+            var mockServices = CreateMockServiceCollection();
 
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.CompleteScoped(mockServices.Object));
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.CompleteTransient(mockServices.Object));
             Assert.Equal("sourcePipeline", ex.ParamName);
         }
 
         [Fact]
-        public void CompleteScoped_ServicesAreNull_ExpectArgumentNullException()
+        public void CompleteTransient_ServicesAreNull_ExpectArgumentNullException()
         {
             var mockResolver = MockFuncFactory.CreateMockResolver(PlusFifteenIdRefType);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.CompleteScoped(null!));
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.CompleteTransient(null!));
             Assert.Equal("services", ex.ParamName);
         }
 
         [Fact]
-        public void CompleteScoped_ExpectCallAddScopedOnce()
+        public void CompleteTransient_ExpectCallAddTransientOnce()
         {
             var mockResolver = MockFuncFactory.CreateMockResolver(ZeroIdRefType);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var mockServices = MockServiceCollection.Create(actualDescriptor =>
+            var mockServices = CreateMockServiceCollection(actualDescriptor =>
             {
                 Assert.Equal(typeof(RefType), actualDescriptor.ServiceType);
-                Assert.Equal(ServiceLifetime.Scoped, actualDescriptor.Lifetime);
+                Assert.Equal(ServiceLifetime.Transient, actualDescriptor.Lifetime);
                 Assert.NotNull(actualDescriptor.ImplementationFactory);
             });
 
-            _ = sourcePipeline.CompleteScoped(mockServices.Object);
+            _ = sourcePipeline.CompleteTransient(mockServices.Object);
             mockServices.Verify(s => s.Add(It.IsAny<ServiceDescriptor>()), Times.Once);
         }
 
         [Fact]
-        public void CompleteScoped_ThenInvokeImplementationFactory_ExpectResolvedValue()
+        public void CompleteTransient_ThenInvokeImplementationFactory_ExpectResolvedValue()
         {
             var resolved = MinusFifteenIdRefType;
             var mockResolver = MockFuncFactory.CreateMockResolver(resolved);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var mockServices = MockServiceCollection.Create(sd =>
+            var mockServices = CreateMockServiceCollection(sd =>
             {
                 var actualFactory = sd.ImplementationFactory!;
                 var serviceProvider = Mock.Of<IServiceProvider>();
@@ -168,19 +168,19 @@ namespace PrimeFuncPack.Tests
                 Assert.Same(resolved, actual);
             });
 
-            _ = sourcePipeline.CompleteScoped(mockServices.Object);
+            _ = sourcePipeline.CompleteTransient(mockServices.Object);
         }
 
         [Fact]
-        public void CompleteScoped_ExpectServicesAreSame()
+        public void CompleteTransient_ExpectServicesAreSame()
         {
             var mockResolver = MockFuncFactory.CreateMockResolver(PlusFifteenIdRefType);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var mockServices = MockServiceCollection.Create();
+            var mockServices = CreateMockServiceCollection();
             var sourceServices = mockServices.Object;
 
-            var actual = sourcePipeline.CompleteScoped(sourceServices);
+            var actual = sourcePipeline.CompleteTransient(sourceServices);
             Assert.Same(sourceServices, actual);
         }
     }

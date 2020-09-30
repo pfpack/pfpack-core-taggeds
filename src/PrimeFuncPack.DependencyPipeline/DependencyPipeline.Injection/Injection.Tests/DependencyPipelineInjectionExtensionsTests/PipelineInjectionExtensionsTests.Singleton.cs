@@ -16,7 +16,7 @@ namespace PrimeFuncPack.Tests
         public void InjectSingleton_SourcePipelineIsNull_ExpectArgumentNullException()
         {
             DependencyPipeline<RefType> sourcePipeline = null!;
-            var mockServices = MockServiceCollection.Create();
+            var mockServices = CreateMockServiceCollection();
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.InjectSingleton(mockServices.Object));
             Assert.Equal("sourcePipeline", ex.ParamName);
@@ -38,7 +38,7 @@ namespace PrimeFuncPack.Tests
             var mockResolver = MockFuncFactory.CreateMockResolver(PlusFifteenIdRefType);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var mockServices = MockServiceCollection.Create(actualDescriptor =>
+            var mockServices = CreateMockServiceCollection(actualDescriptor =>
             {
                 Assert.Equal(typeof(RefType), actualDescriptor.ServiceType);
                 Assert.Equal(ServiceLifetime.Singleton, actualDescriptor.Lifetime);
@@ -56,7 +56,7 @@ namespace PrimeFuncPack.Tests
             var mockResolver = MockFuncFactory.CreateMockResolver(resolved);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var mockServices = MockServiceCollection.Create(sd =>
+            var mockServices = CreateMockServiceCollection(sd =>
             {
                 var actualFactory = sd.ImplementationFactory!;
                 var serviceProvider = Mock.Of<IServiceProvider>();
@@ -74,7 +74,7 @@ namespace PrimeFuncPack.Tests
             var mockResolver = MockFuncFactory.CreateMockResolver(ZeroIdRefType);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var mockServices = MockServiceCollection.Create();
+            var mockServices = CreateMockServiceCollection();
             var actualPipeline = sourcePipeline.InjectSingleton(mockServices.Object);
 
             var mockServiceProvider = CreateMockServiceProvider(PlusFifteenIdRefType);
@@ -90,7 +90,7 @@ namespace PrimeFuncPack.Tests
             var mockResolver = MockFuncFactory.CreateMockResolver(resolved);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var mockServices = MockServiceCollection.Create();
+            var mockServices = CreateMockServiceCollection();
             var actualPipeline = sourcePipeline.InjectSingleton(mockServices.Object);
 
             var mockServiceProvider = CreateMockServiceProvider(null);
@@ -105,7 +105,7 @@ namespace PrimeFuncPack.Tests
             var resolved = ZeroIdRefType;
             var sourcePipeline = new DependencyPipeline<RefType>(_ => resolved);
 
-            var mockServices = MockServiceCollection.Create();
+            var mockServices = CreateMockServiceCollection();
             var actualPipeline = sourcePipeline.InjectSingleton(mockServices.Object);
 
             var valueFromProvider = PlusFifteenIdRefType;
@@ -119,7 +119,7 @@ namespace PrimeFuncPack.Tests
         public void CompleteSingleton_SourcePipelineIsNull_ExpectArgumentNullException()
         {
             DependencyPipeline<string> sourcePipeline = null!;
-            var mockServices = MockServiceCollection.Create();
+            var mockServices = CreateMockServiceCollection();
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePipeline.CompleteSingleton(mockServices.Object));
             Assert.Equal("sourcePipeline", ex.ParamName);
@@ -141,7 +141,7 @@ namespace PrimeFuncPack.Tests
             var mockResolver = MockFuncFactory.CreateMockResolver(ZeroIdRefType);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var mockServices = MockServiceCollection.Create(actualDescriptor =>
+            var mockServices = CreateMockServiceCollection(actualDescriptor =>
             {
                 Assert.Equal(typeof(RefType), actualDescriptor.ServiceType);
                 Assert.Equal(ServiceLifetime.Singleton, actualDescriptor.Lifetime);
@@ -159,7 +159,7 @@ namespace PrimeFuncPack.Tests
             var mockResolver = MockFuncFactory.CreateMockResolver(resolved);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var mockServices = MockServiceCollection.Create(sd =>
+            var mockServices = CreateMockServiceCollection(sd =>
             {
                 var actualFactory = sd.ImplementationFactory!;
                 var serviceProvider = Mock.Of<IServiceProvider>();
@@ -177,7 +177,7 @@ namespace PrimeFuncPack.Tests
             var mockResolver = MockFuncFactory.CreateMockResolver(PlusFifteenIdRefType);
             var sourcePipeline = new DependencyPipeline<RefType>(mockResolver.Object.Resolve);
 
-            var mockServices = MockServiceCollection.Create();
+            var mockServices = CreateMockServiceCollection();
             var sourceServices = mockServices.Object;
 
             var actual = sourcePipeline.CompleteSingleton(sourceServices);

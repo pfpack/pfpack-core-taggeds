@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -12,11 +12,10 @@
     <RootNamespace>PrimeFuncPack</RootNamespace>
     <AssemblyName>PrimeFuncPack.DependencyPipeline.Injection</AssemblyName>
     <Version>1.0.0-preview.2.0.1</Version>
-    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\LICENSE">
+    <None Include="..\..\..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
