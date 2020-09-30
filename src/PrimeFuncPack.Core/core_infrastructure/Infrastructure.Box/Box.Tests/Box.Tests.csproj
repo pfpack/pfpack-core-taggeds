@@ -9,7 +9,7 @@
     <Description>PrimeFuncPack: A Functional Programming Pack for .NET</Description>
     <Copyright>Copyright © 2020 Andrei Sergeev, Pavel Moskovoy</Copyright>
     <RootNamespace>PrimeFuncPack.Core.Infrastructure.Tests</RootNamespace>
-    <AssemblyName>PrimeFuncPack.Core.Infrastructure.Tests</AssemblyName>
+    <AssemblyName>PrimeFuncPack.Core.Infrastructure.Box.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure.Box\Infrastructure.Box.csproj" />
+    <ProjectReference Include="..\Box\Box.csproj" />
   </ItemGroup>
 
 </Project>
