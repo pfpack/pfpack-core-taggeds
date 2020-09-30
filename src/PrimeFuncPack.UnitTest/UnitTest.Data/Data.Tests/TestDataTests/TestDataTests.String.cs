@@ -14,6 +14,15 @@ namespace PrimeFuncPack.UnitTest.Data.Tests
         }
 
         [Fact]
+        public void WhiteSpaceString_ExpectWhiteSpace()
+        {
+            var actual = TestData.WhiteSpaceString;
+
+            var expected = new string(' ', 1);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void ThreeWhiteSpacesString_ExpectWhiteSpaces()
         {
             var actual = TestData.ThreeWhiteSpacesString;

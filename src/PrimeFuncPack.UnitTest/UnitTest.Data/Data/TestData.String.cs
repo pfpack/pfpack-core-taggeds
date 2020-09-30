@@ -6,6 +6,8 @@ namespace PrimeFuncPack.UnitTest
     {
         public const string EmptyString = "";
 
+        public const string WhiteSpaceString = " ";
+
         public const string ThreeWhiteSpacesString = "   ";
 
         public const string TabString = "\t";
