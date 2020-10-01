@@ -8,7 +8,7 @@
     <Description>PrimeFuncPack: A Functional Programming Pack for .NET</Description>
     <Copyright>Copyright © 2020 Andrei Sergeev, Pavel Moskovoy</Copyright>
     <RootNamespace>PrimeFuncPack.Core.Functionals.Pipelines.Tests</RootNamespace>
-    <AssemblyName>PrimeFuncPack.Core.Functionals.Pipelines.Tests</AssemblyName>
+    <AssemblyName>PrimeFuncPack.Core.Functionals.Pipelines.Pipeline.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pipelines.Pipeline\Pipelines.Pipeline.csproj" />
+    <ProjectReference Include="..\Pipeline\Pipeline.csproj" />
   </ItemGroup>
 
 </Project>
