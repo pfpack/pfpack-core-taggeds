@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -8,7 +8,7 @@
     <Description>PrimeFuncPack: A Functional Programming Pack for .NET</Description>
     <Copyright>Copyright © 2020 Andrei Sergeev, Pavel Moskovoy</Copyright>
     <RootNamespace>PrimeFuncPack.Core.Functionals.Primitives.Tests</RootNamespace>
-    <AssemblyName>PrimeFuncPack.Core.Functionals.Primitives.Tests</AssemblyName>
+    <AssemblyName>PrimeFuncPack.Core.Functionals.Primitives.Unit.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Primitives.Unit\Primitives.Unit.csproj" />
+    <ProjectReference Include="..\Unit\Unit.csproj" />
   </ItemGroup>
 
 </Project>
