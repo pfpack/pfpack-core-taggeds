@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <IsPackable>false</IsPackable>
+    <Description>PrimeFuncPack: A Functional Programming Pack for .NET</Description>
+    <Copyright>Copyright © 2020 Andrei Sergeev, Pavel Moskovoy</Copyright>
+    <RootNamespace>PrimeFuncPack.Core.Objects.Tests</RootNamespace>
+    <AssemblyName>PrimeFuncPack.Core.Objects.Strings.Extras.Tests</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.*" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0-alpha.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0-preview-*" />
+    <PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="2.0.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Extras\Extras.csproj" />
+  </ItemGroup>
+
+</Project>
