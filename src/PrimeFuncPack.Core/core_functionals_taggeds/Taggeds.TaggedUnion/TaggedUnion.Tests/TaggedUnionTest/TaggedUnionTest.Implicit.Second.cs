@@ -1,0 +1,37 @@
+﻿#nullable enable
+
+using NUnit.Framework;
+using PrimeFuncPack.UnitTest;
+using System;
+using static PrimeFuncPack.UnitTest.TestData;
+
+namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
+{
+    partial class TaggedUnionTest
+    {
+        [Test]
+        public void ImplicitSecond_ExpectIsFirstGetsFalse()
+        {
+            TaggedUnion<StructType?, RefType> taggedUnion = ZeroIdRefType;
+            Assert.IsFalse(taggedUnion.IsFirst);
+        }
+
+        [Test]
+        [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
+        public void ImplicitSecond_ExpectIsSecondGetsTrue(
+            in object? sourceValue)
+        {
+            TaggedUnion<StructType, object?> taggedUnion = sourceValue;
+            Assert.IsTrue(taggedUnion.IsSecond);
+        }
+
+        [Test]
+        [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
+        public void ImplicitSecond_ExpectIsInitializedGetsTrue(
+            in object? sourceValue)
+        {
+            TaggedUnion<RefType, object?> taggedUnion = sourceValue;
+            Assert.IsTrue(taggedUnion.IsInitialized);
+        }
+    }
+}
