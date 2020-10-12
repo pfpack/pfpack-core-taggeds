@@ -5,7 +5,7 @@ using PrimeFuncPack.UnitTest;
 using System;
 using System.Linq;
 
-namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
+namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
 {
     partial class OptionalTest
     {

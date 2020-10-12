@@ -2,7 +2,7 @@
 
 using System;
 
-namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
+namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
 {
     internal sealed class SomeException : Exception
     {
