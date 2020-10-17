@@ -30,6 +30,8 @@ namespace System
             =>
             HashCode.Combine(EqualityContract, boxFirst, boxSecond);
 
-        private static Type EqualityContract => typeof(TaggedUnion<TFirst, TSecond>);
+        private static Type EqualityContract
+            =>
+            typeof(TaggedUnion<TFirst, TSecond>);
     }
 }

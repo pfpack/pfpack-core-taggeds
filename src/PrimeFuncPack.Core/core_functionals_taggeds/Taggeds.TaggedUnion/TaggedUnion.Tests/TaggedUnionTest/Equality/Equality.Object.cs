@@ -1,4 +1,4 @@
-﻿/*#nullable enable
+﻿#nullable enable
 
 using NUnit.Framework;
 using PrimeFuncPack.UnitTest;
@@ -134,5 +134,44 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
             var actual = source.Equals(obj);
             Assert.False(actual);
         }
+
+        [Test]
+        public void EqualsWithObject_ObjectIsOtherTaggedUnion_ExpectFalse()
+        {
+            var sourceValue = new StructType
+            {
+                Text = SomeString
+            };
+
+            var source = TaggedUnion<RefType, StructType?>.Second(sourceValue);
+            object? obj = TaggedUnion<RefType, StructType>.Second(sourceValue);
+
+            var actual = source.Equals(obj);
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void EqualsWithObject_ObjectIsNotTaggedUnion_ExpectFalse()
+        {
+            var sourceValue = PlusFifteenIdRefType;
+
+            var source = TaggedUnion<RefType, StructType?>.First(sourceValue);
+            object? obj = sourceValue;
+
+            var actual = source.Equals(obj);
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void EqualsWithObject_ObjectIsNull_ExpectFalse()
+        {
+            var sourceValue = PlusFifteenIdRefType;
+
+            var source = TaggedUnion<RefType, StructType?>.First(sourceValue);
+            object? obj = null;
+
+            var actual = source.Equals(obj);
+            Assert.False(actual);
+        }
     }
-}*/
+}
