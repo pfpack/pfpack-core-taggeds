@@ -12,9 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="3.*" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0-alpha.*" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0-preview-*" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0-alpha.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0-preview-20200921-01" />
     <PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="2.0.1" />
   </ItemGroup>
 

@@ -13,7 +13,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         public void ImplicitSecond_ExpectIsFirstGetsFalse()
         {
             TaggedUnion<StructType?, RefType> taggedUnion = ZeroIdRefType;
-            Assert.IsFalse(taggedUnion.IsFirst);
+            Assert.False(taggedUnion.IsFirst);
         }
 
         [Test]
@@ -22,7 +22,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
             in object? sourceValue)
         {
             TaggedUnion<StructType, object?> taggedUnion = sourceValue;
-            Assert.IsTrue(taggedUnion.IsSecond);
+            Assert.True(taggedUnion.IsSecond);
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
             in object? sourceValue)
         {
             TaggedUnion<RefType, object?> taggedUnion = sourceValue;
-            Assert.IsTrue(taggedUnion.IsInitialized);
+            Assert.True(taggedUnion.IsInitialized);
         }
     }
 }
