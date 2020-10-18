@@ -4,7 +4,7 @@ using NUnit.Framework;
 using System;
 using static PrimeFuncPack.UnitTest.TestData;
 
-namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
+namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
 {
     partial class OptionalTest
     {

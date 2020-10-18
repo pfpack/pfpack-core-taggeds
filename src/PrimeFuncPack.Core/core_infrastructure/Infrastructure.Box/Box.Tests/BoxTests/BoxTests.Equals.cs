@@ -16,8 +16,15 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
             Box<int?>? box = new Box<int?>(null);
             Box<int?>? other = null;
 
-            var actual = box.Equals(other);
-            Assert.False(actual);
+            {
+                var actual = box.Equals(other);
+                Assert.False(actual);
+            }
+
+            {
+                var actual = box.Equals((object)other);
+                Assert.False(actual);
+            }
         }
 
         [Test]
@@ -27,8 +34,15 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
             var source = new Box<StructType>(value);
             var other = source;
 
-            var actual = source.Equals(other);
-            Assert.True(actual);
+            {
+                var actual = source.Equals(other);
+                Assert.True(actual);
+            }
+
+            {
+                var actual = source.Equals((object)other);
+                Assert.True(actual);
+            }
         }
 
         [Test]
@@ -36,11 +50,11 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var text = SomeString;
 
-            var sorceValue = new StructType
+            var sourceValue = new StructType
             {
                 Text = text
             };
-            var source = new Box<StructType>(sorceValue);
+            var source = new Box<StructType>(sourceValue);
 
             var otherValue = new StructType
             {
@@ -48,8 +62,15 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
             };
             var other = new Box<StructType>(otherValue);
 
-            var actual = source.Equals(other);
-            Assert.True(actual);
+            {
+                var actual = source.Equals(other);
+                Assert.True(actual);
+            }
+
+            {
+                var actual = source.Equals((object)other);
+                Assert.True(actual);
+            }
         }
 
         [Test]
@@ -57,11 +78,11 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         {
             var id = MinusFifteen;
 
-            var sorceValue = new RefType
+            var sourceValue = new RefType
             {
                 Id = id
             };
-            var source = new Box<RefType>(sorceValue);
+            var source = new Box<RefType>(sourceValue);
 
             var otherValue = new RefType
             {
@@ -69,8 +90,15 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
             };
             var other = new Box<RefType>(otherValue);
 
-            var actual = source.Equals(other);
-            Assert.False(actual);
+            {
+                var actual = source.Equals(other);
+                Assert.False(actual);
+            }
+
+            {
+                var actual = source.Equals((object)other);
+                Assert.False(actual);
+            }
         }
 
         [Test]
@@ -79,8 +107,15 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
             var source = new Box<StubType?>(null);
             var other = new Box<StubType?>(null);
 
-            var actual = source.Equals(other);
-            Assert.True(actual);
+            {
+                var actual = source.Equals(other);
+                Assert.True(actual);
+            }
+
+            {
+                var actual = source.Equals((object)other);
+                Assert.True(actual);
+            }
         }
 
         [Test]
@@ -91,20 +126,34 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
             var otherValue = PlusFifteenIdRefType;
             var other = new Box<RefType>(otherValue);
 
-            var actual = source.Equals(other);
-            Assert.False(actual);
+            {
+                var actual = source.Equals(other);
+                Assert.False(actual);
+            }
+
+            {
+                var actual = source.Equals((object)other);
+                Assert.False(actual);
+            }
         }
 
         [Test]
         public void Equals_SourceValueIsNotNullAndOtherValueIsNull_ExpectFalse()
         {
-            var sorceValue = PlusFifteenIdRefType;
+            var sourceValue = PlusFifteenIdRefType;
 
-            var source = new Box<RefType?>(sorceValue);
+            var source = new Box<RefType?>(sourceValue);
             var other = new Box<RefType?>(null);
 
-            var actual = source.Equals(other);
-            Assert.False(actual);
+            {
+                var actual = source.Equals(other);
+                Assert.False(actual);
+            }
+
+            {
+                var actual = source.Equals((object)other);
+                Assert.False(actual);
+            }
         }
 
         [Test]
