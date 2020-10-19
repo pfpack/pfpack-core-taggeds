@@ -70,7 +70,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         }
 
         [Test]
-        public void Inequality_UnionAFirstValueDoesNotEqualUnionBFirstValue_ExpectTrue()
+        public void Inequality_UnionAFirstValueIsNotEqualUnionBFirstValue_ExpectTrue()
         {
             var aValue = new object();
             var unionA = TaggedUnion<object, StructType?>.First(aValue);
@@ -83,7 +83,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         }
 
         [Test]
-        public void Inequality_UnionASecondValueDoesNotEqualUnionBSecondValue_ExpectTrue()
+        public void Inequality_UnionASecondValueIsNotEqualUnionBSecondValue_ExpectTrue()
         {
             var unionA = TaggedUnion<RefType, StructType?>.Second(null);
             var unionB = TaggedUnion<RefType, StructType?>.Second(SomeTextStructType);

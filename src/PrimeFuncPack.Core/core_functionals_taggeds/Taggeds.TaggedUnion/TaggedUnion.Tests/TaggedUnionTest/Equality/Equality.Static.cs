@@ -109,7 +109,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         }
 
         [Test]
-        public void EqualsStatic_UnionAFirstValueDoesNotEqualUnionBFirstValue_ExpectFalse()
+        public void EqualsStatic_UnionAFirstValueIsNotEqualUnionBFirstValue_ExpectFalse()
         {
             var id = PlusFifteen;
 
@@ -130,7 +130,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         }
 
         [Test]
-        public void EqualsStatic_UnionASecondValueDoesNotEqualUnionBSecondValue_ExpectFalse()
+        public void EqualsStatic_UnionASecondValueIsNotEqualUnionBSecondValue_ExpectFalse()
         {
             var aValue = new StructType
             {

@@ -100,7 +100,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         }
 
         [Test]
-        public void EqualsWithObject_SourceFirstValueDoesNotEqualObjectFirstValue_ExpectFalse()
+        public void EqualsWithObject_SourceFirstValueIsNotEqualObjectFirstValue_ExpectFalse()
         {
             var id = Zero;
 
@@ -121,7 +121,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         }
 
         [Test]
-        public void EqualsWithObject_SourceSecondValueDoesNotEqualObjectSecondValue_ExpectFalse()
+        public void EqualsWithObject_SourceSecondValueIsNotEqualObjectSecondValue_ExpectFalse()
         {
             var sourceValue = new StructType
             {
