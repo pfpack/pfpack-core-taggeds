@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static PrimeFuncPack.UnitTest.TestData;
 
-namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
+namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
 {
     internal static class TestDataSource
     {
