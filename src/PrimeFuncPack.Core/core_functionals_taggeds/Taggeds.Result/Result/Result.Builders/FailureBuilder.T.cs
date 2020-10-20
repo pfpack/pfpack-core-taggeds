@@ -2,7 +2,7 @@
 
 using System;
 
-namespace PrimeFuncPack.Core.Result.Builders
+namespace PrimeFuncPack.Core
 {
     public sealed class FailureBuilder<TFailure> where TFailure : notnull, new()
     {
