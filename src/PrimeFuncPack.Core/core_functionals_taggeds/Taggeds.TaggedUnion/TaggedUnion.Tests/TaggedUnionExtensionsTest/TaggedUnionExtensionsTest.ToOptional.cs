@@ -4,7 +4,7 @@ using NUnit.Framework;
 using PrimeFuncPack.UnitTest;
 using System;
 
-namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
+namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
 {
     partial class TaggedUnionExtensionsTest
     {

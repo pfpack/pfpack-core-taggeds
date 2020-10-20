@@ -6,7 +6,7 @@ using System;
 using System.Threading.Tasks;
 using static PrimeFuncPack.UnitTest.TestData;
 
-namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
+namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
 {
     partial class TaggedUnionTest
     {
