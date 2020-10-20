@@ -5,7 +5,7 @@ using PrimeFuncPack.UnitTest.Moq;
 using System;
 using System.Collections.Generic;
 
-namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
+namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
 {
     public sealed partial class CollectionsExtensionsTest
     {
