@@ -16,17 +16,26 @@ namespace PrimeFuncPack.Linq.Collections.Tests
         [Test]
         public void ForEach_SourceIsNull_ExpectArgumentNullException()
         {
-            IEnumerable<StructType> source = null!;
+            {
+                IReadOnlyList<StructType> source = null!;
 
-            var ex = Assert.Throws<ArgumentNullException>(() => source.ForEach(_ => { }));
-            Assert.AreEqual("source", ex.ParamName);
+                var ex = Assert.Throws<ArgumentNullException>(() => source.ForEach(_ => { }));
+                Assert.AreEqual("source", ex.ParamName);
+            }
+
+            {
+                IEnumerable<StructType> source = null!;
+
+                var ex = Assert.Throws<ArgumentNullException>(() => source.ForEach(_ => { }));
+                Assert.AreEqual("source", ex.ParamName);
+            }
         }
 
         [Test]
         public void ForEach_ActionIsNull_ExpectArgumentNullException()
         {
             {
-                var source = CreateReadOnlyList(PlusFifteenIdRefType);
+                IReadOnlyList<RefType> source = CreateReadOnlyList(PlusFifteenIdRefType);
                 Action<RefType> action = null!;
 
                 var ex = Assert.Throws<ArgumentNullException>(() => source.ForEach(action));
@@ -46,7 +55,7 @@ namespace PrimeFuncPack.Linq.Collections.Tests
         public void ForEach_SourceReadOnlyListIsEmpty_ExpectNeverCallAction()
         {
             {
-                var source = CreateReadOnlyList<StructType>();
+                IReadOnlyList<StructType> source = CreateReadOnlyList<StructType>();
                 var mockAction = MockActionFactory.CreateMockAction<StructType>();
 
                 source.ForEach(mockAction.Object.Invoke);
@@ -65,7 +74,7 @@ namespace PrimeFuncPack.Linq.Collections.Tests
         [Test]
         public void ForEach_SourceListIsEmpty_ExpectNeverCallAction()
         {
-            var source = CreateList<RefType>();
+            IEnumerable<RefType> source = CreateList<RefType>();
             var mockAction = MockActionFactory.CreateMockAction<RefType>();
 
             source.ForEach(mockAction.Object.Invoke);
@@ -75,10 +84,10 @@ namespace PrimeFuncPack.Linq.Collections.Tests
         [Test]
         public void ForEach_SourceListCountIsTwo_ExpectCallActionTwoTimes()
         {
-            var source = CreateList(ZeroIdRefType, MinusFifteenIdRefType);
+            IList<RefType> source = CreateList(ZeroIdRefType, MinusFifteenIdRefType);
             var mockAction = MockActionFactory.CreateMockAction<RefType>();
 
-            source.ForEach(mockAction.Object.Invoke);
+            ((IEnumerable<RefType>)source).ForEach(mockAction.Object.Invoke);
 
             mockAction.Verify(a => a.Invoke(source[0]), Times.Once);
             mockAction.Verify(a => a.Invoke(source[1]), Times.Once);
@@ -87,7 +96,7 @@ namespace PrimeFuncPack.Linq.Collections.Tests
         [Test]
         public void ForEach_SourceCollectionIsEmpty_ExpectNeverCallAction()
         {
-            var source = CreateCollection<StructType>();
+            IEnumerable<StructType> source = CreateCollection<StructType>();
             var mockAction = MockActionFactory.CreateMockAction<StructType>();
 
             source.ForEach(mockAction.Object.Invoke);
@@ -97,10 +106,10 @@ namespace PrimeFuncPack.Linq.Collections.Tests
         [Test]
         public void ForEach_SourceCollectionContainsThreeItems_ExpectCallActionThreeTimes()
         {
-            var source = CreateList<StructType?>(SomeTextStructType, null, default(StructType));
+            IList<StructType?> source = CreateList<StructType?>(SomeTextStructType, null, default(StructType));
             var mockAction = MockActionFactory.CreateMockAction<StructType?>();
 
-            source.ForEach(mockAction.Object.Invoke);
+            ((IEnumerable<StructType?>)source).ForEach(mockAction.Object.Invoke);
 
             mockAction.Verify(a => a.Invoke(source[0]), Times.Once);
             mockAction.Verify(a => a.Invoke(source[1]), Times.Once);
