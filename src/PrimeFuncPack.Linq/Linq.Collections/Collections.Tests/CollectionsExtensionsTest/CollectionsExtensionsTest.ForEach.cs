@@ -25,21 +25,41 @@ namespace PrimeFuncPack.Linq.Collections.Tests
         [Test]
         public void ForEach_ActionIsNull_ExpectArgumentNullException()
         {
-            var source = CreateReadOnlyList(PlusFifteenIdRefType);
-            Action<RefType> action = null!;
+            {
+                var source = CreateReadOnlyList(PlusFifteenIdRefType);
+                Action<RefType> action = null!;
 
-            var ex = Assert.Throws<ArgumentNullException>(() => source.ForEach(action));
-            Assert.AreEqual("action", ex.ParamName);
+                var ex = Assert.Throws<ArgumentNullException>(() => source.ForEach(action));
+                Assert.AreEqual("action", ex.ParamName);
+            }
+
+            {
+                IEnumerable<RefType> source = CreateReadOnlyList(PlusFifteenIdRefType);
+                Action<RefType> action = null!;
+
+                var ex = Assert.Throws<ArgumentNullException>(() => source.ForEach(action));
+                Assert.AreEqual("action", ex.ParamName);
+            }
         }
 
         [Test]
         public void ForEach_SourceReadOnlyListIsEmpty_ExpectNeverCallAction()
         {
-            var source = CreateReadOnlyList<StructType>();
-            var mockAction = MockActionFactory.CreateMockAction<StructType>();
+            {
+                var source = CreateReadOnlyList<StructType>();
+                var mockAction = MockActionFactory.CreateMockAction<StructType>();
 
-            source.ForEach(mockAction.Object.Invoke);
-            mockAction.Verify(a => a.Invoke(It.IsAny<StructType>()), Times.Never);
+                source.ForEach(mockAction.Object.Invoke);
+                mockAction.Verify(a => a.Invoke(It.IsAny<StructType>()), Times.Never);
+            }
+
+            {
+                IEnumerable<StructType> source = CreateReadOnlyList<StructType>();
+                var mockAction = MockActionFactory.CreateMockAction<StructType>();
+
+                source.ForEach(mockAction.Object.Invoke);
+                mockAction.Verify(a => a.Invoke(It.IsAny<StructType>()), Times.Never);
+            }
         }
 
         [Test]

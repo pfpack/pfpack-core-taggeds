@@ -25,33 +25,65 @@ namespace PrimeFuncPack.Linq.Collections.Tests
         [Test]
         public void ForEachIndex_ActionIsNull_ExpectArgumentNullException()
         {
-            var source = CreateReadOnlyList(PlusFifteenIdRefType);
-            Action<int, RefType> action = null!;
+            {
+                var source = CreateReadOnlyList(PlusFifteenIdRefType);
+                Action<int, RefType> action = null!;
 
-            var ex = Assert.Throws<ArgumentNullException>(() => source.ForEach(action));
-            Assert.AreEqual("action", ex.ParamName);
+                var ex = Assert.Throws<ArgumentNullException>(() => source.ForEach(action));
+                Assert.AreEqual("action", ex.ParamName);
+            }
+
+            {
+                IEnumerable<RefType> source = CreateReadOnlyList(PlusFifteenIdRefType);
+                Action<int, RefType> action = null!;
+
+                var ex = Assert.Throws<ArgumentNullException>(() => source.ForEach(action));
+                Assert.AreEqual("action", ex.ParamName);
+            }
         }
 
         [Test]
         public void ForEachIndex_SourceIsEmpty_ExpectNeverCallAction()
         {
-            var source = CreateReadOnlyList<RefType?>();
-            var mockAction = MockActionFactory.CreateMockAction<int, RefType?>();
+            {
+                var source = CreateReadOnlyList<RefType?>();
+                var mockAction = MockActionFactory.CreateMockAction<int, RefType?>();
 
-            source.ForEach(mockAction.Object.Invoke);
-            mockAction.Verify(a => a.Invoke(It.IsAny<int>(), It.IsAny<RefType?>()), Times.Never);
+                source.ForEach(mockAction.Object.Invoke);
+                mockAction.Verify(a => a.Invoke(It.IsAny<int>(), It.IsAny<RefType?>()), Times.Never);
+            }
+
+            {
+                IEnumerable<RefType?> source = CreateReadOnlyList<RefType?>();
+                var mockAction = MockActionFactory.CreateMockAction<int, RefType?>();
+
+                source.ForEach(mockAction.Object.Invoke);
+                mockAction.Verify(a => a.Invoke(It.IsAny<int>(), It.IsAny<RefType?>()), Times.Never);
+            }
         }
 
         [Test]
         public void ForEachIndex_SourceCountIsTwo_ExpectCallActionTwoTimes()
         {
-            var source = CreateReadOnlyList(SomeTextStructType, NullTextStructType);
-            var mockAction = MockActionFactory.CreateMockAction<int, StructType>();
+            {
+                var source = CreateReadOnlyList(SomeTextStructType, NullTextStructType);
+                var mockAction = MockActionFactory.CreateMockAction<int, StructType>();
 
-            source.ForEach(mockAction.Object.Invoke);
+                source.ForEach(mockAction.Object.Invoke);
 
-            mockAction.Verify(a => a.Invoke(0, source[0]), Times.Once);
-            mockAction.Verify(a => a.Invoke(1, source[1]), Times.Once);
+                mockAction.Verify(a => a.Invoke(0, source[0]), Times.Once);
+                mockAction.Verify(a => a.Invoke(1, source[1]), Times.Once);
+            }
+
+            {
+                var source = CreateReadOnlyList(SomeTextStructType, NullTextStructType);
+                var mockAction = MockActionFactory.CreateMockAction<int, StructType>();
+
+                ((IEnumerable<StructType>)source).ForEach(mockAction.Object.Invoke);
+
+                mockAction.Verify(a => a.Invoke(0, source[0]), Times.Once);
+                mockAction.Verify(a => a.Invoke(1, source[1]), Times.Once);
+            }
         }
 
         [Test]
