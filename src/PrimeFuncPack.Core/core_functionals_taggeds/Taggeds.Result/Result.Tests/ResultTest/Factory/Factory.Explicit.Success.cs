@@ -19,7 +19,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         public void Success_SourceValueIsNotNull_ExpectIsSuccessReturnsTrue()
         {
-            var actual = Result<StructType, RefType>.Success(default);
+            var actual = Result<StructType, SomeError>.Success(default);
             Assert.True(actual.IsSuccess);
         }
 

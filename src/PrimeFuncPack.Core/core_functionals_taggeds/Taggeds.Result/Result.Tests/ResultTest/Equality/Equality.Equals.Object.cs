@@ -10,7 +10,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
     partial class ResultTest
     {
         [Test]
-        public void EqualsObject_SourceIsDefaultAndObjectIsDefaultResultSameType_ExpectTrue()
+        public void EqualsObject_SourceIsDefaultAndObjectIsDefaultAndTypesAreSame_ExpectTrue()
         {
             var source = default(Result<RefType, StructType>);
             object? obj = new Result<RefType, StructType>();
@@ -22,11 +22,18 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         public void EqualsObject_SourceIsSuccessAndObjectIsSuccessAndValuesAreEqual_ExpectTrue()
         {
-            var sourceValue = PlusFifteenIdRefType;
-            var source = Result<StructType, RefType>.Failure(sourceValue);
+            var text = SomeString;
+            var sourceValue = new SomeRecord
+            {
+                Text = text
+            };
+            var source = Result<SomeRecord, SomeError>.Success(sourceValue);
 
-            var objValue = sourceValue;
-            object? obj = Result<StructType, RefType>.Failure(objValue);
+            var objValue = new SomeRecord
+            {
+                Text = text
+            };
+            object? obj = Result<SomeRecord, SomeError>.Success(objValue);
 
             var actual = source.Equals(obj);
             Assert.True(actual);
@@ -108,10 +115,10 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         public void EqualsObject_SourceIsSuccessAndObjectIsFailure_ExpectFalse()
         {
-            var sourceValue = MinusFifteenIdRefType;
+            var sourceValue = SomeTextStructType;
 
-            var source = Result<RefType, RefType>.Success(sourceValue);
-            object? obj = Result<RefType, RefType>.Failure(sourceValue);
+            var source = Result<StructType, StructType>.Success(sourceValue);
+            object? obj = Result<StructType, StructType>.Failure(sourceValue);
 
             var actual = source.Equals(obj);
             Assert.False(actual);
@@ -120,8 +127,8 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         public void EqualsObject_SourceIsSuccessAndObjectIsDefault_ExpectFalse()
         {
-            var source = Result<StructType, RefType>.Success(default);
-            object? obj = default(Result<StructType, RefType>);
+            var source = Result<StructType, SomeError>.Success(default);
+            object? obj = default(Result<StructType, SomeError>);
 
             var actual = source.Equals(obj);
             Assert.False(actual);
@@ -152,8 +159,8 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         public void EqualsObject_SourceIsDefaultAndObjectIsSuccess_ExpectFalse()
         {
-            var source = default(Result<int, RefType>);
-            object? obj = Result<int, RefType>.Success(default);
+            var source = default(Result<int, SomeError>);
+            object? obj = Result<int, SomeError>.Success(default);
 
             var actual = source.Equals(obj);
             Assert.False(actual);
@@ -162,8 +169,8 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         public void EqualsObject_SourceIsDefaultAndObjectIsFailureWithNotDefaultValue_ExpectFalse()
         {
-            var source = default(Result<StructType, RefType>);
-            object? obj = Result<StructType, RefType>.Failure(ZeroIdRefType);
+            var source = default(Result<StructType, SomeError>);
+            object? obj = Result<StructType, SomeError>.Failure(new SomeError(PlusFifteen));
 
             var actual = source.Equals(obj);
             Assert.False(actual);
@@ -205,7 +212,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         {
             var sourceValue = SomeTextStructType;
 
-            var source = Result<StructType, RefType>.Success(sourceValue);
+            var source = Result<StructType, SomeError>.Success(sourceValue);
             object? obj = sourceValue;
 
             var actual = source.Equals(obj);
@@ -227,9 +234,9 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         public void EqualsObject_SourceIsFailureAndObjectIsNotResult_ExpectFalse()
         {
-            var sourceValue = ZeroIdRefType;
+            var sourceValue = new SomeError(MinusFifteen);
 
-            var source = Result<StructType, RefType>.Failure(sourceValue);
+            var source = Result<StructType, SomeError>.Failure(sourceValue);
             object? obj = sourceValue;
 
             var actual = source.Equals(obj);

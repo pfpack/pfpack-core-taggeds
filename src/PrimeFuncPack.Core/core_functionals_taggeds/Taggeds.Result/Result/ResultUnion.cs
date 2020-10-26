@@ -4,7 +4,7 @@ namespace System
 {
     internal static class ResultUnion<TSuccess, TFailure>
         where TSuccess : notnull
-        where TFailure : notnull, new()
+        where TFailure : struct
     {
         public static TaggedUnion<TSuccess, TFailure> Success(in TSuccess success)
             =>

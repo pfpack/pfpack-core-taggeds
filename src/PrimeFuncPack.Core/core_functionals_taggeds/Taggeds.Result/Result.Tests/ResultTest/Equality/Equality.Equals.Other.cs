@@ -23,17 +23,17 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         public void EqualsOther_SourceIsSuccessAndOtherIsSuccessAndValuesAreEqual_ExpectTrue()
         {
             var text = "Some new text.";
-            var sourceValue = new StructType
+            var sourceValue = new SomeRecord
             {
                 Text = text
             };
-            var source = Result<StructType, object>.Success(sourceValue);
+            var source = Result<SomeRecord, SomeError>.Success(sourceValue);
 
-            var otherValue = new StructType
+            var otherValue = new SomeRecord
             {
                 Text = text
             };
-            Result<StructType, object> other = otherValue;
+            Result<SomeRecord, SomeError> other = otherValue;
 
             var actual = source.Equals(other);
             Assert.True(actual);
@@ -42,11 +42,12 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         public void EqualsOther_SourceIsFailureAndOtherIsFailureAndValuesAreEqual_ExpectTrue()
         {
-            var sourceValue = new object();
-            Result<RefType, object> source = sourceValue;
+            var errorCode = PlusFifteen;
+            var sourceValue = new SomeError(errorCode);
+            Result<RefType, SomeError> source = sourceValue;
 
-            var otherValue = sourceValue;
-            var other = Result<RefType, object>.Failure(otherValue);
+            var otherValue = new SomeError(errorCode);
+            var other = Result<RefType, SomeError>.Failure(otherValue);
 
             var actual = source.Equals(other);
             Assert.True(actual);
@@ -108,10 +109,10 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         public void EqualsOther_SourceIsSuccessAndOtherIsFailure_ExpectFalse()
         {
-            var sourceValue = SomeTextStructType;
+            var sourceValue = new SomeError(PlusFifteen);
 
-            var source = Result<StructType, StructType>.Success(sourceValue);
-            var other = Result<StructType, StructType>.Failure(sourceValue);
+            var source = Result<SomeError, SomeError>.Success(sourceValue);
+            var other = Result<SomeError, SomeError>.Failure(sourceValue);
 
             var actual = source.Equals(other);
             Assert.False(actual);
@@ -130,10 +131,10 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         public void EqualsOther_SourceIsFailureAndOtherIsSuccess_ExpectFalse()
         {
-            var sourceValue = PlusFifteenIdRefType;
+            var sourceValue = MinusFifteen;
 
-            var source = Result<RefType, RefType>.Failure(sourceValue);
-            var other = Result<RefType, RefType>.Success(sourceValue);
+            var source = Result<int, int>.Failure(sourceValue);
+            var other = Result<int, int>.Success(sourceValue);
 
             var actual = source.Equals(other);
             Assert.False(actual);
@@ -152,8 +153,8 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         public void EqualsOther_SourceIsDefaultAndOtherIsSuccess_ExpectFalse()
         {
-            var source = default(Result<StructType, RefType>);
-            var other = Result<StructType, RefType>.Success(default);
+            var source = default(Result<StructType, SomeError>);
+            var other = Result<StructType, SomeError>.Success(default);
 
             var actual = source.Equals(other);
             Assert.False(actual);
@@ -162,8 +163,8 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         public void EqualsOther_SourceIsDefaultAndOtherIsFailureWithNotDefaultValue_ExpectFalse()
         {
-            var source = default(Result<StructType, RefType>);
-            var other = Result<StructType, RefType>.Failure(new RefType());
+            var source = default(Result<StructType, SomeError>);
+            var other = Result<StructType, SomeError>.Failure(new SomeError(PlusFifteen));
 
             var actual = source.Equals(other);
             Assert.False(actual);

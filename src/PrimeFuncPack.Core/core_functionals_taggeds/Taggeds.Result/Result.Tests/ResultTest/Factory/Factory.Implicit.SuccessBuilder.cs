@@ -17,7 +17,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
 
             static void TestFunc()
             {
-                Result<StructType, RefType> _ = (SuccessBuilder<StructType>)null!;
+                Result<StructType, SomeError> _ = (SuccessBuilder<StructType>)null!;
             }
         }
 
@@ -25,7 +25,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         public void ImplicitSuccessBuilder_SourceBuilderIsNotNull_ExpectIsSuccessReturnsTrue()
         {
             var source = Result.Success(PlusFifteenIdRefType);
-            Result<RefType, RefType> actual = source;
+            Result<RefType, SomeError> actual = source;
 
             Assert.True(actual.IsSuccess);
         }

@@ -31,7 +31,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         public void ImplicitSuccess_SourceValueIsNotNull_ExpectIsFailureReturnsFalse()
         {
-            Result<StructType, object> actual = default(StructType);
+            Result<StructType, SomeError> actual = default(StructType);
             Assert.False(actual.IsFailure);
         }
     }
