@@ -11,36 +11,6 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
     partial class BoxEqualityComparerTests
     {
         [Test]
-        public void Equals_XIsNullAndYIsNull_ExpectTrue()
-        {
-            Box<RefType>? boxX = null;
-            Box<RefType>? boxY = null;
-
-            var actual = BoxEqualityComparer<RefType>.Default.Equals(boxX, boxY);
-            Assert.True(actual);
-        }
-
-        [Test]
-        public void Equals_XIsNullAndYIsNotNull_ExpectFalse()
-        {
-            Box<int?>? boxX = new Box<int?>(null);
-            Box<int?>? boxY = null;
-
-            var actual = BoxEqualityComparer<int?>.Default.Equals(boxX, boxY);
-            Assert.False(actual);
-        }
-
-        [Test]
-        public void Equals_XIsNotNullAndYIsNull_ExpectFalse()
-        {
-            Box<RefType>? boxX = null;
-            Box<RefType>? boxY = new Box<RefType>(new RefType());
-
-            var actual = BoxEqualityComparer<RefType>.Default.Equals(boxX, boxY);
-            Assert.False(actual);
-        }
-
-        [Test]
         public void Equals_XIsSameAsY_ExpectTrue()
         {
             var value = SomeTextStructType;

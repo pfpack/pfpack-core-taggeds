@@ -6,7 +6,7 @@ namespace System
     {
         public static bool Equals(Optional<T> optionalA, Optional<T> optionalB)
             =>
-            Box<T>.Equals(optionalA.box, optionalB.box);
+            optionalA.box == optionalB.box;
 
         public static bool operator ==(Optional<T> optionalA, Optional<T> optionalB)
             =>
@@ -27,8 +27,12 @@ namespace System
 
         public override int GetHashCode()
             =>
-            HashCode.Combine(EqualityContract, box);
+            HashCode.Combine(
+                EqualityContract,
+                box);
 
-        private static Type EqualityContract => typeof(Optional<T>);
+        private static Type EqualityContract
+            =>
+            typeof(Optional<T>);
     }
 }

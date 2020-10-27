@@ -8,7 +8,7 @@ namespace System
             =>
             box switch
             {
-                not null => map.Invoke(box),
+                not null => map.Invoke(box.Value),
                 _ => otherFactory.Invoke()
             };
     }

@@ -11,23 +11,6 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
     partial class BoxTests
     {
         [Test]
-        public void Equals_OtherIsNotNull_ExpectFalse()
-        {
-            Box<int?>? box = new Box<int?>(null);
-            Box<int?>? other = null;
-
-            {
-                var actual = box.Equals(other);
-                Assert.False(actual);
-            }
-
-            {
-                var actual = box.Equals((object)other);
-                Assert.False(actual);
-            }
-        }
-
-        [Test]
         public void Equals_OtherIsSame_ExpectTrue()
         {
             var value = SomeTextStructType;
@@ -157,36 +140,6 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         }
 
         [Test]
-        public void EqualsStaticOfT_AIsNullAndBIsNull_ExpectTrue()
-        {
-            Box<RefType>? boxA = null;
-            Box<RefType>? boxB = null;
-
-            var actual = Box<RefType>.Equals(boxA, boxB);
-            Assert.True(actual);
-        }
-
-        [Test]
-        public void EqualsStaticOfT_AIsNullAndBIsNotNull_ExpectFalse()
-        {
-            Box<int?>? boxA = new Box<int?>(null);
-            Box<int?>? boxB = null;
-
-            var actual = Box<int?>.Equals(boxA, boxB);
-            Assert.False(actual);
-        }
-
-        [Test]
-        public void EqualsStaticOfT_AIsNotNullAndBIsNull_ExpectFalse()
-        {
-            Box<RefType>? boxA = null;
-            Box<RefType>? boxB = new Box<RefType>(MinusFifteenIdRefType);
-
-            var actual = Box<RefType>.Equals(boxA, boxB);
-            Assert.False(actual);
-        }
-
-        [Test]
         public void EqualsStaticOfT_AIsSameAsB_ExpectTrue()
         {
             var value = SomeTextStructType;
@@ -269,36 +222,6 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
             var boxB = new Box<RefType?>(null);
 
             var actual = Box<RefType?>.Equals(boxA, boxB);
-            Assert.False(actual);
-        }
-
-        [Test]
-        public void EqualsStatic_AIsNullAndBIsNull_ExpectTrue()
-        {
-            Box<RefType>? boxA = null;
-            Box<RefType>? boxB = null;
-
-            var actual = Box.Equals(boxA, boxB);
-            Assert.True(actual);
-        }
-
-        [Test]
-        public void EqualsStatic_AIsNullAndBIsNotNull_ExpectFalse()
-        {
-            Box<int?>? boxA = new Box<int?>(null);
-            Box<int?>? boxB = null;
-
-            var actual = Box.Equals(boxA, boxB);
-            Assert.False(actual);
-        }
-
-        [Test]
-        public void EqualsStatic_AIsNotNullAndBIsNull_ExpectFalse()
-        {
-            Box<RefType>? boxA = null;
-            Box<RefType>? boxB = new Box<RefType>(MinusFifteenIdRefType);
-
-            var actual = Box.Equals(boxA, boxB);
             Assert.False(actual);
         }
 

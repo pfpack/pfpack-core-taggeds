@@ -11,36 +11,6 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
     partial class BoxTests
     {
         [Test]
-        public void Equality_AIsNullAndBIsNull_ExpectTrue()
-        {
-            Box<RefType>? boxA = null!;
-            Box<RefType>? boxB = null!;
-
-            var actual = (boxA == boxB);
-            Assert.True(actual);
-        }
-
-        [Test]
-        public void Equality_AIsNullAndBIsNotNull_ExpectFalse()
-        {
-            Box<int?>? boxA = new Box<int?>(null);
-            Box<int?>? boxB = null!;
-
-            var actual = (boxA == boxB);
-            Assert.False(actual);
-        }
-
-        [Test]
-        public void Equality_AIsNotNullAndBIsNull_ExpectFalse()
-        {
-            Box<RefType>? boxA = null!;
-            Box<RefType>? boxB = new Box<RefType>(PlusFifteenIdRefType);
-
-            var actual = (boxA == boxB);
-            Assert.False(actual);
-        }
-
-        [Test]
         public void Equality_AIsSameAsB_ExpectTrue()
         {
             var value = SomeTextStructType;
@@ -125,36 +95,6 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
 
             var actual = (boxA == boxB);
             Assert.False(actual);
-        }
-
-        [Test]
-        public void Inequality_AIsNullAndBIsNull_ExpectFalse()
-        {
-            Box<RefType>? boxA = null!;
-            Box<RefType>? boxB = null!;
-
-            var actual = (boxA != boxB);
-            Assert.False(actual);
-        }
-
-        [Test]
-        public void Inequality_AIsNullAndBIsNotNull_ExpectTrue()
-        {
-            Box<int?>? boxA = new Box<int?>(null);
-            Box<int?>? boxB = null!;
-
-            var actual = (boxA != boxB);
-            Assert.True(actual);
-        }
-
-        [Test]
-        public void Inequality_AIsNotNullAndBIsNull_ExpectTrue()
-        {
-            Box<RefType>? boxA = null!;
-            Box<RefType>? boxB = new Box<RefType>(ZeroIdRefType);
-
-            var actual = (boxA != boxB);
-            Assert.True(actual);
         }
 
         [Test]

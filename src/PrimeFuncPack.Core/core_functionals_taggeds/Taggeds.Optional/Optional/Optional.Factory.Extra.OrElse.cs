@@ -12,6 +12,6 @@ namespace System
 
         public static Optional<T> PresentOrElse<T>([DisallowNull] T? value) where T : struct
             =>
-            value switch { not null => Optional<T>.Present((T)value), _ => Optional<T>.Absent };
+            value switch { not null => Optional<T>.Present(value.Value), _ => Optional<T>.Absent };
     }
 }

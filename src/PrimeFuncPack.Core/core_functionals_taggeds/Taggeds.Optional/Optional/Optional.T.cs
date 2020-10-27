@@ -2,9 +2,7 @@
 
 namespace System
 {
-    public readonly partial struct Optional<T> :
-        IEquatable<Optional<T>>,
-        ISamenessEquatable<Optional<T>>
+    public readonly partial struct Optional<T> : IEquatable<Optional<T>>
     {
         private readonly Box<T>? box;
 
