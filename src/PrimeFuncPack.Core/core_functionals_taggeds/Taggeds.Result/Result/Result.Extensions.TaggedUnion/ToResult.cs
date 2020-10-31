@@ -1,15 +1,17 @@
 ﻿#nullable enable
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace System
 {
     partial class TaggedUnionResultExtensions
     {
+        [Obsolete(ObsoleteMessages.ToResult, error: true)]
+        [DoesNotReturn]
         public static Result<TSuccess, TFailure> ToResult<TSuccess, TFailure>(this TaggedUnion<TSuccess, TFailure> union)
             where TSuccess : notnull
             where TFailure : struct
             =>
-            union.Fold(
-                value => value switch { not null => Result<TSuccess, TFailure>.Success(value), _ => default },
-                Result<TSuccess, TFailure>.Failure);
+            throw new NotImplementedException(ObsoleteMessages.ToResult);
     }
 }
