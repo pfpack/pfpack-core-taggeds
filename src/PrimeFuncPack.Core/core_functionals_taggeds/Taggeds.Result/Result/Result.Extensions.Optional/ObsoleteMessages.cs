@@ -7,7 +7,7 @@ namespace System
         private static class ObsoleteMessages
         {
             public const string ToResult
-                = "This method is not intended to use. Call ToResultOrThrowOnNull or ToResultOrFailureOnNull instead.";
+                = "This method is not intended for use. Call ToResultOrThrowOnNull or ToResultOrFailureOnNull instead.";
         }
     }
 }
