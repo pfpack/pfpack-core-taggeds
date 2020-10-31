@@ -12,7 +12,7 @@ namespace System
             Func<TSuccess, Result<TNextSuccess, TNextFailure>> nextFactory,
             Func<TFailure, TNextFailure> mapFailure)
             where TNextSuccess : notnull
-            where TNextFailure : notnull, new()
+            where TNextFailure : struct
         {
             _ = nextFactory ?? throw new ArgumentNullException(nameof(nextFactory));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
@@ -45,7 +45,7 @@ namespace System
             Func<TSuccess, Task<Result<TNextSuccess, TNextFailure>>> nextFactoryAsync,
             Func<TFailure, TNextFailure> mapFailure)
             where TNextSuccess : notnull
-            where TNextFailure : notnull, new()
+            where TNextFailure : struct
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
@@ -82,7 +82,7 @@ namespace System
             Func<TSuccess, ValueTask<Result<TNextSuccess, TNextFailure>>> nextFactoryAsync,
             Func<TFailure, TNextFailure> mapFailure)
             where TNextSuccess : notnull
-            where TNextFailure : notnull, new()
+            where TNextFailure : struct
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));

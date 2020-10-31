@@ -16,7 +16,7 @@ namespace System
 
         public Result<TSuccess, TResultFailure> MapFailure<TResultFailure>(
             Func<TFailure, TResultFailure> mapFailure)
-            where TResultFailure : notnull, new()
+            where TResultFailure : struct
             =>
             MapFailureSource.MapSecond(mapFailure).AsResult();
 
@@ -24,7 +24,7 @@ namespace System
             Func<TSuccess, TResultSuccess> mapSuccess,
             Func<TFailure, TResultFailure> mapFailure)
             where TResultSuccess : notnull
-            where TResultFailure : notnull, new()
+            where TResultFailure : struct
             =>
             MapSource.Map(mapSuccess, mapFailure).AsResult();
 
@@ -38,7 +38,7 @@ namespace System
 
         public async Task<Result<TSuccess, TResultFailure>> MapFailureAsync<TResultFailure>(
             Func<TFailure, Task<TResultFailure>> mapFailureAsync)
-            where TResultFailure : notnull, new()
+            where TResultFailure : struct
             =>
             (await MapFailureSource.MapSecondAsync(mapFailureAsync).ConfigureAwait(false)).AsResult();
 
@@ -46,7 +46,7 @@ namespace System
             Func<TSuccess, Task<TResultSuccess>> mapSuccessAsync,
             Func<TFailure, Task<TResultFailure>> mapFailureAsync)
             where TResultSuccess : notnull
-            where TResultFailure : notnull, new()
+            where TResultFailure : struct
             =>
             (await MapSource.MapAsync(mapSuccessAsync, mapFailureAsync).ConfigureAwait(false)).AsResult();
 
@@ -60,7 +60,7 @@ namespace System
 
         public async ValueTask<Result<TSuccess, TResultFailure>> MapFailureValueAsync<TResultFailure>(
             Func<TFailure, ValueTask<TResultFailure>> mapFailureAsync)
-            where TResultFailure : notnull, new()
+            where TResultFailure : struct
             =>
             (await MapFailureSource.MapSecondValueAsync(mapFailureAsync).ConfigureAwait(false)).AsResult();
 
@@ -68,7 +68,7 @@ namespace System
             Func<TSuccess, ValueTask<TResultSuccess>> mapSuccessAsync,
             Func<TFailure, ValueTask<TResultFailure>> mapFailureAsync)
             where TResultSuccess : notnull
-            where TResultFailure : notnull, new()
+            where TResultFailure : struct
             =>
             (await MapSource.MapValueAsync(mapSuccessAsync, mapFailureAsync).ConfigureAwait(false)).AsResult();
 

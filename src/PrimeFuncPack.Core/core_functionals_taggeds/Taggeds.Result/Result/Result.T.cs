@@ -6,7 +6,7 @@ namespace System
         IEquatable<Result<TSuccess, TFailure>>,
         ISamenessEquatable<Result<TSuccess, TFailure>>
         where TSuccess : notnull
-        where TFailure : notnull, new()
+        where TFailure : struct
     {
         private const string CategorySuccess = "Success";
 

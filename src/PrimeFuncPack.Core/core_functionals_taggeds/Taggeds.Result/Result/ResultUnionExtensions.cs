@@ -7,8 +7,8 @@ namespace System
         public static TaggedUnion<TSuccess, TFailure> OrFailure<TSuccess, TFailure>(
             this in TaggedUnion<TSuccess, TFailure> union)
             where TSuccess : notnull
-            where TFailure : notnull, new()
+            where TFailure : struct
             =>
-            union.Or(() => ResultUnion<TSuccess, TFailure>.Failure(new TFailure()));
+            union.Or(() => ResultUnion<TSuccess, TFailure>.Failure(default));
     }
 }

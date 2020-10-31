@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-using PrimeFuncPack.Core.Result.Builders;
+using PrimeFuncPack.Core;
 
 namespace System
 {
@@ -10,7 +10,7 @@ namespace System
             =>
             SuccessBuilder<TSuccess>.Create(success);
 
-        public static FailureBuilder<TFailure> Failure<TFailure>(TFailure failure) where TFailure : notnull, new()
+        public static FailureBuilder<TFailure> Failure<TFailure>(TFailure failure) where TFailure : struct
             =>
             FailureBuilder<TFailure>.Create(failure);
     }
