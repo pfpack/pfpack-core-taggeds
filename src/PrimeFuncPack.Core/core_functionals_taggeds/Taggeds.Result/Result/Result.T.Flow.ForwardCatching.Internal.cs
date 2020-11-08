@@ -6,12 +6,11 @@ namespace System
 {
     partial struct Result<TSuccess, TFailure>
     {
-        private static Result<TNextSuccess, TNextFailure> InternalNextFactoryCatching<TNextSuccess, TNextFailure>(
-            TSuccess success,
-            Func<TSuccess, Result<TNextSuccess, TNextFailure>> nextFactory,
-            Func<Exception, TNextFailure> failureFactory)
+        private static Result<TNextSuccess, TFailure> InternalNextFactoryCatching<TNextSuccess>(
+            in TSuccess success,
+            in Func<TSuccess, Result<TNextSuccess, TFailure>> nextFactory,
+            in Func<Exception, TFailure> failureFactory)
             where TNextSuccess : notnull
-            where TNextFailure : struct
         {
             try
             {
@@ -23,12 +22,11 @@ namespace System
             }
         }
 
-        private static Task<Result<TNextSuccess, TNextFailure>> InternalNextFactoryCatchingAsync<TNextSuccess, TNextFailure>(
-            TSuccess success,
-            Func<TSuccess, Task<Result<TNextSuccess, TNextFailure>>> nextFactoryAsync,
-            Func<Exception, TNextFailure> failureFactory)
+        private static Task<Result<TNextSuccess, TFailure>> InternalNextFactoryCatchingAsync<TNextSuccess>(
+            in TSuccess success,
+            in Func<TSuccess, Task<Result<TNextSuccess, TFailure>>> nextFactoryAsync,
+            in Func<Exception, TFailure> failureFactory)
             where TNextSuccess : notnull
-            where TNextFailure : struct
         {
             try
             {
@@ -36,16 +34,15 @@ namespace System
             }
             catch (Exception ex)
             {
-                return Task.FromResult<Result<TNextSuccess, TNextFailure>>(failureFactory.Invoke(ex));
+                return Task.FromResult<Result<TNextSuccess, TFailure>>(failureFactory.Invoke(ex));
             }
         }
 
-        private static ValueTask<Result<TNextSuccess, TNextFailure>> InternalNextFactoryCatchingValueAsync<TNextSuccess, TNextFailure>(
-            TSuccess success,
-            Func<TSuccess, ValueTask<Result<TNextSuccess, TNextFailure>>> nextFactoryAsync,
-            Func<Exception, TNextFailure> failureFactory)
+        private static ValueTask<Result<TNextSuccess, TFailure>> InternalNextFactoryCatchingValueAsync<TNextSuccess>(
+            in TSuccess success,
+            in Func<TSuccess, ValueTask<Result<TNextSuccess, TFailure>>> nextFactoryAsync,
+            in Func<Exception, TFailure> failureFactory)
             where TNextSuccess : notnull
-            where TNextFailure : struct
         {
             try
             {
@@ -53,7 +50,7 @@ namespace System
             }
             catch (Exception ex)
             {
-                return ValueTask.FromResult<Result<TNextSuccess, TNextFailure>>(failureFactory.Invoke(ex));
+                return ValueTask.FromResult<Result<TNextSuccess, TFailure>>(failureFactory.Invoke(ex));
             }
         }
     }
