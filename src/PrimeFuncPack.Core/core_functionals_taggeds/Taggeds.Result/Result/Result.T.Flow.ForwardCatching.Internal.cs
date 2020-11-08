@@ -6,7 +6,7 @@ namespace System
 {
     partial struct Result<TSuccess, TFailure>
     {
-        private static Result<TNextSuccess, TFailure> InternalNextFactoryCatching<TNextSuccess>(
+        private static Result<TNextSuccess, TFailure> InternalForwardSuccessCatching<TNextSuccess>(
             in TSuccess success,
             in Func<TSuccess, Result<TNextSuccess, TFailure>> nextFactory,
             in Func<Exception, TFailure> failureFactory)
@@ -22,7 +22,7 @@ namespace System
             }
         }
 
-        private static Task<Result<TNextSuccess, TFailure>> InternalNextFactoryCatchingAsync<TNextSuccess>(
+        private static Task<Result<TNextSuccess, TFailure>> InternalForwardSuccessCatchingAsync<TNextSuccess>(
             in TSuccess success,
             in Func<TSuccess, Task<Result<TNextSuccess, TFailure>>> nextFactoryAsync,
             in Func<Exception, TFailure> failureFactory)
@@ -38,7 +38,7 @@ namespace System
             }
         }
 
-        private static ValueTask<Result<TNextSuccess, TFailure>> InternalNextFactoryCatchingValueAsync<TNextSuccess>(
+        private static ValueTask<Result<TNextSuccess, TFailure>> InternalForwardSuccessCatchingValueAsync<TNextSuccess>(
             in TSuccess success,
             in Func<TSuccess, ValueTask<Result<TNextSuccess, TFailure>>> nextFactoryAsync,
             in Func<Exception, TFailure> failureFactory)

@@ -32,6 +32,26 @@ namespace System
 
         public Task<Result<TSuccess, TFailure>> FilterAsync(
             Func<TSuccess, Task<bool>> predicateAsync,
+            Func<TSuccess, TFailure> causeFactory)
+        {
+            _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
+            _ = causeFactory ?? throw new ArgumentNullException(nameof(causeFactory));
+
+            var @this = this;
+
+            return FoldAsync(FilterSuccessAsync, _ => Task.FromResult(@this));
+
+            async Task<Result<TSuccess, TFailure>> FilterSuccessAsync(TSuccess success)
+                =>
+                await predicateAsync.Invoke(success).ConfigureAwait(false) switch
+                {
+                    true => @this,
+                    _ => causeFactory.Invoke(success)
+                };
+        }
+
+        public Task<Result<TSuccess, TFailure>> FilterAsync(
+            Func<TSuccess, Task<bool>> predicateAsync,
             Func<TSuccess, Task<TFailure>> causeFactoryAsync)
         {
             _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
@@ -51,6 +71,26 @@ namespace System
         }
 
         // Filter Async / ValueTask
+
+        public ValueTask<Result<TSuccess, TFailure>> FilterValueAsync(
+            Func<TSuccess, ValueTask<bool>> predicateAsync,
+            Func<TSuccess, TFailure> causeFactory)
+        {
+            _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
+            _ = causeFactory ?? throw new ArgumentNullException(nameof(causeFactory));
+
+            var @this = this;
+
+            return FoldValueAsync(FilterSuccessValueAsync, _ => ValueTask.FromResult(@this));
+
+            async ValueTask<Result<TSuccess, TFailure>> FilterSuccessValueAsync(TSuccess success)
+                =>
+                await predicateAsync.Invoke(success).ConfigureAwait(false) switch
+                {
+                    true => @this,
+                    _ => causeFactory.Invoke(success)
+                };
+        }
 
         public ValueTask<Result<TSuccess, TFailure>> FilterValueAsync(
             Func<TSuccess, ValueTask<bool>> predicateAsync,

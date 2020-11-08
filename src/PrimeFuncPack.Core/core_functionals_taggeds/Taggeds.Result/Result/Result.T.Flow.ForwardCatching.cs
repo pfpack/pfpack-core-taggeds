@@ -17,7 +17,7 @@ namespace System
             _ = failureFactory ?? throw new ArgumentNullException(nameof(failureFactory));
 
             return Fold(
-                success => InternalNextFactoryCatching(success, nextFactory, failureFactory),
+                success => InternalForwardSuccessCatching(success, nextFactory, failureFactory),
                 failure => failure);
         }
 
@@ -31,7 +31,7 @@ namespace System
             var @this = this;
 
             return Fold(
-                success => InternalNextFactoryCatching(success, nextFactory, failureFactory),
+                success => InternalForwardSuccessCatching(success, nextFactory, failureFactory),
                 _ => @this);
         }
 
@@ -46,7 +46,7 @@ namespace System
             _ = failureFactory ?? throw new ArgumentNullException(nameof(failureFactory));
 
             return FoldAsync(
-                success => InternalNextFactoryCatchingAsync(success, nextFactoryAsync, failureFactory),
+                success => InternalForwardSuccessCatchingAsync(success, nextFactoryAsync, failureFactory),
                 failure => Task.FromResult<Result<TNextSuccess, TFailure>>(failure));
         }
 
@@ -60,7 +60,7 @@ namespace System
             var @this = this;
 
             return FoldAsync(
-                success => InternalNextFactoryCatchingAsync(success, nextFactoryAsync, failureFactory),
+                success => InternalForwardSuccessCatchingAsync(success, nextFactoryAsync, failureFactory),
                 _ => Task.FromResult(@this));
         }
 
@@ -75,7 +75,7 @@ namespace System
             _ = failureFactory ?? throw new ArgumentNullException(nameof(failureFactory));
 
             return FoldValueAsync(
-                success => InternalNextFactoryCatchingValueAsync(success, nextFactoryAsync, failureFactory),
+                success => InternalForwardSuccessCatchingValueAsync(success, nextFactoryAsync, failureFactory),
                 failure => ValueTask.FromResult<Result<TNextSuccess, TFailure>>(failure));
         }
 
@@ -89,7 +89,7 @@ namespace System
             var @this = this;
 
             return FoldValueAsync(
-                success => InternalNextFactoryCatchingValueAsync(success, nextFactoryAsync, failureFactory),
+                success => InternalForwardSuccessCatchingValueAsync(success, nextFactoryAsync, failureFactory),
                 _ => ValueTask.FromResult(@this));
         }
     }

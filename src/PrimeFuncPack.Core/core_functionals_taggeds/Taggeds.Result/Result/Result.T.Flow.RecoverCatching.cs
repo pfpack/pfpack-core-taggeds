@@ -18,7 +18,7 @@ namespace System
 
             return Fold(
                 success => success,
-                failure => InternalRecoverCatching(failure, otherFactory, failureFactory));
+                failure => InternalRecoverFailureCatching(failure, otherFactory, failureFactory));
         }
 
         public Result<TSuccess, TFailure> RecoverCatching(
@@ -32,7 +32,7 @@ namespace System
 
             return Fold(
                 _ => @this,
-                failure => InternalRecoverCatching(failure, otherFactory, failureFactory));
+                failure => InternalRecoverFailureCatching(failure, otherFactory, failureFactory));
         }
 
         // Recover Async / Task
@@ -47,7 +47,7 @@ namespace System
 
             return FoldAsync(
                 success => Task.FromResult<Result<TSuccess, TOtherFailure>>(success),
-                failure => InternalRecoverCatchingAsync(failure, otherFactoryAsync, failureFactory));
+                failure => InternalRecoverFailureCatchingAsync(failure, otherFactoryAsync, failureFactory));
         }
 
         public Task<Result<TSuccess, TFailure>> RecoverCatchingAsync(
@@ -61,7 +61,7 @@ namespace System
 
             return FoldAsync(
                 _ => Task.FromResult(@this),
-                failure => InternalRecoverCatchingAsync(failure, otherFactoryAsync, failureFactory));
+                failure => InternalRecoverFailureCatchingAsync(failure, otherFactoryAsync, failureFactory));
         }
 
         // Recover Async / ValueTask
@@ -76,7 +76,7 @@ namespace System
 
             return FoldValueAsync(
                 success => ValueTask.FromResult<Result<TSuccess, TOtherFailure>>(success),
-                failure => InternalRecoverCatchingValueAsync(failure, otherFactoryAsync, failureFactory));
+                failure => InternalRecoverFailureCatchingValueAsync(failure, otherFactoryAsync, failureFactory));
         }
 
         public ValueTask<Result<TSuccess, TFailure>> RecoverCatchingValueAsync(
@@ -90,7 +90,7 @@ namespace System
 
             return FoldValueAsync(
                 _ => ValueTask.FromResult(@this),
-                failure => InternalRecoverCatchingValueAsync(failure, otherFactoryAsync, failureFactory));
+                failure => InternalRecoverFailureCatchingValueAsync(failure, otherFactoryAsync, failureFactory));
         }
     }
 }
