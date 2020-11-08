@@ -8,18 +8,6 @@ namespace System
     {
         // Forward
 
-        public Result<TNextSuccess, TNextFailure> Forward<TNextSuccess, TNextFailure>(
-            Func<TSuccess, Result<TNextSuccess, TNextFailure>> nextFactory,
-            Func<TFailure, TNextFailure> mapFailure)
-            where TNextSuccess : notnull
-            where TNextFailure : struct
-        {
-            _ = nextFactory ?? throw new ArgumentNullException(nameof(nextFactory));
-            _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
-
-            return Fold(nextFactory, failure => mapFailure.Invoke(failure));
-        }
-
         public Result<TNextSuccess, TFailure> Forward<TNextSuccess>(
             Func<TSuccess, Result<TNextSuccess, TFailure>> nextFactory)
             where TNextSuccess : notnull
@@ -40,20 +28,6 @@ namespace System
         }
 
         // Forward Async / Task
-
-        public Task<Result<TNextSuccess, TNextFailure>> ForwardAsync<TNextSuccess, TNextFailure>(
-            Func<TSuccess, Task<Result<TNextSuccess, TNextFailure>>> nextFactoryAsync,
-            Func<TFailure, TNextFailure> mapFailure)
-            where TNextSuccess : notnull
-            where TNextFailure : struct
-        {
-            _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
-            _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
-
-            return FoldAsync(
-                nextFactoryAsync,
-                failure => Task.FromResult<Result<TNextSuccess, TNextFailure>>(mapFailure.Invoke(failure)));
-        }
 
         public Task<Result<TNextSuccess, TFailure>> ForwardAsync<TNextSuccess>(
             Func<TSuccess, Task<Result<TNextSuccess, TFailure>>> nextFactoryAsync)
@@ -77,20 +51,6 @@ namespace System
         }
 
         // Forward Async / ValueTask
-
-        public ValueTask<Result<TNextSuccess, TNextFailure>> ForwardValueAsync<TNextSuccess, TNextFailure>(
-            Func<TSuccess, ValueTask<Result<TNextSuccess, TNextFailure>>> nextFactoryAsync,
-            Func<TFailure, TNextFailure> mapFailure)
-            where TNextSuccess : notnull
-            where TNextFailure : struct
-        {
-            _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
-            _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
-
-            return FoldValueAsync(
-                nextFactoryAsync,
-                failure => ValueTask.FromResult<Result<TNextSuccess, TNextFailure>>(mapFailure.Invoke(failure)));
-        }
 
         public ValueTask<Result<TNextSuccess, TFailure>> ForwardValueAsync<TNextSuccess>(
             Func<TSuccess, ValueTask<Result<TNextSuccess, TFailure>>> nextFactoryAsync)
