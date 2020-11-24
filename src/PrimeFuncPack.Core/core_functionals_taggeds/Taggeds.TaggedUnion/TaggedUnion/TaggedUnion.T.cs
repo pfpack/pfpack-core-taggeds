@@ -2,9 +2,7 @@
 
 namespace System
 {
-    public readonly partial struct TaggedUnion<TFirst, TSecond> :
-        IEquatable<TaggedUnion<TFirst, TSecond>>,
-        ISamenessEquatable<TaggedUnion<TFirst, TSecond>>
+    public readonly partial struct TaggedUnion<TFirst, TSecond> : IEquatable<TaggedUnion<TFirst, TSecond>>
     {
         private const string CategoryFirst = "First";
 
@@ -38,6 +36,6 @@ namespace System
 
         private static Optional<T> ToOptional<T>(in Box<T>? box)
             =>
-            box switch { not null => Optional<T>.Present(box), _ => Optional<T>.Absent };
+            box switch { not null => Optional<T>.Present(box.Value), _ => Optional<T>.Absent };
     }
 }

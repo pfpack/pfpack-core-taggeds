@@ -6,8 +6,8 @@ namespace System
     {
         public static bool Equals(TaggedUnion<TFirst, TSecond> unionA, TaggedUnion<TFirst, TSecond> unionB)
             =>
-            Box.Equals(unionA.boxFirst, unionB.boxFirst) &&
-            Box.Equals(unionA.boxSecond, unionB.boxSecond);
+            unionA.boxFirst == unionB.boxFirst &&
+            unionA.boxSecond == unionB.boxSecond;
 
         public static bool operator ==(TaggedUnion<TFirst, TSecond> unionA, TaggedUnion<TFirst, TSecond> unionB)
             =>
@@ -28,7 +28,10 @@ namespace System
 
         public override int GetHashCode()
             =>
-            HashCode.Combine(EqualityContract, boxFirst, boxSecond);
+            HashCode.Combine(
+                EqualityContract,
+                boxFirst,
+                boxSecond);
 
         private static Type EqualityContract
             =>

@@ -16,13 +16,16 @@ namespace System
             =>
             result.GetHashCode();
 
-        public static ResultEqualityComparer<TSuccess, TFailure> Default => ResultEqualityComparerDefault<TSuccess, TFailure>.Value;
+        public static ResultEqualityComparer<TSuccess, TFailure> Default
+            =>
+            ResultEqualityComparerDefault<TSuccess, TFailure>.Value;
     }
 
     internal static class ResultEqualityComparerDefault<TSuccess, TFailure>
         where TSuccess : notnull
         where TFailure : notnull, new()
     {
-        public static readonly ResultEqualityComparer<TSuccess, TFailure> Value = new ResultEqualityComparer<TSuccess, TFailure>();
+        public static readonly ResultEqualityComparer<TSuccess, TFailure> Value
+            = new ResultEqualityComparer<TSuccess, TFailure>();
     }
 }

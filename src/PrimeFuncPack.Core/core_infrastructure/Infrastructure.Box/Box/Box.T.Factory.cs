@@ -2,7 +2,7 @@
 
 namespace System
 {
-    partial class Box<T>
+    partial struct Box<T>
     {
         public Box(in T value)
             =>

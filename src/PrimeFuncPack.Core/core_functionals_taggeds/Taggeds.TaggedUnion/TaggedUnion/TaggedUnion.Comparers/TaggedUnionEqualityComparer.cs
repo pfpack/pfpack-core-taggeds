@@ -14,11 +14,14 @@ namespace System
             =>
             union.GetHashCode();
 
-        public static TaggedUnionEqualityComparer<TFirst, TSecond> Default => TaggedUnionEqualityComparerDefault<TFirst, TSecond>.Value;
+        public static TaggedUnionEqualityComparer<TFirst, TSecond> Default
+            =>
+            TaggedUnionEqualityComparerDefault<TFirst, TSecond>.Value;
     }
 
     internal static class TaggedUnionEqualityComparerDefault<TFirst, TSecond>
     {
-        public static readonly TaggedUnionEqualityComparer<TFirst, TSecond> Value = new TaggedUnionEqualityComparer<TFirst, TSecond>();
+        public static readonly TaggedUnionEqualityComparer<TFirst, TSecond> Value
+            = new TaggedUnionEqualityComparer<TFirst, TSecond>();
     }
 }

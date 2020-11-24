@@ -10,16 +10,6 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
     partial class BoxEqualityComparerTests
     {
         [Test]
-        public void GetHashCode_BoxIsNull_ExpectArgumentNullException()
-        {
-            Box<RefType> box = null!;
-            var comparer = new BoxEqualityComparer<RefType>();
-
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = comparer.GetHashCode(box));
-            Assert.AreEqual("box", ex.ParamName);
-        }
-
-        [Test]
         public void GetHashCode_BoxValueIsNull_ExpectResultIsBoxHashCode()
         {
             var box = new Box<RefType?>(null);
