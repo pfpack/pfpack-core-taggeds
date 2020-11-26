@@ -14,6 +14,6 @@ namespace System
 
         private static InvalidOperationException CreateNotCategoryException(in string category)
             =>
-            new InvalidOperationException($"The tagged union does not represent a {category} instance.");
+            new($"The tagged union does not represent a {category} instance.");
     }
 }

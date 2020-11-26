@@ -12,7 +12,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         public void Second_ExpectIsFirstGetsFalse()
         {
-            var taggedUnion = TaggedUnion<StructType, RefType?>.Second(PlusFifteenIdRefType);
+            var taggedUnion = new TaggedUnion<StructType, RefType?>(PlusFifteenIdRefType);
             Assert.False(taggedUnion.IsFirst);
         }
 
@@ -21,7 +21,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         public void Second_ExpectIsSecondGetsTrue(
             in object? sourceValue)
         {
-            var taggedUnion = TaggedUnion<RefType?, object?>.Second(sourceValue);
+            var taggedUnion = new TaggedUnion<RefType?, object?>(sourceValue);
             Assert.True(taggedUnion.IsSecond);
         }
 
@@ -30,7 +30,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         public void Second_ExpectIsInitializedGetsTrue(
             in object? sourceValue)
         {
-            var taggedUnion = TaggedUnion<StructType, object?>.Second(sourceValue);
+            var taggedUnion = new TaggedUnion<StructType, object?>(sourceValue);
             Assert.True(taggedUnion.IsInitialized);
         }
     }

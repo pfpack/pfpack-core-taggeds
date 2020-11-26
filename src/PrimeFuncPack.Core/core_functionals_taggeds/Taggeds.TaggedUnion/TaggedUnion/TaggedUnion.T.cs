@@ -18,18 +18,6 @@ namespace System
 
         public bool IsInitialized => IsFirst || IsSecond;
 
-        private TaggedUnion(in TFirst first)
-        {
-            boxFirst = first;
-            boxSecond = null;
-        }
-
-        private TaggedUnion(in TSecond second)
-        {
-            boxFirst = null;
-            boxSecond = second;
-        }
-
         private Optional<TFirst> First() => ToOptional(boxFirst);
 
         private Optional<TSecond> Second() => ToOptional(boxSecond);

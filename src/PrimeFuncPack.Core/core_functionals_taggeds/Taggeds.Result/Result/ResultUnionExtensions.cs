@@ -9,6 +9,9 @@ namespace System
             where TSuccess : notnull
             where TFailure : notnull, new()
             =>
-            union.Or(() => ResultUnion<TSuccess, TFailure>.Failure(new TFailure()));
+            // TODO: replace "() => new TFailure()"
+            // with "() => default(TFailure)"
+            // when TFailure became struct
+            union.Or(() => new TFailure());
     }
 }

@@ -21,7 +21,6 @@ namespace System
 
     internal static class TaggedUnionEqualityComparerDefault<TFirst, TSecond>
     {
-        public static readonly TaggedUnionEqualityComparer<TFirst, TSecond> Value
-            = new TaggedUnionEqualityComparer<TFirst, TSecond>();
+        public static readonly TaggedUnionEqualityComparer<TFirst, TSecond> Value = new();
     }
 }

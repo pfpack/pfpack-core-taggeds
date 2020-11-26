@@ -6,10 +6,10 @@ namespace System
     {
         public static Result<TSuccess, TFailure> Success(TSuccess success)
             =>
-            new Result<TSuccess, TFailure>(success ?? throw new ArgumentNullException(nameof(success)));
+            new(success);
 
         public static Result<TSuccess, TFailure> Failure(TFailure failure)
             =>
-            new Result<TSuccess, TFailure>(failure ?? throw new ArgumentNullException(nameof(failure)));
+            new(failure);
     }
 }

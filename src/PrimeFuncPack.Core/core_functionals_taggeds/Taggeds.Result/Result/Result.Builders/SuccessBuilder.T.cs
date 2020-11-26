@@ -14,10 +14,10 @@ namespace PrimeFuncPack.Core.Result.Builders
 
         internal static SuccessBuilder<TSuccess> Create(in TSuccess success)
             =>
-            new SuccessBuilder<TSuccess>(success ?? throw new ArgumentNullException(nameof(success)));
+            new(success ?? throw new ArgumentNullException(nameof(success)));
 
         public Result<TSuccess, TFailure> Build<TFailure>() where TFailure : notnull, new()
             =>
-            Result<TSuccess, TFailure>.Success(success);
+            success;
     }
 }

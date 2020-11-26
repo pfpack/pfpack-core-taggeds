@@ -6,10 +6,10 @@ namespace System
     {
         public static implicit operator TaggedUnion<TFirst, TSecond>(in TFirst first)
             =>
-            First(first);
+            new(first);
 
         public static implicit operator TaggedUnion<TFirst, TSecond>(in TSecond second)
             =>
-            Second(second);
+            new(second);
     }
 }

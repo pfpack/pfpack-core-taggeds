@@ -8,11 +8,11 @@ namespace System
     {
         public static implicit operator Result<TSuccess, TFailure>(in TSuccess success)
             =>
-            Success(success);
+            new(success);
 
         public static implicit operator Result<TSuccess, TFailure>(in TFailure failure)
             =>
-            Failure(failure);
+            new(failure);
 
         public static implicit operator Result<TSuccess, TFailure>(in SuccessBuilder<TSuccess> success)
             =>

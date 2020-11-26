@@ -10,6 +10,6 @@ namespace System
 
         public static implicit operator Box<T>(in T value)
             =>
-            new Box<T>(value);
+            new(value);
     }
 }

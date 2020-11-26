@@ -21,7 +21,6 @@ namespace System
 
     internal static class BoxEqualityComparerDefault<T>
     {
-        public static readonly BoxEqualityComparer<T> Value
-            = new BoxEqualityComparer<T>();
+        public static readonly BoxEqualityComparer<T> Value = new();
     }
 }

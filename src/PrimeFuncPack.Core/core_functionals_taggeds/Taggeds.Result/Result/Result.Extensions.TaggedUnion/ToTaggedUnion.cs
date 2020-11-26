@@ -8,6 +8,8 @@ namespace System
             where TSuccess : notnull
             where TFailure : notnull, new()
             =>
-            result.Fold(TaggedUnion<TSuccess, TFailure>.First, TaggedUnion<TSuccess, TFailure>.Second);
+            result.Fold<TaggedUnion<TSuccess, TFailure>>(
+                value => value,
+                value => value);
     }
 }
