@@ -8,8 +8,8 @@ namespace System
             where TSuccess : notnull
             where TFailure : notnull, new()
             =>
-            union.Fold(
-                value => value switch { not null => Result<TSuccess, TFailure>.Success(value), _ => default },
-                value => value switch { not null => Result<TSuccess, TFailure>.Failure(value), _ => default });
+            union.Fold<Result<TSuccess, TFailure>>(
+                value => value switch { not null => new(value), _ => default },
+                value => value switch { not null => new(value), _ => default });
     }
 }

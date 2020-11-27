@@ -25,7 +25,6 @@ namespace System
         where TSuccess : notnull
         where TFailure : notnull, new()
     {
-        public static readonly ResultEqualityComparer<TSuccess, TFailure> Value
-            = new ResultEqualityComparer<TSuccess, TFailure>();
+        public static readonly ResultEqualityComparer<TSuccess, TFailure> Value = new();
     }
 }

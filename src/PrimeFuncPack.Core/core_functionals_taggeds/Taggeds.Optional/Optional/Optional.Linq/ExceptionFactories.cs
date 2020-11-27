@@ -6,10 +6,10 @@ namespace System.Linq
     {
         private static InvalidOperationException CreateMoreThanOneElementException()
             =>
-            new InvalidOperationException("The collection contains more than one element.");
+            new("The collection contains more than one element.");
 
         private static InvalidOperationException CreateMoreThanOneMatchException()
             =>
-            new InvalidOperationException("The collection contains more than one element matching to the predicate.");
+            new("The collection contains more than one element matching to the predicate.");
     }
 }

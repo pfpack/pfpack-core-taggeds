@@ -6,9 +6,13 @@ namespace System
     {
         private readonly Box<T>? box;
 
-        public bool IsPresent => box is not null;
+        public bool IsPresent
+            =>
+            box is not null;
 
-        public bool IsAbsent => box is null;
+        public bool IsAbsent
+            =>
+            box is null;
 
         private Optional(in T value)
             =>

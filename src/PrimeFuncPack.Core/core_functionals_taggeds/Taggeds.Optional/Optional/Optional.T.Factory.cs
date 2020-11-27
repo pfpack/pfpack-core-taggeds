@@ -8,6 +8,6 @@ namespace System
 
         public static Optional<T> Present(T value)
             =>
-            new Optional<T>(value);
+            new(value);
     }
 }
