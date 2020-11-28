@@ -6,7 +6,7 @@ namespace System
     {
         internal static Result<TSuccess, TFailure> AsResult<TSuccess, TFailure>(this in TaggedUnion<TSuccess, TFailure> union)
             where TSuccess : notnull
-            where TFailure : notnull, new()
+            where TFailure : struct
             =>
             Result<TSuccess, TFailure>.Wrap(union);
     }

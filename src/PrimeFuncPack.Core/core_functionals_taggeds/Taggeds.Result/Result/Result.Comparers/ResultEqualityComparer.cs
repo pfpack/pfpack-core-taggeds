@@ -6,7 +6,7 @@ namespace System
 {
     public sealed class ResultEqualityComparer<TSuccess, TFailure> : IEqualityComparer<Result<TSuccess, TFailure>>
         where TSuccess : notnull
-        where TFailure : notnull, new()
+        where TFailure : struct
     {
         public bool Equals(Result<TSuccess, TFailure> resultA, Result<TSuccess, TFailure> resultB)
             =>
@@ -23,7 +23,7 @@ namespace System
 
     internal static class ResultEqualityComparerDefault<TSuccess, TFailure>
         where TSuccess : notnull
-        where TFailure : notnull, new()
+        where TFailure : struct
     {
         public static readonly ResultEqualityComparer<TSuccess, TFailure> Value = new();
     }

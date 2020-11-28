@@ -12,7 +12,7 @@ namespace System
             Func<TSuccess, bool> predicate,
             Func<TSuccess, TCauseFailure> causeFactory,
             Func<TFailure, TCauseFailure> mapFailure)
-            where TCauseFailure : notnull, new()
+            where TCauseFailure : struct
         {
             _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
             _ = causeFactory ?? throw new ArgumentNullException(nameof(causeFactory));
@@ -55,7 +55,7 @@ namespace System
             Func<TSuccess, Task<bool>> predicateAsync,
             Func<TSuccess, Task<TCauseFailure>> causeFactoryAsync,
             Func<TFailure, Task<TCauseFailure>> mapFailureAsync)
-            where TCauseFailure : notnull, new()
+            where TCauseFailure : struct
         {
             _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
             _ = causeFactoryAsync ?? throw new ArgumentNullException(nameof(causeFactoryAsync));
@@ -102,7 +102,7 @@ namespace System
             Func<TSuccess, ValueTask<bool>> predicateAsync,
             Func<TSuccess, ValueTask<TCauseFailure>> causeFactoryAsync,
             Func<TFailure, ValueTask<TCauseFailure>> mapFailureAsync)
-            where TCauseFailure : notnull, new()
+            where TCauseFailure : struct
         {
             _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
             _ = causeFactoryAsync ?? throw new ArgumentNullException(nameof(causeFactoryAsync));

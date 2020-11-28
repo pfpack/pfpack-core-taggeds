@@ -2,9 +2,9 @@
 
 using System;
 
-namespace PrimeFuncPack.Core.Result.Builders
+namespace PrimeFuncPack.Core
 {
-    public sealed class FailureBuilder<TFailure> where TFailure : notnull, new()
+    public readonly struct FailureBuilder<TFailure> where TFailure : struct
     {
         private readonly TFailure failure;
 
@@ -14,7 +14,7 @@ namespace PrimeFuncPack.Core.Result.Builders
 
         internal static FailureBuilder<TFailure> Create(in TFailure failure)
             =>
-            new(failure ?? throw new ArgumentNullException(nameof(failure)));
+            new(failure);
 
         public Result<TSuccess, TFailure> Build<TSuccess>() where TSuccess : notnull
             =>
