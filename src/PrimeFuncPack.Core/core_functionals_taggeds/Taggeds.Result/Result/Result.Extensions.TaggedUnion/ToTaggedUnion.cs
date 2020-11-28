@@ -6,7 +6,7 @@ namespace System
     {
         public static TaggedUnion<TSuccess, TFailure> ToTaggedUnion<TSuccess, TFailure>(this Result<TSuccess, TFailure> result)
             where TSuccess : notnull
-            where TFailure : notnull, new()
+            where TFailure : struct
             =>
             result.Fold<TaggedUnion<TSuccess, TFailure>>(
                 value => value,

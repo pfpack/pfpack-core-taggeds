@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-using PrimeFuncPack.Core.Result.Builders;
+using PrimeFuncPack.Core;
 
 namespace System
 {
@@ -16,7 +16,8 @@ namespace System
 
         public static implicit operator Result<TSuccess, TFailure>(in SuccessBuilder<TSuccess> success)
             =>
-            success.Build<TFailure>();
+            (success ?? throw new ArgumentNullException(nameof(success)))
+            .Build<TFailure>();
 
         public static implicit operator Result<TSuccess, TFailure>(in FailureBuilder<TFailure> failure)
             =>

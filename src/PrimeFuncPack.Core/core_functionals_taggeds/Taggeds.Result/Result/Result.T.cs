@@ -4,7 +4,7 @@ namespace System
 {
     public readonly partial struct Result<TSuccess, TFailure> : IEquatable<Result<TSuccess, TFailure>>
         where TSuccess : notnull
-        where TFailure : notnull, new()
+        where TFailure : struct
     {
         private const string CategorySuccess = "Success";
 

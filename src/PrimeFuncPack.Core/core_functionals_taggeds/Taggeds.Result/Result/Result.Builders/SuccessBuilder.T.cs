@@ -2,9 +2,10 @@
 
 using System;
 
-namespace PrimeFuncPack.Core.Result.Builders
+namespace PrimeFuncPack.Core
 {
-    public sealed class SuccessBuilder<TSuccess> where TSuccess : notnull
+    public sealed class SuccessBuilder<TSuccess>
+        where TSuccess : notnull
     {
         private readonly TSuccess success;
 
@@ -16,7 +17,8 @@ namespace PrimeFuncPack.Core.Result.Builders
             =>
             new(success ?? throw new ArgumentNullException(nameof(success)));
 
-        public Result<TSuccess, TFailure> Build<TFailure>() where TFailure : notnull, new()
+        public Result<TSuccess, TFailure> Build<TFailure>()
+            where TFailure : struct
             =>
             success;
     }
