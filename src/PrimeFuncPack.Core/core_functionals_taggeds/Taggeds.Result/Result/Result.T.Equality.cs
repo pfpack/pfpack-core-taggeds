@@ -27,7 +27,9 @@ namespace System
 
         public override int GetHashCode()
             =>
-            HashCode.Combine(EqualityContract, Union);
+            HashCode.Combine(
+                EqualityContract,
+                Union.GetHashCode());
 
         private static Type EqualityContract => typeof(Result<TSuccess, TFailure>);
     }

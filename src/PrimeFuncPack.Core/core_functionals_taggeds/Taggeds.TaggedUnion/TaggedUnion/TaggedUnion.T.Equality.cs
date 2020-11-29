@@ -30,8 +30,8 @@ namespace System
             =>
             HashCode.Combine(
                 EqualityContract,
-                boxFirst,
-                boxSecond);
+                boxFirst.GetHashCode(),
+                boxSecond.GetHashCode());
 
         private static Type EqualityContract
             =>
