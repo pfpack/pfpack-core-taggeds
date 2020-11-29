@@ -62,7 +62,7 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
             return FoldAsync(
-                success => Task.FromResult<Result<TSuccess, TOtherFailure>>(success),
+                static success => Task.FromResult<Result<TSuccess, TOtherFailure>>(success),
                 otherFactoryAsync);
         }
 
@@ -99,7 +99,7 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
             return FoldValueAsync(
-                success => ValueTask.FromResult<Result<TSuccess, TOtherFailure>>(success),
+                static success => ValueTask.FromResult<Result<TSuccess, TOtherFailure>>(success),
                 otherFactoryAsync);
         }
 

@@ -63,7 +63,7 @@ namespace System
 
             return FoldAsync(
                 nextFactoryAsync,
-                failure => Task.FromResult<Result<TNextSuccess, TFailure>>(failure));
+                static failure => Task.FromResult<Result<TNextSuccess, TFailure>>(failure));
         }
 
         public Task<Result<TSuccess, TFailure>> ForwardAsync(
@@ -100,7 +100,7 @@ namespace System
 
             return FoldValueAsync(
                 nextFactoryAsync,
-                failure => ValueTask.FromResult<Result<TNextSuccess, TFailure>>(failure));
+                static failure => ValueTask.FromResult<Result<TNextSuccess, TFailure>>(failure));
         }
 
         public ValueTask<Result<TSuccess, TFailure>> ForwardValueAsync(

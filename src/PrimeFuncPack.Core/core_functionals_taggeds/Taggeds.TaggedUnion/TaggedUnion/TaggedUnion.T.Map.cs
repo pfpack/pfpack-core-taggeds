@@ -29,7 +29,7 @@ namespace System
             return FoldAsync<TaggedUnion<TResultFirst, TResultSecond>>(
                 async value => await mapFirstAsync.Invoke(value).ConfigureAwait(false),
                 async value => await mapSecondAsync.Invoke(value).ConfigureAwait(false),
-                () => Task.FromResult<TaggedUnion<TResultFirst, TResultSecond>>(default));
+                static () => Task.FromResult<TaggedUnion<TResultFirst, TResultSecond>>(default));
         }
 
         public ValueTask<TaggedUnion<TResultFirst, TResultSecond>> MapValueAsync<TResultFirst, TResultSecond>(
