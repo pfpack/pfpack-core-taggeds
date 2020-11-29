@@ -11,7 +11,7 @@ namespace System
             Func<TSuccess, TResult> mapSuccess,
             Func<TFailure, TResult> mapFailure)
             =>
-            FoldSource.Fold(
+            Union.Fold(
                 mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess)),
                 mapFailure ?? throw new ArgumentNullException(nameof(mapFailure)),
                 Fold_OtherFactory_MustNeverBeInvoked<TResult>);
@@ -20,7 +20,7 @@ namespace System
             Func<TSuccess, Task<TResult>> mapSuccessAsync,
             Func<TFailure, Task<TResult>> mapFailureAsync)
             =>
-            FoldSource.FoldAsync(
+            Union.FoldAsync(
                 mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync)),
                 mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync)),
                 Fold_OtherFactory_MustNeverBeInvoked<TResult>);
@@ -29,12 +29,10 @@ namespace System
             Func<TSuccess, ValueTask<TResult>> mapSuccessAsync,
             Func<TFailure, ValueTask<TResult>> mapFailureAsync)
             =>
-            FoldSource.FoldValueAsync(
+            Union.FoldValueAsync(
                 mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync)),
                 mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync)),
                 Fold_OtherFactory_MustNeverBeInvoked<TResult>);
-
-        private TaggedUnion<TSuccess, TFailure> FoldSource => union.OrFailure();
 
         [DoesNotReturn]
         private static TResult Fold_OtherFactory_MustNeverBeInvoked<TResult>()

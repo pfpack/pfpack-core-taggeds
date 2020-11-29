@@ -14,7 +14,7 @@ namespace System
             =>
             optional
             .FilterNotNullOrThrow(exceptionFactory)
-            .Map(value => value ?? throw CreateExpectedNotNullOrAbsentException());
+            .Map(static value => value ?? throw CreateExpectedNotNullOrAbsentException());
 
         public static Optional<T> FilterNotNullOrThrowThenMap<T>(this Optional<T?> optional)
             where T : struct
@@ -26,6 +26,6 @@ namespace System
             =>
             optional
             .FilterNotNullOrThrow(exceptionFactory)
-            .Map(value => value ?? throw CreateExpectedNotNullOrAbsentException());
+            .Map(static value => value ?? throw CreateExpectedNotNullOrAbsentException());
     }
 }

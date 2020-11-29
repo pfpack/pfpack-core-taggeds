@@ -4,8 +4,9 @@ namespace System
 {
     partial class OptionalResultExtensions
     {
-        public static Optional<T> ToOptional<T>(this Result<T, Unit> result) where T : notnull
+        public static Optional<TSuccess> ToOptional<TSuccess>(this Result<TSuccess, Unit> result)
+            where TSuccess : notnull
             =>
-            result.Fold(Optional<T>.Present, _ => Optional<T>.Absent);
+            result.Fold(Optional<TSuccess>.Present, static _ => Optional<TSuccess>.Absent);
     }
 }

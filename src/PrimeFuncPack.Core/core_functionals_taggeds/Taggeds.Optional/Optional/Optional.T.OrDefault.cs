@@ -9,6 +9,6 @@ namespace System
         [return: MaybeNull]
         public T OrDefault()
             =>
-            Fold(Pipeline.Pipe, () => default);
+            Fold(Pipeline.Pipe, static () => default);
     }
 }

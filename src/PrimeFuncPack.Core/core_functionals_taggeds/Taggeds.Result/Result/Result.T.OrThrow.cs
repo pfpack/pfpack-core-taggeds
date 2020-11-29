@@ -12,7 +12,7 @@ namespace System
         {
             _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
 
-            return SuccessSource.FirstOrThrow(exceptionFactory);
+            return Union.FirstOrThrow(exceptionFactory);
         }
 
         public TFailure FailureOrThrow()
@@ -23,11 +23,7 @@ namespace System
         {
             _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
 
-            return FailureSource.SecondOrThrow(exceptionFactory);
+            return Union.SecondOrThrow(exceptionFactory);
         }
-
-        private TaggedUnion<TSuccess, TFailure> SuccessSource => union;
-
-        private TaggedUnion<TSuccess, TFailure> FailureSource => union.OrFailure();
     }
 }

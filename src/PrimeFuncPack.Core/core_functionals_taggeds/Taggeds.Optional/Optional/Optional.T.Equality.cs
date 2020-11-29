@@ -29,7 +29,7 @@ namespace System
             =>
             HashCode.Combine(
                 EqualityContract,
-                box);
+                box.GetHashCode());
 
         private static Type EqualityContract
             =>

@@ -6,11 +6,11 @@ namespace System
     {
         private static InvalidOperationException CreateNotFirstException()
             =>
-            CreateNotCategoryException(CategoryFirst);
+            CreateNotCategoryException("First");
 
         private static InvalidOperationException CreateNotSecondException()
             =>
-            CreateNotCategoryException(CategorySecond);
+            CreateNotCategoryException("Second");
 
         private static InvalidOperationException CreateNotCategoryException(in string category)
             =>

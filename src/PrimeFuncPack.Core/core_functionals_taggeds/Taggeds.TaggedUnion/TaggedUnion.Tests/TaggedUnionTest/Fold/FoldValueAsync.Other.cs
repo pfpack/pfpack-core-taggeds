@@ -62,7 +62,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
             var other = PlusFifteenIdRefType;
 
             var actual = await source.FoldValueAsync(
-                _ => default(ValueTask<RefType>), _ => ValueTask.FromResult(second), other);
+                static _ => default(ValueTask<RefType>), _ => ValueTask.FromResult(second), other);
 
             Assert.IsNull(actual);
         }

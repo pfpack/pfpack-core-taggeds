@@ -4,8 +4,8 @@ namespace System
 {
     partial struct Result<TSuccess, TFailure>
     {
-        private Result(in TaggedUnion<TSuccess, TFailure> union)
+        private Result(in TaggedUnion<TSuccess, TFailure> unionRaw)
             =>
-            this.union = union;
+            this.unionRaw = unionRaw;
     }
 }
