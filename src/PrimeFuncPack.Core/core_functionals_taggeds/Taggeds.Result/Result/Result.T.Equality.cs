@@ -6,7 +6,7 @@ namespace System
     {
         public static bool Equals(Result<TSuccess, TFailure> resultA, Result<TSuccess, TFailure> resultB)
             =>
-            TaggedUnion.Equals(resultA.EqualitySource, resultB.EqualitySource);
+            TaggedUnion<TSuccess, TFailure>.Equals(resultA.Union, resultB.Union);
 
         public static bool operator ==(Result<TSuccess, TFailure> resultA, Result<TSuccess, TFailure> resultB)
             =>
@@ -27,10 +27,8 @@ namespace System
 
         public override int GetHashCode()
             =>
-            HashCode.Combine(EqualityContract, EqualitySource);
+            HashCode.Combine(EqualityContract, Union);
 
         private static Type EqualityContract => typeof(Result<TSuccess, TFailure>);
-
-        private TaggedUnion<TSuccess, TFailure> EqualitySource => union.OrFailure();
     }
 }

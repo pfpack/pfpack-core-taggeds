@@ -10,7 +10,7 @@ namespace System
         {
             _ = map ?? throw new ArgumentNullException(nameof(map));
 
-            return Fold(MapPresent, () => default);
+            return Fold(MapPresent, static () => default);
 
             Optional<TResult> MapPresent(T value)
                 =>
@@ -32,7 +32,7 @@ namespace System
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return FoldValueAsync(MapPresentValueAsync, () => default);
+            return FoldValueAsync(MapPresentValueAsync, static () => default);
 
             async ValueTask<Optional<TResult>> MapPresentValueAsync(T value)
                 =>

@@ -16,7 +16,7 @@ namespace System
             return Fold<TaggedUnion<TResultFirst, TResultSecond>>(
                 value => mapFirst.Invoke(value),
                 value => mapSecond.Invoke(value),
-                () => default);
+                static () => default);
         }
 
         public Task<TaggedUnion<TResultFirst, TResultSecond>> MapAsync<TResultFirst, TResultSecond>(
@@ -42,7 +42,7 @@ namespace System
             return FoldValueAsync<TaggedUnion<TResultFirst, TResultSecond>>(
                 async value => await mapFirstAsync.Invoke(value).ConfigureAwait(false),
                 async value => await mapSecondAsync.Invoke(value).ConfigureAwait(false),
-                () => default(ValueTask<TaggedUnion<TResultFirst, TResultSecond>>));
+                static () => default(ValueTask<TaggedUnion<TResultFirst, TResultSecond>>));
         }
     }
 }

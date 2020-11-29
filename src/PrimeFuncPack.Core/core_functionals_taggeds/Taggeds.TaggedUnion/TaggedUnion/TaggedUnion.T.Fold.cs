@@ -17,7 +17,7 @@ namespace System
             _ = mapFirst ?? throw new ArgumentNullException(nameof(mapFirst));
             _ = mapSecond ?? throw new ArgumentNullException(nameof(mapSecond));
 
-            return InternalFold(mapFirst, mapSecond).OrElse(() => default!);
+            return InternalFold(mapFirst, mapSecond).OrElse(static () => default!);
         }
 
         public TResult Fold<TResult>(

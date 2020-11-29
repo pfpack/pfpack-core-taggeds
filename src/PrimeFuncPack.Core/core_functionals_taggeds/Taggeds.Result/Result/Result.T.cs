@@ -10,10 +10,18 @@ namespace System
 
         private const string CategoryFailure = "Failure";
 
-        private readonly TaggedUnion<TSuccess, TFailure> union;
+        private readonly TaggedUnion<TSuccess, TFailure> unionRaw;
 
-        public bool IsSuccess => union.IsFirst;
+        private readonly TaggedUnion<TSuccess, TFailure> Union
+            =>
+            unionRaw.IsInitialized switch
+            {
+                true => unionRaw,
+                _ => default(TFailure)
+            };
 
-        public bool IsFailure => union.IsSecond || (union.IsInitialized is false);
+        public bool IsSuccess => Union.IsFirst;
+
+        public bool IsFailure => Union.IsSecond;
     }
 }
