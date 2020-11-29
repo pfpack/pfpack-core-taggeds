@@ -11,8 +11,8 @@ namespace System
             var @this = this;
 
             return default(Optional<TResult>)
-                .Or(() => @this.First().Map(mapFirst))
-                .Or(() => @this.Second().Map(mapSecond));
+                .Or(() => @this.first.Map(mapFirst))
+                .Or(() => @this.second.Map(mapSecond));
         }
     }
 }

@@ -6,14 +6,14 @@ namespace System
     {
         public TaggedUnion(in TFirst first)
         {
-            boxFirst = first;
-            boxSecond = null;
+            this.first = Optional<TFirst>.Present(first);
+            second = default;
         }
 
         public TaggedUnion(in TSecond second)
         {
-            boxFirst = null;
-            boxSecond = second;
+            this.second = Optional<TSecond>.Present(second);
+            first = default;
         }
     }
 }
