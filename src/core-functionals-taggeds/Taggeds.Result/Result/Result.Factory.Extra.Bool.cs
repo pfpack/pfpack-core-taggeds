@@ -6,10 +6,10 @@ namespace System
     {
         public static Result<Unit, Unit> True()
             =>
-            Result<Unit, Unit>.Success(default);
+            new(success: default);
 
         public static Result<Unit, Unit> False()
             =>
-            Result<Unit, Unit>.Failure(default);
+            new(failure: default);
     }
 }
