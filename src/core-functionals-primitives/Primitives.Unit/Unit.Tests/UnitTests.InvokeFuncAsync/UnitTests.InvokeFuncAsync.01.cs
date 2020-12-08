@@ -13,7 +13,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
     partial class UnitTests
     {
         [Test]
-        public void InvokeFuncAsync_01_ActionIsNull_ExpectArgumentNullException()
+        public void InvokeFuncAsync_01_FuncIsNull_ExpectArgumentNullException()
         {
             Func<StructType, Task<Unit>> funcAsync = null!;
             var arg = SomeTextStructType;
@@ -26,16 +26,16 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         [Test]
         [TestCase(true)]
         [TestCase(false)]
-        public void InvokeFuncAsync_01_ExpectCallActionOnce(
-            in bool isArgNull)
+        public async Task InvokeFuncAsync_01_ExpectCallFuncOnce(
+            bool isArgNull)
         {
-            var mockFuncAsync = MockActionFactory.CreateMockAction<RefType?>();
+            var mockFuncAsync = MockFuncFactory.CreateMockFunc<RefType?, Task<Unit>>(Task.FromResult<Unit>(default));
 
             var arg = isArgNull ? null : MinusFifteenIdRefType;
-            var actual = Unit.InvokeAction(mockFuncAsync.Object.Invoke, arg);
+            var actual = await Unit.InvokeFuncAsync(mockFuncAsync.Object.Invoke, arg);
 
             Assert.AreEqual(Unit.Value, actual);
-            mockFuncAsync.Verify(a => a.Invoke(arg), Times.Once);
+            mockFuncAsync.Verify(f => f.Invoke(arg), Times.Once);
         }
     }
 }

@@ -5,6 +5,7 @@ using NUnit.Framework;
 using PrimeFuncPack.UnitTest;
 using PrimeFuncPack.UnitTest.Moq;
 using System;
+using System.Threading.Tasks;
 using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
@@ -12,33 +13,33 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
     partial class UnitTests
     {
         [Test]
-        public void InvokeFuncAsync_04_ActionIsNull_ExpectArgumentNullException()
+        public void InvokeFuncAsync_04_FuncIsNull_ExpectArgumentNullException()
         {
-            Action<StructType, RefType, string, int> funcAsync = null!;
+            Func<StructType, RefType, string, int, Task<Unit>> funcAsync = null!;
 
             var arg1 = SomeTextStructType;
             var arg2 = PlusFifteenIdRefType;
             var arg3 = TabString;
             var arg4 = MinusFortyFive;
 
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = Unit.InvokeAction(funcAsync, arg1, arg2, arg3, arg4));
+            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeFuncAsync(funcAsync, arg1, arg2, arg3, arg4));
             Assert.AreEqual("funcAsync", ex.ParamName);
         }
 
         [Test]
-        public void InvokeFuncAsync_04_ExpectCallActionOnce()
+        public async Task InvokeFuncAsync_04_ExpectCallFuncOnce()
         {
-            var mockFuncAsync = MockActionFactory.CreateMockAction<StructType, RefType?, string, int>();
+            var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, int, Task<Unit>>(Task.FromResult<Unit>(default));
 
             var arg1 = SomeTextStructType;
             var arg2 = (RefType?)null;
             var arg3 = TabString;
             var arg4 = MinusFortyFive;
 
-            var actual = Unit.InvokeAction(mockFuncAsync.Object.Invoke, arg1, arg2, arg3, arg4);
+            var actual = await Unit.InvokeFuncAsync(mockFuncAsync.Object.Invoke, arg1, arg2, arg3, arg4);
 
             Assert.AreEqual(Unit.Value, actual);
-            mockFuncAsync.Verify(a => a.Invoke(arg1, arg2, arg3, arg4), Times.Once);
+            mockFuncAsync.Verify(f => f.Invoke(arg1, arg2, arg3, arg4), Times.Once);
         }
     }
 }
