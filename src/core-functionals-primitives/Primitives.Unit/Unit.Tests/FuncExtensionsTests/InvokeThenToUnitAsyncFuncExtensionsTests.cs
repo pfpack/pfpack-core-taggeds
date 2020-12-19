@@ -5,7 +5,7 @@ using System;
 
 namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
 {
-    public sealed class InvokeThenToUnitAsyncFuncExtensionsTests
+    public sealed partial class InvokeThenToUnitAsyncFuncExtensionsTests
     {
         private const int MinusFortyFive = -45;
 

@@ -18,7 +18,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
             Func<StructType, Task> funcAsync = null!;
             var arg = SomeTextStructType;
 
-            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeFuncAsync(funcAsync, arg));
+            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = funcAsync.InvokeThenToUnitAsync(arg));
 
             Assert.AreEqual("funcAsync", ex.ParamName);
         }
@@ -30,9 +30,10 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
             bool isArgNull)
         {
             var mockFuncAsync = MockFuncFactory.CreateMockFunc<RefType?, Task>(Task.CompletedTask);
+            var funcAsync = new Func<RefType?, Task>(mockFuncAsync.Object.Invoke);
 
             var arg = isArgNull ? null : MinusFifteenIdRefType;
-            var actual = await Unit.InvokeFuncAsync(mockFuncAsync.Object.Invoke, arg);
+            var actual = await funcAsync.InvokeThenToUnitAsync(arg);
 
             Assert.AreEqual(Unit.Value, actual);
             mockFuncAsync.Verify(f => f.Invoke(arg), Times.Once);
