@@ -27,7 +27,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
             var arg8 = MinusSeventyFivePointSeven;
             var arg9 = ZeroIdRefType;
 
-            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeFuncAsync(funcAsync, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9));
+            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = funcAsync.InvokeThenToUnitAsync(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9));
             Assert.AreEqual("funcAsync", ex.ParamName);
         }
 
@@ -35,6 +35,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         public async Task InvokeThenToUnitAsync_09_ExpectCallFuncOnce()
         {
             var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, int, object?, DateTime, StructType?, decimal?, RefType, Task>(Task.CompletedTask);
+            var funcAsync = new Func<StructType, RefType?, string, int, object?, DateTime, StructType?, decimal?, RefType, Task>(mockFuncAsync.Object.Invoke);
 
             var arg1 = SomeTextStructType;
             var arg2 = (RefType?)null;
@@ -46,7 +47,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
             var arg8 = (decimal?)MinusSeventyFivePointSeven;
             var arg9 = ZeroIdRefType;
 
-            var actual = await Unit.InvokeFuncAsync(mockFuncAsync.Object.Invoke, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+            var actual = await funcAsync.InvokeThenToUnitAsync(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
 
             Assert.AreEqual(Unit.Value, actual);
             mockFuncAsync.Verify(a => a.Invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9), Times.Once);
