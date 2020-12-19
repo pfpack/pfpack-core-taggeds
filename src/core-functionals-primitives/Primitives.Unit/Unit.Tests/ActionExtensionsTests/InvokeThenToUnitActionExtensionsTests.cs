@@ -5,7 +5,7 @@ using System;
 
 namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
 {
-    public sealed partial class InvokeToUnitActionExtensionsTests
+    public sealed partial class InvokeThenToUnitActionExtensionsTests
     {
         private const int MinusTwentyOne = -21;
 

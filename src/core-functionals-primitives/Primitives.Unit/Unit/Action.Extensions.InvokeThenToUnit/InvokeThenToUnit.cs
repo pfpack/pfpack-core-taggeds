@@ -2,7 +2,7 @@
 
 namespace System
 {
-    partial class InvokeToUnitActionExtensions
+    partial class InvokeThenToUnitActionExtensions
     {
         public static Unit InvokeThenToUnit(this Action action)
             =>
