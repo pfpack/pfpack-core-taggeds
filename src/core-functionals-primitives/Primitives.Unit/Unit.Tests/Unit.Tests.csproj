@@ -23,4 +23,8 @@
 		<ProjectReference Include="..\Unit\Unit.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="FuncExtensionsTests.InvokeThenToUnitValueAsync\" />
+	</ItemGroup>
+
 </Project>
