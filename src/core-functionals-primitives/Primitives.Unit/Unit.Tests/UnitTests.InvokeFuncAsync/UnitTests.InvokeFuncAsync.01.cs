@@ -29,7 +29,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         public async Task InvokeFuncAsync_01_ExpectCallFuncOnce(
             bool isArgNull)
         {
-            var mockFuncAsync = MockFuncFactory.CreateMockFunc<RefType?, Task<Unit>>(Task.FromResult<Unit>(default));
+            var mockFuncAsync = MockFuncFactory.CreateMockFunc<RefType?, Task>(Task.CompletedTask);
 
             var arg = isArgNull ? null : MinusFifteenIdRefType;
             var actual = await Unit.InvokeFuncAsync(mockFuncAsync.Object.Invoke, arg);

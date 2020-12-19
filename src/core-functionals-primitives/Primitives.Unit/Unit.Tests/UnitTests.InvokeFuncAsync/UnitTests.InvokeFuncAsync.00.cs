@@ -22,7 +22,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         [Test]
         public async Task InvokeFuncAsync_00_ExpectCallFuncOnce()
         {
-            var mockFuncAsync = MockFuncFactory.CreateMockFunc(Task.FromResult<Unit>(default));
+            var mockFuncAsync = MockFuncFactory.CreateMockFunc(Task.CompletedTask);
             var actual = await Unit.InvokeFuncAsync(mockFuncAsync.Object.Invoke);
 
             Assert.AreEqual(Unit.Value, actual);

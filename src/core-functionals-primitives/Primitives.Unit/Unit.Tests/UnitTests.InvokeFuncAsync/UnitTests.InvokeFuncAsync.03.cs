@@ -28,7 +28,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         [Test]
         public async Task InvokeFuncAsync_03_ExpectCallFuncOnce()
         {
-            var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, Task<Unit>>(Task.FromResult<Unit>(default));
+            var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, Task>(Task.CompletedTask);
 
             var arg1 = SomeTextStructType;
             var arg2 = (RefType?)null;
