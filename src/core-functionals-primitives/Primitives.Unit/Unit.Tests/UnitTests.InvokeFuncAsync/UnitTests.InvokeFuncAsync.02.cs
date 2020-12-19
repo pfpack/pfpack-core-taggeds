@@ -15,7 +15,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         [Test]
         public void InvokeFuncAsync_02_FuncIsNull_ExpectArgumentNullException()
         {
-            Func<StructType, RefType, Task<Unit>> funcAsync = null!;
+            Func<StructType, RefType, Task> funcAsync = null!;
 
             var arg1 = SomeTextStructType;
             var arg2 = PlusFifteenIdRefType;

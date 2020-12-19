@@ -13,7 +13,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         [Test]
         public void InvokeFuncAsync_00_FuncIsNull_ExpectArgumentNullException()
         {
-            Func<Task<Unit>> funcAsync = null!;
+            Func<Task> funcAsync = null!;
             var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeFuncAsync(funcAsync));
 
             Assert.AreEqual("funcAsync", ex.ParamName);

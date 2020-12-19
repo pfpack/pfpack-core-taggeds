@@ -5,6 +5,7 @@ using NUnit.Framework;
 using PrimeFuncPack.UnitTest;
 using PrimeFuncPack.UnitTest.Moq;
 using System;
+using System.Threading.Tasks;
 using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
@@ -12,9 +13,9 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
     partial class UnitTests
     {
         [Test]
-        public void InvokeFuncAsync_16_ActionIsNull_ExpectArgumentNullException()
+        public void InvokeFuncAsync_16_FuncIsNull_ExpectArgumentNullException()
         {
-            Action<StructType, RefType, string, int, object, DateTime, StructType?, decimal, RefType, object, StructType, string, double, RefType, string, long> funcAsync = null!;
+            Func<StructType, RefType, string, int, object, DateTime, StructType?, decimal, RefType, object, StructType, string, double, RefType, string, long, Task> funcAsync = null!;
 
             var arg1 = SomeTextStructType;
             var arg2 = PlusFifteenIdRefType;
@@ -33,14 +34,14 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
             var arg15 = ThreeWhiteSpacesString;
             var arg16 = long.MaxValue;
 
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = Unit.InvokeAction(funcAsync, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16));
+            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeFuncAsync(funcAsync, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16));
             Assert.AreEqual("funcAsync", ex.ParamName);
         }
 
         [Test]
-        public void InvokeFuncAsync_16_ExpectCallActionOnce()
+        public async Task InvokeFuncAsync_16_ExpectCallFuncOnce()
         {
-            var mockFuncAsync = MockActionFactory.CreateMockAction<StructType, RefType?, string, int, object?, DateTime, StructType?, decimal?, RefType, object, StructType, string, double, object?, string, long>();
+            var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, int, object?, DateTime, StructType?, decimal?, RefType, object, StructType, string, double, object?, string, long, Task<Unit>>(Task.FromResult<Unit>(default));
 
             var arg1 = SomeTextStructType;
             var arg2 = (RefType?)null;
@@ -59,7 +60,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
             var arg15 = ThreeWhiteSpacesString;
             var arg16 = long.MaxValue;
 
-            var actual = Unit.InvokeAction(mockFuncAsync.Object.Invoke, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16);
+            var actual = await Unit.InvokeFuncAsync(mockFuncAsync.Object.Invoke, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16);
 
             Assert.AreEqual(Unit.Value, actual);
             mockFuncAsync.Verify(a => a.Invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16), Times.Once);
