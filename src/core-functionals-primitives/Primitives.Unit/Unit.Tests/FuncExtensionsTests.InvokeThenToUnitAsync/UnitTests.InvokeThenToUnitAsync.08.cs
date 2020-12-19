@@ -10,7 +10,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
 {
-    partial class UnitTests
+    partial class InvokeThenToUnitAsyncFuncExtensionsTests
     {
         [Test]
         public void InvokeThenToUnitAsync_08_FuncIsNull_ExpectArgumentNullException()

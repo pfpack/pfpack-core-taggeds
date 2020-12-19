@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
 {
-    partial class UnitTests
+    partial class InvokeThenToUnitAsyncFuncExtensionsTests
     {
         [Test]
         public void InvokeThenToUnitAsync_00_FuncIsNull_ExpectArgumentNullException()
