@@ -7,7 +7,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         private readonly string? toStringValue;
 
         public StubToStringType(
-            in string? toStringValue)
+            string? toStringValue)
             =>
             this.toStringValue = toStringValue;
 

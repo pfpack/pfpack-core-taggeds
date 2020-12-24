@@ -17,7 +17,7 @@ namespace System.Linq
 
         public static Optional<TSource> InternalFirstOrAbsent<TSource>(
             this IList<TSource> source,
-            in Func<TSource, bool> predicate)
+            Func<TSource, bool> predicate)
         {
             for (var i = 0; i < source.Count; i++)
             {

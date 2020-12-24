@@ -12,7 +12,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         [TestCaseSource(nameof(RefTypeTestSource))]
         public void New_ValueIsRefType_ExpectBoxValueIsSame(
-            in RefType source)
+            RefType source)
         {
             var actual = new Box<RefType>(source);
             Assert.AreEqual(source, actual.Value);
@@ -30,7 +30,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         [TestCaseSource(nameof(RefTypeTestSource))]
         public void Of_ValueIsRefType_ExpectBoxValueIsSame(
-            in RefType? source)
+            RefType? source)
         {
             var actual = Box.Of(source);
             Assert.AreEqual(source, actual.Value);

@@ -39,7 +39,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [TestCase(TabString)]
         [TestCase(SomeString)]
         public void ToString_ValueToStringIsNotNull_ExpectResultIsValueToString(
-            in string? valueToStringResult)
+            string? valueToStringResult)
         {
             var mockStringFactory = MockFuncFactory.CreateMockFunc(valueToStringResult);
             var source = new StubType(mockStringFactory.Object);

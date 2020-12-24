@@ -4,6 +4,6 @@ namespace System.Linq
 {
     partial class InternalCollectionsExtensions
     {
-        private static bool InternalIsInRange(in int index, in int count) => index >= 0 && index < count;
+        private static bool InternalIsInRange(int index, int count) => index >= 0 && index < count;
     }
 }

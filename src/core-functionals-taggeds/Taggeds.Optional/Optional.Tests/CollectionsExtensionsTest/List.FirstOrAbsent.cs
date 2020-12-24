@@ -35,7 +35,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void FirstOrAbsent_ListSourceIsNotEmpty_ExpectPresentFirstItem(
-            in object? firstItem)
+            object? firstItem)
         {
             var source = CreateList(firstItem, new object(), new { Value = SomeString });
 

@@ -23,7 +23,9 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
             var mock = new Mock<IReadOnlyDictionary<TKey, TValue>>();
 
             _ = mock
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                 .Setup(d => d.TryGetValue(It.IsAny<TKey>(), out returnedValue))
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
                 .Returns(tryGetValueResult);
 
             return mock;
@@ -36,7 +38,9 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
             var mock = new Mock<IDictionary<TKey, TValue>>();
 
             _ = mock
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                 .Setup(d => d.TryGetValue(It.IsAny<TKey>(), out returnedValue))
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
                 .Returns(tryGetValueResult);
 
             return mock;

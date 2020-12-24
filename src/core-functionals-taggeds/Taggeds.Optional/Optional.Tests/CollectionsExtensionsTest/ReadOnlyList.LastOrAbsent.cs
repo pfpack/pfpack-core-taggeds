@@ -35,7 +35,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void LastOrAbsent_ReadOnlyListSourceIsNotEmpty_ExpectPresentLastItem(
-            in object? lastItem)
+            object? lastItem)
         {
             var source = CreateReadOnlyList(new object(), new { Value = SomeString }, lastItem);
 

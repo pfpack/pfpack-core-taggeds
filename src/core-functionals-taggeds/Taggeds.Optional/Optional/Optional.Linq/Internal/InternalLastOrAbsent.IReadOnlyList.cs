@@ -17,7 +17,7 @@ namespace System.Linq
 
         public static Optional<TSource> InternalLastOrAbsent<TSource>(
             this IReadOnlyList<TSource> source,
-            in Func<TSource, bool> predicate)
+            Func<TSource, bool> predicate)
         {
             for (var i = source.Count - 1; i >= 0; i--)
             {

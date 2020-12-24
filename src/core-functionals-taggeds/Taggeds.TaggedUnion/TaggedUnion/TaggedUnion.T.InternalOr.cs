@@ -5,8 +5,8 @@ namespace System
     partial struct TaggedUnion<TFirst, TSecond>
     {
         private TResult InternalOr<TResult>(
-            in Func<TaggedUnion<TFirst, TSecond>, TResult> map,
-            in Func<TResult> otherFactory)
+            Func<TaggedUnion<TFirst, TSecond>, TResult> map,
+            Func<TResult> otherFactory)
             =>
             IsInitialized switch
             {

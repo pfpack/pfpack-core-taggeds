@@ -12,7 +12,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void First_Explicit_ExpectIsFirstGetsTrue(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var taggedUnion = TaggedUnion<object?, StructType>.First(sourceValue);
             Assert.True(taggedUnion.IsFirst);
@@ -28,7 +28,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void First_Explicit_ExpectIsInitializedGetsTrue(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var taggedUnion = TaggedUnion<object?, RefType>.First(sourceValue);
             Assert.True(taggedUnion.IsInitialized);

@@ -45,7 +45,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(true)]
         [TestCase(false)]
         public void Filter_SourceIsPresent_ExpectCallPredicateOnce(
-            in bool isSourceValueNull)
+            bool isSourceValueNull)
         {
             var sourceValue = isSourceValueNull ? null : PlusFifteenIdRefType;
             var source = Optional<RefType?>.Present(sourceValue);

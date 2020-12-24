@@ -20,7 +20,7 @@ namespace System.Linq
 
         public static Optional<TSource> InternalFirstOrAbsent<TSource>(
             this IEnumerable<TSource> source,
-            in Func<TSource, bool> predicate)
+            Func<TSource, bool> predicate)
         {
             foreach (var current in source)
             {

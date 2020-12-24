@@ -4,13 +4,13 @@ namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
-        public TaggedUnion(in TFirst first)
+        public TaggedUnion(TFirst first)
         {
             this.first = Optional<TFirst>.Present(first);
             second = default;
         }
 
-        public TaggedUnion(in TSecond second)
+        public TaggedUnion(TSecond second)
         {
             this.second = Optional<TSecond>.Present(second);
             first = default;

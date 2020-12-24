@@ -6,14 +6,14 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Objects.Tests
 {
-    partial class StringExtensionsTests
+    partial class StringsTests
     {
         [Test]
         public void ToStringOrEmpty_SourceIsNull_ExpectEmpty()
         {
             StubType source = null!;
 
-            var actual = source.ToStringOrEmpty();
+            var actual = Strings.ToStringOrEmpty(source);
             Assert.IsEmpty(actual);
         }
 
@@ -22,7 +22,7 @@ namespace PrimeFuncPack.Core.Objects.Tests
         {
             var source = new StubType(null);
 
-            var actual = source.ToStringOrEmpty();
+            var actual = Strings.ToStringOrEmpty(source);
             Assert.IsEmpty(actual);
         }
 
@@ -32,11 +32,11 @@ namespace PrimeFuncPack.Core.Objects.Tests
         [TestCase(TabString)]
         [TestCase(SomeString)]
         public void ToStringOrEmpty_SourceToStringIsNotNull_ExpectActualToStringValue(
-            in string sourceToStringValue)
+            string sourceToStringValue)
         {
             var source = new StubType(sourceToStringValue);
 
-            var actual = source.ToStringOrEmpty();
+            var actual = Strings.ToStringOrEmpty(source);
             Assert.AreEqual(sourceToStringValue, actual);
         }
     }

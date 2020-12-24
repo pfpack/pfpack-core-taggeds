@@ -12,7 +12,7 @@ namespace System
             =>
             CreateNotCategoryException("Second");
 
-        private static InvalidOperationException CreateNotCategoryException(in string category)
+        private static InvalidOperationException CreateNotCategoryException(string category)
             =>
             new($"The tagged union does not represent a {category} instance.");
     }

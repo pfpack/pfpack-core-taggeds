@@ -26,7 +26,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(1)]
         [TestCase(2)]
         public void ElementAtOrAbsentByInt_ListIndexIsInRange_ExpectPresentItem(
-            in int index)
+            int index)
         {
             var source = CreateList<StructType?>(SomeTextStructType, null, NullTextStructType);
             var actual = source.ElementAtOrAbsent(index);
@@ -43,7 +43,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(2)]
         [TestCase(int.MaxValue)]
         public void ElementAtOrAbsentByInt_ListIndexIsNotInRange_ExpectAbsent(
-            in int index)
+            int index)
         {
             var source = CreateList(SomeTextStructType, default);
 
@@ -68,7 +68,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(1)]
         [TestCase(2)]
         public void ElementAtOrAbsentByLong_ListIndexIsInRange_ExpectPresentItem(
-            in int index)
+            int index)
         {
             var source = CreateList(NullTextStructType, SomeTextStructType, SomeTextStructType);
             var actual = source.ElementAtOrAbsent(index);

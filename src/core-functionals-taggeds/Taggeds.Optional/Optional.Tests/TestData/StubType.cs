@@ -6,7 +6,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
     {
         private readonly string? toStringValue;
 
-        public StubType(in string? toStringValue)
+        public StubType(string? toStringValue)
             => this.toStringValue = toStringValue;
 
         public override string? ToString()

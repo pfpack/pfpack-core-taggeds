@@ -12,7 +12,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void YieldSingleOrEmpty_SourceIsPresent_ExpectSingleValue(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var source = Optional<object?>.Present(sourceValue);
             var actual = source.YieldSingleOrEmpty();

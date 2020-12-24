@@ -34,7 +34,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void GetValueOrAbsent_DictionaryPairsPairsTryGetValueReturnsTrue_ExpectPresent(
-            in object? expectedValue)
+            object? expectedValue)
         {
             var sourceDictionary = CreateMockDictionary<StructType, object?>(true, expectedValue).Object;
 

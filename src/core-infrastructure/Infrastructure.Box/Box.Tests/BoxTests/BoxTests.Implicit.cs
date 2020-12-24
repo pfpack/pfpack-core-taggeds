@@ -11,7 +11,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests
         [Test]
         [TestCaseSource(nameof(RefTypeTestSource))]
         public void Implicit_ExpectResultIsSameAsBoxValue(
-            in RefType? source)
+            RefType? source)
         {
             var box = new Box<RefType?>(source);
 

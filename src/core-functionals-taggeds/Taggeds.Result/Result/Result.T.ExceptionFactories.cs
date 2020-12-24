@@ -12,7 +12,7 @@ namespace System
             =>
             CreateNotCategoryException(CategoryFailure);
 
-        private static InvalidOperationException CreateNotCategoryException(in string category)
+        private static InvalidOperationException CreateNotCategoryException(string category)
             =>
             new($"The result does not represent a {category} instance.");
     }

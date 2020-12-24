@@ -11,7 +11,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void ToTaggedUnion_OptionalIsPresent_ExpectActualIsFirst(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var optional = Optional.Present(sourceValue);
             var actual = optional.ToTaggedUnion();

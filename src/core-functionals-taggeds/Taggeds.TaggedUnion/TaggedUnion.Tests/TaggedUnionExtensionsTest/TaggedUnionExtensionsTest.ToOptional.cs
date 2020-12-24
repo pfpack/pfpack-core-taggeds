@@ -11,7 +11,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void ToOptional_UnionIsFirst_ExpectPresent(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var union = TaggedUnion<object?, Unit>.First(sourceValue);
             var actual = union.ToOptional();

@@ -5,7 +5,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
     internal readonly struct SomeError
     {
         public SomeError(
-            in int errorCode)
+            int errorCode)
             =>
             ErrorCode = errorCode;
 

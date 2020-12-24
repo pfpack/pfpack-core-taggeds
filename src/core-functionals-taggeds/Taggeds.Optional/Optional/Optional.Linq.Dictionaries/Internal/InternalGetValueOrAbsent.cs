@@ -9,7 +9,7 @@ namespace System.Linq
         public static Optional<TValue> InternalGetValueOrAbsent<TKey, TValue>(
             this IEnumerable<KeyValuePair<TKey, TValue>> pairs,
             TKey key,
-            in Func<Exception> moreThanOneMatchExceptionFactory)
+            Func<Exception> moreThanOneMatchExceptionFactory)
             =>
             pairs
             .SingleOrAbsent(

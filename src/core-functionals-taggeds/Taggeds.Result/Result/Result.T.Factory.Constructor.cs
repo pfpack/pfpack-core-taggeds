@@ -4,11 +4,11 @@ namespace System
 {
     partial struct Result<TSuccess, TFailure>
     {
-        public Result(in TSuccess success)
+        public Result(TSuccess success)
             =>
             unionRaw = new(success ?? throw new ArgumentNullException(nameof(success)));
 
-        public Result(in TFailure failure)
+        public Result(TFailure failure)
             =>
             unionRaw = new(failure);
     }

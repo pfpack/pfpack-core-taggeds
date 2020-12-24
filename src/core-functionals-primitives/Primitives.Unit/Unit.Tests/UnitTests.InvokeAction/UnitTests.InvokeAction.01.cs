@@ -26,7 +26,7 @@ namespace PrimeFuncPack.Core.Functionals.Primitives.Tests
         [TestCase(true)]
         [TestCase(false)]
         public void InvokeAction_01_ExpectCallActionOnce(
-            in bool isArgNull)
+            bool isArgNull)
         {
             var mockAction = MockActionFactory.CreateMockAction<RefType?>();
 

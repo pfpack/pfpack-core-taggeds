@@ -27,7 +27,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(2)]
         [TestCase(3)]
         public void ElementAtOrAbsentByInt_ReadOnlyListIndexIsInRange_ExpectPresentItem(
-            in int index)
+            int index)
         {
             var source = CreateReadOnlyList<RefType?>(null, MinusFifteenIdRefType, ZeroIdRefType, PlusFifteenIdRefType);
             var actual = source.ElementAtOrAbsent(index);
@@ -44,7 +44,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(2)]
         [TestCase(int.MaxValue)]
         public void ElementAtOrAbsentByInt_ReadOnlyListIndexIsNotInRange_ExpectAbsent(
-            in int index)
+            int index)
         {
             var source = CreateReadOnlyList(SomeTextStructType, default);
 
@@ -69,7 +69,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(1)]
         [TestCase(2)]
         public void ElementAtOrAbsentByLong_ReadOnlyListIndexIsInRange_ExpectPresentItem(
-            in int index)
+            int index)
         {
             var source = CreateReadOnlyList<RefType?>(PlusFifteenIdRefType, null, ZeroIdRefType);
             var actual = source.ElementAtOrAbsent(index);

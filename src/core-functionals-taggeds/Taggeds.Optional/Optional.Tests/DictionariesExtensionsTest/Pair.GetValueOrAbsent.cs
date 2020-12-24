@@ -37,7 +37,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void GetValueOrAbsent_PairsContainOnlyOneKey_ExpectPresentKeyValue(
-            in object? expectedValue)
+            object? expectedValue)
         {
             var sourceKey = "Some Key";
 

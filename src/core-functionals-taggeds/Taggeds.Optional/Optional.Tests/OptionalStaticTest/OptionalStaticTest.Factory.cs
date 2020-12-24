@@ -10,7 +10,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void Present_ExpectPresent(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var actual = Optional.Present(sourceValue);
             var expected = Optional<object?>.Present(sourceValue);

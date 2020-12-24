@@ -23,7 +23,7 @@ namespace PrimeFuncPack.Core.Objects.Tests
         [TestCase(TabString)]
         [TestCase(SomeString)]
         public void OrEmpty_SourceIsNotNull_ExpectSourceValue(
-            in string source)
+            string source)
         {
             var actual = source.OrEmpty();
             Assert.AreEqual(source, actual);

@@ -8,7 +8,7 @@ namespace System.Linq
     {
         public static Optional<TSource> InternalSingleOrAbsent<TSource>(
             this IReadOnlyList<TSource> source,
-            in Func<Exception> moreThanOneElementExceptionFactory)
+            Func<Exception> moreThanOneElementExceptionFactory)
             =>
             source.Count switch
             {
@@ -21,8 +21,8 @@ namespace System.Linq
 
         public static Optional<TSource> InternalSingleOrAbsent<TSource>(
             this IReadOnlyList<TSource> source,
-            in Func<TSource, bool> predicate,
-            in Func<Exception> moreThanOneMatchExceptionFactory)
+            Func<TSource, bool> predicate,
+            Func<Exception> moreThanOneMatchExceptionFactory)
         {
             for (var i = 0; i < source.Count; i++)
             {

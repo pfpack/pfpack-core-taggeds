@@ -8,7 +8,7 @@ namespace System.Linq
     {
         public static Optional<TSource> InternalElementAtOrAbsent<TSource>(
             this IList<TSource> source,
-            in int index)
+            int index)
             =>
             InternalIsInRange(index, source.Count) switch
             {
@@ -18,7 +18,7 @@ namespace System.Linq
 
         public static Optional<TSource> InternalElementAtOrAbsent<TSource>(
             this IList<TSource> source,
-            in long index)
+            long index)
             =>
             InternalShortenIndex(index) switch
             {

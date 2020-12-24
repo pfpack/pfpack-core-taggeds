@@ -4,11 +4,11 @@ namespace System
 {
     partial struct Box<T>
     {
-        public Box(in T value)
+        public Box(T value)
             =>
             Value = value;
 
-        public static implicit operator Box<T>(in T value)
+        public static implicit operator Box<T>(T value)
             =>
             new(value);
     }

@@ -8,7 +8,7 @@ namespace PrimeFuncPack.Core.Infrastructure.Tests.Stubs
     {
         private readonly IFunc<string?> stringFactory;
 
-        public StubType(in IFunc<string?> stringFactory)
+        public StubType(IFunc<string?> stringFactory)
             => this.stringFactory = stringFactory;
 
         public override string? ToString()

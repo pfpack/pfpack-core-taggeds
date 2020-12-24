@@ -31,7 +31,7 @@ namespace PrimeFuncPack.Core.Objects.Strings.Tests
         [TestCase(ThreeWhiteSpacesString)]
         [TestCase(TabString)]
         public void IsNullOrWhiteSpace_SourceIsWhiteSpace_ExpectTrue(
-            in string source)
+            string source)
         {
             var actual = StringPredicates.IsNullOrWhiteSpace(source);
             Assert.True(actual);

@@ -8,7 +8,7 @@ namespace System.Linq
     {
         public static Optional<TValue> InternalGetValueOrAbsent<TKey, TValue>(
             this IDictionary<TKey, TValue> dictionary,
-            in TKey key)
+            TKey key)
         {
             if (dictionary.TryGetValue(key, out var value))
             {

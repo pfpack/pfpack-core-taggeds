@@ -14,7 +14,7 @@ namespace System
             =>
             box is null;
 
-        private Optional(in T value)
+        private Optional(T value)
             =>
             box = value;
     }

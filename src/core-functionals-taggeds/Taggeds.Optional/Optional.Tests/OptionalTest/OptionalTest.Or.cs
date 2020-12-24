@@ -22,7 +22,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void Or_SourceIsPresent_ExpectSourceValue(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var source = Optional<object?>.Present(sourceValue);
             var other = Optional<object?>.Absent;
@@ -35,7 +35,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(true)]
         [TestCase(false)]
         public void Or_SourceIsAbsent_ExpectOtherValue(
-            in bool isOtherPresent)
+            bool isOtherPresent)
         {
             var source = Optional<RefType>.Absent;
             var other = isOtherPresent ? Optional<RefType>.Present(MinusFifteenIdRefType) : default;

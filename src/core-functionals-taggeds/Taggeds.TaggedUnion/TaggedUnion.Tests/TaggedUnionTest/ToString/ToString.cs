@@ -44,7 +44,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(TabString)]
         [TestCase(SomeString)]
         public void ToString_SourceIsFirstAndValueToStringDoesNotReturnNull_ExpectResultOfValueToString(
-            in string resultOfValueToString)
+            string resultOfValueToString)
         {
             var sourceValue = new StubToStringType(resultOfValueToString);
 
@@ -80,7 +80,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(TabString)]
         [TestCase(SomeString)]
         public void ToString_SourceIsSecondAndValueToStringDoesNotReturnNull_ExpectResultOfValueToString(
-            in string resultOfValueToString)
+            string resultOfValueToString)
         {
             var sourceValue = new StubToStringType(resultOfValueToString);
 

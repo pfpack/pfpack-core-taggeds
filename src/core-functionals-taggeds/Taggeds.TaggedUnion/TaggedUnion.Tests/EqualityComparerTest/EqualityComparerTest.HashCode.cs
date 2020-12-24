@@ -27,7 +27,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void GetHashCode_SourceFirstValueIsSameAsOtherFirstValue_ExpectValuesAreEqual(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var source = TaggedUnion<object?, RefType>.First(sourceValue);
             var other = TaggedUnion<object?, RefType>.First(sourceValue);
@@ -44,7 +44,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void GetHashCode_SourceSecondValueIsSameAsOtherSecondValue_ExpectValuesAreEqual(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var source = TaggedUnion<StructType, object>.Second(sourceValue!);
             var other = TaggedUnion<StructType, object?>.Second(sourceValue);
@@ -76,7 +76,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void GetHashCode_SourceFirstValueIsSameAsOtherSecondValue_ExpectValuesAreNotEqual(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var source = TaggedUnion<object?, object?>.First(sourceValue);
             var other = TaggedUnion<object?, object?>.Second(sourceValue);

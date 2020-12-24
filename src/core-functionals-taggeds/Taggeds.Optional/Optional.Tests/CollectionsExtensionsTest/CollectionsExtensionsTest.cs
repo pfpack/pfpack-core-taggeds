@@ -29,7 +29,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         }
 
         private static Mock<IFunc<T, bool>> CreateMockPredicate<T>(
-            in Func<T, bool> valueFunction)
+            Func<T, bool> valueFunction)
         {
             var mock = new Mock<IFunc<T, bool>>();
 

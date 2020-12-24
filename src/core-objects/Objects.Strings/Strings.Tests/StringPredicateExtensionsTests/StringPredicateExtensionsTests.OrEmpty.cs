@@ -31,7 +31,7 @@ namespace PrimeFuncPack.Core.Objects.Strings.Tests
         [TestCase(TabString)]
         [TestCase(SomeString)]
         public void IsNullOrEmpty_SourceIsNotEmpty_ExpectFalse(
-            in string source)
+            string source)
         {
             var actual = source.IsNullOrEmpty();
             Assert.False(actual);

@@ -12,7 +12,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void FirstOrThrow_SourceIsFirst_ExpectSourceValue(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var source = TaggedUnion<object?, StructType>.First(sourceValue);
 

@@ -12,8 +12,8 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         private const string Second = "second";
 
         private static void AssertContainsFirst(
-            in string expectedSubString,
-            in string? actual)
+            string expectedSubString,
+            string? actual)
         {
             Assert.NotNull(actual);
             Assert.True(actual!.Contains(expectedSubString, StringComparison.InvariantCultureIgnoreCase));

@@ -24,7 +24,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void Equals_UnionAFirstValueEqualsUnionBFirstValue_ExpectTrue(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var unionA = TaggedUnion<object?, RefType>.First(sourceValue);
             var unionB = TaggedUnion<object?, RefType>.First(sourceValue);

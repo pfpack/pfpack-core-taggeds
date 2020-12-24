@@ -9,11 +9,11 @@ namespace PrimeFuncPack.Core
     {
         private readonly TFailure failure;
 
-        private FailureBuilder(in TFailure failure)
+        private FailureBuilder(TFailure failure)
             =>
             this.failure = failure;
 
-        internal static FailureBuilder<TFailure> Create(in TFailure failure)
+        internal static FailureBuilder<TFailure> Create(TFailure failure)
             =>
             new(failure);
 

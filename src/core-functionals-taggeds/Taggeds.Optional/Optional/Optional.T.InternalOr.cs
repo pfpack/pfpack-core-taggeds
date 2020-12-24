@@ -4,7 +4,7 @@ namespace System
 {
     partial struct Optional<T>
     {
-        private TResult InternalOr<TResult>(in Func<Optional<T>, TResult> map, in Func<TResult> otherFactory)
+        private TResult InternalOr<TResult>(Func<Optional<T>, TResult> map, Func<TResult> otherFactory)
             =>
             box switch
             {

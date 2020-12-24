@@ -179,7 +179,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ResultTestSource))]
         public void EqualsObject_ObjectIsNull_ExpectFalse(
-            in Result<RefType, StructType> source)
+            Result<RefType, StructType> source)
         {
             object? obj = null;
             var actual = source.Equals(obj);

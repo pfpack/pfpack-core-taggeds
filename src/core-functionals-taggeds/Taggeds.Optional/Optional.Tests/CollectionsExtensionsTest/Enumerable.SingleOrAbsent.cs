@@ -34,7 +34,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void SingleOrAbsent_CollectionSourceContainsOnlyOneElement_ExpectPresentSingleElement(
-            in object? singleItem)
+            object? singleItem)
         {
             var source = CreateCollection(singleItem);
 
@@ -84,7 +84,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void SingleOrAbsentWithExceptionFactory_CollectionSourceContainsOnlyOneElement_ExpectPresentSingleElement(
-            in object? singleItem)
+            object? singleItem)
         {
             var source = CreateCollection(singleItem);
 

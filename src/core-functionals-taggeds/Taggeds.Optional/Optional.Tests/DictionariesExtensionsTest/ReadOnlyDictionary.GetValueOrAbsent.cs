@@ -46,7 +46,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void GetValueOrAbsent_ReadOnlyDictionaryPairsTryGetValueReturnsTrueAndKeyIsNull_ExpectPresent(
-            in object? expectedValue)
+            object? expectedValue)
         {
             var sourceDictionary = CreateMockReadOnlyDictionary<string?, object?>(true, expectedValue).Object;
 

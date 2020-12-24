@@ -29,7 +29,7 @@ namespace System.Linq
 
         public static Optional<TSource> InternalLastOrAbsent<TSource>(
             this IEnumerable<TSource> source,
-            in Func<TSource, bool> predicate)
+            Func<TSource, bool> predicate)
         {
             using var enumerator = source.GetEnumerator();
 

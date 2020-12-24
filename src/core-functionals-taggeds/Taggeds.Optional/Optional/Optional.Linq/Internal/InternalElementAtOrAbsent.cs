@@ -8,7 +8,7 @@ namespace System.Linq
     {
         public static Optional<TSource> InternalElementAtOrAbsent<TSource>(
             this IEnumerable<TSource> source,
-            in int index)
+            int index)
         {
             if (index >= 0)
             {
@@ -36,7 +36,7 @@ namespace System.Linq
 
         public static Optional<TSource> InternalElementAtOrAbsent<TSource>(
             this IEnumerable<TSource> source,
-            in long index)
+            long index)
         {
             if (index >= 0)
             {

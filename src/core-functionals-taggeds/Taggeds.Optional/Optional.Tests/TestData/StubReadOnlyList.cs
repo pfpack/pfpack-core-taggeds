@@ -9,7 +9,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
     {
         private readonly T[] items;
 
-        public StubReadOnlyList(in T[] items)
+        public StubReadOnlyList(T[] items)
             => this.items = items;
 
         public T this[int index]

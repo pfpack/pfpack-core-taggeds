@@ -42,7 +42,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(ThreeWhiteSpacesString)]
         [TestCase(SomeString)]
         public void ToString_SourceIsPresentAndValueToStringIsNotNull_ExpectSourceValueToStringResult(
-            in string sourceValueToStringResult)
+            string sourceValueToStringResult)
         {
             var sourceValue = new StubType(sourceValueToStringResult);
             var source = Optional<StubType>.Present(sourceValue);

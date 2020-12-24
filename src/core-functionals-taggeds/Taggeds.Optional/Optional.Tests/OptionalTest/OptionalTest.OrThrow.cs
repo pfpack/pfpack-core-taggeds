@@ -12,7 +12,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void OrThrow_SourceIsPresent_ExpectSourceValue(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var source = Optional<object?>.Present(sourceValue);
 
@@ -39,7 +39,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void OrThrowWithFactory_SourceIsPresent_ExpectSourceValue(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var source = Optional<object?>.Present(sourceValue);
 

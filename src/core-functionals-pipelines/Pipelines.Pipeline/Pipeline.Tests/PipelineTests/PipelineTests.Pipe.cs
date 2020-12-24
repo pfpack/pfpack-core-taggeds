@@ -10,7 +10,7 @@ namespace PrimeFuncPack.Core.Functionals.Pipelines.Tests
         [Test]
         [TestCaseSource(nameof(ValueTestSource))]
         public void Pipe_ExpectSourceValue(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var actual = Pipeline.Pipe(sourceValue);
             Assert.AreSame(sourceValue, actual);

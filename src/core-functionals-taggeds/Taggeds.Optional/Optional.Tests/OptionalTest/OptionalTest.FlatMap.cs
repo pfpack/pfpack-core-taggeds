@@ -47,7 +47,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(true)]
         [TestCase(false)]
         public void FlatMap_SourceIsPresent_ExpectCallMapOnce(
-            in bool isSourceValueNull)
+            bool isSourceValueNull)
         {
             var sourceValue = isSourceValueNull ? null : MinusFifteenIdRefType;
             var source = Optional<RefType?>.Present(sourceValue);
@@ -63,7 +63,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(true)]
         [TestCase(false)]
         public void FlatMap_SourceIsPresent_ExpectResultValue(
-            in bool isResultPresent)
+            bool isResultPresent)
         {
             var source = Optional<StructType?>.Present(SomeTextStructType);
             var result = isResultPresent ? Optional<RefType?>.Present(PlusFifteenIdRefType) : Optional<RefType?>.Absent;

@@ -352,7 +352,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void EqualsWithObject_SourceIsAbsentAndObjectIsNotOptional_ExpectFalse(
-            in object? obj)
+            object? obj)
         {
             var source = Optional<StructType>.Absent;
 
@@ -363,7 +363,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void EqualsWithObject_SourceIsPresentAndObjectIsNotOptional_ExpectFalse(
-            in object? obj)
+            object? obj)
         {
             var source = Optional<RefType>.Present(MinusFifteenIdRefType);
 

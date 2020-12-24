@@ -9,11 +9,11 @@ namespace PrimeFuncPack.Core
     {
         private readonly TSuccess success;
 
-        private SuccessBuilder(in TSuccess success)
+        private SuccessBuilder(TSuccess success)
             =>
             this.success = success;
 
-        internal static SuccessBuilder<TSuccess> Create(in TSuccess success)
+        internal static SuccessBuilder<TSuccess> Create(TSuccess success)
             =>
             new(success ?? throw new ArgumentNullException(nameof(success)));
 

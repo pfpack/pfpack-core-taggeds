@@ -14,7 +14,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(true)]
         [TestCase(false)]
         public void OrElse_SourceIsPresent_ExpectSourceValue(
-            in bool isSourceNull)
+            bool isSourceNull)
         {
             var sourceValue = isSourceNull ? null : PlusFifteenIdRefType;
             var otherValue = MinusFifteenIdRefType;
@@ -29,7 +29,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(true)]
         [TestCase(false)]
         public void OrElse_SourceIsAbsent_ExpectOtherValue(
-            in bool isOtherNull)
+            bool isOtherNull)
         {
             var otherValue = isOtherNull ? null : (StructType?)SomeTextStructType;
 
@@ -53,7 +53,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(true)]
         [TestCase(false)]
         public void OrElseWithFactory_SourceIsPresent_ExpectSourceValue(
-            in bool isSourceNull)
+            bool isSourceNull)
         {
             var sourceValue = isSourceNull ? null : PlusFifteenIdRefType;
             var otherValue = MinusFifteenIdRefType;
@@ -68,7 +68,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [TestCase(true)]
         [TestCase(false)]
         public void OrElseWithFactory_SourceIsAbsent_ExpectOtherValue(
-            in bool isOtherNull)
+            bool isOtherNull)
         {
             var otherValue = isOtherNull ? null : (StructType?)SomeTextStructType;
 

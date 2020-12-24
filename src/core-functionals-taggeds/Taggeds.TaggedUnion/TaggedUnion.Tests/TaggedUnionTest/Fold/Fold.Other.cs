@@ -36,7 +36,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void FoldWithOther_SourceIsDefault_ExpectOther(
-            in object? other)
+            object? other)
         {
             var source = default(TaggedUnion<RefType, object>);
 

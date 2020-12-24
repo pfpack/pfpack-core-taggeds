@@ -8,7 +8,7 @@ namespace System.Linq
     {
         public static Optional<TSource> InternalSingleOrAbsent<TSource>(
             this IEnumerable<TSource> source,
-            in Func<Exception> moreThanOneElementExceptionFactory)
+            Func<Exception> moreThanOneElementExceptionFactory)
         {
             using var enumerator = source.GetEnumerator();
 
@@ -29,8 +29,8 @@ namespace System.Linq
 
         public static Optional<TSource> InternalSingleOrAbsent<TSource>(
             this IEnumerable<TSource> source,
-            in Func<TSource, bool> predicate,
-            in Func<Exception> moreThanOneMatchExceptionFactory)
+            Func<TSource, bool> predicate,
+            Func<Exception> moreThanOneMatchExceptionFactory)
         {
             using var enumerator = source.GetEnumerator();
 

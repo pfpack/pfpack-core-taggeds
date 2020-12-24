@@ -21,7 +21,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void SecondOrThrowWithFactory_SourceIsSecond_ExpectSourceValue(
-            in object? sourceValue)
+            object? sourceValue)
         {
             var source = TaggedUnion<RefType, object?>.Second(sourceValue);
             var resultException = new SomeException();

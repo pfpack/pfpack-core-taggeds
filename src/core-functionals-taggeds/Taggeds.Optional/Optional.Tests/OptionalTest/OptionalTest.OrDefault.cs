@@ -11,7 +11,7 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
         public void OrDefault_SourceIsPresent_ExpectSourceValue(
-            in object sourceValue)
+            object sourceValue)
         {
             var source = Optional<object>.Present(sourceValue);
 
