@@ -6,9 +6,9 @@ namespace System
     {
         private TResult InternalOr<TResult>(Func<Optional<T>, TResult> map, Func<TResult> otherFactory)
             =>
-            box switch
+            hasValue switch
             {
-                not null => map.Invoke(this),
+                true => map.Invoke(this),
                 _ => otherFactory.Invoke()
             };
     }

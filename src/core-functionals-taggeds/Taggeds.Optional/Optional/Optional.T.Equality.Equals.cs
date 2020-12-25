@@ -6,7 +6,12 @@ namespace System
     {
         public static bool Equals(Optional<T> optionalA, Optional<T> optionalB)
             =>
-            optionalA.box == optionalB.box;
+            (optionalA.hasValue, optionalB.hasValue) switch
+            {
+                (true, true) => ValueEquality.Equals(optionalA.value, optionalB.value),
+                (false, false) => true,
+                _ => false
+            };
 
         public static bool operator ==(Optional<T> optionalA, Optional<T> optionalB)
             =>
@@ -24,15 +29,5 @@ namespace System
             =>
             obj is Optional<T> other &&
             Equals(this, other);
-
-        public override int GetHashCode()
-            =>
-            HashCode.Combine(
-                EqualityContract,
-                box.GetHashCode());
-
-        private static Type EqualityContract
-            =>
-            typeof(Optional<T>);
     }
 }

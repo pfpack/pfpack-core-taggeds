@@ -4,18 +4,22 @@ namespace System
 {
     public readonly partial struct Optional<T> : IEquatable<Optional<T>>
     {
-        private readonly Box<T>? box;
+        private readonly bool hasValue;
+
+        private readonly T value;
 
         public bool IsPresent
             =>
-            box is not null;
+            hasValue;
 
         public bool IsAbsent
             =>
-            box is null;
+            hasValue is false;
 
         private Optional(T value)
-            =>
-            box = value;
+        {
+            hasValue = true;
+            this.value = value;
+        }
     }
 }

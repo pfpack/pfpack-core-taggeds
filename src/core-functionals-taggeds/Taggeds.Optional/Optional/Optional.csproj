@@ -11,7 +11,7 @@
 		<Copyright>Copyright © 2020 Andrei Sergeev, Pavel Moskovoy</Copyright>
 		<RootNamespace>System</RootNamespace>
 		<AssemblyName>PrimeFuncPack.Core.Functionals.Taggeds.Optional</AssemblyName>
-		<Version>1.0.0-preview.1.4.0</Version>
+		<Version>1.0.0-preview.1.5.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -24,7 +24,6 @@
 	<ItemGroup>
 		<PackageReference Include="PrimeFuncPack.Core.Functionals.Pipelines" Version="1.0.0-preview.1.0.*" />
 		<PackageReference Include="PrimeFuncPack.Core.Functionals.Primitives" Version="1.0.0-preview.1.1.*" />
-		<PackageReference Include="PrimeFuncPack.Core.Infrastructure" Version="1.0.0-preview.1.4.*" />
 		<PackageReference Include="PrimeFuncPack.Core.Objects" Version="1.0.0-preview.1.0.*" />
 	</ItemGroup>
 

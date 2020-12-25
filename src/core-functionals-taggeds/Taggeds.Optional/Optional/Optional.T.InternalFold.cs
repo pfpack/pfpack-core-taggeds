@@ -6,9 +6,9 @@ namespace System
     {
         private TResult InternalFold<TResult>(Func<T, TResult> map, Func<TResult> otherFactory)
             =>
-            box switch
+            hasValue switch
             {
-                not null => map.Invoke(box.Value),
+                true => map.Invoke(value),
                 _ => otherFactory.Invoke()
             };
     }
