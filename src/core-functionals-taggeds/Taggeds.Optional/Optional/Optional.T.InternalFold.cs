@@ -6,10 +6,6 @@ namespace System
     {
         private TResult InternalFold<TResult>(Func<T, TResult> map, Func<TResult> otherFactory)
             =>
-            hasValue switch
-            {
-                true => map.Invoke(value),
-                _ => otherFactory.Invoke()
-            };
+            InternalHandle(InternalValue, map, otherFactory);
     }
 }
