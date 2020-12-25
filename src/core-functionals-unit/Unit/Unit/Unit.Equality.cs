@@ -27,8 +27,6 @@ namespace System
 
         public override int GetHashCode()
             =>
-            HashCode.Combine(EqualityContract);
-
-        private static Type EqualityContract => typeof(Unit);
+            HashCode.Combine(typeof(Unit));
     }
 }
