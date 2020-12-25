@@ -11,11 +11,13 @@ namespace System
 
         private int ValueHashCodeOrDefault() => hasValue switch
         {
-            true => value switch
-            {
-                not null => ValueEquality.GetHashCode(value),
-                _ => default
-            },
+            true => ValueHashCode(),
+            _ => default
+        };
+
+        private int ValueHashCode() => value switch
+        {
+            not null => ValueEquality.GetHashCode(value),
             _ => default
         };
     }
