@@ -6,6 +6,6 @@ namespace System
     {
         private static InvalidOperationException CreateExpectedPresentException()
             =>
-            new InvalidOperationException("The optional is expected to have a value.");
+            new("The optional is expected to have a value.");
     }
 }
