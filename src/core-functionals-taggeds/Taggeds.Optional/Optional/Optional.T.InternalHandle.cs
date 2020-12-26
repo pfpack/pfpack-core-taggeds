@@ -8,11 +8,13 @@ namespace System
             Func<TSource> supplier,
             Func<TSource, TResult> onPresent,
             Func<TResult> onElse)
-            =>
-            hasValue switch
+        {
+            if (hasValue)
             {
-                true => onPresent.Invoke(supplier.Invoke()),
-                _ => onElse.Invoke()
-            };
+                return onPresent.Invoke(supplier.Invoke());
+            }
+
+            return onElse.Invoke();
+        }
     }
 }
