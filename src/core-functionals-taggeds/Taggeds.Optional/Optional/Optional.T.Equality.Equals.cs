@@ -6,12 +6,8 @@ namespace System
     {
         public static bool Equals(Optional<T> optionalA, Optional<T> optionalB)
             =>
-            (optionalA.hasValue, optionalB.hasValue) switch
-            {
-                (true, true) => ValueEquality.Equals(optionalA.value, optionalB.value),
-                (false, false) => true,
-                _ => false
-            };
+            (optionalA.hasValue == optionalB.hasValue) &&
+            (optionalA.hasValue is false || ValueEquality.Equals(optionalA.value, optionalB.value));
 
         public static bool operator ==(Optional<T> optionalA, Optional<T> optionalB)
             =>

@@ -9,16 +9,14 @@ namespace System
             hasValue,
             ValueHashCodeOrDefault());
 
-        private int ValueHashCodeOrDefault() => hasValue switch
+        private int ValueHashCodeOrDefault()
         {
-            true => ValueHashCode(),
-            _ => default
-        };
+            if (hasValue && value is not null)
+            {
+                return ValueEquality.GetHashCode(value);
+            }
 
-        private int ValueHashCode() => value switch
-        {
-            not null => ValueEquality.GetHashCode(value),
-            _ => default
-        };
+            return default;
+        }
     }
 }
