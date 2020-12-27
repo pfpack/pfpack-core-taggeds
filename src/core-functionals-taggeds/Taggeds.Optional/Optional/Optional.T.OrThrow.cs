@@ -12,7 +12,7 @@ namespace System
         {
             _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
 
-            return Fold(Pipeline.Pipe, () => throw exceptionFactory.Invoke());
+            return InternalFold(Pipeline.Pipe, () => throw exceptionFactory.Invoke());
         }
     }
 }

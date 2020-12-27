@@ -8,18 +8,26 @@ namespace System
     {
         public T OrElse(T other)
             =>
-            Fold(Pipeline.Pipe, () => other);
+            InternalFold(
+                Pipeline.Pipe,
+                () => other);
 
         public T OrElse(Func<T> otherFactory)
             =>
-            Fold(Pipeline.Pipe, otherFactory);
+            InternalFold(
+                Pipeline.Pipe,
+                otherFactory ?? throw new ArgumentNullException(nameof(otherFactory)));
 
         public Task<T> OrElseAsync(Func<Task<T>> otherFactoryAsync)
             =>
-            FoldAsync(Task.FromResult, otherFactoryAsync);
+            InternalFold(
+                Task.FromResult,
+                otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 
         public ValueTask<T> OrElseValueAsync(Func<ValueTask<T>> otherFactoryAsync)
             =>
-            FoldValueAsync(ValueTask.FromResult, otherFactoryAsync);
+            InternalFold(
+                ValueTask.FromResult,
+                otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
     }
 }
