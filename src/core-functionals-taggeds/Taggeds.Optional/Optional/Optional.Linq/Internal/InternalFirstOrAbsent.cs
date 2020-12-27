@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
+using static System.Optional;
 
 namespace System.Linq
 {
@@ -13,7 +14,7 @@ namespace System.Linq
 
             return enumerator.MoveNext() switch
             {
-                true => Optional.Present(enumerator.Current),
+                true => Present(enumerator.Current),
                 _ => default
             };
         }
@@ -26,7 +27,7 @@ namespace System.Linq
             {
                 if (predicate.Invoke(current))
                 {
-                    return Optional.Present(current);
+                    return Present(current);
                 }
             }
 

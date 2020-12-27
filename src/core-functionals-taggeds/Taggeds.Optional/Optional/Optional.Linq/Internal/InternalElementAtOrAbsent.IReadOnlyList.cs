@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
+using static System.Optional;
 
 namespace System.Linq
 {
@@ -12,7 +13,7 @@ namespace System.Linq
             =>
             InternalIsInRange(index, source.Count) switch
             {
-                true => Optional.Present(source[index]),
+                true => Present(source[index]),
                 _ => default
             };
 

@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
+using static System.Optional;
 
 namespace System.Linq
 {
@@ -22,7 +23,7 @@ namespace System.Linq
                     {
                         if (countdownIndex == 0)
                         {
-                            return Optional.Present(enumerator.Current);
+                            return Present(enumerator.Current);
                         }
 
                         countdownIndex--;
@@ -50,7 +51,7 @@ namespace System.Linq
                     {
                         if (countdownIndex == 0)
                         {
-                            return Optional.Present(enumerator.Current);
+                            return Present(enumerator.Current);
                         }
 
                         countdownIndex--;
