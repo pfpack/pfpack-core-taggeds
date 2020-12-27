@@ -11,7 +11,7 @@ namespace System
         {
             _ = mapFirst ?? throw new ArgumentNullException(nameof(mapFirst));
 
-            return Fold<TaggedUnion<TResultFirst, TSecond>>(
+            return InternalFold<TaggedUnion<TResultFirst, TSecond>>(
                 value => mapFirst.Invoke(value),
                 static value => value,
                 static () => default);
@@ -22,7 +22,7 @@ namespace System
         {
             _ = mapFirstAsync ?? throw new ArgumentNullException(nameof(mapFirstAsync));
 
-            return FoldAsync<TaggedUnion<TResultFirst, TSecond>>(
+            return InternalFold<Task<TaggedUnion<TResultFirst, TSecond>>>(
                 async value => await mapFirstAsync.Invoke(value).ConfigureAwait(false),
                 static value => Task.FromResult<TaggedUnion<TResultFirst, TSecond>>(value),
                 static () => Task.FromResult<TaggedUnion<TResultFirst, TSecond>>(default));
@@ -33,10 +33,10 @@ namespace System
         {
             _ = mapFirstAsync ?? throw new ArgumentNullException(nameof(mapFirstAsync));
 
-            return FoldValueAsync<TaggedUnion<TResultFirst, TSecond>>(
+            return InternalFold<ValueTask<TaggedUnion<TResultFirst, TSecond>>>(
                 async value => await mapFirstAsync.Invoke(value).ConfigureAwait(false),
                 static value => ValueTask.FromResult<TaggedUnion<TResultFirst, TSecond>>(value),
-                static () => default(ValueTask<TaggedUnion<TResultFirst, TSecond>>));
+                static () => default);
         }
     }
 }
