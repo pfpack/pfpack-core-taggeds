@@ -8,6 +8,6 @@ namespace System
             =>
             optional.Fold<TaggedUnion<T, Unit>>(
                 static value => value,
-                static () => default(Unit));
+                static () => Unit.Value);
     }
 }

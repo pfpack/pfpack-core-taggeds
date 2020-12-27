@@ -10,6 +10,6 @@ namespace System
             =>
             optional.Fold<Result<TSuccess, Unit>>(
                 static value => value,
-                static () => default(Unit));
+                static () => Unit.Value);
     }
 }

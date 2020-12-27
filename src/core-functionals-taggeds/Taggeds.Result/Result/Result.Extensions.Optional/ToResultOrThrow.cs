@@ -9,6 +9,6 @@ namespace System
             =>
             optional.Fold<Result<TSuccess, Unit>>(
                 static value => value ?? throw CreateSuccessNullException(nameof(optional)),
-                static () => default(Unit));
+                static () => Unit.Value);
     }
 }

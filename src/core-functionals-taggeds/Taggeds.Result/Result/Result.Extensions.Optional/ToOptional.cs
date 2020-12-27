@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using static System.Optional;
+
 namespace System
 {
     partial class OptionalResultExtensions
@@ -7,6 +9,6 @@ namespace System
         public static Optional<TSuccess> ToOptional<TSuccess>(this Result<TSuccess, Unit> result)
             where TSuccess : notnull
             =>
-            result.Fold(Optional<TSuccess>.Present, static _ => Optional<TSuccess>.Absent);
+            result.Fold(Present<TSuccess>, static _ => Absent<TSuccess>());
     }
 }
