@@ -6,6 +6,6 @@ namespace System
     {
         private TResult InternalOr<TResult>(Func<Optional<T>, TResult> map, Func<TResult> otherFactory)
             =>
-            InternalHandle(InternalThis, map, otherFactory);
+            InternalHandle(This, map, otherFactory);
     }
 }

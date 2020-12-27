@@ -10,15 +10,13 @@ namespace System
         {
             _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
 
-            var @this = this;
+            return Fold(value => Filter(value, predicate, This), This);
 
-            return Fold(FilterPresent, () => @this);
-
-            Optional<T> FilterPresent(T value)
+            static Optional<T> Filter(T value, Func<T, bool> predicate, Func<Optional<T>> thisSupplier)
                 =>
                 predicate.Invoke(value) switch
                 {
-                    true => @this,
+                    true => thisSupplier.Invoke(),
                     _ => default
                 };
         }
@@ -27,15 +25,14 @@ namespace System
         {
             _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
 
-            var @this = this;
+            return FoldAsync(value => FilterAsync(value, predicateAsync, This), ThisAsync);
 
-            return FoldAsync(FilterPresentAsync, () => Task.FromResult(@this));
-
-            async Task<Optional<T>> FilterPresentAsync(T value)
+            static async Task<Optional<T>> FilterAsync(
+                T value, Func<T, Task<bool>> predicateAsync, Func<Optional<T>> thisSupplier)
                 =>
                 await predicateAsync.Invoke(value).ConfigureAwait(false) switch
                 {
-                    true => @this,
+                    true => thisSupplier.Invoke(),
                     _ => default
                 };
         }
@@ -44,15 +41,14 @@ namespace System
         {
             _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
 
-            var @this = this;
+            return FoldValueAsync(value => FilterValueAsync(value, predicateAsync, This), ThisValueAsync);
 
-            return FoldValueAsync(FilterPresentValueAsync, () => ValueTask.FromResult(@this));
-
-            async ValueTask<Optional<T>> FilterPresentValueAsync(T value)
+            static async ValueTask<Optional<T>> FilterValueAsync(
+                T value, Func<T, ValueTask<bool>> predicateAsync, Func<Optional<T>> thisSupplier)
                 =>
                 await predicateAsync.Invoke(value).ConfigureAwait(false) switch
                 {
-                    true => @this,
+                    true => thisSupplier.Invoke(),
                     _ => default
                 };
         }
