@@ -5,9 +5,14 @@ namespace System
     partial struct Optional<T>
     {
         public static bool Equals(Optional<T> optionalA, Optional<T> optionalB)
-            =>
-            (optionalA.hasValue == optionalB.hasValue) &&
-            (optionalA.hasValue is false || ValueEquality.Equals(optionalA.value, optionalB.value));
+        {
+            if (optionalA.hasValue && optionalB.hasValue)
+            {
+                return ValueEquality.Equals(optionalA.value, optionalB.value);
+            }
+
+            return optionalA.hasValue == optionalB.hasValue;
+        }
 
         public static bool operator ==(Optional<T> optionalA, Optional<T> optionalB)
             =>
