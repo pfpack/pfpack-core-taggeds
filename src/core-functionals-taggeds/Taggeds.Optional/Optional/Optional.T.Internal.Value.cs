@@ -4,6 +4,6 @@ namespace System
 {
     partial struct Optional<T>
     {
-        private T InternalValue() => value;
+        private T Value() => value;
     }
 }

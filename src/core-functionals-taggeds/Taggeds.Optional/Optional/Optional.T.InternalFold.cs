@@ -6,6 +6,6 @@ namespace System
     {
         private TResult InternalFold<TResult>(Func<T, TResult> map, Func<TResult> otherFactory)
             =>
-            InternalHandle(InternalValue, map, otherFactory);
+            InternalHandle(Value, map, otherFactory);
     }
 }
