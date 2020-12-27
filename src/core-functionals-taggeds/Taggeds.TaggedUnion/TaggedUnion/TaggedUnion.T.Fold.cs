@@ -28,7 +28,7 @@ namespace System
             _ = mapFirst ?? throw new ArgumentNullException(nameof(mapFirst));
             _ = mapSecond ?? throw new ArgumentNullException(nameof(mapSecond));
 
-            return InternalFold(mapFirst, mapSecond).OrElse(other);
+            return InternalFold(mapFirst, mapSecond).OrElse(() => other);
         }
 
         public TResult Fold<TResult>(
@@ -53,7 +53,7 @@ namespace System
             _ = mapFirstAsync ?? throw new ArgumentNullException(nameof(mapFirstAsync));
             _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
 
-            return InternalFold(mapFirstAsync, mapSecondAsync).OrElse(Task.FromResult(other));
+            return InternalFold(mapFirstAsync, mapSecondAsync).OrElse(() => Task.FromResult(other));
         }
 
         public Task<TResult> FoldAsync<TResult>(
@@ -90,7 +90,7 @@ namespace System
             _ = mapFirstAsync ?? throw new ArgumentNullException(nameof(mapFirstAsync));
             _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
 
-            return InternalFold(mapFirstAsync, mapSecondAsync).OrElse(ValueTask.FromResult(other));
+            return InternalFold(mapFirstAsync, mapSecondAsync).OrElse(() => ValueTask.FromResult(other));
         }
 
         public ValueTask<TResult> FoldValueAsync<TResult>(
