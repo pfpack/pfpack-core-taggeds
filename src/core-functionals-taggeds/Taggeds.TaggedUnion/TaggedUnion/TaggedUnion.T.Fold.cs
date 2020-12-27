@@ -17,7 +17,7 @@ namespace System
             _ = mapFirst ?? throw new ArgumentNullException(nameof(mapFirst));
             _ = mapSecond ?? throw new ArgumentNullException(nameof(mapSecond));
 
-            return InternalFold(mapFirst, mapSecond).OrElse(static () => default!);
+            return InternalFold(mapFirst, mapSecond, static () => default!);
         }
 
         public TResult Fold<TResult>(
@@ -28,7 +28,7 @@ namespace System
             _ = mapFirst ?? throw new ArgumentNullException(nameof(mapFirst));
             _ = mapSecond ?? throw new ArgumentNullException(nameof(mapSecond));
 
-            return InternalFold(mapFirst, mapSecond).OrElse(() => other);
+            return InternalFold(mapFirst, mapSecond, () => other);
         }
 
         public TResult Fold<TResult>(
@@ -40,7 +40,7 @@ namespace System
             _ = mapSecond ?? throw new ArgumentNullException(nameof(mapSecond));
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return InternalFold(mapFirst, mapSecond).OrElse(otherFactory);
+            return InternalFold(mapFirst, mapSecond, otherFactory);
         }
 
         // Fold Async / Task
@@ -53,7 +53,7 @@ namespace System
             _ = mapFirstAsync ?? throw new ArgumentNullException(nameof(mapFirstAsync));
             _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
 
-            return InternalFold(mapFirstAsync, mapSecondAsync).OrElse(() => Task.FromResult(other));
+            return InternalFold(mapFirstAsync, mapSecondAsync, () => Task.FromResult(other));
         }
 
         public Task<TResult> FoldAsync<TResult>(
@@ -65,7 +65,7 @@ namespace System
             _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return InternalFold(mapFirstAsync, mapSecondAsync).OrElse(() => Task.FromResult(otherFactory.Invoke()));
+            return InternalFold(mapFirstAsync, mapSecondAsync, () => Task.FromResult(otherFactory.Invoke()));
         }
 
         public Task<TResult> FoldAsync<TResult>(
@@ -77,7 +77,7 @@ namespace System
             _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return InternalFold(mapFirstAsync, mapSecondAsync).OrElse(otherFactoryAsync);
+            return InternalFold(mapFirstAsync, mapSecondAsync, otherFactoryAsync);
         }
 
         // Fold Async / ValueTask
@@ -90,7 +90,7 @@ namespace System
             _ = mapFirstAsync ?? throw new ArgumentNullException(nameof(mapFirstAsync));
             _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
 
-            return InternalFold(mapFirstAsync, mapSecondAsync).OrElse(() => ValueTask.FromResult(other));
+            return InternalFold(mapFirstAsync, mapSecondAsync, () => ValueTask.FromResult(other));
         }
 
         public ValueTask<TResult> FoldValueAsync<TResult>(
@@ -102,7 +102,7 @@ namespace System
             _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return InternalFold(mapFirstAsync, mapSecondAsync).OrElse(() => ValueTask.FromResult(otherFactory.Invoke()));
+            return InternalFold(mapFirstAsync, mapSecondAsync, () => ValueTask.FromResult(otherFactory.Invoke()));
         }
 
         public ValueTask<TResult> FoldValueAsync<TResult>(
@@ -114,7 +114,7 @@ namespace System
             _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return InternalFold(mapFirstAsync, mapSecondAsync).OrElse(otherFactoryAsync);
+            return InternalFold(mapFirstAsync, mapSecondAsync, otherFactoryAsync);
         }
     }
 }
