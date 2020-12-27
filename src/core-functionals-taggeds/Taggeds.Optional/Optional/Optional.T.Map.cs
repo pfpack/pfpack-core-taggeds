@@ -10,9 +10,9 @@ namespace System
         {
             _ = map ?? throw new ArgumentNullException(nameof(map));
 
-            return Fold(MapPresent, static () => default);
+            return Fold(Map, static () => default);
 
-            Optional<TResult> MapPresent(T value)
+            Optional<TResult> Map(T value)
                 =>
                 Optional<TResult>.Present(map.Invoke(value));
         }
@@ -21,9 +21,9 @@ namespace System
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return FoldAsync(MapPresentAsync, static () => Task.FromResult<Optional<TResult>>(default));
+            return FoldAsync(MapAsync, static () => Task.FromResult<Optional<TResult>>(default));
 
-            async Task<Optional<TResult>> MapPresentAsync(T value)
+            async Task<Optional<TResult>> MapAsync(T value)
                 =>
                 Optional<TResult>.Present(await mapAsync.Invoke(value).ConfigureAwait(false));
         }
@@ -32,9 +32,9 @@ namespace System
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return FoldValueAsync(MapPresentValueAsync, static () => default);
+            return FoldValueAsync(MapValueAsync, static () => default);
 
-            async ValueTask<Optional<TResult>> MapPresentValueAsync(T value)
+            async ValueTask<Optional<TResult>> MapValueAsync(T value)
                 =>
                 Optional<TResult>.Present(await mapAsync.Invoke(value).ConfigureAwait(false));
         }
