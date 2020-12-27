@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using static System.Optional;
+
 namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
@@ -11,7 +13,7 @@ namespace System
         {
             var @this = this;
 
-            return default(Optional<TResult>)
+            return Absent<TResult>()
                 .Or(() => @this.first.Map(mapFirst))
                 .Or(() => @this.second.Map(mapSecond))
                 .OrElse(otherFactory);
