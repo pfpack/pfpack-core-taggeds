@@ -13,12 +13,17 @@ namespace System
         private readonly TaggedUnion<TSuccess, TFailure> unionRaw;
 
         private readonly TaggedUnion<TSuccess, TFailure> Union
-            =>
-            unionRaw.IsInitialized switch
+        {
+            get
             {
-                true => unionRaw,
-                _ => default(TFailure)
-            };
+                if (unionRaw.IsInitialized)
+                {
+                    return unionRaw;
+                }
+
+                return new(default(TFailure));
+            }
+        }
 
         public bool IsSuccess => Union.IsFirst;
 
