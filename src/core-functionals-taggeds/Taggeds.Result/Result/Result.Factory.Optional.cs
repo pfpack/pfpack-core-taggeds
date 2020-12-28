@@ -10,6 +10,6 @@ namespace System
 
         public static Result<TSuccess, Unit> Absent<TSuccess>() where TSuccess : notnull
             =>
-            default(Unit);
+            Unit.Value;
     }
 }
