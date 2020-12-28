@@ -11,5 +11,11 @@ namespace System
         public static Optional<T> Absent<T>()
             =>
             Optional<T>.Absent;
+
+        public static Optional<T> Absent<T>(Unit unit) => unit switch
+        {
+            _ =>
+            Optional<T>.Absent
+        };
     }
 }

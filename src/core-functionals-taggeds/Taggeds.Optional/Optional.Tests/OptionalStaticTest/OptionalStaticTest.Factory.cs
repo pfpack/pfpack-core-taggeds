@@ -26,5 +26,14 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void Absent_FromUnit_ExpectAbsent()
+        {
+            var actual = Optional.Absent<string>(Unit.Value);
+            var expected = Optional<string>.Absent;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
