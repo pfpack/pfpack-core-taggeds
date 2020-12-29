@@ -7,14 +7,14 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Primitives.Tests
 {
-    partial class ObjectPredicatesTests
+    partial class PredicatesTests
     {
         [Test]
         public void IsNull_ValueIsNull_ExpectTrue()
         {
             RefType source = null!;
 
-            var actual = ObjectPredicates.IsNull(source);
+            var actual = Predicates.IsNull(source);
             Assert.True(actual);
         }
 
@@ -26,7 +26,7 @@ namespace PrimeFuncPack.Core.Primitives.Tests
                 Text = SomeTextStructType
             };
 
-            var actual = ObjectPredicates.IsNull(source);
+            var actual = Predicates.IsNull(source);
             Assert.False(actual);
         }
     }

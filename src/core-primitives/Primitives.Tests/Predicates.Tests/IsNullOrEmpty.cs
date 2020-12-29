@@ -6,14 +6,14 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Primitives.Tests
 {
-    partial class StringPredicatesTests
+    partial class PredicatesTests
     {
         [Test]
         public void IsNullOrEmpty_SourceIsNull_ExpectTrue()
         {
             string? source = null;
 
-            var actual = StringPredicates.IsNullOrEmpty(source);
+            var actual = Predicates.IsNullOrEmpty(source);
             Assert.True(actual);
         }
 
@@ -22,7 +22,7 @@ namespace PrimeFuncPack.Core.Primitives.Tests
         {
             string source = string.Empty;
 
-            var actual = StringPredicates.IsNullOrEmpty(source);
+            var actual = Predicates.IsNullOrEmpty(source);
             Assert.True(actual);
         }
 
@@ -33,7 +33,7 @@ namespace PrimeFuncPack.Core.Primitives.Tests
         public void IsNullOrEmpty_SourceIsNotEmpty_ExpectFalse(
             string source)
         {
-            var actual = StringPredicates.IsNullOrEmpty(source);
+            var actual = Predicates.IsNullOrEmpty(source);
             Assert.False(actual);
         }
     }

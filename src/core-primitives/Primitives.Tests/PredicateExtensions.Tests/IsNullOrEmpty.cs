@@ -6,7 +6,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Primitives.Tests
 {
-    partial class StringPredicateExtensionsTests
+    partial class PredicateExtensionsTests
     {
         [Test]
         public void IsNullOrEmpty_SourceIsNull_ExpectTrue()

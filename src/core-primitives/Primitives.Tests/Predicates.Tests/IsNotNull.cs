@@ -1,29 +1,28 @@
 ﻿#nullable enable
 
 using NUnit.Framework;
-using PrimeFuncPack.UnitTest;
 using System;
 using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Primitives.Tests
 {
-    partial class ObjectPredicateExtensionsTests
+    public sealed partial class PredicatesTests
     {
         [Test]
         public void IsNotNull_ValueIsNull_ExpectFalse()
         {
-            RefType source = null!;
+            object source = null!;
 
-            var actual = source.IsNotNull();
+            var actual = Predicates.IsNotNull(source);
             Assert.False(actual);
         }
 
         [Test]
         public void IsNotNull_ValueIsNotNull_ExpectTrue()
         {
-            var source = MinusFifteenIdRefType;
+            var source = PlusFifteenIdRefType;
 
-            var actual = source.IsNotNull();
+            var actual = Predicates.IsNotNull(source);
             Assert.True(actual);
         }
     }

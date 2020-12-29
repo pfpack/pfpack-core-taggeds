@@ -6,14 +6,14 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Primitives.Tests
 {
-    partial class StringPredicateExtensionsTests
+    partial class PredicatesTests
     {
         [Test]
         public void IsNullOrWhiteSpace_SourceIsNull_ExpectTrue()
         {
             string? source = null;
 
-            var actual = source.IsNullOrWhiteSpace();
+            var actual = Predicates.IsNullOrWhiteSpace(source);
             Assert.True(actual);
         }
 
@@ -22,7 +22,7 @@ namespace PrimeFuncPack.Core.Primitives.Tests
         {
             string source = string.Empty;
 
-            var actual = source.IsNullOrWhiteSpace();
+            var actual = Predicates.IsNullOrWhiteSpace(source);
             Assert.True(actual);
         }
 
@@ -33,7 +33,7 @@ namespace PrimeFuncPack.Core.Primitives.Tests
         public void IsNullOrWhiteSpace_SourceIsWhiteSpace_ExpectTrue(
             string source)
         {
-            var actual = source.IsNullOrWhiteSpace();
+            var actual = Predicates.IsNullOrWhiteSpace(source);
             Assert.True(actual);
         }
 
@@ -42,7 +42,7 @@ namespace PrimeFuncPack.Core.Primitives.Tests
         {
             var source = SomeString;
 
-            var actual = source.IsNullOrWhiteSpace();
+            var actual = Predicates.IsNullOrWhiteSpace(source);
             Assert.False(actual);
         }
     }

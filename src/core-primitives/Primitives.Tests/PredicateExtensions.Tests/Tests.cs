@@ -2,7 +2,7 @@
 
 namespace PrimeFuncPack.Core.Primitives.Tests
 {
-    public sealed partial class StringPredicateExtensionsTests
+    public sealed partial class PredicateExtensionsTests
     {
     }
 }

@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-using static System.ObjectPredicates;
+using static System.Predicates;
 
 namespace System
 {

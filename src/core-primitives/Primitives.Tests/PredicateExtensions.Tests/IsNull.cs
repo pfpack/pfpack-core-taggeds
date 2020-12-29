@@ -6,7 +6,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Primitives.Tests
 {
-    partial class ObjectPredicateExtensionsTests
+    partial class PredicateExtensionsTests
     {
         [Test]
         public void IsNull_ValueIsNull_ExpectTrue()
