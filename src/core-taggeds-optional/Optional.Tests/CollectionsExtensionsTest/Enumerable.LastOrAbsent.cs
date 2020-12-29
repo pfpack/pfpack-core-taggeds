@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static PrimeFuncPack.UnitTest.TestData;
 
-namespace PrimeFuncPack.Core.Taggeds.Tests
+namespace PrimeFuncPack.Core.Tests
 {
     partial class CollectionsExtensionsTest
     {

@@ -3,7 +3,7 @@
 using NUnit.Framework;
 using System;
 
-namespace PrimeFuncPack.Core.Taggeds.Tests
+namespace PrimeFuncPack.Core.Tests
 {
     partial class OptionalStaticTest
     {

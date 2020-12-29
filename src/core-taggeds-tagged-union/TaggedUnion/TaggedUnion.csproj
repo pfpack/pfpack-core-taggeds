@@ -10,8 +10,8 @@
 		<Description>PrimeFuncPack: A Functional Programming Pack for .NET</Description>
 		<Copyright>Copyright © 2020 Andrei Sergeev, Pavel Moskovoy</Copyright>
 		<RootNamespace>System</RootNamespace>
-		<AssemblyName>PrimeFuncPack.Core.Taggeds.TaggedUnion</AssemblyName>
-		<Version>1.0.0-preview.1.12.0</Version>
+		<AssemblyName>PrimeFuncPack.Core.TaggedUnion</AssemblyName>
+		<Version>1.0.0-preview.1.14.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -22,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="PrimeFuncPack.Core.Taggeds.Optional" Version="1.0.0-preview.1.12.*" />
+		<PackageReference Include="PrimeFuncPack.Core.Optional" Version="1.0.0-preview.1.14.*" />
 	</ItemGroup>
 
 </Project>

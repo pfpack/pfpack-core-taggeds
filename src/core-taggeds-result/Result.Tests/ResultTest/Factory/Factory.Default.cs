@@ -4,7 +4,7 @@ using NUnit.Framework;
 using PrimeFuncPack.UnitTest;
 using System;
 
-namespace PrimeFuncPack.Core.Taggeds.Tests
+namespace PrimeFuncPack.Core.Tests
 {
     partial class ResultTest
     {

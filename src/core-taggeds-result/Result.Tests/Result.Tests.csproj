@@ -7,8 +7,8 @@
 		<Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
 		<Description>PrimeFuncPack: A Functional Programming Pack for .NET</Description>
 		<Copyright>Copyright © 2020 Andrei Sergeev, Pavel Moskovoy</Copyright>
-		<RootNamespace>PrimeFuncPack.Core.Taggeds.Tests</RootNamespace>
-		<AssemblyName>PrimeFuncPack.Core.Taggeds.Result.Tests</AssemblyName>
+		<RootNamespace>PrimeFuncPack.Core.Tests</RootNamespace>
+		<AssemblyName>PrimeFuncPack.Core.Result.Tests</AssemblyName>
 	</PropertyGroup>
 
 	<ItemGroup>

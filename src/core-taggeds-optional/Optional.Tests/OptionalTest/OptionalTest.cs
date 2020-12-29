@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-namespace PrimeFuncPack.Core.Taggeds.Tests
+namespace PrimeFuncPack.Core.Tests
 {
     public sealed partial class OptionalTest
     {        

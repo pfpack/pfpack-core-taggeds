@@ -3,7 +3,7 @@
 using Moq;
 using System.Collections.Generic;
 
-namespace PrimeFuncPack.Core.Taggeds.Tests
+namespace PrimeFuncPack.Core.Tests
 {
     public sealed partial class DictionariesExtensionsTest
     {

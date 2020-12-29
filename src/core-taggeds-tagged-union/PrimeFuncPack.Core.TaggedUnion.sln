@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30524.135
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2ED04BD8-F538-4B40-A1FA-DB117DF800D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaggedUnion.Tests", "TaggedUnion.Tests\TaggedUnion.Tests.csproj", "{D0D74CEC-65BC-42F5-8607-5D80AEB7FF79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaggedUnion.Tests", "TaggedUnion.Tests\TaggedUnion.Tests.csproj", "{D0D74CEC-65BC-42F5-8607-5D80AEB7FF79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaggedUnion", "TaggedUnion\TaggedUnion.csproj", "{ECA221F3-6238-4322-B0DF-E3BDBE4C0F08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaggedUnion", "TaggedUnion\TaggedUnion.csproj", "{ECA221F3-6238-4322-B0DF-E3BDBE4C0F08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
