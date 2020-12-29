@@ -6,7 +6,7 @@ using System;
 
 namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
 {
-    partial class TaggedUnionExtensionsTest
+    partial class OptionalTaggedUnionExtensionsTest
     {
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]

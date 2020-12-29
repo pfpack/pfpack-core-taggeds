@@ -6,11 +6,11 @@ namespace System
     {
         private static InvalidOperationException CreateNotSuccessException()
             =>
-            CreateNotCategoryException(CategorySuccess);
+            CreateNotCategoryException("Success");
 
         private static InvalidOperationException CreateNotFailureException()
             =>
-            CreateNotCategoryException(CategoryFailure);
+            CreateNotCategoryException("Failure");
 
         private static InvalidOperationException CreateNotCategoryException(string category)
             =>

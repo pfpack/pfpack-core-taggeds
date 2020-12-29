@@ -4,26 +4,29 @@ using System.Threading.Tasks;
 
 namespace System
 {
-    partial struct TaggedUnion<TFirst, TSecond>
+    partial class TaggedUnionExtensions
     {
-        public TaggedUnion<TFirst, TSecond> Or(
+        public static TaggedUnion<TFirst, TSecond> OrInitialize<TFirst, TSecond>(
+            this TaggedUnion<TFirst, TSecond> union,
             Func<TaggedUnion<TFirst, TSecond>> otherFactory)
             =>
-            InternalOr(
+            union.InternalOrInitialize(
                 Pipeline.Pipe,
                 otherFactory ?? throw new ArgumentNullException(nameof(otherFactory)));
 
-        public Task<TaggedUnion<TFirst, TSecond>> OrAsync(
+        public static Task<TaggedUnion<TFirst, TSecond>> OrInitializeAsync<TFirst, TSecond>(
+            this TaggedUnion<TFirst, TSecond> union,
             Func<Task<TaggedUnion<TFirst, TSecond>>> otherFactoryAsync)
             =>
-            InternalOr(
+            union.InternalOrInitialize(
                 Task.FromResult,
                 otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 
-        public ValueTask<TaggedUnion<TFirst, TSecond>> OrValueAsync(
+        public static ValueTask<TaggedUnion<TFirst, TSecond>> OrInitializeValueAsync<TFirst, TSecond>(
+            this TaggedUnion<TFirst, TSecond> union,
             Func<ValueTask<TaggedUnion<TFirst, TSecond>>> otherFactoryAsync)
             =>
-            InternalOr(
+            union.InternalOrInitialize(
                 ValueTask.FromResult,
                 otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
     }

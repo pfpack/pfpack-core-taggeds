@@ -6,24 +6,15 @@ namespace System
         where TSuccess : notnull
         where TFailure : struct
     {
-        private const string CategorySuccess = "Success";
-
-        private const string CategoryFailure = "Failure";
-
         private readonly TaggedUnion<TSuccess, TFailure> unionRaw;
 
         private readonly TaggedUnion<TSuccess, TFailure> Union
-        {
-            get
+            =>
+            unionRaw.IsInitialized switch
             {
-                if (unionRaw.IsInitialized)
-                {
-                    return unionRaw;
-                }
-
-                return new(default(TFailure));
-            }
-        }
+                true => unionRaw,
+                _ => new(default(TFailure))
+            };
 
         public bool IsSuccess => Union.IsFirst;
 
