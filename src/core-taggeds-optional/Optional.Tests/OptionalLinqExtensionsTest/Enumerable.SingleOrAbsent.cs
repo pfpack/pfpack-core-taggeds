@@ -9,7 +9,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class CollectionsExtensionsTest
+    partial class OptionalLinqExtensionsTest
     {
         [Test]
         public void SingleOrAbsent_CollectionSourceIsNull_ExpectArgumentNullException()

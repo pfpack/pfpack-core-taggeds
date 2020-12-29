@@ -6,7 +6,7 @@ using System;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class NotNullExtensionsTest
+    partial class FilterNotNullOptionalExtensionsTest
     {
         [Test]
         public void FilterNotNull_SourceValueIsNotNull_ExpectSource()

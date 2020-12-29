@@ -7,7 +7,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class NotNullExtensionsTest
+    partial class FilterNotNullOptionalExtensionsTest
     {
         [Test]
         public void FilterNotNullOrThrowThenMap_SourceValueIsNotNullRefType_ExpectPresentNotNullable()

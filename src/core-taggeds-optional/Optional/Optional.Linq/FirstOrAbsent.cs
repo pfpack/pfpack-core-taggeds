@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    partial class CollectionsExtensions
+    partial class OptionalLinqExtensions
     {
         public static Optional<TSource> FirstOrAbsent<TSource>(
             this IEnumerable<TSource> source)

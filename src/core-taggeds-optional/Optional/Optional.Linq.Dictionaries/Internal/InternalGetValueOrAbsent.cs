@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    partial class InternalDictionariesExtensions
+    partial class InternalOptionalLinqDictionariesExtensions
     {
         public static Optional<TValue> InternalGetValueOrAbsent<TKey, TValue>(
             this IEnumerable<KeyValuePair<TKey, TValue>> pairs,

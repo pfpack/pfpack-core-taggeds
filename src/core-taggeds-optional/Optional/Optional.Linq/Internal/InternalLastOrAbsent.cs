@@ -5,7 +5,7 @@ using static System.Optional;
 
 namespace System.Linq
 {
-    partial class InternalCollectionsExtensions
+    partial class InternalOptionalLinqExtensions
     {
         public static Optional<TSource> InternalLastOrAbsent<TSource>(
             this IEnumerable<TSource> source)

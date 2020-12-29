@@ -10,34 +10,34 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class CollectionsExtensionsTest
+    partial class OptionalLinqExtensionsTest
     {
         [Test]
-        public void FirstOrAbsent_CollectionSourceIsNull_ExpectArgumentNullException()
+        public void FirstOrAbsent_ListSourceIsNull_ExpectArgumentNullException()
         {
-            IEnumerable<StructType> source = null!;
+            IList<StructType> source = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FirstOrAbsent());
             Assert.AreEqual("source", ex.ParamName);
         }
 
         [Test]
-        public void FirstOrAbsent_CollectionSourceIsEmpty_ExpectAbsent()
+        public void FirstOrAbsent_ListSourceIsEmpty_ExpectAbsent()
         {
-            var source = Enumerable.Empty<RefType>();
+            var source = CreateList<StructType?>();
 
             var actual = source.FirstOrAbsent();
-            var expected = Optional<RefType>.Absent;
+            var expected = Optional<StructType?>.Absent;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
-        public void FirstOrAbsent_CollectionSourceIsNotEmpty_ExpectPresentFirstItem(
+        public void FirstOrAbsent_ListSourceIsNotEmpty_ExpectPresentFirstItem(
             object? firstItem)
         {
-            var source = CreateCollection(firstItem, new object(), new { Value = SomeString });
+            var source = CreateList(firstItem, new object(), new { Value = SomeString });
 
             var actual = source.FirstOrAbsent();
             var expected = Optional<object?>.Present(firstItem);
@@ -46,38 +46,38 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void FirstOrAbsentByPredicate_CollectionSourceIsNull_ExpectArgumentNullException()
+        public void FirstOrAbsentByPredicate_ListSourceIsNull_ExpectArgumentNullException()
         {
-            IEnumerable<StructType> source = null!;
+            IList<StructType> source = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FirstOrAbsent(_ => true));
             Assert.AreEqual("source", ex.ParamName);
         }
 
         [Test]
-        public void FirstOrAbsentByPredicate_CollectionPredicateIsNull_ExpectArgumentNullException()
+        public void FirstOrAbsentByPredicate_ListPredicateIsNull_ExpectArgumentNullException()
         {
-            var source = CreateCollection(SomeTextStructType);
+            var source = CreateList(SomeTextStructType);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FirstOrAbsent(null!));
             Assert.AreEqual("predicate", ex.ParamName);
         }
 
         [Test]
-        public void FirstOrAbsentByPredicate_CollectionPredicateResultIsAlreadyFalse_ExpectAbsent()
+        public void FirstOrAbsentByPredicate_ListPredicateResultIsAlreadyFalse_ExpectAbsent()
         {
-            var source = CreateCollection(SomeTextStructType, NullTextStructType);
+            var source = CreateList<RefType?>(PlusFifteenIdRefType, MinusFifteenIdRefType, ZeroIdRefType, null);
 
             var actual = source.FirstOrAbsent(_ => false);
-            var expected = Optional<StructType>.Absent;
+            var expected = Optional<RefType?>.Absent;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void FirstOrAbsentByPredicate_CollectionPredicateResultIsNotAlreadyFalse_ExpectPresentFirstSuccessful()
+        public void FirstOrAbsentByPredicate_ListPredicateResultIsNotAlreadyFalse_ExpectPresentFirstSuccessful()
         {
-            var expectedId = 171;
+            var expectedId = 1015;
             var expectedValue = new RefType
             {
                 Id = expectedId
@@ -87,7 +87,7 @@ namespace PrimeFuncPack.Core.Tests
             {
                 Id = expectedId
             };
-            var source = CreateCollection<RefType?>(PlusFifteenIdRefType, expectedValue, MinusFifteenIdRefType, null, otherRefType);
+            var source = CreateList<RefType?>(PlusFifteenIdRefType, expectedValue, MinusFifteenIdRefType, null, otherRefType);
 
             var actual = source.FirstOrAbsent(item => item?.Id == expectedId);
             var expected = Optional<RefType?>.Present(expectedValue);
@@ -96,13 +96,13 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void FirstOrAbsentByPredicate_CollectionPredicateResultIsNotAlreadyFalse_ExpectCallPredicate()
+        public void FirstOrAbsentByPredicate_ListPredicateResultIsNotAlreadyFalse_ExpectCallPredicate()
         {
             var expectedValue = new RefType
             {
-                Id = 171
+                Id = -715
             };
-            var source = CreateCollection<RefType?>(PlusFifteenIdRefType, null, expectedValue, MinusFifteenIdRefType, expectedValue);
+            var source = CreateList<RefType?>(PlusFifteenIdRefType, null, expectedValue, MinusFifteenIdRefType, expectedValue);
             var mockPredicate = CreateMockPredicate<RefType?>(item => item == expectedValue);
 
             var actual = source.FirstOrAbsent(mockPredicate.Object.Invoke);

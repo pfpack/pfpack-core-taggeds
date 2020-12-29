@@ -9,21 +9,21 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class CollectionsExtensionsTest
+    partial class OptionalLinqExtensionsTest
     {
         [Test]
-        public void SingleOrAbsent_ReadOnlyListSourceIsNull_ExpectArgumentNullException()
+        public void SingleOrAbsent_ListSourceIsNull_ExpectArgumentNullException()
         {
-            IReadOnlyList<StructType> source = null!;
+            IList<StructType> source = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent());
             Assert.AreEqual("source", ex.ParamName);
         }
 
         [Test]
-        public void SingleOrAbsent_ReadOnlyListSourceIsEmpty_ExpectAbsent()
+        public void SingleOrAbsent_ListSourceIsEmpty_ExpectAbsent()
         {
-            var source = CreateReadOnlyList<StructType>();
+            var source = CreateList<StructType>();
 
             var actual = source.SingleOrAbsent();
             var expected = Optional<StructType>.Absent;
@@ -33,10 +33,10 @@ namespace PrimeFuncPack.Core.Tests
 
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
-        public void SingleOrAbsent_ReadOnlyListSourceContainsOnlyOneElement_ExpectPresentSingleElement(
+        public void SingleOrAbsent_ListSourceContainsOnlyOneElement_ExpectPresentSingleElement(
             object? singleItem)
         {
-            var source = CreateReadOnlyList(singleItem);
+            var source = CreateList(singleItem);
 
             var actual = source.SingleOrAbsent();
             var expected = Optional<object?>.Present(singleItem);
@@ -45,25 +45,25 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void SingleOrAbsent_ReadOnlyListSourceContainsMoreThanOneElement_ExpectInvalidOperationException()
+        public void SingleOrAbsent_ListSourceContainsMoreThanOneElement_ExpectInvalidOperationException()
         {
-            var source = CreateReadOnlyList(PlusFifteenIdRefType, MinusFifteenIdRefType);
+            var source = CreateList(PlusFifteenIdRefType, MinusFifteenIdRefType);
             _ = Assert.Throws<InvalidOperationException>(() => _ = source.SingleOrAbsent());
         }
 
         [Test]
-        public void SingleOrAbsentWithExceptionFactory_ReadOnlyListSourceIsNull_ExpectArgumentNullException()
+        public void SingleOrAbsentWithExceptionFactory_ListSourceIsNull_ExpectArgumentNullException()
         {
-            IReadOnlyList<StructType> source = null!;
+            IList<StructType> source = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(CreateSomeException));
             Assert.AreEqual("source", ex.ParamName);
         }
 
         [Test]
-        public void SingleOrAbsentWithExceptionFactory_ReadOnlyListExceptionFactoryIsNull_ExpectArgumentNullException()
+        public void SingleOrAbsentWithExceptionFactory_ListExceptionFactoryIsNull_ExpectArgumentNullException()
         {
-            var source = CreateReadOnlyList(PlusFifteenIdRefType);
+            var source = CreateList(PlusFifteenIdRefType);
             Func<Exception> exceptionFactory = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(exceptionFactory));
@@ -71,9 +71,9 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void SingleOrAbsentWithExceptionFactory_ReadOnlyListSourceIsEmpty_ExpectAbsent()
+        public void SingleOrAbsentWithExceptionFactory_ListSourceIsEmpty_ExpectAbsent()
         {
-            var source = CreateReadOnlyList<StructType>();
+            var source = CreateList<StructType>();
 
             var actual = source.SingleOrAbsent(CreateSomeException);
             var expected = Optional<StructType>.Absent;
@@ -83,10 +83,10 @@ namespace PrimeFuncPack.Core.Tests
 
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
-        public void SingleOrAbsentWithExceptionFactory_ReadOnlyListSourceContainsOnlyOneElement_ExpectPresentSingleElement(
+        public void SingleOrAbsentWithExceptionFactory_ListSourceContainsOnlyOneElement_ExpectPresentSingleElement(
             object? singleItem)
         {
-            var source = CreateReadOnlyList(singleItem);
+            var source = CreateList(singleItem);
 
             var actual = source.SingleOrAbsent(CreateSomeException);
             var expected = Optional<object?>.Present(singleItem);
@@ -95,9 +95,9 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void SingleOrAbsentWithExceptionFactory_ReadOnlyListSourceContainsMoreThanOneElement_ExpectCreatedException()
+        public void SingleOrAbsentWithExceptionFactory_ListSourceContainsMoreThanOneElement_ExpectCreatedException()
         {
-            var source = CreateReadOnlyList(PlusFifteenIdRefType, MinusFifteenIdRefType);
+            var source = CreateList(PlusFifteenIdRefType, MinusFifteenIdRefType);
             var createdException = new SomeException();
 
             var ex = Assert.Throws<SomeException>(() => _ = source.SingleOrAbsent(() => createdException));
@@ -105,18 +105,18 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void SingleOrAbsentByPredicate_ReadOnlyListSourceIsNull_ExpectArgumentNullException()
+        public void SingleOrAbsentByPredicate_ListSourceIsNull_ExpectArgumentNullException()
         {
-            IReadOnlyList<StructType> source = null!;
+            IList<StructType> source = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(_ => false));
             Assert.AreEqual("source", ex.ParamName);
         }
 
         [Test]
-        public void SingleOrAbsentByPredicate_ReadOnlyListPredicateIsNull_ExpectArgumentNullException()
+        public void SingleOrAbsentByPredicate_ListPredicateIsNull_ExpectArgumentNullException()
         {
-            var source = CreateReadOnlyList(MinusFifteenIdRefType);
+            var source = CreateList(MinusFifteenIdRefType);
             Func<RefType, bool> predicate = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(predicate));
@@ -124,9 +124,9 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void SingleOrAbsentByPredicate_ReadOnlyListPredicateResultIsAlreadyFalse_ExpectAbsent()
+        public void SingleOrAbsentByPredicate_ListPredicateResultIsAlreadyFalse_ExpectAbsent()
         {
-            var source = CreateReadOnlyList(SomeTextStructType, NullTextStructType);
+            var source = CreateList(SomeTextStructType, NullTextStructType);
 
             var actual = source.SingleOrAbsent(_ => false);
             var expected = Optional<StructType>.Absent;
@@ -135,7 +135,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void SingleOrAbsentByPredicate_ReadOnlyListPredicateResultIsTrueOnlyOnce_ExpectPresentSuccessfulElement()
+        public void SingleOrAbsentByPredicate_ListPredicateResultIsTrueOnlyOnce_ExpectPresentSuccessfulElement()
         {
             var expectedText = "Expected Text";
             var expectedValue = new StructType
@@ -143,7 +143,7 @@ namespace PrimeFuncPack.Core.Tests
                 Text = expectedText
             };
 
-            var source = CreateReadOnlyList<StructType?>(SomeTextStructType, expectedValue, NullTextStructType, null);
+            var source = CreateList<StructType?>(SomeTextStructType, expectedValue, NullTextStructType, null);
 
             var actual = source.SingleOrAbsent(item => expectedText.Equals(item?.Text, StringComparison.InvariantCultureIgnoreCase));
             var expected = Optional<StructType?>.Present(expectedValue);
@@ -152,7 +152,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void SingleOrAbsentByPredicate_ReadOnlyListPredicateResultIsTrueMoreThanOneTime_ExpectInvalidOperationException()
+        public void SingleOrAbsentByPredicate_ListPredicateResultIsTrueMoreThanOneTime_ExpectInvalidOperationException()
         {
             var expectedText = "Expected Text";
             var expectedValue = new StructType
@@ -164,7 +164,7 @@ namespace PrimeFuncPack.Core.Tests
             {
                 Text = expectedText
             };
-            var source = CreateReadOnlyList<StructType?>(SomeTextStructType, expectedValue, NullTextStructType, null, expectedTextStructType);
+            var source = CreateList<StructType?>(SomeTextStructType, expectedValue, NullTextStructType, null, expectedTextStructType);
 
             var mockPredicate = CreateMockPredicate<StructType?>(
                 item => expectedText.Equals(item?.Text, StringComparison.InvariantCultureIgnoreCase));
@@ -173,9 +173,9 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void SingleOrAbsentByPredicateAndFactory_ReadOnlyListSourceIsNull_ExpectArgumentNullException()
+        public void SingleOrAbsentByPredicateAndFactory_ListSourceIsNull_ExpectArgumentNullException()
         {
-            IReadOnlyList<StructType> source = null!;
+            IList<StructType> source = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(
                 _ => false, CreateSomeException));
@@ -184,9 +184,9 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void SingleOrAbsentByPredicateAndFactory_ReadOnlyListPredicateIsNull_ExpectArgumentNullException()
+        public void SingleOrAbsentByPredicateAndFactory_ListPredicateIsNull_ExpectArgumentNullException()
         {
-            var source = CreateReadOnlyList(MinusFifteenIdRefType);
+            var source = CreateList(MinusFifteenIdRefType);
             Func<RefType, bool> predicate = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(predicate, CreateSomeException));
@@ -194,18 +194,18 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void SingleOrAbsentByPredicateAndFactory_ReadOnlyListExceptionFactoryIsNull_ExpectArgumentNullException()
+        public void SingleOrAbsentByPredicateAndFactory_ListExceptionFactoryIsNull_ExpectArgumentNullException()
         {
-            var source = CreateReadOnlyList(MinusFifteenIdRefType);
+            var source = CreateList(MinusFifteenIdRefType);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(_ => false, null!));
             Assert.AreEqual("moreThanOneMatchExceptionFactory", ex.ParamName);
         }
 
         [Test]
-        public void SingleOrAbsentByPredicateAndFactory_ReadOnlyListPredicateResultIsAlreadyFalse_ExpectAbsent()
+        public void SingleOrAbsentByPredicateAndFactory_ListPredicateResultIsAlreadyFalse_ExpectAbsent()
         {
-            var source = CreateReadOnlyList(SomeTextStructType, NullTextStructType);
+            var source = CreateList(SomeTextStructType, NullTextStructType);
 
             var actual = source.SingleOrAbsent(_ => false, CreateSomeException);
             var expected = Optional<StructType>.Absent;
@@ -214,7 +214,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void SingleOrAbsentByPredicateAndFactory_ReadOnlyListPredicateResultIsTrueOnlyOnce_ExpectPresentSuccessfulElement()
+        public void SingleOrAbsentByPredicateAndFactory_ListPredicateResultIsTrueOnlyOnce_ExpectPresentSuccessfulElement()
         {
             var expectedText = "Expected Text";
             var expectedValue = new StructType
@@ -222,7 +222,7 @@ namespace PrimeFuncPack.Core.Tests
                 Text = expectedText
             };
 
-            var source = CreateReadOnlyList<StructType?>(SomeTextStructType, expectedValue, NullTextStructType, null);
+            var source = CreateList<StructType?>(SomeTextStructType, expectedValue, NullTextStructType, null);
 
             var actual = source.SingleOrAbsent(
                 item => expectedText.Equals(item?.Text, StringComparison.InvariantCultureIgnoreCase),
@@ -233,7 +233,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void SingleOrAbsentByPredicateAndFactory_ReadOnlyListPredicateResultIsTrueMoreThanOneTime_ExpectCreatedException()
+        public void SingleOrAbsentByPredicateAndFactory_ListPredicateResultIsTrueMoreThanOneTime_ExpectCreatedException()
         {
             var expectedText = "Expected Text";
             var expectedValue = new StructType
@@ -245,7 +245,7 @@ namespace PrimeFuncPack.Core.Tests
             {
                 Text = expectedText
             };
-            var source = CreateReadOnlyList<StructType?>(SomeTextStructType, expectedValue, NullTextStructType, null, expectedTextStructType);
+            var source = CreateList<StructType?>(SomeTextStructType, expectedValue, NullTextStructType, null, expectedTextStructType);
 
             var mockPredicate = CreateMockPredicate<StructType?>(
                 item => expectedText.Equals(item?.Text, StringComparison.InvariantCultureIgnoreCase));

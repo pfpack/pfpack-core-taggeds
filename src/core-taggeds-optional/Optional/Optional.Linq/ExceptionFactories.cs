@@ -2,7 +2,7 @@
 
 namespace System.Linq
 {
-    partial class CollectionsExtensions
+    partial class OptionalLinqExtensions
     {
         private static InvalidOperationException CreateMoreThanOneElementException()
             =>

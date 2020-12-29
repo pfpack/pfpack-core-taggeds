@@ -2,7 +2,7 @@
 
 namespace System.Linq
 {
-    partial class InternalCollectionsExtensions
+    partial class InternalOptionalLinqExtensions
     {
         private static int InternalShortenIndex(long index) => unchecked((int)index);
     }

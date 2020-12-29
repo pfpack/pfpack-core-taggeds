@@ -2,7 +2,7 @@
 
 namespace System.Linq
 {
-    public static partial class DictionariesExtensions
+    public static partial class OptionalLinqExtensions
     {
     }
 }

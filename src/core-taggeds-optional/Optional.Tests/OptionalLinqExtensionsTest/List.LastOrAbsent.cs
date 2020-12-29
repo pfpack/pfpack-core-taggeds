@@ -10,34 +10,34 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class CollectionsExtensionsTest
+    partial class OptionalLinqExtensionsTest
     {
         [Test]
-        public void LastOrAbsent_ReadOnlyListSourceIsNull_ExpectArgumentNullException()
+        public void LastOrAbsent_ListSourceIsNull_ExpectArgumentNullException()
         {
-            IReadOnlyList<StructType> source = null!;
+            IList<RefType> source = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.LastOrAbsent());
             Assert.AreEqual("source", ex.ParamName);
         }
 
         [Test]
-        public void LastOrAbsent_ReadOnlyListSourceIsEmpty_ExpectAbsent()
+        public void LastOrAbsent_ListSourceIsEmpty_ExpectAbsent()
         {
-            var source = CreateReadOnlyList<RefType>();
+            var source = CreateList<StructType>();
 
             var actual = source.LastOrAbsent();
-            var expected = Optional<RefType>.Absent;
+            var expected = Optional<StructType>.Absent;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
-        public void LastOrAbsent_ReadOnlyListSourceIsNotEmpty_ExpectPresentLastItem(
+        public void LastOrAbsent_ListSourceIsNotEmpty_ExpectPresentLastItem(
             object? lastItem)
         {
-            var source = CreateReadOnlyList(new object(), new { Value = SomeString }, lastItem);
+            var source = CreateList(new object(), new { Value = SomeString }, lastItem);
 
             var actual = source.LastOrAbsent();
             var expected = Optional<object?>.Present(lastItem);
@@ -46,27 +46,27 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void LastOrAbsentByPredicate_ReadOnlyListSourceIsNull_ExpectArgumentNullException()
+        public void LastOrAbsentByPredicate_ListSourceIsNull_ExpectArgumentNullException()
         {
-            IReadOnlyList<StructType> source = null!;
+            IList<StructType> source = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.LastOrAbsent(_ => true));
             Assert.AreEqual("source", ex.ParamName);
         }
 
         [Test]
-        public void LastOrAbsentByPredicate_ReadOnlyListPredicateIsNull_ExpectArgumentNullException()
+        public void LastOrAbsentByPredicate_ListPredicateIsNull_ExpectArgumentNullException()
         {
-            var source = CreateReadOnlyList(SomeTextStructType);
+            var source = CreateList(SomeTextStructType);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.LastOrAbsent(null!));
             Assert.AreEqual("predicate", ex.ParamName);
         }
 
         [Test]
-        public void LastOrAbsentByPredicate_ReadOnlyListPredicateResultIsAlreadyFalse_ExpectAbsent()
+        public void LastOrAbsentByPredicate_ListPredicateResultIsAlreadyFalse_ExpectAbsent()
         {
-            var source = CreateReadOnlyList(SomeTextStructType, NullTextStructType);
+            var source = CreateList(SomeTextStructType, NullTextStructType);
 
             var actual = source.LastOrAbsent(_ => false);
             var expected = Optional<StructType>.Absent;
@@ -75,9 +75,9 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void LastOrAbsentByPredicate_ReadOnlyListPredicateResultIsNotAlreadyFalse_ExpectPresentLastSuccessful()
+        public void LastOrAbsentByPredicate_ListPredicateResultIsNotAlreadyFalse_ExpectPresentLastSuccessful()
         {
-            var expectedId = 255;
+            var expectedId = 75;
             var expectedValue = new RefType
             {
                 Id = expectedId
@@ -87,7 +87,7 @@ namespace PrimeFuncPack.Core.Tests
             {
                 Id = expectedId
             };
-            var source = CreateReadOnlyList<RefType?>(
+            var source = CreateList<RefType?>(
                 PlusFifteenIdRefType, otherRefType, MinusFifteenIdRefType, null, expectedValue, ZeroIdRefType);
 
             var actual = source.LastOrAbsent(item => item?.Id == expectedId);
@@ -97,20 +97,20 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void LastOrAbsentByPredicate_ReadOnlyListPredicateResultIsNotAlreadyFalse_ExpectCallPredicate()
+        public void LastOrAbsentByPredicate_ListPredicateResultIsNotAlreadyFalse_ExpectCallPredicate()
         {
             var expectedValue = new RefType
             {
-                Id = 91
+                Id = 21
             };
-            var source = CreateReadOnlyList<RefType?>(
-                PlusFifteenIdRefType, ZeroIdRefType, expectedValue, null, expectedValue, MinusFifteenIdRefType);
+            var source = CreateList<RefType?>(
+                expectedValue, ZeroIdRefType, PlusFifteenIdRefType, expectedValue, null, MinusFifteenIdRefType);
             var mockPredicate = CreateMockPredicate<RefType?>(item => item == expectedValue);
 
             var actual = source.LastOrAbsent(mockPredicate.Object.Invoke);
             _ = Optional<RefType?>.Present(expectedValue);
 
-            mockPredicate.Verify(p => p.Invoke(It.IsAny<RefType>()), Times.Exactly(2));
+            mockPredicate.Verify(p => p.Invoke(It.IsAny<RefType?>()), Times.Exactly(3));
         }
     }
 }

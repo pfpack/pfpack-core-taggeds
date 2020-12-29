@@ -2,7 +2,7 @@
 
 namespace System.Linq
 {
-    partial class DictionariesExtensions
+    partial class OptionalLinqDictionariesExtensions
     {
         private static class ObsoleteMessages
         {

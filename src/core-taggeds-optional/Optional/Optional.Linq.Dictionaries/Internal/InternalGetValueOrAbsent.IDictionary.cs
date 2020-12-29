@@ -5,7 +5,7 @@ using static System.Optional;
 
 namespace System.Linq
 {
-    partial class InternalDictionariesExtensions
+    partial class InternalOptionalLinqDictionariesExtensions
     {
         public static Optional<TValue> InternalGetValueOrAbsent<TKey, TValue>(
             this IDictionary<TKey, TValue> dictionary,

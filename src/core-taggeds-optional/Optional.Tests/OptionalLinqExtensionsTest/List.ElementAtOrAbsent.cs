@@ -9,12 +9,12 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class CollectionsExtensionsTest
+    partial class OptionalLinqExtensionsTest
     {
         [Test]
-        public void ElementAtOrAbsentByInt_ReadOnlyListSourceIsNull_ExpectArgumentNullException()
+        public void ElementAtOrAbsentByInt_ListSourceIsNull_ExpectArgumentNullException()
         {
-            IReadOnlyList<StructType> source = null!;
+            IList<RefType> source = null!;
             int index = 1;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.ElementAtOrAbsent(index));
@@ -25,15 +25,14 @@ namespace PrimeFuncPack.Core.Tests
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
-        [TestCase(3)]
-        public void ElementAtOrAbsentByInt_ReadOnlyListIndexIsInRange_ExpectPresentItem(
+        public void ElementAtOrAbsentByInt_ListIndexIsInRange_ExpectPresentItem(
             int index)
         {
-            var source = CreateReadOnlyList<RefType?>(null, MinusFifteenIdRefType, ZeroIdRefType, PlusFifteenIdRefType);
+            var source = CreateList<StructType?>(SomeTextStructType, null, NullTextStructType);
             var actual = source.ElementAtOrAbsent(index);
 
             var expectedValue = source.ElementAt(index);
-            var expected = Optional<RefType?>.Present(expectedValue);
+            var expected = Optional<StructType?>.Present(expectedValue);
 
             Assert.AreEqual(expected, actual);
         }
@@ -43,10 +42,10 @@ namespace PrimeFuncPack.Core.Tests
         [TestCase(-1)]
         [TestCase(2)]
         [TestCase(int.MaxValue)]
-        public void ElementAtOrAbsentByInt_ReadOnlyListIndexIsNotInRange_ExpectAbsent(
+        public void ElementAtOrAbsentByInt_ListIndexIsNotInRange_ExpectAbsent(
             int index)
         {
-            var source = CreateReadOnlyList(SomeTextStructType, default);
+            var source = CreateList(SomeTextStructType, default);
 
             var actual = source.ElementAtOrAbsent(index);
             var expected = Optional<StructType>.Absent;
@@ -55,9 +54,9 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void ElementAtOrAbsentByLong_ReadOnlyListSourceIsNull_ExpectArgumentNullException()
+        public void ElementAtOrAbsentByLong_ListSourceIsNull_ExpectArgumentNullException()
         {
-            IReadOnlyList<StructType> source = null!;
+            IList<StructType> source = null!;
             long index = 1;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.ElementAtOrAbsent(index));
@@ -68,14 +67,14 @@ namespace PrimeFuncPack.Core.Tests
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
-        public void ElementAtOrAbsentByLong_ReadOnlyListIndexIsInRange_ExpectPresentItem(
+        public void ElementAtOrAbsentByLong_ListIndexIsInRange_ExpectPresentItem(
             int index)
         {
-            var source = CreateReadOnlyList<RefType?>(PlusFifteenIdRefType, null, ZeroIdRefType);
+            var source = CreateList(NullTextStructType, SomeTextStructType, SomeTextStructType);
             var actual = source.ElementAtOrAbsent(index);
 
             var expectedValue = source.ElementAt(index);
-            var expected = Optional<RefType?>.Present(expectedValue);
+            var expected = Optional<StructType>.Present(expectedValue);
 
             Assert.AreEqual(expected, actual);
         }
@@ -85,10 +84,10 @@ namespace PrimeFuncPack.Core.Tests
         [TestCase(-1)]
         [TestCase(4)]
         [TestCase(long.MaxValue)]
-        public void ElementAtOrAbsentByLong_ReadOnlyListIndexIsNotInRange_ExpectAbsent(
+        public void ElementAtOrAbsentByLong_ListIndexIsNotInRange_ExpectAbsent(
             long index)
         {
-            var source = CreateReadOnlyList<RefType?>(PlusFifteenIdRefType, MinusFifteenIdRefType, ZeroIdRefType, null);
+            var source = CreateList<RefType?>(PlusFifteenIdRefType, MinusFifteenIdRefType, ZeroIdRefType, null);
 
             var actual = source.ElementAtOrAbsent(index);
             var expected = Optional<RefType?>.Absent;

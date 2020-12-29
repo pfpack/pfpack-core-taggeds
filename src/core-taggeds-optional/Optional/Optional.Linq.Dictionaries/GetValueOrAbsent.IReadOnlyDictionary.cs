@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace System.Linq
 {
-    partial class DictionariesExtensions
+    partial class OptionalLinqDictionariesExtensions
     {
         public static Optional<TValue> GetValueOrAbsent<TKey, TValue>(
             this IReadOnlyDictionary<TKey, TValue> dictionary,

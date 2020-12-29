@@ -2,7 +2,7 @@
 
 namespace System.Linq
 {
-    partial class InternalCollectionsExtensions
+    partial class InternalOptionalLinqExtensions
     {
         private static bool InternalIsInRange(int index, int count) => index >= 0 && index < count;
     }

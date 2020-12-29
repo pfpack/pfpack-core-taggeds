@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    public sealed partial class CollectionsExtensionsTest
+    public sealed partial class OptionalLinqExtensionsTest
     {
         private static IReadOnlyList<T> CreateReadOnlyList<T>(
             params T[] items)

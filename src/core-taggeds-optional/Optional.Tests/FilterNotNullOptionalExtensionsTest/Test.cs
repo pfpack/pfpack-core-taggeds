@@ -2,7 +2,7 @@
 
 namespace PrimeFuncPack.Core.Tests
 {
-    public sealed partial class NotNullExtensionsTest
+    public sealed partial class FilterNotNullOptionalExtensionsTest
     {
     }
 }

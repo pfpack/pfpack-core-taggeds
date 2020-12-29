@@ -9,7 +9,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class DictionariesExtensionsTest
+    partial class OptionalLinqDictionariesExtensionsTest
     {
         [Test]
         public void GetValueOrAbsent_DictionaryPairsAreNull_ExpectArgumentNullException()

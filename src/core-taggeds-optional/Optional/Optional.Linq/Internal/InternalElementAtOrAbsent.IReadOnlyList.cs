@@ -5,7 +5,7 @@ using static System.Optional;
 
 namespace System.Linq
 {
-    partial class InternalCollectionsExtensions
+    partial class InternalOptionalLinqExtensions
     {
         public static Optional<TSource> InternalElementAtOrAbsent<TSource>(
             this IReadOnlyList<TSource> source,
