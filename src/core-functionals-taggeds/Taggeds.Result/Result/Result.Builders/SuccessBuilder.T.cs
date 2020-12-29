@@ -5,7 +5,6 @@ using System;
 namespace PrimeFuncPack.Core
 {
     public sealed class SuccessBuilder<TSuccess>
-        where TSuccess : notnull
     {
         private readonly TSuccess success;
 
@@ -15,7 +14,7 @@ namespace PrimeFuncPack.Core
 
         internal static SuccessBuilder<TSuccess> Create(TSuccess success)
             =>
-            new(success ?? throw new ArgumentNullException(nameof(success)));
+            new(success);
 
         public Result<TSuccess, TFailure> Build<TFailure>()
             where TFailure : struct

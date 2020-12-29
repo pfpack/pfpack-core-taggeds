@@ -18,7 +18,6 @@ namespace PrimeFuncPack.Core
             new(failure);
 
         public Result<TSuccess, TFailure> Build<TSuccess>()
-            where TSuccess : notnull
             =>
             failure;
     }

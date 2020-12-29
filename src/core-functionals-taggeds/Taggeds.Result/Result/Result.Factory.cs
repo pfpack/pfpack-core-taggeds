@@ -6,7 +6,7 @@ namespace System
 {
     partial class Result
     {
-        public static SuccessBuilder<TSuccess> Success<TSuccess>(TSuccess success) where TSuccess : notnull
+        public static SuccessBuilder<TSuccess> Success<TSuccess>(TSuccess success)
             =>
             SuccessBuilder<TSuccess>.Create(success);
 

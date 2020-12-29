@@ -11,7 +11,6 @@ namespace System
         public Result<TNextSuccess, TNextFailure> Forward<TNextSuccess, TNextFailure>(
             Func<TSuccess, Result<TNextSuccess, TNextFailure>> nextFactory,
             Func<TFailure, TNextFailure> mapFailure)
-            where TNextSuccess : notnull
             where TNextFailure : struct
         {
             _ = nextFactory ?? throw new ArgumentNullException(nameof(nextFactory));
@@ -22,7 +21,6 @@ namespace System
 
         public Result<TNextSuccess, TFailure> Forward<TNextSuccess>(
             Func<TSuccess, Result<TNextSuccess, TFailure>> nextFactory)
-            where TNextSuccess : notnull
         {
             _ = nextFactory ?? throw new ArgumentNullException(nameof(nextFactory));
 
@@ -44,7 +42,6 @@ namespace System
         public Task<Result<TNextSuccess, TNextFailure>> ForwardAsync<TNextSuccess, TNextFailure>(
             Func<TSuccess, Task<Result<TNextSuccess, TNextFailure>>> nextFactoryAsync,
             Func<TFailure, TNextFailure> mapFailure)
-            where TNextSuccess : notnull
             where TNextFailure : struct
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
@@ -57,7 +54,6 @@ namespace System
 
         public Task<Result<TNextSuccess, TFailure>> ForwardAsync<TNextSuccess>(
             Func<TSuccess, Task<Result<TNextSuccess, TFailure>>> nextFactoryAsync)
-            where TNextSuccess : notnull
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
 
@@ -81,7 +77,6 @@ namespace System
         public ValueTask<Result<TNextSuccess, TNextFailure>> ForwardValueAsync<TNextSuccess, TNextFailure>(
             Func<TSuccess, ValueTask<Result<TNextSuccess, TNextFailure>>> nextFactoryAsync,
             Func<TFailure, TNextFailure> mapFailure)
-            where TNextSuccess : notnull
             where TNextFailure : struct
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
@@ -94,7 +89,6 @@ namespace System
 
         public ValueTask<Result<TNextSuccess, TFailure>> ForwardValueAsync<TNextSuccess>(
             Func<TSuccess, ValueTask<Result<TNextSuccess, TFailure>>> nextFactoryAsync)
-            where TNextSuccess : notnull
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
 

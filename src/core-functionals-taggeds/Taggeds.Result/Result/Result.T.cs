@@ -3,7 +3,6 @@
 namespace System
 {
     public readonly partial struct Result<TSuccess, TFailure> : IEquatable<Result<TSuccess, TFailure>>
-        where TSuccess : notnull
         where TFailure : struct
     {
         private readonly TaggedUnion<TSuccess, TFailure> unionRaw;

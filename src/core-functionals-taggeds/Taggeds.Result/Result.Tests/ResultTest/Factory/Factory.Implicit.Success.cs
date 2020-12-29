@@ -10,15 +10,45 @@ namespace PrimeFuncPack.Core.Functionals.Taggeds.Tests
     partial class ResultTest
     {
         [Test]
-        public void ImplicitSuccess_SourceValueIsNull_ExpectArgumentNullException()
+        public void ImplicitSuccess_SourceValueIsNullForgivenRef_ExpectIsSuccessReturnsTrue()
         {
-            var ex = Assert.Throws<ArgumentNullException>(TestFunc);
-            Assert.AreEqual("success", ex.ParamName);
+            Result<RefType, StructType> actual = (RefType)null!;
+            Assert.True(actual.IsSuccess);
+        }
 
-            static void TestFunc()
-            {
-                Result<RefType, StructType> _ = (RefType)null!;
-            }
+        [Test]
+        public void ImplicitSuccess_SourceValueIsNullForgivenRef_ExpectIsFailureReturnsFalse()
+        {
+            Result<RefType, StructType> actual = (RefType)null!;
+            Assert.False(actual.IsFailure);
+        }
+
+        [Test]
+        public void ImplicitSuccess_SourceValueIsNullableRef_ExpectIsSuccessReturnsTrue()
+        {
+            Result<RefType?, StructType> actual = (RefType?)null;
+            Assert.True(actual.IsSuccess);
+        }
+
+        [Test]
+        public void ImplicitSuccess_SourceValueIsNullableRef_ExpectIsFailureReturnsFalse()
+        {
+            Result<RefType?, StructType> actual = (RefType?)null;
+            Assert.False(actual.IsFailure);
+        }
+
+        [Test]
+        public void ImplicitSuccess_SourceValueIsNullableStruct_ExpectIsSuccessReturnsTrue()
+        {
+            Result<StructType?, StructType> actual = (StructType?)null;
+            Assert.True(actual.IsSuccess);
+        }
+
+        [Test]
+        public void ImplicitSuccess_SourceValueIsNullableStruct_ExpectIsFailureReturnsFalse()
+        {
+            Result<StructType?, StructType> actual = (StructType?)null;
+            Assert.False(actual.IsFailure);
         }
 
         [Test]

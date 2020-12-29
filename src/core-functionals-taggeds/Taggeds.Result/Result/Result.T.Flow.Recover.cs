@@ -11,7 +11,6 @@ namespace System
         public Result<TOtherSuccess, TOtherFailure> Recover<TOtherSuccess, TOtherFailure>(
             Func<TFailure, Result<TOtherSuccess, TOtherFailure>> otherFactory,
             Func<TSuccess, TOtherSuccess> mapSuccess)
-            where TOtherSuccess : notnull
             where TOtherFailure : struct
         {
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
@@ -44,7 +43,6 @@ namespace System
         public Task<Result<TOtherSuccess, TOtherFailure>> RecoverAsync<TOtherSuccess, TOtherFailure>(
             Func<TFailure, Task<Result<TOtherSuccess, TOtherFailure>>> otherFactoryAsync,
             Func<TSuccess, TOtherSuccess> mapSuccess)
-            where TOtherSuccess : notnull
             where TOtherFailure : struct
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
@@ -81,7 +79,6 @@ namespace System
         public ValueTask<Result<TOtherSuccess, TOtherFailure>> RecoverValueAsync<TOtherSuccess, TOtherFailure>(
             Func<TFailure, ValueTask<Result<TOtherSuccess, TOtherFailure>>> otherFactoryAsync,
             Func<TSuccess, TOtherSuccess> mapSuccess)
-            where TOtherSuccess : notnull
             where TOtherFailure : struct
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));

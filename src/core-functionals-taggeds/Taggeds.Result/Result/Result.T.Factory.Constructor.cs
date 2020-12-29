@@ -6,7 +6,7 @@ namespace System
     {
         public Result(TSuccess success)
             =>
-            unionRaw = new(success ?? throw new ArgumentNullException(nameof(success)));
+            unionRaw = new(success);
 
         public Result(TFailure failure)
             =>
