@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PrimeFuncPack.Core.Pipelines.Tests
+namespace PrimeFuncPack.Core.Primitives.Tests
 {
     public sealed partial class PipelineTests
     {

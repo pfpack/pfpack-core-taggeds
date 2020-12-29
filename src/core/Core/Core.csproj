@@ -22,12 +22,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="PrimeFuncPack.Core.Pipelines.Pipeline" Version="1.0.0-preview.1.0.*" />
+	  <PackageReference Include="PrimeFuncPack.Core.Primitives" Version="1.0.0-preview.1.12.*" />
 	  <PackageReference Include="PrimeFuncPack.Core.Taggeds.Optional" Version="1.0.0-preview.1.12.*" />
 	  <PackageReference Include="PrimeFuncPack.Core.Taggeds.Result" Version="1.0.0-preview.1.12.*" />
 	  <PackageReference Include="PrimeFuncPack.Core.Taggeds.TaggedUnion" Version="1.0.0-preview.1.12.*" />
 	  <PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.0.0-preview.1.12.*" />
-	  <PackageReference Include="PrimeFuncPack.Core.Primitives" Version="1.0.0-preview.1.0.*" />
 	</ItemGroup>
 
 </Project>

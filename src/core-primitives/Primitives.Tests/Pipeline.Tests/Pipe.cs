@@ -3,7 +3,7 @@
 using NUnit.Framework;
 using System;
 
-namespace PrimeFuncPack.Core.Pipelines.Tests
+namespace PrimeFuncPack.Core.Primitives.Tests
 {
     partial class PipelineTests
     {
