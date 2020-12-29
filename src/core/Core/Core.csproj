@@ -11,7 +11,7 @@
 		<Copyright>Copyright © 2020 Andrei Sergeev, Pavel Moskovoy</Copyright>
 		<RootNamespace>System</RootNamespace>
 		<AssemblyName>PrimeFuncPack.Core</AssemblyName>
-		<Version>1.0.0-preview.1.12.0</Version>
+		<Version>1.0.0-preview.1.14.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -22,11 +22,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="PrimeFuncPack.Core.Primitives" Version="1.0.0-preview.1.12.*" />
-	  <PackageReference Include="PrimeFuncPack.Core.Taggeds.Optional" Version="1.0.0-preview.1.12.*" />
-	  <PackageReference Include="PrimeFuncPack.Core.Taggeds.Result" Version="1.0.0-preview.1.12.*" />
-	  <PackageReference Include="PrimeFuncPack.Core.Taggeds.TaggedUnion" Version="1.0.0-preview.1.12.*" />
-	  <PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.0.0-preview.1.12.*" />
+		<PackageReference Include="PrimeFuncPack.Core.Optional" Version="1.0.0-preview.1.14.*" />
+		<PackageReference Include="PrimeFuncPack.Core.Primitives" Version="1.0.0-preview.1.13.*" />
+		<PackageReference Include="PrimeFuncPack.Core.Result" Version="1.0.0-preview.1.14.*" />
+		<PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.0.0-preview.1.12.*" />
 	</ItemGroup>
 
 </Project>
