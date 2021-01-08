@@ -4,7 +4,7 @@ using System;
 
 namespace PrimeFuncPack.Core
 {
-    public sealed class SuccessBuilder<TSuccess>
+    public readonly struct SuccessBuilder<TSuccess>
     {
         private readonly TSuccess success;
 

@@ -16,12 +16,10 @@ namespace System
 
         public static implicit operator Result<TSuccess, TFailure>(SuccessBuilder<TSuccess> success)
             =>
-            (success ?? throw new ArgumentNullException(nameof(success)))
-            .With<TFailure>();
+            success.With<TFailure>();
 
         public static implicit operator Result<TSuccess, TFailure>(FailureBuilder<TFailure> failure)
             =>
-            failure
-            .With<TSuccess>();
+            failure.With<TSuccess>();
     }
 }
