@@ -9,7 +9,7 @@ namespace PrimeFuncPack.Core
     {
         public bool Equals(SuccessBuilder<TSuccess> other)
             =>
-            EqualityComparer<TSuccess>.Default.Equals(success, other.success);
+            SuccessEquality.Equals(success, other.success);
 
         public static bool operator ==(SuccessBuilder<TSuccess> left, SuccessBuilder<TSuccess> right)
             =>
@@ -30,8 +30,10 @@ namespace PrimeFuncPack.Core
 
         private int SuccessHashCodeOrDefault() => success switch
         {
-            not null => EqualityComparer<TSuccess>.Default.GetHashCode(success),
+            not null => SuccessEquality.GetHashCode(success),
             _ => default
         };
+
+        private static IEqualityComparer<TSuccess> SuccessEquality => EqualityComparer<TSuccess>.Default;
     }
 }
