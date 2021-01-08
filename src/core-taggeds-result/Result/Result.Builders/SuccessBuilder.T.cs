@@ -8,13 +8,9 @@ namespace PrimeFuncPack.Core
     {
         private readonly TSuccess success;
 
-        private SuccessBuilder(TSuccess success)
+        internal SuccessBuilder(TSuccess success)
             =>
             this.success = success;
-
-        internal static SuccessBuilder<TSuccess> Create(TSuccess success)
-            =>
-            new(success);
 
         public Result<TSuccess, TFailure> Build<TFailure>()
             where TFailure : struct
