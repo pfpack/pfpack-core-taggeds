@@ -13,7 +13,7 @@ namespace PrimeFuncPack.Core
             =>
             this.failure = failure;
 
-        public Result<TSuccess, TFailure> Build<TSuccess>()
+        public Result<TSuccess, TFailure> With<TSuccess>()
             =>
             failure;
     }
