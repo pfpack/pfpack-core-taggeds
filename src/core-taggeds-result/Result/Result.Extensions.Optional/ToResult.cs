@@ -7,7 +7,7 @@ namespace System
         public static Result<TSuccess, Unit> ToResult<TSuccess>(this Optional<TSuccess> optional)
             =>
             optional.Fold<Result<TSuccess, Unit>>(
-                static value => new(value),
-                static () => new(Unit.Value));
+                static value => value,
+                static () => Unit.Value);
     }
 }

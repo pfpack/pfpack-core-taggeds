@@ -9,7 +9,7 @@ namespace System
             where TFailure : struct
             =>
             union.Fold<Result<TSuccess, TFailure>>(
-                static value => new(value),
-                static value => new(value));
+                static value => value,
+                static value => value);
     }
 }
