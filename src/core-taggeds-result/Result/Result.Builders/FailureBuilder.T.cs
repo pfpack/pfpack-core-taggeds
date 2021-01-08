@@ -15,6 +15,6 @@ namespace PrimeFuncPack.Core
 
         public Result<TSuccess, TFailure> With<TSuccess>()
             =>
-            failure;
+            new(failure);
     }
 }

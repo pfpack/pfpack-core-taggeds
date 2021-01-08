@@ -14,6 +14,6 @@ namespace PrimeFuncPack.Core
 
         public Result<TSuccess, TFailure> With<TFailure>() where TFailure : struct
             =>
-            success;
+            new(success);
     }
 }
