@@ -4,8 +4,7 @@ using System;
 
 namespace PrimeFuncPack.Core
 {
-    public readonly partial struct FailureBuilder<TFailure> :
-        IEquatable<FailureBuilder<TFailure>>
+    public readonly partial struct FailureBuilder<TFailure> : IEquatable<FailureBuilder<TFailure>>
         where TFailure : struct
     {
         private readonly TFailure failure;

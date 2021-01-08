@@ -4,8 +4,7 @@ using System;
 
 namespace PrimeFuncPack.Core
 {
-    public readonly partial struct SuccessBuilder<TSuccess> :
-        IEquatable<SuccessBuilder<TSuccess>>
+    public readonly partial struct SuccessBuilder<TSuccess> : IEquatable<SuccessBuilder<TSuccess>>
     {
         private readonly TSuccess success;
 
