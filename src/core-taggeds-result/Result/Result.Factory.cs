@@ -8,10 +8,10 @@ namespace System
     {
         public static SuccessBuilder<TSuccess> Success<TSuccess>(TSuccess success)
             =>
-            SuccessBuilder<TSuccess>.Create(success);
+            new(success);
 
         public static FailureBuilder<TFailure> Failure<TFailure>(TFailure failure) where TFailure : struct
             =>
-            FailureBuilder<TFailure>.Create(failure);
+            new(failure);
     }
 }

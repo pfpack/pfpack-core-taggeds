@@ -4,21 +4,17 @@ using System;
 
 namespace PrimeFuncPack.Core
 {
-    public readonly struct FailureBuilder<TFailure>
+    public readonly partial struct FailureBuilder<TFailure> : IEquatable<FailureBuilder<TFailure>>
         where TFailure : struct
     {
         private readonly TFailure failure;
 
-        private FailureBuilder(TFailure failure)
+        internal FailureBuilder(TFailure failure)
             =>
             this.failure = failure;
 
-        internal static FailureBuilder<TFailure> Create(TFailure failure)
+        public Result<TSuccess, TFailure> With<TSuccess>()
             =>
             new(failure);
-
-        public Result<TSuccess, TFailure> Build<TSuccess>()
-            =>
-            failure;
     }
 }

@@ -4,21 +4,16 @@ using System;
 
 namespace PrimeFuncPack.Core
 {
-    public sealed class SuccessBuilder<TSuccess>
+    public readonly partial struct SuccessBuilder<TSuccess> : IEquatable<SuccessBuilder<TSuccess>>
     {
         private readonly TSuccess success;
 
-        private SuccessBuilder(TSuccess success)
+        internal SuccessBuilder(TSuccess success)
             =>
             this.success = success;
 
-        internal static SuccessBuilder<TSuccess> Create(TSuccess success)
+        public Result<TSuccess, TFailure> With<TFailure>() where TFailure : struct
             =>
             new(success);
-
-        public Result<TSuccess, TFailure> Build<TFailure>()
-            where TFailure : struct
-            =>
-            success;
     }
 }
