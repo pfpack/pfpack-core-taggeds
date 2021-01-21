@@ -15,7 +15,7 @@ namespace PrimeFuncPack.Core.Tests
             TaggedUnion<RefType, StructType> source)
         {
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.MapFirst<int>(null!));
-            Assert.AreEqual("mapFirst", ex.ParamName);
+            Assert.AreEqual("mapFirst", ex!.ParamName);
         }
 
         [Test]

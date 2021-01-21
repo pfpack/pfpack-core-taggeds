@@ -17,7 +17,7 @@ namespace PrimeFuncPack.Core.Tests
             IDictionary<string, StructType> sourceDictionary = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = sourceDictionary.GetValueOrAbsent(SomeString));
-            Assert.AreEqual("pairs", ex.ParamName);
+            Assert.AreEqual("pairs", ex!.ParamName);
         }
 
         [Test]

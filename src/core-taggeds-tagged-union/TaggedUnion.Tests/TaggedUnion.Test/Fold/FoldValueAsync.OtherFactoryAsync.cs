@@ -22,7 +22,7 @@ namespace PrimeFuncPack.Core.Tests
                 async () => _ = await source.FoldValueAsync(
                     null!, _ => ValueTask.FromResult(second), () => ValueTask.FromResult(other)));
 
-            Assert.AreEqual("mapFirstAsync", ex.ParamName);
+            Assert.AreEqual("mapFirstAsync", ex!.ParamName);
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace PrimeFuncPack.Core.Tests
                 async () => _ = await source.FoldValueAsync(
                     _ => ValueTask.FromResult(first), null!, () => ValueTask.FromResult(other)));
 
-            Assert.AreEqual("mapSecondAsync", ex.ParamName);
+            Assert.AreEqual("mapSecondAsync", ex!.ParamName);
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace PrimeFuncPack.Core.Tests
                 async () => _ = await source.FoldValueAsync(
                     _ => ValueTask.FromResult(first), _ => ValueTask.FromResult(second), otherFactoryAsync));
 
-            Assert.AreEqual("otherFactoryAsync", ex.ParamName);
+            Assert.AreEqual("otherFactoryAsync", ex!.ParamName);
         }
 
         [Test]

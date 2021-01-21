@@ -15,7 +15,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = TaggedUnion<RefType, StructType>.First(PlusFifteenIdRefType);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Fold(null!, _ => new object()));
-            Assert.AreEqual("mapFirst", ex.ParamName);
+            Assert.AreEqual("mapFirst", ex!.ParamName);
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = TaggedUnion<RefType, StructType>.First(PlusFifteenIdRefType);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Fold(_ => new object(), null!));
-            Assert.AreEqual("mapSecond", ex.ParamName);
+            Assert.AreEqual("mapSecond", ex!.ParamName);
         }
 
         [Test]

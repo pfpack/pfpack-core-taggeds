@@ -18,7 +18,7 @@ namespace PrimeFuncPack.Core.Tests
             int index = 1;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.ElementAtOrAbsent(index));
-            Assert.AreEqual("source", ex.ParamName);
+            Assert.AreEqual("source", ex!.ParamName);
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace PrimeFuncPack.Core.Tests
             long index = 1;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.ElementAtOrAbsent(index));
-            Assert.AreEqual("source", ex.ParamName);
+            Assert.AreEqual("source", ex!.ParamName);
         }
 
         [Test]

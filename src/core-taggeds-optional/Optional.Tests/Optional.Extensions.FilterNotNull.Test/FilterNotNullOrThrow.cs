@@ -31,7 +31,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = Optional<StructType>.Present(SomeTextStructType);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FilterNotNullOrThrow(null!));
-            Assert.AreEqual("exceptionFactory", ex.ParamName);
+            Assert.AreEqual("exceptionFactory", ex!.ParamName);
         }
 
         [Test]

@@ -18,7 +18,7 @@ namespace PrimeFuncPack.Core.Tests
             IList<StructType> source = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FirstOrAbsent());
-            Assert.AreEqual("source", ex.ParamName);
+            Assert.AreEqual("source", ex!.ParamName);
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace PrimeFuncPack.Core.Tests
             IList<StructType> source = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FirstOrAbsent(_ => true));
-            Assert.AreEqual("source", ex.ParamName);
+            Assert.AreEqual("source", ex!.ParamName);
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = CreateList(SomeTextStructType);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FirstOrAbsent(null!));
-            Assert.AreEqual("predicate", ex.ParamName);
+            Assert.AreEqual("predicate", ex!.ParamName);
         }
 
         [Test]
