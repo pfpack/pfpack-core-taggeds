@@ -6,6 +6,6 @@ namespace System
 {
     partial struct Optional<T>
     {
-        private static IEqualityComparer<T> ValueEquality => EqualityComparer<T>.Default;
+        private static IEqualityComparer<T> Equality => EqualityComparer<T>.Default;
     }
 }

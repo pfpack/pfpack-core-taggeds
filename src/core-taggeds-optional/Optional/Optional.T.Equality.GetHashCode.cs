@@ -13,7 +13,7 @@ namespace System
         {
             if (hasValue && value is not null)
             {
-                return ValueEquality.GetHashCode(value);
+                return Equality.GetHashCode(value);
             }
 
             return default;

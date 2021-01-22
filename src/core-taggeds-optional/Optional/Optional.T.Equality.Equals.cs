@@ -8,7 +8,7 @@ namespace System
         {
             if (optionalA.hasValue && optionalB.hasValue)
             {
-                return ValueEquality.Equals(optionalA.value, optionalB.value);
+                return Equality.Equals(optionalA.value, optionalB.value);
             }
 
             return optionalA.hasValue == optionalB.hasValue;
