@@ -7,9 +7,9 @@ namespace System
         public override int GetHashCode() => HashCode.Combine(
             typeof(Optional<T>),
             hasValue,
-            ValueHashCodeOrDefault());
+            HashCodeOrDefault());
 
-        private int ValueHashCodeOrDefault()
+        private int HashCodeOrDefault()
         {
             if (hasValue && value is not null)
             {

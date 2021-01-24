@@ -26,9 +26,9 @@ namespace PrimeFuncPack.Core
 
         public override int GetHashCode() => HashCode.Combine(
             typeof(SuccessBuilder<TSuccess>),
-            SuccessHashCodeOrDefault());
+            HashCodeOrDefault());
 
-        private int SuccessHashCodeOrDefault() => success switch
+        private int HashCodeOrDefault() => success switch
         {
             not null => Equality.GetHashCode(success),
             _ => default
