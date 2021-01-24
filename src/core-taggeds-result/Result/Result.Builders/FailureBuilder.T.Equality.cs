@@ -9,7 +9,7 @@ namespace PrimeFuncPack.Core
     {
         public bool Equals(FailureBuilder<TFailure> other)
             =>
-            Equality.Equals(failure, other.failure);
+            EqualityComparer.Equals(failure, other.failure);
 
         public static bool operator ==(FailureBuilder<TFailure> left, FailureBuilder<TFailure> right)
             =>
@@ -26,8 +26,8 @@ namespace PrimeFuncPack.Core
 
         public override int GetHashCode() => HashCode.Combine(
             typeof(FailureBuilder<TFailure>),
-            Equality.GetHashCode(failure));
+            EqualityComparer.GetHashCode(failure));
 
-        private static IEqualityComparer<TFailure> Equality => EqualityComparer<TFailure>.Default;
+        private static IEqualityComparer<TFailure> EqualityComparer => EqualityComparer<TFailure>.Default;
     }
 }
