@@ -4,19 +4,18 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public override int GetHashCode() => HashCode.Combine(
-            typeof(Optional<T>),
-            hasValue,
-            HashCodeOrDefault());
-
-        private int HashCodeOrDefault()
+        public override int GetHashCode() => hasValue switch
         {
-            if (hasValue && value is not null)
-            {
-                return Equality.GetHashCode(value);
-            }
+            true =>
+            HashCode.Combine(EqualityContract, true, HashCodeOrDefault()),
+            _ =>
+            HashCode.Combine(EqualityContract, false)
+        };
 
-            return default;
-        }
+        private int HashCodeOrDefault() => value switch
+        {
+            not null => EqualityComparer.GetHashCode(value),
+            _ => default
+        };
     }
 }
