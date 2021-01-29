@@ -17,7 +17,7 @@ namespace PrimeFuncPack.Core.Tests
             IEnumerable<KeyValuePair<int, StructType>> sourcePairs = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePairs.GetValueOrAbsent(PlusFifteen));
-            Assert.AreEqual("pairs", ex.ParamName);
+            Assert.AreEqual("pairs", ex!.ParamName);
         }
 
         [Test]

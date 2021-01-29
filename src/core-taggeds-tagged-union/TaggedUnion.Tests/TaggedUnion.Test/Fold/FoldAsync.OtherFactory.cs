@@ -21,7 +21,7 @@ namespace PrimeFuncPack.Core.Tests
             var ex = Assert.ThrowsAsync<ArgumentNullException>(
                 async () => _ = await source.FoldAsync(null!, _ => Task.FromResult(second), () => other));
 
-            Assert.AreEqual("mapFirstAsync", ex.ParamName);
+            Assert.AreEqual("mapFirstAsync", ex!.ParamName);
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace PrimeFuncPack.Core.Tests
             var ex = Assert.ThrowsAsync<ArgumentNullException>(
                 async () => _ = await source.FoldAsync(_ => Task.FromResult(first), null!, () => other));
 
-            Assert.AreEqual("mapSecondAsync", ex.ParamName);
+            Assert.AreEqual("mapSecondAsync", ex!.ParamName);
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace PrimeFuncPack.Core.Tests
                 async () => _ = await source.FoldAsync(
                     _ => Task.FromResult(first), _ => Task.FromResult(second), otherFactory));
 
-            Assert.AreEqual("otherFactory", ex.ParamName);
+            Assert.AreEqual("otherFactory", ex!.ParamName);
         }
 
         [Test]

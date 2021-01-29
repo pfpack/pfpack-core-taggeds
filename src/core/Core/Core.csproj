@@ -22,10 +22,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="PrimeFuncPack.Core.Optional" Version="1.0.0-preview.1.16.*" />
-		<PackageReference Include="PrimeFuncPack.Core.Primitives" Version="1.0.0-preview.1.13.*" />
-		<PackageReference Include="PrimeFuncPack.Core.Result" Version="1.0.0-preview.1.16.*" />
-		<PackageReference Include="PrimeFuncPack.Core.TaggedUnion" Version="1.0.0-preview.1.16.*" />
+		<PackageReference Include="PrimeFuncPack.Core.Optional" Version="1.0.0-preview.1.17.*" />
+		<PackageReference Include="PrimeFuncPack.Core.Primitives" Version="1.0.0-preview.1.14.*" />
+		<PackageReference Include="PrimeFuncPack.Core.Result" Version="1.0.0-preview.1.17.*" />
+		<PackageReference Include="PrimeFuncPack.Core.TaggedUnion" Version="1.0.0-preview.1.17.*" />
 		<PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.0.0-preview.1.16.*" />
 	</ItemGroup>
 

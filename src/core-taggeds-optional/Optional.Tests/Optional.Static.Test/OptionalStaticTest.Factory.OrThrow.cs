@@ -24,7 +24,7 @@ namespace PrimeFuncPack.Core.Tests
         public void PresentOrThrow_ValueIsNull_ExpectArgumentNullException()
         {
             var ex = Assert.Throws<ArgumentNullException>(() => _ = Optional.PresentOrThrow<RefType?>(null!));
-            Assert.AreEqual("value", ex.ParamName);
+            Assert.AreEqual("value", ex!.ParamName);
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace PrimeFuncPack.Core.Tests
         public void PresentOrThrowWithStructValue_ValueIsNull_ExpectArgumentNullException()
         {
             var ex = Assert.Throws<ArgumentNullException>(() => _ = Optional.PresentOrThrow<StructType>(null!));
-            Assert.AreEqual("value", ex.ParamName);
+            Assert.AreEqual("value", ex!.ParamName);
         }
     }
 }

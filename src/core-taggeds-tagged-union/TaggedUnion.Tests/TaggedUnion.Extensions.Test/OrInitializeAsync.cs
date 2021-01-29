@@ -16,7 +16,7 @@ namespace PrimeFuncPack.Core.Tests
             TaggedUnion<RefType, StructType> source)
         {
             var ex = Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await source.OrInitializeAsync(null!));
-            Assert.AreEqual("otherFactoryAsync", ex.ParamName);
+            Assert.AreEqual("otherFactoryAsync", ex!.ParamName);
         }
 
         [Test]

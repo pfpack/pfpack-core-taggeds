@@ -25,7 +25,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = TaggedUnion<object, StructType>.First(new { Text = SomeString });
 
             var ex = Assert.Throws<InvalidOperationException>(() => _ = source.SecondOrThrow());
-            AssertContainsFirst(Second, ex.Message);
+            AssertContainsFirst(Second, ex!.Message);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = default(TaggedUnion<RefType, string>);
 
             var ex = Assert.Throws<InvalidOperationException>(() => _ = source.SecondOrThrow());
-            AssertContainsFirst(Second, ex.Message);
+            AssertContainsFirst(Second, ex!.Message);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = TaggedUnion<StructType, RefType>.Second(MinusFifteenIdRefType);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SecondOrThrow(null!));
-            Assert.AreEqual("exceptionFactory", ex.ParamName);
+            Assert.AreEqual("exceptionFactory", ex!.ParamName);
         }
 
         [Test]

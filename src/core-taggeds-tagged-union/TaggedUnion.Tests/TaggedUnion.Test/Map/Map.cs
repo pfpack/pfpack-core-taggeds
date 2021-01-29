@@ -17,7 +17,7 @@ namespace PrimeFuncPack.Core.Tests
             var ex = Assert.Throws<ArgumentNullException>(
                 () => _ = source.Map<object, StructType>(null!, _ => SomeTextStructType));
 
-            Assert.AreEqual("mapFirst", ex.ParamName);
+            Assert.AreEqual("mapFirst", ex!.ParamName);
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace PrimeFuncPack.Core.Tests
             var ex = Assert.Throws<ArgumentNullException>(
                 () => _ = source.Map<int, StructType>(_ => 275, null!));
 
-            Assert.AreEqual("mapSecond", ex.ParamName);
+            Assert.AreEqual("mapSecond", ex!.ParamName);
         }
 
         [Test]

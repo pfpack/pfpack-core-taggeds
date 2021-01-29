@@ -6,7 +6,7 @@ namespace System
     {
         public static bool Equals(Result<TSuccess, TFailure> resultA, Result<TSuccess, TFailure> resultB)
             =>
-            TaggedUnion.Equals(resultA.Union, resultB.Union);
+            TaggedUnion<TSuccess, TFailure>.Equals(resultA.Union, resultB.Union);
 
         public static bool operator ==(Result<TSuccess, TFailure> resultA, Result<TSuccess, TFailure> resultB)
             =>

@@ -18,7 +18,7 @@ namespace PrimeFuncPack.Core.Tests
             var other = int.MaxValue;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Fold(null!, _ => second, other));
-            Assert.AreEqual("mapFirst", ex.ParamName);
+            Assert.AreEqual("mapFirst", ex!.ParamName);
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace PrimeFuncPack.Core.Tests
             var other = TabString;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Fold(_ => first, null!, other));
-            Assert.AreEqual("mapSecond", ex.ParamName);
+            Assert.AreEqual("mapSecond", ex!.ParamName);
         }
 
         [Test]
