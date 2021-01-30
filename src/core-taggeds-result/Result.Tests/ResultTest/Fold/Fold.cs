@@ -32,7 +32,7 @@ namespace PrimeFuncPack.Core.Tests
             Result<RefType, StructType> source)
         {
             var actualException = Assert.Throws<ArgumentNullException>(
-                () => _ = source.Fold<int>(null!, _ => MinusFifteen));
+                () => _ = source.Fold<int>(_ => MinusFifteen, null!));
 
             Assert.AreEqual("mapFailure", actualException!.ParamName);
         }
@@ -43,8 +43,8 @@ namespace PrimeFuncPack.Core.Tests
         public void Fold_SourceIsSuccess_ExpectResultOfMapSuccess(
             Result<RefType, StructType> source)
         {
-            var successResult = SomeText;
-            var failureResult = LowerSomeText;
+            var successResult = ThreeWhiteSpacesString;
+            var failureResult = SomeString;
 
             var actual = source.Fold(
                 _ => successResult,
@@ -61,12 +61,12 @@ namespace PrimeFuncPack.Core.Tests
         {
             var successResult = new SomeRecord
             {
-                Text = SomeText
+                Text = SomeString
             };
 
             var failureResult = new SomeRecord
             {
-                Text = LowerSomeText
+                Text = ThreeWhiteSpacesString
             };
 
             var actual = source.Fold(
