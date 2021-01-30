@@ -34,7 +34,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = Optional<RefType?>.Present(PlusFifteenIdRefType);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FilterNotNullOrThrowThenMap(null!));
-            Assert.AreEqual("exceptionFactory", ex.ParamName);
+            Assert.AreEqual("exceptionFactory", ex!.ParamName);
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = Optional<StructType?>.Present(null);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FilterNotNullOrThrowThenMap(null!));
-            Assert.AreEqual("exceptionFactory", ex.ParamName);
+            Assert.AreEqual("exceptionFactory", ex!.ParamName);
         }
 
         [Test]

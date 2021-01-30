@@ -16,7 +16,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = Optional<StructType>.Present(SomeTextStructType);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Or(null!));
-            Assert.AreEqual("otherFactory", ex.ParamName);
+            Assert.AreEqual("otherFactory", ex!.ParamName);
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = Optional<StructType>.Present(SomeTextStructType);
 
             var ex = Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await source.OrAsync(null!));
-            Assert.AreEqual("otherFactoryAsync", ex.ParamName);
+            Assert.AreEqual("otherFactoryAsync", ex!.ParamName);
         }
 
         [Test]
@@ -84,7 +84,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = Optional<StructType>.Present(SomeTextStructType);
 
             var ex = Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await source.OrValueAsync(null!));
-            Assert.AreEqual("otherFactoryAsync", ex.ParamName);
+            Assert.AreEqual("otherFactoryAsync", ex!.ParamName);
         }
 
         [Test]

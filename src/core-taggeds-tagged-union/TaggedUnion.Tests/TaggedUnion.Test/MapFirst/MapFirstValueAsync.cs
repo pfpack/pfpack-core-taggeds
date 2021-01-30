@@ -18,7 +18,7 @@ namespace PrimeFuncPack.Core.Tests
             var ex = Assert.ThrowsAsync<ArgumentNullException>(
                 async () => _ = await source.MapFirstValueAsync<decimal>(null!));
 
-            Assert.AreEqual("mapFirstAsync", ex.ParamName);
+            Assert.AreEqual("mapFirstAsync", ex!.ParamName);
         }
 
         [Test]

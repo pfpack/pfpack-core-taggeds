@@ -17,7 +17,7 @@ namespace PrimeFuncPack.Core.Tests
             IReadOnlyDictionary<int, StructType> sourceDictionary = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = sourceDictionary.GetValueOrAbsent(PlusFifteen));
-            Assert.AreEqual("dictionary", ex.ParamName);
+            Assert.AreEqual("dictionary", ex!.ParamName);
         }
 
         [Test]

@@ -6,8 +6,8 @@ namespace System
     {
         public static bool Equals(TaggedUnion<TFirst, TSecond> unionA, TaggedUnion<TFirst, TSecond> unionB)
             =>
-            Optional.Equals(unionA.first, unionB.first) &&
-            Optional.Equals(unionA.second, unionB.second);
+            Optional<TFirst>.Equals(unionA.first, unionB.first) &&
+            Optional<TSecond>.Equals(unionA.second, unionB.second);
 
         public static bool operator ==(TaggedUnion<TFirst, TSecond> unionA, TaggedUnion<TFirst, TSecond> unionB)
             =>

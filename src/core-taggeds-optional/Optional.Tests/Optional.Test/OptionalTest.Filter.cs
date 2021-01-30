@@ -18,7 +18,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = Optional<RefType>.Present(PlusFifteenIdRefType);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Filter(null!));
-            Assert.AreEqual("predicate", ex.ParamName);
+            Assert.AreEqual("predicate", ex!.ParamName);
         }
 
         [Test]
@@ -82,7 +82,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = Optional<StructType>.Present(SomeTextStructType);
 
             var ex = Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await source.FilterAsync(null!));
-            Assert.AreEqual("predicateAsync", ex.ParamName);
+            Assert.AreEqual("predicateAsync", ex!.ParamName);
         }
 
         [Test]
@@ -146,7 +146,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = Optional<RefType?>.Present(null);
 
             var ex = Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await source.FilterValueAsync(null!));
-            Assert.AreEqual("predicateAsync", ex.ParamName);
+            Assert.AreEqual("predicateAsync", ex!.ParamName);
         }
 
         [Test]

@@ -18,7 +18,7 @@ namespace PrimeFuncPack.Core.Tests
             var ex = Assert.ThrowsAsync<ArgumentNullException>(
                 async () => _ = await source.MapValueAsync<byte, int>(null!, _ => ValueTask.FromResult(157)));
 
-            Assert.AreEqual("mapFirstAsync", ex.ParamName);
+            Assert.AreEqual("mapFirstAsync", ex!.ParamName);
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace PrimeFuncPack.Core.Tests
             var ex = Assert.ThrowsAsync<ArgumentNullException>(
                 async () => _ = await source.MapValueAsync<uint, DateTime>(_ => ValueTask.FromResult<uint>(1), null!));
 
-            Assert.AreEqual("mapSecondAsync", ex.ParamName);
+            Assert.AreEqual("mapSecondAsync", ex!.ParamName);
         }
 
         [Test]

@@ -17,7 +17,7 @@ namespace PrimeFuncPack.Core.Tests
             IReadOnlyList<StructType> source = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent());
-            Assert.AreEqual("source", ex.ParamName);
+            Assert.AreEqual("source", ex!.ParamName);
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace PrimeFuncPack.Core.Tests
             IReadOnlyList<StructType> source = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(CreateSomeException));
-            Assert.AreEqual("source", ex.ParamName);
+            Assert.AreEqual("source", ex!.ParamName);
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace PrimeFuncPack.Core.Tests
             Func<Exception> exceptionFactory = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(exceptionFactory));
-            Assert.AreEqual("moreThanOneElementExceptionFactory", ex.ParamName);
+            Assert.AreEqual("moreThanOneElementExceptionFactory", ex!.ParamName);
         }
 
         [Test]
@@ -110,7 +110,7 @@ namespace PrimeFuncPack.Core.Tests
             IReadOnlyList<StructType> source = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(_ => false));
-            Assert.AreEqual("source", ex.ParamName);
+            Assert.AreEqual("source", ex!.ParamName);
         }
 
         [Test]
@@ -120,7 +120,7 @@ namespace PrimeFuncPack.Core.Tests
             Func<RefType, bool> predicate = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(predicate));
-            Assert.AreEqual("predicate", ex.ParamName);
+            Assert.AreEqual("predicate", ex!.ParamName);
         }
 
         [Test]
@@ -180,7 +180,7 @@ namespace PrimeFuncPack.Core.Tests
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(
                 _ => false, CreateSomeException));
 
-            Assert.AreEqual("source", ex.ParamName);
+            Assert.AreEqual("source", ex!.ParamName);
         }
 
         [Test]
@@ -190,7 +190,7 @@ namespace PrimeFuncPack.Core.Tests
             Func<RefType, bool> predicate = null!;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(predicate, CreateSomeException));
-            Assert.AreEqual("predicate", ex.ParamName);
+            Assert.AreEqual("predicate", ex!.ParamName);
         }
 
         [Test]
@@ -199,7 +199,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = CreateReadOnlyList(MinusFifteenIdRefType);
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(_ => false, null!));
-            Assert.AreEqual("moreThanOneMatchExceptionFactory", ex.ParamName);
+            Assert.AreEqual("moreThanOneMatchExceptionFactory", ex!.ParamName);
         }
 
         [Test]

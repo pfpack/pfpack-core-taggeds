@@ -26,7 +26,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = TaggedUnion<StructType, RefType>.Second(PlusFifteenIdRefType);
 
             var ex = Assert.Throws<InvalidOperationException>(() => _ = source.FirstOrThrow());
-            AssertContainsFirst(First, ex.Message);
+            AssertContainsFirst(First, ex!.Message);
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = default(TaggedUnion<int, string>);
 
             var ex = Assert.Throws<InvalidOperationException>(() => _ = source.FirstOrThrow());
-            AssertContainsFirst(First, ex.Message);
+            AssertContainsFirst(First, ex!.Message);
         }
     }
 }

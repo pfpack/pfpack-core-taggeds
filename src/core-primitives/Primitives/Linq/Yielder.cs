@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    internal static class Yielder
+    public static class Yielder
     {
         public static IEnumerable<T> YieldSingle<T>(T value)
         {
