@@ -13,7 +13,7 @@ namespace PrimeFuncPack.Core.Tests
         public void ImplicitFailureBuilder_ExpectIsSuccessReturnsFalse()
         {
             var source = Result.Failure(SomeTextStructType);
-            Result<RefType, StructType> actual = source;
+            Result<RefType?, StructType> actual = source;
 
             Assert.False(actual.IsSuccess);
         }

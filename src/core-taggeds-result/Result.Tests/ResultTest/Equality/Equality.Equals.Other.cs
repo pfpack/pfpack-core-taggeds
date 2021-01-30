@@ -20,6 +20,16 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
+        public void EqualsOther_SourceIsSuccessAndOtherIsSuccessAndValuesAreNull_ExpectTrue()
+        {
+            Result<SomeRecord?, StructType> source = null;
+            var other = Result<SomeRecord?, StructType>.Success(null);
+
+            var actual = source.Equals(other);
+            Assert.True(actual);
+        }
+
+        [Test]
         public void EqualsOther_SourceIsSuccessAndOtherIsSuccessAndValuesAreEqual_ExpectTrue()
         {
             var text = "Some new text.";
@@ -44,10 +54,10 @@ namespace PrimeFuncPack.Core.Tests
         {
             var errorCode = PlusFifteen;
             var sourceValue = new SomeError(errorCode);
-            Result<RefType, SomeError> source = sourceValue;
+            Result<RefType?, SomeError> source = sourceValue;
 
             var otherValue = new SomeError(errorCode);
-            var other = Result<RefType, SomeError>.Failure(otherValue);
+            var other = Result<RefType?, SomeError>.Failure(otherValue);
 
             var actual = source.Equals(other);
             Assert.True(actual);
@@ -66,8 +76,8 @@ namespace PrimeFuncPack.Core.Tests
         [Test]
         public void EqualsOther_SourceIsDefaultAndOtherIsFailureWithDefaultValue_ExpectTrue()
         {
-            var source = default(Result<RefType, DateTime>);
-            Result<RefType, DateTime> other = default(DateTime);
+            var source = default(Result<RefType?, DateTime>);
+            Result<RefType?, DateTime> other = default(DateTime);
 
             var actual = source.Equals(other);
             Assert.True(actual);
@@ -121,8 +131,8 @@ namespace PrimeFuncPack.Core.Tests
         [Test]
         public void EqualsOther_SourceIsSuccessAndOtherIsDefault_ExpectFalse()
         {
-            var source = Result<RefType, StructType>.Success(ZeroIdRefType);
-            var other = default(Result<RefType, StructType>);
+            var source = Result<RefType?, StructType>.Success(null);
+            var other = default(Result<RefType?, StructType>);
 
             var actual = source.Equals(other);
             Assert.False(actual);
@@ -163,8 +173,8 @@ namespace PrimeFuncPack.Core.Tests
         [Test]
         public void EqualsOther_SourceIsDefaultAndOtherIsFailureWithNotDefaultValue_ExpectFalse()
         {
-            var source = default(Result<StructType, SomeError>);
-            var other = Result<StructType, SomeError>.Failure(new SomeError(PlusFifteen));
+            var source = default(Result<StructType?, SomeError>);
+            var other = Result<StructType?, SomeError>.Failure(new SomeError(PlusFifteen));
 
             var actual = source.Equals(other);
             Assert.False(actual);

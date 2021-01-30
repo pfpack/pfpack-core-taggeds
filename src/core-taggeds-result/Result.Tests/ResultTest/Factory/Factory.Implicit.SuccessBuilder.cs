@@ -10,7 +10,7 @@ namespace PrimeFuncPack.Core.Tests
     partial class ResultTest
     {
         [Test]
-        public void ImplicitSuccessBuilder_SourceBuilderIsNotNull_ExpectIsSuccessReturnsTrue()
+        public void ImplicitSuccessBuilder_ExpectIsSuccessReturnsTrue()
         {
             var source = Result.Success(PlusFifteenIdRefType);
             Result<RefType, SomeError> actual = source;
@@ -19,10 +19,10 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void ImplicitSuccessBuilder_SourceBuilderIsNotNull_ExpectIsFailureReturnsFalse()
+        public void ImplicitSuccessBuilder_ExpectIsFailureReturnsFalse()
         {
-            var source = Result.Success(SomeTextStructType);
-            Result<StructType, StructType> actual = source;
+            var source = Result.Success<StructType?>(SomeTextStructType);
+            Result<StructType?, StructType> actual = source;
 
             Assert.False(actual.IsFailure);
         }
