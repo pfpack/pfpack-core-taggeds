@@ -9,10 +9,11 @@ namespace PrimeFuncPack.Core.Tests
 {
     partial class ResultTest
     {
-        [Test]
-        public void ToString_SourceIsDefault_ExpectResultOfDefaultFailreToString()
+        [Test]        
+        [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureDefaultTestSource))]
+        public void ToString_SourceIsDefault_ExpectResultOfDefaultFailreToString(
+            Result<RefType, StructType> source)
         {
-            var source = default(Result<SomeRecord, StructType>);
             var actual = source.ToString();
 
             var expected = default(StructType).ToString();
@@ -20,10 +21,10 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void ToString_SourceIsSuccessAndValueIsNull_ExpectEmptyString()
+        [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
+        public void ToString_SourceIsSuccessAndValueIsNull_ExpectEmptyString(
+            Result<RefType, StructType> source)
         {
-            var source = Result<object?, SomeError>.Success(null);
-
             var actual = source.ToString();
             Assert.IsEmpty(actual);
         }
