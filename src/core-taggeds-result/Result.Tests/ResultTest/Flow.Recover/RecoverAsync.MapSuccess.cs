@@ -79,7 +79,7 @@ namespace PrimeFuncPack.Core.Tests
             var other = Result.Success(new SomeRecord()).With<SomeError>();
             var mappedSuccess = new SomeRecord
             {
-                Text = "Some property value"
+                Text = "Some property string value"
             };
 
             var actual = await source.RecoverAsync(_ => Task.FromResult(other), _ => mappedSuccess);
@@ -93,7 +93,7 @@ namespace PrimeFuncPack.Core.Tests
             Result<RefType, StructType> source)
         {
             Result<string, SomeError> other = new SomeError(PlusFifteen);
-            var mappedValue = "Some success text value";
+            var mappedValue = "Some success string value";
 
             var actual = await source.RecoverAsync(_ => Task.FromResult(other), _ => mappedValue);
             Assert.AreEqual(other, actual);
