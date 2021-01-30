@@ -43,6 +43,18 @@ namespace PrimeFuncPack.Core.Tests
                 (Result<RefType, StructType>)PlusFifteenIdRefType
             }
             .ToTestSource();
+        
+        public static IEnumerable<object[]> SuccessMinusFifteenIdRefTypeTestSource
+            =>
+            new Result<RefType, StructType>[]
+            {
+                Result.Success<RefType>(MinusFifteenIdRefType).With<StructType>(),
+                (Result<RefType, StructType>)Result.Success<RefType>(MinusFifteenIdRefType),
+                Result<RefType, StructType>.Success(MinusFifteenIdRefType),
+                new Result<RefType, StructType>(MinusFifteenIdRefType),
+                (Result<RefType, StructType>)MinusFifteenIdRefType
+            }
+            .ToTestSource();
 
         public static IEnumerable<object[]> FailureDefaultTestSource
             =>
