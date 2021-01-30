@@ -69,7 +69,7 @@ namespace PrimeFuncPack.Core.Tests
                 _ => Task.FromResult(false),
                 _ => Task.FromResult(causeFailure));
 
-            var expected = new Result<RefType, StructType>(causeFailure);
+            var expected = Result<RefType, StructType>.Failure(causeFailure);
             Assert.AreEqual(expected, actual);
         }
 

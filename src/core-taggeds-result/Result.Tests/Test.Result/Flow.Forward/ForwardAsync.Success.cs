@@ -78,7 +78,7 @@ namespace PrimeFuncPack.Core.Tests
         public async Task ForwardAsync_SourceIsSuccessAndNextIsFailure_ExpectNext(
             Result<RefType, StructType> source)
         {
-            var next = new Result<SomeRecord, StructType>(SomeTextStructType);
+            var next = Result<SomeRecord, StructType>.Failure(SomeTextStructType);
             var actual = await source.ForwardAsync(_ => Task.FromResult(next));
 
             Assert.AreEqual(next, actual);

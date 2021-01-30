@@ -40,7 +40,7 @@ namespace PrimeFuncPack.Core.Tests
         public void Forward_SourceIsFailure_ExpectResultOfSourceFailure(
             Result<RefType, StructType> source)
         {
-            Result<int, StructType> next = Result.Success(PlusFifteen);
+            var next = Result<int, StructType>.Success(PlusFifteen);
             var actual = source.Forward(_ => next);
 
             var expected = new Result<int, StructType>(SomeTextStructType);
