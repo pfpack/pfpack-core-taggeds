@@ -3,6 +3,7 @@
 using NUnit.Framework;
 using PrimeFuncPack.UnitTest;
 using System;
+using System.Threading.Tasks;
 using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests
@@ -14,13 +15,18 @@ namespace PrimeFuncPack.Core.Tests
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessMinusFifteenIdRefTypeTestSource))]
-        public void Fold_MapSuccessIsNull_ExpectArgumentNullException(
+        public void FoldAsync_MapSuccessAsyncIsNull_ExpectArgumentNullException(
             Result<RefType, StructType> source)
-        {            
-            var actualException = Assert.Throws<ArgumentNullException>(
-                () => _ = source.Fold(null!, _ => new object()));
+        {
+            var failureResult = new SomeRecord
+            {
+                Text = SomeString
+            };
 
-            Assert.AreEqual("mapSuccess", actualException!.ParamName);
+            var actualException = Assert.ThrowsAsync<ArgumentNullException>(
+                async () => _ = await source.FoldAsync(null!, _ => Task.FromResult(failureResult)));
+
+            Assert.AreEqual("mapSuccessAsync", actualException!.ParamName);
         }
 
         [Test]        
@@ -28,27 +34,29 @@ namespace PrimeFuncPack.Core.Tests
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
-        public void Fold_MapFailureIsNull_ExpectArgumentNullException(
+        public void FoldAsync_MapFailureAsyncIsNull_ExpectArgumentNullException(
             Result<RefType, StructType> source)
         {
-            var actualException = Assert.Throws<ArgumentNullException>(
-                () => _ = source.Fold(_ => MinusFifteen, null!));
+            var successResult = SomeString;
 
-            Assert.AreEqual("mapFailure", actualException!.ParamName);
+            var actualException = Assert.Throws<ArgumentNullException>(
+                () => _ = source.FoldAsync(_ => Task.FromResult(successResult), null!));
+
+            Assert.AreEqual("mapFailureAsync", actualException!.ParamName);
         }
 
         [Test]        
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
-        public void Fold_SourceIsSuccess_ExpectResultOfMapSuccess(
+        public async Task FoldAsync_SourceIsSuccess_ExpectResultOfMapSuccess(
             Result<RefType, StructType> source)
         {
-            var successResult = ThreeWhiteSpacesString;
+            var successResult = (string?)null;
             var failureResult = SomeString;
 
-            var actual = source.Fold(
-                _ => successResult,
-                _ => failureResult);
+            var actual = await source.FoldAsync(
+                _ => Task.FromResult(successResult),
+                _ => Task.FromResult<string?>(failureResult));
 
             Assert.AreEqual(successResult, actual);
         }
@@ -56,22 +64,22 @@ namespace PrimeFuncPack.Core.Tests
         [Test]        
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureDefaultTestSource))]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
-        public void Fold_SourceIsDefaultOrFailure_ExpectResultOfMapFailure(
+        public async Task FoldAsync_SourceIsDefaultOrFailure_ExpectResultOfMapFailure(
             Result<RefType, StructType> source)
         {
             var successResult = new SomeRecord
             {
-                Text = SomeString
+                Text = EmptyString
             };
 
             var failureResult = new SomeRecord
             {
-                Text = ThreeWhiteSpacesString
+                Text = SomeString
             };
 
-            var actual = source.Fold(
-                _ => successResult,
-                _ => failureResult);
+            var actual = await source.FoldAsync(
+                _ => Task.FromResult(successResult),
+                _ => Task.FromResult(failureResult));
 
             Assert.AreEqual(failureResult, actual);
         }
