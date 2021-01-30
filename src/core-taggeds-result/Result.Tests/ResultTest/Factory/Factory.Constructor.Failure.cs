@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using NUnit.Framework;
 using PrimeFuncPack.UnitTest;
@@ -10,16 +10,16 @@ namespace PrimeFuncPack.Core.Tests
     partial class ResultTest
     {
         [Test]
-        public void Failure_ExpectIsSuccessReturnsFalse()
+        public void ConstructorFromFailureValue_ExpectIsSuccessReturnsFalse()
         {
-            var actual = Result<StructType, SomeError>.Failure(new SomeError(PlusFifteen));
+            var actual = new Result<RefType?, StructType>(default(StructType));
             Assert.False(actual.IsSuccess);
         }
 
         [Test]
-        public void Failure_ExpectIsFailureReturnsTrue()
+        public void ConstructorFromFailureValue_ExpectIsFailureReturnsTrue()
         {
-            var actual = Result<RefType?, StructType>.Failure(default);
+            var actual = new Result<RefType, SomeError>(new SomeError(MinusFifteen));
             Assert.True(actual.IsFailure);
         }
     }

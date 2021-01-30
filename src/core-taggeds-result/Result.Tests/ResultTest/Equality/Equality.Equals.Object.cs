@@ -20,6 +20,16 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
+        public void EqualsObject_SourceIsSuccessAndOtherIsSuccessAndValuesAreNull_ExpectTrue()
+        {
+            object? source = (Result<SomeRecord?, StructType>)null;
+            object? other = Result<SomeRecord?, StructType>.Success(null);
+
+            var actual = source.Equals(other);
+            Assert.True(actual);
+        }
+
+        [Test]
         public void EqualsObject_SourceIsSuccessAndObjectIsSuccessAndValuesAreEqual_ExpectTrue()
         {
             var text = SomeString;
@@ -27,7 +37,7 @@ namespace PrimeFuncPack.Core.Tests
             {
                 Text = text
             };
-            var source = Result<SomeRecord, SomeError>.Success(sourceValue);
+            var source = Result<SomeRecord?, SomeError>.Success(sourceValue);
 
             var objValue = new SomeRecord
             {
@@ -149,8 +159,8 @@ namespace PrimeFuncPack.Core.Tests
         [Test]
         public void EqualsObject_SourceIsFailureWithNotDefaultValueAndObjectIsDefault_ExpectFalse()
         {
-            var source = Result<RefType, StructType>.Failure(SomeTextStructType);
-            object? obj = default(Result<RefType, StructType>);
+            var source = Result<RefType?, StructType>.Failure(SomeTextStructType);
+            object? obj = default(Result<RefType?, StructType>);
 
             var actual = source.Equals(obj);
             Assert.False(actual);

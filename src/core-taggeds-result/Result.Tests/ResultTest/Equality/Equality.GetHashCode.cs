@@ -22,6 +22,18 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
+        public void GetHashCode_SourceIsSuccessAndOtherIsSuccessAndValuesAreNull_ExpectTrue()
+        {
+            Result<SomeRecord?, StructType> source = null;
+            var other = Result<SomeRecord?, StructType>.Success(null);
+
+            var sourceHashCode = source.GetHashCode();
+            var otherHashCode = other.GetHashCode();
+
+            Assert.AreEqual(sourceHashCode, otherHashCode);
+        }
+
+        [Test]
         public void GetHashCode_SourceIsSuccessAndOtherIsSuccessAndValuesAreEqual_ExpectHashCodesAreEqual()
         {
             var text = "Some new text.";
@@ -29,7 +41,7 @@ namespace PrimeFuncPack.Core.Tests
             {
                 Text = text
             };
-            var source = Result<SomeRecord, int>.Success(sourceValue);
+            var source = Result<SomeRecord?, int>.Success(sourceValue);
 
             var otherValue = new SomeRecord
             {
@@ -62,7 +74,7 @@ namespace PrimeFuncPack.Core.Tests
         public void GetHashCode_SourceIsDefaultAndOtherIsDefaultButTypesAreNotSame_ExpectHashCodesAreNotEqual()
         {
             var source = new Result<int, SomeError>();
-            var other = default(Result<decimal, SomeError>);
+            var other = default(Result<int?, SomeError>);
 
             var sourceHashCode = source.GetHashCode();
             var otherHashCode = other.GetHashCode();
