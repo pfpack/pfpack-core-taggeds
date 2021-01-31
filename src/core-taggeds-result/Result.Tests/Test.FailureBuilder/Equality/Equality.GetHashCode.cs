@@ -58,7 +58,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void GetHashCode_SourceFailureIsEqualOtherFailureAndTypesAreSame_ExpectHashCodesAreEqual()
+        public void GetHashCode_SourceFailureIsEqualToOtherFailureAndTypesAreSame_ExpectHashCodesAreEqual()
         {
             var errorCode = MinusFifteen;
 
@@ -123,7 +123,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void GetHashCode_SourceFailureIsEqualOtherFailureAndTypesAreNotSame_ExpectHashCodesAreNotEqual()
+        public void GetHashCode_SourceFailureIsEqualToOtherFailureAndTypesAreNotSame_ExpectHashCodesAreNotEqual()
         {
             var someValue = MinusFifteen;
             var source = Result.Failure(someValue);
@@ -173,7 +173,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void GetHashCode_SourceFailureIsNotEqualOtherFailureAndTypesAreSame_ExpectHashCodesAreNotEqual()
+        public void GetHashCode_SourceFailureIsNotEqualToOtherFailureAndTypesAreSame_ExpectHashCodesAreNotEqual()
         {
             var sourceFailure = new SomeError(PlusFifteen);
             var source = Result.Failure(sourceFailure);

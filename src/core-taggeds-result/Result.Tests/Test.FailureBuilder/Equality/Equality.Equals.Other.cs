@@ -50,7 +50,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void EqualsOther_SourceFailureIsEqualOtherFailure_ExpectTrue()
+        public void EqualsOther_SourceFailureIsEqualToOtherFailure_ExpectTrue()
         {
             var errorCode = PlusFifteen;
 
@@ -75,13 +75,33 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void EqualsOther_SourceFailureIsNotEqualOtherFailure_ExpectFalse()
+        public void EqualsOther_SourceFailureIsNotEqualToOtherFailure_ExpectFalse()
         {
             var sourceFailure = new SomeError(PlusFifteen);
             var source = Result.Failure(sourceFailure);
 
             var otherFailure = new SomeError(MinusFifteen);
             var other = Result.Failure(otherFailure);
+
+            var actual = source.Equals(other);
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void EqualsObject_SourceSuccessIsNullAndOtherSuccessIsNotNull_ExpectFalse()
+        {
+            var source = Result.Success<SomeRecord>(null!);
+            var other = Result.Success<SomeRecord>(new ());
+
+            var actual = source.Equals(other);
+            Assert.False(actual);
+        }
+
+        [Test]
+        public void EqualsObject_SourceSuccessIsNotNullAndOtherSuccessIsNull_ExpectFalse()
+        {
+            var source = Result.Success<RefType>(new ());
+            var other = Result.Success<RefType>(null!);
 
             var actual = source.Equals(other);
             Assert.False(actual);

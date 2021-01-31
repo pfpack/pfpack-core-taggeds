@@ -50,7 +50,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void EqualsObject_SourceFailureIsEqualOtherFailureAndTypesAreSame_ExpectTrue()
+        public void EqualsObject_SourceFailureIsEqualToOtherFailureAndTypesAreSame_ExpectTrue()
         {
             var errorCode = PlusFifteen;
 
@@ -105,7 +105,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void EqualsObject_SourceFailureIsEqualOtherFailureAndTypesAreNotSame_ExpectFalse()
+        public void EqualsObject_SourceFailureIsEqualToOtherFailureAndTypesAreNotSame_ExpectFalse()
         {
             var someValue = MinusFifteen;
             var source = Result.Failure(someValue);
@@ -144,7 +144,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void EqualsObject_SourceFailureIsNotEqualOtherFailureAndTypesAreSame_ExpectFalse()
+        public void EqualsObject_SourceFailureIsNotEqualToOtherFailureAndTypesAreSame_ExpectFalse()
         {
             var sourceFailure = new SomeError(PlusFifteen);
             var source = Result.Failure(sourceFailure);
