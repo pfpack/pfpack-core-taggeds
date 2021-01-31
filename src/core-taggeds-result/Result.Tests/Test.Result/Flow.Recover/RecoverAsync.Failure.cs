@@ -29,7 +29,7 @@ namespace PrimeFuncPack.Core.Tests
         public async Task RecoverAsyncFailure_SourceIsNullSuccess_ExpectSuccessResultOfSourceValue(
             Result<RefType?, StructType> source)
         {
-            var other = new Result<RefType?, int>(PlusFifteen);
+            var other = Result<RefType?, int>.Failure(PlusFifteen);
 
             var actual = await source.RecoverAsync(_ => Task.FromResult(other));
             Result<RefType?, int> expected = Result.Success<RefType?>(null);
@@ -42,7 +42,7 @@ namespace PrimeFuncPack.Core.Tests
         public async Task RecoverAsyncFailure_SourceIsNotNullSuccess_ExpectSuccessResultOfSourceValue(
             Result<RefType, StructType> source)
         {
-            var other = new Result<RefType, SomeError>(ZeroIdRefType);
+            var other = Result<RefType, SomeError>.Success(ZeroIdRefType);
 
             var actual = await source.RecoverAsync(_ => Task.FromResult(other));
             var expected = new Result<RefType, SomeError>(MinusFifteenIdRefType);

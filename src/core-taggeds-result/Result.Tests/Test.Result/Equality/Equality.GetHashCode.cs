@@ -22,7 +22,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void GetHashCode_SourceIsSuccessAndOtherIsSuccessAndValuesAreNull_ExpectTrue()
+        public void GetHashCode_SourceIsSuccessAndOtherIsSuccessAndValuesAreNull_ExpectHashCodesAreEqual()
         {
             Result<SomeRecord?, StructType> source = null;
             var other = Result<SomeRecord?, StructType>.Success(null);
