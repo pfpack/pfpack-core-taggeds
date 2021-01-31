@@ -27,7 +27,7 @@ namespace PrimeFuncPack.Core.Tests
             var sourceUnion = TaggedUnion<RefType?, SomeError>.Second(sourceValue);
 
             var actual = sourceUnion.ToResult();
-            var expected = new Result<RefType?, SomeError>(sourceValue);
+            var expected = Result<RefType?, SomeError>.Failure(sourceValue);
 
             Assert.AreEqual(expected, actual);
         }
@@ -38,7 +38,7 @@ namespace PrimeFuncPack.Core.Tests
             var sourceUnion = TaggedUnion<RefType?, StructType>.First(null);
 
             var actual = sourceUnion.ToResult();
-            var expected = new Result<RefType?, StructType>(null);
+            var expected = Result<RefType?, StructType>.Success(null);
 
             Assert.AreEqual(expected, actual);
         }
@@ -53,7 +53,7 @@ namespace PrimeFuncPack.Core.Tests
             var sourceUnion = TaggedUnion<SomeRecord, SomeError>.First(sourceValue);
 
             var actual = sourceUnion.ToResult();
-            var expected = new Result<SomeRecord, SomeError>(sourceValue);
+            var expected = Result<SomeRecord, SomeError>.Success(sourceValue);
 
             Assert.AreEqual(expected, actual);
         }
