@@ -15,7 +15,7 @@ namespace PrimeFuncPack.Core.Tests
             Action action = null!;
             var ex = Assert.Throws<ArgumentNullException>(() => _ = Unit.InvokeAction(action));
 
-            Assert.AreEqual("action", ex.ParamName);
+            Assert.AreEqual("action", ex!.ParamName);
         }
 
         [Test]

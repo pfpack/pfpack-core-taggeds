@@ -24,7 +24,7 @@ namespace PrimeFuncPack.Core.Tests
             var arg6 = Year2017March25H19Min31;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = action.InvokeThenToUnit(arg1, arg2, arg3, arg4, arg5, arg6));
-            Assert.AreEqual("action", ex.ParamName);
+            Assert.AreEqual("action", ex!.ParamName);
         }
 
         [Test]

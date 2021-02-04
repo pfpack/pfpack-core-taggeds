@@ -16,7 +16,7 @@ namespace PrimeFuncPack.Core.Tests
             Func<Task> funcAsync = null!;
             var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = funcAsync.InvokeThenToUnitAsync());
 
-            Assert.AreEqual("funcAsync", ex.ParamName);
+            Assert.AreEqual("funcAsync", ex!.ParamName);
         }
 
         [Test]
