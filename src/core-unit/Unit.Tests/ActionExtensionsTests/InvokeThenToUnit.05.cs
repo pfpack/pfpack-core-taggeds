@@ -23,7 +23,7 @@ namespace PrimeFuncPack.Core.Tests
             var arg5 = new { Value = PlusOneHundredPointFive };
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = action.InvokeThenToUnit(arg1, arg2, arg3, arg4, arg5));
-            Assert.AreEqual("action", ex.ParamName);
+            Assert.AreEqual("action", ex!.ParamName);
         }
 
         [Test]

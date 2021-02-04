@@ -16,7 +16,7 @@ namespace PrimeFuncPack.Core.Tests
             Func<ValueTask> funcAsync = null!;
             var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeFuncValueAsync(funcAsync).AsTask());
 
-            Assert.AreEqual("funcAsync", ex.ParamName);
+            Assert.AreEqual("funcAsync", ex!.ParamName);
         }
 
         [Test]

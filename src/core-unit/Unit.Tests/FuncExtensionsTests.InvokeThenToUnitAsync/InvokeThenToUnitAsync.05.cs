@@ -24,7 +24,7 @@ namespace PrimeFuncPack.Core.Tests
             var arg5 = new { Value = PlusTwoHundredPointFive };
 
             var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = funcAsync.InvokeThenToUnitAsync(arg1, arg2, arg3, arg4, arg5));
-            Assert.AreEqual("funcAsync", ex.ParamName);
+            Assert.AreEqual("funcAsync", ex!.ParamName);
         }
 
         [Test]

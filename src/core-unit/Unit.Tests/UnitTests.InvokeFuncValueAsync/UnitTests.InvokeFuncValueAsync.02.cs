@@ -21,7 +21,7 @@ namespace PrimeFuncPack.Core.Tests
             var arg2 = PlusFifteenIdRefType;
 
             var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeFuncValueAsync(funcAsync, arg1, arg2).AsTask());
-            Assert.AreEqual("funcAsync", ex.ParamName);
+            Assert.AreEqual("funcAsync", ex!.ParamName);
         }
 
         [Test]

@@ -30,7 +30,7 @@ namespace PrimeFuncPack.Core.Tests
             var arg11 = CustomStringStructType;
 
             var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeFuncAsync(funcAsync, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11));
-            Assert.AreEqual("funcAsync", ex.ParamName);
+            Assert.AreEqual("funcAsync", ex!.ParamName);
         }
 
         [Test]

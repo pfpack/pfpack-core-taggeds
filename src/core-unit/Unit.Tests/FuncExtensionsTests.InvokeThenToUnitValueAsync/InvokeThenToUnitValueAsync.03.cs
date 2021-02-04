@@ -22,7 +22,7 @@ namespace PrimeFuncPack.Core.Tests
             var arg3 = TabString;
 
             var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = funcAsync.InvokeThenToUnitValueAsync(arg1, arg2, arg3).AsTask());
-            Assert.AreEqual("funcAsync", ex.ParamName);
+            Assert.AreEqual("funcAsync", ex!.ParamName);
         }
 
         [Test]

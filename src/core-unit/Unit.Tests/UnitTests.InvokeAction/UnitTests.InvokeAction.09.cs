@@ -27,7 +27,7 @@ namespace PrimeFuncPack.Core.Tests
             var arg9 = ZeroIdRefType;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = Unit.InvokeAction(action, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9));
-            Assert.AreEqual("action", ex.ParamName);
+            Assert.AreEqual("action", ex!.ParamName);
         }
 
         [Test]

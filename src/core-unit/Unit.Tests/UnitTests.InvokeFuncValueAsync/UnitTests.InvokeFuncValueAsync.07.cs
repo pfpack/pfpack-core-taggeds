@@ -26,7 +26,7 @@ namespace PrimeFuncPack.Core.Tests
             var arg7 = NullTextStructType;
 
             var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeFuncValueAsync(funcAsync, arg1, arg2, arg3, arg4, arg5, arg6, arg7).AsTask());
-            Assert.AreEqual("funcAsync", ex.ParamName);
+            Assert.AreEqual("funcAsync", ex!.ParamName);
         }
 
         [Test]

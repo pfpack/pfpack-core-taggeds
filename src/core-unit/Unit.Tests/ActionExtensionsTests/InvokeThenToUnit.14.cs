@@ -32,7 +32,7 @@ namespace PrimeFuncPack.Core.Tests
             var arg14 = MinusFifteenIdRefType;
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = action.InvokeThenToUnit(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14));
-            Assert.AreEqual("action", ex.ParamName);
+            Assert.AreEqual("action", ex!.ParamName);
         }
 
         [Test]

@@ -19,7 +19,7 @@ namespace PrimeFuncPack.Core.Tests
 
             var ex = Assert.Throws<ArgumentNullException>(() => _ = Unit.InvokeAction(action, arg));
 
-            Assert.AreEqual("action", ex.ParamName);
+            Assert.AreEqual("action", ex!.ParamName);
         }
 
         [Test]
