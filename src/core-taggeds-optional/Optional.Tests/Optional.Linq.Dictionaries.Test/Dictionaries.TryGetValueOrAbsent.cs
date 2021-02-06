@@ -14,7 +14,7 @@ namespace PrimeFuncPack.Core.Tests
         [Test]
         public void TryGetValueOrAbsent_ExpectIsObsolete()
         {
-            const string expectedObsoleteMessage = "This method is obsolete. Call GetValueOrAbsent instead.";
+            const string expectedObsoleteMessage = "This method is not intended for use. Call GetValueOrAbsent instead.";
 
             IReadOnlyCollection<MethodInfo> methods = typeof(OptionalLinqDictionariesExtensions)
                 .GetMethods(BindingFlags.Public | BindingFlags.Static)
