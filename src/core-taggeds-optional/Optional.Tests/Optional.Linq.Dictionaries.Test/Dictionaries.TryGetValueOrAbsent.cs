@@ -14,6 +14,8 @@ namespace PrimeFuncPack.Core.Tests
         [Test]
         public void TryGetValueOrAbsent_ExpectIsObsolete()
         {
+            const string expectedObsoleteMessage = "This method is obsolete. Call GetValueOrAbsent instead.";
+
             IReadOnlyCollection<MethodInfo> methods = typeof(OptionalLinqDictionariesExtensions)
                 .GetMethods(BindingFlags.Public | BindingFlags.Static)
                 .Where(method => method.Name == nameof(OptionalLinqDictionariesExtensions.TryGetValueOrAbsent))
@@ -28,6 +30,8 @@ namespace PrimeFuncPack.Core.Tests
                         =>
                         attr.AttributeType == typeof(ObsoleteAttribute) &&
                         attr.ConstructorArguments.Count == 2 &&
+                        attr.ConstructorArguments[0].ArgumentType == typeof(string) &&
+                        attr.ConstructorArguments[0].Value is expectedObsoleteMessage &&
                         attr.ConstructorArguments[1].ArgumentType == typeof(bool) &&
                         attr.ConstructorArguments[1].Value is true)));
 
