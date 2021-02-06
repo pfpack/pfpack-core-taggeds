@@ -2,22 +2,34 @@
 
 using NUnit.Framework;
 using System;
-using static PrimeFuncPack.UnitTest.TestData;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Reflection;
 
 namespace PrimeFuncPack.Core.Tests
 {
     partial class UnitTests
     {
         [Test]
-        [TestCase(true)]
-        [TestCase(false)]
-        public void FromResult_ExpectUnitValue(
-            bool isResultNull)
+        public void FromResult_ExpectIsObsolete()
         {
-            var result = isResultNull ? null : MinusFifteenIdRefType;
-            var actual = Unit.FromResult(result);
+            var toResultMethodInfo = typeof(Unit).GetMethod(
+                nameof(Unit.FromResult),
+                bindingAttr: BindingFlags.Public | BindingFlags.Static);
 
-            Assert.AreEqual(Unit.Value, actual);
+            Assert.IsNotNull(toResultMethodInfo);
+
+            Assert.IsTrue(
+                toResultMethodInfo!.CustomAttributes.Any(
+                    data =>
+                    data.AttributeType == typeof(ObsoleteAttribute) &&
+                    data.ConstructorArguments.Count == 2 &&
+                    data.ConstructorArguments[1].ArgumentType == typeof(bool) &&
+                    data.ConstructorArguments[1].Value is true));
+
+            Assert.IsTrue(
+                toResultMethodInfo!.CustomAttributes.Any(
+                    data => data.AttributeType == typeof(DoesNotReturnAttribute)));
         }
     }
 }

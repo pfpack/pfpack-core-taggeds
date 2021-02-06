@@ -6,6 +6,6 @@ namespace System
     {
         public static Unit ToUnit<TResult>(this TResult result)
             =>
-            Unit.FromResult(result);
+            Unit.From(result);
     }
 }
