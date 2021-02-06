@@ -6,18 +6,18 @@ namespace System
     {
         public static Unit InvokeThenToUnit(this Action action)
             =>
-            Unit.InvokeAction(action);
+            Unit.Invoke(action);
 
         public static Unit InvokeThenToUnit<T>(this Action<T> action, T obj)
             =>
-            Unit.InvokeAction(action, obj);
+            Unit.Invoke(action, obj);
 
         public static Unit InvokeThenToUnit<T1, T2>(
             this Action<T1, T2> action,
             T1 arg1,
             T2 arg2)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2);
@@ -28,7 +28,7 @@ namespace System
             T2 arg2,
             T3 arg3)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2,
@@ -41,7 +41,7 @@ namespace System
             T3 arg3,
             T4 arg4)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2,
@@ -56,7 +56,7 @@ namespace System
             T4 arg4,
             T5 arg5)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2,
@@ -73,7 +73,7 @@ namespace System
             T5 arg5,
             T6 arg6)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2,
@@ -92,7 +92,7 @@ namespace System
             T6 arg6,
             T7 arg7)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2,
@@ -113,7 +113,7 @@ namespace System
             T7 arg7,
             T8 arg8)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2,
@@ -136,7 +136,7 @@ namespace System
             T8 arg8,
             T9 arg9)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2,
@@ -161,7 +161,7 @@ namespace System
             T9 arg9,
             T10 arg10)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2,
@@ -188,7 +188,7 @@ namespace System
             T10 arg10,
             T11 arg11)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2,
@@ -217,7 +217,7 @@ namespace System
             T11 arg11,
             T12 arg12)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2,
@@ -248,7 +248,7 @@ namespace System
             T12 arg12,
             T13 arg13)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2,
@@ -281,7 +281,7 @@ namespace System
             T13 arg13,
             T14 arg14)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2,
@@ -316,7 +316,7 @@ namespace System
             T14 arg14,
             T15 arg15)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2,
@@ -353,7 +353,7 @@ namespace System
             T15 arg15,
             T16 arg16)
             =>
-            Unit.InvokeAction(
+            Unit.Invoke(
                 action,
                 arg1,
                 arg2,
