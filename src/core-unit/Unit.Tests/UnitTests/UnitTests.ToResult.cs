@@ -14,7 +14,7 @@ namespace PrimeFuncPack.Core.Tests
         [Test]
         public void ToResult_ExpectIsObsolete()
         {
-            IReadOnlyList<MethodInfo> methods = typeof(Unit)
+            IReadOnlyCollection<MethodInfo> methods = typeof(Unit)
                 .GetMethods(BindingFlags.Public | BindingFlags.Static)
                 .Where(method => method.Name == nameof(Unit.ToResult))
                 .ToArray();
