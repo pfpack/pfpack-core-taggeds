@@ -13,9 +13,9 @@ namespace PrimeFuncPack.Core.Tests
     partial class UnitTests
     {
         [Test]
-        public void InvokeFuncAsync_13_FuncIsNull_ExpectArgumentNullException()
+        public void InvokeAsync_15_FuncIsNull_ExpectArgumentNullException()
         {
-            Func<StructType, RefType, string, int, object, DateTime, StructType?, decimal, RefType, object, StructType, string, double, Task> funcAsync = null!;
+            Func<StructType, RefType, string, int, object, DateTime, StructType?, decimal, RefType, object, StructType, string, double, RefType, string, Task> funcAsync = null!;
 
             var arg1 = SomeTextStructType;
             var arg2 = PlusFifteenIdRefType;
@@ -30,15 +30,17 @@ namespace PrimeFuncPack.Core.Tests
             var arg11 = CustomStringStructType;
             var arg12 = CustomText;
             var arg13 = PlusFortyOnePointSeventyFive;
+            var arg14 = MinusFifteenIdRefType;
+            var arg15 = ThreeWhiteSpacesString;
 
-            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeFuncAsync(funcAsync, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13));
+            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeAsync(funcAsync, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15));
             Assert.AreEqual("funcAsync", ex!.ParamName);
         }
 
         [Test]
-        public async Task InvokeFuncAsync_13_ExpectCallFuncOnce()
+        public async Task InvokeAsync_15_ExpectCallFuncOnce()
         {
-            var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, int, object?, DateTime, StructType?, decimal?, RefType, object, StructType, string, double, Task>(Task.CompletedTask);
+            var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, int, object?, DateTime, StructType?, decimal?, RefType, object, StructType, string, double, object?, string, Task>(Task.CompletedTask);
 
             var arg1 = SomeTextStructType;
             var arg2 = (RefType?)null;
@@ -53,11 +55,13 @@ namespace PrimeFuncPack.Core.Tests
             var arg11 = CustomStringStructType;
             var arg12 = CustomText;
             var arg13 = PlusFortyOnePointSeventyFive;
+            var arg14 = (object?)null;
+            var arg15 = ThreeWhiteSpacesString;
 
-            var actual = await Unit.InvokeFuncAsync(mockFuncAsync.Object.Invoke, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13);
+            var actual = await Unit.InvokeAsync(mockFuncAsync.Object.Invoke, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15);
 
             Assert.AreEqual(Unit.Value, actual);
-            mockFuncAsync.Verify(a => a.Invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13), Times.Once);
+            mockFuncAsync.Verify(a => a.Invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15), Times.Once);
         }
     }
 }

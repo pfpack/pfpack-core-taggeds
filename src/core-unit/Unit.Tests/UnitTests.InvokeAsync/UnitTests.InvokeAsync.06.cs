@@ -13,9 +13,9 @@ namespace PrimeFuncPack.Core.Tests
     partial class UnitTests
     {
         [Test]
-        public void InvokeFuncAsync_07_FuncIsNull_ExpectArgumentNullException()
+        public void InvokeAsync_06_FuncIsNull_ExpectArgumentNullException()
         {
-            Func<StructType, RefType, string, int, object, DateTime, StructType?, Task> funcAsync = null!;
+            Func<StructType, RefType, string, int, object, DateTime, Task> funcAsync = null!;
 
             var arg1 = SomeTextStructType;
             var arg2 = PlusFifteenIdRefType;
@@ -23,16 +23,15 @@ namespace PrimeFuncPack.Core.Tests
             var arg4 = MinusFortyFive;
             var arg5 = new { Value = PlusTwoHundredPointFive };
             var arg6 = Year2015March11H01Min15;
-            var arg7 = NullTextStructType;
 
-            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeFuncAsync(funcAsync, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
+            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeAsync(funcAsync, arg1, arg2, arg3, arg4, arg5, arg6));
             Assert.AreEqual("funcAsync", ex!.ParamName);
         }
 
         [Test]
-        public async Task InvokeFuncAsync_07_ExpectCallFuncOnce()
+        public async Task InvokeAsync_06_ExpectCallFuncOnce()
         {
-            var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, int, object?, DateTime, StructType?, Task>(Task.CompletedTask);
+            var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, int, object?, DateTime, Task>(Task.CompletedTask);
 
             var arg1 = SomeTextStructType;
             var arg2 = (RefType?)null;
@@ -40,12 +39,11 @@ namespace PrimeFuncPack.Core.Tests
             var arg4 = MinusFortyFive;
             var arg5 = new { Value = PlusTwoHundredPointFive };
             var arg6 = Year2015March11H01Min15;
-            var arg7 = (StructType?)null;
 
-            var actual = await Unit.InvokeFuncAsync(mockFuncAsync.Object.Invoke, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+            var actual = await Unit.InvokeAsync(mockFuncAsync.Object.Invoke, arg1, arg2, arg3, arg4, arg5, arg6);
 
             Assert.AreEqual(Unit.Value, actual);
-            mockFuncAsync.Verify(a => a.Invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7), Times.Once);
+            mockFuncAsync.Verify(a => a.Invoke(arg1, arg2, arg3, arg4, arg5, arg6), Times.Once);
         }
     }
 }

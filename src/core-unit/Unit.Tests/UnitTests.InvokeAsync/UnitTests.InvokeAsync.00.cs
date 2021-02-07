@@ -11,19 +11,19 @@ namespace PrimeFuncPack.Core.Tests
     partial class UnitTests
     {
         [Test]
-        public void InvokeFuncAsync_00_FuncIsNull_ExpectArgumentNullException()
+        public void InvokeAsync_00_FuncIsNull_ExpectArgumentNullException()
         {
             Func<Task> funcAsync = null!;
-            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeFuncAsync(funcAsync));
+            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeAsync(funcAsync));
 
             Assert.AreEqual("funcAsync", ex!.ParamName);
         }
 
         [Test]
-        public async Task InvokeFuncAsync_00_ExpectCallFuncOnce()
+        public async Task InvokeAsync_00_ExpectCallFuncOnce()
         {
             var mockFuncAsync = MockFuncFactory.CreateMockFunc(Task.CompletedTask);
-            var actual = await Unit.InvokeFuncAsync(mockFuncAsync.Object.Invoke);
+            var actual = await Unit.InvokeAsync(mockFuncAsync.Object.Invoke);
 
             Assert.AreEqual(Unit.Value, actual);
             mockFuncAsync.Verify(f => f.Invoke(), Times.Once);

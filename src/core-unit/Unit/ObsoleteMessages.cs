@@ -9,5 +9,7 @@ namespace System
         public const string MethodFromResultObsolete = "This method is obsolete. Call From instead.";
 
         public const string MethodInvokeActionObsolete = "This method is obsolete. Call Invoke instead.";
+
+        public const string MethodInvokeFuncAsyncObsolete = "This method is obsolete. Call InvokeAsync instead.";
     }
 }

@@ -13,7 +13,7 @@ namespace PrimeFuncPack.Core.Tests
     partial class UnitTests
     {
         [Test]
-        public void InvokeFuncAsync_03_FuncIsNull_ExpectArgumentNullException()
+        public void InvokeAsync_03_FuncIsNull_ExpectArgumentNullException()
         {
             Func<StructType, RefType, string, Task> funcAsync = null!;
 
@@ -21,12 +21,12 @@ namespace PrimeFuncPack.Core.Tests
             var arg2 = PlusFifteenIdRefType;
             var arg3 = TabString;
 
-            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeFuncAsync(funcAsync, arg1, arg2, arg3));
+            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeAsync(funcAsync, arg1, arg2, arg3));
             Assert.AreEqual("funcAsync", ex!.ParamName);
         }
 
         [Test]
-        public async Task InvokeFuncAsync_03_ExpectCallFuncOnce()
+        public async Task InvokeAsync_03_ExpectCallFuncOnce()
         {
             var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, Task>(Task.CompletedTask);
 
@@ -34,7 +34,7 @@ namespace PrimeFuncPack.Core.Tests
             var arg2 = (RefType?)null;
             var arg3 = TabString;
 
-            var actual = await Unit.InvokeFuncAsync(mockFuncAsync.Object.Invoke, arg1, arg2, arg3);
+            var actual = await Unit.InvokeAsync(mockFuncAsync.Object.Invoke, arg1, arg2, arg3);
 
             Assert.AreEqual(Unit.Value, actual);
             mockFuncAsync.Verify(f => f.Invoke(arg1, arg2, arg3), Times.Once);
