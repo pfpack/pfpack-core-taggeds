@@ -10,19 +10,19 @@ namespace PrimeFuncPack.Core.Tests
     partial class UnitTests
     {
         [Test]
-        public void InvokeAction_00_ActionIsNull_ExpectArgumentNullException()
+        public void Invoke_00_ActionIsNull_ExpectArgumentNullException()
         {
             Action action = null!;
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = Unit.InvokeAction(action));
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = Unit.Invoke(action));
 
             Assert.AreEqual("action", ex!.ParamName);
         }
 
         [Test]
-        public void InvokeAction_00_ExpectCallActionOnce()
+        public void Invoke_00_ExpectCallActionOnce()
         {
             var mockAction = MockActionFactory.CreateMockAction();
-            var actual = Unit.InvokeAction(mockAction.Object.Invoke);
+            var actual = Unit.Invoke(mockAction.Object.Invoke);
 
             Assert.AreEqual(Unit.Value, actual);
             mockAction.Verify(a => a.Invoke(), Times.Once);

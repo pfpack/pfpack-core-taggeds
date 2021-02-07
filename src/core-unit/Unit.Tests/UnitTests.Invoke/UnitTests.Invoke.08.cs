@@ -12,9 +12,9 @@ namespace PrimeFuncPack.Core.Tests
     partial class UnitTests
     {
         [Test]
-        public void InvokeAction_07_ActionIsNull_ExpectArgumentNullException()
+        public void Invoke_08_ActionIsNull_ExpectArgumentNullException()
         {
-            Action<StructType, RefType, string, int, object, DateTime, StructType?> action = null!;
+            Action<StructType, RefType, string, int, object, DateTime, StructType?, decimal> action = null!;
 
             var arg1 = SomeTextStructType;
             var arg2 = PlusFifteenIdRefType;
@@ -23,15 +23,16 @@ namespace PrimeFuncPack.Core.Tests
             var arg5 = new { Value = PlusTwoHundredPointFive };
             var arg6 = Year2015March11H01Min15;
             var arg7 = NullTextStructType;
+            var arg8 = MinusSeventyFivePointSeven;
 
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = Unit.InvokeAction(action, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = Unit.Invoke(action, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8));
             Assert.AreEqual("action", ex!.ParamName);
         }
 
         [Test]
-        public void InvokeAction_07_ExpectCallActionOnce()
+        public void Invoke_08_ExpectCallActionOnce()
         {
-            var mockAction = MockActionFactory.CreateMockAction<StructType, RefType?, string, int, object?, DateTime, StructType?>();
+            var mockAction = MockActionFactory.CreateMockAction<StructType, RefType?, string, int, object?, DateTime, StructType?, decimal?>();
 
             var arg1 = SomeTextStructType;
             var arg2 = (RefType?)null;
@@ -40,11 +41,12 @@ namespace PrimeFuncPack.Core.Tests
             var arg5 = new { Value = PlusTwoHundredPointFive };
             var arg6 = Year2015March11H01Min15;
             var arg7 = (StructType?)null;
+            var arg8 = (decimal?)MinusSeventyFivePointSeven;
 
-            var actual = Unit.InvokeAction(mockAction.Object.Invoke, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+            var actual = Unit.Invoke(mockAction.Object.Invoke, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
 
             Assert.AreEqual(Unit.Value, actual);
-            mockAction.Verify(a => a.Invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7), Times.Once);
+            mockAction.Verify(a => a.Invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8), Times.Once);
         }
     }
 }

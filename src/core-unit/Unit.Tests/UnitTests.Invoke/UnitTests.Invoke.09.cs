@@ -12,7 +12,7 @@ namespace PrimeFuncPack.Core.Tests
     partial class UnitTests
     {
         [Test]
-        public void InvokeAction_09_ActionIsNull_ExpectArgumentNullException()
+        public void Invoke_09_ActionIsNull_ExpectArgumentNullException()
         {
             Action<StructType, RefType, string, int, object, DateTime, StructType?, decimal, RefType> action = null!;
 
@@ -26,12 +26,12 @@ namespace PrimeFuncPack.Core.Tests
             var arg8 = MinusSeventyFivePointSeven;
             var arg9 = ZeroIdRefType;
 
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = Unit.InvokeAction(action, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9));
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = Unit.Invoke(action, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9));
             Assert.AreEqual("action", ex!.ParamName);
         }
 
         [Test]
-        public void InvokeAction_09_ExpectCallActionOnce()
+        public void Invoke_09_ExpectCallActionOnce()
         {
             var mockAction = MockActionFactory.CreateMockAction<StructType, RefType?, string, int, object?, DateTime, StructType?, decimal?, RefType>();
 
@@ -45,7 +45,7 @@ namespace PrimeFuncPack.Core.Tests
             var arg8 = (decimal?)MinusSeventyFivePointSeven;
             var arg9 = ZeroIdRefType;
 
-            var actual = Unit.InvokeAction(mockAction.Object.Invoke, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+            var actual = Unit.Invoke(mockAction.Object.Invoke, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
 
             Assert.AreEqual(Unit.Value, actual);
             mockAction.Verify(a => a.Invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9), Times.Once);

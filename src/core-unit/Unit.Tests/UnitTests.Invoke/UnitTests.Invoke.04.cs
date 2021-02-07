@@ -12,7 +12,7 @@ namespace PrimeFuncPack.Core.Tests
     partial class UnitTests
     {
         [Test]
-        public void InvokeAction_04_ActionIsNull_ExpectArgumentNullException()
+        public void Invoke_04_ActionIsNull_ExpectArgumentNullException()
         {
             Action<StructType, RefType, string, int> action = null!;
 
@@ -21,12 +21,12 @@ namespace PrimeFuncPack.Core.Tests
             var arg3 = TabString;
             var arg4 = MinusFortyFive;
 
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = Unit.InvokeAction(action, arg1, arg2, arg3, arg4));
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = Unit.Invoke(action, arg1, arg2, arg3, arg4));
             Assert.AreEqual("action", ex!.ParamName);
         }
 
         [Test]
-        public void InvokeAction_04_ExpectCallActionOnce()
+        public void Invoke_04_ExpectCallActionOnce()
         {
             var mockAction = MockActionFactory.CreateMockAction<StructType, RefType?, string, int>();
 
@@ -35,7 +35,7 @@ namespace PrimeFuncPack.Core.Tests
             var arg3 = TabString;
             var arg4 = MinusFortyFive;
 
-            var actual = Unit.InvokeAction(mockAction.Object.Invoke, arg1, arg2, arg3, arg4);
+            var actual = Unit.Invoke(mockAction.Object.Invoke, arg1, arg2, arg3, arg4);
 
             Assert.AreEqual(Unit.Value, actual);
             mockAction.Verify(a => a.Invoke(arg1, arg2, arg3, arg4), Times.Once);
