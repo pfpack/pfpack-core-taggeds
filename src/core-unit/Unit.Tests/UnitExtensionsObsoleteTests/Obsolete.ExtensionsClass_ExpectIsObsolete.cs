@@ -15,7 +15,7 @@ namespace PrimeFuncPack.Core.Tests
         [TestCase("System.InvokeThenToUnitValueAsyncExtensions")]
         public void ExtensionsClass_ExpectIsObsolete(string fullName)
         {
-            var type = typeof(UnitExtensions).Assembly.GetType(
+            var type = typeof(Unit).Assembly.GetType(
                 fullName,
                 throwOnError: false,
                 ignoreCase: false);
