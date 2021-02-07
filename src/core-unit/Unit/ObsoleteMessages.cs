@@ -18,5 +18,8 @@ namespace System
 
         public const string MethodInvokeFuncValueAsyncObsolete
             = "This method is obsolete. Call InvokeValueAsync instead.";
+
+        public const string ClassExtensionsObsolete
+            = "This class is obsolete. Call UnitExtensions instead.";
     }
 }
