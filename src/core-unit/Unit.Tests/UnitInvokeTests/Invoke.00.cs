@@ -7,7 +7,7 @@ using System;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class UnitTests
+    partial class UnitInvokeTests
     {
         [Test]
         public void Invoke_00_ActionIsNull_ExpectArgumentNullException()

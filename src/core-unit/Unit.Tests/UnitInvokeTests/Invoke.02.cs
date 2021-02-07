@@ -9,7 +9,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class UnitTests
+    partial class UnitInvokeTests
     {
         [Test]
         public void Invoke_02_ActionIsNull_ExpectArgumentNullException()
