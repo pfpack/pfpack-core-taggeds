@@ -6,7 +6,7 @@ namespace System.Linq
     {
         private static class ObsoleteMessages
         {
-            public const string TryGetValueOrAbsent = "This method is obsolete. Call GetValueOrAbsent instead.";
+            public const string TryGetValueOrAbsent = "This method is not intended for use. Call GetValueOrAbsent instead.";
         }
     }
 }
