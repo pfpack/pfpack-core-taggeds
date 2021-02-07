@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace System
 {
-    partial class InvokeThenToUnitFuncAsyncExtensions
+    partial class InvokeThenToUnitAsyncExtensions
     {
         public static Task<Unit> InvokeThenToUnitAsync(this Func<Task> funcAsync)
             =>

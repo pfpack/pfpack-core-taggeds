@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public static partial class InvokeThenToUnitActionExtensions
+    public static partial class InvokeThenToUnitExtensions
     {
     }
 }

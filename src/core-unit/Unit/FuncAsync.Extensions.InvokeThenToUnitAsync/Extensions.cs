@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public static partial class InvokeThenToUnitFuncAsyncExtensions
+    public static partial class InvokeThenToUnitAsyncExtensions
     {
     }
 }
