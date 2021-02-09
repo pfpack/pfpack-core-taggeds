@@ -30,6 +30,6 @@ namespace System
 
         private static StringComparer FailureMessageStringComparer
             =>
-            StringComparer.InvariantCulture;
+            StringComparer.Ordinal;
     }
 }
