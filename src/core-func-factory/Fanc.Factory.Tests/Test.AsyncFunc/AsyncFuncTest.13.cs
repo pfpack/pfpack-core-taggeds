@@ -30,7 +30,7 @@ namespace PrimeFuncPack.Core.Tests
             var cancellationToken = new CancellationToken(canceled: false);
 
             var actualResult = await actual.InvokeAsync(
-                decimal.One, SomeTextStructType, PlusFifteenIdRefType, ZeroIdNullNameRecord, default, default, MinusFifteenIdRefType, DateTimeKind.Unspecified, null!, new object(), ThreeWhiteSpacesString, MinusFifteenIdNullNameRecord, EmptyString, cancellationToken);
+                decimal.One, SomeTextStructType, PlusFifteenIdRefType, ZeroIdNullNameRecord, default, default, MinusFifteenIdRefType, DateTimeKind.Unspecified, null!, new(), ThreeWhiteSpacesString, MinusFifteenIdNullNameRecord, EmptyString, cancellationToken);
 
             Assert.Equal(sourceFuncResult, actualResult);
         }

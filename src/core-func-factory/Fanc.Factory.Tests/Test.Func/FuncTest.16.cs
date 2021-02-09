@@ -26,7 +26,7 @@ namespace PrimeFuncPack.Core.Tests
                 (_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _) => sourceFuncResult);
 
             var actualResult = actual.Invoke(
-                PlusFifteen, default, EmptyString, null, SomeString, MinusFifteenIdRefType, SomeTextStructType, new object(), int.MaxValue, decimal.MinusOne, LowerSomeString, long.MinValue, null, MinusFifteenIdNullNameRecord, byte.MaxValue, null);
+                PlusFifteen, default, EmptyString, null, SomeString, MinusFifteenIdRefType, SomeTextStructType, new(), int.MaxValue, decimal.MinusOne, LowerSomeString, long.MinValue, null, MinusFifteenIdNullNameRecord, byte.MaxValue, null);
 
             Assert.Equal(sourceFuncResult, actualResult);
         }

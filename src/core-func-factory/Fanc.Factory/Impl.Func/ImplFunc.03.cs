@@ -12,8 +12,7 @@ namespace System
             this.func = func;
 
         public TResult Invoke(T1 arg1, T2 arg2, T3 arg3)
-        {
-            throw new NotImplementedException();
-        }
+            =>
+            func.Invoke(arg1, arg2, arg3);
     }
 }

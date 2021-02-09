@@ -12,25 +12,25 @@ namespace PrimeFuncPack.Core.Tests
     partial class AsyncFuncTest
     {
         [Fact]
-        public void Create_09_SourceFuncIsNull_ExpectArgumentNullException()
+        public void Create_03_SourceFuncIsNull_ExpectArgumentNullException()
         {
-            var sourceFunc = (Func<long, RefType?, StructType, RecordType, DateTimeOffset, int?, RecordType?, object?, RefType, CancellationToken, ValueTask<object?>>)null!;
+            var sourceFunc = (Func<RecordType?, StructType, string, CancellationToken, ValueTask<RefType?>>)null!;
             var ex = Assert.Throws<ArgumentNullException>(() => _ = Func.Create(sourceFunc));
             Assert.Equal("func", ex.ParamName);
         }
 
         [Theory]
         [MemberData(nameof(TestEntitySource.StructTypes), MemberType = typeof(TestEntitySource))]
-        public async Task Create_09_ThenInvokeAsync_ExpectResultOfSourceFunc(
+        public async Task Create_03_ThenInvokeAsync_ExpectResultOfSourceFunc(
             StructType sourceFuncResult)
         {
-            var actual = Func.Create<RecordType, RefType, int, object?, StructType, string, RecordType?, string?, RefType?, StructType>(
-                (_, _, _, _, _, _, _, _, _, _) => ValueTask.FromResult(sourceFuncResult));
+            var actual = Func.Create<string?, RefType, RecordType?, StructType>(
+                (_, _, _, _) => ValueTask.FromResult(sourceFuncResult));
 
             var cancellationToken = new CancellationToken(canceled: false);
 
             var actualResult = await actual.InvokeAsync(
-                ZeroIdNullNameRecord, MinusFifteenIdRefType, MinusFifteen, new(), default, SomeString, null, WhiteSpaceString, MinusFifteenIdRefType, cancellationToken);
+                LowerSomeString, ZeroIdRefType, PlusFifteenIdLowerSomeStringNameRecord, cancellationToken);
 
             Assert.Equal(sourceFuncResult, actualResult);
         }

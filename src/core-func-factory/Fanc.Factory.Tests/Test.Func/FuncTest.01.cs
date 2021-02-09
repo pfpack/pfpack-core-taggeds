@@ -24,7 +24,7 @@ namespace PrimeFuncPack.Core.Tests
             var actual = Func.Create<object, StructType>(
                 _ => sourceFuncResult);
 
-            var actualResult = actual.Invoke(new object());
+            var actualResult = actual.Invoke(new());
             Assert.Equal(sourceFuncResult, actualResult);
         }
     }

@@ -10,6 +10,7 @@ namespace System
         public static IAsyncFunc<TResult> Create<TResult>(
             Func<CancellationToken, ValueTask<TResult>> func)
             =>
-            throw new NotImplementedException();
+            new ImplAsyncFunc<TResult>(
+                func ?? throw new ArgumentNullException(nameof(func)));
     }
 }

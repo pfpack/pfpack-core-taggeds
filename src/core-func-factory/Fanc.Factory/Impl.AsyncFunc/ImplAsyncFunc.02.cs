@@ -15,8 +15,7 @@ namespace System
             this.func = func;
 
         public ValueTask<TResult> InvokeAsync(T1 arg1, T2 arg2, CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
+            =>
+            func.Invoke(arg1, arg2, cancellationToken);
     }
 }

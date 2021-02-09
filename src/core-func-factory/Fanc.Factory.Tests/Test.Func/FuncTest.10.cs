@@ -30,7 +30,7 @@ namespace PrimeFuncPack.Core.Tests
                 (_, _, _, _, _, _, _, _, _, _) => sourceFuncResult);
 
             var actualResult = actual.Invoke(
-                null, default, LowerSomeString, PlusFifteenIdRefType, SomeTextStructType, new object(), null, null!, byte.MaxValue, DateTimeKind.Unspecified);
+                null, default, LowerSomeString, PlusFifteenIdRefType, SomeTextStructType, new(), null, null!, byte.MaxValue, DateTimeKind.Unspecified);
 
             Assert.Equal(sourceFuncResult, actualResult);
         }
