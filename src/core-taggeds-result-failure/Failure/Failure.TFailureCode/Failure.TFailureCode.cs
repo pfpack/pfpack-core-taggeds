@@ -14,8 +14,14 @@ namespace System
         public Failure(
             TFailureCode failureCode,
             [AllowNull] string failureMessage)
-            =>
-            (this.failureCode, this.failureMessage) = (failureCode, failureMessage ?? string.Empty);
+        {
+            this.failureCode = failureCode;
+            this.failureMessage = failureMessage switch
+            {
+                "" => null,
+                _ => failureMessage
+            };
+        }
 
         public TFailureCode FailureCode
             =>
