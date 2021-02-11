@@ -7,6 +7,6 @@ namespace System
 {
     public interface IAsyncFunc<TResult>
     {
-        ValueTask<TResult> InvokeAsync(CancellationToken cancellationToken);
+        ValueTask<TResult> InvokeAsync(CancellationToken cancellationToken = default);
     }
 }

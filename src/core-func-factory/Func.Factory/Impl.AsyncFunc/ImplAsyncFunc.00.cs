@@ -14,7 +14,7 @@ namespace System
             =>
             this.funcAsync = funcAsync;
 
-        public ValueTask<TResult> InvokeAsync(CancellationToken cancellationToken)
+        public ValueTask<TResult> InvokeAsync(CancellationToken cancellationToken = default)
             =>
             funcAsync.Invoke(cancellationToken);
     }
