@@ -14,7 +14,7 @@ namespace System
             =>
             this.funcAsync = funcAsync;
 
-        public ValueTask<TResult> InvokeAsync(T1 arg1, T2 arg2, CancellationToken cancellationToken)
+        public ValueTask<TResult> InvokeAsync(T1 arg1, T2 arg2, CancellationToken cancellationToken = default)
             =>
             funcAsync.Invoke(arg1, arg2, cancellationToken);
     }
