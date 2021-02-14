@@ -14,7 +14,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(Zero)]
         [InlineData(PlusFifteen)]
         [InlineData(int.MaxValue)]
-        public void Create_SourceFailureMessageIsNull_ExpactFailureCodeIsSameAsSourceAndFailureMessageIsEmpty(
+        public void Create_SourceFailureMessageIsNull_ExpectFailureCodeIsEqualToSourceAndMessageIsEmpty(
             int sourceFailureCode)
         {
             var actual = Failure.Create(sourceFailureCode, null);
@@ -34,7 +34,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(SomeFailureCode.Second, LowerSomeString)]
         [InlineData(SomeFailureCode.First, SomeString)]
         [InlineData(SomeFailureCode.Third, UpperSomeString)]
-        public void Create_SourceFailureMessageIsNotNull_ExpactFailureCodeAndMessageAreSameAsSource(
+        public void Create_SourceFailureMessageIsNotNull_ExpectFailureCodeAndMessageAreEqualToSource(
             SomeFailureCode sourceFailureCode,
             string sourceFailureMessage)
         {

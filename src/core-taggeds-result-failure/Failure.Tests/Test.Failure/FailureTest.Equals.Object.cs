@@ -9,7 +9,7 @@ namespace PrimeFuncPack.Core.Tests
     partial class FailureTest
     {
         [Fact]
-        public void EqualsObject_SourceIsDefaultAndObjectIsDefaultFailureSameType_ExpectTrue()
+        public void EqualsObject_SourceIsDefaultAndObjIsDefaultFailureSameType_ExpectTrue()
         {
             var source = default(Failure<SomeFailureCode>);
             object? obj = new Failure<SomeFailureCode>();
@@ -21,7 +21,7 @@ namespace PrimeFuncPack.Core.Tests
         [Theory]
         [InlineData(null)]
         [InlineData(EmptyString)]
-        public void EqualsObject_SourceIsDefaultAndObjectCodeIsDefaultAndObjectMessageIsNullOrEmptyAndTypesAreSame_ExpectTrue(
+        public void EqualsObject_SourceIsDefaultAndObjCodeIsDefaultAndObjMessageIsNullOrEmptyAndTypesAreSame_ExpectTrue(
             string? failureMessage)
         {
             var source = new Failure<long>();
@@ -34,7 +34,7 @@ namespace PrimeFuncPack.Core.Tests
         [Theory]
         [InlineData(null)]
         [InlineData(EmptyString)]
-        public void EqualsObject_SourceCodeIsDefaultAndSourceMessageIsNullOrEmptyAndObjectIsDefaultAndTypesAreSame_ExpectTrue(
+        public void EqualsObject_SourceCodeIsDefaultAndSourceMessageIsNullOrEmptyAndObjIsDefaultAndTypesAreSame_ExpectTrue(
             string? failureMessage)
         {
             var source = new Failure<int>(default, failureMessage);
@@ -51,7 +51,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(Zero, EmptyString, EmptyString)]
         [InlineData(MinusFifteen, LowerSomeString, LowerSomeString)]
         [InlineData(int.MaxValue, SomeString, SomeString)]
-        public void EqualsObject_SourceCodeIsSameAsObjectCodeIsDefaultAndMessagesAreNullOrEmptyAndTypesAreSame_ExpectTrue(
+        public void EqualsObject_SourceCodeIsEqualToObjCodeAndMessagesAreNullOrEmptyAndTypesAreSame_ExpectTrue(
             int failureCode,
             string? sourceMessage,
             string? objMessage)
@@ -75,7 +75,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(SomeFailureCode.Third, TabString)]
         [InlineData(SomeFailureCode.Second, LowerSomeString)]
         [InlineData(SomeFailureCode.First, SomeString)]
-        public void EqualsObject_ObjectIsNull_ExpectFalse(
+        public void EqualsObject_ObjIsNull_ExpectFalse(
             SomeFailureCode failureCode,
             string? failureMessage)
         {
@@ -86,7 +86,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Fact]
-        public void EqualsObject_SourceIsDefaultAndObjectIsDefaultFailureNotSameType_ExpectFalse()
+        public void EqualsObject_SourceIsDefaultAndObjIsDefaultFailureNotSameType_ExpectFalse()
         {
             var source = default(Failure<SomeFailureCode>);
             object? obj = default(Failure<int>);
@@ -98,7 +98,7 @@ namespace PrimeFuncPack.Core.Tests
         [Theory]
         [InlineData(null)]
         [InlineData(EmptyString)]
-        public void EqualsObject_SourceIsDefaultAndObjectCodeIsDefaultAndObjectMessageIsNullOrEmptyAndTypesAreNotSame_ExpectFalse(
+        public void EqualsObject_SourceIsDefaultAndObjCodeIsDefaultAndObjMessageIsNullOrEmptyAndTypesAreNotSame_ExpectFalse(
             string? failureMessage)
         {
             var source = new Failure<int>();
@@ -111,7 +111,7 @@ namespace PrimeFuncPack.Core.Tests
         [Theory]
         [InlineData(null)]
         [InlineData(EmptyString)]
-        public void EqualsObject_SourceCodeIsDefaultAndSourceMessageIsNullOrEmptyAndObjectIsDefaultAndTypesAreNotSame_ExpectFalse(
+        public void EqualsObject_SourceCodeIsDefaultAndSourceMessageIsNullOrEmptyAndObjIsDefaultAndTypesAreNotSame_ExpectFalse(
             string? failureMessage)
         {
             var source = new Failure<SomeFailureCode>(default, failureMessage);
@@ -128,7 +128,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(Zero, EmptyString, EmptyString)]
         [InlineData(MinusFifteen, LowerSomeString, LowerSomeString)]
         [InlineData(int.MaxValue, SomeString, SomeString)]
-        public void EqualsObject_SourceCodeIsSameAsObjectCodeIsDefaultAndMessagesAreNullOrEmptyAndTypesAreNotSame_ExpectFalse(
+        public void EqualsObject_SourceCodeIsSameAsObjCodeIsDefaultAndMessagesAreNullOrEmptyAndTypesAreNotSame_ExpectFalse(
             int failureCode,
             string? sourceMessage,
             string? objMessage)
@@ -144,7 +144,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(PlusFifteen, null)]
         [InlineData(Zero, ThreeWhiteSpacesString)]
         [InlineData(Zero, TabString)]
-        public void EqualsObject_SourceIsDefaultAndObjectCodeIsNotDefaultOrObjectMessageIsNotEmptyAndTypesAreNotSame_ExpectFalse(
+        public void EqualsObject_SourceIsDefaultAndObjCodeIsNotDefaultOrObjMessageIsNotEmptyAndTypesAreNotSame_ExpectFalse(
             int objCode,
             string? objMessage)
         {
@@ -160,7 +160,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(MinusFifteen, WhiteSpaceString)]
         [InlineData(PlusFifteen, TabString)]
         [InlineData(int.MinValue, SomeString)]
-        public void EqualsObject_SourceCodeIsNotDefaultOrSourceMessageIsNotEmptyAndObjectIsDefaultAndTypesAreNotSame_ExpectFalse(
+        public void EqualsObject_SourceCodeIsNotDefaultOrSourceMessageIsNotEmptyAndObjIsDefaultAndTypesAreNotSame_ExpectFalse(
             int sourceCode,
             string? sourceMessage)
         {
@@ -178,7 +178,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(SomeFailureCode.Unknown, LowerSomeString, SomeFailureCode.Unknown, SomeString)]
         [InlineData(SomeFailureCode.Second, SomeString, SomeFailureCode.Unknown, SomeString)]
         [InlineData(SomeFailureCode.Third, UpperSomeString, SomeFailureCode.First, UpperSomeString)]
-        public void EqualsObject_SourceCodeIsNotEqualObjectCodeAndSourceMessageIsNotEqualObjectMessageAndTypesAreSame_ExpectFalse(
+        public void EqualsObject_SourceCodeIsNotEqualToObjCodeAndSourceMessageIsNotEqualToObjMessageAndTypesAreSame_ExpectFalse(
             SomeFailureCode sourceCode, string? sourceMessage,
             SomeFailureCode objCode, string? objMessage)
         {

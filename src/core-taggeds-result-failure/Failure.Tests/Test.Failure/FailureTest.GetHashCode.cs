@@ -57,7 +57,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(SomeFailureCode.Unknown, WhiteSpaceString, WhiteSpaceString)]
         [InlineData(SomeFailureCode.Second, UpperSomeString, UpperSomeString)]
         [InlineData(SomeFailureCode.First, SomeString, SomeString)]
-        public void GetHashCode_FirstCodeIsSameAsSecondCodeIsDefaultAndMessagesAreNullOrEmpty_ExpectHashCodesAreEqual(
+        public void GetHashCode_FirstCodeIsEqualToSecondCodeAndMessagesAreNullOrEmpty_ExpectHashCodesAreEqual(
             SomeFailureCode failureCode,
             string? firstMessage,
             string? secondMessage)
@@ -112,7 +112,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(SomeFailureCode.Second, WhiteSpaceString, SomeFailureCode.Second, TabString)]
         [InlineData(SomeFailureCode.First, SomeString, SomeFailureCode.Unknown, SomeString)]
         [InlineData(SomeFailureCode.Second, UpperSomeString, SomeFailureCode.First, UpperSomeString)]
-        public void GetHashCode_FirstCodeIsNotEqualSecondCodeAndFirstMessageIsNotEqualSecondMessage_ExpectHashCodesAreNotEqual(
+        public void GetHashCode_FirstCodeIsNotEqualToSecondOneAndFirstMessageIsNotEqualToSecondOne_ExpectHashCodesAreNotEqual(
             SomeFailureCode firstCode, string? firstMessage,
             SomeFailureCode secondCode, string? secondMessage)
         {
