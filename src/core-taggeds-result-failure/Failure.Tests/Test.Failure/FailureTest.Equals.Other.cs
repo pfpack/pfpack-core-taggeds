@@ -52,7 +52,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(SomeFailureCode.Unknown, EmptyString, EmptyString)]
         [InlineData(SomeFailureCode.First, LowerSomeString, LowerSomeString)]
         [InlineData(SomeFailureCode.Second, SomeString, SomeString)]
-        public void EqualsOther_SourceCodeIsSameAsOtherCodeIsDefaultAndSourceMessagesAreNullOrEmpty_ExpectTrue(
+        public void EqualsOther_SourceCodeIsEqualToOtherCodeAndMessagesAreNullOrEmpty_ExpectTrue(
             SomeFailureCode failureCode,
             string? sourceMessage,
             string? otherMessage)
@@ -101,7 +101,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(PlusFifteen, WhiteSpaceString, PlusFifteen, TabString)]
         [InlineData(Zero, SomeString, MinusFifteen, SomeString)]
         [InlineData(PlusFifteen, UpperSomeString, MinusFifteen, UpperSomeString)]
-        public void EqualsOther_SourceCodeIsNotEqualOtherCodeAndSourceMessageIsNotEqualOtherMessage_ExpectFalse(
+        public void EqualsOther_SourceCodeIsNotEqualToOtherCodeAndSourceMessageIsNotEqualToOtherMessage_ExpectFalse(
             int sourceCode, string? sourceMessage,
             int otherCode, string? otherMessage)
         {

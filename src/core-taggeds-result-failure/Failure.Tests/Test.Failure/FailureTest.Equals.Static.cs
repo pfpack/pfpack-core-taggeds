@@ -21,7 +21,7 @@ namespace PrimeFuncPack.Core.Tests
         [Theory]
         [InlineData(null)]
         [InlineData(EmptyString)]
-        public void EqualsStatic_FailureAIsDefaultAndFailureBCodeIsDefaultAndFailueBMessageIsNullOrEmpty_ExpectTrue(
+        public void EqualsStatic_FailureAIsDefaultAndFailureBCodeIsDefaultAndFailureBMessageIsNullOrEmpty_ExpectTrue(
             string? failureMessage)
         {
             var failureA = new Failure<int>();
@@ -34,7 +34,7 @@ namespace PrimeFuncPack.Core.Tests
         [Theory]
         [InlineData(null)]
         [InlineData(EmptyString)]
-        public void EqualsStatic_FailureACodeIsDefaultAndFailueAMessageIsNullOrEmptyAndFailureBIsDefault_ExpectTrue(
+        public void EqualsStatic_FailureACodeIsDefaultAndFailureAMessageIsNullOrEmptyAndFailureBIsDefault_ExpectTrue(
             string? failureMessage)
         {
             var failureA = new Failure<SomeFailureCode>(SomeFailureCode.Unknown, failureMessage);
@@ -51,13 +51,13 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(Zero, EmptyString, EmptyString)]
         [InlineData(PlusFifteen, LowerSomeString, LowerSomeString)]
         [InlineData(MinusFifteen, SomeString, SomeString)]
-        public void EqualsStatic_FailureACodeIsSameAsFailureBCodeIsDefaultAndFailueAMessagesAreNullOrEmpty_ExpectTrue(
-            int failueCode,
+        public void EqualsStatic_FailureACodeIsEqualToFailureBCodeAndMessagesAreNullOrEmpty_ExpectTrue(
+            int failureCode,
             string? failureAMessage,
             string? failureBMessage)
         {
-            var failureA = new Failure<int>(failueCode, failureAMessage);
-            var failureB = new Failure<int>(failueCode, failureBMessage);
+            var failureA = new Failure<int>(failureCode, failureAMessage);
+            var failureB = new Failure<int>(failureCode, failureBMessage);
 
             var actual = Failure<int>.Equals(failureA, failureB);
             Assert.True(actual);
@@ -67,7 +67,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(SomeFailureCode.First, null)]
         [InlineData(SomeFailureCode.Unknown, WhiteSpaceString)]
         [InlineData(SomeFailureCode.Unknown, TabString)]
-        public void EqualsStatic_FailureAIsDefaultAndFailureBCodeIsNotDefaultOrFailueBMessageIsNotEmpty_ExpectFalse(
+        public void EqualsStatic_FailureAIsDefaultAndFailureBCodeIsNotDefaultOrFailureBMessageIsNotEmpty_ExpectFalse(
             SomeFailureCode failureBCode,
             string? failureBMessage)
         {
@@ -82,7 +82,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(PlusFifteen, null)]
         [InlineData(Zero, WhiteSpaceString)]
         [InlineData(Zero, TabString)]
-        public void EqualsStatic_FailureACodeIsNotDefaultOrFailueAMessageIsNotEmptyAndFailureBIsDefault_ExpectFalse(
+        public void EqualsStatic_FailureACodeIsNotDefaultOrFailureAMessageIsNotEmptyAndFailureBIsDefault_ExpectFalse(
             int failureACode,
             string? failureAMessage)
         {
@@ -100,7 +100,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(SomeFailureCode.Second, WhiteSpaceString, SomeFailureCode.Second, TabString)]
         [InlineData(SomeFailureCode.First, SomeString, SomeFailureCode.Unknown, SomeString)]
         [InlineData(SomeFailureCode.Second, UpperSomeString, SomeFailureCode.First, UpperSomeString)]
-        public void EqualsStatic_FailureACodeIsNotEqualFailureBCodeAndFailureAMessageIsNotEqualFailureBMessage_ExpectFalse(
+        public void EqualsStatic_FailureACodeIsNotEqualToFailureBCodeAndFailureAMessageIsNotEqualToFailureBMessage_ExpectFalse(
             SomeFailureCode failureACode, string? failureAMessage,
             SomeFailureCode failureBCode, string? failureBMessage)
         {

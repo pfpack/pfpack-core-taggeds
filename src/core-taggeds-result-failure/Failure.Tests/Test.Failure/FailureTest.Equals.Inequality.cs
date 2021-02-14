@@ -22,7 +22,7 @@ namespace PrimeFuncPack.Core.Tests
         [Theory]
         [InlineData(null)]
         [InlineData(EmptyString)]
-        public void Inequality_FailureAIsDefaultAndFailureBCodeIsDefaultAndFailueBMessageIsNullOrEmpty_ExpectFalse(
+        public void Inequality_FailureAIsDefaultAndFailureBCodeIsDefaultAndFailureBMessageIsNullOrEmpty_ExpectFalse(
             string? failureMessage)
         {
             var failureA = new Failure<StructType>();
@@ -35,7 +35,7 @@ namespace PrimeFuncPack.Core.Tests
         [Theory]
         [InlineData(null)]
         [InlineData(EmptyString)]
-        public void Inequality_FailureACodeIsDefaultAndFailueAMessageIsNullOrEmptyAndFailureBIsDefault_ExpectFalse(
+        public void Inequality_FailureACodeIsDefaultAndFailureAMessageIsNullOrEmptyAndFailureBIsDefault_ExpectFalse(
             string? failureMessage)
         {
             var failureA = new Failure<decimal>(default, failureMessage);
@@ -52,13 +52,13 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(SomeFailureCode.Unknown, EmptyString, EmptyString)]
         [InlineData(SomeFailureCode.First, UpperSomeString, UpperSomeString)]
         [InlineData(SomeFailureCode.Third, SomeString, SomeString)]
-        public void Inequality_FailureACodeIsSameAsFailureBCodeIsDefaultAndFailueAMessagesAreNullOrEmpty_ExpectFalse(
-            SomeFailureCode failueCode,
+        public void Inequality_FailureACodeIsEqualToFailureBCodeAndMessagesAreNullOrEmpty_ExpectFalse(
+            SomeFailureCode failureCode,
             string? failureAMessage,
             string? failureBMessage)
         {
-            var failureA = new Failure<SomeFailureCode>(failueCode, failureAMessage);
-            var failureB = new Failure<SomeFailureCode>(failueCode, failureBMessage);
+            var failureA = new Failure<SomeFailureCode>(failureCode, failureAMessage);
+            var failureB = new Failure<SomeFailureCode>(failureCode, failureBMessage);
 
             var actual = failureA != failureB;
             Assert.False(actual);
@@ -69,7 +69,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(Zero, WhiteSpaceString)]
         [InlineData(Zero, TabString)]
         [InlineData(Zero, LowerSomeString)]
-        public void Inequality_FailureAIsDefaultAndFailureBCodeIsNotDefaultOrFailueBMessageIsNotEmpty_ExpectTrue(
+        public void Inequality_FailureAIsDefaultAndFailureBCodeIsNotDefaultOrFailureBMessageIsNotEmpty_ExpectTrue(
             int failureBCode,
             string? failureBMessage)
         {
@@ -86,7 +86,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(Zero, TabString)]
         [InlineData(Zero, SomeString)]
         [InlineData(long.MinValue, LowerSomeString)]
-        public void Inequality_FailureACodeIsNotDefaultOrFailueAMessageIsNotEmptyAndFailureBIsDefault_ExpectTrue(
+        public void Inequality_FailureACodeIsNotDefaultOrFailureAMessageIsNotEmptyAndFailureBIsDefault_ExpectTrue(
             long failureACode,
             string? failureAMessage)
         {
@@ -104,7 +104,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(SomeFailureCode.First, WhiteSpaceString, SomeFailureCode.First, TabString)]
         [InlineData(SomeFailureCode.Unknown, SomeString, SomeFailureCode.Second, SomeString)]
         [InlineData(SomeFailureCode.Third, UpperSomeString, SomeFailureCode.First, UpperSomeString)]
-        public void Inequality_FailureACodeIsNotEqualFailureBCodeAndFailureAMessageIsNotEqualFailureBMessage_ExpectTrue(
+        public void Inequality_FailureACodeIsNotEqualToFailureBCodeAndFailureAMessageIsNotEqualToFailureBMessage_ExpectTrue(
             SomeFailureCode failureACode, string? failureAMessage,
             SomeFailureCode failureBCode, string? failureBMessage)
         {

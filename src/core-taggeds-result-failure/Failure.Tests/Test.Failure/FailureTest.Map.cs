@@ -11,7 +11,7 @@ namespace PrimeFuncPack.Core.Tests
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void Map_MapFuncIsNull_ExpectArgumentNullException(
+        public void Map_MapFailureCodeIsNull_ExpectArgumentNullException(
             bool isNotDefault)
         {
             var source = isNotDefault ? new Failure<SomeFailureCode>(SomeFailureCode.First, SomeString) : default;
@@ -65,7 +65,7 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(SomeFailureCode.Third, TabString, PlusFifteen)]
         [InlineData(SomeFailureCode.First, SomeString, Zero)]
         [InlineData(SomeFailureCode.Third, UpperSomeString, int.MaxValue)]
-        public void Map_SourceFailureMessageIsNotNull_ExpectFailureCodeIsMappedAndFailureMessageIsSameAsSource(
+        public void Map_SourceFailureMessageIsNotNull_ExpectFailureCodeIsMappedAndFailureMessageIsEqualToSource(
             SomeFailureCode sourceFailureCode,
             string sourceFailureMessage,
             int mappedFailureCode)
