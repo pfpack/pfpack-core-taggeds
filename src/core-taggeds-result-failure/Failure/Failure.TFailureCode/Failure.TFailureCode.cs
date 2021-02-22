@@ -16,6 +16,7 @@ namespace System
             [AllowNull] string failureMessage)
         {
             this.failureCode = failureCode;
+            
             this.failureMessage = failureMessage switch
             {
                 "" => null,
