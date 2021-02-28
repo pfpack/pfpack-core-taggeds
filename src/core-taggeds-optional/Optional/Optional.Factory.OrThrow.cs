@@ -6,20 +6,16 @@ namespace System
 {
     partial class Optional
     {
+        [Obsolete(ObsoleteMessages.PresentOrThrow, error: true)]
+        [DoesNotReturn]
         public static Optional<T> PresentOrThrow<T>([DisallowNull] T value)
             =>
-            value switch
-            {
-                not null => Optional<T>.Present(value),
-                _ => throw new ArgumentNullException(nameof(value))
-            };
+            throw new NotImplementedException(ObsoleteMessages.PresentOrThrow);
 
+        [Obsolete(ObsoleteMessages.PresentOrThrow, error: true)]
+        [DoesNotReturn]
         public static Optional<T> PresentOrThrow<T>([DisallowNull] T? value) where T : struct
             =>
-            value switch
-            {
-                not null => Optional<T>.Present(value.Value),
-                _ => throw new ArgumentNullException(nameof(value))
-            };
+            throw new NotImplementedException(ObsoleteMessages.PresentOrThrow);
     }
 }
