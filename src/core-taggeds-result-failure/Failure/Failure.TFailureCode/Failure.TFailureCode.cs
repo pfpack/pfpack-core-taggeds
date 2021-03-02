@@ -16,9 +16,10 @@ namespace System
             [AllowNull] string failureMessage)
         {
             this.failureCode = failureCode;
-            this.failureMessage = failureMessage switch
+            
+            this.failureMessage = string.IsNullOrEmpty(failureMessage) switch
             {
-                "" => null,
+                true => null,
                 _ => failureMessage
             };
         }
