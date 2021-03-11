@@ -12,15 +12,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NUnit" Version="3.*" />
-		<PackageReference Include="NUnit3TestAdapter" Version="4.*-*" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*-*" />
-		<PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="2.0.*" />
-		<PackageReference Include="PrimeFuncPack.UnitTest.Moq" Version="1.0.*" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\Unit\Unit.csproj" />
+		<PackageReference Include="NUnit" Version="3.13.1" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
+		<PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.0.2" />
+		<PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="2.0.5" />
+		<PackageReference Include="PrimeFuncPack.UnitTest.Moq" Version="1.0.3" />
 	</ItemGroup>
 
 </Project>
