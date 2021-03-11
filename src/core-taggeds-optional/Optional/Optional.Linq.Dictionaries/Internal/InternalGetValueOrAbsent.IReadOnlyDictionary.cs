@@ -10,13 +10,9 @@ namespace System.Linq
         public static Optional<TValue> InternalGetValueOrAbsent<TKey, TValue>(
             this IReadOnlyDictionary<TKey, TValue> dictionary,
             TKey key)
-        {
-            if (dictionary.TryGetValue(key, out var value))
-            {
-                return Present(value);
-            }
-
-            return default;
-        }
+            =>
+            dictionary.TryGetValue(key, out var value)
+                ? Present(value)
+                : default;
     }
 }
