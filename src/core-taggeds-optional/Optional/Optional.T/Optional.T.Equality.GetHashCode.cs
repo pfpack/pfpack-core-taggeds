@@ -5,15 +5,15 @@ namespace System
     partial struct Optional<T>
     {
         public override int GetHashCode()
-            =>
-            hasValue
-                ? HashCode.Combine(EqualityContract, true, HashCodeOrDefault())
-                : HashCode.Combine(EqualityContract, false);
+        {
+            if (hasValue)
+            {
+                return value is not null
+                    ? HashCode.Combine(EqualityContract, true, EqualityComparer.GetHashCode(value))
+                    : HashCode.Combine(EqualityContract, true);
+            }
 
-        private int HashCodeOrDefault()
-            =>
-            value is not null
-                ? EqualityComparer.GetHashCode(value)
-                : default;
+            return HashCode.Combine(EqualityContract, false);
+        }
     }
 }
