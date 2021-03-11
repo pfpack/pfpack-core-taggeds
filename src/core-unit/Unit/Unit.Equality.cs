@@ -4,17 +4,17 @@ namespace System
 {
     partial struct Unit
     {
-        public static bool Equals(Unit valueA, Unit valueB) => (valueA, valueB) switch
+        public static bool Equals(Unit left, Unit right) => (left, right) switch
         {
             _ => true
         };
 
-        public static bool operator ==(Unit valueA, Unit valueB) => (valueA, valueB) switch
+        public static bool operator ==(Unit left, Unit right) => (left, right) switch
         {
             _ => true
         };
 
-        public static bool operator !=(Unit valueA, Unit valueB) => (valueA, valueB) switch
+        public static bool operator !=(Unit left, Unit right) => (left, right) switch
         {
             _ => false
         };
