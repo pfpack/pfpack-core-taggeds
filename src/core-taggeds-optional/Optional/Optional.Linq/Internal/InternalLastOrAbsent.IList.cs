@@ -10,11 +10,9 @@ namespace System.Linq
         public static Optional<TSource> InternalLastOrAbsent<TSource>(
             this IList<TSource> source)
             =>
-            source.Count switch
-            {
-                > 0 => Present(source[^1]),
-                _ => default
-            };
+            source.Count > 0
+                ? Present(source[^1])
+                : default;
 
         public static Optional<TSource> InternalLastOrAbsent<TSource>(
             this IList<TSource> source,
