@@ -11,5 +11,7 @@ namespace System
                     ? HashCode.Combine(EqualityContract, true, EqualityComparer.GetHashCode(value))
                     : HashCode.Combine(EqualityContract, true)
                 : HashCode.Combine(EqualityContract, false);
+
+        private static Type EqualityContract => typeof(Optional<T>);
     }
 }
