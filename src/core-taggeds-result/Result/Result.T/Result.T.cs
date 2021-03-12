@@ -9,11 +9,9 @@ namespace System
 
         private readonly TaggedUnion<TSuccess, TFailure> Union
             =>
-            unionRaw.IsInitialized switch
-            {
-                true => unionRaw,
-                _ => new(default(TFailure))
-            };
+            unionRaw.IsInitialized
+                ? unionRaw
+                : new(default(TFailure));
 
         public bool IsSuccess => Union.IsFirst;
 

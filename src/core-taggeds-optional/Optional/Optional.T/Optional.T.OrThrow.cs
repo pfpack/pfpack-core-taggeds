@@ -6,13 +6,14 @@ namespace System
     {
         public T OrThrow()
             =>
-            OrThrow(CreateExpectedPresentException);
+            InternalOrThrow(CreateExpectedPresentException);
 
         public T OrThrow(Func<Exception> exceptionFactory)
-        {
-            _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
+            =>
+            InternalOrThrow(exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory)));
 
-            return InternalFold(Pipeline.Pipe, () => throw exceptionFactory.Invoke());
-        }
+        private T InternalOrThrow(Func<Exception> exceptionFactory)
+            =>
+            InternalFold(Pipeline.Pipe, () => throw exceptionFactory.Invoke());
     }
 }

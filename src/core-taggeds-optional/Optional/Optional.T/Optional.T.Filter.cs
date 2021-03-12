@@ -14,11 +14,9 @@ namespace System
 
             static Optional<T> Filter(T value, Func<T, bool> predicate, Func<Optional<T>> thisSupplier)
                 =>
-                predicate.Invoke(value) switch
-                {
-                    true => thisSupplier.Invoke(),
-                    _ => default
-                };
+                predicate.Invoke(value)
+                    ? thisSupplier.Invoke()
+                    : default;
         }
 
         public Task<Optional<T>> FilterAsync(Func<T, Task<bool>> predicateAsync)
@@ -30,11 +28,9 @@ namespace System
             static async Task<Optional<T>> FilterAsync(
                 T value, Func<T, Task<bool>> predicateAsync, Func<Optional<T>> thisSupplier)
                 =>
-                await predicateAsync.Invoke(value).ConfigureAwait(false) switch
-                {
-                    true => thisSupplier.Invoke(),
-                    _ => default
-                };
+                await predicateAsync.Invoke(value).ConfigureAwait(false)
+                    ? thisSupplier.Invoke()
+                    : default;
         }
 
         public ValueTask<Optional<T>> FilterValueAsync(Func<T, ValueTask<bool>> predicateAsync)
@@ -46,11 +42,9 @@ namespace System
             static async ValueTask<Optional<T>> FilterValueAsync(
                 T value, Func<T, ValueTask<bool>> predicateAsync, Func<Optional<T>> thisSupplier)
                 =>
-                await predicateAsync.Invoke(value).ConfigureAwait(false) switch
-                {
-                    true => thisSupplier.Invoke(),
-                    _ => default
-                };
+                await predicateAsync.Invoke(value).ConfigureAwait(false)
+                    ? thisSupplier.Invoke()
+                    : default;
         }
     }
 }

@@ -9,10 +9,8 @@ namespace System
             Func<TSource, TResult> onPresent,
             Func<TResult> onElse)
             =>
-            hasValue switch
-            {
-                true => onPresent.Invoke(supplier.Invoke()),
-                _ => onElse.Invoke()
-            };
+            hasValue
+                ? onPresent.Invoke(supplier.Invoke())
+                : onElse.Invoke();
     }
 }

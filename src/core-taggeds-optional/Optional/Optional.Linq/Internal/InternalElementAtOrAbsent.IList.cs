@@ -11,11 +11,9 @@ namespace System.Linq
             this IList<TSource> source,
             int index)
             =>
-            InternalIsInRange(index, source.Count) switch
-            {
-                true => Present(source[index]),
-                _ => default
-            };
+            InternalIsInRange(index, source.Count)
+                ? Present(source[index])
+                : default;
 
         public static Optional<TSource> InternalElementAtOrAbsent<TSource>(
             this IList<TSource> source,

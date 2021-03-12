@@ -1,7 +1,5 @@
 #nullable enable
 
-using System.Collections.Generic;
-
 namespace System
 {
     partial struct Failure<TFailureCode>
@@ -23,13 +21,5 @@ namespace System
             =>
             obj is Failure<TFailureCode> other
             && Equals(this, other);
-
-        private static IEqualityComparer<TFailureCode> FailureCodeEqualityComparer
-            =>
-            EqualityComparer<TFailureCode>.Default;
-
-        private static StringComparer FailureMessageStringComparer
-            =>
-            StringComparer.Ordinal;
     }
 }
