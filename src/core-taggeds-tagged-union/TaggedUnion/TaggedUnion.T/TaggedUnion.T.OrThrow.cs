@@ -6,7 +6,7 @@ namespace System
     {
         public TFirst FirstOrThrow()
             =>
-            FirstOrThrow(CreateNotFirstException);
+            first.OrThrow(CreateNotFirstException);
 
         public TFirst FirstOrThrow(Func<Exception> exceptionFactory)
             =>
@@ -14,7 +14,7 @@ namespace System
 
         public TSecond SecondOrThrow()
             =>
-            SecondOrThrow(CreateNotSecondException);
+            second.OrThrow(CreateNotSecondException);
 
         public TSecond SecondOrThrow(Func<Exception> exceptionFactory)
             =>

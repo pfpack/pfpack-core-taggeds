@@ -6,24 +6,18 @@ namespace System
     {
         public TSuccess SuccessOrThrow()
             =>
-            SuccessOrThrow(CreateNotSuccessException);
+            Union.FirstOrThrow(CreateNotSuccessException);
 
         public TSuccess SuccessOrThrow(Func<Exception> exceptionFactory)
-        {
-            _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
-
-            return Union.FirstOrThrow(exceptionFactory);
-        }
+            =>
+            Union.FirstOrThrow(exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory)));
 
         public TFailure FailureOrThrow()
             =>
-            FailureOrThrow(CreateNotFailureException);
+            Union.SecondOrThrow(CreateNotFailureException);
 
         public TFailure FailureOrThrow(Func<Exception> exceptionFactory)
-        {
-            _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
-
-            return Union.SecondOrThrow(exceptionFactory);
-        }
+            =>
+            Union.SecondOrThrow(exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory)));
     }
 }
