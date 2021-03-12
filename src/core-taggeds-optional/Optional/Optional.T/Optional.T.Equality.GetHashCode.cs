@@ -6,12 +6,8 @@ namespace System
     {
         public override int GetHashCode()
             =>
-            hasValue
-                ? value is not null
-                    ? HashCode.Combine(EqualityContract, true, EqualityComparer.GetHashCode(value))
-                    : HashCode.Combine(EqualityContract, true)
-                : HashCode.Combine(EqualityContract, false);
-
-        private static Type EqualityContract => typeof(Optional<T>);
+            hasValue && value is not null
+                ? HashCode.Combine(typeof(Optional<T>), hasValue, EqualityComparer.GetHashCode(value))
+                : HashCode.Combine(typeof(Optional<T>), hasValue);
     }
 }
