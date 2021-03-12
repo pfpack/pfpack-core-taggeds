@@ -17,11 +17,9 @@ namespace System
         {
             this.failureCode = failureCode;
             
-            this.failureMessage = string.IsNullOrEmpty(failureMessage) switch
-            {
-                true => null,
-                _ => failureMessage
-            };
+            this.failureMessage = string.IsNullOrEmpty(failureMessage)
+                ? null
+                : failureMessage;
         }
 
         public TFailureCode FailureCode
