@@ -24,15 +24,11 @@ namespace PrimeFuncPack.Core
             obj is SuccessBuilder<TSuccess> other &&
             Equals(other);
 
-        public override int GetHashCode() => HashCode.Combine(
-            typeof(SuccessBuilder<TSuccess>),
-            HashCodeOrDefault());
-
-        private int HashCodeOrDefault() => success switch
-        {
-            not null => EqualityComparer.GetHashCode(success),
-            _ => default
-        };
+        public override int GetHashCode()
+            =>
+            success is not null
+                ? HashCode.Combine(typeof(SuccessBuilder<TSuccess>), EqualityComparer.GetHashCode(success))
+                : HashCode.Combine(typeof(SuccessBuilder<TSuccess>));
 
         private static IEqualityComparer<TSuccess> EqualityComparer => EqualityComparer<TSuccess>.Default;
     }

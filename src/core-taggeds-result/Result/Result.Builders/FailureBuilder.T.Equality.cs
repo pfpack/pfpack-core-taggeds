@@ -24,9 +24,9 @@ namespace PrimeFuncPack.Core
             obj is FailureBuilder<TFailure> other &&
             Equals(other);
 
-        public override int GetHashCode() => HashCode.Combine(
-            typeof(FailureBuilder<TFailure>),
-            EqualityComparer.GetHashCode(failure));
+        public override int GetHashCode()
+            =>
+            HashCode.Combine(typeof(FailureBuilder<TFailure>), EqualityComparer.GetHashCode(failure));
 
         private static IEqualityComparer<TFailure> EqualityComparer => EqualityComparer<TFailure>.Default;
     }
