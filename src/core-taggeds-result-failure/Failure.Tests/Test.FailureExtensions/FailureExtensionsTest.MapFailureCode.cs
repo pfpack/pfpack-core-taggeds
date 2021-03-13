@@ -6,17 +6,17 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class FailureTest
+    partial class FailureExtensionsTest
     {
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void Map_MapFailureCodeIsNull_ExpectArgumentNullException(
+        public void MapFailureCode_MapFailureCodeIsNull_ExpectArgumentNullException(
             bool isNotDefault)
         {
             var source = isNotDefault ? new Failure<SomeFailureCode>(SomeFailureCode.First, SomeString) : default;
 
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Map<int>(null!));
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = source.MapFailureCode((Func<SomeFailureCode, int>)null!));
             Assert.Equal("mapFailureCode", ex.ParamName);
         }
 
@@ -25,12 +25,12 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(SomeFailureCode.First)]
         [InlineData(SomeFailureCode.Second)]
         [InlineData(SomeFailureCode.Third)]
-        public void Map_SourceIsDefault_ExpectFailureCodeIsMappedAndFailureMessageIsEmpty(
+        public void MapFailureCode_SourceIsDefault_ExpectFailureCodeIsMappedAndFailureMessageIsEmpty(
             SomeFailureCode mappedFailureCode)
         {
             var source = default(Failure<int>);
 
-            var actual = source.Map(_ => mappedFailureCode);
+            var actual = source.MapFailureCode(_ => mappedFailureCode);
             var expected = new Failure<SomeFailureCode>(mappedFailureCode, EmptyString);
 
             Assert.Equal(expected, actual);
@@ -42,12 +42,12 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(Zero)]
         [InlineData(PlusFifteen)]
         [InlineData(int.MaxValue)]
-        public void Map_SourceFailureMessageIsNull_ExpectFailureCodeIsMappedAndFailureMessageIsEmpty(
+        public void MapFailureCode_SourceFailureMessageIsNull_ExpectFailureCodeIsMappedAndFailureMessageIsEmpty(
             int mappedFailureCode)
         {
             var source = new Failure<decimal>(decimal.One, null);
 
-            var actual = source.Map(_ => mappedFailureCode);
+            var actual = source.MapFailureCode(_ => mappedFailureCode);
             var expected = new Failure<int>(mappedFailureCode, EmptyString);
 
             Assert.Equal(expected, actual);
@@ -65,14 +65,14 @@ namespace PrimeFuncPack.Core.Tests
         [InlineData(SomeFailureCode.Third, TabString, PlusFifteen)]
         [InlineData(SomeFailureCode.First, SomeString, Zero)]
         [InlineData(SomeFailureCode.Third, UpperSomeString, int.MaxValue)]
-        public void Map_SourceFailureMessageIsNotNull_ExpectFailureCodeIsMappedAndFailureMessageIsEqualToSource(
+        public void MapFailureCode_SourceFailureMessageIsNotNull_ExpectFailureCodeIsMappedAndFailureMessageIsEqualToSource(
             SomeFailureCode sourceFailureCode,
             string sourceFailureMessage,
             int mappedFailureCode)
         {
             var source = new Failure<SomeFailureCode>(sourceFailureCode, sourceFailureMessage);
 
-            var actual = source.Map(_ => mappedFailureCode);
+            var actual = source.MapFailureCode(_ => mappedFailureCode);
             var expected = new Failure<int>(mappedFailureCode, sourceFailureMessage);
 
             Assert.Equal(expected, actual);
