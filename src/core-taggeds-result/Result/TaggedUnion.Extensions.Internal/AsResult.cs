@@ -5,9 +5,9 @@ namespace System
     partial class InternalTaggedUnionExtensions
     {
         internal static Result<TSuccess, TFailure> AsResult<TSuccess, TFailure>(
-            this TaggedUnion<TSuccess, TFailure> unionRaw)
+            this TaggedUnion<TSuccess, TFailure> union)
             where TFailure : struct
             =>
-            Result<TSuccess, TFailure>.Wrap(unionRaw);
+            Result<TSuccess, TFailure>.Wrap(union);
     }
 }

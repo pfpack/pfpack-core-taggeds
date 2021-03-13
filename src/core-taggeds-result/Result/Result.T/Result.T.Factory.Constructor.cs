@@ -6,10 +6,10 @@ namespace System
     {
         public Result(TSuccess success)
             =>
-            unionRaw = new(success);
+            union = new(success);
 
         public Result(TFailure failure)
             =>
-            unionRaw = new(failure);
+            union = new(failure);
     }
 }

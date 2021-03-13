@@ -4,8 +4,8 @@ namespace System
 {
     partial struct Result<TSuccess, TFailure>
     {
-        internal static Result<TSuccess, TFailure> Wrap(TaggedUnion<TSuccess, TFailure> unionRaw)
+        internal static Result<TSuccess, TFailure> Wrap(TaggedUnion<TSuccess, TFailure> union)
             =>
-            new(unionRaw);
+            new(union);
     }
 }
