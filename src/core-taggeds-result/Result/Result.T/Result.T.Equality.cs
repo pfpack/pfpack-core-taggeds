@@ -25,8 +25,8 @@ namespace System
             obj is Result<TSuccess, TFailure> other &&
             Equals(this, other);
 
-        public override int GetHashCode() => HashCode.Combine(
-            typeof(Result<TSuccess, TFailure>),
-            Union.GetHashCode());
+        public override int GetHashCode()
+            =>
+            HashCode.Combine(typeof(Result<TSuccess, TFailure>), Union.GetHashCode());
     }
 }
