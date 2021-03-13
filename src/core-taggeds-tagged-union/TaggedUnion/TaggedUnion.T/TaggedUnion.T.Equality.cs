@@ -26,9 +26,10 @@ namespace System
             obj is TaggedUnion<TFirst, TSecond> other &&
             Equals(this, other);
 
-        public override int GetHashCode() => HashCode.Combine(
-            typeof(TaggedUnion<TFirst, TSecond>),
-            first.GetHashCode(),
-            second.GetHashCode());
+        public override int GetHashCode()
+            =>
+            HashCode.Combine(EqualityContract, first.GetHashCode(), second.GetHashCode());
+
+        private static Type EqualityContract => typeof(TaggedUnion<TFirst, TSecond>);
     }
 }
