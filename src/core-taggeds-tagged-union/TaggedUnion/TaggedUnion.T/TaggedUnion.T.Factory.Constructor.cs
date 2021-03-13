@@ -10,12 +10,14 @@ namespace System
         {
             this.first = Present(first);
             second = default;
+            isInitialized = true;
         }
 
         public TaggedUnion(TSecond second)
         {
             this.second = Present(second);
             first = default;
+            isInitialized = true;
         }
     }
 }
