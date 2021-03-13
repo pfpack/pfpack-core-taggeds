@@ -8,7 +8,7 @@ namespace System
             =>
             HashCode.Combine(
                 typeof(Failure<TFailureCode>),
-                FailureCodeEqualityComparer.GetHashCode(FailureCode),
-                FailureMessageStringComparer.GetHashCode(FailureMessage));
+                FailureCodeComparer.GetHashCode(FailureCode),
+                FailureMessageComparer.GetHashCode(FailureMessage));
     }
 }

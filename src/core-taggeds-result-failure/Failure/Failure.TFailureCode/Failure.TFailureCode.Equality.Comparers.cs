@@ -6,11 +6,11 @@ namespace System
 {
     partial struct Failure<TFailureCode>
     {
-        private static IEqualityComparer<TFailureCode> FailureCodeEqualityComparer
+        private static IEqualityComparer<TFailureCode> FailureCodeComparer
             =>
             EqualityComparer<TFailureCode>.Default;
 
-        private static StringComparer FailureMessageStringComparer
+        private static StringComparer FailureMessageComparer
             =>
             StringComparer.Ordinal;
     }

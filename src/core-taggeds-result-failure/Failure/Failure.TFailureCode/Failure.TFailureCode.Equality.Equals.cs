@@ -8,8 +8,8 @@ namespace System
             Failure<TFailureCode> failureA,
             Failure<TFailureCode> failureB)
             =>
-            FailureCodeEqualityComparer.Equals(failureA.FailureCode, failureB.FailureCode)
-            && FailureMessageStringComparer.Equals(failureA.FailureMessage, failureB.FailureMessage);
+            FailureCodeComparer.Equals(failureA.FailureCode, failureB.FailureCode)
+            && FailureMessageComparer.Equals(failureA.FailureMessage, failureB.FailureMessage);
 
         public bool Equals(
             Failure<TFailureCode> other)
