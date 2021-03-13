@@ -11,6 +11,7 @@ namespace System
             where TResultFailure : struct
         {
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
+
             return Union.MapSecond(mapFailure).AsResult();
         }
 
@@ -19,6 +20,7 @@ namespace System
             where TResultFailure : struct
         {
             _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
+
             return (await Union.MapSecondAsync(mapFailureAsync).ConfigureAwait(false)).AsResult();
         }
 
@@ -27,6 +29,7 @@ namespace System
             where TResultFailure : struct
         {
             _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
+            
             return (await Union.MapSecondValueAsync(mapFailureAsync).ConfigureAwait(false)).AsResult();
         }
     }
