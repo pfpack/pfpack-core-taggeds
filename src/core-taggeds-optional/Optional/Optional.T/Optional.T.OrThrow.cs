@@ -11,9 +11,5 @@ namespace System
         public T OrThrow(Func<Exception> exceptionFactory)
             =>
             InternalOrThrow(exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory)));
-
-        private T InternalOrThrow(Func<Exception> exceptionFactory)
-            =>
-            InternalFold(Pipeline.Pipe, () => throw exceptionFactory.Invoke());
     }
 }
