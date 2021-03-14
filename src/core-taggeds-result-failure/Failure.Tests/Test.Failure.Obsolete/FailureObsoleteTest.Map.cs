@@ -33,9 +33,7 @@ namespace PrimeFuncPack.Core.Tests
                         =>
                         attr.AttributeType == typeof(ObsoleteAttribute) &&
                         attr.ConstructorArguments.Count == 2 &&
-                        attr.ConstructorArguments[0].ArgumentType == typeof(string) &&
                         attr.ConstructorArguments[0].Value is expectedObsoleteMessage &&
-                        attr.ConstructorArguments[1].ArgumentType == typeof(bool) &&
                         attr.ConstructorArguments[1].Value is true)));
 
             Assert.True(
