@@ -6,16 +6,16 @@ namespace System
     {
         public TaggedUnion(TFirst first)
         {
-            this.first = Optional<TFirst>.Present(first);
-            second = default;
-            isInitialized = true;
+            tag = Tag.First;
+            this.first = first;
+            second = default!;
         }
 
         public TaggedUnion(TSecond second)
         {
-            this.second = Optional<TSecond>.Present(second);
-            first = default;
-            isInitialized = true;
+            tag = Tag.Second;
+            first = default!;
+            this.second = second;
         }
     }
 }
