@@ -14,12 +14,14 @@ namespace PrimeFuncPack.Core.Tests
         [Fact]
         public void Map_ExpectIsObsolete()
         {
+            const string expectedMethodName = "Map";
+
             const string expectedObsoleteMessage
                 = "This method is obsolete. Call MapFailureCode instead.";
 
-            IReadOnlyCollection<MethodInfo> methods = typeof(Failure<SomeFailureCode>)
+            IReadOnlyCollection<MethodInfo> methods = typeof(Failure<>)
                 .GetMethods(BindingFlags.Public | BindingFlags.Instance)
-                .Where(method => method.Name == nameof(Failure<SomeFailureCode>.Map))
+                .Where(method => method.Name == expectedMethodName)
                 .ToArray();
 
             Assert.Equal(1, methods.Count);
