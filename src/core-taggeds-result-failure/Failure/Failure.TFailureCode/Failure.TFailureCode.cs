@@ -15,11 +15,8 @@ namespace System
             TFailureCode failureCode,
             [AllowNull] string failureMessage)
         {
-            this.failureCode = failureCode;
-            
-            this.failureMessage = string.IsNullOrEmpty(failureMessage)
-                ? null
-                : failureMessage;
+            this.failureCode = failureCode;            
+            this.failureMessage = OrNullIfEmpty(failureMessage);
         }
 
         public TFailureCode FailureCode
