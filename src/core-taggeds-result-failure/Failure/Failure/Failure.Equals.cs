@@ -5,10 +5,9 @@ namespace System
     partial class Failure
     {
         public static bool Equals<TFailureCode>(
-            Failure<TFailureCode> failureA,
-            Failure<TFailureCode> failureB)
+            Failure<TFailureCode> left, Failure<TFailureCode> right)
             where TFailureCode : struct
             =>
-            Failure<TFailureCode>.Equals(failureA, failureB);
+            left.Equals(right);
     }
 }

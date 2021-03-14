@@ -7,7 +7,7 @@ namespace System
         public override int GetHashCode()
             =>
             HashCode.Combine(
-                typeof(Failure<TFailureCode>),
+                EqualityContract,
                 FailureCodeComparer.GetHashCode(FailureCode),
                 FailureMessageComparer.GetHashCode(FailureMessage));
     }
