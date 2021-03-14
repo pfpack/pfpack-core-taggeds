@@ -11,8 +11,11 @@ namespace System
             InternalFirstOrThrow(CreateNotFirstException);
 
         public TFirst FirstOrThrow(Func<Exception> exceptionFactory)
-            =>
-            InternalFirstOrThrow(exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory)));
+        {
+            _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
+            
+            return InternalFirstOrThrow(exceptionFactory);
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TFirst InternalFirstOrThrow(Func<Exception> exceptionFactory)

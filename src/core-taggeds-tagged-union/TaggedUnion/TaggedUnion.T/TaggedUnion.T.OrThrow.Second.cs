@@ -11,8 +11,11 @@ namespace System
             InternalSecondOrThrow(CreateNotSecondException);
 
         public TSecond SecondOrThrow(Func<Exception> exceptionFactory)
-            =>
-            InternalSecondOrThrow(exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory)));
+        {
+            _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
+
+            return InternalSecondOrThrow(exceptionFactory);
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TSecond InternalSecondOrThrow(Func<Exception> exceptionFactory)
