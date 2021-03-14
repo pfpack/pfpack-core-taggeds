@@ -22,11 +22,9 @@ namespace System
 
             Result<TSuccess, TCauseFailure> FilterSuccess(TSuccess success)
                 =>
-                predicate.Invoke(success) switch
-                {
-                    true => success,
-                    _ => causeFactory.Invoke(success)
-                };
+                predicate.Invoke(success)
+                    ? success
+                    : causeFactory.Invoke(success);
         }
 
         public Result<TSuccess, TFailure> Filter(
@@ -42,11 +40,9 @@ namespace System
 
             Result<TSuccess, TFailure> FilterSuccess(TSuccess success)
                 =>
-                predicate.Invoke(success) switch
-                {
-                    true => @this,
-                    _ => causeFactory.Invoke(success)
-                };
+                predicate.Invoke(success)
+                    ? @this
+                    : causeFactory.Invoke(success);
         }
 
         // Filter Async / Task
@@ -65,11 +61,9 @@ namespace System
 
             async Task<Result<TSuccess, TCauseFailure>> FilterSuccessAsync(TSuccess success)
                 =>
-                await predicateAsync.Invoke(success).ConfigureAwait(false) switch
-                {
-                    true => success,
-                    _ => await causeFactoryAsync.Invoke(success).ConfigureAwait(false)
-                };
+                await predicateAsync.Invoke(success).ConfigureAwait(false)
+                    ? success
+                    : await causeFactoryAsync.Invoke(success).ConfigureAwait(false);
 
             async Task<Result<TSuccess, TCauseFailure>> MapFailureAsync(TFailure failure)
                 =>
@@ -89,11 +83,9 @@ namespace System
 
             async Task<Result<TSuccess, TFailure>> FilterSuccessAsync(TSuccess success)
                 =>
-                await predicateAsync.Invoke(success).ConfigureAwait(false) switch
-                {
-                    true => @this,
-                    _ => await causeFactoryAsync.Invoke(success).ConfigureAwait(false)
-                };
+                await predicateAsync.Invoke(success).ConfigureAwait(false)
+                    ? @this
+                    : await causeFactoryAsync.Invoke(success).ConfigureAwait(false);
         }
 
         // Filter Async / ValueTask
@@ -112,11 +104,9 @@ namespace System
 
             async ValueTask<Result<TSuccess, TCauseFailure>> FilterSuccessValueAsync(TSuccess success)
                 =>
-                await predicateAsync.Invoke(success).ConfigureAwait(false) switch
-                {
-                    true => success,
-                    _ => await causeFactoryAsync.Invoke(success).ConfigureAwait(false)
-                };
+                await predicateAsync.Invoke(success).ConfigureAwait(false)
+                    ? success
+                    : await causeFactoryAsync.Invoke(success).ConfigureAwait(false);
 
             async ValueTask<Result<TSuccess, TCauseFailure>> MapFailureValueAsync(TFailure failure)
                 =>
@@ -136,11 +126,9 @@ namespace System
 
             async ValueTask<Result<TSuccess, TFailure>> FilterSuccessValueAsync(TSuccess success)
                 =>
-                await predicateAsync.Invoke(success).ConfigureAwait(false) switch
-                {
-                    true => @this,
-                    _ => await causeFactoryAsync.Invoke(success).ConfigureAwait(false)
-                };
+                await predicateAsync.Invoke(success).ConfigureAwait(false)
+                    ? @this
+                    : await causeFactoryAsync.Invoke(success).ConfigureAwait(false);
         }
     }
 }
