@@ -10,7 +10,7 @@ namespace System
             =>
             optional
             .InternalFilterNotNullOrThrow()
-            .Map(static value => value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked());
+            .Map(InternalMapNotNull);
 
         public static Optional<T> FilterNotNullOrThrowThenMap<T>(
             this Optional<T?> optional,
@@ -21,7 +21,7 @@ namespace System
 
             return optional
                 .InternalFilterNotNullOrThrow(exceptionFactory)
-                .Map(static value => value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked());
+                .Map(InternalMapNotNull);
         }
 
         public static Optional<T> FilterNotNullOrThrowThenMap<T>(
@@ -30,7 +30,7 @@ namespace System
             =>
             optional
             .InternalFilterNotNullOrThrow()
-            .Map(static value => value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked());
+            .Map(InternalMapNotNull);
 
         public static Optional<T> FilterNotNullOrThrowThenMap<T>(
             this Optional<T?> optional,
@@ -41,7 +41,7 @@ namespace System
 
             return optional
                 .InternalFilterNotNullOrThrow(exceptionFactory)
-                .Map(static value => value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked());
+                .Map(InternalMapNotNull);
         }
     }
 }
