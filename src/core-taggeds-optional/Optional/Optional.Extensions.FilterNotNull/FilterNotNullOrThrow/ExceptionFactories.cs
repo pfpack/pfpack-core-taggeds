@@ -6,7 +6,7 @@ namespace System
     {
         private static InvalidOperationException CreateExpectedNotNullOrAbsentException()
             =>
-            new("The optional is expected to have a not null value or to be absent.");            
+            new("The optional is expected to have a not null value or to be absent.");
 
         private static InvalidOperationException CreateUnexpectedNullException_MustNeverBeInvoked()
             =>
