@@ -9,7 +9,7 @@ namespace System
             where T : class
             =>
             optional
-            .Filter(CreateFilterNotNullOrThrowPredicate<T?>())
+            .InternalFilterNotNullOrThrow()
             .Map(static value => value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked());
 
         public static Optional<T> FilterNotNullOrThrowThenMap<T>(
@@ -20,7 +20,7 @@ namespace System
             _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
 
             return optional
-                .Filter(CreateFilterNotNullOrThrowPredicate<T?>(exceptionFactory))
+                .InternalFilterNotNullOrThrow(exceptionFactory)
                 .Map(static value => value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked());
         }
 
@@ -29,7 +29,7 @@ namespace System
             where T : struct
             =>
             optional
-            .Filter(CreateFilterNotNullOrThrowPredicate<T?>())
+            .InternalFilterNotNullOrThrow()
             .Map(static value => value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked());
 
         public static Optional<T> FilterNotNullOrThrowThenMap<T>(
@@ -40,7 +40,7 @@ namespace System
             _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
 
             return optional
-                .Filter(CreateFilterNotNullOrThrowPredicate<T?>(exceptionFactory))
+                .InternalFilterNotNullOrThrow(exceptionFactory)
                 .Map(static value => value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked());
         }
     }
