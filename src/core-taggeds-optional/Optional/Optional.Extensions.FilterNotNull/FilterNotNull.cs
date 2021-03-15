@@ -10,12 +10,12 @@ namespace System
             =>
             optional
             .Filter(IsNotNull)
-            .Map(InternalMapNotNull);
+            .Map(InternalMapToNonNullable);
 
         public static Optional<T> FilterNotNull<T>(this Optional<T?> optional) where T : struct
             =>
             optional
             .Filter(IsNotNull)
-            .Map(InternalMapNotNull);
+            .Map(InternalMapToNonNullable);
     }
 }

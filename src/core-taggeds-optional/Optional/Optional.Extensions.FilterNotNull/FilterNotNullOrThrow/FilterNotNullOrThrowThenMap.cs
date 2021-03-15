@@ -10,7 +10,7 @@ namespace System
             =>
             optional
             .InternalFilterNotNullOrThrow()
-            .Map(InternalMapNotNull);
+            .Map(InternalMapToNonNullable);
 
         public static Optional<T> FilterNotNullOrThrowThenMap<T>(
             this Optional<T?> optional,
@@ -21,7 +21,7 @@ namespace System
 
             return optional
                 .InternalFilterNotNullOrThrow(exceptionFactory)
-                .Map(InternalMapNotNull);
+                .Map(InternalMapToNonNullable);
         }
 
         public static Optional<T> FilterNotNullOrThrowThenMap<T>(
@@ -30,7 +30,7 @@ namespace System
             =>
             optional
             .InternalFilterNotNullOrThrow()
-            .Map(InternalMapNotNull);
+            .Map(InternalMapToNonNullable);
 
         public static Optional<T> FilterNotNullOrThrowThenMap<T>(
             this Optional<T?> optional,
@@ -41,7 +41,7 @@ namespace System
 
             return optional
                 .InternalFilterNotNullOrThrow(exceptionFactory)
-                .Map(InternalMapNotNull);
+                .Map(InternalMapToNonNullable);
         }
     }
 }
