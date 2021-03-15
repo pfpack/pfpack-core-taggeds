@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using static System.Predicates;
+
 namespace System
 {
     partial class FilterNotNullOptionalExtensions
@@ -7,13 +9,13 @@ namespace System
         public static Optional<T> FilterNotNullThenMap<T>(this Optional<T?> optional) where T : class
             =>
             optional
-            .FilterNotNull()
-            .Map(static value => value ?? throw CreateExpectedNotNullOrAbsentException());
+            .Filter(IsNotNull)
+            .Map(static value => value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked());
 
         public static Optional<T> FilterNotNullThenMap<T>(this Optional<T?> optional) where T : struct
             =>
             optional
-            .FilterNotNull()
-            .Map(static value => value ?? throw CreateExpectedNotNullOrAbsentException());
+            .Filter(IsNotNull)
+            .Map(static value => value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked());
     }
 }

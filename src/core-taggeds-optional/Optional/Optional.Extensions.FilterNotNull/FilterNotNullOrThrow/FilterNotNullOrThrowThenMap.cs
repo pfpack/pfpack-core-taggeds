@@ -8,30 +8,40 @@ namespace System
             this Optional<T?> optional)
             where T : class
             =>
-            optional.FilterNotNullOrThrowThenMap(CreateExpectedNotNullOrAbsentException);
+            optional
+            .Filter(CreateFilterNotNullOrThrowPredicate<T?>())
+            .Map(static value => value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked());
 
         public static Optional<T> FilterNotNullOrThrowThenMap<T>(
             this Optional<T?> optional,
             Func<Exception> exceptionFactory)
             where T : class
-            =>
-            optional
-            .FilterNotNullOrThrow(exceptionFactory)
-            .Map(static value => value ?? throw CreateExpectedNotNullOrAbsentException());
+        {
+            _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
+
+            return optional
+                .Filter(CreateFilterNotNullOrThrowPredicate<T?>(exceptionFactory))
+                .Map(static value => value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked());
+        }
 
         public static Optional<T> FilterNotNullOrThrowThenMap<T>(
             this Optional<T?> optional)
             where T : struct
             =>
-            optional.FilterNotNullOrThrowThenMap(CreateExpectedNotNullOrAbsentException);
+            optional
+            .Filter(CreateFilterNotNullOrThrowPredicate<T?>())
+            .Map(static value => value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked());
 
         public static Optional<T> FilterNotNullOrThrowThenMap<T>(
             this Optional<T?> optional,
             Func<Exception> exceptionFactory)
             where T : struct
-            =>
-            optional
-            .FilterNotNullOrThrow(exceptionFactory)
-            .Map(static value => value ?? throw CreateExpectedNotNullOrAbsentException());
+        {
+            _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
+
+            return optional
+                .Filter(CreateFilterNotNullOrThrowPredicate<T?>(exceptionFactory))
+                .Map(static value => value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked());
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace System
     {
         public static Optional<T> FilterNotNull<T>(this Optional<T> optional)
             =>
-            optional.Filter(IsNotNull);
+            optional
+            .Filter(IsNotNull);
     }
 }
