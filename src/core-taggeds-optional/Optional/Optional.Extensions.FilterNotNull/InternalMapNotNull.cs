@@ -7,7 +7,7 @@ namespace System
     partial class FilterNotNullOptionalExtensions
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static T InternalMapNotNull<T>(T? value) where T : class
+        private static T InternalMapNotNull<T>(T? value)
             =>
             value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked();
 

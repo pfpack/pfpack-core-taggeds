@@ -6,13 +6,13 @@ namespace System
 {
     partial class FilterNotNullOptionalExtensions
     {
-        public static Optional<T> FilterNotNullThenMap<T>(this Optional<T?> optional) where T : class
+        public static Optional<T> FilterNotNull<T>(this Optional<T?> optional)
             =>
             optional
             .Filter(IsNotNull)
             .Map(InternalMapNotNull);
 
-        public static Optional<T> FilterNotNullThenMap<T>(this Optional<T?> optional) where T : struct
+        public static Optional<T> FilterNotNull<T>(this Optional<T?> optional) where T : struct
             =>
             optional
             .Filter(IsNotNull)
