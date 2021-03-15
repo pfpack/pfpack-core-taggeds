@@ -7,7 +7,8 @@ namespace System
         public static Optional<T> FilterNotNullOrThrow<T>(
             this Optional<T> optional)
             =>
-            optional.InternalFilterNotNullOrThrow();
+            optional
+            .InternalFilterNotNullOrThrow();
 
         public static Optional<T> FilterNotNullOrThrow<T>(
             this Optional<T> optional,
@@ -15,7 +16,8 @@ namespace System
         {
             _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
 
-            return optional.InternalFilterNotNullOrThrow(exceptionFactory);
+            return optional
+                .InternalFilterNotNullOrThrow(exceptionFactory);
         }
     }
 }
