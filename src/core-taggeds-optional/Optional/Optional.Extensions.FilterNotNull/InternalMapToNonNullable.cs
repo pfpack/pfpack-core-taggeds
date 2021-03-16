@@ -12,7 +12,8 @@ namespace System
             value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static T InternalMapToNonNullable<T>(T? value) where T : struct
+        private static T InternalMapToNonNullable<T>(T? value)
+            where T : struct
             =>
             value ?? throw CreateUnexpectedNullException_MustNeverBeInvoked();
     }
