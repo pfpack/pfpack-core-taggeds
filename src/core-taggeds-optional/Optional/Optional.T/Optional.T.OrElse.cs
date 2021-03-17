@@ -10,7 +10,7 @@ namespace System
             =>
             InternalHandleFold(
                 Pipeline.Pipe,
-                () => other);
+                other);
 
         public T OrElse(Func<T> otherFactory)
             =>

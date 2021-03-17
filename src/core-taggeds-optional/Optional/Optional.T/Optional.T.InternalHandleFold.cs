@@ -14,5 +14,14 @@ namespace System
             hasValue
                 ? map.Invoke(value)
                 : otherFactory.Invoke();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private TResult InternalHandleFold<TResult>(
+            Func<T, TResult> map,
+            TResult other)
+            =>
+            hasValue
+                ? map.Invoke(value)
+                : other;
     }
 }
