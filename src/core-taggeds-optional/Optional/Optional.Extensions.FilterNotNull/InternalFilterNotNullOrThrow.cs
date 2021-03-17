@@ -10,7 +10,7 @@ namespace System
         private static Optional<T> InternalFilterNotNullOrThrow<T>(this Optional<T?> optional, Func<Exception> exceptionFactory)
             =>
             optional
-            .Filter(InternalCreateFilterNotNullOrThrowPredicate_Common<T>(exceptionFactory))
+            .OnPresent(InternalCreateNotNullOrThrowHandler_Common<T>(exceptionFactory))
             .Map(InternalMapToNonNullable);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -18,7 +18,7 @@ namespace System
             where T : struct
             =>
             optional
-            .Filter(InternalCreateFilterNotNullOrThrowPredicate_Struct<T>(exceptionFactory))
+            .OnPresent(InternalCreateNotNullOrThrowHandler_Struct<T>(exceptionFactory))
             .Map(InternalMapToNonNullable);
     }
 }
