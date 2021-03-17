@@ -13,6 +13,7 @@ namespace System
             Func<TResult> resultSupplier)
         {
             _ = InternalHandle(Value, onPresent, onElse);
+
             return resultSupplier.Invoke();
         }
 
@@ -22,6 +23,7 @@ namespace System
             Func<TResult> resultSupplier)
         {
             _ = InternalHandle(Value, handler, Unit.Get);
+
             return resultSupplier.Invoke();
         }
 
@@ -31,6 +33,7 @@ namespace System
             Func<TResult> resultSupplier)
         {
             _ = InternalHandle(Unit.Get, Pipeline.Pipe, handler);
+            
             return resultSupplier.Invoke();
         }
     }
