@@ -17,7 +17,7 @@ namespace System
         private static T InternalMapToNonNullable<T>(T? value)
             where T : struct
             =>
-            value.HasValue
+            value is not null
                 ? value.GetValueOrDefault()
                 : throw CreateUnexpectedNullException_MustNeverBeInvoked();
     }
