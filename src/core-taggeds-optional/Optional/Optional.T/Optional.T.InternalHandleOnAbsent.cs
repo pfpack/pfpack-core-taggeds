@@ -7,8 +7,8 @@ namespace System
     partial struct Optional<T>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TResult InternalHandleOnAbsent<THandlerResult, TResult>(
-            Func<THandlerResult> handler,
+        private TResult InternalHandleOnAbsent<THandlerOut, TResult>(
+            Func<THandlerOut> handler,
             Func<TResult> resultSupplier)
         {
             if (hasValue is false)
