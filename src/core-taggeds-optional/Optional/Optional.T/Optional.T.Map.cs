@@ -10,7 +10,7 @@ namespace System
         {
             _ = map ?? throw new ArgumentNullException(nameof(map));
 
-            return InternalFold(Map, static () => default);
+            return InternalHandleFold(Map, static () => default);
 
             Optional<TResult> Map(T value)
                 =>
@@ -21,7 +21,7 @@ namespace System
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return InternalFold(MapAsync, static () => Task.FromResult<Optional<TResult>>(default));
+            return InternalHandleFold(MapAsync, static () => Task.FromResult<Optional<TResult>>(default));
 
             async Task<Optional<TResult>> MapAsync(T value)
                 =>
@@ -32,7 +32,7 @@ namespace System
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return InternalFold(MapValueAsync, static () => default);
+            return InternalHandleFold(MapValueAsync, static () => default);
 
             async ValueTask<Optional<TResult>> MapValueAsync(T value)
                 =>

@@ -10,7 +10,7 @@ namespace System
             Func<T, TResult> map,
             Func<TResult> otherFactory)
             =>
-            InternalFold(
+            InternalHandleFold(
                 map ?? throw new ArgumentNullException(nameof(map)),
                 otherFactory ?? throw new ArgumentNullException(nameof(otherFactory)));
 
@@ -18,7 +18,7 @@ namespace System
             Func<T, Task<TResult>> mapAsync,
             Func<Task<TResult>> otherFactoryAsync)
             =>
-            InternalFold(
+            InternalHandleFold(
                 mapAsync ?? throw new ArgumentNullException(nameof(mapAsync)),
                 otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 
@@ -26,7 +26,7 @@ namespace System
             Func<T, ValueTask<TResult>> mapAsync,
             Func<ValueTask<TResult>> otherFactoryAsync)
             =>
-            InternalFold(
+            InternalHandleFold(
                 mapAsync ?? throw new ArgumentNullException(nameof(mapAsync)),
                 otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
     }

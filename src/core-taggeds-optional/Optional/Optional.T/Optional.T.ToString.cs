@@ -8,6 +8,6 @@ namespace System
     {
         public override string ToString()
             =>
-            InternalFold(ToStringOrEmpty, GetEmpty);
+            InternalHandleFold(ToStringOrEmpty, GetEmpty);
     }
 }

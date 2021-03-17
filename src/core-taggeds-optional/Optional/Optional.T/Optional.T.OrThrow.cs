@@ -17,6 +17,6 @@ namespace System
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private T InternalOrThrow(Func<Exception> exceptionFactory)
             =>
-            InternalFold(Pipeline.Pipe, () => throw exceptionFactory.Invoke());
+            InternalHandleFold(Pipeline.Pipe, () => throw exceptionFactory.Invoke());
     }
 }

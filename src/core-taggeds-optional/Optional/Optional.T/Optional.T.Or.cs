@@ -8,19 +8,19 @@ namespace System
     {
         public Optional<T> Or(Func<Optional<T>> otherFactory)
             =>
-            InternalOr(
+            InternalHandleFoldThis(
                 Pipeline.Pipe,
                 otherFactory ?? throw new ArgumentNullException(nameof(otherFactory)));
 
         public Task<Optional<T>> OrAsync(Func<Task<Optional<T>>> otherFactoryAsync)
             =>
-            InternalOr(
+            InternalHandleFoldThis(
                 Task.FromResult,
                 otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 
         public ValueTask<Optional<T>> OrValueAsync(Func<ValueTask<Optional<T>>> otherFactoryAsync)
             =>
-            InternalOr(
+            InternalHandleFoldThis(
                 ValueTask.FromResult,
                 otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
     }

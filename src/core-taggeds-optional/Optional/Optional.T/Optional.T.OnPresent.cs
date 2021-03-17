@@ -13,7 +13,7 @@ namespace System
         {
             _ = handler ?? throw new ArgumentNullException(nameof(handler));
 
-            return InternalOnPresent(handler, This);
+            return InternalHandleOnPresent(handler, This);
         }
 
         internal Optional<T> OnPresent(
@@ -21,7 +21,7 @@ namespace System
         {
             _ = handler ?? throw new ArgumentNullException(nameof(handler));
 
-            return InternalOnPresent(handler.InvokeThenToUnit, This);
+            return InternalHandleOnPresent(handler.InvokeThenToUnit, This);
         }
 
         internal Task<Optional<T>> OnPresentAsync(
@@ -29,7 +29,7 @@ namespace System
         {
             _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-            return InternalOnPresent(handlerAsync, ThisAsync);
+            return InternalHandleOnPresent(handlerAsync, ThisAsync);
         }
 
         internal Task<Optional<T>> OnPresentAsync(
@@ -37,7 +37,7 @@ namespace System
         {
             _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-            return InternalOnPresent(handlerAsync, ThisAsync);
+            return InternalHandleOnPresent(handlerAsync, ThisAsync);
         }
 
         internal ValueTask<Optional<T>> OnPresentValueAsync(
@@ -45,7 +45,7 @@ namespace System
         {
             _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-            return InternalOnPresent(handlerAsync, ThisValueAsync);
+            return InternalHandleOnPresent(handlerAsync, ThisValueAsync);
         }
 
         internal ValueTask<Optional<T>> OnPresentValueAsync(
@@ -53,7 +53,7 @@ namespace System
         {
             _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-            return InternalOnPresent(handlerAsync, ThisValueAsync);
+            return InternalHandleOnPresent(handlerAsync, ThisValueAsync);
         }
     }
 }
