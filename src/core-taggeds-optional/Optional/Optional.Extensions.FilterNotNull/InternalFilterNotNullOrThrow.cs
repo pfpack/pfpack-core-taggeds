@@ -11,7 +11,7 @@ namespace System
             =>
             optional
             .OnPresent(value => value.InternalThrowOnNull(exceptionFactory))
-            .Map(InternalMapToNonNullable);
+            .Map(InternalToNonNullable);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static Optional<T> InternalFilterNotNullOrThrow<T>(this Optional<T?> optional, Func<Exception> exceptionFactory)
@@ -19,6 +19,6 @@ namespace System
             =>
             optional
             .OnPresent(value => value.InternalThrowOnNull(exceptionFactory))
-            .Map(InternalMapToNonNullable);
+            .Map(InternalToNonNullable);
     }
 }
