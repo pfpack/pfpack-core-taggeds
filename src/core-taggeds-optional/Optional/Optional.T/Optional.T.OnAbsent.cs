@@ -13,7 +13,7 @@ namespace System
         {
             _ = handler ?? throw new ArgumentNullException(nameof(handler));
 
-            return InternalOn(Unit.From, handler, This);
+            return InternalOnAbsent(handler, This);
         }
 
         internal Optional<T> OnAbsent(
@@ -21,7 +21,7 @@ namespace System
         {
             _ = handler ?? throw new ArgumentNullException(nameof(handler));
 
-            return InternalOn(Unit.From, handler.InvokeThenToUnit, This);
+            return InternalOnAbsent(handler.InvokeThenToUnit, This);
         }
 
         internal Task<Optional<T>> OnAbsentAsync(
@@ -29,7 +29,7 @@ namespace System
         {
             _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-            return InternalOn(_ => Task.FromResult<Unit>(default), handlerAsync, ThisAsync);
+            return InternalOnAbsent(handlerAsync, ThisAsync);
         }
 
         internal Task<Optional<T>> OnAbsentAsync(
@@ -37,7 +37,7 @@ namespace System
         {
             _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-            return InternalOn(_ => Task.CompletedTask, handlerAsync, ThisAsync);
+            return InternalOnAbsent(handlerAsync, ThisAsync);
         }
 
         internal ValueTask<Optional<T>> OnAbsentValueAsync(
@@ -45,7 +45,7 @@ namespace System
         {
             _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-            return InternalOn(_ => default, handlerAsync, ThisValueAsync);
+            return InternalOnAbsent(handlerAsync, ThisValueAsync);
         }
 
         internal ValueTask<Optional<T>> OnAbsentValueAsync(
@@ -53,7 +53,7 @@ namespace System
         {
             _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-            return InternalOn(_ => default, handlerAsync, ThisValueAsync);
+            return InternalOnAbsent(handlerAsync, ThisValueAsync);
         }
     }
 }
