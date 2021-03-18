@@ -9,8 +9,6 @@ namespace System
         [return: MaybeNull]
         public T OrDefault()
             =>
-            InternalHandleFold(
-                Pipeline.Pipe,
-                static () => default);
+            InternalHandleFold(Pipeline.Pipe, static () => default);
     }
 }
