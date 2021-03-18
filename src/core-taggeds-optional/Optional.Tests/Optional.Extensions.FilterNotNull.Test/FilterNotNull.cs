@@ -9,12 +9,12 @@ namespace PrimeFuncPack.Core.Tests
     partial class FilterNotNullOptionalExtensionsTest
     {
         [Test]
-        public void FilterNotNull_SourceValueIsNotNull_ExpectSource()
+        public void FilterNotNull_Struct_SourceValueIsNotNull_ExpectSource()
         {
             var source = Optional<StructType?>.Present(default(StructType));
 
             var actual = source.FilterNotNull();
-            Assert.AreEqual(source, actual);
+            Assert.AreEqual(source.OrThrow()!.Value, actual.OrThrow());
         }
 
         [Test]

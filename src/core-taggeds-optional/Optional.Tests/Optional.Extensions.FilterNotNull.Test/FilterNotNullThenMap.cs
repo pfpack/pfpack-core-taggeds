@@ -15,7 +15,7 @@ namespace PrimeFuncPack.Core.Tests
             var sourceValue = MinusFifteenIdRefType;
             var source = Optional<RefType?>.Present(sourceValue);
 
-            var actual = source.FilterNotNullThenMap();
+            var actual = source.FilterNotNull();
             var expected = Optional<RefType>.Present(sourceValue);
 
             Assert.AreEqual(expected, actual);
@@ -26,7 +26,7 @@ namespace PrimeFuncPack.Core.Tests
         {
             var source = Optional<RefType?>.Present(null);
 
-            var actual = source.FilterNotNullThenMap();
+            var actual = source.FilterNotNull();
             var expected = Optional<RefType>.Absent;
 
             Assert.AreEqual(expected, actual);
@@ -38,7 +38,7 @@ namespace PrimeFuncPack.Core.Tests
             var sourceValue = SomeTextStructType;
             var source = Optional<StructType?>.Present(sourceValue);
 
-            var actual = source.FilterNotNullThenMap();
+            var actual = source.FilterNotNull();
             var expected = Optional<StructType>.Present(sourceValue);
 
             Assert.AreEqual(expected, actual);
@@ -49,7 +49,7 @@ namespace PrimeFuncPack.Core.Tests
         {
             var source = Optional<StructType?>.Present(null);
 
-            var actual = source.FilterNotNullThenMap();
+            var actual = source.FilterNotNull();
             var expected = Optional<StructType>.Absent;
 
             Assert.AreEqual(expected, actual);

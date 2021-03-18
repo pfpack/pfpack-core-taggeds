@@ -15,7 +15,7 @@ namespace PrimeFuncPack.Core.Tests
             var sourceValue = PlusFifteenIdRefType;
             var source = Optional<RefType?>.Present(sourceValue);
 
-            var actual = source.FilterNotNullOrThrowThenMap();
+            var actual = source.FilterNotNullOrThrow();
             var expected = Optional<RefType>.Present(sourceValue);
 
             Assert.AreEqual(expected, actual);
@@ -25,7 +25,7 @@ namespace PrimeFuncPack.Core.Tests
         public void FilterNotNullOrThrowThenMap_SourceValueIsNullRefType_ExpectInvalidOperationException()
         {
             var source = Optional<RefType?>.Present(null);
-            _ = Assert.Throws<InvalidOperationException>(() => _ = source.FilterNotNullOrThrowThenMap());
+            _ = Assert.Throws<InvalidOperationException>(() => _ = source.FilterNotNullOrThrow());
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace PrimeFuncPack.Core.Tests
         {
             var source = Optional<RefType?>.Present(PlusFifteenIdRefType);
 
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FilterNotNullOrThrowThenMap(null!));
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FilterNotNullOrThrow(null!));
             Assert.AreEqual("exceptionFactory", ex!.ParamName);
         }
 
@@ -43,7 +43,7 @@ namespace PrimeFuncPack.Core.Tests
             var sourceValue = PlusFifteenIdRefType;
             var source = Optional<RefType?>.Present(sourceValue);
 
-            var actual = source.FilterNotNullOrThrowThenMap(() => new SomeException());
+            var actual = source.FilterNotNullOrThrow(() => new SomeException());
             var expected = Optional<RefType>.Present(sourceValue);
 
             Assert.AreEqual(expected, actual);
@@ -56,7 +56,7 @@ namespace PrimeFuncPack.Core.Tests
             var createdException = new SomeException();
 
             var actualExcepton = Assert.Throws<SomeException>(
-                () => _ = source.FilterNotNullOrThrowThenMap(() => createdException));
+                () => _ = source.FilterNotNullOrThrow(() => createdException));
             Assert.AreSame(createdException, actualExcepton);
         }
 
@@ -66,7 +66,7 @@ namespace PrimeFuncPack.Core.Tests
             var sourceValue = SomeTextStructType;
             var source = Optional<StructType?>.Present(sourceValue);
 
-            var actual = source.FilterNotNullOrThrowThenMap();
+            var actual = source.FilterNotNullOrThrow();
             var expected = Optional<StructType>.Present(sourceValue);
 
             Assert.AreEqual(expected, actual);
@@ -76,7 +76,7 @@ namespace PrimeFuncPack.Core.Tests
         public void FilterNotNullOrThrowThenMap_SourceValueIsNullStructType_ExpectInvalidOperationException()
         {
             var source = Optional<StructType?>.Present(null);
-            _ = Assert.Throws<InvalidOperationException>(() => _ = source.FilterNotNullOrThrowThenMap());
+            _ = Assert.Throws<InvalidOperationException>(() => _ = source.FilterNotNullOrThrow());
         }
 
         [Test]
@@ -84,7 +84,7 @@ namespace PrimeFuncPack.Core.Tests
         {
             var source = Optional<StructType?>.Present(null);
 
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FilterNotNullOrThrowThenMap(null!));
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FilterNotNullOrThrow(null!));
             Assert.AreEqual("exceptionFactory", ex!.ParamName);
         }
 
@@ -94,7 +94,7 @@ namespace PrimeFuncPack.Core.Tests
             var sourceValue = NullTextStructType;
             var source = Optional<StructType?>.Present(sourceValue);
 
-            var actual = source.FilterNotNullOrThrowThenMap(() => new SomeException());
+            var actual = source.FilterNotNullOrThrow(() => new SomeException());
             var expected = Optional<StructType>.Present(sourceValue);
 
             Assert.AreEqual(expected, actual);
@@ -107,7 +107,7 @@ namespace PrimeFuncPack.Core.Tests
             var createdException = new SomeException();
 
             var actualExcepton = Assert.Throws<SomeException>(
-                () => _ = source.FilterNotNullOrThrowThenMap(() => createdException));
+                () => _ = source.FilterNotNullOrThrow(() => createdException));
             Assert.AreSame(createdException, actualExcepton);
         }
     }
