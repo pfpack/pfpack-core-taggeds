@@ -6,6 +6,6 @@ namespace System
     {
         private static ArgumentException CreateExpectedNotNullValueException(string paramName)
             =>
-            new ArgumentException(message: "The value is expected to be not null.", paramName: paramName);
+            new(message: "The value is expected to be not null.", paramName: paramName);
     }
 }
