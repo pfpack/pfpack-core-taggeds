@@ -8,8 +8,8 @@ namespace System
             this Result<TSuccess, TFailure> result)
             where TFailure : struct
             =>
-            result.Fold<TaggedUnion<TSuccess, TFailure>>(
-                static value => value,
-                static value => value);
+            result.Fold(
+                TaggedUnion<TSuccess, TFailure>.First,
+                TaggedUnion<TSuccess, TFailure>.Second);
     }
 }
