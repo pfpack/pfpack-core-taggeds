@@ -20,9 +20,10 @@ namespace PrimeFuncPack.Core.Tests
         [Test]
         public void FilterNotNull_Struct_SourceValueIsNotNull_ExpectSource()
         {
-            var source = Optional<StructType?>.Present(default(StructType));
+            var source = Optional<int?>.Present(TestData.PlusFifteen);
 
             var actual = source.FilterNotNull();
+            Assert.True(actual.IsPresent);
             Assert.AreEqual(source.OrThrow()!.Value, actual.OrThrow());
         }
 
