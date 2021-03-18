@@ -10,7 +10,8 @@ namespace System
                 ? Optional<T>.Present(value)
                 : Optional<T>.Absent;
 
-        public static Optional<T> PresentOrElse<T>(T? value) where T : struct
+        public static Optional<T> PresentOrElse<T>(T? value)
+            where T : struct
             =>
             value is not null
                 ? Optional<T>.Present(value.GetValueOrDefault())

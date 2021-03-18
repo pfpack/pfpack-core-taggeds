@@ -8,12 +8,13 @@ namespace System
             =>
             value is not null
                 ? Optional<T>.Present(value)
-                : throw new ArgumentException();
+                : throw CreateExpectedNotNullValueException(nameof(value));
 
-        public static Optional<T> PresentOrThrow<T>(T? value) where T : struct
+        public static Optional<T> PresentOrThrow<T>(T? value)
+            where T : struct
             =>
             value is not null
                 ? Optional<T>.Present(value.GetValueOrDefault())
-                : throw new ArgumentException();
+                : throw CreateExpectedNotNullValueException(nameof(value));
     }
 }
