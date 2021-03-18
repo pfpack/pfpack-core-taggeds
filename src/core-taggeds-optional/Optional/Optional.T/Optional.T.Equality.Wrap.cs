@@ -19,6 +19,6 @@ namespace System
         public override bool Equals(object? obj)
             =>
             obj is Optional<T> other &&
-            left.Equals(right);
+            Equals(other);
     }
 }
