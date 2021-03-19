@@ -21,7 +21,7 @@ namespace PrimeFuncPack.Core.Tests
             var mappedFailure = new SomeError(PlusFifteen);
 
             var actualException = Assert.ThrowsAsync<ArgumentNullException>(
-                async () => _ = await source.ForwardAsync<SomeRecord, SomeError>(null!,  _ => mappedFailure));
+                async () => _ = await source.ForwardAsync<SomeRecord, SomeError>(null!,  _ => Task.FromResult(mappedFailure)));
 
             Assert.AreEqual("nextFactoryAsync", actualException!.ParamName);
         }
@@ -39,7 +39,7 @@ namespace PrimeFuncPack.Core.Tests
             var actualException = Assert.ThrowsAsync<ArgumentNullException>(
                 async () => _ = await source.ForwardAsync(_ => Task.FromResult(next), null!));
 
-            Assert.AreEqual("mapFailure", actualException!.ParamName);
+            Assert.AreEqual("mapFailureAsync", actualException!.ParamName);
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace PrimeFuncPack.Core.Tests
             Result<SomeRecord, SomeError> next = new SomeRecord();
             var mappedFailure = new SomeError(MinusFifteen);
 
-            var actual = await source.ForwardAsync(_ => Task.FromResult(next), _ => mappedFailure);
+            var actual = await source.ForwardAsync(_ => Task.FromResult(next), _ => Task.FromResult(mappedFailure));
             var expected = new Result<SomeRecord, SomeError>(mappedFailure);
 
             Assert.AreEqual(expected, actual);
@@ -66,7 +66,7 @@ namespace PrimeFuncPack.Core.Tests
             var next = default(Result<string, SomeError>);
             var mappedFailure = new SomeError(PlusFifteen);
 
-            var actual = await source.ForwardAsync(_ => Task.FromResult(next), _ => mappedFailure);
+            var actual = await source.ForwardAsync(_ => Task.FromResult(next), _ => Task.FromResult(mappedFailure));
             Assert.AreEqual(next, actual);
         }
 
@@ -79,7 +79,7 @@ namespace PrimeFuncPack.Core.Tests
             var next = new Result<RefType, SomeError>(MinusFifteenIdRefType);
             var mappedFailure = new SomeError(int.MaxValue);
 
-            var actual = await source.ForwardAsync(_ => Task.FromResult(next), _ => mappedFailure);
+            var actual = await source.ForwardAsync(_ => Task.FromResult(next), _ => Task.FromResult(mappedFailure));
             Assert.AreEqual(next, actual);
         }
 
@@ -92,7 +92,7 @@ namespace PrimeFuncPack.Core.Tests
             Result<SomeRecord, SomeError> next = Result.Failure(new SomeError(MinusFifteen));
             var mappedFailure = new SomeError(int.MinValue);
 
-            var actual = await source.ForwardAsync(_ => Task.FromResult(next), _ => mappedFailure);
+            var actual = await source.ForwardAsync(_ => Task.FromResult(next), _ => Task.FromResult(mappedFailure));
             Assert.AreEqual(next, actual);
         }
     }

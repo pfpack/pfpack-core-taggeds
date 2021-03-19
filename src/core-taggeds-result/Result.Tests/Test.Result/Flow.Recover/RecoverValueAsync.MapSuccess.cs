@@ -24,7 +24,7 @@ namespace PrimeFuncPack.Core.Tests
             };
 
             var actualException = Assert.ThrowsAsync<ArgumentNullException>(
-                async () => _ = await source.RecoverValueAsync<SomeRecord, SomeError>(null!, _ => mappedSuccess));
+                async () => _ = await source.RecoverValueAsync<SomeRecord, SomeError>(null!, _ => ValueTask.FromResult(mappedSuccess)));
 
             Assert.AreEqual("otherFactoryAsync", actualException!.ParamName);
         }
@@ -42,7 +42,7 @@ namespace PrimeFuncPack.Core.Tests
             var actualException = Assert.ThrowsAsync<ArgumentNullException>(
                 async () => _ = await source.RecoverValueAsync(_ => ValueTask.FromResult(other), null!));
 
-            Assert.AreEqual("mapSuccess", actualException!.ParamName);
+            Assert.AreEqual("mapSuccessAsync", actualException!.ParamName);
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace PrimeFuncPack.Core.Tests
                 Text = null
             };
 
-            var actual = await source.RecoverValueAsync(_ => ValueTask.FromResult(other), _ => mappedSuccess);
+            var actual = await source.RecoverValueAsync(_ => ValueTask.FromResult(other), _ => ValueTask.FromResult(mappedSuccess));
             var expected = Result.Success(mappedSuccess).With<SomeError>();
 
             Assert.AreEqual(expected, actual);
@@ -76,7 +76,7 @@ namespace PrimeFuncPack.Core.Tests
             var other = default(Result<string, SomeError>);
             var mappedSuccess = "Some mapped value";
 
-            var actual = await source.RecoverValueAsync(_ => ValueTask.FromResult(other), _ => mappedSuccess);
+            var actual = await source.RecoverValueAsync(_ => ValueTask.FromResult(other), _ => ValueTask.FromResult(mappedSuccess));
             Assert.AreEqual(other, actual);
         }
 
@@ -89,7 +89,7 @@ namespace PrimeFuncPack.Core.Tests
             var other = Result.Success(int.MaxValue).With<SomeError>();
             var mappedSuccess = MinusFifteen;
 
-            var actual = await source.RecoverValueAsync(_ => ValueTask.FromResult(other), _ => mappedSuccess);
+            var actual = await source.RecoverValueAsync(_ => ValueTask.FromResult(other), _ => ValueTask.FromResult(mappedSuccess));
             Assert.AreEqual(other, actual);
         }
 
@@ -105,7 +105,7 @@ namespace PrimeFuncPack.Core.Tests
                 Text = "Some record text property value"
             };
 
-            var actual = await source.RecoverValueAsync(_ => ValueTask.FromResult(other), _ => mappedValue);
+            var actual = await source.RecoverValueAsync(_ => ValueTask.FromResult(other), _ => ValueTask.FromResult(mappedValue));
             Assert.AreEqual(other, actual);
         }
     }

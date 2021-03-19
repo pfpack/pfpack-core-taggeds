@@ -41,15 +41,15 @@ namespace System
 
         public Task<Result<TNextSuccess, TNextFailure>> ForwardAsync<TNextSuccess, TNextFailure>(
             Func<TSuccess, Task<Result<TNextSuccess, TNextFailure>>> nextFactoryAsync,
-            Func<TFailure, TNextFailure> mapFailure)
+            Func<TFailure, Task<TNextFailure>> mapFailureAsync)
             where TNextFailure : struct
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
-            _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
+            _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-            return InternalFold(
+            return InternalFold<Task<Result<TNextSuccess, TNextFailure>>>(
                 nextFactoryAsync,
-                failure => Task.FromResult<Result<TNextSuccess, TNextFailure>>(mapFailure.Invoke(failure)));
+                async failure => await mapFailureAsync.Invoke(failure).ConfigureAwait(false));
         }
 
         public Task<Result<TNextSuccess, TFailure>> ForwardAsync<TNextSuccess>(
@@ -76,15 +76,15 @@ namespace System
 
         public ValueTask<Result<TNextSuccess, TNextFailure>> ForwardValueAsync<TNextSuccess, TNextFailure>(
             Func<TSuccess, ValueTask<Result<TNextSuccess, TNextFailure>>> nextFactoryAsync,
-            Func<TFailure, TNextFailure> mapFailure)
+            Func<TFailure, ValueTask<TNextFailure>> mapFailureAsync)
             where TNextFailure : struct
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
-            _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
+            _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-            return InternalFold(
+            return InternalFold<ValueTask<Result<TNextSuccess, TNextFailure>>>(
                 nextFactoryAsync,
-                failure => ValueTask.FromResult<Result<TNextSuccess, TNextFailure>>(mapFailure.Invoke(failure)));
+                async failure => await mapFailureAsync.Invoke(failure).ConfigureAwait(false));
         }
 
         public ValueTask<Result<TNextSuccess, TFailure>> ForwardValueAsync<TNextSuccess>(

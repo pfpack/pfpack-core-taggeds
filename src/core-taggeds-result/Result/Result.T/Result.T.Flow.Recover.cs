@@ -42,14 +42,14 @@ namespace System
 
         public Task<Result<TOtherSuccess, TOtherFailure>> RecoverAsync<TOtherSuccess, TOtherFailure>(
             Func<TFailure, Task<Result<TOtherSuccess, TOtherFailure>>> otherFactoryAsync,
-            Func<TSuccess, TOtherSuccess> mapSuccess)
+            Func<TSuccess, Task<TOtherSuccess>> mapSuccessAsync)
             where TOtherFailure : struct
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
-            _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
+            _ = mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync));
 
-            return InternalFold(
-                success => Task.FromResult<Result<TOtherSuccess, TOtherFailure>>(mapSuccess.Invoke(success)),
+            return InternalFold<Task<Result<TOtherSuccess, TOtherFailure>>>(
+                async success => await mapSuccessAsync.Invoke(success).ConfigureAwait(false),
                 otherFactoryAsync);
         }
 
@@ -78,14 +78,14 @@ namespace System
 
         public ValueTask<Result<TOtherSuccess, TOtherFailure>> RecoverValueAsync<TOtherSuccess, TOtherFailure>(
             Func<TFailure, ValueTask<Result<TOtherSuccess, TOtherFailure>>> otherFactoryAsync,
-            Func<TSuccess, TOtherSuccess> mapSuccess)
+            Func<TSuccess, ValueTask<TOtherSuccess>> mapSuccessAsync)
             where TOtherFailure : struct
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
-            _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
+            _ = mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync));
 
-            return InternalFold(
-                success => ValueTask.FromResult<Result<TOtherSuccess, TOtherFailure>>(mapSuccess.Invoke(success)),
+            return InternalFold<ValueTask<Result<TOtherSuccess, TOtherFailure>>>(
+                async success => await mapSuccessAsync.Invoke(success).ConfigureAwait(false),
                 otherFactoryAsync);
         }
 
