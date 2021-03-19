@@ -10,9 +10,9 @@ namespace System
         {
             _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
 
-            return InternalFold(value => Filter(value, predicate, This), This);
+            return InternalFold(value => FilterPresent(value, predicate, This), This);
 
-            static Optional<T> Filter(T value, Func<T, bool> predicate, Func<Optional<T>> thisSupplier)
+            static Optional<T> FilterPresent(T value, Func<T, bool> predicate, Func<Optional<T>> thisSupplier)
                 =>
                 predicate.Invoke(value)
                     ? thisSupplier.Invoke()
@@ -23,9 +23,9 @@ namespace System
         {
             _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
 
-            return InternalFold(value => FilterAsync(value, predicateAsync, This), ThisAsync);
+            return InternalFold(value => FilterPresentAsync(value, predicateAsync, This), ThisAsync);
 
-            static async Task<Optional<T>> FilterAsync(
+            static async Task<Optional<T>> FilterPresentAsync(
                 T value, Func<T, Task<bool>> predicateAsync, Func<Optional<T>> thisSupplier)
                 =>
                 await predicateAsync.Invoke(value).ConfigureAwait(false)
@@ -37,9 +37,9 @@ namespace System
         {
             _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
 
-            return InternalFold(value => FilterValueAsync(value, predicateAsync, This), ThisValueAsync);
+            return InternalFold(value => FilterPresentAsync(value, predicateAsync, This), ThisValueAsync);
 
-            static async ValueTask<Optional<T>> FilterValueAsync(
+            static async ValueTask<Optional<T>> FilterPresentAsync(
                 T value, Func<T, ValueTask<bool>> predicateAsync, Func<Optional<T>> thisSupplier)
                 =>
                 await predicateAsync.Invoke(value).ConfigureAwait(false)
