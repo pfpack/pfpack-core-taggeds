@@ -4,7 +4,7 @@ using static System.Optional;
 
 namespace System
 {
-    partial class OptionalResultExtensions
+    partial class TaggedsExtensions
     {
         public static Optional<TSuccess> ToOptional<TSuccess>(this Result<TSuccess, Unit> result)
             =>

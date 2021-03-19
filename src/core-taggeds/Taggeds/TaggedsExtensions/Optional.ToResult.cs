@@ -2,7 +2,7 @@
 
 namespace System
 {
-    partial class OptionalResultExtensions
+    partial class TaggedsExtensions
     {
         public static Result<TSuccess, Unit> ToResult<TSuccess>(this Optional<TSuccess> optional)
             =>

@@ -7,10 +7,10 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class OptionalResultExtensionsTest
+    partial class TaggedsExtensionsTests
     {
         [Test]
-        public void ToOptional_SourceResultIsDefault_ExpectAbsent()
+        public void Result_ToOptional_SourceResultIsDefault_ExpectAbsent()
         {
             var sourceResult = default(Result<SomeRecord?, Unit>);
 
@@ -21,7 +21,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void ToOptional_SourceResultIsFailure_ExpectUnionSecondOfSourceFailureValue()
+        public void Result_ToOptional_SourceResultIsFailure_ExpectUnionSecondOfSourceFailureValue()
         {
             var sourceResult = Result<RefType, Unit>.Failure(Unit.Value);
 
@@ -32,7 +32,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void ToOptional_SourceResultIsSuccessAndSourceValueIsNull_ExpectPresentOptionalOfNullValue()
+        public void Result_ToOptional_SourceResultIsSuccessAndSourceValueIsNull_ExpectPresentOptionalOfNullValue()
         {
             var sourceResult = Result<object?, Unit>.Success(null);
 
@@ -43,7 +43,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void ToOptional_SourceResultIsSuccessAndSourceValueIsNotNull_ExpectPresentOptionalOfSourceValue()
+        public void Result_ToOptional_SourceResultIsSuccessAndSourceValueIsNotNull_ExpectPresentOptionalOfSourceValue()
         {
             var sourceValue = PlusFifteenIdRefType;
             var sourceResult = Result<RefType, Unit>.Success(PlusFifteenIdRefType);

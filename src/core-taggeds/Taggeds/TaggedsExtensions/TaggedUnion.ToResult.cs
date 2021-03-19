@@ -2,7 +2,7 @@
 
 namespace System
 {
-    partial class TaggedUnionResultExtensions
+    partial class TaggedsExtensions
     {
         public static Result<TSuccess, TFailure> ToResult<TSuccess, TFailure>(
             this TaggedUnion<TSuccess, TFailure> union)

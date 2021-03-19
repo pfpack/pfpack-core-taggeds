@@ -11,7 +11,7 @@ namespace PrimeFuncPack.Core.Tests
     {
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureDefaultTestSource))]
-        public void ToTaggedUnion_SourceResultIsDefault_ExpectUnionSecondOfDefaultValue(
+        public void Result_ToTaggedUnion_SourceResultIsDefault_ExpectUnionSecondOfDefaultValue(
             Result<RefType?, StructType> sourceResult)
         {
             var actual = sourceResult.ToTaggedUnion();
@@ -22,7 +22,7 @@ namespace PrimeFuncPack.Core.Tests
 
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
-        public void ToTaggedUnion_SourceResultIsFailure_ExpectUnionSecondOfSourceFailureValue(
+        public void Result_ToTaggedUnion_SourceResultIsFailure_ExpectUnionSecondOfSourceFailureValue(
             Result<RefType, StructType> sourceResult)
         {
             var actual = sourceResult.ToTaggedUnion();
@@ -33,7 +33,7 @@ namespace PrimeFuncPack.Core.Tests
 
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
-        public void ToTaggedUnion_SourceResultIsSuccessAndSourceValueIsNull_ExpectUnionFirstOfNullValue(
+        public void Result_ToTaggedUnion_SourceResultIsSuccessAndSourceValueIsNull_ExpectUnionFirstOfNullValue(
             Result<RefType?, StructType> sourceResult)
         {
             var actual = sourceResult.ToTaggedUnion();
@@ -44,7 +44,7 @@ namespace PrimeFuncPack.Core.Tests
 
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
-        public void ToTaggedUnion_SourceResultIsSuccessAndSourceValueIsNotNull_ExpectUnionFirstOfSourceSuccessValue(
+        public void Result_ToTaggedUnion_SourceResultIsSuccessAndSourceValueIsNotNull_ExpectUnionFirstOfSourceSuccessValue(
             Result<RefType, StructType> sourceResult)
         {
             var actual = sourceResult.ToTaggedUnion();

@@ -6,7 +6,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class OptionalResultExtensionsTest
+    partial class TaggedsExtensionsTests
     {
         [Test]
         [TestCase(null)]
@@ -14,7 +14,7 @@ namespace PrimeFuncPack.Core.Tests
         [TestCase(WhiteSpaceString)]
         [TestCase(TabString)]
         [TestCase(SomeString)]
-        public void ToResult_SourceOptionalIsPresent_ExpectSuccessResultOfSourceValue(
+        public void Optional_ToResult_SourceOptionalIsPresent_ExpectSuccessResultOfSourceValue(
             string? sourceValue)
         {
             var sourceOptional = Optional<string?>.Present(sourceValue);
@@ -26,7 +26,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void ToResult_SourceOptionalIsAbsent_ExpectFailureResultOfUnit()
+        public void Optional_ToResult_SourceOptionalIsAbsent_ExpectFailureResultOfUnit()
         {
             var sourceOptional = Optional<SomeRecord>.Absent;
 

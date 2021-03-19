@@ -10,7 +10,7 @@ namespace PrimeFuncPack.Core.Tests
     partial class TaggedUnionResultExtensions
     {
         [Test]
-        public void ToResult_SourceUnionIsDefault_ExpectDefaultResult()
+        public void TaggedUnion_ToResult_SourceUnionIsDefault_ExpectDefaultResult()
         {
             var sourceUnion = default(TaggedUnion<SomeRecord, StructType>);
 
@@ -21,7 +21,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void ToResult_SourceUnionIsSecond_ExpectFailureResult()
+        public void TaggedUnion_ToResult_SourceUnionIsSecond_ExpectFailureResult()
         {
             var sourceValue = new SomeError(MinusFifteen);
             var sourceUnion = TaggedUnion<RefType?, SomeError>.Second(sourceValue);
@@ -33,7 +33,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void ToResult_SourceUnionIsFirstAndSourceValueIsNull_ExpectSuccessResultOfNullValue()
+        public void TaggedUnion_ToResult_SourceUnionIsFirstAndSourceValueIsNull_ExpectSuccessResultOfNullValue()
         {
             var sourceUnion = TaggedUnion<RefType?, StructType>.First(null);
 
@@ -44,7 +44,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void ToResult_SourceUnionIsFirstAndSourceValueIsNotNull_ExpectSuccessResultOfSourceValue()
+        public void TaggedUnion_ToResult_SourceUnionIsFirstAndSourceValueIsNotNull_ExpectSuccessResultOfSourceValue()
         {
             var sourceValue = new SomeRecord
             {
