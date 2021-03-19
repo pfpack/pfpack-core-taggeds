@@ -5,16 +5,14 @@ namespace System
     public readonly partial struct Result<TSuccess, TFailure> : IEquatable<Result<TSuccess, TFailure>>
         where TFailure : struct
     {
-        private readonly TaggedUnion<TSuccess, TFailure> union;
+        private readonly bool isSuccess;
 
-        private readonly TaggedUnion<TSuccess, TFailure> Union
-            =>
-            union.IsInitialized
-                ? union
-                : new(default(TFailure));
+        private readonly TSuccess success;
 
-        public bool IsSuccess => Union.IsFirst;
+        private readonly TFailure failure;
 
-        public bool IsFailure => Union.IsSecond;
+        public bool IsSuccess => isSuccess;
+
+        public bool IsFailure => isSuccess is false;
     }
 }
