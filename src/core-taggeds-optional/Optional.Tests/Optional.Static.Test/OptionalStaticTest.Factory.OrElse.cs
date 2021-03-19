@@ -41,6 +41,17 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
+        public void PresentOrElseWithStructValue_NullableValueIsNotNull_ExpectPresent()
+        {
+            StructType? sourceValue = SomeTextStructType;
+
+            var actual = Optional.PresentOrElse(sourceValue);
+            var expected = Optional<StructType>.Present(SomeTextStructType);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void PresentOrElseWithStructValue_ValueIsNull_ExpectAbsent()
         {
             var actual = Optional.PresentOrElse<StructType>(null!);
