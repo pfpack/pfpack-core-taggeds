@@ -8,7 +8,7 @@ namespace System
     {
         public override string ToString()
             =>
-            Fold(
+            InternalFold(
                 ToStringOrEmpty,
                 ToStringOrEmpty);
     }

@@ -16,7 +16,7 @@ namespace System
             _ = nextFactory ?? throw new ArgumentNullException(nameof(nextFactory));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return Fold(nextFactory, failure => mapFailure.Invoke(failure));
+            return InternalFold(nextFactory, failure => mapFailure.Invoke(failure));
         }
 
         public Result<TNextSuccess, TFailure> Forward<TNextSuccess>(
@@ -24,7 +24,7 @@ namespace System
         {
             _ = nextFactory ?? throw new ArgumentNullException(nameof(nextFactory));
 
-            return Fold(nextFactory, failure => failure);
+            return InternalFold(nextFactory, failure => failure);
         }
 
         public Result<TSuccess, TFailure> Forward(
@@ -34,7 +34,7 @@ namespace System
 
             var @this = this;
 
-            return Fold(nextFactory, _ => @this);
+            return InternalFold(nextFactory, _ => @this);
         }
 
         // Forward Async / Task
@@ -47,7 +47,7 @@ namespace System
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return FoldAsync(
+            return InternalFold(
                 nextFactoryAsync,
                 failure => Task.FromResult<Result<TNextSuccess, TNextFailure>>(mapFailure.Invoke(failure)));
         }
@@ -57,7 +57,7 @@ namespace System
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
 
-            return FoldAsync(
+            return InternalFold(
                 nextFactoryAsync,
                 static failure => Task.FromResult<Result<TNextSuccess, TFailure>>(failure));
         }
@@ -69,7 +69,7 @@ namespace System
 
             var @this = this;
 
-            return FoldAsync(nextFactoryAsync, _ => Task.FromResult(@this));
+            return InternalFold(nextFactoryAsync, _ => Task.FromResult(@this));
         }
 
         // Forward Async / ValueTask
@@ -82,7 +82,7 @@ namespace System
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return FoldValueAsync(
+            return InternalFold(
                 nextFactoryAsync,
                 failure => ValueTask.FromResult<Result<TNextSuccess, TNextFailure>>(mapFailure.Invoke(failure)));
         }
@@ -92,7 +92,7 @@ namespace System
         {
             _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
 
-            return FoldValueAsync(
+            return InternalFold(
                 nextFactoryAsync,
                 static failure => ValueTask.FromResult<Result<TNextSuccess, TFailure>>(failure));
         }
@@ -104,7 +104,7 @@ namespace System
 
             var @this = this;
 
-            return FoldValueAsync(nextFactoryAsync, _ => ValueTask.FromResult(@this));
+            return InternalFold(nextFactoryAsync, _ => ValueTask.FromResult(@this));
         }
     }
 }

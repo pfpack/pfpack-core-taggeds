@@ -16,7 +16,7 @@ namespace System
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
-            return Fold(success => mapSuccess.Invoke(success), otherFactory);
+            return InternalFold(success => mapSuccess.Invoke(success), otherFactory);
         }
 
         public Result<TSuccess, TOtherFailure> Recover<TOtherFailure>(
@@ -25,7 +25,7 @@ namespace System
         {
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return Fold(success => success, otherFactory);
+            return InternalFold(success => success, otherFactory);
         }
 
         public Result<TSuccess, TFailure> Recover(
@@ -35,7 +35,7 @@ namespace System
 
             var @this = this;
 
-            return Fold(_ => @this, otherFactory);
+            return InternalFold(_ => @this, otherFactory);
         }
 
         // Recover Async / Task
@@ -48,7 +48,7 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
-            return FoldAsync(
+            return InternalFold(
                 success => Task.FromResult<Result<TOtherSuccess, TOtherFailure>>(mapSuccess.Invoke(success)),
                 otherFactoryAsync);
         }
@@ -59,7 +59,7 @@ namespace System
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return FoldAsync(
+            return InternalFold(
                 static success => Task.FromResult<Result<TSuccess, TOtherFailure>>(success),
                 otherFactoryAsync);
         }
@@ -71,7 +71,7 @@ namespace System
 
             var @this = this;
 
-            return FoldAsync(_ => Task.FromResult(@this), otherFactoryAsync);
+            return InternalFold(_ => Task.FromResult(@this), otherFactoryAsync);
         }
 
         // Recover Async / ValueTask
@@ -84,7 +84,7 @@ namespace System
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
 
-            return FoldValueAsync(
+            return InternalFold(
                 success => ValueTask.FromResult<Result<TOtherSuccess, TOtherFailure>>(mapSuccess.Invoke(success)),
                 otherFactoryAsync);
         }
@@ -95,7 +95,7 @@ namespace System
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return FoldValueAsync(
+            return InternalFold(
                 static success => ValueTask.FromResult<Result<TSuccess, TOtherFailure>>(success),
                 otherFactoryAsync);
         }
@@ -107,7 +107,7 @@ namespace System
 
             var @this = this;
 
-            return FoldValueAsync(_ => ValueTask.FromResult(@this), otherFactoryAsync);
+            return InternalFold(_ => ValueTask.FromResult(@this), otherFactoryAsync);
         }
     }
 }
