@@ -4,13 +4,13 @@ using System.Runtime.CompilerServices;
 
 namespace System
 {
-    partial struct TaggedUnion<TFirst, TSecond>
+    partial struct Result<TSuccess, TFailure>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TFirst InternalFirstOrThrow(Func<Exception> exceptionFactory)
+        private TFailure InternalFailureOrThrow(Func<Exception> exceptionFactory)
             =>
-            tag == Tag.First
-                ? first
+            isSuccess is false
+                ? failure
                 : throw exceptionFactory.Invoke();
     }
 }

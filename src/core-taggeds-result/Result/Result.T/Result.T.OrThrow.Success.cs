@@ -6,13 +6,13 @@ namespace System
     {
         public TSuccess SuccessOrThrow()
             =>
-            Union.FirstOrThrow(CreateNotSuccessException);
+            InternalSuccessOrThrow(CreateNotSuccessException);
 
         public TSuccess SuccessOrThrow(Func<Exception> exceptionFactory)
         {
             _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
 
-            return Union.FirstOrThrow(exceptionFactory);
+            return InternalSuccessOrThrow(exceptionFactory);
         }
     }
 }

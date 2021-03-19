@@ -12,25 +12,31 @@ namespace System
         {
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return Union.MapSecond(mapFailure).AsResult();
+            return InternalFold<Result<TSuccess, TResultFailure>>(
+                static value => value,
+                value => mapFailure.Invoke(value));
         }
 
-        public async Task<Result<TSuccess, TResultFailure>> MapFailureAsync<TResultFailure>(
+        public Task<Result<TSuccess, TResultFailure>> MapFailureAsync<TResultFailure>(
             Func<TFailure, Task<TResultFailure>> mapFailureAsync)
             where TResultFailure : struct
         {
             _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-            return (await Union.MapSecondAsync(mapFailureAsync).ConfigureAwait(false)).AsResult();
+            return InternalFold<Task<Result<TSuccess, TResultFailure>>>(
+                static value => Task.FromResult<Result<TSuccess, TResultFailure>>(value),
+                async value => await mapFailureAsync.Invoke(value).ConfigureAwait(false));
         }
 
-        public async ValueTask<Result<TSuccess, TResultFailure>> MapFailureValueAsync<TResultFailure>(
+        public ValueTask<Result<TSuccess, TResultFailure>> MapFailureValueAsync<TResultFailure>(
             Func<TFailure, ValueTask<TResultFailure>> mapFailureAsync)
             where TResultFailure : struct
         {
             _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
             
-            return (await Union.MapSecondValueAsync(mapFailureAsync).ConfigureAwait(false)).AsResult();
+            return InternalFold<ValueTask<Result<TSuccess, TResultFailure>>>(
+                static value => ValueTask.FromResult<Result<TSuccess, TResultFailure>>(value),
+                async value => await mapFailureAsync.Invoke(value).ConfigureAwait(false));
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿#nullable enable
 
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 namespace System
@@ -14,8 +13,7 @@ namespace System
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return Union.Fold(
-                mapSuccess, mapFailure, Fold_OtherFactory_MustNeverBeInvoked<TResult>);
+            return InternalFold(mapSuccess, mapFailure);
         }
 
         public Task<TResult> FoldAsync<TResult>(
@@ -25,8 +23,7 @@ namespace System
             _ = mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync));
             _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-            return Union.FoldAsync(
-                mapSuccessAsync, mapFailureAsync, Fold_OtherFactory_MustNeverBeInvoked<TResult>);
+            return InternalFold(mapSuccessAsync, mapFailureAsync);
         }
 
         public ValueTask<TResult> FoldValueAsync<TResult>(
@@ -36,13 +33,7 @@ namespace System
             _ = mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync));
             _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-            return Union.FoldValueAsync(
-                mapSuccessAsync, mapFailureAsync, Fold_OtherFactory_MustNeverBeInvoked<TResult>);
+            return InternalFold(mapSuccessAsync, mapFailureAsync);
         }
-
-        [DoesNotReturn]
-        private static TResult Fold_OtherFactory_MustNeverBeInvoked<TResult>()
-            =>
-            throw new InvalidOperationException("The result is not initialized.");
     }
 }

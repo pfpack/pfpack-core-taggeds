@@ -9,6 +9,8 @@ namespace System
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TSecond InternalSecondOrThrow(Func<Exception> exceptionFactory)
             =>
-            InternalOrThrow(Tag.Second, Second, exceptionFactory);
+            tag == Tag.Second
+                ? second
+                : throw exceptionFactory.Invoke();
     }
 }

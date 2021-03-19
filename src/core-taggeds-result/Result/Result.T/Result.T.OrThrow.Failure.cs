@@ -6,13 +6,13 @@ namespace System
     {
         public TFailure FailureOrThrow()
             =>
-            Union.SecondOrThrow(CreateNotFailureException);
+            InternalFailureOrThrow(CreateNotFailureException);
 
         public TFailure FailureOrThrow(Func<Exception> exceptionFactory)
         {
             _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
 
-            return Union.SecondOrThrow(exceptionFactory);
+            return InternalFailureOrThrow(exceptionFactory);
         }
     }
 }
