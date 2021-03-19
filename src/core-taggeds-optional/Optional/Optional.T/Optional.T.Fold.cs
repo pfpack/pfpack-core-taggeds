@@ -13,7 +13,7 @@ namespace System
             _ = map ?? throw new ArgumentNullException(nameof(map));
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return InternalHandleFold(map, otherFactory);
+            return InternalFold(map, otherFactory);
         }
 
         public Task<TResult> FoldAsync<TResult>(
@@ -23,7 +23,7 @@ namespace System
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return InternalHandleFold(mapAsync, otherFactoryAsync);
+            return InternalFold(mapAsync, otherFactoryAsync);
         }
 
         public ValueTask<TResult> FoldValueAsync<TResult>(
@@ -33,7 +33,7 @@ namespace System
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return InternalHandleFold(mapAsync, otherFactoryAsync);
+            return InternalFold(mapAsync, otherFactoryAsync);
         }
     }
 }

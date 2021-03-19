@@ -7,18 +7,13 @@ namespace System
     partial struct Optional<T>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TResult InternalHandleOn<TOnPresentOut, TOnElseOut, TResult>(
-            Func<T, TOnPresentOut> onPresent,
-            Func<TOnElseOut> onElse,
+        private TResult InternalOnPresent<THandlerOut, TResult>(
+            Func<T, THandlerOut> handler,
             Func<TResult> resultSupplier)
         {
             if (hasValue)
             {
-                _ = onPresent.Invoke(value);
-            }
-            else
-            {
-                _ = onElse.Invoke();
+                _ = handler.Invoke(value);
             }
 
             return resultSupplier.Invoke();

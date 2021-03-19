@@ -7,7 +7,7 @@ namespace System
     partial struct Optional<T>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TResult InternalHandleFoldThis<TResult>(
+        private TResult InternalFoldThis<TResult>(
             Func<Optional<T>, TResult> map,
             Func<TResult> otherFactory)
             =>

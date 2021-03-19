@@ -2,7 +2,7 @@
 
 namespace PrimeFuncPack.Core.Tests
 {
-    public sealed partial class OptionalTaggedUnionExtensionsTest
+    public sealed partial class TaggedsExtensionsTests
     {
     }
 }

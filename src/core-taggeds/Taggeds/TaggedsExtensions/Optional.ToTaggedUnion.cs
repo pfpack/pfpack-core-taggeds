@@ -2,7 +2,7 @@
 
 namespace System
 {
-    partial class OptionalTaggedUnionExtensions
+    partial class TaggedsExtensions
     {
         public static TaggedUnion<T, Unit> ToTaggedUnion<T>(this Optional<T> optional)
             =>

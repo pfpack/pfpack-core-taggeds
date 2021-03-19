@@ -6,11 +6,11 @@ using System;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class OptionalTaggedUnionExtensionsTest
+    partial class TaggedsExtensionsTests
     {
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
-        public void ToTaggedUnion_OptionalIsPresent_ExpectActualIsFirst(
+        public void Optional_ToTaggedUnion_OptionalIsPresent_ExpectActualIsFirst(
             object? sourceValue)
         {
             var optional = Optional.Present(sourceValue);
@@ -21,7 +21,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void ToTaggedUnion_OptionalIsAbsent_ExpectActualIsSecond()
+        public void Optional_ToTaggedUnion_OptionalIsAbsent_ExpectActualIsSecond()
         {
             var optional = Optional.Absent<RefType>();
             var actual = optional.ToTaggedUnion();

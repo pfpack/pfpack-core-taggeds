@@ -8,15 +8,15 @@
 		<Description>PrimeFuncPack: A Functional Programming Pack for .NET</Description>
 		<Copyright>Copyright © 2020 Andrei Sergeev, Pavel Moskovoy</Copyright>
 		<RootNamespace>PrimeFuncPack.Core.Tests</RootNamespace>
-		<AssemblyName>PrimeFuncPack.Core.TaggedUnion.Tests</AssemblyName>
+		<AssemblyName>PrimeFuncPack.Core.Taggeds.Tests</AssemblyName>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="NUnit" Version="3.13.1" />
 		<PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
-		<PackageReference Include="PrimeFuncPack.Core.TaggedUnion" Version="1.1.0-preview.1.0.102" />
-		<PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="2.0.5" />
+		<PackageReference Include="PrimeFuncPack.Core.Taggeds" Version="1.1.0-preview.1.0.102" />
+		<PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="2.0.6" />
 	</ItemGroup>
 
 </Project>

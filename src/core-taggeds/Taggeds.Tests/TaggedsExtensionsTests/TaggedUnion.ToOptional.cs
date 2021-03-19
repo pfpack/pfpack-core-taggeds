@@ -6,11 +6,11 @@ using System;
 
 namespace PrimeFuncPack.Core.Tests
 {
-    partial class OptionalTaggedUnionExtensionsTest
+    partial class TaggedsExtensionsTests
     {
         [Test]
         [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
-        public void ToOptional_UnionIsFirst_ExpectPresent(
+        public void TaggedUnion_ToOptional_UnionIsFirst_ExpectPresent(
             object? sourceValue)
         {
             var union = TaggedUnion<object?, Unit>.First(sourceValue);
@@ -21,7 +21,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void ToOptional_UnionIsDefault_ExpectAbsent()
+        public void TaggedUnion_ToOptional_UnionIsDefault_ExpectAbsent()
         {
             var union = default(TaggedUnion<StructType, Unit>);
             var actual = union.ToOptional();
@@ -31,7 +31,7 @@ namespace PrimeFuncPack.Core.Tests
         }
 
         [Test]
-        public void ToOptional_UnionIsSecond_ExpectAbsent()
+        public void TaggedUnion_ToOptional_UnionIsSecond_ExpectAbsent()
         {
             var union = TaggedUnion<RefType, Unit>.Second(Unit.Value);
             var actual = union.ToOptional();
