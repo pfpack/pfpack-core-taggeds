@@ -8,7 +8,7 @@ namespace System
     partial class AsyncFunc
     {
         public static IAsyncFunc<TResult> From<TResult>(
-            Func<CancellationToken, ValueTask<TResult>> funcAsync)
+            Func<CancellationToken, Task<TResult>> funcAsync)
             =>
             new ImplAsyncFunc<TResult>(
                 funcAsync ?? throw new ArgumentNullException(nameof(funcAsync)));

@@ -7,14 +7,14 @@ namespace System
 {
     internal sealed class ImplAsyncFunc<TResult> : IAsyncFunc<TResult>
     {
-        private readonly Func<CancellationToken, ValueTask<TResult>> funcAsync;
+        private readonly Func<CancellationToken, Task<TResult>> funcAsync;
 
         public ImplAsyncFunc(
-            Func<CancellationToken, ValueTask<TResult>> funcAsync)
+            Func<CancellationToken, Task<TResult>> funcAsync)
             =>
             this.funcAsync = funcAsync;
 
-        public ValueTask<TResult> InvokeAsync(CancellationToken cancellationToken = default)
+        public Task<TResult> InvokeAsync(CancellationToken cancellationToken = default)
             =>
             funcAsync.Invoke(cancellationToken);
     }
