@@ -4,8 +4,8 @@ namespace System
 {
     partial class Optional
     {
-        private static ArgumentException CreateExpectedNotNullException(string paramName)
+        private static ArgumentException CreateExpectedSpecifiedException(string paramName)
             =>
-            new(message: "The value is expected to be not null.", paramName: paramName);
+            new(message: "The value is expected to be specified.", paramName: paramName);
     }
 }
