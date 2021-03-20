@@ -25,7 +25,7 @@
 		<PackageReference Include="PrimeFuncPack.Core.Optional" Version="1.1.0-preview.1.1.0" />
 		<PackageReference Include="PrimeFuncPack.Core.Result" Version="1.1.0-preview.1.1.0" />
 		<PackageReference Include="PrimeFuncPack.Core.TaggedUnion" Version="1.1.0-preview.1.1.0" />
-		<PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.1.0-preview.1.0.110" />
+		<PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.1.0-preview.1.1.0" />
 	</ItemGroup>
 
 </Project>

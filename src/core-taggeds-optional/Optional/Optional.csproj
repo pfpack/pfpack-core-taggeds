@@ -23,7 +23,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="PrimeFuncPack.Primitives" Version="1.1.0" />
-		<PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.1.0-preview.1.0.110" />
+		<PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.1.0-preview.1.1.0" />
 	</ItemGroup>
 
 </Project>
