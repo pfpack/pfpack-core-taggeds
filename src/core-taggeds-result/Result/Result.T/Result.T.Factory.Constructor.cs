@@ -5,11 +5,17 @@ namespace System
     partial struct Result<TSuccess, TFailure>
     {
         public Result(TSuccess success)
-            =>
-            unionRaw = new(success);
+        {
+            isSuccess = true;
+            this.success = success;
+            failure = default;
+        }
 
         public Result(TFailure failure)
-            =>
-            unionRaw = new(failure);
+        {
+            isSuccess = false;
+            success = default!;
+            this.failure = failure;
+        }
     }
 }

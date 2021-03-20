@@ -18,15 +18,13 @@ namespace System
             _ = causeFactory ?? throw new ArgumentNullException(nameof(causeFactory));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return Fold(FilterSuccess, failure => mapFailure.Invoke(failure));
+            return InternalFold(FilterSuccess, failure => mapFailure.Invoke(failure));
 
             Result<TSuccess, TCauseFailure> FilterSuccess(TSuccess success)
                 =>
-                predicate.Invoke(success) switch
-                {
-                    true => success,
-                    _ => causeFactory.Invoke(success)
-                };
+                predicate.Invoke(success)
+                    ? success
+                    : causeFactory.Invoke(success);
         }
 
         public Result<TSuccess, TFailure> Filter(
@@ -38,15 +36,13 @@ namespace System
 
             var @this = this;
 
-            return Fold(FilterSuccess, _ => @this);
+            return InternalFold(FilterSuccess, _ => @this);
 
             Result<TSuccess, TFailure> FilterSuccess(TSuccess success)
                 =>
-                predicate.Invoke(success) switch
-                {
-                    true => @this,
-                    _ => causeFactory.Invoke(success)
-                };
+                predicate.Invoke(success)
+                    ? @this
+                    : causeFactory.Invoke(success);
         }
 
         // Filter Async / Task
@@ -61,15 +57,13 @@ namespace System
             _ = causeFactoryAsync ?? throw new ArgumentNullException(nameof(causeFactoryAsync));
             _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-            return FoldAsync(FilterSuccessAsync, MapFailureAsync);
+            return InternalFold(FilterSuccessAsync, MapFailureAsync);
 
             async Task<Result<TSuccess, TCauseFailure>> FilterSuccessAsync(TSuccess success)
                 =>
-                await predicateAsync.Invoke(success).ConfigureAwait(false) switch
-                {
-                    true => success,
-                    _ => await causeFactoryAsync.Invoke(success).ConfigureAwait(false)
-                };
+                await predicateAsync.Invoke(success).ConfigureAwait(false)
+                    ? success
+                    : await causeFactoryAsync.Invoke(success).ConfigureAwait(false);
 
             async Task<Result<TSuccess, TCauseFailure>> MapFailureAsync(TFailure failure)
                 =>
@@ -85,15 +79,13 @@ namespace System
 
             var @this = this;
 
-            return FoldAsync(FilterSuccessAsync, _ => Task.FromResult(@this));
+            return InternalFold(FilterSuccessAsync, _ => Task.FromResult(@this));
 
             async Task<Result<TSuccess, TFailure>> FilterSuccessAsync(TSuccess success)
                 =>
-                await predicateAsync.Invoke(success).ConfigureAwait(false) switch
-                {
-                    true => @this,
-                    _ => await causeFactoryAsync.Invoke(success).ConfigureAwait(false)
-                };
+                await predicateAsync.Invoke(success).ConfigureAwait(false)
+                    ? @this
+                    : await causeFactoryAsync.Invoke(success).ConfigureAwait(false);
         }
 
         // Filter Async / ValueTask
@@ -108,17 +100,15 @@ namespace System
             _ = causeFactoryAsync ?? throw new ArgumentNullException(nameof(causeFactoryAsync));
             _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-            return FoldValueAsync(FilterSuccessValueAsync, MapFailureValueAsync);
+            return InternalFold(FilterSuccessAsync, MapFailureAsync);
 
-            async ValueTask<Result<TSuccess, TCauseFailure>> FilterSuccessValueAsync(TSuccess success)
+            async ValueTask<Result<TSuccess, TCauseFailure>> FilterSuccessAsync(TSuccess success)
                 =>
-                await predicateAsync.Invoke(success).ConfigureAwait(false) switch
-                {
-                    true => success,
-                    _ => await causeFactoryAsync.Invoke(success).ConfigureAwait(false)
-                };
+                await predicateAsync.Invoke(success).ConfigureAwait(false)
+                    ? success
+                    : await causeFactoryAsync.Invoke(success).ConfigureAwait(false);
 
-            async ValueTask<Result<TSuccess, TCauseFailure>> MapFailureValueAsync(TFailure failure)
+            async ValueTask<Result<TSuccess, TCauseFailure>> MapFailureAsync(TFailure failure)
                 =>
                 await mapFailureAsync.Invoke(failure).ConfigureAwait(false);
         }
@@ -132,15 +122,13 @@ namespace System
 
             var @this = this;
 
-            return FoldValueAsync(FilterSuccessValueAsync, _ => ValueTask.FromResult(@this));
+            return InternalFold(FilterSuccessAsync, _ => ValueTask.FromResult(@this));
 
-            async ValueTask<Result<TSuccess, TFailure>> FilterSuccessValueAsync(TSuccess success)
+            async ValueTask<Result<TSuccess, TFailure>> FilterSuccessAsync(TSuccess success)
                 =>
-                await predicateAsync.Invoke(success).ConfigureAwait(false) switch
-                {
-                    true => @this,
-                    _ => await causeFactoryAsync.Invoke(success).ConfigureAwait(false)
-                };
+                await predicateAsync.Invoke(success).ConfigureAwait(false)
+                    ? @this
+                    : await causeFactoryAsync.Invoke(success).ConfigureAwait(false);
         }
     }
 }

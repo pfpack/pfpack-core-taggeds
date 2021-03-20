@@ -4,8 +4,8 @@ namespace System
 {
     partial class Optional
     {
-        public static bool Equals<T>(Optional<T> optionalA, Optional<T> optionalB)
+        public static bool Equals<T>(Optional<T> left, Optional<T> right)
             =>
-            Optional<T>.Equals(optionalA, optionalB);
+            left.Equals(right);
     }
 }

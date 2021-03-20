@@ -1,47 +1,59 @@
 ﻿#nullable enable
 
 using NUnit.Framework;
+using PrimeFuncPack.UnitTest;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Reflection;
+using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests
 {
     partial class OptionalStaticTest
     {
         [Test]
-        public void PresentOrThrow_ExpectIsObsolete()
+        public void PresentOrThrow_ValueIsNotNull_ExpectPresent()
         {
-            const string expectedObsoleteMessage
-                = "This method is not intended for use. Call Present and then FilterNotNullOrThrow or FilterNotNullOrThrowThenMap instead.";
+            var sourceValue = PlusFifteenIdRefType;
 
-            IReadOnlyCollection<MethodInfo> methods = typeof(Optional)
-                .GetMethods(BindingFlags.Public | BindingFlags.Static)
-                .Where(method => method.Name == nameof(Optional.PresentOrThrow))
-                .ToArray();
+            var actual = Optional.PresentOrThrow<RefType?>(sourceValue);
+            var expected = Optional<RefType?>.Present(sourceValue);
 
-            Assert.AreEqual(2, methods.Count);
+            Assert.AreEqual(expected, actual);
+        }
 
-            Assert.IsTrue(
-                methods.All(
-                    method => method.CustomAttributes.Any(
-                        attr
-                        =>
-                        attr.AttributeType == typeof(ObsoleteAttribute) &&
-                        attr.ConstructorArguments.Count == 2 &&
-                        attr.ConstructorArguments[0].ArgumentType == typeof(string) &&
-                        attr.ConstructorArguments[0].Value is expectedObsoleteMessage &&
-                        attr.ConstructorArguments[1].ArgumentType == typeof(bool) &&
-                        attr.ConstructorArguments[1].Value is true)));
+        [Test]
+        public void PresentOrThrow_ValueIsNull_ExpectArgumentNullException()
+        {
+            var ex = Assert.Throws<ArgumentException>(() => _ = Optional.PresentOrThrow<RefType?>(null!));
+            Assert.AreEqual("value", ex!.ParamName);
+        }
 
-            Assert.IsTrue(
-                methods.All(
-                    method => method.CustomAttributes.Any(
-                        attr
-                        =>
-                        attr.AttributeType == typeof(DoesNotReturnAttribute))));
+        [Test]
+        public void PresentOrThrowWithStructValue_ValueIsNotNull_ExpectPresent()
+        {
+            var sourceValue = SomeTextStructType;
+
+            var actual = Optional.PresentOrThrow(sourceValue);
+            var expected = Optional<StructType>.Present(SomeTextStructType);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void PresentOrThrowWithStructValue_NullableValueIsNotNull_ExpectPresent()
+        {
+            StructType? sourceValue = SomeTextStructType;
+
+            var actual = Optional.PresentOrThrow(sourceValue);
+            var expected = Optional<StructType>.Present(SomeTextStructType);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void PresentOrThrowWithStructValue_ValueIsNull_ExpectArgumentNullException()
+        {
+            var ex = Assert.Throws<ArgumentException>(() => _ = Optional.PresentOrThrow<StructType>(null!));
+            Assert.AreEqual("value", ex!.ParamName);
         }
     }
 }

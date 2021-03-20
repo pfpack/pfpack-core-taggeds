@@ -10,33 +10,39 @@ namespace System
         {
             _ = map ?? throw new ArgumentNullException(nameof(map));
 
-            return InternalFold(Map, static () => default);
+            return InternalFold(MapPresent, static () => default);
 
-            Optional<TResult> Map(T value)
+            Optional<TResult> MapPresent(T value)
                 =>
-                Optional<TResult>.Present(map.Invoke(value));
+                Pipeline
+                .Pipe(map.Invoke(value))
+                .Pipe(Optional<TResult>.Present);
         }
 
         public Task<Optional<TResult>> MapAsync<TResult>(Func<T, Task<TResult>> mapAsync)
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return InternalFold(MapAsync, static () => Task.FromResult<Optional<TResult>>(default));
+            return InternalFold(MapPresentAsync, static () => Task.FromResult<Optional<TResult>>(default));
 
-            async Task<Optional<TResult>> MapAsync(T value)
+            async Task<Optional<TResult>> MapPresentAsync(T value)
                 =>
-                Optional<TResult>.Present(await mapAsync.Invoke(value).ConfigureAwait(false));
+                Pipeline
+                .Pipe(await mapAsync.Invoke(value).ConfigureAwait(false))
+                .Pipe(Optional<TResult>.Present);
         }
 
         public ValueTask<Optional<TResult>> MapValueAsync<TResult>(Func<T, ValueTask<TResult>> mapAsync)
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return InternalFold(MapValueAsync, static () => default);
+            return InternalFold(MapPresentAsync, static () => default);
 
-            async ValueTask<Optional<TResult>> MapValueAsync(T value)
+            async ValueTask<Optional<TResult>> MapPresentAsync(T value)
                 =>
-                Optional<TResult>.Present(await mapAsync.Invoke(value).ConfigureAwait(false));
+                Pipeline
+                .Pipe(await mapAsync.Invoke(value).ConfigureAwait(false))
+                .Pipe(Optional<TResult>.Present);
         }
     }
 }

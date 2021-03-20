@@ -1,31 +1,26 @@
 ﻿#nullable enable
 
+using System.Runtime.CompilerServices;
+
 namespace System
 {
     partial struct Optional<T>
     {
-        private TResult InternalOn<TResult>(
-            Func<T, Unit> onPresent,
-            Func<Unit> onElse,
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private TResult InternalOn<TOnPresentOut, TOnElseOut, TResult>(
+            Func<T, TOnPresentOut> onPresent,
+            Func<TOnElseOut> onElse,
             Func<TResult> resultSupplier)
         {
-            _ = InternalHandle(Value, onPresent, onElse);
-            return resultSupplier.Invoke();
-        }
+            if (hasValue)
+            {
+                _ = onPresent.Invoke(value);
+            }
+            else
+            {
+                _ = onElse.Invoke();
+            }
 
-        private TResult InternalOnPresent<TResult>(
-            Func<T, Unit> handler,
-            Func<TResult> resultSupplier)
-        {
-            _ = InternalHandle(Value, handler, Unit.Get);
-            return resultSupplier.Invoke();
-        }
-
-        private TResult InternalOnAbsent<TResult>(
-            Func<Unit> handler,
-            Func<TResult> resultSupplier)
-        {
-            _ = InternalHandle(Unit.Get, Pipeline.Pipe, handler);
             return resultSupplier.Invoke();
         }
     }

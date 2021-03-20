@@ -4,9 +4,10 @@ namespace System
 {
     partial class Result
     {
-        public static bool Equals<TSuccess, TFailure>(Result<TSuccess, TFailure> resultA, Result<TSuccess, TFailure> resultB)
+        public static bool Equals<TSuccess, TFailure>(
+            Result<TSuccess, TFailure> left, Result<TSuccess, TFailure> right)
             where TFailure : struct
             =>
-            Result<TSuccess, TFailure>.Equals(resultA, resultB);
+            left.Equals(right);
     }
 }

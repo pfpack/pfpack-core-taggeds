@@ -8,26 +8,27 @@ namespace System
     {
         public T OrElse(T other)
             =>
-            InternalFold(
-                Pipeline.Pipe,
-                () => other);
+            InternalFold(Pipeline.Pipe, other);
 
         public T OrElse(Func<T> otherFactory)
-            =>
-            InternalFold(
-                Pipeline.Pipe,
-                otherFactory ?? throw new ArgumentNullException(nameof(otherFactory)));
+        {
+            _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
+
+            return InternalFold(Pipeline.Pipe, otherFactory);
+        }
 
         public Task<T> OrElseAsync(Func<Task<T>> otherFactoryAsync)
-            =>
-            InternalFold(
-                Task.FromResult,
-                otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
+        {
+            _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
+
+            return InternalFold(Task.FromResult, otherFactoryAsync);
+        }
 
         public ValueTask<T> OrElseValueAsync(Func<ValueTask<T>> otherFactoryAsync)
-            =>
-            InternalFold(
-                ValueTask.FromResult,
-                otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
+        {
+            _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
+
+            return InternalFold(ValueTask.FromResult, otherFactoryAsync);
+        }
     }
 }

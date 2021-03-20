@@ -4,8 +4,9 @@ namespace System
 {
     partial class TaggedUnion
     {
-        public static bool Equals<TFirst, TSecond>(TaggedUnion<TFirst, TSecond> unionA, TaggedUnion<TFirst, TSecond> unionB)
+        public static bool Equals<TFirst, TSecond>(
+            TaggedUnion<TFirst, TSecond> left, TaggedUnion<TFirst, TSecond> right)
             =>
-            TaggedUnion<TFirst, TSecond>.Equals(unionA, unionB);
+            left.Equals(right);
     }
 }

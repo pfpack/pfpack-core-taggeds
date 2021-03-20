@@ -1,21 +1,21 @@
 ﻿#nullable enable
 
-using static System.Optional;
-
 namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
         public TaggedUnion(TFirst first)
         {
-            this.first = Present(first);
-            second = default;
+            tag = Tag.First;
+            this.first = first;
+            second = default!;
         }
 
         public TaggedUnion(TSecond second)
         {
-            this.second = Present(second);
-            first = default;
+            tag = Tag.Second;
+            first = default!;
+            this.second = second;
         }
     }
 }

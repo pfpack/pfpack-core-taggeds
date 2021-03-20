@@ -9,25 +9,31 @@ namespace System
         public TResult Fold<TResult>(
             Func<T, TResult> map,
             Func<TResult> otherFactory)
-            =>
-            InternalFold(
-                map ?? throw new ArgumentNullException(nameof(map)),
-                otherFactory ?? throw new ArgumentNullException(nameof(otherFactory)));
+        {
+            _ = map ?? throw new ArgumentNullException(nameof(map));
+            _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
+
+            return InternalFold(map, otherFactory);
+        }
 
         public Task<TResult> FoldAsync<TResult>(
             Func<T, Task<TResult>> mapAsync,
             Func<Task<TResult>> otherFactoryAsync)
-            =>
-            InternalFold(
-                mapAsync ?? throw new ArgumentNullException(nameof(mapAsync)),
-                otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
+        {
+            _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
+            _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
+
+            return InternalFold(mapAsync, otherFactoryAsync);
+        }
 
         public ValueTask<TResult> FoldValueAsync<TResult>(
             Func<T, ValueTask<TResult>> mapAsync,
             Func<ValueTask<TResult>> otherFactoryAsync)
-            =>
-            InternalFold(
-                mapAsync ?? throw new ArgumentNullException(nameof(mapAsync)),
-                otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
+        {
+            _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
+            _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
+
+            return InternalFold(mapAsync, otherFactoryAsync);
+        }
     }
 }

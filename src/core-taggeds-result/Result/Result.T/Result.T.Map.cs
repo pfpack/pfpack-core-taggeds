@@ -14,10 +14,12 @@ namespace System
             _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
             _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return Union.Map(mapSuccess, mapFailure).AsResult();
+            return InternalFold<Result<TResultSuccess, TResultFailure>>(
+                value => mapSuccess.Invoke(value),
+                value => mapFailure.Invoke(value));
         }
 
-        public async Task<Result<TResultSuccess, TResultFailure>> MapAsync<TResultSuccess, TResultFailure>(
+        public Task<Result<TResultSuccess, TResultFailure>> MapAsync<TResultSuccess, TResultFailure>(
             Func<TSuccess, Task<TResultSuccess>> mapSuccessAsync,
             Func<TFailure, Task<TResultFailure>> mapFailureAsync)
             where TResultFailure : struct
@@ -25,10 +27,12 @@ namespace System
             _ = mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync));
             _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-            return (await Union.MapAsync(mapSuccessAsync, mapFailureAsync).ConfigureAwait(false)).AsResult();
+            return InternalFold<Task<Result<TResultSuccess, TResultFailure>>>(
+                async value => await mapSuccessAsync.Invoke(value).ConfigureAwait(false),
+                async value => await mapFailureAsync.Invoke(value).ConfigureAwait(false));
         }
 
-        public async ValueTask<Result<TResultSuccess, TResultFailure>> MapValueAsync<TResultSuccess, TResultFailure>(
+        public ValueTask<Result<TResultSuccess, TResultFailure>> MapValueAsync<TResultSuccess, TResultFailure>(
             Func<TSuccess, ValueTask<TResultSuccess>> mapSuccessAsync,
             Func<TFailure, ValueTask<TResultFailure>> mapFailureAsync)
             where TResultFailure : struct
@@ -36,7 +40,9 @@ namespace System
             _ = mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync));
             _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-            return (await Union.MapValueAsync(mapSuccessAsync, mapFailureAsync).ConfigureAwait(false)).AsResult();
+            return InternalFold<ValueTask<Result<TResultSuccess, TResultFailure>>>(
+                async value => await mapSuccessAsync.Invoke(value).ConfigureAwait(false),
+                async value => await mapFailureAsync.Invoke(value).ConfigureAwait(false));
         }
     }
 }

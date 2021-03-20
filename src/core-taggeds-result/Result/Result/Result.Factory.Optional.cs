@@ -6,10 +6,10 @@ namespace System
     {
         public static Result<TSuccess, Unit> Present<TSuccess>(TSuccess success)
             =>
-            new(success);
+            new(success: success);
 
         public static Result<TSuccess, Unit> Absent<TSuccess>()
             =>
-            new(Unit.Value);
+            new(failure: default);
     }
 }

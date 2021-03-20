@@ -1,11 +1,27 @@
 ﻿#nullable enable
 
+using System.Runtime.CompilerServices;
+
 namespace System
 {
     partial struct Optional<T>
     {
-        private TResult InternalFold<TResult>(Func<T, TResult> map, Func<TResult> otherFactory)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private TResult InternalFold<TResult>(
+            Func<T, TResult> map,
+            Func<TResult> otherFactory)
             =>
-            InternalHandle(Value, map, otherFactory);
+            hasValue
+                ? map.Invoke(value)
+                : otherFactory.Invoke();
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private TResult InternalFold<TResult>(
+            Func<T, TResult> map,
+            TResult other)
+            =>
+            hasValue
+                ? map.Invoke(value)
+                : other;
     }
 }

@@ -10,7 +10,8 @@ namespace System
             =>
             new(success);
 
-        public static FailureBuilder<TFailure> Failure<TFailure>(TFailure failure) where TFailure : struct
+        public static FailureBuilder<TFailure> Failure<TFailure>(TFailure failure)
+            where TFailure : struct
             =>
             new(failure);
     }

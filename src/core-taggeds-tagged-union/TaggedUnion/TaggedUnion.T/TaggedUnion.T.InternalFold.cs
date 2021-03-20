@@ -1,22 +1,28 @@
 ﻿#nullable enable
 
-using static System.Optional;
+using System.Runtime.CompilerServices;
 
 namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TResult InternalFold<TResult>(
             Func<TFirst, TResult> mapFirst,
             Func<TSecond, TResult> mapSecond,
             Func<TResult> otherFactory)
         {
-            var @this = this;
+            if (tag == Tag.First)
+            {
+                return mapFirst.Invoke(first);
+            }
 
-            return Absent<TResult>()
-                .Or(() => @this.first.Map(mapFirst))
-                .Or(() => @this.second.Map(mapSecond))
-                .OrElse(otherFactory);
+            if (tag == Tag.Second)
+            {
+                return mapSecond.Invoke(second);
+            }
+
+            return otherFactory.Invoke();
         }
     }
 }

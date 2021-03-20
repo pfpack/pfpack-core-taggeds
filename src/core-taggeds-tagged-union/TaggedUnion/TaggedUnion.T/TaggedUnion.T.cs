@@ -4,21 +4,22 @@ namespace System
 {
     public readonly partial struct TaggedUnion<TFirst, TSecond> : IEquatable<TaggedUnion<TFirst, TSecond>>
     {
-        private readonly Optional<TFirst> first;
+        private readonly Tag tag;
 
-        private readonly Optional<TSecond> second;
+        private readonly TFirst first;
+
+        private readonly TSecond second;
 
         public bool IsInitialized
             =>
-            first.IsPresent ||
-            second.IsPresent;
+            tag != default;
 
         public bool IsFirst
             =>
-            first.IsPresent;
+            tag == Tag.First;
 
         public bool IsSecond
             =>
-            second.IsPresent;
+            tag == Tag.Second;
     }
 }

@@ -7,21 +7,24 @@ namespace System
     partial struct Optional<T>
     {
         public Optional<TResult> FlatMap<TResult>(Func<T, Optional<TResult>> map)
-            =>
-            InternalFold(
-                map ?? throw new ArgumentNullException(nameof(map)),
-                static () => default);
+        {
+            _ = map ?? throw new ArgumentNullException(nameof(map));
+
+            return InternalFold(map, static () => default);
+        }
 
         public Task<Optional<TResult>> FlatMapAsync<TResult>(Func<T, Task<Optional<TResult>>> mapAsync)
-            =>
-            InternalFold(
-                mapAsync ?? throw new ArgumentNullException(nameof(mapAsync)),
-                static () => Task.FromResult<Optional<TResult>>(default));
+        {
+            _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
+
+            return InternalFold(mapAsync, static () => Task.FromResult<Optional<TResult>>(default));
+        }
 
         public ValueTask<Optional<TResult>> FlatMapValueAsync<TResult>(Func<T, ValueTask<Optional<TResult>>> mapAsync)
-            =>
-            InternalFold(
-                mapAsync ?? throw new ArgumentNullException(nameof(mapAsync)),
-                static () => default);
+        {
+            _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
+
+            return InternalFold(mapAsync, static () => default);
+        }
     }
 }

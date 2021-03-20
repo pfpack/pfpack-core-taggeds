@@ -1,21 +1,20 @@
 ﻿#nullable enable
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace System
 {
     partial class Optional
     {
-        [Obsolete(ObsoleteMessages.PresentOrThrow, error: true)]
-        [DoesNotReturn]
-        public static Optional<T> PresentOrThrow<T>([DisallowNull] T value)
+        public static Optional<T> PresentOrThrow<T>(T? value)
             =>
-            throw new NotImplementedException(ObsoleteMessages.PresentOrThrow);
+            value is not null
+                ? Optional<T>.Present(value)
+                : throw CreateExpectedNotNullException(nameof(value));
 
-        [Obsolete(ObsoleteMessages.PresentOrThrow, error: true)]
-        [DoesNotReturn]
-        public static Optional<T> PresentOrThrow<T>([DisallowNull] T? value) where T : struct
+        public static Optional<T> PresentOrThrow<T>(T? value)
+            where T : struct
             =>
-            throw new NotImplementedException(ObsoleteMessages.PresentOrThrow);
+            value is not null
+                ? Optional<T>.Present(value.GetValueOrDefault())
+                : throw CreateExpectedNotNullException(nameof(value));
     }
 }
