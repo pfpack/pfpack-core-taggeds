@@ -36,7 +36,7 @@ namespace System
                 : HashCode.Combine(EqualityContract, Tag.Second);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private int UninitializedHashCode()
+        private static int UninitializedHashCode()
             =>
             HashCode.Combine(EqualityContract);
     }

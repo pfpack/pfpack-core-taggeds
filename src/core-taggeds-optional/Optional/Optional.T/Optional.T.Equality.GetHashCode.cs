@@ -18,7 +18,7 @@ namespace System
                 : HashCode.Combine(EqualityContract, true);
     
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private int AbsentHashCode()
+        private static int AbsentHashCode()
             =>
             HashCode.Combine(EqualityContract);
     }
