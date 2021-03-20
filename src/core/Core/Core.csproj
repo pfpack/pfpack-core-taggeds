@@ -23,8 +23,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="PrimeFuncPack.Core.Failure" Version="1.1.0-preview.1.0.110" />
-		<PackageReference Include="PrimeFuncPack.Core.Func" Version="1.0.0-preview.1.2.110" />
-		<PackageReference Include="PrimeFuncPack.Core.Func.Extensions" Version="1.0.0-preview.2.0.110" />
+		<PackageReference Include="PrimeFuncPack.Core.Func" Version="1.1.0-preview.1.0.110" />
+		<PackageReference Include="PrimeFuncPack.Core.Func.Extensions" Version="1.1.0-preview.1.0.110" />
 		<PackageReference Include="PrimeFuncPack.Core.Optional" Version="1.1.0-preview.1.0.110" />
 		<PackageReference Include="PrimeFuncPack.Core.Result" Version="1.1.0-preview.1.0.110" />
 		<PackageReference Include="PrimeFuncPack.Core.Taggeds" Version="1.1.0-preview.1.0.110" />

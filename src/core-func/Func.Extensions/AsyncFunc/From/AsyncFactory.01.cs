@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace System
 {
-    partial class Func
+    partial class AsyncFunc
     {
         public static IAsyncFunc<T, TResult> From<T, TResult>(
             Func<T, CancellationToken, ValueTask<TResult>> funcAsync)

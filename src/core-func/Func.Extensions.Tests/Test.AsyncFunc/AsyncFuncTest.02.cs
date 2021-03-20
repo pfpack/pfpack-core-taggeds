@@ -15,7 +15,7 @@ namespace PrimeFuncPack.Core.Tests
         public void From_02_SourceFuncIsNull_ExpectArgumentNullException()
         {
             var sourceFunc = (Func<RefType?, RecordType, CancellationToken, ValueTask<StructType>>)null!;
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = Func.From(sourceFunc));
+            var ex = Assert.Throws<ArgumentNullException>(() => _ = AsyncFunc.From(sourceFunc));
             Assert.Equal("funcAsync", ex.ParamName);
         }
 
@@ -26,7 +26,7 @@ namespace PrimeFuncPack.Core.Tests
         public async Task From_02_ThenInvokeAsync_ExpectResultOfSourceFunc(
             bool? sourceFuncResult)
         {
-            var actual = Func.From<RecordType?, StructType, bool?>(
+            var actual = AsyncFunc.From<RecordType?, StructType, bool?>(
                 (_, _, _) => ValueTask.FromResult(sourceFuncResult));
 
             var cancellationToken = new CancellationToken(canceled: true);
