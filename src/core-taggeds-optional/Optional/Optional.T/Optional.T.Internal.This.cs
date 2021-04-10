@@ -15,11 +15,11 @@ namespace System
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private Task<Optional<T>> ThisAsync()
             =>
-            Task.FromResult(this);
+            this.Pipe(Task.FromResult);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private ValueTask<Optional<T>> ThisValueAsync()
             =>
-            ValueTask.FromResult(this);
+            this.Pipe(ValueTask.FromResult);
     }
 }
