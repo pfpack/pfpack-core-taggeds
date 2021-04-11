@@ -17,7 +17,7 @@ namespace System
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return InternalFold(mapAsync, static () => Task.FromResult<Optional<TResult>>(default));
+            return InternalFold(mapAsync, static () => default(Optional<TResult>).Pipe(Task.FromResult));
         }
 
         public ValueTask<Optional<TResult>> FlatMapValueAsync<TResult>(Func<T, ValueTask<Optional<TResult>>> mapAsync)

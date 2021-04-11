@@ -23,7 +23,7 @@ namespace System
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return InternalFold(MapPresentAsync, static () => Task.FromResult<Optional<TResult>>(default));
+            return InternalFold(MapPresentAsync, static () => default(Optional<TResult>).Pipe(Task.FromResult));
 
             async Task<Optional<TResult>> MapPresentAsync(T value)
                 =>

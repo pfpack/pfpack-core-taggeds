@@ -7,10 +7,13 @@ namespace System
     partial struct TaggedUnion<TFirst, TSecond>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TFirst InternalFirstOrThrow(Func<Exception> exceptionFactory)
+        private TValue InternalOrThrow<TValue>(
+            Tag expectedTag,
+            Func<TValue> valueSupplier,
+            Func<Exception> exceptionFactory)
             =>
-            tag == Tag.First
-                ? first
+            tag == expectedTag
+                ? valueSupplier.Invoke()
                 : throw exceptionFactory.Invoke();
     }
 }

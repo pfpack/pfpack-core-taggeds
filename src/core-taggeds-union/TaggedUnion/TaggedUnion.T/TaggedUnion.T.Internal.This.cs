@@ -5,20 +5,20 @@ using System.Threading.Tasks;
 
 namespace System
 {
-    partial struct Optional<T>
+    partial struct TaggedUnion<TFirst, TSecond>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private Optional<T> This()
+        private TaggedUnion<TFirst, TSecond> This()
             =>
             this;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private Task<Optional<T>> ThisAsync()
+        private Task<TaggedUnion<TFirst, TSecond>> ThisAsync()
             =>
             this.Pipe(Task.FromResult);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private ValueTask<Optional<T>> ThisValueAsync()
+        private ValueTask<TaggedUnion<TFirst, TSecond>> ThisValueAsync()
             =>
             this.Pipe(ValueTask.FromResult);
     }

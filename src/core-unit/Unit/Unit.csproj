@@ -7,11 +7,11 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<Description>PrimeFuncPack: A Functional Programming Pack for .NET</Description>
-		<Copyright>Copyright © 2020 Andrei Sergeev, Pavel Moskovoy</Copyright>
+		<Description>PrimeFuncPack Core Unit is a core library for .NET consisting of Unit type targeted for use in functional programming.</Description>
+		<Copyright>Copyright © 2020-2021 Andrei Sergeev, Pavel Moskovoy</Copyright>
 		<RootNamespace>System</RootNamespace>
 		<AssemblyName>PrimeFuncPack.Core.Unit</AssemblyName>
-		<Version>1.1.0</Version>
+		<Version>1.1.1-preview.1.0.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
