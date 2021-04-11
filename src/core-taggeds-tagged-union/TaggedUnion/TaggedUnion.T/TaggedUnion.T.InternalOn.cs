@@ -23,5 +23,20 @@ namespace System
 
             return resultSupplier.Invoke();
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private TResult InternalOn<TValue, THandlerOut, TResult>(
+            Tag expectedTag,
+            Func<TValue> valueSupplier,
+            Func<TValue, THandlerOut> handler,
+            Func<TResult> resultSupplier)
+        {
+            if (tag == expectedTag)
+            {
+                _ = handler.Invoke(valueSupplier.Invoke());
+            }
+
+            return resultSupplier.Invoke();
+        }
     }
 }

@@ -9,8 +9,7 @@ namespace System
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private TFirst InternalFirstOrThrow(Func<Exception> exceptionFactory)
             =>
-            tag == Tag.First
-                ? first
-                : throw exceptionFactory.Invoke();
+            InternalOrThrow(
+                Tag.First, First, exceptionFactory);
     }
 }

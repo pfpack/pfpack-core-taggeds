@@ -11,7 +11,7 @@ namespace System
             Func<TFirst, THandlerOut> handler,
             Func<TResult> resultSupplier)
             =>
-            InternalOnTag(
+            InternalOn(
                 Tag.First, First, handler, resultSupplier);
     }
 }
