@@ -6,14 +6,14 @@
 		<IsPackable>false</IsPackable>
 		<Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
 		<Description>PrimeFuncPack: A Functional Programming Pack for .NET</Description>
-		<Copyright>Copyright © 2020 Andrei Sergeev, Pavel Moskovoy</Copyright>
+		<Copyright>Copyright © 2020-2021 Andrei Sergeev, Pavel Moskovoy</Copyright>
 		<RootNamespace>PrimeFuncPack.Core.Tests</RootNamespace>
 		<AssemblyName>PrimeFuncPack.Core.Func.Extensions.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
-    <PackageReference Include="PrimeFuncPack.Core.Func.Extensions" Version="1.1.0" />
+    <PackageReference Include="PrimeFuncPack.Core.Func.Extensions" Version="1.1.1-preview.1.0.0" />
     <PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="2.0.6" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">

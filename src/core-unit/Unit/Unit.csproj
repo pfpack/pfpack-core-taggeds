@@ -7,7 +7,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<Description>PrimeFuncPack Core Unit is a core library for .NET consisting of Unit type targeted for use in functional programming.</Description>
+		<Description>PrimeFuncPack Core.Unit is a core library for .NET consisting of Unit type targeted for use in functional programming.</Description>
 		<Copyright>Copyright © 2020-2021 Andrei Sergeev, Pavel Moskovoy</Copyright>
 		<RootNamespace>System</RootNamespace>
 		<AssemblyName>PrimeFuncPack.Core.Unit</AssemblyName>
