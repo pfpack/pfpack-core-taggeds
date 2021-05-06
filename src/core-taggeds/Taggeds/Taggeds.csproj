@@ -7,7 +7,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<Description>PrimeFuncPack Core.Taggeds is a core library for .NET consisting of tagged types such as Optional and Result monads, Tagged Union, and the convert extensions targeted for use in functional programming.</Description>
+		<Description>PrimeFuncPack Core.Taggeds is a core library for .NET consisting of fundamental tagged types targeted for use in functional programming: Optional and Result monads, Tagged Union, as well as the convert extensions.</Description>
 		<Copyright>Copyright © 2020-2021 Andrei Sergeev, Pavel Moskovoy</Copyright>
 		<RootNamespace>System</RootNamespace>
 		<AssemblyName>PrimeFuncPack.Core.Taggeds</AssemblyName>

@@ -7,7 +7,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<Description>PrimeFuncPack: A Functional Programming Pack for .NET</Description>
+		<Description>PrimeFuncPack Core is a functional programming pack for .NET consisting of the fundamentals: Optional and Result monads, Failure type, Tagged Union, Unit type, and functional interfaces (SAM interfaces), as well as the useful extensions.</Description>
 		<Copyright>Copyright © 2020-2021 Andrei Sergeev, Pavel Moskovoy</Copyright>
 		<RootNamespace>System</RootNamespace>
 		<AssemblyName>PrimeFuncPack.Core</AssemblyName>
