@@ -5,9 +5,7 @@ namespace System
     partial struct Optional<T>
     {
         public Optional(T value)
-        {
-            hasValue = true;
-            this.value = value;
-        }
+            =>
+            (this.value, hasValue) = (value, true);
     }
 }
