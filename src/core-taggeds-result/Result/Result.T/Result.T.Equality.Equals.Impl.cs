@@ -5,18 +5,10 @@ namespace System
     partial struct Result<TSuccess, TFailure>
     {
         public bool Equals(Result<TSuccess, TFailure> other)
-        {
-            if (isSuccess != other.isSuccess)
-            {
-                return false;
-            }
-
-            if (isSuccess)
-            {
-                return SuccessComparer.Equals(success, other.success);
-            }
-
-            return FailureComparer.Equals(failure, other.failure);
-        }
+            =>
+            (isSuccess == other.isSuccess) &&
+            (isSuccess
+                ? SuccessComparer.Equals(success, other.success)
+                : FailureComparer.Equals(failure, other.failure));
     }
 }
