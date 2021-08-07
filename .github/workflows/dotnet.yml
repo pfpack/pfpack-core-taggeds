@@ -153,6 +153,12 @@ jobs:
     - name: Pack Taggeds
       run: dotnet pack ./src/*/*/Taggeds.csproj --no-restore -o ~/nuget
 
+    - name: Restore Taggeds.Tests
+      run: dotnet restore ./src/*/*/Taggeds.Tests.csproj
+
+    - name: Test Taggeds.Tests
+      run: dotnet test ./src/*/*/Taggeds.Tests.csproj --no-restore
+
     # Core
 
     - name: Restore Core
