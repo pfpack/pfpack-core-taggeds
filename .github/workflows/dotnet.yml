@@ -1,0 +1,171 @@
+name: .NET
+
+on:
+  push:
+    branches: [ master ]
+    
+  pull_request:
+    branches: [ master ]
+    
+  release:
+    types: [ published ]
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+
+    # Create Local NuGet Source
+    
+    - name: Create Local NuGet Directory
+      run: mkdir ~/nuget
+      
+    - name: Add Local Nuget Source
+      run: dotnet nuget add source ~/nuget
+
+      # Unit
+
+    - name: Restore Unit
+      run: dotnet restore ./src/*/*/Unit.csproj
+
+    - name: Build Unit
+      run: dotnet build ./src/*/*/Unit.csproj --no-restore
+
+    - name: Pack Unit
+      run: dotnet pack ./src/*/*/Unit.csproj --no-restore -o ~/nuget
+      
+    - name: Restore Unit.Tests
+      run: dotnet restore ./src/*/*/Unit.Tests.csproj
+
+    - name: Test Unit.Tests
+      run: dotnet test ./src/*/*/Unit.Tests.csproj --no-restore
+
+    # Func
+
+    - name: Restore Func
+      run: dotnet restore ./src/*/*/Func.csproj
+
+    - name: Build Func
+      run: dotnet build ./src/*/*/Func.csproj --no-restore
+
+    - name: Pack Func
+      run: dotnet pack ./src/*/*/Func.csproj --no-restore -o ~/nuget
+
+    - name: Restore Func.Extensions
+      run: dotnet restore ./src/*/*/Func.Extensions.csproj
+
+    - name: Build Func.Extensions
+      run: dotnet build ./src/*/*/Func.Extensions.csproj --no-restore
+
+    - name: Pack Func.Extensions
+      run: dotnet pack ./src/*/*/Func.Extensions.csproj --no-restore -o ~/nuget
+      
+    - name: Restore Func.Extensions.Tests
+      run: dotnet restore ./src/*/*/Func.Extensions.Tests.csproj
+
+    - name: Test Func.Extensions.Tests
+      run: dotnet test ./src/*/*/Func.Extensions.Tests.csproj --no-restore
+
+    # Failure
+
+    - name: Restore Failure
+      run: dotnet restore ./src/*/*/Failure.csproj
+
+    - name: Build Failure
+      run: dotnet build ./src/*/*/Failure.csproj --no-restore
+
+    - name: Pack Failure
+      run: dotnet pack ./src/*/*/Failure.csproj --no-restore -o ~/nuget
+      
+    - name: Restore Failure.Tests
+      run: dotnet restore ./src/*/*/Failure.Tests.csproj
+
+    - name: Test Failure.Tests
+      run: dotnet test ./src/*/*/Failure.Tests.csproj --no-restore
+
+    # Optional
+
+    - name: Restore Optional
+      run: dotnet restore ./src/*/*/Optional.csproj
+
+    - name: Build Optional
+      run: dotnet build ./src/*/*/Optional.csproj --no-restore
+
+    - name: Pack Optional
+      run: dotnet pack ./src/*/*/Optional.csproj --no-restore -o ~/nuget
+      
+    - name: Restore Optional.Tests
+      run: dotnet restore ./src/*/*/Optional.Tests.csproj
+
+    - name: Test Optional.Tests
+      run: dotnet test ./src/*/*/Optional.Tests.csproj --no-restore
+
+    # TaggedUnion
+
+    - name: Restore TaggedUnion
+      run: dotnet restore ./src/*/*/TaggedUnion.csproj
+
+    - name: Build TaggedUnion
+      run: dotnet build ./src/*/*/TaggedUnion.csproj --no-restore
+
+    - name: Pack TaggedUnion
+      run: dotnet pack ./src/*/*/TaggedUnion.csproj --no-restore -o ~/nuget
+      
+    - name: Restore TaggedUnion.Tests
+      run: dotnet restore ./src/*/*/TaggedUnion.Tests.csproj
+
+    - name: Test TaggedUnion.Tests
+      run: dotnet test ./src/*/*/TaggedUnion.Tests.csproj --no-restore
+
+    # Result
+
+    - name: Restore Result
+      run: dotnet restore ./src/*/*/Result.csproj
+
+    - name: Build Result
+      run: dotnet build ./src/*/*/Result.csproj --no-restore
+
+    - name: Pack Result
+      run: dotnet pack ./src/*/*/Result.csproj --no-restore -o ~/nuget
+      
+    - name: Restore Result.Tests
+      run: dotnet restore ./src/*/*/Result.Tests.csproj
+
+    - name: Test Result.Tests
+      run: dotnet test ./src/*/*/Result.Tests.csproj --no-restore
+
+    # Taggeds
+
+    - name: Restore Taggeds
+      run: dotnet restore ./src/*/*/Taggeds.csproj
+
+    - name: Build Taggeds
+      run: dotnet build ./src/*/*/Taggeds.csproj --no-restore
+
+    - name: Pack Taggeds
+      run: dotnet pack ./src/*/*/Taggeds.csproj --no-restore -o ~/nuget
+
+    # Core
+
+    - name: Restore Core
+      run: dotnet restore ./src/*/*/Core.csproj
+
+    - name: Build Core
+      run: dotnet build ./src/*/*/Core.csproj --no-restore
+
+    - name: Pack Core
+      run: dotnet pack ./src/*/*/Core.csproj --no-restore -o ~/nuget
+
+      # Push
+
+    - name: Push Packages
+      if: ${{ github.event_name == 'release' }}
+      run: dotnet nuget push "../../../nuget/*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{ secrets.NuGetSourcePassword }} --skip-duplicate
