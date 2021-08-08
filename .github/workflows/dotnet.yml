@@ -37,16 +37,16 @@ jobs:
       run: dotnet restore ./src/*/*/Unit.csproj
 
     - name: Build Unit
-      run: dotnet build ./src/*/*/Unit.csproj --no-restore
+      run: dotnet build ./src/*/*/Unit.csproj --no-restore  -c Release
 
     - name: Pack Unit
-      run: dotnet pack ./src/*/*/Unit.csproj --no-restore -o ~/nuget
+      run: dotnet pack ./src/*/*/Unit.csproj --no-restore -o ~/nuget  -c Release
       
     - name: Restore Unit.Tests
       run: dotnet restore ./src/*/*/Unit.Tests.csproj
 
     - name: Test Unit.Tests
-      run: dotnet test ./src/*/*/Unit.Tests.csproj --no-restore
+      run: dotnet test ./src/*/*/Unit.Tests.csproj --no-restore  -c Release
 
     # Func
 
@@ -54,25 +54,25 @@ jobs:
       run: dotnet restore ./src/*/*/Func.csproj
 
     - name: Build Func
-      run: dotnet build ./src/*/*/Func.csproj --no-restore
+      run: dotnet build ./src/*/*/Func.csproj --no-restore  -c Release
 
     - name: Pack Func
-      run: dotnet pack ./src/*/*/Func.csproj --no-restore -o ~/nuget
+      run: dotnet pack ./src/*/*/Func.csproj --no-restore -o ~/nuget  -c Release
 
     - name: Restore Func.Extensions
       run: dotnet restore ./src/*/*/Func.Extensions.csproj
 
     - name: Build Func.Extensions
-      run: dotnet build ./src/*/*/Func.Extensions.csproj --no-restore
+      run: dotnet build ./src/*/*/Func.Extensions.csproj --no-restore  -c Release
 
     - name: Pack Func.Extensions
-      run: dotnet pack ./src/*/*/Func.Extensions.csproj --no-restore -o ~/nuget
+      run: dotnet pack ./src/*/*/Func.Extensions.csproj --no-restore -o ~/nuget  -c Release
       
     - name: Restore Func.Extensions.Tests
       run: dotnet restore ./src/*/*/Func.Extensions.Tests.csproj
 
     - name: Test Func.Extensions.Tests
-      run: dotnet test ./src/*/*/Func.Extensions.Tests.csproj --no-restore
+      run: dotnet test ./src/*/*/Func.Extensions.Tests.csproj --no-restore  -c Release
 
     # Failure
 
@@ -80,16 +80,16 @@ jobs:
       run: dotnet restore ./src/*/*/Failure.csproj
 
     - name: Build Failure
-      run: dotnet build ./src/*/*/Failure.csproj --no-restore
+      run: dotnet build ./src/*/*/Failure.csproj --no-restore  -c Release
 
     - name: Pack Failure
-      run: dotnet pack ./src/*/*/Failure.csproj --no-restore -o ~/nuget
+      run: dotnet pack ./src/*/*/Failure.csproj --no-restore -o ~/nuget  -c Release
       
     - name: Restore Failure.Tests
       run: dotnet restore ./src/*/*/Failure.Tests.csproj
 
     - name: Test Failure.Tests
-      run: dotnet test ./src/*/*/Failure.Tests.csproj --no-restore
+      run: dotnet test ./src/*/*/Failure.Tests.csproj --no-restore  -c Release
 
     # Optional
 
@@ -97,16 +97,16 @@ jobs:
       run: dotnet restore ./src/*/*/Optional.csproj
 
     - name: Build Optional
-      run: dotnet build ./src/*/*/Optional.csproj --no-restore
+      run: dotnet build ./src/*/*/Optional.csproj --no-restore  -c Release
 
     - name: Pack Optional
-      run: dotnet pack ./src/*/*/Optional.csproj --no-restore -o ~/nuget
+      run: dotnet pack ./src/*/*/Optional.csproj --no-restore -o ~/nuget  -c Release
       
     - name: Restore Optional.Tests
       run: dotnet restore ./src/*/*/Optional.Tests.csproj
 
     - name: Test Optional.Tests
-      run: dotnet test ./src/*/*/Optional.Tests.csproj --no-restore
+      run: dotnet test ./src/*/*/Optional.Tests.csproj --no-restore  -c Release
 
     # TaggedUnion
 
@@ -114,16 +114,16 @@ jobs:
       run: dotnet restore ./src/*/*/TaggedUnion.csproj
 
     - name: Build TaggedUnion
-      run: dotnet build ./src/*/*/TaggedUnion.csproj --no-restore
+      run: dotnet build ./src/*/*/TaggedUnion.csproj --no-restore  -c Release
 
     - name: Pack TaggedUnion
-      run: dotnet pack ./src/*/*/TaggedUnion.csproj --no-restore -o ~/nuget
+      run: dotnet pack ./src/*/*/TaggedUnion.csproj --no-restore -o ~/nuget  -c Release
       
     - name: Restore TaggedUnion.Tests
       run: dotnet restore ./src/*/*/TaggedUnion.Tests.csproj
 
     - name: Test TaggedUnion.Tests
-      run: dotnet test ./src/*/*/TaggedUnion.Tests.csproj --no-restore
+      run: dotnet test ./src/*/*/TaggedUnion.Tests.csproj --no-restore  -c Release
 
     # Result
 
@@ -131,16 +131,16 @@ jobs:
       run: dotnet restore ./src/*/*/Result.csproj
 
     - name: Build Result
-      run: dotnet build ./src/*/*/Result.csproj --no-restore
+      run: dotnet build ./src/*/*/Result.csproj --no-restore  -c Release
 
     - name: Pack Result
-      run: dotnet pack ./src/*/*/Result.csproj --no-restore -o ~/nuget
+      run: dotnet pack ./src/*/*/Result.csproj --no-restore -o ~/nuget  -c Release
       
     - name: Restore Result.Tests
       run: dotnet restore ./src/*/*/Result.Tests.csproj
 
     - name: Test Result.Tests
-      run: dotnet test ./src/*/*/Result.Tests.csproj --no-restore
+      run: dotnet test ./src/*/*/Result.Tests.csproj --no-restore  -c Release
 
     # Taggeds
 
@@ -148,16 +148,16 @@ jobs:
       run: dotnet restore ./src/*/*/Taggeds.csproj
 
     - name: Build Taggeds
-      run: dotnet build ./src/*/*/Taggeds.csproj --no-restore
+      run: dotnet build ./src/*/*/Taggeds.csproj --no-restore  -c Release
 
     - name: Pack Taggeds
-      run: dotnet pack ./src/*/*/Taggeds.csproj --no-restore -o ~/nuget
+      run: dotnet pack ./src/*/*/Taggeds.csproj --no-restore -o ~/nuget  -c Release
 
     - name: Restore Taggeds.Tests
       run: dotnet restore ./src/*/*/Taggeds.Tests.csproj
 
     - name: Test Taggeds.Tests
-      run: dotnet test ./src/*/*/Taggeds.Tests.csproj --no-restore
+      run: dotnet test ./src/*/*/Taggeds.Tests.csproj --no-restore  -c Release
 
     # Core
 
@@ -165,10 +165,10 @@ jobs:
       run: dotnet restore ./src/*/*/Core.csproj
 
     - name: Build Core
-      run: dotnet build ./src/*/*/Core.csproj --no-restore
+      run: dotnet build ./src/*/*/Core.csproj --no-restore  -c Release
 
     - name: Pack Core
-      run: dotnet pack ./src/*/*/Core.csproj --no-restore -o ~/nuget
+      run: dotnet pack ./src/*/*/Core.csproj --no-restore -o ~/nuget  -c Release
 
       # Push
 
