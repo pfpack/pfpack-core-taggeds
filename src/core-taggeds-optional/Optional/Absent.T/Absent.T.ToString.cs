@@ -2,10 +2,10 @@
 
 namespace System
 {
-    partial struct Unit
+    partial struct Absent<T>
     {
         public override string ToString()
             =>
-            "The Unit value: { Value: () }.";
+            ToStringStrategies<T>.Absent();
     }
 }
