@@ -7,7 +7,7 @@ namespace System
     partial class Absent
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Absent<T> Get<T>()
+        public static Absent<T> Of<T>()
             =>
             default;
     }
