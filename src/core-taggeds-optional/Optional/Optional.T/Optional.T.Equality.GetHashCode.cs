@@ -8,13 +8,19 @@ namespace System
     {
         public override int GetHashCode()
             =>
-            hasValue
-                ? HashCode.Combine(EqualityContract, ValueHashCode())
-                : HashCode.Combine(EqualityContract);
+            hasValue ? PresentHashCode() : AbsentHashCode();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private int ValueHashCode()
+        private int PresentHashCode()
             =>
-            value is not null ? EqualityComparer.GetHashCode(value) : default;
+            HashCode.Combine(
+                EqualityContract,
+                value is not null ? EqualityComparer.GetHashCode(value) : default);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static int AbsentHashCode()
+            =>
+            HashCode.Combine(
+                EqualityContract);
     }
 }
