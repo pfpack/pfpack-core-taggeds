@@ -6,6 +6,6 @@ namespace System
     {
         public override string ToString()
             =>
-            ToStringStrategies<T>.Present(value);
+            ToStringStrategy<T>.Present(value);
     }
 }

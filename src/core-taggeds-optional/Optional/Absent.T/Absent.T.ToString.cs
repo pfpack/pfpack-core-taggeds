@@ -6,6 +6,6 @@ namespace System
     {
         public override string ToString()
             =>
-            ToStringStrategies<T>.Absent();
+            ToStringStrategy<T>.Absent();
     }
 }

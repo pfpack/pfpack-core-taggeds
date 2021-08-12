@@ -7,7 +7,7 @@ namespace System
         public override string ToString()
             =>
             InternalFold(
-                ToStringStrategies<T>.Present,
-                ToStringStrategies<T>.Absent);
+                ToStringStrategy<T>.Present,
+                ToStringStrategy<T>.Absent);
     }
 }
