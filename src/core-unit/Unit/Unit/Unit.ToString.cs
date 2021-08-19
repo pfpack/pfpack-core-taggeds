@@ -6,6 +6,6 @@ namespace System
     {
         public override string ToString()
             =>
-            "The Unit value: { Value: () }.";
+            "The Unit value: ()";
     }
 }
