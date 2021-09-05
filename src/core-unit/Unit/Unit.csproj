@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
+		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>

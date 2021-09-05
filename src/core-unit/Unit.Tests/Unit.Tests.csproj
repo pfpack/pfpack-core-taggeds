@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<IsPackable>false</IsPackable>
 		<Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
@@ -20,7 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Unit\Unit.csproj" />
+		<ProjectReference Include="..\Unit\Unit.csproj" />
 	</ItemGroup>
 
 </Project>
