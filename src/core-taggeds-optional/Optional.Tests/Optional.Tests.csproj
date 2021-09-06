@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<IsPackable>false</IsPackable>
 		<Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
@@ -12,12 +13,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NUnit" Version="3.13.1" />
-		<PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
-		<PackageReference Include="PrimeFuncPack.Core.Optional" Version="1.1.1" />
+		<PackageReference Include="NUnit" Version="3.13.2" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
 		<PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="2.0.6" />
 		<PackageReference Include="PrimeFuncPack.UnitTest.Moq" Version="1.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Optional\Optional.csproj" />
 	</ItemGroup>
 
 </Project>
