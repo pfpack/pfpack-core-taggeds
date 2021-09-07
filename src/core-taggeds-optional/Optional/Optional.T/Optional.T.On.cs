@@ -13,7 +13,7 @@ namespace System
             _ = onPresent ?? throw new ArgumentNullException(nameof(onPresent));
             _ = onElse ?? throw new ArgumentNullException(nameof(onElse));
 
-            return InternalOn(onPresent, onElse, This);
+            return InnerOn(onPresent, onElse, InnerThis);
         }
 
         internal Optional<T> On(
@@ -23,7 +23,7 @@ namespace System
             _ = onPresent ?? throw new ArgumentNullException(nameof(onPresent));
             _ = onElse ?? throw new ArgumentNullException(nameof(onElse));
 
-            return InternalOn(onPresent.InvokeThenToUnit, onElse.InvokeThenToUnit, This);
+            return InnerOn(onPresent.InvokeThenToUnit, onElse.InvokeThenToUnit, InnerThis);
         }
 
         internal Task<Optional<T>> OnAsync(
@@ -33,7 +33,7 @@ namespace System
             _ = onPresentAsync ?? throw new ArgumentNullException(nameof(onPresentAsync));
             _ = onElseAsync ?? throw new ArgumentNullException(nameof(onElseAsync));
 
-            return InternalOn(onPresentAsync, onElseAsync, ThisAsync);
+            return InnerOn(onPresentAsync, onElseAsync, InnerThisAsync);
         }
 
         internal Task<Optional<T>> OnAsync(
@@ -43,7 +43,7 @@ namespace System
             _ = onPresentAsync ?? throw new ArgumentNullException(nameof(onPresentAsync));
             _ = onElseAsync ?? throw new ArgumentNullException(nameof(onElseAsync));
 
-            return InternalOn(onPresentAsync, onElseAsync, ThisAsync);
+            return InnerOn(onPresentAsync, onElseAsync, InnerThisAsync);
         }
 
         internal ValueTask<Optional<T>> OnValueAsync(
@@ -53,7 +53,7 @@ namespace System
             _ = onPresentAsync ?? throw new ArgumentNullException(nameof(onPresentAsync));
             _ = onElseAsync ?? throw new ArgumentNullException(nameof(onElseAsync));
 
-            return InternalOn(onPresentAsync, onElseAsync, ThisValueAsync);
+            return InnerOn(onPresentAsync, onElseAsync, InnerThisValueAsync);
         }
 
         internal ValueTask<Optional<T>> OnValueAsync(
@@ -63,7 +63,7 @@ namespace System
             _ = onPresentAsync ?? throw new ArgumentNullException(nameof(onPresentAsync));
             _ = onElseAsync ?? throw new ArgumentNullException(nameof(onElseAsync));
 
-            return InternalOn(onPresentAsync, onElseAsync, ThisValueAsync);
+            return InnerOn(onPresentAsync, onElseAsync, InnerThisValueAsync);
         }
     }
 }
