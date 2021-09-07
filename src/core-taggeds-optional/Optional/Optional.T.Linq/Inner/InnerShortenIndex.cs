@@ -4,6 +4,6 @@ namespace System.Linq
 {
     partial class OptionalLinqExtensions
     {
-        private static int InnerShortenIndex(long index) => unchecked((int)index);
+        private static int InnerShortenIndex(this long index) => unchecked((int)index);
     }
 }

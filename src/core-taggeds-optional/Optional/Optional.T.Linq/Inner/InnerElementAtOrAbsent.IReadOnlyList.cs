@@ -10,7 +10,7 @@ namespace System.Linq
             this IReadOnlyList<TSource> source,
             int index)
             =>
-            InnerIsInRange(index, source.Count)
+            index.InnerIsInRange(count: source.Count)
                 ? new(source[index])
                 : default;
 
@@ -18,7 +18,7 @@ namespace System.Linq
             this IReadOnlyList<TSource> source,
             long index)
             =>
-            InnerShortenIndex(index) switch
+            index.InnerShortenIndex() switch
             {
                 int indexShortened when indexShortened == index
                 =>
