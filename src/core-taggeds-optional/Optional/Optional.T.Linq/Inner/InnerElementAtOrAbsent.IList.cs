@@ -18,11 +18,11 @@ namespace System.Linq
             this IList<TSource> source,
             long index)
             =>
-            index.InnerShortenIndex() switch
+            index.InnerShorten() switch
             {
-                int indexShortened when indexShortened == index
+                int shortened when shortened == index
                 =>
-                source.InnerElementAtOrAbsent(indexShortened),
+                source.InnerElementAtOrAbsent(shortened),
 
                 _ => default
             };
