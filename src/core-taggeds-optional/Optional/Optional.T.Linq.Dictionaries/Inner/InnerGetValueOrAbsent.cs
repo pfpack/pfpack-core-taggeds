@@ -6,6 +6,7 @@ namespace System.Linq
 {
     partial class OptionalLinqDictionariesExtensions
     {
+        // TODO: Consider to use FirstOrAbsent instead of SingleOrAbsent in v2.0
         private static Optional<TValue> InnerGetValueOrAbsent<TKey, TValue>(
             this IEnumerable<KeyValuePair<TKey, TValue>> pairs,
             TKey key,
