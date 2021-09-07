@@ -7,7 +7,7 @@ namespace System
     partial struct Optional<T>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TResult InnerOn<TOnPresentOut, TOnElseOut, TResult>(
+        private TResult InternalOn<TOnPresentOut, TOnElseOut, TResult>(
             Func<T, TOnPresentOut> onPresent,
             Func<TOnElseOut> onElse,
             Func<TResult> resultSupplier)

@@ -8,17 +8,17 @@ namespace System
     partial struct Optional<T>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private Optional<T> InnerThis()
+        private Optional<T> This()
             =>
             this;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private Task<Optional<T>> InnerThisAsync()
+        private Task<Optional<T>> ThisAsync()
             =>
             this.Pipe(Task.FromResult);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private ValueTask<Optional<T>> InnerThisValueAsync()
+        private ValueTask<Optional<T>> ThisValueAsync()
             =>
             this.Pipe(ValueTask.FromResult);
     }
