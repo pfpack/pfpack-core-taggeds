@@ -10,21 +10,21 @@ namespace System
         {
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return InternalFoldThis(Pipeline.Pipe, otherFactory);
+            return InnerFoldThis(Pipeline.Pipe, otherFactory);
         }
 
         public Task<Optional<T>> OrAsync(Func<Task<Optional<T>>> otherFactoryAsync)
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return InternalFoldThis(Task.FromResult, otherFactoryAsync);
+            return InnerFoldThis(Task.FromResult, otherFactoryAsync);
         }
 
         public ValueTask<Optional<T>> OrValueAsync(Func<ValueTask<Optional<T>>> otherFactoryAsync)
         {
             _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return InternalFoldThis(ValueTask.FromResult, otherFactoryAsync);
+            return InnerFoldThis(ValueTask.FromResult, otherFactoryAsync);
         }
     }
 }

@@ -7,18 +7,18 @@ namespace System
     partial class FilterNotNullOptionalExtensions
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Unit InternalThrowOnNull<T>(this T? value, Func<Exception> exceptionFactory)
+        private static T InnerToNonNullable<T>(T? value)
             =>
             value is not null
-                ? default
-                : throw exceptionFactory.Invoke();
+                ? value
+                : throw InnerCreateUnexpectedNullException_MustNeverBeInvoked();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Unit InternalThrowOnNull<T>(this T? value, Func<Exception> exceptionFactory)
+        private static T InnerToNonNullable<T>(T? value)
             where T : struct
             =>
             value is not null
-                ? default
-                : throw exceptionFactory.Invoke();
+                ? value.GetValueOrDefault()
+                : throw InnerCreateUnexpectedNullException_MustNeverBeInvoked();
     }
 }
