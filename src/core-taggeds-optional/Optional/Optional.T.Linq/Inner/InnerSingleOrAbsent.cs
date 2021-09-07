@@ -4,22 +4,22 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    partial class InternalOptionalLinqExtensions
+    partial class OptionalLinqExtensions
     {
-        public static Optional<TSource> InternalLastOrAbsent<TSource>(
-            this IEnumerable<TSource> source)
+        private static Optional<TSource> InnerSingleOrAbsent<TSource>(
+            this IEnumerable<TSource> source,
+            Func<Exception> moreThanOneElementExceptionFactory)
         {
             using var enumerator = source.GetEnumerator();
 
             if (enumerator.MoveNext())
             {
-                TSource current;
+                var current = enumerator.Current;
 
-                do
+                if (enumerator.MoveNext())
                 {
-                    current = enumerator.Current;
+                    throw moreThanOneElementExceptionFactory.Invoke();
                 }
-                while (enumerator.MoveNext());
 
                 return new(current);
             }
@@ -27,9 +27,10 @@ namespace System.Linq
             return default;
         }
 
-        public static Optional<TSource> InternalLastOrAbsent<TSource>(
+        private static Optional<TSource> InnerSingleOrAbsent<TSource>(
             this IEnumerable<TSource> source,
-            Func<TSource, bool> predicate)
+            Func<TSource, bool> predicate,
+            Func<Exception> moreThanOneMatchExceptionFactory)
         {
             using var enumerator = source.GetEnumerator();
 
@@ -41,11 +42,9 @@ namespace System.Linq
                 {
                     while (enumerator.MoveNext())
                     {
-                        TSource next = enumerator.Current;
-
-                        if (predicate.Invoke(next))
+                        if (predicate.Invoke(enumerator.Current))
                         {
-                            current = next;
+                            throw moreThanOneMatchExceptionFactory.Invoke();
                         }
                     }
 

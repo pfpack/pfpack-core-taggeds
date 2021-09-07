@@ -4,20 +4,20 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    partial class InternalOptionalLinqExtensions
+    partial class OptionalLinqExtensions
     {
-        public static Optional<TSource> InternalLastOrAbsent<TSource>(
+        private static Optional<TSource> InnerFirstOrAbsent<TSource>(
             this IReadOnlyList<TSource> source)
             =>
             source.Count > 0
-                ? new(source[^1])
+                ? new(source[0])
                 : default;
 
-        public static Optional<TSource> InternalLastOrAbsent<TSource>(
+        private static Optional<TSource> InnerFirstOrAbsent<TSource>(
             this IReadOnlyList<TSource> source,
             Func<TSource, bool> predicate)
         {
-            for (var i = source.Count - 1; i >= 0; i--)
+            for (var i = 0; i < source.Count; i++)
             {
                 var current = source[i];
 

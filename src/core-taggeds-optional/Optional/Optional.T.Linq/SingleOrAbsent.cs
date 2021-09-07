@@ -9,7 +9,7 @@ namespace System.Linq
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IEnumerable<TSource> source)
             =>
-            source.SingleOrAbsent(CreateMoreThanOneElementException);
+            source.SingleOrAbsent(InnerCreateMoreThanOneElementException);
 
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IEnumerable<TSource> source,
@@ -21,13 +21,13 @@ namespace System.Linq
             return source switch
             {
                 IReadOnlyList<TSource> list => list
-                .InternalSingleOrAbsent(moreThanOneElementExceptionFactory),
+                .InnerSingleOrAbsent(moreThanOneElementExceptionFactory),
 
                 IList<TSource> list => list
-                .InternalSingleOrAbsent(moreThanOneElementExceptionFactory),
+                .InnerSingleOrAbsent(moreThanOneElementExceptionFactory),
 
                 _ => source
-                .InternalSingleOrAbsent(moreThanOneElementExceptionFactory)
+                .InnerSingleOrAbsent(moreThanOneElementExceptionFactory)
             };
         }
 
@@ -35,7 +35,7 @@ namespace System.Linq
             this IEnumerable<TSource> source,
             Func<TSource, bool> predicate)
             =>
-            source.SingleOrAbsent(predicate, CreateMoreThanOneMatchException);
+            source.SingleOrAbsent(predicate, InnerCreateMoreThanOneMatchException);
 
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IEnumerable<TSource> source,
@@ -49,13 +49,13 @@ namespace System.Linq
             return source switch
             {
                 IReadOnlyList<TSource> list => list
-                .InternalSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
+                .InnerSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
 
                 IList<TSource> list => list
-                .InternalSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
+                .InnerSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
 
                 _ => source
-                .InternalSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory)
+                .InnerSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory)
             };
         }
     }

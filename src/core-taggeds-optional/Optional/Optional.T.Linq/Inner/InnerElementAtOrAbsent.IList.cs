@@ -4,25 +4,25 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    partial class InternalOptionalLinqExtensions
+    partial class OptionalLinqExtensions
     {
-        public static Optional<TSource> InternalElementAtOrAbsent<TSource>(
+        private static Optional<TSource> InnerElementAtOrAbsent<TSource>(
             this IList<TSource> source,
             int index)
             =>
-            InternalIsInRange(index, source.Count)
+            InnerIsInRange(index, source.Count)
                 ? new(source[index])
                 : default;
 
-        public static Optional<TSource> InternalElementAtOrAbsent<TSource>(
+        private static Optional<TSource> InnerElementAtOrAbsent<TSource>(
             this IList<TSource> source,
             long index)
             =>
-            InternalShortenIndex(index) switch
+            InnerShortenIndex(index) switch
             {
                 int indexShortened when indexShortened == index
                 =>
-                source.InternalElementAtOrAbsent(indexShortened),
+                source.InnerElementAtOrAbsent(indexShortened),
 
                 _ => default
             };
