@@ -6,7 +6,7 @@ namespace System
     {
         public override string ToString()
             =>
-            InternalFold(
+            InnerFold(
                 ToStringStrategy<T>.Present,
                 ToStringStrategy<T>.Absent);
     }
