@@ -4,7 +4,7 @@ using static System.FormattableString;
 
 namespace System
 {
-    internal static class ToStringStrategy<T>
+    internal static class InternalToStringStrategy<T>
     {
         public static string Present(T value)
             =>
