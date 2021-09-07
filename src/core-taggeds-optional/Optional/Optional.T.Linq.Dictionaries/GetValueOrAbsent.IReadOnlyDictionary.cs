@@ -13,15 +13,15 @@ namespace System.Linq
         {
             _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
 
-            return dictionary.InternalGetValueOrAbsent(key);
+            return dictionary.InnerGetValueOrAbsent(key);
         }
 
-        [Obsolete(ObsoleteMessages.TryGetValueOrAbsent, error: true)]
+        [Obsolete(InnerObsoleteMessages.TryGetValueOrAbsent, error: true)]
         [DoesNotReturn]
         public static Optional<TValue> TryGetValueOrAbsent<TKey, TValue>(
             this IReadOnlyDictionary<TKey, TValue> dictionary,
             TKey key)
             =>
-            throw new NotImplementedException(ObsoleteMessages.TryGetValueOrAbsent);
+            throw new NotImplementedException(InnerObsoleteMessages.TryGetValueOrAbsent);
     }
 }

@@ -16,22 +16,22 @@ namespace System.Linq
             return pairs switch
             {
                 IReadOnlyDictionary<TKey, TValue> dictionary => dictionary
-                .InternalGetValueOrAbsent(key),
+                .InnerGetValueOrAbsent(key),
 
                 IDictionary<TKey, TValue> dictionary => dictionary
-                .InternalGetValueOrAbsent(key),
+                .InnerGetValueOrAbsent(key),
 
                 _ => pairs
-                .InternalGetValueOrAbsent(key, CreateMoreThanOneMatchException)
+                .InnerGetValueOrAbsent(key, InnerCreateMoreThanOneMatchException)
             };
         }
 
-        [Obsolete(ObsoleteMessages.TryGetValueOrAbsent, error: true)]
+        [Obsolete(InnerObsoleteMessages.TryGetValueOrAbsent, error: true)]
         [DoesNotReturn]
         public static Optional<TValue> TryGetValueOrAbsent<TKey, TValue>(
             this IEnumerable<KeyValuePair<TKey, TValue>> pairs,
             TKey key)
             =>
-            throw new NotImplementedException(ObsoleteMessages.TryGetValueOrAbsent);
+            throw new NotImplementedException(InnerObsoleteMessages.TryGetValueOrAbsent);
     }
 }

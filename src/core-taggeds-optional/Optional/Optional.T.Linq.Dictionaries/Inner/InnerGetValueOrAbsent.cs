@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    partial class InternalOptionalLinqDictionariesExtensions
+    partial class OptionalLinqDictionariesExtensions
     {
-        public static Optional<TValue> InternalGetValueOrAbsent<TKey, TValue>(
+        private static Optional<TValue> InnerGetValueOrAbsent<TKey, TValue>(
             this IEnumerable<KeyValuePair<TKey, TValue>> pairs,
             TKey key,
             Func<Exception> moreThanOneMatchExceptionFactory)
