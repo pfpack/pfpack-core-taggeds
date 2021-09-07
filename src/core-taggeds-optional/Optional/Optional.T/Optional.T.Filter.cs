@@ -10,7 +10,7 @@ namespace System
         {
             _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
 
-            return InternalFold(value => FilterPresent(value, predicate, This), This);
+            return InnerFold(value => FilterPresent(value, predicate, InnerThis), InnerThis);
 
             static Optional<T> FilterPresent(T value, Func<T, bool> predicate, Func<Optional<T>> thisSupplier)
                 =>
@@ -23,7 +23,7 @@ namespace System
         {
             _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
 
-            return InternalFold(value => FilterPresentAsync(value, predicateAsync, This), ThisAsync);
+            return InnerFold(value => FilterPresentAsync(value, predicateAsync, InnerThis), InnerThisAsync);
 
             static async Task<Optional<T>> FilterPresentAsync(
                 T value, Func<T, Task<bool>> predicateAsync, Func<Optional<T>> thisSupplier)
@@ -37,7 +37,7 @@ namespace System
         {
             _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
 
-            return InternalFold(value => FilterPresentAsync(value, predicateAsync, This), ThisValueAsync);
+            return InnerFold(value => FilterPresentAsync(value, predicateAsync, InnerThis), InnerThisValueAsync);
 
             static async ValueTask<Optional<T>> FilterPresentAsync(
                 T value, Func<T, ValueTask<bool>> predicateAsync, Func<Optional<T>> thisSupplier)

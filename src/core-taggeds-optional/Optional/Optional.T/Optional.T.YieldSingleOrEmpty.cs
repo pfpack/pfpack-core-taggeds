@@ -9,7 +9,7 @@ namespace System
     {
         public IEnumerable<T> YieldSingleOrEmpty()
             =>
-            InternalFold(
+            InnerFold(
                 Yielder<T>.YieldSingle,
                 Yielder<T>.YieldEmpty);
     }
