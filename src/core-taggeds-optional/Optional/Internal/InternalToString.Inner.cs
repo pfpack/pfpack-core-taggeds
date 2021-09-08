@@ -7,14 +7,14 @@ namespace System
 {
     partial class InternalToString<T>
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static string InnerPresent(string prefix, T value)
-            =>
-            Invariant($"{prefix}[{typeof(T)}]:{value}");
+        private const string InnerAbsentValue = "()";
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static string InnerAbsent(string prefix)
-            =>
-            Invariant($"{prefix}[{typeof(T)}]:()");
+        private static class InnerFormatter<TValue>
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public static string Invoke(string prefix, TValue value)
+                =>
+                Invariant($"{prefix}[{typeof(T)}]:{value}");
+        }
     }
 }
