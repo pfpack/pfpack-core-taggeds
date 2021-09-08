@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    partial class InternalOptionalLinqExtensions
+    partial class OptionalLinqExtensions
     {
-        public static Optional<TSource> InternalElementAtOrAbsent<TSource>(
+        private static Optional<TSource> InnerElementAtOrAbsent<TSource>(
             this IEnumerable<TSource> source,
             int index)
         {
@@ -34,7 +34,7 @@ namespace System.Linq
             return default;
         }
 
-        public static Optional<TSource> InternalElementAtOrAbsent<TSource>(
+        private static Optional<TSource> InnerElementAtOrAbsent<TSource>(
             this IEnumerable<TSource> source,
             long index)
         {

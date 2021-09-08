@@ -14,13 +14,13 @@ namespace System.Linq
             return source switch
             {
                 IReadOnlyList<TSource> list => list
-                .InternalLastOrAbsent(),
+                .InnerLastOrAbsent(),
 
                 IList<TSource> list => list
-                .InternalLastOrAbsent(),
+                .InnerLastOrAbsent(),
 
                 _ => source
-                .InternalLastOrAbsent()
+                .InnerLastOrAbsent()
             };
         }
 
@@ -34,13 +34,13 @@ namespace System.Linq
             return source switch
             {
                 IReadOnlyList<TSource> list => list
-                .InternalLastOrAbsent(predicate),
+                .InnerLastOrAbsent(predicate),
 
                 IList<TSource> list => list
-                .InternalLastOrAbsent(predicate),
+                .InnerLastOrAbsent(predicate),
 
                 _ => source
-                .InternalLastOrAbsent(predicate)
+                .InnerLastOrAbsent(predicate)
             };
         }
     }

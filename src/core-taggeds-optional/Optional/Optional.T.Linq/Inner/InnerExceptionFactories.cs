@@ -4,11 +4,11 @@ namespace System.Linq
 {
     partial class OptionalLinqExtensions
     {
-        private static InvalidOperationException CreateMoreThanOneElementException()
+        private static InvalidOperationException InnerCreateMoreThanOneElementException()
             =>
             new("The collection contains more than one element.");
 
-        private static InvalidOperationException CreateMoreThanOneMatchException()
+        private static InvalidOperationException InnerCreateMoreThanOneMatchException()
             =>
             new("The collection contains more than one element matching to the predicate.");
     }

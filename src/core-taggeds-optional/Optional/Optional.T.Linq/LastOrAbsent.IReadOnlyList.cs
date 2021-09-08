@@ -11,7 +11,7 @@ namespace System.Linq
         {
             _ = source ?? throw new ArgumentNullException(nameof(source));
 
-            return source.InternalLastOrAbsent();
+            return source.InnerLastOrAbsent();
         }
 
         public static Optional<TSource> LastOrAbsent<TSource>(
@@ -21,7 +21,7 @@ namespace System.Linq
             _ = source ?? throw new ArgumentNullException(nameof(source));
             _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
 
-            return source.InternalLastOrAbsent(predicate);
+            return source.InnerLastOrAbsent(predicate);
         }
     }
 }
