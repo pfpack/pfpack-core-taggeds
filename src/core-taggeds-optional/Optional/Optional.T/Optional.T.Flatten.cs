@@ -6,7 +6,8 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public IEnumerable<T> YieldSingleOrEmpty()
+        // TODO: Consinder to open in v1.2
+        private IEnumerable<T> Flatten()
             =>
             InnerFlattenOrYield();
     }
