@@ -6,7 +6,7 @@ namespace System
 {
     partial struct Optional<T>
     {
-        public Optional<T> OnPresent(
+        internal Optional<T> OnPresent(
             Func<T, Unit> handler)
         {
             _ = handler ?? throw new ArgumentNullException(nameof(handler));
@@ -14,7 +14,7 @@ namespace System
             return InnerOnPresent(handler, InnerThis);
         }
 
-        public Optional<T> OnPresent(
+        internal Optional<T> OnPresent(
             Action<T> handler)
         {
             _ = handler ?? throw new ArgumentNullException(nameof(handler));
@@ -22,7 +22,7 @@ namespace System
             return InnerOnPresent(handler.InvokeThenToUnit, InnerThis);
         }
 
-        public Task<Optional<T>> OnPresentAsync(
+        internal Task<Optional<T>> OnPresentAsync(
             Func<T, Task<Unit>> handlerAsync)
         {
             _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
@@ -30,7 +30,7 @@ namespace System
             return InnerOnPresent(handlerAsync, InnerThisAsync);
         }
 
-        public Task<Optional<T>> OnPresentAsync(
+        internal Task<Optional<T>> OnPresentAsync(
             Func<T, Task> handlerAsync)
         {
             _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
@@ -38,7 +38,7 @@ namespace System
             return InnerOnPresent(handlerAsync, InnerThisAsync);
         }
 
-        public ValueTask<Optional<T>> OnPresentValueAsync(
+        internal ValueTask<Optional<T>> OnPresentValueAsync(
             Func<T, ValueTask<Unit>> handlerAsync)
         {
             _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
@@ -46,7 +46,7 @@ namespace System
             return InnerOnPresent(handlerAsync, InnerThisValueAsync);
         }
 
-        public ValueTask<Optional<T>> OnPresentValueAsync(
+        internal ValueTask<Optional<T>> OnPresentValueAsync(
             Func<T, ValueTask> handlerAsync)
         {
             _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
