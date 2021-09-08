@@ -7,7 +7,7 @@ namespace System
 {
     partial class InternalToString<T>
     {
-        private static class InnerFormatter<TValue>
+        private static class InnerFormat<TValue>
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static string Invoke(string prefix, TValue value)

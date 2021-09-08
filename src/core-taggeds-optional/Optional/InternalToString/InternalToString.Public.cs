@@ -9,21 +9,21 @@ namespace System
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Present(T value)
             =>
-            InnerFormatter<T>.Invoke("Present", value);
+            InnerFormat<T>.Invoke("Present", value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string OptionalPresent(T value)
             =>
-            InnerFormatter<T>.Invoke("Optional.Present", value);
+            InnerFormat<T>.Invoke("Optional.Present", value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Absent()
             =>
-            InnerFormatter<string>.Invoke("Absent", InnerConsts.Absent);
+            InnerFormat<string>.Invoke("Absent", InnerConsts.Absent);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string OptionalAbsent()
             =>
-            InnerFormatter<string>.Invoke("Optional.Absent", InnerConsts.Absent);
+            InnerFormat<string>.Invoke("Optional.Absent", InnerConsts.Absent);
     }
 }
