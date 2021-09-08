@@ -93,9 +93,9 @@ namespace PrimeFuncPack.Core.Tests
         [TestCase(ThreeWhiteSpacesString)]
         [TestCase(MixedWhiteSpacesString)]
         [TestCase(SomeString)]
-        [TestCase(-1)]
-        [TestCase(0)]
-        [TestCase(1)]
+        [TestCase(MinusOne)]
+        [TestCase(Zero)]
+        [TestCase(One)]
         public void ToString_Common(
             object? sourceValue)
         {
