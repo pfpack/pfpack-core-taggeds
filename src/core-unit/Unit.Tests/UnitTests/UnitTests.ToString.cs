@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using NUnit.Framework;
-using System;
 
 namespace PrimeFuncPack.Core.Tests
 {
@@ -13,7 +12,7 @@ namespace PrimeFuncPack.Core.Tests
             var source = default(Unit);
             var actual = source.ToString();
 
-            const string expected = "The Unit value: ()";
+            const string expected = "Unit:()";
             Assert.AreEqual(expected, actual);
         }
     }
