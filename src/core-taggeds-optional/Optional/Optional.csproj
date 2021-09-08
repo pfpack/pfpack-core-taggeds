@@ -21,6 +21,8 @@
 			<PackagePath></PackagePath>
 		</None>
 	</ItemGroup>
+	
+	<!-- TODO: Remove redundant Primitives dependency in Optional v2.0 -->
 
 	<ItemGroup>
 		<PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.2.0-preview.1.0.0" />

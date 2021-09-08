@@ -1,7 +1,5 @@
 ﻿#nullable enable
 
-using static System.Strings;
-
 namespace System
 {
     partial struct TaggedUnion<TFirst, TSecond>
@@ -9,8 +7,8 @@ namespace System
         public override string ToString()
             =>
             InternalFold(
-                ToStringOrEmpty,
-                ToStringOrEmpty,
-                GetEmpty);
+                value => value?.ToString() ?? string.Empty,
+                value => value?.ToString() ?? string.Empty,
+                () => string.Empty);
     }
 }

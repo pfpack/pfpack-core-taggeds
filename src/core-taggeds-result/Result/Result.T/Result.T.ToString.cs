@@ -1,15 +1,14 @@
 ﻿#nullable enable
 
-using static System.Strings;
-
 namespace System
 {
     partial struct Result<TSuccess, TFailure>
     {
+        // TODO: For v1.2: Implement the ToString in according to Optional/Unit v1.2
         public override string ToString()
             =>
             InternalFold(
-                ToStringOrEmpty,
-                ToStringOrEmpty);
+                value => value?.ToString() ?? string.Empty,
+                value => value.ToString() ?? string.Empty);
     }
 }
