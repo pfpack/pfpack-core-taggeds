@@ -9,10 +9,10 @@ namespace System
     {
         private const string InnerAbsentValue = "()";
 
-        private static class InnerFormatter<TValue>
+        private static class InnerFormatter<TResult>
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static string Invoke(string prefix, TValue value)
+            public static string Invoke(string prefix, TResult value)
                 =>
                 Invariant($"{prefix}[{typeof(T)}]:{value}");
         }
