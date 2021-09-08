@@ -10,21 +10,21 @@ namespace System
         {
             _ = map ?? throw new ArgumentNullException(nameof(map));
 
-            return InnerFold(map, static () => default);
+            return InnerBindOrFlatMap(map);
         }
 
         public Task<Optional<TResult>> FlatMapAsync<TResult>(Func<T, Task<Optional<TResult>>> mapAsync)
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return InnerFold(mapAsync, static () => default(Optional<TResult>).Pipe(Task.FromResult));
+            return InnerBindOrFlatMapAsync(mapAsync);
         }
 
         public ValueTask<Optional<TResult>> FlatMapValueAsync<TResult>(Func<T, ValueTask<Optional<TResult>>> mapAsync)
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return InnerFold(mapAsync, static () => default);
+            return InnerBindOrFlatMapValueAsync(mapAsync);
         }
     }
 }
