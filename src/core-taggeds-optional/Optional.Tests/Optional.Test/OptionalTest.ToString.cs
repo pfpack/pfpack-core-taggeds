@@ -17,7 +17,7 @@ namespace PrimeFuncPack.Core.Tests
 
             var expected = string.Format(
                 CultureInfo.InvariantCulture,
-                "The absent value of type {0}: ()",
+                "Optional.Absent[{0}]:()",
                 typeof(StubType));
 
             Assert.AreEqual(expected, actual);
@@ -32,7 +32,7 @@ namespace PrimeFuncPack.Core.Tests
 
             var expected = string.Format(
                 CultureInfo.InvariantCulture,
-                "A present value of type {0}: {1}",
+                "Optional.Present[{0}]:{1}",
                 typeof(StubType),
                 string.Empty);
 
@@ -49,7 +49,7 @@ namespace PrimeFuncPack.Core.Tests
 
             var expected = string.Format(
                 CultureInfo.InvariantCulture,
-                "A present value of type {0}: {1}",
+                "Optional.Present[{0}]:{1}",
                 typeof(StubType),
                 string.Empty);
 
@@ -75,7 +75,7 @@ namespace PrimeFuncPack.Core.Tests
 
             var expected = string.Format(
                 CultureInfo.InvariantCulture,
-                "A present value of type {0}: {1}",
+                "Optional.Present[{0}]:{1}",
                 typeof(StubType),
                 sourceValueToStringResult);
 
@@ -105,7 +105,7 @@ namespace PrimeFuncPack.Core.Tests
 
             var expected = string.Format(
                 CultureInfo.InvariantCulture,
-                "A present value of type {0}: {1}",
+                "Optional.Present[{0}]:{1}",
                 typeof(object),
                 sourceValue);
 
