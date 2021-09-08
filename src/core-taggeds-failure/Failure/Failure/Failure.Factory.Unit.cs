@@ -10,7 +10,7 @@ namespace System
             [AllowNull] string failureMessage)
             =>
             new(
-                failureCode: Unit.Value,
+                failureCode: default,
                 failureMessage: failureMessage);
     }
 }
