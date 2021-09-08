@@ -7,10 +7,10 @@ namespace System
 {
     partial class InternalToString<T>
     {
-        private static class InnerFormatter<TResult>
+        private static class InnerFormatter<TValue>
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static string Invoke(string prefix, TResult value)
+            public static string Invoke(string prefix, TValue value)
                 =>
                 Invariant($"{prefix}[{typeof(T)}]:{value}");
         }
