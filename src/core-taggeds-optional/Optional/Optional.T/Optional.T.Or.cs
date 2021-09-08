@@ -10,7 +10,7 @@ namespace System
         {
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return InnerFoldThis(Pipeline.Pipe, otherFactory);
+            return InnerFoldThis(InnerPipeThis, otherFactory);
         }
 
         public Task<Optional<T>> OrAsync(Func<Task<Optional<T>>> otherFactoryAsync)
