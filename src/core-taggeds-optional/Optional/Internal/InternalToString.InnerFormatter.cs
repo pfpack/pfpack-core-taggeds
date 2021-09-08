@@ -7,8 +7,6 @@ namespace System
 {
     partial class InternalToString<T>
     {
-        private const string InnerAbsentValue = "()";
-
         private static class InnerFormatter<TResult>
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]

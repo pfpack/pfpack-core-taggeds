@@ -19,11 +19,11 @@ namespace System
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string Absent()
             =>
-            InnerFormatter<string>.Invoke("Absent", InnerAbsentValue);
+            InnerFormatter<string>.Invoke("Absent", InnerConsts.Absent);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string OptionalAbsent()
             =>
-            InnerFormatter<string>.Invoke("Optional.Absent", InnerAbsentValue);
+            InnerFormatter<string>.Invoke("Optional.Absent", InnerConsts.Absent);
     }
 }
