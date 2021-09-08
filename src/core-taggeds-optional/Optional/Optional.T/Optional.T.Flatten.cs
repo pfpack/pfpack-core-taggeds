@@ -6,7 +6,7 @@ namespace System
 {
     partial struct Optional<T>
     {
-        // TODO: Consinder to open in v1.2
+        // TODO: Consider to open in v1.2
         private IEnumerable<T> Flatten()
             =>
             InnerFlattenOrYield();
