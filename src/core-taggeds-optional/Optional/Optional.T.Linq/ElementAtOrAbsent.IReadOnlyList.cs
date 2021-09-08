@@ -12,7 +12,7 @@ namespace System.Linq
         {
             _ = source ?? throw new ArgumentNullException(nameof(source));
 
-            return source.InternalElementAtOrAbsent(index);
+            return source.InnerElementAtOrAbsent(index);
         }
 
         public static Optional<TSource> ElementAtOrAbsent<TSource>(
@@ -21,7 +21,7 @@ namespace System.Linq
         {
             _ = source ?? throw new ArgumentNullException(nameof(source));
 
-            return source.InternalElementAtOrAbsent(index);
+            return source.InnerElementAtOrAbsent(index);
         }
     }
 }

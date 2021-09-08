@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    partial class InternalOptionalLinqDictionariesExtensions
+    partial class OptionalLinqDictionariesExtensions
     {
-        public static Optional<TValue> InternalGetValueOrAbsent<TKey, TValue>(
+        // TODO: Consider to use FirstOrAbsent instead of SingleOrAbsent in v2.0
+        private static Optional<TValue> InnerGetValueOrAbsent<TKey, TValue>(
             this IEnumerable<KeyValuePair<TKey, TValue>> pairs,
             TKey key,
             Func<Exception> moreThanOneMatchExceptionFactory)

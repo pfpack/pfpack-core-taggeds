@@ -9,7 +9,7 @@ namespace System.Linq
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IReadOnlyList<TSource> source)
             =>
-            source.SingleOrAbsent(CreateMoreThanOneElementException);
+            source.SingleOrAbsent(InnerCreateMoreThanOneElementException);
 
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IReadOnlyList<TSource> source,
@@ -18,14 +18,14 @@ namespace System.Linq
             _ = source ?? throw new ArgumentNullException(nameof(source));
             _ = moreThanOneElementExceptionFactory ?? throw new ArgumentNullException(nameof(moreThanOneElementExceptionFactory));
 
-            return source.InternalSingleOrAbsent(moreThanOneElementExceptionFactory);
+            return source.InnerSingleOrAbsent(moreThanOneElementExceptionFactory);
         }
 
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IReadOnlyList<TSource> source,
             Func<TSource, bool> predicate)
             =>
-            source.SingleOrAbsent(predicate, CreateMoreThanOneMatchException);
+            source.SingleOrAbsent(predicate, InnerCreateMoreThanOneMatchException);
 
         public static Optional<TSource> SingleOrAbsent<TSource>(
             this IReadOnlyList<TSource> source,
@@ -36,7 +36,7 @@ namespace System.Linq
             _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
             _ = moreThanOneMatchExceptionFactory ?? throw new ArgumentNullException(nameof(moreThanOneMatchExceptionFactory));
 
-            return source.InternalSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory);
+            return source.InnerSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory);
         }
     }
 }

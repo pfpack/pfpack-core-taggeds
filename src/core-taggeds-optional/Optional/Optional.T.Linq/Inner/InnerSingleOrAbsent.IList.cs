@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    partial class InternalOptionalLinqExtensions
+    partial class OptionalLinqExtensions
     {
-        public static Optional<TSource> InternalSingleOrAbsent<TSource>(
-            this IReadOnlyList<TSource> source,
+        private static Optional<TSource> InnerSingleOrAbsent<TSource>(
+            this IList<TSource> source,
             Func<Exception> moreThanOneElementExceptionFactory)
             =>
             source.Count switch
@@ -19,8 +19,8 @@ namespace System.Linq
                 _ => default
             };
 
-        public static Optional<TSource> InternalSingleOrAbsent<TSource>(
-            this IReadOnlyList<TSource> source,
+        private static Optional<TSource> InnerSingleOrAbsent<TSource>(
+            this IList<TSource> source,
             Func<TSource, bool> predicate,
             Func<Exception> moreThanOneMatchExceptionFactory)
         {

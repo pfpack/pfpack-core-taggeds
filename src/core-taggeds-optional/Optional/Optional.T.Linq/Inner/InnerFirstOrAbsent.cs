@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    partial class InternalOptionalLinqExtensions
+    partial class OptionalLinqExtensions
     {
-        public static Optional<TSource> InternalFirstOrAbsent<TSource>(
+        private static Optional<TSource> InnerFirstOrAbsent<TSource>(
             this IEnumerable<TSource> source)
         {
             using var enumerator = source.GetEnumerator();
@@ -16,7 +16,7 @@ namespace System.Linq
                 : default;
         }
 
-        public static Optional<TSource> InternalFirstOrAbsent<TSource>(
+        private static Optional<TSource> InnerFirstOrAbsent<TSource>(
             this IEnumerable<TSource> source,
             Func<TSource, bool> predicate)
         {
