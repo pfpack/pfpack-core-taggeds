@@ -7,8 +7,6 @@ namespace System
     partial struct Optional<T>
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private T InnerOrThrow(Func<Exception> exceptionFactory)
-            =>
-            InnerFold(Pipeline.Pipe, () => throw exceptionFactory.Invoke());
+        private static Optional<T> InnerPipeThis(Optional<T> optional) => optional;
     }
 }

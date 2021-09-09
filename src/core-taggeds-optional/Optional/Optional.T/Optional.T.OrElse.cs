@@ -8,13 +8,13 @@ namespace System
     {
         public T OrElse(T other)
             =>
-            InnerFold(Pipeline.Pipe, other);
+            InnerFold(InnerPipe, other);
 
         public T OrElse(Func<T> otherFactory)
         {
             _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return InnerFold(Pipeline.Pipe, otherFactory);
+            return InnerFold(InnerPipe, otherFactory);
         }
 
         public Task<T> OrElseAsync(Func<Task<T>> otherFactoryAsync)

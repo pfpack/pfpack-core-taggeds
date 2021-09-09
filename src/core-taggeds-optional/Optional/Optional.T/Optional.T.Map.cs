@@ -14,22 +14,18 @@ namespace System
 
             Optional<TResult> MapPresent(T value)
                 =>
-                Pipeline
-                .Pipe(map.Invoke(value))
-                .Pipe(Optional<TResult>.Present);
+                new(map.Invoke(value));
         }
 
         public Task<Optional<TResult>> MapAsync<TResult>(Func<T, Task<TResult>> mapAsync)
         {
             _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return InnerFold(MapPresentAsync, static () => default(Optional<TResult>).Pipe(Task.FromResult));
+            return InnerFold(MapPresentAsync, static () => Task.FromResult<Optional<TResult>>(default));
 
             async Task<Optional<TResult>> MapPresentAsync(T value)
                 =>
-                Pipeline
-                .Pipe(await mapAsync.Invoke(value).ConfigureAwait(false))
-                .Pipe(Optional<TResult>.Present);
+                new(await mapAsync.Invoke(value).ConfigureAwait(false));
         }
 
         public ValueTask<Optional<TResult>> MapValueAsync<TResult>(Func<T, ValueTask<TResult>> mapAsync)
@@ -40,9 +36,7 @@ namespace System
 
             async ValueTask<Optional<TResult>> MapPresentAsync(T value)
                 =>
-                Pipeline
-                .Pipe(await mapAsync.Invoke(value).ConfigureAwait(false))
-                .Pipe(Optional<TResult>.Present);
+                new(await mapAsync.Invoke(value).ConfigureAwait(false));
         }
     }
 }

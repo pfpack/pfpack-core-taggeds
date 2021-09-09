@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
-using System.Linq;
 
 namespace System
 {
@@ -9,8 +8,6 @@ namespace System
     {
         public IEnumerable<T> YieldSingleOrEmpty()
             =>
-            InnerFold(
-                Yielder<T>.YieldSingle,
-                Yielder<T>.YieldEmpty);
+            InnerFlattenOrYield();
     }
 }
