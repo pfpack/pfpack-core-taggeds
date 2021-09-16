@@ -2,6 +2,7 @@
 
 using NUnit.Framework;
 using PrimeFuncPack.UnitTest;
+using System;
 
 namespace PrimeFuncPack.Core.Tests
 {

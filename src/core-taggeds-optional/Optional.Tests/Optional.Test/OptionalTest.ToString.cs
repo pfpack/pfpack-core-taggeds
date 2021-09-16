@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using NUnit.Framework;
+using System;
 using System.Globalization;
 using static PrimeFuncPack.UnitTest.TestData;
 
