@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace System;
 
 partial struct Unit
@@ -23,7 +25,7 @@ partial struct Unit
         =>
         true;
 
-    public override bool Equals(object? obj)
+    public override bool Equals([NotNullWhen(true)] object? obj)
         =>
         obj is Unit;
 
