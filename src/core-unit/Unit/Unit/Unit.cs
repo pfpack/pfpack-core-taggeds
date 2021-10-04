@@ -1,8 +1,7 @@
 ﻿#nullable enable
 
-namespace System
+namespace System;
+
+public readonly partial struct Unit : IEquatable<Unit>
 {
-    public readonly partial struct Unit : IEquatable<Unit>
-    {
-    }
 }

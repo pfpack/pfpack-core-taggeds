@@ -1,11 +1,10 @@
 ﻿#nullable enable
 
-namespace System
+namespace System;
+
+partial struct Unit
 {
-    partial struct Unit
-    {
-        public override string ToString()
-            =>
-            "Unit:()";
-    }
+    public override string ToString()
+        =>
+        "Unit:()";
 }

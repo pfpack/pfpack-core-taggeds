@@ -2,13 +2,12 @@
 
 using System.Runtime.CompilerServices;
 
-namespace System
+namespace System;
+
+partial class UnitExtensions
 {
-    partial class UnitExtensions
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Unit ToUnit<TResult>(this TResult result)
-            =>
-            Unit.From(result);
-    }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Unit ToUnit<TResult>(this TResult result)
+        =>
+        Unit.From(result);
 }
