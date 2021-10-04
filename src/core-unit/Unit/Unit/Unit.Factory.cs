@@ -2,21 +2,20 @@
 
 using System.Runtime.CompilerServices;
 
-namespace System
+namespace System;
+
+partial struct Unit
 {
-    partial struct Unit
+    public static readonly Unit Value;
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Unit Get()
+        =>
+        default;
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Unit From<TResult>(TResult result) => result switch
     {
-        public static readonly Unit Value;
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Unit Get()
-            =>
-            default;
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Unit From<TResult>(TResult result) => result switch
-        {
-            _ => default
-        };
-    }
+        _ => default
+    };
 }
