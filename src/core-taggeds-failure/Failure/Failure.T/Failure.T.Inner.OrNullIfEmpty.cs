@@ -2,15 +2,14 @@
 
 using System.Runtime.CompilerServices;
 
-namespace System
+namespace System;
+
+partial struct Failure<TFailureCode>
 {
-    partial struct Failure<TFailureCode>
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static string? OrNullIfEmpty(string? value)
-            =>
-            string.IsNullOrEmpty(value)
-                ? null
-                : value;
-    }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static string? OrNullIfEmpty(string? value)
+        =>
+        string.IsNullOrEmpty(value)
+            ? null
+            : value;
 }

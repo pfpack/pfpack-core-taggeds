@@ -2,29 +2,28 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-namespace System
+namespace System;
+
+public readonly partial struct Failure<TFailureCode> : IEquatable<Failure<TFailureCode>>
+    where TFailureCode : struct
 {
-    public readonly partial struct Failure<TFailureCode> : IEquatable<Failure<TFailureCode>>
-        where TFailureCode : struct
+    private readonly TFailureCode failureCode;
+
+    private readonly string? failureMessage;
+
+    public Failure(
+        TFailureCode failureCode,
+        [AllowNull] string failureMessage)
     {
-        private readonly TFailureCode failureCode;
-
-        private readonly string? failureMessage;
-
-        public Failure(
-            TFailureCode failureCode,
-            [AllowNull] string failureMessage)
-        {
-            this.failureCode = failureCode;            
-            this.failureMessage = OrNullIfEmpty(failureMessage);
-        }
-
-        public TFailureCode FailureCode
-            =>
-            failureCode;
-
-        public string FailureMessage
-            =>
-            failureMessage ?? string.Empty;
+        this.failureCode = failureCode;            
+        this.failureMessage = OrNullIfEmpty(failureMessage);
     }
+
+    public TFailureCode FailureCode
+        =>
+        failureCode;
+
+    public string FailureMessage
+        =>
+        failureMessage ?? string.Empty;
 }

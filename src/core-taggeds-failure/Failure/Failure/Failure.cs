@@ -1,8 +1,7 @@
 #nullable enable
 
-namespace System
-{
-    public static partial class Failure
-    {        
-    }
+namespace System;
+
+public static partial class Failure
+{        
 }

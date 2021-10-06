@@ -1,14 +1,13 @@
 #nullable enable
 
-namespace System
+namespace System;
+
+partial struct Failure<TFailureCode>
 {
-    partial struct Failure<TFailureCode>
-    {
-        public override int GetHashCode()
-            =>
-            HashCode.Combine(
-                EqualityContract,
-                FailureCodeComparer.GetHashCode(FailureCode),
-                FailureMessageComparer.GetHashCode(FailureMessage));
-    }
+    public override int GetHashCode()
+        =>
+        HashCode.Combine(
+            EqualityContract,
+            FailureCodeComparer.GetHashCode(FailureCode),
+            FailureMessageComparer.GetHashCode(FailureMessage));
 }
