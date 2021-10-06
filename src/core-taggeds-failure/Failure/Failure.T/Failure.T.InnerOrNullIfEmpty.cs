@@ -7,7 +7,7 @@ namespace System;
 partial struct Failure<TFailureCode>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string? OrNullIfEmpty(string? value)
+    private static string? InnerOrNullIfEmpty(string? value)
         =>
         string.IsNullOrEmpty(value)
             ? null
