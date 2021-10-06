@@ -15,7 +15,7 @@ public readonly partial struct Failure<TFailureCode> : IEquatable<Failure<TFailu
         TFailureCode failureCode,
         [AllowNull] string failureMessage)
     {
-        this.failureCode = failureCode;            
+        this.failureCode = failureCode;
         this.failureMessage = InnerOrNullIfEmpty(failureMessage);
     }
 
