@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.Globalization;
 using Xunit;
 using static PrimeFuncPack.UnitTest.TestData;
 using static System.FormattableString;
@@ -15,8 +16,14 @@ namespace PrimeFuncPack.Core.Tests
             var failure = default(Failure<SomeFailureCode>);
             var actual = failure.ToString();
 
-            var expectedFailureCodeString = Invariant($"{SomeFailureCode.Unknown}");
-            Assert.Contains(expectedFailureCodeString, actual, StringComparison.InvariantCulture);
+            var expected = string.Format(
+                CultureInfo.InvariantCulture,
+                "Failure[{0}]:{{ FailureCode: {1}, FailureMessage: \"{2}\" }}",
+                typeof(SomeFailureCode),
+                SomeFailureCode.Unknown,
+                string.Empty);
+
+            Assert.Contains(expected, actual, StringComparison.InvariantCulture);
         }
 
         [Theory]
