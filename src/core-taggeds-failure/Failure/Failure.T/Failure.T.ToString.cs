@@ -9,5 +9,5 @@ namespace System;
         public override string ToString()
             =>
             Invariant(
-                $"A failure of {typeof(TFailureCode).Name}: {{ Code: {FailureCode}, Message: \"{FailureMessage}\" }}");
+                $"A failure of {typeof(TFailureCode)}: {{ Code: {FailureCode}, Message: \"{FailureMessage}\" }}");
     }
