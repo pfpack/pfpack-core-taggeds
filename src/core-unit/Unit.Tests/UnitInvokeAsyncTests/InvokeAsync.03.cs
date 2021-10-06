@@ -8,36 +8,35 @@ using System;
 using System.Threading.Tasks;
 using static PrimeFuncPack.UnitTest.TestData;
 
-namespace PrimeFuncPack.Core.Tests
+namespace PrimeFuncPack.Core.Tests;
+
+partial class UnitInvokeAsyncTests
 {
-    partial class UnitInvokeAsyncTests
+    [Test]
+    public void InvokeAsync_03_FuncIsNull_ExpectArgumentNullException()
     {
-        [Test]
-        public void InvokeAsync_03_FuncIsNull_ExpectArgumentNullException()
-        {
-            Func<StructType, RefType, string, Task> funcAsync = null!;
+        Func<StructType, RefType, string, Task> funcAsync = null!;
 
-            var arg1 = SomeTextStructType;
-            var arg2 = PlusFifteenIdRefType;
-            var arg3 = TabString;
+        var arg1 = SomeTextStructType;
+        var arg2 = PlusFifteenIdRefType;
+        var arg3 = TabString;
 
-            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeAsync(funcAsync, arg1, arg2, arg3));
-            Assert.AreEqual("funcAsync", ex!.ParamName);
-        }
+        var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeAsync(funcAsync, arg1, arg2, arg3));
+        Assert.AreEqual("funcAsync", ex!.ParamName);
+    }
 
-        [Test]
-        public async Task InvokeAsync_03_ExpectCallFuncOnce()
-        {
-            var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, Task>(Task.CompletedTask);
+    [Test]
+    public async Task InvokeAsync_03_ExpectCallFuncOnce()
+    {
+        var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, Task>(Task.CompletedTask);
 
-            var arg1 = SomeTextStructType;
-            var arg2 = (RefType?)null;
-            var arg3 = TabString;
+        var arg1 = SomeTextStructType;
+        var arg2 = (RefType?)null;
+        var arg3 = TabString;
 
-            var actual = await Unit.InvokeAsync(mockFuncAsync.Object.Invoke, arg1, arg2, arg3);
+        var actual = await Unit.InvokeAsync(mockFuncAsync.Object.Invoke, arg1, arg2, arg3);
 
-            Assert.AreEqual(Unit.Value, actual);
-            mockFuncAsync.Verify(f => f.Invoke(arg1, arg2, arg3), Times.Once);
-        }
+        Assert.AreEqual(Unit.Value, actual);
+        mockFuncAsync.Verify(f => f.Invoke(arg1, arg2, arg3), Times.Once);
     }
 }

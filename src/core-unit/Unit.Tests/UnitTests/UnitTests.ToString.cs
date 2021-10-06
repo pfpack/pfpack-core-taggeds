@@ -3,8 +3,8 @@
 using NUnit.Framework;
 using System;
 
-namespace PrimeFuncPack.Core.Tests
-{
+namespace PrimeFuncPack.Core.Tests;
+
     partial class UnitTests
     {
         [Test]
@@ -17,4 +17,3 @@ namespace PrimeFuncPack.Core.Tests
             Assert.AreEqual(expected, actual);
         }
     }
-}

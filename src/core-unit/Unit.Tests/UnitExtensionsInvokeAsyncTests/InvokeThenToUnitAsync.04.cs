@@ -8,39 +8,38 @@ using System;
 using System.Threading.Tasks;
 using static PrimeFuncPack.UnitTest.TestData;
 
-namespace PrimeFuncPack.Core.Tests
+namespace PrimeFuncPack.Core.Tests;
+
+partial class UnitExtensionsInvokeAsyncTests
 {
-    partial class UnitExtensionsInvokeAsyncTests
+    [Test]
+    public void InvokeThenToUnitAsync_04_FuncIsNull_ExpectArgumentNullException()
     {
-        [Test]
-        public void InvokeThenToUnitAsync_04_FuncIsNull_ExpectArgumentNullException()
-        {
-            Func<StructType, RefType, string, int, Task> funcAsync = null!;
+        Func<StructType, RefType, string, int, Task> funcAsync = null!;
 
-            var arg1 = SomeTextStructType;
-            var arg2 = PlusFifteenIdRefType;
-            var arg3 = TabString;
-            var arg4 = MinusFortyFive;
+        var arg1 = SomeTextStructType;
+        var arg2 = PlusFifteenIdRefType;
+        var arg3 = TabString;
+        var arg4 = MinusFortyFive;
 
-            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = funcAsync.InvokeThenToUnitAsync(arg1, arg2, arg3, arg4));
-            Assert.AreEqual("funcAsync", ex!.ParamName);
-        }
+        var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = funcAsync.InvokeThenToUnitAsync(arg1, arg2, arg3, arg4));
+        Assert.AreEqual("funcAsync", ex!.ParamName);
+    }
 
-        [Test]
-        public async Task InvokeThenToUnitAsync_04_ExpectCallFuncOnce()
-        {
-            var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, int, Task>(Task.CompletedTask);
-            var funcAsync = new Func<StructType, RefType?, string, int, Task>(mockFuncAsync.Object.Invoke);
+    [Test]
+    public async Task InvokeThenToUnitAsync_04_ExpectCallFuncOnce()
+    {
+        var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, int, Task>(Task.CompletedTask);
+        var funcAsync = new Func<StructType, RefType?, string, int, Task>(mockFuncAsync.Object.Invoke);
 
-            var arg1 = SomeTextStructType;
-            var arg2 = (RefType?)null;
-            var arg3 = TabString;
-            var arg4 = MinusFortyFive;
+        var arg1 = SomeTextStructType;
+        var arg2 = (RefType?)null;
+        var arg3 = TabString;
+        var arg4 = MinusFortyFive;
 
-            var actual = await funcAsync.InvokeThenToUnitAsync(arg1, arg2, arg3, arg4);
+        var actual = await funcAsync.InvokeThenToUnitAsync(arg1, arg2, arg3, arg4);
 
-            Assert.AreEqual(Unit.Value, actual);
-            mockFuncAsync.Verify(f => f.Invoke(arg1, arg2, arg3, arg4), Times.Once);
-        }
+        Assert.AreEqual(Unit.Value, actual);
+        mockFuncAsync.Verify(f => f.Invoke(arg1, arg2, arg3, arg4), Times.Once);
     }
 }
