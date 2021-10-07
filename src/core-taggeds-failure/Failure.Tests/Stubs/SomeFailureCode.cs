@@ -1,12 +1,11 @@
 #nullable enable
 
-namespace PrimeFuncPack.Core.Tests
+namespace PrimeFuncPack.Core.Tests;
+
+public enum SomeFailureCode
 {
-    public enum SomeFailureCode
-    {
-        Unknown,
-        First,
-        Second,
-        Third
-    }
+    Unknown,
+    First,
+    Second,
+    Third
 }

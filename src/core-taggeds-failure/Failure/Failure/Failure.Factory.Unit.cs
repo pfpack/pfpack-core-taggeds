@@ -2,15 +2,14 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-namespace System
+namespace System;
+
+partial class Failure
 {
-    partial class Failure
-    {
-        public static Failure<Unit> Create(
-            [AllowNull] string failureMessage)
-            =>
-            new(
-                failureCode: default,
-                failureMessage: failureMessage);
-    }
+    public static Failure<Unit> Create(
+        [AllowNull] string failureMessage)
+        =>
+        new(
+            failureCode: default,
+            failureMessage: failureMessage);
 }

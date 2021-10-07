@@ -2,13 +2,12 @@
 
 using static System.FormattableString;
 
-namespace System
+namespace System;
+
+partial struct Failure<TFailureCode>
 {
-    partial struct Failure<TFailureCode>
-    {
-        public override string ToString()
-            =>
-            Invariant(
-                $"A failure of {typeof(TFailureCode).Name}: {{ Code: {FailureCode}, Message: \"{FailureMessage}\" }}");
-    }
+    public override string ToString()
+        =>
+        Invariant(
+            $"Failure[{typeof(TFailureCode)}]:{{ \"{nameof(FailureCode)}\": {FailureCode}, \"{nameof(FailureMessage)}\": \"{FailureMessage}\" }}");
 }
