@@ -1,8 +1,7 @@
 ﻿#nullable enable
 
-namespace PrimeFuncPack.Core.Tests
+namespace PrimeFuncPack.Core.Tests;
+
+public sealed partial class UnitExtensionsTests
 {
-    public sealed partial class UnitExtensionsTests
-    {
-    }
 }

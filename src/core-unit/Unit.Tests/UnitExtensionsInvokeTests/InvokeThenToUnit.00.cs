@@ -5,29 +5,28 @@ using NUnit.Framework;
 using PrimeFuncPack.UnitTest.Moq;
 using System;
 
-namespace PrimeFuncPack.Core.Tests
+namespace PrimeFuncPack.Core.Tests;
+
+partial class UnitExtensionsInvokeTests
 {
-    partial class UnitExtensionsInvokeTests
+    [Test]
+    public void InvokeThenToUnit_00_ActionIsNull_ExpectArgumentNullException()
     {
-        [Test]
-        public void InvokeThenToUnit_00_ActionIsNull_ExpectArgumentNullException()
-        {
-            Action action = null!;
-            var ex = Assert.Throws<ArgumentNullException>(() => _ = action.InvokeThenToUnit());
+        Action action = null!;
+        var ex = Assert.Throws<ArgumentNullException>(() => _ = action.InvokeThenToUnit());
 
-            Assert.AreEqual("action", ex!.ParamName);
-        }
+        Assert.AreEqual("action", ex!.ParamName);
+    }
 
-        [Test]
-        public void InvokeThenToUnit_00_ExpectCallActionOnce()
-        {
-            var mockAction = MockActionFactory.CreateMockAction();
-            var action = new Action(mockAction.Object.Invoke);
+    [Test]
+    public void InvokeThenToUnit_00_ExpectCallActionOnce()
+    {
+        var mockAction = MockActionFactory.CreateMockAction();
+        var action = new Action(mockAction.Object.Invoke);
 
-            var actual = action.InvokeThenToUnit();
+        var actual = action.InvokeThenToUnit();
 
-            Assert.AreEqual(Unit.Value, actual);
-            mockAction.Verify(a => a.Invoke(), Times.Once);
-        }
+        Assert.AreEqual(Unit.Value, actual);
+        mockAction.Verify(a => a.Invoke(), Times.Once);
     }
 }

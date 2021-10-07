@@ -6,29 +6,28 @@ using PrimeFuncPack.UnitTest.Moq;
 using System;
 using System.Threading.Tasks;
 
-namespace PrimeFuncPack.Core.Tests
+namespace PrimeFuncPack.Core.Tests;
+
+partial class UnitExtensionsInvoketValueAsyncTests
 {
-    partial class UnitExtensionsInvoketValueAsyncTests
+    [Test]
+    public void InvokeThenToUnitValueAsync_00_FuncIsNull_ExpectArgumentNullException()
     {
-        [Test]
-        public void InvokeThenToUnitValueAsync_00_FuncIsNull_ExpectArgumentNullException()
-        {
-            Func<ValueTask> funcAsync = null!;
-            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = funcAsync.InvokeThenToUnitValueAsync().AsTask());
+        Func<ValueTask> funcAsync = null!;
+        var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = funcAsync.InvokeThenToUnitValueAsync().AsTask());
 
-            Assert.AreEqual("funcAsync", ex!.ParamName);
-        }
+        Assert.AreEqual("funcAsync", ex!.ParamName);
+    }
 
-        [Test]
-        public async Task InvokeThenToUnitValueAsync_00_ExpectCallFuncOnce()
-        {
-            var mockFuncAsync = MockFuncFactory.CreateMockFunc<ValueTask>(default);
-            var funcAsync = new Func<ValueTask>(mockFuncAsync.Object.Invoke);
+    [Test]
+    public async Task InvokeThenToUnitValueAsync_00_ExpectCallFuncOnce()
+    {
+        var mockFuncAsync = MockFuncFactory.CreateMockFunc<ValueTask>(default);
+        var funcAsync = new Func<ValueTask>(mockFuncAsync.Object.Invoke);
 
-            var actual = await funcAsync.InvokeThenToUnitValueAsync();
+        var actual = await funcAsync.InvokeThenToUnitValueAsync();
 
-            Assert.AreEqual(Unit.Value, actual);
-            mockFuncAsync.Verify(f => f.Invoke(), Times.Once);
-        }
+        Assert.AreEqual(Unit.Value, actual);
+        mockFuncAsync.Verify(f => f.Invoke(), Times.Once);
     }
 }

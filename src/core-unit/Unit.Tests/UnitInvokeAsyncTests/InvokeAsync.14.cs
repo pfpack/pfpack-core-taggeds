@@ -8,58 +8,57 @@ using System;
 using System.Threading.Tasks;
 using static PrimeFuncPack.UnitTest.TestData;
 
-namespace PrimeFuncPack.Core.Tests
+namespace PrimeFuncPack.Core.Tests;
+
+partial class UnitInvokeAsyncTests
 {
-    partial class UnitInvokeAsyncTests
+    [Test]
+    public void InvokeAsync_14_FuncIsNull_ExpectArgumentNullException()
     {
-        [Test]
-        public void InvokeAsync_14_FuncIsNull_ExpectArgumentNullException()
-        {
-            Func<StructType, RefType, string, int, object, DateTime, StructType?, decimal, RefType, object, StructType, string, double, RefType, Task> funcAsync = null!;
+        Func<StructType, RefType, string, int, object, DateTime, StructType?, decimal, RefType, object, StructType, string, double, RefType, Task> funcAsync = null!;
 
-            var arg1 = SomeTextStructType;
-            var arg2 = PlusFifteenIdRefType;
-            var arg3 = TabString;
-            var arg4 = MinusFortyFive;
-            var arg5 = new { Value = PlusTwoHundredPointFive };
-            var arg6 = Year2015March11H01Min15;
-            var arg7 = NullTextStructType;
-            var arg8 = MinusSeventyFivePointSeven;
-            var arg9 = ZeroIdRefType;
-            var arg10 = new object();
-            var arg11 = CustomStringStructType;
-            var arg12 = CustomText;
-            var arg13 = PlusFortyOnePointSeventyFive;
-            var arg14 = MinusFifteenIdRefType;
+        var arg1 = SomeTextStructType;
+        var arg2 = PlusFifteenIdRefType;
+        var arg3 = TabString;
+        var arg4 = MinusFortyFive;
+        var arg5 = new { Value = PlusTwoHundredPointFive };
+        var arg6 = Year2015March11H01Min15;
+        var arg7 = NullTextStructType;
+        var arg8 = MinusSeventyFivePointSeven;
+        var arg9 = ZeroIdRefType;
+        var arg10 = new object();
+        var arg11 = CustomStringStructType;
+        var arg12 = CustomText;
+        var arg13 = PlusFortyOnePointSeventyFive;
+        var arg14 = MinusFifteenIdRefType;
 
-            var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeAsync(funcAsync, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14));
-            Assert.AreEqual("funcAsync", ex!.ParamName);
-        }
+        var ex = Assert.ThrowsAsync<ArgumentNullException>(() => _ = Unit.InvokeAsync(funcAsync, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14));
+        Assert.AreEqual("funcAsync", ex!.ParamName);
+    }
 
-        [Test]
-        public async Task InvokeAsync_14_ExpectCallFuncOnce()
-        {
-            var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, int, object?, DateTime, StructType?, decimal?, RefType, object, StructType, string, double, object?, Task>(Task.CompletedTask);
+    [Test]
+    public async Task InvokeAsync_14_ExpectCallFuncOnce()
+    {
+        var mockFuncAsync = MockFuncFactory.CreateMockFunc<StructType, RefType?, string, int, object?, DateTime, StructType?, decimal?, RefType, object, StructType, string, double, object?, Task>(Task.CompletedTask);
 
-            var arg1 = SomeTextStructType;
-            var arg2 = (RefType?)null;
-            var arg3 = TabString;
-            var arg4 = MinusFortyFive;
-            var arg5 = new { Value = PlusTwoHundredPointFive };
-            var arg6 = Year2015March11H01Min15;
-            var arg7 = (StructType?)null;
-            var arg8 = (decimal?)MinusSeventyFivePointSeven;
-            var arg9 = ZeroIdRefType;
-            var arg10 = new object();
-            var arg11 = CustomStringStructType;
-            var arg12 = CustomText;
-            var arg13 = PlusFortyOnePointSeventyFive;
-            var arg14 = (object?)null;
+        var arg1 = SomeTextStructType;
+        var arg2 = (RefType?)null;
+        var arg3 = TabString;
+        var arg4 = MinusFortyFive;
+        var arg5 = new { Value = PlusTwoHundredPointFive };
+        var arg6 = Year2015March11H01Min15;
+        var arg7 = (StructType?)null;
+        var arg8 = (decimal?)MinusSeventyFivePointSeven;
+        var arg9 = ZeroIdRefType;
+        var arg10 = new object();
+        var arg11 = CustomStringStructType;
+        var arg12 = CustomText;
+        var arg13 = PlusFortyOnePointSeventyFive;
+        var arg14 = (object?)null;
 
-            var actual = await Unit.InvokeAsync(mockFuncAsync.Object.Invoke, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14);
+        var actual = await Unit.InvokeAsync(mockFuncAsync.Object.Invoke, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14);
 
-            Assert.AreEqual(Unit.Value, actual);
-            mockFuncAsync.Verify(a => a.Invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14), Times.Once);
-        }
+        Assert.AreEqual(Unit.Value, actual);
+        mockFuncAsync.Verify(a => a.Invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14), Times.Once);
     }
 }
