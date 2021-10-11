@@ -2,6 +2,7 @@
 
 using System;
 using Xunit;
+using static PrimeFuncPack.Core.Tests.AssertHelper;
 using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests;
@@ -31,9 +32,10 @@ partial class FailureTest
         var source = default(Failure<int>);
 
         var actual = source.MapFailureCode(_ => mappedFailureCode);
-        var expected = new Failure<SomeFailureCode>(mappedFailureCode, EmptyString);
 
-        Assert.Equal(expected, actual);
+        AssertEqualFailures(
+            (mappedFailureCode, EmptyString),
+            (actual.FailureCode, actual.FailureMessage));
     }
 
     [Theory]
@@ -48,9 +50,10 @@ partial class FailureTest
         var source = new Failure<decimal>(decimal.One, null);
 
         var actual = source.MapFailureCode(_ => mappedFailureCode);
-        var expected = new Failure<int>(mappedFailureCode, EmptyString);
 
-        Assert.Equal(expected, actual);
+        AssertEqualFailures(
+            (mappedFailureCode, EmptyString),
+            (actual.FailureCode, actual.FailureMessage));
     }
 
     [Theory]
@@ -73,8 +76,9 @@ partial class FailureTest
         var source = new Failure<SomeFailureCode>(sourceFailureCode, sourceFailureMessage);
 
         var actual = source.MapFailureCode(_ => mappedFailureCode);
-        var expected = new Failure<int>(mappedFailureCode, sourceFailureMessage);
 
-        Assert.Equal(expected, actual);
+        AssertEqualFailures(
+            (mappedFailureCode, sourceFailureMessage),
+            (actual.FailureCode, actual.FailureMessage));
     }
 }

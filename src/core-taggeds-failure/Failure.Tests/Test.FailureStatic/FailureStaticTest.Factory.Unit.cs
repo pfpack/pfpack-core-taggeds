@@ -2,6 +2,7 @@
 
 using System;
 using Xunit;
+using static PrimeFuncPack.Core.Tests.AssertHelper;
 using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests;
@@ -12,9 +13,10 @@ partial class FailureStaticTest
     public void CreateUnitFailureCode_SourceFailureMessageIsNull_ExpectFailureCodeIsUnitAndMessageIsEmpty()
     {
         var actual = Failure.Create(null);
-        var expected = new Failure<Unit>(Unit.Value, EmptyString);
 
-        Assert.Equal(expected, actual);
+        AssertEqualFailures(
+            (Unit.Value, EmptyString),
+            (actual.FailureCode, actual.FailureMessage));
     }
 
     [Theory]
@@ -27,8 +29,9 @@ partial class FailureStaticTest
         string sourceFailureMessage)
     {
         var actual = Failure.Create(sourceFailureMessage);
-        var expected = new Failure<Unit>(Unit.Value, sourceFailureMessage);
 
-        Assert.Equal(expected, actual);
+        AssertEqualFailures(
+            (Unit.Value, sourceFailureMessage),
+            (actual.FailureCode, actual.FailureMessage));
     }
 }
