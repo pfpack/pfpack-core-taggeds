@@ -1,5 +1,7 @@
 #nullable enable
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace System;
 
 partial struct Failure<TFailureCode>
@@ -16,7 +18,7 @@ partial struct Failure<TFailureCode>
         =>
         left.Equals(right) is false;
 
-    public override bool Equals(object? obj)
+    public override bool Equals([NotNullWhen(true)] object? obj)
         =>
         obj is Failure<TFailureCode> other &&
         Equals(other);
