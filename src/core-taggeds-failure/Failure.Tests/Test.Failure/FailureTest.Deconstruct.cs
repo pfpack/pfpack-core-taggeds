@@ -7,7 +7,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests;
 
-partial class FailureStaticTest
+partial class FailureTest
 {
     [Theory]
     [InlineData(int.MinValue)]
@@ -15,14 +15,16 @@ partial class FailureStaticTest
     [InlineData(Zero)]
     [InlineData(PlusFifteen)]
     [InlineData(int.MaxValue)]
-    public void Create_SourceFailureMessageIsNull_ExpectFailureCodeIsEqualToSourceAndMessageIsEmpty(
+    public void Deconstruct_SourceFailureMessageIsNull_ExpectFailureCodeIsEqualToSourceAndMessageIsEmpty(
         int sourceFailureCode)
     {
-        var actual = Failure.Create(sourceFailureCode, null);
+        var source = new Failure<int>(sourceFailureCode, null);
+
+        var (actualFailureCode, actualFailureMessage) = source;
 
         AssertEqualFailures(
-            (sourceFailureCode, EmptyString),
-            (actual.FailureCode, actual.FailureMessage));
+            (source.FailureCode, source.FailureMessage),
+            (actualFailureCode, actualFailureMessage));
     }
 
     [Theory]
@@ -36,14 +38,16 @@ partial class FailureStaticTest
     [InlineData(SomeFailureCode.Second, LowerSomeString)]
     [InlineData(SomeFailureCode.First, SomeString)]
     [InlineData(SomeFailureCode.Third, UpperSomeString)]
-    public void Create_SourceFailureMessageIsNotNull_ExpectFailureCodeAndMessageAreEqualToSource(
+    public void Deconstruct_SourceFailureMessageIsNotNull_ExpectFailureCodeAndMessageAreEqualToSource(
         SomeFailureCode sourceFailureCode,
         string sourceFailureMessage)
     {
-        var actual = Failure.Create(sourceFailureCode, sourceFailureMessage);
+        var source = new Failure<SomeFailureCode>(sourceFailureCode, sourceFailureMessage);
+
+        var (actualFailureCode, actualFailureMessage) = source;
 
         AssertEqualFailures(
-            (sourceFailureCode, sourceFailureMessage),
-            (actual.FailureCode, actual.FailureMessage));
+            (source.FailureCode, source.FailureMessage),
+            (actualFailureCode, actualFailureMessage));
     }
 }
