@@ -1,22 +1,32 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Description>PrimeFuncPack Core.Func is a core library for .NET consisting of functional interfaces (SAM interfaces) targeted for use in functional programming - IAsyncFunc/IAsyncValueFunc and IFunc, both asynchronous (Task and ValueTask based) and synchronous.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/pfpack/pfpack-core</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/pfpack/pfpack-core</RepositoryUrl>
+    <Company>pfpack</Company>
+    <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
     <Copyright>Copyright © 2020-2021 Andrei Sergeev, Pavel Moskovoy</Copyright>
+    <Description>PrimeFuncPack Core.Func is a core library for .NET consisting of functional interfaces (SAM interfaces) targeted for use in functional programming - IAsyncFunc/IAsyncValueFunc and IFunc, both asynchronous (Task and ValueTask based) and synchronous.</Description>
     <RootNamespace>System</RootNamespace>
     <AssemblyName>PrimeFuncPack.Core.Func</AssemblyName>
-    <Version>1.1.2-preview.1.0.0</Version>
+    <Version>2.0.0-preview.1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\..\docs\core-func\README.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
