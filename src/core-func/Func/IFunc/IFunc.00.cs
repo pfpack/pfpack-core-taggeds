@@ -1,9 +1,8 @@
 #nullable enable
 
-namespace System
+namespace System;
+
+public interface IFunc<out TResult>
 {
-    public interface IFunc<out TResult>
-    {
-        TResult Invoke();
-    }
+    TResult Invoke();
 }
