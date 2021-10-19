@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -33,8 +34,8 @@
 
   <ItemGroup>
     <PackageReference Include="PrimeFuncPack.Core.Failure" Version="2.0.0-preview.1.0.0" />
-    <PackageReference Include="PrimeFuncPack.Core.Func" Version="1.1.2-preview.1.0.0" />
-    <PackageReference Include="PrimeFuncPack.Core.Func.Extensions" Version="1.2.0-preview.1.0.0" />
+    <PackageReference Include="PrimeFuncPack.Core.Func" Version="2.0.0-preview.1.0.0" />
+    <PackageReference Include="PrimeFuncPack.Core.Func.Extensions" Version="2.0.0-preview.1.0.0" />
     <PackageReference Include="PrimeFuncPack.Core.Optional" Version="1.2.0-preview.2.0.0" />
     <PackageReference Include="PrimeFuncPack.Core.Result" Version="1.2.0-preview.1.0.0" />
     <PackageReference Include="PrimeFuncPack.Core.Taggeds" Version="1.2.0-preview.2.0.0" />
