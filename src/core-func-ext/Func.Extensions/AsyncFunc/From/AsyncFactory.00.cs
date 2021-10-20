@@ -3,14 +3,13 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace System
+namespace System;
+
+partial class AsyncFunc
 {
-    partial class AsyncFunc
-    {
-        public static IAsyncFunc<TResult> From<TResult>(
-            Func<CancellationToken, Task<TResult>> funcAsync)
-            =>
-            new ImplAsyncFunc<TResult>(
-                funcAsync ?? throw new ArgumentNullException(nameof(funcAsync)));
-    }
+    public static IAsyncFunc<TResult> From<TResult>(
+        Func<CancellationToken, Task<TResult>> funcAsync)
+        =>
+        new ImplAsyncFunc<TResult>(
+            funcAsync ?? throw new ArgumentNullException(nameof(funcAsync)));
 }

@@ -1,8 +1,7 @@
 #nullable enable
 
-namespace System
+namespace System;
+
+public static partial class Func
 {
-    public static partial class Func
-    {
-    }
 }

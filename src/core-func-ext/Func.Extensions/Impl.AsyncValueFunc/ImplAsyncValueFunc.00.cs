@@ -3,19 +3,18 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace System
+namespace System;
+
+internal sealed class ImplAsyncValueFunc<TResult> : IAsyncValueFunc<TResult>
 {
-    internal sealed class ImplAsyncValueFunc<TResult> : IAsyncValueFunc<TResult>
-    {
-        private readonly Func<CancellationToken, ValueTask<TResult>> funcAsync;
+    private readonly Func<CancellationToken, ValueTask<TResult>> funcAsync;
 
-        internal ImplAsyncValueFunc(
-            Func<CancellationToken, ValueTask<TResult>> funcAsync)
-            =>
-            this.funcAsync = funcAsync;
+    internal ImplAsyncValueFunc(
+        Func<CancellationToken, ValueTask<TResult>> funcAsync)
+        =>
+        this.funcAsync = funcAsync;
 
-        public ValueTask<TResult> InvokeAsync(CancellationToken cancellationToken = default)
-            =>
-            funcAsync.Invoke(cancellationToken);
-    }
+    public ValueTask<TResult> InvokeAsync(CancellationToken cancellationToken = default)
+        =>
+        funcAsync.Invoke(cancellationToken);
 }
