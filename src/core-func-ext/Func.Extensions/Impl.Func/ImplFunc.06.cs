@@ -2,12 +2,11 @@
 
 namespace System
 {
-    // TODO: Rename to ImplFunc in v2.0
-    internal sealed class ImplFunc2<T1, T2, T3, T4, T5, T6, TResult> : IFunc<T1, T2, T3, T4, T5, T6, TResult>
+    internal sealed class ImplFunc<T1, T2, T3, T4, T5, T6, TResult> : IFunc<T1, T2, T3, T4, T5, T6, TResult>
     {
         private readonly Func<T1, T2, T3, T4, T5, T6, TResult> func;
 
-        internal ImplFunc2(
+        internal ImplFunc(
             Func<T1, T2, T3, T4, T5, T6, TResult> func)
             =>
             this.func = func;

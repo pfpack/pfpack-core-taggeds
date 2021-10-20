@@ -7,7 +7,7 @@ namespace System
         public static IFunc<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult> From<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult>(
             Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult> func)
             =>
-            new ImplFunc2<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult>(
+            new ImplFunc<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult>(
                 func ?? throw new ArgumentNullException(nameof(func)));
     }
 }
