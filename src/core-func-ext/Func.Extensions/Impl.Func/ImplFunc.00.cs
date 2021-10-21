@@ -1,18 +1,17 @@
 #nullable enable
 
-namespace System
+namespace System;
+
+internal sealed class ImplFunc<TResult> : IFunc<TResult>
 {
-    internal sealed class ImplFunc<TResult> : IFunc<TResult>
-    {
-        private readonly Func<TResult> func;
+    private readonly Func<TResult> func;
 
-        internal ImplFunc(
-            Func<TResult> func)
-            =>
-            this.func = func;
+    internal ImplFunc(
+        Func<TResult> func)
+        =>
+        this.func = func;
 
-        public TResult Invoke()
-            =>
-            func.Invoke();
-    }
+    public TResult Invoke()
+        =>
+        func.Invoke();
 }

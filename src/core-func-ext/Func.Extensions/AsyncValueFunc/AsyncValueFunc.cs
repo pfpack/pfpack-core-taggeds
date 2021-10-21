@@ -1,8 +1,7 @@
 #nullable enable
 
-namespace System
+namespace System;
+
+public static partial class AsyncValueFunc
 {
-    public static partial class AsyncValueFunc
-    {
-    }
 }

@@ -3,10 +3,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace System
+namespace System;
+
+public interface IAsyncFunc<TResult>
 {
-    public interface IAsyncFunc<TResult>
-    {
-        Task<TResult> InvokeAsync(CancellationToken cancellationToken = default);
-    }
+    Task<TResult> InvokeAsync(CancellationToken cancellationToken = default);
 }
