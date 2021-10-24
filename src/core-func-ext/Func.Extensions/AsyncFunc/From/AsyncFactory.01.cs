@@ -12,4 +12,10 @@ partial class AsyncFunc
         =>
         new ImplAsyncFunc<T, TResult>(
             funcAsync ?? throw new ArgumentNullException(nameof(funcAsync)));
+
+    public static IAsyncFunc<T, TResult> From<T, TResult>(
+        Func<T, TResult> func)
+        =>
+        new ImplAsyncFunc2<T, TResult>(
+            func ?? throw new ArgumentNullException(nameof(func)));
 }
