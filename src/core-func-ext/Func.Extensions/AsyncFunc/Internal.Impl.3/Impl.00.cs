@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace System;
 
-internal sealed class AsyncFuncImpl2<TResult> : IAsyncFunc<TResult>
+internal sealed class AsyncFuncImpl3<TResult> : IAsyncFunc<TResult>
 {
-    private readonly Func<Task<TResult>> funcAsync;
+    private readonly Func<TResult> func;
 
-    internal AsyncFuncImpl2(Func<Task<TResult>> funcAsync)
+    internal AsyncFuncImpl3(Func<TResult> func)
         =>
-        this.funcAsync = funcAsync;
+        this.func = func;
 
     public Task<TResult> InvokeAsync(CancellationToken cancellationToken = default)
         =>
         cancellationToken.IsCancellationRequested
             ? Task.FromCanceled<TResult>(cancellationToken)
-            : funcAsync.Invoke();
+            : Task.FromResult(func.Invoke());
 }

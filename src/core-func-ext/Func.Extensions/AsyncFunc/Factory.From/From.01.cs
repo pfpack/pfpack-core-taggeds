@@ -14,8 +14,14 @@ partial class AsyncFunc
             funcAsync ?? throw new ArgumentNullException(nameof(funcAsync)));
 
     public static IAsyncFunc<T, TResult> From<T, TResult>(
-        Func<T, TResult> func)
+        Func<T, Task<TResult>> funcAsync)
         =>
         new AsyncFuncImpl2<T, TResult>(
+            funcAsync ?? throw new ArgumentNullException(nameof(funcAsync)));
+
+    public static IAsyncFunc<T, TResult> From<T, TResult>(
+        Func<T, TResult> func)
+        =>
+        new AsyncFuncImpl3<T, TResult>(
             func ?? throw new ArgumentNullException(nameof(func)));
 }
