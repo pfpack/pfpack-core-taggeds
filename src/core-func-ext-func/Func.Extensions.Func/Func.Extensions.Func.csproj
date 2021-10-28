@@ -26,7 +26,7 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\..\..\docs\core-func-ext\README.md">
+    <None Include="..\..\..\docs\core-func-ext-func\README.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
