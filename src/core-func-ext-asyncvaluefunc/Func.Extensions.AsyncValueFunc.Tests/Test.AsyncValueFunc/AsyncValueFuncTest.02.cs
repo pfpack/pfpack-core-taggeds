@@ -23,7 +23,7 @@ partial class AsyncValueFuncTest
     [InlineData(null)]
     [InlineData(true)]
     [InlineData(false)]
-    public async ValueTask From_02_ThenInvokeAsync_ExpectResultOfSourceFunc(
+    public async Task From_02_ThenInvokeAsync_ExpectResultOfSourceFunc(
         bool? sourceFuncResult)
     {
         var actual = AsyncValueFunc.From<RecordType?, StructType, bool?>(

@@ -25,7 +25,7 @@ partial class AsyncValueFuncTest
     [InlineData(MinusFifteen)]
     [InlineData(PlusFifteen)]
     [InlineData(int.MaxValue)]
-    public async ValueTask From_10_ThenInvokeAsync_ExpectResultOfSourceFunc(
+    public async Task From_10_ThenInvokeAsync_ExpectResultOfSourceFunc(
         int? sourceFuncResult)
     {
         var actual = AsyncValueFunc.From<object?, StructType?, RefType?, RecordType?, int, string?, long, int?, RefType, StructType?, int?>(

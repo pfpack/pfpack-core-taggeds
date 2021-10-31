@@ -26,7 +26,7 @@ partial class AsyncValueFuncTest
     [InlineData(TabString)]
     [InlineData(LowerSomeString)]
     [InlineData(SomeString)]
-    public async ValueTask From_06_ThenInvokeAsync_ExpectResultOfSourceFunc(
+    public async Task From_06_ThenInvokeAsync_ExpectResultOfSourceFunc(
         string? sourceFuncResult)
     {
         var actual = AsyncValueFunc.From<RefType, string, StructType?, object, RecordType, int, string?>(

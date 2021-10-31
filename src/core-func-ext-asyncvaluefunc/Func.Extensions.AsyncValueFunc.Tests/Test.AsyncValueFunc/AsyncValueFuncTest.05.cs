@@ -21,7 +21,7 @@ partial class AsyncValueFuncTest
 
     [Theory]
     [MemberData(nameof(TestEntitySource.StructTypes), MemberType = typeof(TestEntitySource))]
-    public async ValueTask From_05_ThenInvokeAsync_ExpectResultOfSourceFunc(
+    public async Task From_05_ThenInvokeAsync_ExpectResultOfSourceFunc(
         StructType sourceFuncResult)
     {
         var actual = AsyncValueFunc.From<int?, RecordType, RefType?, string, object, StructType>(
