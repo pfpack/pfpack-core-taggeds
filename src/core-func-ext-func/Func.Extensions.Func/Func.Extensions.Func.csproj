@@ -15,7 +15,7 @@
     <Company>pfpack</Company>
     <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
     <Copyright>Copyright © 2020-2021 Andrei Sergeev, Pavel Moskovoy</Copyright>
-    <Description>PrimeFuncPack Core.Func.Extensions is a core library for .NET consisting of extensions for IFunc and IAsyncFunc/IAsyncValueFunc functional interfaces (SAM interfaces) targeted for use in functional programming.</Description>
+    <Description>PrimeFuncPack Core.Func.Extensions.Func is a core library for .NET consisting of extensions for IFunc functional interface (SAM interface) targeted for use in functional programming.</Description>
     <RootNamespace>System</RootNamespace>
     <AssemblyName>PrimeFuncPack.Core.Func.Extensions.Func</AssemblyName>
     <Version>2.0.0-preview.1.0.0</Version>
