@@ -7,7 +7,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests;
 
-partial class FuncTest
+partial class FuncTests
 {
     [Fact]
     public void From_03_SourceFuncIsNull_ExpectArgumentNullException()
