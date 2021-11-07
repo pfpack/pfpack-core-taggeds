@@ -14,7 +14,7 @@ partial class AsyncFuncTests2
     [Fact]
     public void From_02_SourceFuncIsNull_ExpectArgumentNullException()
     {
-        var sourceFunc = (Func<RefType?, RecordType, CancellationToken, Task<StructType>>)null!;
+        var sourceFunc = (Func<RefType?, RecordType, Task<StructType>>)null!;
         var ex = Assert.Throws<ArgumentNullException>(() => _ = AsyncFunc.From(sourceFunc));
         Assert.Equal("funcAsync", ex.ParamName);
     }
@@ -27,7 +27,7 @@ partial class AsyncFuncTests2
         bool? sourceFuncResult)
     {
         var actual = AsyncFunc.From<RecordType?, StructType, bool?>(
-            (_, _, _) => Task.FromResult(sourceFuncResult));
+            (_, _) => Task.FromResult(sourceFuncResult));
 
         var cancellationToken = default(CancellationToken);
         var actualResult = await actual.InvokeAsync(MinusFifteenIdNullNameRecord, default, cancellationToken);
@@ -43,7 +43,7 @@ partial class AsyncFuncTests2
         bool? sourceFuncResult)
     {
         var actual = AsyncFunc.From<RecordType?, StructType, bool?>(
-            (_, _, _) => Task.FromResult(sourceFuncResult));
+            (_, _) => Task.FromResult(sourceFuncResult));
 
         var cancellationToken = new CancellationToken(canceled: true);
             _ = await Assert.ThrowsAsync<TaskCanceledException>(
