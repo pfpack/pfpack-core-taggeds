@@ -33,6 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="PrimeFuncPack.Core.Func.Abstractions.Async" Version="2.0.0-preview.1.0.1" />
+    <PackageReference Include="PrimeFuncPack.Core.Func.Abstractions.AsyncValue" Version="2.0.0-preview.1.0.1" />
+    <PackageReference Include="PrimeFuncPack.Core.Func.Abstractions.Sync" Version="2.0.0-preview.1.0.1" />
     <PackageReference Include="PrimeFuncPack.Core.Func.Extensions.Async" Version="2.0.0-preview.1.0.1" />
     <PackageReference Include="PrimeFuncPack.Core.Func.Extensions.AsyncValue" Version="2.0.0-preview.1.0.1" />
     <PackageReference Include="PrimeFuncPack.Core.Func.Extensions.Sync" Version="2.0.0-preview.1.0.1" />
