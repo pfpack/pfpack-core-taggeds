@@ -26,7 +26,7 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\..\..\docs\core-failure\README.md">
+    <None Include="..\..\..\docs\core-taggeds-failure\README.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
