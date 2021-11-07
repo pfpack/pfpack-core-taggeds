@@ -3,10 +3,10 @@ name: .NET
 on:
   push:
     branches: [ master, dev, dev/*, feature/*, fix/*, release/* ]
-    
+
   pull_request:
     branches: [ master ]
-    
+
   release:
     types: [ published ]
     branches: [ master ]
@@ -25,10 +25,10 @@ jobs:
         include-prerelease: true
 
     # Create Local NuGet Source
-    
+
     - name: Create Local NuGet Directory
       run: mkdir ~/nuget
-      
+
     - name: Add Local Nuget Source
       run: dotnet nuget add source ~/nuget
 
@@ -42,23 +42,109 @@ jobs:
 
     - name: Pack Unit
       run: dotnet pack ./src/*/*/Unit.csproj --no-restore -o ~/nuget  -c Release
-      
+
     - name: Restore Unit.Tests
       run: dotnet restore ./src/*/*/Unit.Tests.csproj
 
     - name: Test Unit.Tests
       run: dotnet test ./src/*/*/Unit.Tests.csproj --no-restore  -c Release
 
-    # Func
+    # Func.Abstractions.Async
 
-    - name: Restore Func
-      run: dotnet restore ./src/*/*/Func.csproj
+    - name: Restore Func.Abstractions.Async
+      run: dotnet restore ./src/*/*/Func.Abstractions.Async.csproj
 
-    - name: Build Func
-      run: dotnet build ./src/*/*/Func.csproj --no-restore  -c Release
+    - name: Build Func.Abstractions.Async
+      run: dotnet build ./src/*/*/Func.Abstractions.Async.csproj --no-restore  -c Release
 
-    - name: Pack Func
-      run: dotnet pack ./src/*/*/Func.csproj --no-restore -o ~/nuget  -c Release
+    - name: Pack Func.Abstractions.Async
+      run: dotnet pack ./src/*/*/Func.Abstractions.Async.csproj --no-restore -o ~/nuget  -c Release
+
+    # Func.Abstractions.AsyncValue
+
+    - name: Restore Func.Abstractions.AsyncValue
+      run: dotnet restore ./src/*/*/Func.Abstractions.AsyncValue.csproj
+
+    - name: Build Func.Abstractions.AsyncValue
+      run: dotnet build ./src/*/*/Func.Abstractions.AsyncValue.csproj --no-restore  -c Release
+
+    - name: Pack Func.Abstractions.AsyncValue
+      run: dotnet pack ./src/*/*/Func.Abstractions.AsyncValue.csproj --no-restore -o ~/nuget  -c Release
+
+    # Func.Abstractions.Sync
+
+    - name: Restore Func.Abstractions.Sync
+      run: dotnet restore ./src/*/*/Func.Abstractions.Sync.csproj
+
+    - name: Build Func.Abstractions.Sync
+      run: dotnet build ./src/*/*/Func.Abstractions.Sync.csproj --no-restore  -c Release
+
+    - name: Pack Func.Abstractions.Sync
+      run: dotnet pack ./src/*/*/Func.Abstractions.Sync.csproj --no-restore -o ~/nuget  -c Release
+
+    # Func.Abstractions
+
+    - name: Restore Func.Abstractions
+      run: dotnet restore ./src/*/*/Func.Abstractions.csproj
+
+    - name: Build Func.Abstractions
+      run: dotnet build ./src/*/*/Func.Abstractions.csproj --no-restore  -c Release
+
+    - name: Pack Func.Abstractions
+      run: dotnet pack ./src/*/*/Func.Abstractions.csproj --no-restore -o ~/nuget  -c Release
+
+    # Func.Extensions.Async
+
+    - name: Restore Func.Extensions.Async
+      run: dotnet restore ./src/*/*/Func.Extensions.Async.csproj
+
+    - name: Build Func.Extensions.Async
+      run: dotnet build ./src/*/*/Func.Extensions.Async.csproj --no-restore  -c Release
+
+    - name: Pack Func.Extensions.Async
+      run: dotnet pack ./src/*/*/Func.Extensions.Async.csproj --no-restore -o ~/nuget  -c Release
+
+    - name: Restore Func.Extensions.Async.Tests
+      run: dotnet restore ./src/*/*/Func.Extensions.Async.Tests.csproj
+
+    - name: Test Func.Extensions.Async.Tests
+      run: dotnet test ./src/*/*/Func.Extensions.Async.Tests.csproj --no-restore  -c Release
+
+    # Func.Extensions.AsyncValue
+
+    - name: Restore Func.Extensions.AsyncValue
+      run: dotnet restore ./src/*/*/Func.Extensions.AsyncValue.csproj
+
+    - name: Build Func.Extensions.AsyncValue
+      run: dotnet build ./src/*/*/Func.Extensions.AsyncValue.csproj --no-restore  -c Release
+
+    - name: Pack Func.Extensions.AsyncValue
+      run: dotnet pack ./src/*/*/Func.Extensions.AsyncValue.csproj --no-restore -o ~/nuget  -c Release
+
+    - name: Restore Func.Extensions.AsyncValue.Tests
+      run: dotnet restore ./src/*/*/Func.Extensions.AsyncValue.Tests.csproj
+
+    - name: Test Func.Extensions.AsyncValue.Tests
+      run: dotnet test ./src/*/*/Func.Extensions.AsyncValue.Tests.csproj --no-restore  -c Release
+
+    # Func.Extensions.Sync
+
+    - name: Restore Func.Extensions.Sync
+      run: dotnet restore ./src/*/*/Func.Extensions.Sync.csproj
+
+    - name: Build Func.Extensions.Sync
+      run: dotnet build ./src/*/*/Func.Extensions.Sync.csproj --no-restore  -c Release
+
+    - name: Pack Func.Extensions.Sync
+      run: dotnet pack ./src/*/*/Func.Extensions.Sync.csproj --no-restore -o ~/nuget  -c Release
+
+    - name: Restore Func.Extensions.Sync.Tests
+      run: dotnet restore ./src/*/*/Func.Extensions.Sync.Tests.csproj
+
+    - name: Test Func.Extensions.Sync.Tests
+      run: dotnet test ./src/*/*/Func.Extensions.Sync.Tests.csproj --no-restore  -c Release
+
+    # Func.Extensions
 
     - name: Restore Func.Extensions
       run: dotnet restore ./src/*/*/Func.Extensions.csproj
@@ -68,12 +154,6 @@ jobs:
 
     - name: Pack Func.Extensions
       run: dotnet pack ./src/*/*/Func.Extensions.csproj --no-restore -o ~/nuget  -c Release
-      
-    - name: Restore Func.Extensions.Tests
-      run: dotnet restore ./src/*/*/Func.Extensions.Tests.csproj
-
-    - name: Test Func.Extensions.Tests
-      run: dotnet test ./src/*/*/Func.Extensions.Tests.csproj --no-restore  -c Release
 
     # Failure
 
@@ -85,7 +165,7 @@ jobs:
 
     - name: Pack Failure
       run: dotnet pack ./src/*/*/Failure.csproj --no-restore -o ~/nuget  -c Release
-      
+
     - name: Restore Failure.Tests
       run: dotnet restore ./src/*/*/Failure.Tests.csproj
 
@@ -102,7 +182,7 @@ jobs:
 
     - name: Pack Optional
       run: dotnet pack ./src/*/*/Optional.csproj --no-restore -o ~/nuget  -c Release
-      
+
     - name: Restore Optional.Tests
       run: dotnet restore ./src/*/*/Optional.Tests.csproj
 
@@ -119,7 +199,7 @@ jobs:
 
     - name: Pack TaggedUnion
       run: dotnet pack ./src/*/*/TaggedUnion.csproj --no-restore -o ~/nuget  -c Release
-      
+
     - name: Restore TaggedUnion.Tests
       run: dotnet restore ./src/*/*/TaggedUnion.Tests.csproj
 
@@ -136,7 +216,7 @@ jobs:
 
     - name: Pack Result
       run: dotnet pack ./src/*/*/Result.csproj --no-restore -o ~/nuget  -c Release
-      
+
     - name: Restore Result.Tests
       run: dotnet restore ./src/*/*/Result.Tests.csproj
 
