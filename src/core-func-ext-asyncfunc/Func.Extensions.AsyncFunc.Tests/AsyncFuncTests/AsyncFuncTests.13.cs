@@ -9,7 +9,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests;
 
-partial class AsyncFuncTest
+partial class AsyncFuncTests
 {
     [Fact]
     public void From_13_SourceFuncIsNull_ExpectArgumentNullException()
@@ -33,5 +33,20 @@ partial class AsyncFuncTest
             decimal.One, SomeTextStructType, PlusFifteenIdRefType, ZeroIdNullNameRecord, default, default, MinusFifteenIdRefType, DateTimeKind.Unspecified, null!, new(), ThreeWhiteSpacesString, MinusFifteenIdNullNameRecord, EmptyString, cancellationToken);
 
         Assert.Equal(sourceFuncResult, actualResult);
+    }
+
+    [Theory]
+    [MemberData(nameof(TestEntitySource.RefTypes), MemberType = typeof(TestEntitySource))]
+    public async Task From_13_Canceled_ThenInvokeAsync_ExpectTaskCanceledException(
+        RefType sourceFuncResult)
+    {
+        var actual = AsyncFunc.From<decimal, StructType, RefType?, RecordType?, long, int, RefType, DateTimeKind, RefType, object?, string, RecordType, string?, RefType>(
+            (_, _, _, _, _, _, _, _, _, _, _, _, _, _) => Task.FromResult(sourceFuncResult));
+
+        var cancellationToken = new CancellationToken(canceled: true);
+
+        _ = await Assert.ThrowsAsync<TaskCanceledException>(
+            async () => await actual.InvokeAsync(
+                decimal.One, SomeTextStructType, PlusFifteenIdRefType, ZeroIdNullNameRecord, default, default, MinusFifteenIdRefType, DateTimeKind.Unspecified, null!, new(), ThreeWhiteSpacesString, MinusFifteenIdNullNameRecord, EmptyString, cancellationToken));
     }
 }

@@ -9,7 +9,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests;
 
-partial class AsyncFuncTest
+partial class AsyncFuncTests
 {
     [Fact]
     public void From_00_SourceFuncIsNull_ExpectArgumentNullException()
@@ -20,22 +20,34 @@ partial class AsyncFuncTest
     }
 
     [Theory]
-    [InlineData(null, false)]
-    [InlineData(null, true)]
-    [InlineData(EmptyString, false)]
-    [InlineData(EmptyString, true)]
-    [InlineData(WhiteSpaceString, false)]
-    [InlineData(WhiteSpaceString, true)]
-    [InlineData(SomeString, false)]
-    [InlineData(SomeString, true)]
+    [InlineData(null)]
+    [InlineData(EmptyString)]
+    [InlineData(WhiteSpaceString)]
+    [InlineData(SomeString)]
     public async Task From_00_ThenInvokeAsync_ExpectResultOfSourceFunc(
-        string? sourceFuncResult, bool canceled)
+        string? sourceFuncResult)
     {
         var actual = AsyncFunc.From(_ => Task.FromResult(sourceFuncResult));
 
-        var cancellationToken = new CancellationToken(canceled: canceled);
+        var cancellationToken = default(CancellationToken);
         var actualResult = await actual.InvokeAsync(cancellationToken);
 
         Assert.Equal(sourceFuncResult, actualResult);
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData(EmptyString)]
+    [InlineData(WhiteSpaceString)]
+    [InlineData(SomeString)]
+    public async Task From_00_Canceled_ThenInvokeAsync_ExpectTaskCanceledException(
+        string? sourceFuncResult)
+    {
+        var actual = AsyncFunc.From(_ => Task.FromResult(sourceFuncResult));
+
+        var cancellationToken = new CancellationToken(canceled: true);
+
+        _ = await Assert.ThrowsAsync<TaskCanceledException>(
+            async () => await actual.InvokeAsync(cancellationToken));
     }
 }

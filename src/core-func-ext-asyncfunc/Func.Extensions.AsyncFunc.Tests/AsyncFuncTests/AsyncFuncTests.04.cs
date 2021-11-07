@@ -9,7 +9,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests;
 
-partial class AsyncFuncTest
+partial class AsyncFuncTests
 {
     [Fact]
     public void From_04_SourceFuncIsNull_ExpectArgumentNullException()
@@ -27,11 +27,26 @@ partial class AsyncFuncTest
         var actual = AsyncFunc.From<object, int, RecordType?, StructType, RefType?>(
             (_, _, _, _, _) => Task.FromResult(sourceFuncResult));
 
-        var cancellationToken = new CancellationToken(canceled: true);
+        var cancellationToken = default(CancellationToken);
 
         var actualResult = await actual.InvokeAsync(
             new object(), MinusFifteen, PlusFifteenIdLowerSomeStringNameRecord, default, cancellationToken);
 
         Assert.Equal(sourceFuncResult, actualResult);
+    }
+
+    [Theory]
+    [MemberData(nameof(TestEntitySource.RefTypes), MemberType = typeof(TestEntitySource))]
+    public async Task From_04_Canceled_ThenInvokeAsync_ExpectTaskCanceledException(
+        RefType? sourceFuncResult)
+    {
+        var actual = AsyncFunc.From<object, int, RecordType?, StructType, RefType?>(
+            (_, _, _, _, _) => Task.FromResult(sourceFuncResult));
+
+        var cancellationToken = new CancellationToken(canceled: true);
+
+        _ = await Assert.ThrowsAsync<TaskCanceledException>(
+            async () => await actual.InvokeAsync(
+                new object(), MinusFifteen, PlusFifteenIdLowerSomeStringNameRecord, default, cancellationToken));
     }
 }
