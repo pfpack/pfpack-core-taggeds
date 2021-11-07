@@ -10,7 +10,7 @@
     <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
     <Copyright>Copyright © 2020-2021 Andrei Sergeev, Pavel Moskovoy</Copyright>
     <RootNamespace>PrimeFuncPack.Core.Tests</RootNamespace>
-    <AssemblyName>PrimeFuncPack.Core.Func.Extensions.Func.Tests</AssemblyName>
+    <AssemblyName>PrimeFuncPack.Core.Func.Extensions.AsyncValue.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Func.Extensions.Func\Func.Extensions.Func.csproj" />
+    <ProjectReference Include="..\Func.Extensions.AsyncValue\Func.Extensions.AsyncValue.csproj" />
   </ItemGroup>
 
 </Project>
