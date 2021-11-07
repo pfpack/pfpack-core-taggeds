@@ -15,9 +15,9 @@
     <Company>pfpack</Company>
     <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
     <Copyright>Copyright © 2020-2021 Andrei Sergeev, Pavel Moskovoy</Copyright>
-    <Description>PrimeFuncPack Core.Func is a core library for .NET consisting of functional interfaces (SAM interfaces) targeted for use in functional programming - IAsyncFunc/IAsyncValueFunc and IFunc, both asynchronous (Task and ValueTask based) and synchronous.</Description>
+    <Description>PrimeFuncPack Core.Func.Abstractions is a core library for .NET consisting of functional interfaces (SAM interfaces) targeted for use in functional programming - IAsyncFunc/IAsyncValueFunc and IFunc, both asynchronous (Task and ValueTask based) and synchronous.</Description>
     <RootNamespace>System</RootNamespace>
-    <AssemblyName>PrimeFuncPack.Core.Func</AssemblyName>
+    <AssemblyName>PrimeFuncPack.Core.Func.Abstractions</AssemblyName>
     <Version>2.0.0-preview.1.0.1</Version>
   </PropertyGroup>
 
@@ -33,9 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PrimeFuncPack.Core.Func.Async" Version="2.0.0-preview.1.0.1" />
-    <PackageReference Include="PrimeFuncPack.Core.Func.AsyncValue" Version="2.0.0-preview.1.0.1" />
-    <PackageReference Include="PrimeFuncPack.Core.Func.Sync" Version="2.0.0-preview.1.0.1" />
+    <PackageReference Include="PrimeFuncPack.Core.Func.Abstractions.Async" Version="2.0.0-preview.1.0.1" />
+    <PackageReference Include="PrimeFuncPack.Core.Func.Abstractions.AsyncValue" Version="2.0.0-preview.1.0.1" />
+    <PackageReference Include="PrimeFuncPack.Core.Func.Abstractions.Sync" Version="2.0.0-preview.1.0.1" />
   </ItemGroup>
 
 </Project>

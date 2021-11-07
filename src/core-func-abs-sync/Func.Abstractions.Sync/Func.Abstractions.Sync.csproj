@@ -15,9 +15,9 @@
     <Company>pfpack</Company>
     <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
     <Copyright>Copyright © 2020-2021 Andrei Sergeev, Pavel Moskovoy</Copyright>
-    <Description>PrimeFuncPack Core.Func.Async is a core library for .NET consisting of IAsyncFunc asynchronous Task based functional interfaces (SAM interface) targeted for use in functional programming.</Description>
+    <Description>PrimeFuncPack Core.Func.Abstractions.Sync is a core library for .NET consisting of IFunc synchronous functional interfaces (SAM interface) targeted for use in functional programming.</Description>
     <RootNamespace>System</RootNamespace>
-    <AssemblyName>PrimeFuncPack.Core.Func.Async</AssemblyName>
+    <AssemblyName>PrimeFuncPack.Core.Func.Abstractions.Sync</AssemblyName>
     <Version>2.0.0-preview.1.0.1</Version>
   </PropertyGroup>
 
@@ -26,7 +26,7 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\..\..\docs\core-func-abs-async\README.md">
+    <None Include="..\..\..\docs\core-func-abs-sync\README.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

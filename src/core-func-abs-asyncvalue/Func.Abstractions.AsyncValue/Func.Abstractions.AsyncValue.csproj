@@ -15,9 +15,9 @@
     <Company>pfpack</Company>
     <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
     <Copyright>Copyright © 2020-2021 Andrei Sergeev, Pavel Moskovoy</Copyright>
-    <Description>PrimeFuncPack Core.Func.AsyncValue is a core library for .NET consisting of IAsyncValueFunc asynchronous ValueTask based functional interfaces (SAM interface) targeted for use in functional programming.</Description>
+    <Description>PrimeFuncPack Core.Func.Abstractions.AsyncValue is a core library for .NET consisting of IAsyncValueFunc asynchronous ValueTask based functional interfaces (SAM interface) targeted for use in functional programming.</Description>
     <RootNamespace>System</RootNamespace>
-    <AssemblyName>PrimeFuncPack.Core.Func.AsyncValue</AssemblyName>
+    <AssemblyName>PrimeFuncPack.Core.Func.Abstractions.AsyncValue</AssemblyName>
     <Version>2.0.0-preview.1.0.1</Version>
   </PropertyGroup>
 
