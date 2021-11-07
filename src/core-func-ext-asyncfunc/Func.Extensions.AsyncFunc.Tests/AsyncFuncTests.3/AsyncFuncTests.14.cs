@@ -14,9 +14,9 @@ partial class AsyncFuncTests3
     [Fact]
     public void From_14_SourceFuncIsNull_ExpectArgumentNullException()
     {
-        var sourceFunc = (Func<int?, object?, RefType?, RefType, StructType, DateTime, int, RecordType, DateTimeKind, RecordType?, object, string, long, object, Task<RecordType>>)null!;
+        var sourceFunc = (Func<int?, object?, RefType?, RefType, StructType, DateTime, int, RecordType, DateTimeKind, RecordType?, object, string, long, object, RecordType>)null!;
         var ex = Assert.Throws<ArgumentNullException>(() => _ = AsyncFunc.From(sourceFunc));
-        Assert.Equal("funcAsync", ex.ParamName);
+        Assert.Equal("func", ex.ParamName);
     }
 
     [Theory]
@@ -25,7 +25,7 @@ partial class AsyncFuncTests3
         StructType sourceFuncResult)
     {
         var actual = AsyncFunc.From<int?, RefType, object?, decimal, RecordType?, StructType, long, RefType, int, DateTimeKind, object, long, RefType, int, StructType>(
-            (_, _, _, _, _, _, _, _, _, _, _, _, _, _) => Task.FromResult(sourceFuncResult));
+            (_, _, _, _, _, _, _, _, _, _, _, _, _, _) => sourceFuncResult);
 
         var cancellationToken = new CancellationToken(canceled: false);
 
@@ -41,7 +41,7 @@ partial class AsyncFuncTests3
         StructType sourceFuncResult)
     {
         var actual = AsyncFunc.From<int?, RefType, object?, decimal, RecordType?, StructType, long, RefType, int, DateTimeKind, object, long, RefType, int, StructType>(
-            (_, _, _, _, _, _, _, _, _, _, _, _, _, _) => Task.FromResult(sourceFuncResult));
+            (_, _, _, _, _, _, _, _, _, _, _, _, _, _) => sourceFuncResult);
 
         var cancellationToken = new CancellationToken(canceled: true);
 
