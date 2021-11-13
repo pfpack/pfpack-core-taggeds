@@ -15,7 +15,5 @@ internal sealed class AsyncValueFuncImpl3<T1, T2, TResult> : IAsyncValueFunc<T1,
 
     public ValueTask<TResult> InvokeAsync(T1 arg1, T2 arg2, CancellationToken cancellationToken = default)
         =>
-        cancellationToken.IsCancellationRequested
-            ? ValueTask.FromCanceled<TResult>(cancellationToken)
-            : ValueTask.FromResult(func.Invoke(arg1, arg2));
+        ValueTask.FromResult(func.Invoke(arg1, arg2));
 }
