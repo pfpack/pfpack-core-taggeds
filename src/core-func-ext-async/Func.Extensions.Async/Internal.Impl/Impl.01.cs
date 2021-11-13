@@ -15,7 +15,5 @@ internal sealed class AsyncFuncImpl<T, TResult> : IAsyncFunc<T, TResult>
 
     public Task<TResult> InvokeAsync(T arg, CancellationToken cancellationToken = default)
         =>
-        cancellationToken.IsCancellationRequested
-            ? Task.FromCanceled<TResult>(cancellationToken)
-            : funcAsync.Invoke(arg, cancellationToken);
+        funcAsync.Invoke(arg, cancellationToken);
 }
