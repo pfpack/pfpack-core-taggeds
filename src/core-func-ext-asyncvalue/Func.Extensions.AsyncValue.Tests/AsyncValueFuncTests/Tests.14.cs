@@ -7,7 +7,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests;
 
-partial class AsyncFuncValueTests
+partial class AsyncValueFuncTests
 {
     [Fact]
     public void From_14_SourceFuncIsNull_ExpectArgumentNullException()

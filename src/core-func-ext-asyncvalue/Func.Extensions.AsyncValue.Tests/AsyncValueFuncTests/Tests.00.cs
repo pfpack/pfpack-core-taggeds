@@ -6,7 +6,7 @@ using Xunit;
 
 namespace PrimeFuncPack.Core.Tests;
 
-partial class AsyncFuncValueTests
+partial class AsyncValueFuncTests
 {
     [Fact]
     public void From_00_SourceFuncIsNull_ExpectArgumentNullException()
