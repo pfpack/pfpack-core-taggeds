@@ -4,7 +4,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests;
 
-partial class TestCaseSources
+partial class AsyncTestCaseSources
 {
     private static IEnumerable<string?> InnerString()
     {

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace PrimeFuncPack.Core.Tests;
 
-partial class TestCaseSources
+partial class AsyncTestCaseSources
 {
     public static IEnumerable<object?[]> String()
         =>

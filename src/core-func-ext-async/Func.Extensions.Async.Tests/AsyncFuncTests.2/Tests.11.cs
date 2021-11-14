@@ -18,7 +18,7 @@ partial class AsyncFuncTests2
     }
 
     [Theory]
-    [MemberData(nameof(TestCaseSources.RefType), MemberType = typeof(TestCaseSources))]
+    [MemberData(nameof(AsyncTestCaseSources.RefType), MemberType = typeof(AsyncTestCaseSources))]
     public async Task From_11_ThenInvokeAsync_ExpectResultOfSourceFunc(
         RefType? sourceFuncResult, CancellationToken sourceFuncCancellationToken)
     {

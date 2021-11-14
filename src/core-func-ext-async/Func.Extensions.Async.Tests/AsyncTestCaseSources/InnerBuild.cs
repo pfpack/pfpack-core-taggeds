@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace PrimeFuncPack.Core.Tests;
 
-partial class TestCaseSources
+partial class AsyncTestCaseSources
 {
     private static IEnumerable<object?[]> InnerBuildSource<T>(this IEnumerable<T> source)
         =>
