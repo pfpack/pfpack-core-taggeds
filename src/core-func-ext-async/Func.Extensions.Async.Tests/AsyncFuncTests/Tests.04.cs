@@ -1,9 +1,7 @@
-#nullable enable
-
+using PrimeFuncPack.UnitTest;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using PrimeFuncPack.UnitTest;
 using Xunit;
 using static PrimeFuncPack.UnitTest.TestData;
 

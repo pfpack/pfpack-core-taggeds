@@ -1,5 +1,3 @@
-#nullable enable
-
 using PrimeFuncPack.UnitTest;
 using System.Collections.Generic;
 using static PrimeFuncPack.UnitTest.TestData;
