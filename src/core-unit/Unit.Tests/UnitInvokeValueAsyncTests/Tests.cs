@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-using PrimeFuncPack.UnitTest;
+﻿using PrimeFuncPack.UnitTest;
 using System;
 
 namespace PrimeFuncPack.Core.Tests;
