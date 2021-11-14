@@ -10,7 +10,7 @@
     <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
     <Copyright>Copyright © 2020-2021 Andrei Sergeev, Pavel Moskovoy</Copyright>
     <RootNamespace>PrimeFuncPack.Core.Tests</RootNamespace>
-    <AssemblyName>PrimeFuncPack.Core.Func.Extensions.Async.Tests</AssemblyName>
+    <AssemblyName>PrimeFuncPack.Core.Func.Extensions.Async.Tests.DefCancellation</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
