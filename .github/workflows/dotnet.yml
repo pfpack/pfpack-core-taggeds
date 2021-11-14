@@ -104,11 +104,17 @@ jobs:
     - name: Pack Func.Extensions.Async
       run: dotnet pack ./src/*/*/Func.Extensions.Async.csproj --no-restore -o ~/nuget  -c Release
 
-    - name: Restore Func.Extensions.Async.Tests
-      run: dotnet restore ./src/*/*/Func.Extensions.Async.Tests.csproj
+    - name: Restore Func.Extensions.Async.Tests.Primary
+      run: dotnet restore ./src/*/*/Func.Extensions.Async.Tests.Primary.csproj
 
-    - name: Test Func.Extensions.Async.Tests
-      run: dotnet test ./src/*/*/Func.Extensions.Async.Tests.csproj --no-restore  -c Release
+    - name: Test Func.Extensions.Async.Tests.Primary
+      run: dotnet test ./src/*/*/Func.Extensions.Async.Tests.Primary.csproj --no-restore  -c Release
+
+    - name: Restore Func.Extensions.Async.Tests.DefCancellation
+      run: dotnet restore ./src/*/*/Func.Extensions.Async.Tests.DefCancellation.csproj
+
+    - name: Test Func.Extensions.Async.Tests.DefCancellation
+      run: dotnet test ./src/*/*/Func.Extensions.Async.Tests.DefCancellation.csproj --no-restore  -c Release
 
     # Func.Extensions.AsyncValue
 
@@ -121,11 +127,17 @@ jobs:
     - name: Pack Func.Extensions.AsyncValue
       run: dotnet pack ./src/*/*/Func.Extensions.AsyncValue.csproj --no-restore -o ~/nuget  -c Release
 
-    - name: Restore Func.Extensions.AsyncValue.Tests
-      run: dotnet restore ./src/*/*/Func.Extensions.AsyncValue.Tests.csproj
+    - name: Restore Func.Extensions.AsyncValue.Tests.Primary
+      run: dotnet restore ./src/*/*/Func.Extensions.AsyncValue.Tests.Primary.csproj
 
-    - name: Test Func.Extensions.AsyncValue.Tests
-      run: dotnet test ./src/*/*/Func.Extensions.AsyncValue.Tests.csproj --no-restore  -c Release
+    - name: Test Func.Extensions.AsyncValue.Tests.Primary
+      run: dotnet test ./src/*/*/Func.Extensions.AsyncValue.Tests.Primary.csproj --no-restore  -c Release
+
+    - name: Restore Func.Extensions.AsyncValue.Tests.DefCancellation
+      run: dotnet restore ./src/*/*/Func.Extensions.AsyncValue.Tests.DefCancellation.csproj
+
+    - name: Test Func.Extensions.AsyncValue.Tests.DefCancellation
+      run: dotnet test ./src/*/*/Func.Extensions.AsyncValue.Tests.DefCancellation.csproj --no-restore  -c Release
 
     # Func.Extensions.Sync
 
