@@ -10,10 +10,10 @@ partial class AsyncTestCaseSources
         =>
         source.SelectMany(InnerBuildSourceSlice);
 
-    private static IEnumerable<object?[]> InnerBuildSourceSlice<T>(T source, int index)
+    private static IEnumerable<object?[]> InnerBuildSourceSlice<T>(T item, int index)
     {
-        yield return new object?[] { source, InnerBuildCancellationTokenNone(index) };
-        yield return new object?[] { source, new CancellationToken(canceled: true) };
+        yield return new object?[] { item, InnerBuildCancellationTokenNone(index) };
+        yield return new object?[] { item, new CancellationToken(canceled: true) };
     }
 
     private static CancellationToken InnerBuildCancellationTokenNone(int index)
