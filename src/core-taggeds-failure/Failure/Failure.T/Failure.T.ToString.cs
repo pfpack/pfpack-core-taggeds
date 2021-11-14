@@ -1,5 +1,3 @@
-#nullable enable
-
 using static System.FormattableString;
 
 namespace System;

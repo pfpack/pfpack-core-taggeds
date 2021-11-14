@@ -1,5 +1,3 @@
-#nullable enable
-
 namespace System;
 
 partial class Failure
