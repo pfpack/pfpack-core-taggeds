@@ -24,7 +24,7 @@ partial class AsyncTestCaseSources
         =>
         InnerRecordRefType().InnerBuildSource();
 
-    public static IEnumerable<object[]> StructType()
+    public static IEnumerable<object?[]> StructType()
         =>
-        InnerStructType().InnerBuildSource()!;
+        InnerStructType().InnerBuildSource();
 }
