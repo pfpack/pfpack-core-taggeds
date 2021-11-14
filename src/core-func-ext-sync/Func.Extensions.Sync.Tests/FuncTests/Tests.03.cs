@@ -1,7 +1,5 @@
-#nullable enable
-
-using System;
 using PrimeFuncPack.UnitTest;
+using System;
 using Xunit;
 using static PrimeFuncPack.UnitTest.TestData;
 
@@ -18,9 +16,7 @@ partial class FuncTests
     }
 
     [Theory]
-    [InlineData(null)]
-    [InlineData(true)]
-    [InlineData(false)]
+    [MemberData(nameof(TestCaseSources.BooleanNullable), MemberType = typeof(TestCaseSources))]
     public void From_03_ThenInvoke_ExpectResultOfSourceFunc(
         bool? sourceFuncResult)
     {

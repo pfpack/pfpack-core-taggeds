@@ -1,7 +1,5 @@
-#nullable enable
-
-using System;
 using PrimeFuncPack.UnitTest;
+using System;
 using Xunit;
 using static PrimeFuncPack.UnitTest.TestData;
 
@@ -18,11 +16,7 @@ partial class FuncTests
     }
 
     [Theory]
-    [InlineData(int.MinValue)]
-    [InlineData(MinusFifteen)]
-    [InlineData(Zero)]
-    [InlineData(PlusFifteen)]
-    [InlineData(int.MaxValue)]
+    [MemberData(nameof(TestCaseSources.Int32), MemberType = typeof(TestCaseSources))]
     public void From_10_ThenInvoke_ExpectResultOfSourceFunc(
         int sourceFuncResult)
     {

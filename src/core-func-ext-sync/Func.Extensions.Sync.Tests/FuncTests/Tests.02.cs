@@ -1,7 +1,5 @@
-#nullable enable
-
-using System;
 using PrimeFuncPack.UnitTest;
+using System;
 using Xunit;
 using static PrimeFuncPack.UnitTest.TestData;
 
@@ -18,7 +16,7 @@ partial class FuncTests
     }
 
     [Theory]
-    [MemberData(nameof(TestEntitySource.RecordTypes), MemberType = typeof(TestEntitySource))]
+    [MemberData(nameof(TestCaseSources.RecordRefType), MemberType = typeof(TestCaseSources))]
     public void From_02_ThenInvoke_ExpectResultOfSourceFunc(
         RecordType sourceFuncResult)
     {
