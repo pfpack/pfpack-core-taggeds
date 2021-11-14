@@ -1,5 +1,3 @@
-#nullable enable
-
 using System;
 using Xunit;
 using static PrimeFuncPack.Core.Tests.AssertHelper;

@@ -1,5 +1,3 @@
-#nullable enable
-
 using System;
 using PrimeFuncPack.UnitTest;
 using Xunit;
