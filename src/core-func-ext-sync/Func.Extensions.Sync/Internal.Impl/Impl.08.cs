@@ -1,5 +1,3 @@
-#nullable enable
-
 namespace System;
 
 internal sealed class FuncImpl<T1, T2, T3, T4, T5, T6, T7, T8, TResult> : IFunc<T1, T2, T3, T4, T5, T6, T7, T8, TResult>

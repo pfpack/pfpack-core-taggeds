@@ -1,5 +1,3 @@
-#nullable enable
-
 namespace System;
 
 internal sealed class FuncImpl<TResult> : IFunc<TResult>

@@ -1,5 +1,3 @@
-#nullable enable
-
 namespace System;
 
 public interface IFunc<in T1, in T2, in T3, in T4, in T5, in T6, in T7, in T8, in T9, in T10, in T11, in T12, in T13, in T14, out TResult>
