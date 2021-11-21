@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PrimeFuncPack.Core.Unit" Version="2.0.0-preview.1.0.0" />
+    <PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.1.1" />
   </ItemGroup>
 
 </Project>
