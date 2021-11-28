@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 
-namespace System.Linq
+namespace System.Linq;
+
+partial class OptionalLinqDictionariesExtensions
 {
-    partial class OptionalLinqDictionariesExtensions
-    {
-        private static Optional<TValue> InnerGetValueOrAbsent<TKey, TValue>(
-            this IDictionary<TKey, TValue> dictionary,
-            TKey key)
-            =>
-            dictionary.TryGetValue(key, out var value)
-                ? new(value)
-                : default;
-    }
+    private static Optional<TValue> InnerGetValueOrAbsent<TKey, TValue>(
+        this IDictionary<TKey, TValue> dictionary,
+        TKey key)
+        =>
+        dictionary.TryGetValue(key, out var value)
+            ? new(value)
+            : default;
 }

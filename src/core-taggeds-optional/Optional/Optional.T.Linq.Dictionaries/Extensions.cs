@@ -1,7 +1,6 @@
-﻿namespace System.Linq
+﻿namespace System.Linq;
+
+// TODO: Consider to rename to OptionalLinqDictionaryExtensions in v2.0
+public static partial class OptionalLinqDictionariesExtensions
 {
-    // TODO: Consider to rename to OptionalLinqDictionaryExtensions in v2.0
-    public static partial class OptionalLinqDictionariesExtensions
-    {
-    }
 }

@@ -1,9 +1,8 @@
-﻿namespace System.Linq
+﻿namespace System.Linq;
+
+partial class OptionalLinqDictionariesExtensions
 {
-    partial class OptionalLinqDictionariesExtensions
-    {
-        private static InvalidOperationException InnerCreateMoreThanOneMatchException()
-            =>
-            new("The pairs contain more than one key equal to the specified.");
-    }
+    private static InvalidOperationException InnerCreateMoreThanOneMatchException()
+        =>
+        new("The pairs contain more than one key equal to the specified.");
 }
