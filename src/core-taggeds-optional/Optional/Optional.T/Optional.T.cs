@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-namespace System
+﻿namespace System
 {
     public readonly partial struct Optional<T> : IEquatable<Optional<T>>
     {

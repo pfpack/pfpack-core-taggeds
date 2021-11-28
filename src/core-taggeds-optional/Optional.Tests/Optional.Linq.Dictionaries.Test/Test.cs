@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-using Moq;
+﻿using Moq;
 using System.Collections.Generic;
 
 namespace PrimeFuncPack.Core.Tests

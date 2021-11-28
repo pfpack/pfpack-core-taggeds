@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-namespace PrimeFuncPack.Core.Tests
+﻿namespace PrimeFuncPack.Core.Tests
 {
     internal sealed class StubType
     {

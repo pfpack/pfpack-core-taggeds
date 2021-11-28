@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-namespace System.Linq
+﻿namespace System.Linq
 {
     public static partial class OptionalLinqExtensions
     {

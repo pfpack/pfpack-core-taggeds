@@ -1,5 +1,3 @@
-#nullable enable
-
 namespace System
 {
     partial struct Present<T>

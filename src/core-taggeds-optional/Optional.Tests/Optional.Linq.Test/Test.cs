@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-using Moq;
+﻿using Moq;
 using PrimeFuncPack.UnitTest.Moq;
 using System;
 using System.Collections.Generic;
