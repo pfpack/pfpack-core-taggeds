@@ -1,9 +1,8 @@
-﻿namespace System
+﻿namespace System;
+
+partial struct Absent<T>
 {
-    partial struct Absent<T>
-    {
-        public override string ToString()
-            =>
-            InternalToString<T>.Absent();
-    }
+    public override string ToString()
+        =>
+        InternalToString<T>.Absent();
 }

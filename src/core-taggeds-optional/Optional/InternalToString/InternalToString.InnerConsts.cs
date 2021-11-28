@@ -1,10 +1,9 @@
-﻿namespace System
+﻿namespace System;
+
+partial class InternalToString<T>
 {
-    partial class InternalToString<T>
+    private static class InnerConsts
     {
-        private static class InnerConsts
-        {
-            public const string Absent = "()";
-        }
+        public const string Absent = "()";
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace System
+namespace System;
+
+partial class Absent
 {
-    partial class Absent
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Absent<T> Of<T>()
-            =>
-            default;
-    }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Absent<T> Of<T>()
+        =>
+        default;
 }

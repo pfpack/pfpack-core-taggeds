@@ -1,6 +1,5 @@
-﻿namespace System
+﻿namespace System;
+
+public readonly partial struct Absent<T> : IEquatable<Absent<T>>
 {
-    public readonly partial struct Absent<T> : IEquatable<Absent<T>>
-    {
-    }
 }

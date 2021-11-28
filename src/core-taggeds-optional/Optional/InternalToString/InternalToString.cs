@@ -1,6 +1,5 @@
-﻿namespace System
+﻿namespace System;
+
+internal static partial class InternalToString<T>
 {
-    internal static partial class InternalToString<T>
-    {
-    }
 }

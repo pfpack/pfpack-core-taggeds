@@ -1,7 +1,6 @@
-﻿namespace System
+﻿namespace System;
+
+partial struct Absent<T>
 {
-    partial struct Absent<T>
-    {
-        public static readonly Absent<T> Value;
-    }
+    public static readonly Absent<T> Value;
 }

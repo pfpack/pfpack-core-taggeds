@@ -1,10 +1,9 @@
-﻿namespace System
+﻿namespace System;
+
+partial class Absent
 {
-    partial class Absent
+    public static bool Equals<T>(Absent<T> left, Absent<T> right) => (left, right) switch
     {
-        public static bool Equals<T>(Absent<T> left, Absent<T> right) => (left, right) switch
-        {
-            _ => true
-        };
-    }
+        _ => true
+    };
 }

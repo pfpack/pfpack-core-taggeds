@@ -1,9 +1,8 @@
-namespace System
+namespace System;
+
+partial struct Absent<T>
 {
-    partial struct Absent<T>
-    {
-        public Optional<T> ToOptional()
-            =>
-            default;
-    }
+    public Optional<T> ToOptional()
+        =>
+        default;
 }

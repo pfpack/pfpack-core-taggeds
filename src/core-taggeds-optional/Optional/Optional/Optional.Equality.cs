@@ -1,9 +1,8 @@
-﻿namespace System
+﻿namespace System;
+
+partial class Optional
 {
-    partial class Optional
-    {
-        public static bool Equals<T>(Optional<T> left, Optional<T> right)
-            =>
-            left.Equals(right);
-    }
+    public static bool Equals<T>(Optional<T> left, Optional<T> right)
+        =>
+        left.Equals(right);
 }
