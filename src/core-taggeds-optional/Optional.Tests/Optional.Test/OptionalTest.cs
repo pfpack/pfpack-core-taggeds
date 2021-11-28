@@ -1,6 +1,5 @@
-﻿namespace PrimeFuncPack.Core.Tests
-{
-    public sealed partial class OptionalTest
-    {        
-    }
+﻿namespace PrimeFuncPack.Core.Tests;
+
+public sealed partial class OptionalTest
+{        
 }
