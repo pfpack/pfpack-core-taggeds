@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 
-namespace System
-{
-    partial struct Present<T>
-    {
-        private static Type EqualityContract => typeof(Present<T>);
+namespace System;
 
-        private static IEqualityComparer<T> EqualityComparer => EqualityComparer<T>.Default;        
-    }
+partial struct Present<T>
+{
+    private static Type EqualityContract => typeof(Present<T>);
+
+    private static IEqualityComparer<T> EqualityComparer => EqualityComparer<T>.Default;        
 }

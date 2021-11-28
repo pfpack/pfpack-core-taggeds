@@ -1,9 +1,8 @@
-namespace System
+namespace System;
+
+partial struct Present<T>
 {
-    partial struct Present<T>
-    {
-        public bool Equals(Present<T> other)
-            =>
-            EqualityComparer.Equals(value, other.value);
-    }
+    public bool Equals(Present<T> other)
+        =>
+        EqualityComparer.Equals(value, other.value);
 }

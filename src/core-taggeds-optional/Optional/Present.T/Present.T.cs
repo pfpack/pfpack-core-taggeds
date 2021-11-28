@@ -1,7 +1,6 @@
-namespace System
+namespace System;
+
+public readonly partial struct Present<T> : IEquatable<Present<T>>
 {
-    public readonly partial struct Present<T> : IEquatable<Present<T>>
-    {
-        private readonly T value;
-    }
+    private readonly T value;
 }

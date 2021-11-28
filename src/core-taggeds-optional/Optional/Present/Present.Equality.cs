@@ -1,9 +1,8 @@
-﻿namespace System
+﻿namespace System;
+
+partial class Present
 {
-    partial class Present
-    {
-        public static bool Equals<T>(Present<T> left, Present<T> right)
-            =>
-            left.Equals(right);
-    }
+    public static bool Equals<T>(Present<T> left, Present<T> right)
+        =>
+        left.Equals(right);
 }

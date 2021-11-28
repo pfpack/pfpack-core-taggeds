@@ -1,6 +1,5 @@
-﻿namespace System
+﻿namespace System;
+
+public static partial class Present
 {
-    public static partial class Present
-    {
-    }
 }

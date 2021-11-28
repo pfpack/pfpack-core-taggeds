@@ -1,9 +1,8 @@
-namespace System
+namespace System;
+
+partial struct Present<T>
 {
-    partial struct Present<T>
-    {
-        public static Present<T> Of(T value)
-            =>
-            new(value);
-    }
+    public static Present<T> Of(T value)
+        =>
+        new(value);
 }
