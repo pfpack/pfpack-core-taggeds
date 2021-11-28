@@ -1,6 +1,5 @@
-﻿namespace System.Linq
+﻿namespace System.Linq;
+
+public static partial class OptionalLinqExtensions
 {
-    public static partial class OptionalLinqExtensions
-    {
-    }
 }

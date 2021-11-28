@@ -1,45 +1,44 @@
 ﻿using System.Collections.Generic;
 
-namespace System.Linq
+namespace System.Linq;
+
+partial class OptionalLinqExtensions
 {
-    partial class OptionalLinqExtensions
+    public static Optional<TSource> LastOrAbsent<TSource>(
+        this IEnumerable<TSource> source)
     {
-        public static Optional<TSource> LastOrAbsent<TSource>(
-            this IEnumerable<TSource> source)
+        _ = source ?? throw new ArgumentNullException(nameof(source));
+
+        return source switch
         {
-            _ = source ?? throw new ArgumentNullException(nameof(source));
+            IReadOnlyList<TSource> list => list
+            .InnerLastOrAbsent(),
 
-            return source switch
-            {
-                IReadOnlyList<TSource> list => list
-                .InnerLastOrAbsent(),
+            IList<TSource> list => list
+            .InnerLastOrAbsent(),
 
-                IList<TSource> list => list
-                .InnerLastOrAbsent(),
+            _ => source
+            .InnerLastOrAbsent()
+        };
+    }
 
-                _ => source
-                .InnerLastOrAbsent()
-            };
-        }
+    public static Optional<TSource> LastOrAbsent<TSource>(
+        this IEnumerable<TSource> source,
+        Func<TSource, bool> predicate)
+    {
+        _ = source ?? throw new ArgumentNullException(nameof(source));
+        _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
 
-        public static Optional<TSource> LastOrAbsent<TSource>(
-            this IEnumerable<TSource> source,
-            Func<TSource, bool> predicate)
+        return source switch
         {
-            _ = source ?? throw new ArgumentNullException(nameof(source));
-            _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
+            IReadOnlyList<TSource> list => list
+            .InnerLastOrAbsent(predicate),
 
-            return source switch
-            {
-                IReadOnlyList<TSource> list => list
-                .InnerLastOrAbsent(predicate),
+            IList<TSource> list => list
+            .InnerLastOrAbsent(predicate),
 
-                IList<TSource> list => list
-                .InnerLastOrAbsent(predicate),
-
-                _ => source
-                .InnerLastOrAbsent(predicate)
-            };
-        }
+            _ => source
+            .InnerLastOrAbsent(predicate)
+        };
     }
 }

@@ -1,56 +1,55 @@
 ﻿using System.Collections.Generic;
 
-namespace System.Linq
+namespace System.Linq;
+
+partial class OptionalLinqExtensions
 {
-    partial class OptionalLinqExtensions
+    private static Optional<TSource> InnerSingleOrAbsent<TSource>(
+        this IEnumerable<TSource> source,
+        Func<Exception> moreThanOneElementExceptionFactory)
     {
-        private static Optional<TSource> InnerSingleOrAbsent<TSource>(
-            this IEnumerable<TSource> source,
-            Func<Exception> moreThanOneElementExceptionFactory)
+        using var enumerator = source.GetEnumerator();
+
+        if (enumerator.MoveNext())
         {
-            using var enumerator = source.GetEnumerator();
+            var current = enumerator.Current;
 
             if (enumerator.MoveNext())
             {
-                var current = enumerator.Current;
+                throw moreThanOneElementExceptionFactory.Invoke();
+            }
 
-                if (enumerator.MoveNext())
+            return new(current);
+        }
+
+        return default;
+    }
+
+    private static Optional<TSource> InnerSingleOrAbsent<TSource>(
+        this IEnumerable<TSource> source,
+        Func<TSource, bool> predicate,
+        Func<Exception> moreThanOneMatchExceptionFactory)
+    {
+        using var enumerator = source.GetEnumerator();
+
+        while (enumerator.MoveNext())
+        {
+            var current = enumerator.Current;
+
+            if (predicate.Invoke(current))
+            {
+                while (enumerator.MoveNext())
                 {
-                    throw moreThanOneElementExceptionFactory.Invoke();
+                    if (predicate.Invoke(enumerator.Current))
+                    {
+                        throw moreThanOneMatchExceptionFactory.Invoke();
+                    }
                 }
 
                 return new(current);
             }
-
-            return default;
         }
 
-        private static Optional<TSource> InnerSingleOrAbsent<TSource>(
-            this IEnumerable<TSource> source,
-            Func<TSource, bool> predicate,
-            Func<Exception> moreThanOneMatchExceptionFactory)
-        {
-            using var enumerator = source.GetEnumerator();
-
-            while (enumerator.MoveNext())
-            {
-                var current = enumerator.Current;
-
-                if (predicate.Invoke(current))
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        if (predicate.Invoke(enumerator.Current))
-                        {
-                            throw moreThanOneMatchExceptionFactory.Invoke();
-                        }
-                    }
-
-                    return new(current);
-                }
-            }
-
-            return default;
-        }
+        return default;
     }
 }

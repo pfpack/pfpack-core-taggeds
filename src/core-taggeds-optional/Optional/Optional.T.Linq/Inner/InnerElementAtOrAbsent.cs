@@ -1,63 +1,62 @@
 ﻿using System.Collections.Generic;
 
-namespace System.Linq
+namespace System.Linq;
+
+partial class OptionalLinqExtensions
 {
-    partial class OptionalLinqExtensions
+    private static Optional<TSource> InnerElementAtOrAbsent<TSource>(
+        this IEnumerable<TSource> source,
+        int index)
     {
-        private static Optional<TSource> InnerElementAtOrAbsent<TSource>(
-            this IEnumerable<TSource> source,
-            int index)
+        if (index >= 0)
         {
-            if (index >= 0)
+            using var enumerator = source.GetEnumerator();
+
+            if (enumerator.MoveNext())
             {
-                using var enumerator = source.GetEnumerator();
+                var countdownIndex = index;
 
-                if (enumerator.MoveNext())
+                do
                 {
-                    var countdownIndex = index;
-
-                    do
+                    if (countdownIndex == 0)
                     {
-                        if (countdownIndex == 0)
-                        {
-                            return new(enumerator.Current);
-                        }
-
-                        countdownIndex--;
+                        return new(enumerator.Current);
                     }
-                    while (enumerator.MoveNext());
-                }
-            }
 
-            return default;
+                    countdownIndex--;
+                }
+                while (enumerator.MoveNext());
+            }
         }
 
-        private static Optional<TSource> InnerElementAtOrAbsent<TSource>(
-            this IEnumerable<TSource> source,
-            long index)
+        return default;
+    }
+
+    private static Optional<TSource> InnerElementAtOrAbsent<TSource>(
+        this IEnumerable<TSource> source,
+        long index)
+    {
+        if (index >= 0)
         {
-            if (index >= 0)
+            using var enumerator = source.GetEnumerator();
+
+            if (enumerator.MoveNext())
             {
-                using var enumerator = source.GetEnumerator();
+                var countdownIndex = index;
 
-                if (enumerator.MoveNext())
+                do
                 {
-                    var countdownIndex = index;
-
-                    do
+                    if (countdownIndex == 0)
                     {
-                        if (countdownIndex == 0)
-                        {
-                            return new(enumerator.Current);
-                        }
-
-                        countdownIndex--;
+                        return new(enumerator.Current);
                     }
-                    while (enumerator.MoveNext());
-                }
-            }
 
-            return default;
+                    countdownIndex--;
+                }
+                while (enumerator.MoveNext());
+            }
         }
+
+        return default;
     }
 }

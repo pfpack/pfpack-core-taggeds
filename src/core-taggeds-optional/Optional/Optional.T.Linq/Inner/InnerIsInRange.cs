@@ -1,7 +1,6 @@
-﻿namespace System.Linq
+﻿namespace System.Linq;
+
+partial class OptionalLinqExtensions
 {
-    partial class OptionalLinqExtensions
-    {
-        private static bool InnerIsInRange(this int index, int count) => index >= 0 && index < count;
-    }
+    private static bool InnerIsInRange(this int index, int count) => index >= 0 && index < count;
 }

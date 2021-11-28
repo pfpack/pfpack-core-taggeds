@@ -1,25 +1,24 @@
 ﻿using System.Collections.Generic;
 
-namespace System.Linq
+namespace System.Linq;
+
+partial class OptionalLinqExtensions
 {
-    partial class OptionalLinqExtensions
+    public static Optional<TSource> LastOrAbsent<TSource>(
+        this IReadOnlyList<TSource> source)
     {
-        public static Optional<TSource> LastOrAbsent<TSource>(
-            this IReadOnlyList<TSource> source)
-        {
-            _ = source ?? throw new ArgumentNullException(nameof(source));
+        _ = source ?? throw new ArgumentNullException(nameof(source));
 
-            return source.InnerLastOrAbsent();
-        }
+        return source.InnerLastOrAbsent();
+    }
 
-        public static Optional<TSource> LastOrAbsent<TSource>(
-            this IReadOnlyList<TSource> source,
-            Func<TSource, bool> predicate)
-        {
-            _ = source ?? throw new ArgumentNullException(nameof(source));
-            _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
+    public static Optional<TSource> LastOrAbsent<TSource>(
+        this IReadOnlyList<TSource> source,
+        Func<TSource, bool> predicate)
+    {
+        _ = source ?? throw new ArgumentNullException(nameof(source));
+        _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
 
-            return source.InnerLastOrAbsent(predicate);
-        }
+        return source.InnerLastOrAbsent(predicate);
     }
 }

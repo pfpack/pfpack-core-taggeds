@@ -1,45 +1,44 @@
 ﻿using System.Collections.Generic;
 
-namespace System.Linq
+namespace System.Linq;
+
+partial class OptionalLinqExtensions
 {
-    partial class OptionalLinqExtensions
+    public static Optional<TSource> ElementAtOrAbsent<TSource>(
+        this IEnumerable<TSource> source,
+        int index)
     {
-        public static Optional<TSource> ElementAtOrAbsent<TSource>(
-            this IEnumerable<TSource> source,
-            int index)
+        _ = source ?? throw new ArgumentNullException(nameof(source));
+
+        return source switch
         {
-            _ = source ?? throw new ArgumentNullException(nameof(source));
+            IReadOnlyList<TSource> list => list
+            .InnerElementAtOrAbsent(index),
 
-            return source switch
-            {
-                IReadOnlyList<TSource> list => list
-                .InnerElementAtOrAbsent(index),
+            IList<TSource> list => list
+            .InnerElementAtOrAbsent(index),
 
-                IList<TSource> list => list
-                .InnerElementAtOrAbsent(index),
+            _ => source
+            .InnerElementAtOrAbsent(index)
+        };
+    }
 
-                _ => source
-                .InnerElementAtOrAbsent(index)
-            };
-        }
+    public static Optional<TSource> ElementAtOrAbsent<TSource>(
+        this IEnumerable<TSource> source,
+        long index)
+    {
+        _ = source ?? throw new ArgumentNullException(nameof(source));
 
-        public static Optional<TSource> ElementAtOrAbsent<TSource>(
-            this IEnumerable<TSource> source,
-            long index)
+        return source switch
         {
-            _ = source ?? throw new ArgumentNullException(nameof(source));
+            IReadOnlyList<TSource> list => list
+            .InnerElementAtOrAbsent(index),
 
-            return source switch
-            {
-                IReadOnlyList<TSource> list => list
-                .InnerElementAtOrAbsent(index),
+            IList<TSource> list => list
+            .InnerElementAtOrAbsent(index),
 
-                IList<TSource> list => list
-                .InnerElementAtOrAbsent(index),
-
-                _ => source
-                .InnerElementAtOrAbsent(index)
-            };
-        }
+            _ => source
+            .InnerElementAtOrAbsent(index)
+        };
     }
 }
