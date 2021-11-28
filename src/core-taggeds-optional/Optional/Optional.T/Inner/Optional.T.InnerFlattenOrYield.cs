@@ -1,25 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace System
+namespace System;
+
+partial struct Optional<T>
 {
-    partial struct Optional<T>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private IEnumerable<T> InnerFlattenOrYield()
+        =>
+        InnerFold(
+            InnerYieldSingle,
+            InnerYieldEmpty);
+
+    private static IEnumerable<T> InnerYieldSingle(T value)
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private IEnumerable<T> InnerFlattenOrYield()
-            =>
-            InnerFold(
-                InnerYieldSingle,
-                InnerYieldEmpty);
+        yield return value;
+    }
 
-        private static IEnumerable<T> InnerYieldSingle(T value)
-        {
-            yield return value;
-        }
-
-        private static IEnumerable<T> InnerYieldEmpty()
-        {
-            yield break;
-        }
+    private static IEnumerable<T> InnerYieldEmpty()
+    {
+        yield break;
     }
 }

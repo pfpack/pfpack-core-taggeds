@@ -1,10 +1,9 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace System
+namespace System;
+
+partial struct Optional<T>
 {
-    partial struct Optional<T>
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Optional<T> InnerPipeThis(Optional<T> optional) => optional;
-    }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static Optional<T> InnerPipeThis(Optional<T> optional) => optional;
 }

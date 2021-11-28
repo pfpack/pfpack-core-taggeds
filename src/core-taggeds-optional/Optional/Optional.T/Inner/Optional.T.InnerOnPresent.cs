@@ -1,20 +1,19 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace System
-{
-    partial struct Optional<T>
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TResult InnerOnPresent<THandlerOut, TResult>(
-            Func<T, THandlerOut> handler,
-            Func<TResult> resultSupplier)
-        {
-            if (hasValue)
-            {
-                _ = handler.Invoke(value);
-            }
+namespace System;
 
-            return resultSupplier.Invoke();
+partial struct Optional<T>
+{
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private TResult InnerOnPresent<THandlerOut, TResult>(
+        Func<T, THandlerOut> handler,
+        Func<TResult> resultSupplier)
+    {
+        if (hasValue)
+        {
+            _ = handler.Invoke(value);
         }
+
+        return resultSupplier.Invoke();
     }
 }

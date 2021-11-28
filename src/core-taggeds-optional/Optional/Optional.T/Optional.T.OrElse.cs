@@ -1,32 +1,31 @@
 ﻿using System.Threading.Tasks;
 
-namespace System
+namespace System;
+
+partial struct Optional<T>
 {
-    partial struct Optional<T>
+    public T OrElse(T other)
+        =>
+        InnerFold(InnerPipe, other);
+
+    public T OrElse(Func<T> otherFactory)
     {
-        public T OrElse(T other)
-            =>
-            InnerFold(InnerPipe, other);
+        _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-        public T OrElse(Func<T> otherFactory)
-        {
-            _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
+        return InnerFold(InnerPipe, otherFactory);
+    }
 
-            return InnerFold(InnerPipe, otherFactory);
-        }
+    public Task<T> OrElseAsync(Func<Task<T>> otherFactoryAsync)
+    {
+        _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-        public Task<T> OrElseAsync(Func<Task<T>> otherFactoryAsync)
-        {
-            _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
+        return InnerFold(Task.FromResult, otherFactoryAsync);
+    }
 
-            return InnerFold(Task.FromResult, otherFactoryAsync);
-        }
+    public ValueTask<T> OrElseValueAsync(Func<ValueTask<T>> otherFactoryAsync)
+    {
+        _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-        public ValueTask<T> OrElseValueAsync(Func<ValueTask<T>> otherFactoryAsync)
-        {
-            _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
-
-            return InnerFold(ValueTask.FromResult, otherFactoryAsync);
-        }
+        return InnerFold(ValueTask.FromResult, otherFactoryAsync);
     }
 }

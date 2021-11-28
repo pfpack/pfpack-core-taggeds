@@ -1,12 +1,11 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace System
+namespace System;
+
+partial struct Optional<T>
 {
-    partial struct Optional<T>
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private T InnerOrThrow(Func<Exception> exceptionFactory)
-            =>
-            InnerFold(InnerPipe, () => throw exceptionFactory.Invoke());
-    }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private T InnerOrThrow(Func<Exception> exceptionFactory)
+        =>
+        InnerFold(InnerPipe, () => throw exceptionFactory.Invoke());
 }

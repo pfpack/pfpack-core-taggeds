@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace System
+namespace System;
+
+partial struct Optional<T>
 {
-    partial struct Optional<T>
-    {
-        public IEnumerable<T> YieldSingleOrEmpty()
-            =>
-            InnerFlattenOrYield();
-    }
+    public IEnumerable<T> YieldSingleOrEmpty()
+        =>
+        InnerFlattenOrYield();
 }
