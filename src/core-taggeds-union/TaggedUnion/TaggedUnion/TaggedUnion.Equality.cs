@@ -1,12 +1,9 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+partial class TaggedUnion
 {
-    partial class TaggedUnion
-    {
-        public static bool Equals<TFirst, TSecond>(
-            TaggedUnion<TFirst, TSecond> left, TaggedUnion<TFirst, TSecond> right)
-            =>
-            left.Equals(right);
-    }
+    public static bool Equals<TFirst, TSecond>(
+        TaggedUnion<TFirst, TSecond> left, TaggedUnion<TFirst, TSecond> right)
+        =>
+        left.Equals(right);
 }

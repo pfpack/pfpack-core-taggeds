@@ -1,57 +1,54 @@
-#nullable enable
-
 using System.Threading.Tasks;
 
-namespace System
+namespace System;
+
+partial struct TaggedUnion<TFirst, TSecond>
 {
-    partial struct TaggedUnion<TFirst, TSecond>
+    public TaggedUnion<TFirst, TSecond> OnFirst(
+        Func<TFirst, Unit> handler)
     {
-        public TaggedUnion<TFirst, TSecond> OnFirst(
-            Func<TFirst, Unit> handler)
-        {
-            _ = handler ?? throw new ArgumentNullException(nameof(handler));
+        _ = handler ?? throw new ArgumentNullException(nameof(handler));
 
-            return InternalOnFirst(handler, This);
-        }
+        return InternalOnFirst(handler, This);
+    }
 
-        public TaggedUnion<TFirst, TSecond> OnFirst(
-            Action<TFirst> handler)
-        {
-            _ = handler ?? throw new ArgumentNullException(nameof(handler));
+    public TaggedUnion<TFirst, TSecond> OnFirst(
+        Action<TFirst> handler)
+    {
+        _ = handler ?? throw new ArgumentNullException(nameof(handler));
 
-            return InternalOnFirst(handler.InvokeThenToUnit, This);
-        }
+        return InternalOnFirst(handler.InvokeThenToUnit, This);
+    }
 
-        public Task<TaggedUnion<TFirst, TSecond>> OnFirstAsync(
-            Func<TFirst, Task<Unit>> handlerAsync)
-        {
-            _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
+    public Task<TaggedUnion<TFirst, TSecond>> OnFirstAsync(
+        Func<TFirst, Task<Unit>> handlerAsync)
+    {
+        _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-            return InternalOnFirst(handlerAsync, ThisAsync);
-        }
+        return InternalOnFirst(handlerAsync, ThisAsync);
+    }
 
-        public Task<TaggedUnion<TFirst, TSecond>> OnFirstAsync(
-            Func<TFirst, Task> handlerAsync)
-        {
-            _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
+    public Task<TaggedUnion<TFirst, TSecond>> OnFirstAsync(
+        Func<TFirst, Task> handlerAsync)
+    {
+        _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-            return InternalOnFirst(handlerAsync, ThisAsync);
-        }
+        return InternalOnFirst(handlerAsync, ThisAsync);
+    }
 
-        public ValueTask<TaggedUnion<TFirst, TSecond>> OnFirstValueAsync(
-            Func<TFirst, ValueTask<Unit>> handlerAsync)
-        {
-            _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
+    public ValueTask<TaggedUnion<TFirst, TSecond>> OnFirstValueAsync(
+        Func<TFirst, ValueTask<Unit>> handlerAsync)
+    {
+        _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-            return InternalOnFirst(handlerAsync, ThisValueAsync);
-        }
+        return InternalOnFirst(handlerAsync, ThisValueAsync);
+    }
 
-        public ValueTask<TaggedUnion<TFirst, TSecond>> OnFirstValueAsync(
-            Func<TFirst, ValueTask> handlerAsync)
-        {
-            _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
+    public ValueTask<TaggedUnion<TFirst, TSecond>> OnFirstValueAsync(
+        Func<TFirst, ValueTask> handlerAsync)
+    {
+        _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-            return InternalOnFirst(handlerAsync, ThisValueAsync);
-        }
+        return InternalOnFirst(handlerAsync, ThisValueAsync);
     }
 }

@@ -1,22 +1,19 @@
-﻿#nullable enable
-
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 
-namespace PrimeFuncPack.Core.Tests
+namespace PrimeFuncPack.Core.Tests;
+
+public sealed partial class TaggedUnionTest
 {
-    public sealed partial class TaggedUnionTest
+    private const string First = "first";
+
+    private const string Second = "second";
+
+    private static void AssertContainsFirst(
+        string expectedSubString,
+        string? actual)
     {
-        private const string First = "first";
-
-        private const string Second = "second";
-
-        private static void AssertContainsFirst(
-            string expectedSubString,
-            string? actual)
-        {
-            Assert.NotNull(actual);
-            Assert.True(actual!.Contains(expectedSubString, StringComparison.InvariantCultureIgnoreCase));
-        }
+        Assert.NotNull(actual);
+        Assert.True(actual!.Contains(expectedSubString, StringComparison.InvariantCultureIgnoreCase));
     }
 }

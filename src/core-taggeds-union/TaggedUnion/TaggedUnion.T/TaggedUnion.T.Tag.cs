@@ -1,13 +1,10 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+partial struct TaggedUnion<TFirst, TSecond>
 {
-    partial struct TaggedUnion<TFirst, TSecond>
+    private enum Tag
     {
-        private enum Tag
-        {
-            First = 1,
-            Second = 2
-        }
+        First = 1,
+        Second = 2
     }
 }

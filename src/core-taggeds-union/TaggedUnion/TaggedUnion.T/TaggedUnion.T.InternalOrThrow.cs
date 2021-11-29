@@ -1,19 +1,16 @@
-﻿#nullable enable
+﻿using System.Runtime.CompilerServices;
 
-using System.Runtime.CompilerServices;
+namespace System;
 
-namespace System
+partial struct TaggedUnion<TFirst, TSecond>
 {
-    partial struct TaggedUnion<TFirst, TSecond>
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TValue InternalOrThrow<TValue>(
-            Tag expectedTag,
-            Func<TValue> valueSupplier,
-            Func<Exception> exceptionFactory)
-            =>
-            tag == expectedTag
-                ? valueSupplier.Invoke()
-                : throw exceptionFactory.Invoke();
-    }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private TValue InternalOrThrow<TValue>(
+        Tag expectedTag,
+        Func<TValue> valueSupplier,
+        Func<Exception> exceptionFactory)
+        =>
+        tag == expectedTag
+            ? valueSupplier.Invoke()
+            : throw exceptionFactory.Invoke();
 }
