@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-namespace PrimeFuncPack.Core
+﻿namespace PrimeFuncPack.Core
 {
     partial struct SuccessBuilder<TSuccess>
     {

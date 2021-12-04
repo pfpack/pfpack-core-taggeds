@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-using PrimeFuncPack.Core;
+﻿using PrimeFuncPack.Core;
 
 namespace System
 {

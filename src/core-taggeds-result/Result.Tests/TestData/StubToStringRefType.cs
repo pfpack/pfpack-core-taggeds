@@ -1,5 +1,3 @@
-#nullable enable
-
 namespace PrimeFuncPack.Core.Tests
 {
     internal sealed class StubToStringRefType

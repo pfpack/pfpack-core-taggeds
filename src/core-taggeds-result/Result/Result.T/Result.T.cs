@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-namespace System
+﻿namespace System
 {
     public readonly partial struct Result<TSuccess, TFailure> : IEquatable<Result<TSuccess, TFailure>>
         where TFailure : struct
