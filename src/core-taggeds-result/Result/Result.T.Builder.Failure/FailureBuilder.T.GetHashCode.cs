@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace PrimeFuncPack.Core
+namespace PrimeFuncPack.Core;
+
+partial struct FailureBuilder<TFailure>
 {
-    partial struct FailureBuilder<TFailure>
-    {
-        public override int GetHashCode()
-            =>
-            HashCode.Combine(EqualityContract, FailureComparer.GetHashCode(failure));
-    }
+    public override int GetHashCode()
+        =>
+        HashCode.Combine(EqualityContract, FailureComparer.GetHashCode(failure));
 }

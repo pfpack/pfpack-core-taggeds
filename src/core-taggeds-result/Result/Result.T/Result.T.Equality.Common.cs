@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace System
+namespace System;
+
+partial struct Result<TSuccess, TFailure>
 {
-    partial struct Result<TSuccess, TFailure>
-    {
-        private static Type EqualityContract => typeof(Result<TSuccess, TFailure>);
+    private static Type EqualityContract => typeof(Result<TSuccess, TFailure>);
 
-        private static IEqualityComparer<TSuccess> SuccessComparer => EqualityComparer<TSuccess>.Default;
+    private static IEqualityComparer<TSuccess> SuccessComparer => EqualityComparer<TSuccess>.Default;
 
-        private static IEqualityComparer<TFailure> FailureComparer => EqualityComparer<TFailure>.Default;
-    }
+    private static IEqualityComparer<TFailure> FailureComparer => EqualityComparer<TFailure>.Default;
 }
