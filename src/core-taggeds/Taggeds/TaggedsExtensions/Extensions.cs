@@ -1,6 +1,5 @@
-﻿namespace System
+﻿namespace System;
+
+public static partial class TaggedsExtensions
 {
-    public static partial class TaggedsExtensions
-    {
-    }
 }

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using static PrimeFuncPack.UnitTest.TestData;
 
-namespace PrimeFuncPack.Core.Tests
-{
+namespace PrimeFuncPack.Core.Tests;
+
     internal static class TestDataSource
     {
         public static IEnumerable<object[]> SuccessNullTestSource
@@ -79,4 +79,3 @@ namespace PrimeFuncPack.Core.Tests
             =>
             source.Select(v => new[] { v });
     }
-}
