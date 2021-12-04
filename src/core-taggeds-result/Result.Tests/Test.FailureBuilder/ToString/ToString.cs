@@ -1,35 +1,33 @@
 using NUnit.Framework;
-using PrimeFuncPack.UnitTest;
 using System;
 using static PrimeFuncPack.UnitTest.TestData;
 
-namespace PrimeFuncPack.Core.Tests
+namespace PrimeFuncPack.Core.Tests;
+
+partial class FailureBuilderTest
 {
-    partial class FailureBuilderTest
+    [Test]
+    public void ToString_SourceFailureToStringReturnsNull_ExpectEmpty()
     {
-        [Test]
-        public void ToString_SourceFailureToStringReturnsNull_ExpectEmpty()
-        {
-            var sourceFailure = new StubToStringStructType(null);
-            var builder = Result.Failure(sourceFailure);
+        var sourceFailure = new StubToStringStructType(null);
+        var builder = Result.Failure(sourceFailure);
 
-            var actual = builder.ToString();
-            Assert.IsEmpty(actual);
-        }
+        var actual = builder.ToString();
+        Assert.IsEmpty(actual);
+    }
 
-        [Test]
-        [TestCase(EmptyString)]
-        [TestCase(WhiteSpaceString)]
-        [TestCase(TabString)]
-        [TestCase(SomeString)]
-        public void ToString_SourceFailureToStringReturnsNotNull_ExpectResultOfSourceFailureToString(
-            string resultOfFailureToString)
-        {
-            var sourceFailure = new StubToStringStructType(resultOfFailureToString);
-            var builder = Result.Failure(sourceFailure);
+    [Test]
+    [TestCase(EmptyString)]
+    [TestCase(WhiteSpaceString)]
+    [TestCase(TabString)]
+    [TestCase(SomeString)]
+    public void ToString_SourceFailureToStringReturnsNotNull_ExpectResultOfSourceFailureToString(
+        string resultOfFailureToString)
+    {
+        var sourceFailure = new StubToStringStructType(resultOfFailureToString);
+        var builder = Result.Failure(sourceFailure);
 
-            var actual = builder.ToString();
-            Assert.AreEqual(resultOfFailureToString, actual);
-        }
+        var actual = builder.ToString();
+        Assert.AreEqual(resultOfFailureToString, actual);
     }
 }

@@ -4,59 +4,58 @@ using System;
 using System.Threading.Tasks;
 using static PrimeFuncPack.UnitTest.TestData;
 
-namespace PrimeFuncPack.Core.Tests
+namespace PrimeFuncPack.Core.Tests;
+
+partial class ResultTest
 {
-    partial class ResultTest
+    [Test]        
+    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureDefaultTestSource))]
+    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
+    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
+    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
+    public void MapFailureValueAsync_MapFailureValueAsyncIsNull_ExpectArgumentNullException(
+        Result<RefType, StructType> source)
     {
-        [Test]        
-        [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureDefaultTestSource))]
-        [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
-        [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
-        [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
-        public void MapFailureValueAsync_MapFailureValueAsyncIsNull_ExpectArgumentNullException(
-            Result<RefType, StructType> source)
-        {
-            var actualException = Assert.ThrowsAsync<ArgumentNullException>(
-                async () => _ = await source.MapFailureValueAsync<SomeError>(null!));
+        var actualException = Assert.ThrowsAsync<ArgumentNullException>(
+            async () => _ = await source.MapFailureValueAsync<SomeError>(null!));
 
-            Assert.AreEqual("mapFailureAsync", actualException!.ParamName);
-        }
+        Assert.AreEqual("mapFailureAsync", actualException!.ParamName);
+    }
 
-        [Test]        
-        [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureDefaultTestSource))]
-        [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
-        public async Task MapFailureValueAsync_SourceIsDefaultOrFailure_FailureExpectResultOfMapFailureValueAsync(
-            Result<RefType, StructType> source)
-        {
-            var failureResult = PlusFifteen;
-            var actual = await source.MapFailureValueAsync(_ => ValueTask.FromResult(failureResult));
+    [Test]        
+    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureDefaultTestSource))]
+    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
+    public async Task MapFailureValueAsync_SourceIsDefaultOrFailure_FailureExpectResultOfMapFailureValueAsync(
+        Result<RefType, StructType> source)
+    {
+        var failureResult = PlusFifteen;
+        var actual = await source.MapFailureValueAsync(_ => ValueTask.FromResult(failureResult));
 
-            var exected = new Result<RefType, int>(failureResult);
-            Assert.AreEqual(exected, actual);
-        }
+        var exected = new Result<RefType, int>(failureResult);
+        Assert.AreEqual(exected, actual);
+    }
 
-        [Test]        
-        [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
-        public async Task MapFailureValueAsync_SourceIsSuccessAndValueIsNull_ExpectResultOfNullSuccess(
-            Result<RefType?, StructType> source)
-        {
-            var failureResult = decimal.MinusOne;
-            var actual = await source.MapFailureValueAsync(_ => ValueTask.FromResult(failureResult));
+    [Test]        
+    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
+    public async Task MapFailureValueAsync_SourceIsSuccessAndValueIsNull_ExpectResultOfNullSuccess(
+        Result<RefType?, StructType> source)
+    {
+        var failureResult = decimal.MinusOne;
+        var actual = await source.MapFailureValueAsync(_ => ValueTask.FromResult(failureResult));
             
-            var exected = new Result<RefType?, decimal>(null);
-            Assert.AreEqual(exected, actual);
-        }
+        var exected = new Result<RefType?, decimal>(null);
+        Assert.AreEqual(exected, actual);
+    }
 
-        [Test]        
-        [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
-        public async Task MapFailureValueAsync_SourceIsSuccess_ExpectResultOfSourceSuccess(
-            Result<RefType, StructType> source)
-        {
-            var failureResult = default(SomeError);
-            var actual = await source.MapFailureValueAsync(_ => ValueTask.FromResult(failureResult));
+    [Test]        
+    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
+    public async Task MapFailureValueAsync_SourceIsSuccess_ExpectResultOfSourceSuccess(
+        Result<RefType, StructType> source)
+    {
+        var failureResult = default(SomeError);
+        var actual = await source.MapFailureValueAsync(_ => ValueTask.FromResult(failureResult));
             
-            var exected = new Result<RefType, SomeError>(PlusFifteenIdRefType);
-            Assert.AreEqual(exected, actual);
-        }
+        var exected = new Result<RefType, SomeError>(PlusFifteenIdRefType);
+        Assert.AreEqual(exected, actual);
     }
 }

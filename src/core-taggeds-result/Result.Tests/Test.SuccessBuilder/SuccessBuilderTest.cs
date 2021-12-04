@@ -1,7 +1,5 @@
-namespace PrimeFuncPack.Core.Tests
+namespace PrimeFuncPack.Core.Tests;
+
+public sealed partial class SuccessBuilderTest
 {
-    public sealed partial class SuccessBuilderTest
-    {
-        
-    }
 }

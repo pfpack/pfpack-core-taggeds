@@ -3,26 +3,25 @@ using PrimeFuncPack.UnitTest;
 using System;
 using static PrimeFuncPack.UnitTest.TestData;
 
-namespace PrimeFuncPack.Core.Tests
+namespace PrimeFuncPack.Core.Tests;
+
+partial class ResultTest
 {
-    partial class ResultTest
+    [Test]
+    public void ImplicitSuccessBuilder_ExpectIsSuccessReturnsTrue()
     {
-        [Test]
-        public void ImplicitSuccessBuilder_ExpectIsSuccessReturnsTrue()
-        {
-            var source = Result.Success(PlusFifteenIdRefType);
-            Result<RefType, SomeError> actual = source;
+        var source = Result.Success(PlusFifteenIdRefType);
+        Result<RefType, SomeError> actual = source;
 
-            Assert.True(actual.IsSuccess);
-        }
+        Assert.True(actual.IsSuccess);
+    }
 
-        [Test]
-        public void ImplicitSuccessBuilder_ExpectIsFailureReturnsFalse()
-        {
-            var source = Result.Success<StructType?>(SomeTextStructType);
-            Result<StructType?, StructType> actual = source;
+    [Test]
+    public void ImplicitSuccessBuilder_ExpectIsFailureReturnsFalse()
+    {
+        var source = Result.Success<StructType?>(SomeTextStructType);
+        Result<StructType?, StructType> actual = source;
 
-            Assert.False(actual.IsFailure);
-        }
+        Assert.False(actual.IsFailure);
     }
 }
