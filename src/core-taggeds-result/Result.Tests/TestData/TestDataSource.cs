@@ -23,10 +23,10 @@ internal static class TestDataSource
         new Result<RefType?, StructType>[]
         {
             Result.Success<RefType?>(null).With<StructType>(),
-            (Result<RefType?, StructType>)Result.Success<RefType?>(null),
+            Result.Success<RefType?>(null),
             Result<RefType?, StructType>.Success(null),
             new Result<RefType?, StructType>(null),
-            (Result<RefType?, StructType>)null
+            null
         }
         .ToTestSource();
 
@@ -34,11 +34,11 @@ internal static class TestDataSource
         =>
         new Result<RefType, StructType>[]
         {
-            Result.Success<RefType>(PlusFifteenIdRefType).With<StructType>(),
-            (Result<RefType, StructType>)Result.Success<RefType>(PlusFifteenIdRefType),
+            Result.Success(PlusFifteenIdRefType).With<StructType>(),
+            Result.Success(PlusFifteenIdRefType),
             Result<RefType, StructType>.Success(PlusFifteenIdRefType),
             new Result<RefType, StructType>(PlusFifteenIdRefType),
-            (Result<RefType, StructType>)PlusFifteenIdRefType
+            PlusFifteenIdRefType
         }
         .ToTestSource();
         
@@ -46,11 +46,11 @@ internal static class TestDataSource
         =>
         new Result<RefType, StructType>[]
         {
-            Result.Success<RefType>(MinusFifteenIdRefType).With<StructType>(),
-            (Result<RefType, StructType>)Result.Success<RefType>(MinusFifteenIdRefType),
+            Result.Success(MinusFifteenIdRefType).With<StructType>(),
+            Result.Success(MinusFifteenIdRefType),
             Result<RefType, StructType>.Success(MinusFifteenIdRefType),
             new Result<RefType, StructType>(MinusFifteenIdRefType),
-            (Result<RefType, StructType>)MinusFifteenIdRefType
+            MinusFifteenIdRefType
         }
         .ToTestSource();
 
@@ -58,10 +58,10 @@ internal static class TestDataSource
         =>
         new Result<RefType, StructType>[]
         {
-            default(Result<RefType, StructType>),
+            default,
             new Result<RefType, StructType>(),
             new Result<RefType, StructType>(default(StructType)),
-            (Result<RefType, StructType>)Result.Failure(default(StructType)),
+            Result.Failure(default(StructType)),
             Result.Failure(default(StructType)).With<RefType>(),
             Result<RefType, StructType>.Failure(default)
         }
@@ -72,7 +72,7 @@ internal static class TestDataSource
         new Result<RefType, StructType>[]
         {
             new Result<RefType, StructType>(SomeTextStructType),
-            (Result<RefType, StructType>)Result.Failure(SomeTextStructType),
+            Result.Failure(SomeTextStructType),
             Result.Failure(SomeTextStructType).With<RefType>(),
             Result<RefType, StructType>.Failure(SomeTextStructType)
         }
