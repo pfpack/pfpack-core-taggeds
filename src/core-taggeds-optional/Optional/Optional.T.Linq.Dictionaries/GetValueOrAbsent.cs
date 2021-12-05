@@ -20,7 +20,7 @@ partial class OptionalLinqDictionariesExtensions
             .InnerGetValueOrAbsent(key),
 
             _ => pairs
-            .InnerGetValueOrAbsent(key, InnerCreateMoreThanOneMatchException)
+            .InnerGetValueOrAbsent(key)
         };
     }
 
