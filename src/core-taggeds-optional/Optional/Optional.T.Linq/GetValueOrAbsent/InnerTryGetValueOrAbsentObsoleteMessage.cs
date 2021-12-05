@@ -4,5 +4,9 @@ partial class OptionalLinqExtensions
 {
     private const string InnerTryGetValueOrAbsentObsoleteMessage
         =
-        $"This method is not intended for use. Call {nameof(GetValueOrAbsent)} instead.";
+        $"This method is not intended for use. Call {InnerGetValueOrAbsentActual} instead.";
+
+    private const string InnerGetValueOrAbsentActual
+        =
+        nameof(GetValueOrAbsent);
 }
