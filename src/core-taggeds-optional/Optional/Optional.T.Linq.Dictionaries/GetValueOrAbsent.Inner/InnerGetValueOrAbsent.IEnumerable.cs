@@ -8,6 +8,7 @@ partial class OptionalLinqDictionariesExtensions
         this IEnumerable<KeyValuePair<TKey, TValue>> pairs,
         TKey key)
         =>
+        // TODO: Call InnerFirstOrAbsentPrimary instead of FirstOrAbsent
         pairs.FirstOrAbsent(
             pair => EqualityComparer<TKey>.Default.Equals(pair.Key, key))
         .Map(
