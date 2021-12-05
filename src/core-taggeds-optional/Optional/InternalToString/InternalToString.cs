@@ -12,7 +12,7 @@ internal static partial class InternalToString<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Absent()
         =>
-        InnerFormat<string>.Invoke(InnerPrefix.Absent, InnerAbsent.ValueString);
+        InnerFormat<string>.Invoke(InnerPrefix.Absent, InnerAbsentString);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string OptionalPresent(T value)
@@ -22,5 +22,5 @@ internal static partial class InternalToString<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string OptionalAbsent()
         =>
-        InnerFormat<string>.Invoke(InnerPrefix.OptionalAbsent, InnerAbsent.ValueString);
+        InnerFormat<string>.Invoke(InnerPrefix.OptionalAbsent, InnerAbsentString);
 }
