@@ -14,11 +14,11 @@ partial class OptionalLinqDictionariesExtensions
         return dictionary.InnerGetValueOrAbsent(key);
     }
 
-    [Obsolete(InnerObsoleteMessages.TryGetValueOrAbsent, error: true)]
+    [Obsolete(InnerTryGetValueOrAbsentObsoleteMessage, error: true)]
     [DoesNotReturn]
     public static Optional<TValue> TryGetValueOrAbsent<TKey, TValue>(
         this IReadOnlyDictionary<TKey, TValue> dictionary,
         TKey key)
         =>
-        throw new NotImplementedException(InnerObsoleteMessages.TryGetValueOrAbsent);
+        throw new NotImplementedException(InnerTryGetValueOrAbsentObsoleteMessage);
 }

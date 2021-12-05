@@ -26,11 +26,11 @@ partial class OptionalLinqDictionariesExtensions
         };
     }
 
-    [Obsolete(InnerObsoleteMessages.TryGetValueOrAbsent, error: true)]
+    [Obsolete(InnerTryGetValueOrAbsentObsoleteMessage, error: true)]
     [DoesNotReturn]
     public static Optional<TValue> TryGetValueOrAbsent<TKey, TValue>(
         this IEnumerable<KeyValuePair<TKey, TValue>> pairs,
         TKey key)
         =>
-        throw new NotImplementedException(InnerObsoleteMessages.TryGetValueOrAbsent);
+        throw new NotImplementedException(InnerTryGetValueOrAbsentObsoleteMessage);
 }
