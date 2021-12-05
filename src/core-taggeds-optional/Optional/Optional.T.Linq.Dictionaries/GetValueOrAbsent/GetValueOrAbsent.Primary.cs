@@ -11,19 +11,7 @@ partial class OptionalLinqDictionariesExtensions
     {
         _ = pairs ?? throw new ArgumentNullException(nameof(pairs));
 
-        return pairs switch
-        {
-            IReadOnlyDictionary<TKey, TValue> dictionary
-            =>
-            dictionary.InnerGetValueOrAbsent(key),
-
-            IDictionary<TKey, TValue> dictionary
-            =>
-            dictionary.InnerGetValueOrAbsent(key),
-
-            _ =>
-            pairs.InnerGetValueOrAbsent(key)
-        };
+        return pairs.InnerGetValueOrAbsentPrimary(key);
     }
 
     [Obsolete(InnerTryGetValueOrAbsentObsoleteMessage, error: true)]
