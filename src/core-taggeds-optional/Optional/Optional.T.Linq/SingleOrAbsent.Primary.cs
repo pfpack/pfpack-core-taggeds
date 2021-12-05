@@ -6,8 +6,11 @@ partial class OptionalLinqExtensions
 {
     public static Optional<TSource> SingleOrAbsent<TSource>(
         this IEnumerable<TSource> source)
-        =>
-        source.SingleOrAbsent(InnerCreateMoreThanOneElementException);
+    {
+        _ = source ?? throw new ArgumentNullException(nameof(source));
+
+        return source.InnerSingleOrAbsentPrimary(InnerCreateMoreThanOneElementException);
+    }
 
     public static Optional<TSource> SingleOrAbsent<TSource>(
         this IEnumerable<TSource> source,
@@ -16,26 +19,18 @@ partial class OptionalLinqExtensions
         _ = source ?? throw new ArgumentNullException(nameof(source));
         _ = moreThanOneElementExceptionFactory ?? throw new ArgumentNullException(nameof(moreThanOneElementExceptionFactory));
 
-        return source switch
-        {
-            IReadOnlyList<TSource> list
-            =>
-            list.InnerSingleOrAbsent(moreThanOneElementExceptionFactory),
-
-            IList<TSource> list
-            =>
-            list.InnerSingleOrAbsent(moreThanOneElementExceptionFactory),
-
-            _ =>
-            source.InnerSingleOrAbsent(moreThanOneElementExceptionFactory)
-        };
+        return source.InnerSingleOrAbsentPrimary(moreThanOneElementExceptionFactory);
     }
 
     public static Optional<TSource> SingleOrAbsent<TSource>(
         this IEnumerable<TSource> source,
         Func<TSource, bool> predicate)
-        =>
-        source.SingleOrAbsent(predicate, InnerCreateMoreThanOneMatchException);
+    {
+        _ = source ?? throw new ArgumentNullException(nameof(source));
+        _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
+
+        return source.InnerSingleOrAbsentPrimary(predicate, InnerCreateMoreThanOneMatchException);
+    }
 
     public static Optional<TSource> SingleOrAbsent<TSource>(
         this IEnumerable<TSource> source,
@@ -46,18 +41,6 @@ partial class OptionalLinqExtensions
         _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
         _ = moreThanOneMatchExceptionFactory ?? throw new ArgumentNullException(nameof(moreThanOneMatchExceptionFactory));
 
-        return source switch
-        {
-            IReadOnlyList<TSource> list
-            =>
-            list.InnerSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
-
-            IList<TSource> list
-            =>
-            list.InnerSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
-
-            _ =>
-            source.InnerSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory)
-        };
+        return source.InnerSingleOrAbsentPrimary(predicate, moreThanOneMatchExceptionFactory);
     }
 }
