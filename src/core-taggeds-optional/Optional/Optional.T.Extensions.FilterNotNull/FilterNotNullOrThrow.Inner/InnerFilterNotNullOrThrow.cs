@@ -9,7 +9,7 @@ partial class FilterNotNullOptionalExtensions
         =>
         optional
         .OnPresent(value => value is not null ? default : throw exceptionFactory.Invoke())
-        .Map(InnerToNonNullable);
+        .Map(value => value!);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Optional<T> InnerFilterNotNullOrThrow<T>(this Optional<T?> optional, Func<Exception> exceptionFactory)
@@ -17,5 +17,5 @@ partial class FilterNotNullOptionalExtensions
         =>
         optional
         .OnPresent(value => value is not null ? default : throw exceptionFactory.Invoke())
-        .Map(InnerToNonNullable);
+        .Map(value => value.GetValueOrDefault());
 }

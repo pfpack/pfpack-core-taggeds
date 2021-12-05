@@ -9,7 +9,7 @@ partial class FilterNotNullOptionalExtensions
         =>
         optional
         .Filter(value => value is not null)
-        .Map(InnerToNonNullable);
+        .Map(value => value!);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Optional<T> InnerFilterNotNull<T>(this Optional<T?> optional)
@@ -17,5 +17,5 @@ partial class FilterNotNullOptionalExtensions
         =>
         optional
         .Filter(value => value is not null)
-        .Map(InnerToNonNullable);
+        .Map(value => value.GetValueOrDefault());
 }
