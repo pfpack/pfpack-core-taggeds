@@ -6,8 +6,11 @@ partial class OptionalLinqExtensions
 {
     public static Optional<TSource> SingleOrAbsent<TSource>(
         this IReadOnlyList<TSource> source)
-        =>
-        source.SingleOrAbsent(InnerCreateMoreThanOneElementException);
+    {
+        _ = source ?? throw new ArgumentNullException(nameof(source));
+
+        return source.InnerSingleOrAbsent(InnerCreateMoreThanOneElementException);
+    }
 
     public static Optional<TSource> SingleOrAbsent<TSource>(
         this IReadOnlyList<TSource> source,
@@ -22,8 +25,12 @@ partial class OptionalLinqExtensions
     public static Optional<TSource> SingleOrAbsent<TSource>(
         this IReadOnlyList<TSource> source,
         Func<TSource, bool> predicate)
-        =>
-        source.SingleOrAbsent(predicate, InnerCreateMoreThanOneMatchException);
+    {
+        _ = source ?? throw new ArgumentNullException(nameof(source));
+        _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
+
+        return source.InnerSingleOrAbsent(predicate, InnerCreateMoreThanOneMatchException);
+    }
 
     public static Optional<TSource> SingleOrAbsent<TSource>(
         this IReadOnlyList<TSource> source,
