@@ -6,15 +6,17 @@ namespace System.Linq;
 [Obsolete(InnerClassObsoleteMessage, error: true)]
 public static class OptionalLinqDictionariesExtensions
 {
-    private const string InnerGetValueOrAbsentNew = nameof(OptionalLinqExtensions.GetValueOrAbsent);
-
     private const string InnerClassObsoleteMessage
         =
-        $"This class is obsolete. Use {InnerGetValueOrAbsentNew} extension methods instead.";
+        $"This class is obsolete. Use {InnerGetValueOrAbsentActual} extension methods instead.";
 
     private const string InnerMethodObsoleteMessage
         =
-        $"This method is obsolete. Call {InnerGetValueOrAbsentNew} extension method instead.";
+        $"This method is obsolete. Call {InnerGetValueOrAbsentActual} extension method instead.";
+
+    private const string InnerGetValueOrAbsentActual
+        =
+        nameof(OptionalLinqExtensions.GetValueOrAbsent);
 
     [Obsolete(InnerMethodObsoleteMessage, error: true)]
     public static Optional<TValue> GetValueOrAbsent<TKey, TValue>(
