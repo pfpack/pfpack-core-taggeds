@@ -2,7 +2,7 @@
 
 namespace System.Linq;
 
-partial class OptionalLinqDictionariesExtensions
+partial class OptionalLinqExtensions
 {
     private static Optional<TValue> InnerGetValueOrAbsentPrimary<TKey, TValue>(
         this IEnumerable<KeyValuePair<TKey, TValue>> pairs,

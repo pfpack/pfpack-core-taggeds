@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace System.Linq;
 
-partial class OptionalLinqDictionariesExtensions
+partial class OptionalLinqExtensions
 {
     public static Optional<TValue> GetValueOrAbsent<TKey, TValue>(
         this IReadOnlyDictionary<TKey, TValue> dictionary,

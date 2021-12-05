@@ -14,9 +14,9 @@ partial class OptionalLinqDictionariesExtensionsTest
     {
         const string expectedObsoleteMessage = "This method is not intended for use. Call GetValueOrAbsent instead.";
 
-        IReadOnlyCollection<MethodInfo> methods = typeof(OptionalLinqDictionariesExtensions)
+        IReadOnlyCollection<MethodInfo> methods = typeof(OptionalLinqExtensions)
             .GetMethods(BindingFlags.Public | BindingFlags.Static)
-            .Where(method => method.Name == nameof(OptionalLinqDictionariesExtensions.TryGetValueOrAbsent))
+            .Where(method => method.Name == nameof(OptionalLinqExtensions.TryGetValueOrAbsent))
             .ToArray();
 
         Assert.AreEqual(2, methods.Count);

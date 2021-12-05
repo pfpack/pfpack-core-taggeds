@@ -1,6 +1,6 @@
 ﻿namespace System.Linq;
 
-partial class OptionalLinqDictionariesExtensions
+partial class OptionalLinqExtensions
 {
     private const string InnerTryGetValueOrAbsentObsoleteMessage
         =

@@ -2,10 +2,10 @@
 
 namespace System.Linq;
 
-partial class OptionalLinqDictionariesExtensions
+partial class OptionalLinqExtensions
 {
     private static Optional<TValue> InnerGetValueOrAbsent<TKey, TValue>(
-        this IReadOnlyDictionary<TKey, TValue> dictionary,
+        this IDictionary<TKey, TValue> dictionary,
         TKey key)
         =>
         dictionary.TryGetValue(key, out var value)
