@@ -10,19 +10,7 @@ partial class OptionalLinqExtensions
     {
         _ = source ?? throw new ArgumentNullException(nameof(source));
 
-        return source switch
-        {
-            IReadOnlyList<TSource> list
-            =>
-            list.InnerElementAtOrAbsent(index),
-
-            IList<TSource> list
-            =>
-            list.InnerElementAtOrAbsent(index),
-
-            _ =>
-            source.InnerElementAtOrAbsent(index)
-        };
+        return source.InnerElementAtOrAbsentPrimary(index);
     }
 
     public static Optional<TSource> ElementAtOrAbsent<TSource>(
@@ -31,18 +19,6 @@ partial class OptionalLinqExtensions
     {
         _ = source ?? throw new ArgumentNullException(nameof(source));
 
-        return source switch
-        {
-            IReadOnlyList<TSource> list
-            =>
-            list.InnerElementAtOrAbsent(index),
-
-            IList<TSource> list
-            =>
-            list.InnerElementAtOrAbsent(index),
-
-            _ =>
-            source.InnerElementAtOrAbsent(index)
-        };
+        return source.InnerElementAtOrAbsentPrimary(index);
     }
 }
