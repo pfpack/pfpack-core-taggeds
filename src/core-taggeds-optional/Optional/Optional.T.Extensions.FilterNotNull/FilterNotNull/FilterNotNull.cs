@@ -4,10 +4,14 @@ partial class FilterNotNullOptionalExtensions
 {
     public static Optional<T> FilterNotNull<T>(this Optional<T?> optional)
         =>
-        optional.InnerFilterNotNull();
+        optional
+        .Filter(value => value is not null)
+        .Map(value => value!);
 
     public static Optional<T> FilterNotNull<T>(this Optional<T?> optional)
         where T : struct
         =>
-        optional.InnerFilterNotNull();
+        optional
+        .Filter(value => value is not null)
+        .Map(value => value.GetValueOrDefault());
 }
