@@ -7,11 +7,8 @@ partial class FilterNotNullOptionalExtensions
         optional.InnerFilterNotNullOrThrow(InnerCreateExpectedNotNullOrAbsentException);
 
     public static Optional<T> FilterNotNullOrThrow<T>(this Optional<T?> optional, Func<Exception> exceptionFactory)
-    {
-        _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
-
-        return optional.InnerFilterNotNullOrThrow(exceptionFactory);
-    }
+        =>
+        optional.InnerFilterNotNullOrThrow(exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory)));
 
     public static Optional<T> FilterNotNullOrThrow<T>(this Optional<T?> optional)
         where T : struct
@@ -20,11 +17,8 @@ partial class FilterNotNullOptionalExtensions
 
     public static Optional<T> FilterNotNullOrThrow<T>(this Optional<T?> optional, Func<Exception> exceptionFactory)
         where T : struct
-    {
-        _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
-
-        return optional.InnerFilterNotNullOrThrow(exceptionFactory);
-    }
+        =>
+        optional.InnerFilterNotNullOrThrow(exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory)));
 
     private static InvalidOperationException InnerCreateExpectedNotNullOrAbsentException()
         =>
