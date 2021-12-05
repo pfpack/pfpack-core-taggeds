@@ -8,8 +8,7 @@ partial class OptionalLinqDictionariesExtensions
         this IEnumerable<KeyValuePair<TKey, TValue>> pairs,
         TKey key)
         =>
-        pairs
-        .FirstOrAbsent(
+        pairs.FirstOrAbsent(
             pair => EqualityComparer<TKey>.Default.Equals(pair.Key, key))
         .Map(
             pair => pair.Value);
