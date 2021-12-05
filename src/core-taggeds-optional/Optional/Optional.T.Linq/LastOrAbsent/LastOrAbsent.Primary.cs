@@ -9,19 +9,7 @@ partial class OptionalLinqExtensions
     {
         _ = source ?? throw new ArgumentNullException(nameof(source));
 
-        return source switch
-        {
-            IReadOnlyList<TSource> list
-            =>
-            list.InnerLastOrAbsent(),
-
-            IList<TSource> list
-            =>
-            list.InnerLastOrAbsent(),
-
-            _ =>
-            source.InnerLastOrAbsent()
-        };
+        return source.InnerLastOrAbsentPrimary();
     }
 
     public static Optional<TSource> LastOrAbsent<TSource>(
@@ -31,18 +19,6 @@ partial class OptionalLinqExtensions
         _ = source ?? throw new ArgumentNullException(nameof(source));
         _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
 
-        return source switch
-        {
-            IReadOnlyList<TSource> list
-            =>
-            list.InnerLastOrAbsent(predicate),
-
-            IList<TSource> list
-            =>
-            list.InnerLastOrAbsent(predicate),
-
-            _ =>
-            source.InnerLastOrAbsent(predicate)
-        };
+        return source.InnerLastOrAbsentPrimary(predicate);
     }
 }
