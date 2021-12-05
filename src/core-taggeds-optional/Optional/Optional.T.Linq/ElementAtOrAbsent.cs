@@ -12,14 +12,16 @@ partial class OptionalLinqExtensions
 
         return source switch
         {
-            IReadOnlyList<TSource> list => list
-            .InnerElementAtOrAbsent(index),
+            IReadOnlyList<TSource> list
+            =>
+            list.InnerElementAtOrAbsent(index),
 
-            IList<TSource> list => list
-            .InnerElementAtOrAbsent(index),
+            IList<TSource> list
+            =>
+            list.InnerElementAtOrAbsent(index),
 
-            _ => source
-            .InnerElementAtOrAbsent(index)
+            _ =>
+            source.InnerElementAtOrAbsent(index)
         };
     }
 
@@ -31,14 +33,16 @@ partial class OptionalLinqExtensions
 
         return source switch
         {
-            IReadOnlyList<TSource> list => list
-            .InnerElementAtOrAbsent(index),
+            IReadOnlyList<TSource> list
+            =>
+            list.InnerElementAtOrAbsent(index),
 
-            IList<TSource> list => list
-            .InnerElementAtOrAbsent(index),
+            IList<TSource> list
+            =>
+            list.InnerElementAtOrAbsent(index),
 
-            _ => source
-            .InnerElementAtOrAbsent(index)
+            _ =>
+            source.InnerElementAtOrAbsent(index)
         };
     }
 }

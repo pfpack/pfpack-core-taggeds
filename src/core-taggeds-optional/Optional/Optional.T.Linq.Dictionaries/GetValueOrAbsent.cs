@@ -13,14 +13,16 @@ partial class OptionalLinqDictionariesExtensions
 
         return pairs switch
         {
-            IReadOnlyDictionary<TKey, TValue> dictionary => dictionary
-            .InnerGetValueOrAbsent(key),
+            IReadOnlyDictionary<TKey, TValue> dictionary
+            =>
+            dictionary.InnerGetValueOrAbsent(key),
 
-            IDictionary<TKey, TValue> dictionary => dictionary
-            .InnerGetValueOrAbsent(key),
+            IDictionary<TKey, TValue> dictionary
+            =>
+            dictionary.InnerGetValueOrAbsent(key),
 
-            _ => pairs
-            .InnerGetValueOrAbsent(key)
+            _ =>
+            pairs.InnerGetValueOrAbsent(key)
         };
     }
 

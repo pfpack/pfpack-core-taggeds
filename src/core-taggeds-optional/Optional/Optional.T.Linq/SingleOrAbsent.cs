@@ -18,14 +18,16 @@ partial class OptionalLinqExtensions
 
         return source switch
         {
-            IReadOnlyList<TSource> list => list
-            .InnerSingleOrAbsent(moreThanOneElementExceptionFactory),
+            IReadOnlyList<TSource> list
+            =>
+            list.InnerSingleOrAbsent(moreThanOneElementExceptionFactory),
 
-            IList<TSource> list => list
-            .InnerSingleOrAbsent(moreThanOneElementExceptionFactory),
+            IList<TSource> list
+            =>
+            list.InnerSingleOrAbsent(moreThanOneElementExceptionFactory),
 
-            _ => source
-            .InnerSingleOrAbsent(moreThanOneElementExceptionFactory)
+            _ =>
+            source.InnerSingleOrAbsent(moreThanOneElementExceptionFactory)
         };
     }
 
@@ -46,14 +48,16 @@ partial class OptionalLinqExtensions
 
         return source switch
         {
-            IReadOnlyList<TSource> list => list
-            .InnerSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
+            IReadOnlyList<TSource> list
+            =>
+            list.InnerSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
 
-            IList<TSource> list => list
-            .InnerSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
+            IList<TSource> list
+            =>
+            list.InnerSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory),
 
-            _ => source
-            .InnerSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory)
+            _ =>
+            source.InnerSingleOrAbsent(predicate, moreThanOneMatchExceptionFactory)
         };
     }
 }

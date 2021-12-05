@@ -11,14 +11,16 @@ partial class OptionalLinqExtensions
 
         return source switch
         {
-            IReadOnlyList<TSource> list => list
-            .InnerLastOrAbsent(),
+            IReadOnlyList<TSource> list
+            =>
+            list.InnerLastOrAbsent(),
 
-            IList<TSource> list => list
-            .InnerLastOrAbsent(),
+            IList<TSource> list
+            =>
+            list.InnerLastOrAbsent(),
 
-            _ => source
-            .InnerLastOrAbsent()
+            _ =>
+            source.InnerLastOrAbsent()
         };
     }
 
@@ -31,14 +33,16 @@ partial class OptionalLinqExtensions
 
         return source switch
         {
-            IReadOnlyList<TSource> list => list
-            .InnerLastOrAbsent(predicate),
+            IReadOnlyList<TSource> list
+            =>
+            list.InnerLastOrAbsent(predicate),
 
-            IList<TSource> list => list
-            .InnerLastOrAbsent(predicate),
+            IList<TSource> list
+            =>
+            list.InnerLastOrAbsent(predicate),
 
-            _ => source
-            .InnerLastOrAbsent(predicate)
+            _ =>
+            source.InnerLastOrAbsent(predicate)
         };
     }
 }
