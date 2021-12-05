@@ -25,4 +25,8 @@ partial class FilterNotNullOptionalExtensions
 
         return optional.InnerFilterNotNullOrThrow(exceptionFactory);
     }
+
+    private static InvalidOperationException InnerCreateExpectedNotNullOrAbsentException()
+        =>
+        new("The optional is expected to have a not null value or to be absent.");
 }

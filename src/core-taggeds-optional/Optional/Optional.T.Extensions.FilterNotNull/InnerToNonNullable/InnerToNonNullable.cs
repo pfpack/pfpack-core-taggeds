@@ -18,4 +18,8 @@ partial class FilterNotNullOptionalExtensions
         value is not null
             ? value.GetValueOrDefault()
             : throw InnerCreateUnexpectedNullException_MustNeverBeInvoked();
+
+    private static InvalidOperationException InnerCreateUnexpectedNullException_MustNeverBeInvoked()
+        =>
+        new("The optional has unexpected null value.");
 }
