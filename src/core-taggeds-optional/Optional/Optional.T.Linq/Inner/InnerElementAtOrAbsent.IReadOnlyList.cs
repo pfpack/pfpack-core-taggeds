@@ -8,9 +8,7 @@ partial class OptionalLinqExtensions
         this IReadOnlyList<TSource> source,
         int index)
         =>
-        index.InnerIsInRange(count: source.Count)
-            ? new(source[index])
-            : default;
+        source.InnerElementAtOrAbsentBase(index);
 
     private static Optional<TSource> InnerElementAtOrAbsent<TSource>(
         this IReadOnlyList<TSource> source,
@@ -20,8 +18,16 @@ partial class OptionalLinqExtensions
         {
             int shortened when shortened == index
             =>
-            source.InnerElementAtOrAbsent(shortened),
+            source.InnerElementAtOrAbsentBase(shortened),
 
             _ => default
         };
+
+    private static Optional<TSource> InnerElementAtOrAbsentBase<TSource>(
+        this IReadOnlyList<TSource> source,
+        int index)
+        =>
+        index.InnerIsInRange(count: source.Count)
+            ? new(source[index])
+            : default;
 }
