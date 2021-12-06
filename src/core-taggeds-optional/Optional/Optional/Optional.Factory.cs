@@ -10,9 +10,9 @@ partial class Optional
         =>
         default;
 
-    public static Optional<T> Absent<T>(Unit unit) => unit switch
-    {
-        _ =>
-        default
-    };
+#pragma warning disable IDE0060 // Remove unused parameter
+    public static Optional<T> Absent<T>(Unit unit)
+#pragma warning restore IDE0060 // Remove unused parameter
+        =>
+        default;
 }
