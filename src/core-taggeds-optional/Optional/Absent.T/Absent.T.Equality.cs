@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace System;
 
 partial struct Absent<T>
 {
@@ -6,7 +8,7 @@ partial struct Absent<T>
         =>
         true;
 
-    public override bool Equals(object? obj)
+    public override bool Equals([NotNullWhen(true)] object? obj)
         =>
         obj is Absent<T>;
 
