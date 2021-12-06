@@ -8,11 +8,11 @@ public static class OptionalLinqDictionariesExtensions
 {
     private const string InnerClassObsoleteMessage
         =
-        $"This class is obsolete. Use GetValueOrAbsent extension methods instead.";
+        "This class is obsolete. Use GetValueOrAbsent extension methods instead.";
 
     private const string InnerMethodObsoleteMessage
         =
-        $"This method is obsolete. Call GetValueOrAbsent extension method instead.";
+        "This method is obsolete. Call GetValueOrAbsent extension method instead.";
 
     [Obsolete(InnerMethodObsoleteMessage, error: true)]
     public static Optional<TValue> GetValueOrAbsent<TKey, TValue>(
