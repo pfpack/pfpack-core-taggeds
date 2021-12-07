@@ -5,23 +5,19 @@ namespace System;
 partial struct Optional<T>
 {
     public Optional<T> Or(Func<Optional<T>> otherFactory)
-    {
-        _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
-
-        return InnerOr(optional => optional, otherFactory);
-    }
+        =>
+        InnerOr(
+            otherFactory ?? throw new ArgumentNullException(nameof(otherFactory)));
 
     public Task<Optional<T>> OrAsync(Func<Task<Optional<T>>> otherFactoryAsync)
-    {
-        _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
-
-        return InnerOr(Task.FromResult, otherFactoryAsync);
-    }
+        =>
+        InnerOr(
+            Task.FromResult,
+            otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 
     public ValueTask<Optional<T>> OrValueAsync(Func<ValueTask<Optional<T>>> otherFactoryAsync)
-    {
-        _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
-
-        return InnerOr(ValueTask.FromResult, otherFactoryAsync);
-    }
+        =>
+        InnerOr(
+            ValueTask.FromResult,
+            otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 }
