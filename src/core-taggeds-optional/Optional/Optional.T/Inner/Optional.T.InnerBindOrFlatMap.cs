@@ -15,7 +15,7 @@ partial struct Optional<T>
     private Task<Optional<TResult>> InnerBindOrFlatMapAsync<TResult>(
         Func<T, Task<Optional<TResult>>> mapAsync)
         =>
-        hasValue ? mapAsync.Invoke(value) : Task.FromResult<Optional<TResult>>(default);
+        hasValue ? mapAsync.Invoke(value) : Task.FromResult(default(Optional<TResult>));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private ValueTask<Optional<TResult>> InnerBindOrFlatMapValueAsync<TResult>(
