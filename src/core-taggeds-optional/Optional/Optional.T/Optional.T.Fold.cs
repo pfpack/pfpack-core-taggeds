@@ -16,7 +16,7 @@ partial struct Optional<T>
         Func<T, Task<TResult>> mapAsync,
         Func<Task<TResult>> otherFactoryAsync)
         =>
-        InnerFold(
+        InnerFoldAsync(
             mapAsync ?? throw new ArgumentNullException(nameof(mapAsync)),
             otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 
@@ -24,7 +24,7 @@ partial struct Optional<T>
         Func<T, ValueTask<TResult>> mapAsync,
         Func<ValueTask<TResult>> otherFactoryAsync)
         =>
-        InnerFold(
+        InnerFoldValueAsync(
             mapAsync ?? throw new ArgumentNullException(nameof(mapAsync)),
             otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 }
