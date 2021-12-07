@@ -13,10 +13,10 @@ partial struct Optional<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private Task<Optional<T>> InnerThisAsync()
         =>
-        Task.FromResult<Optional<T>>(this);
+        Task.FromResult(this);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private ValueTask<Optional<T>> InnerThisValueAsync()
         =>
-        ValueTask.FromResult<Optional<T>>(this);
+        ValueTask.FromResult(this);
 }
