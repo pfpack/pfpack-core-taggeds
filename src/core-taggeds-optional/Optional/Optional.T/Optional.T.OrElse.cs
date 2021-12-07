@@ -12,15 +12,15 @@ partial struct Optional<T>
         =>
         InnerOrElse(otherFactory ?? throw new ArgumentNullException(nameof(otherFactory)));
 
-    public Task<T> OrElseAsync(Func<Task<T>> otherFactoryAsync)
+    public Task<T> OrElseAsync(
+        Func<Task<T>> otherFactoryAsync)
         =>
-        InnerFold(
-            Task.FromResult,
+        InnerOrElseAsync(
             otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 
-    public ValueTask<T> OrElseValueAsync(Func<ValueTask<T>> otherFactoryAsync)
+    public ValueTask<T> OrElseValueAsync(
+        Func<ValueTask<T>> otherFactoryAsync)
         =>
-        InnerFold(
-            ValueTask.FromResult,
+        InnerOrElseValueAsync(
             otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 }
