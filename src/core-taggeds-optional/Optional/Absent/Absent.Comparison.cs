@@ -4,5 +4,5 @@ namespace System;
 
 partial class Absent
 {
-    public static bool Equals<T>(Absent<T> left, Absent<T> right) => true;
+    public static int Compare<T>(Absent<T> left, Absent<T> right) => default;
 }
