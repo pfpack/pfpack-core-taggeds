@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace System;
 
 partial struct Optional<T>
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private Optional<TResult> InnerMap<TResult>(
         Func<T, TResult> map)
         =>
@@ -11,6 +13,7 @@ partial struct Optional<T>
             ? new(map.Invoke(value))
             : default;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private async Task<Optional<TResult>> InnerMapAsync<TResult>(
         Func<T, Task<TResult>> mapAsync)
         =>
@@ -18,6 +21,7 @@ partial struct Optional<T>
             ? new(await mapAsync.Invoke(value).ConfigureAwait(false))
             : default;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private async ValueTask<Optional<TResult>> InnerMapValueAsync<TResult>(
         Func<T, ValueTask<TResult>> mapAsync)
         =>
