@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace System;
 
@@ -11,9 +12,14 @@ partial struct Optional<T>
         hasValue ? this : otherFactory.Invoke();
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private TResult InnerOr<TResult>(
-        Func<Optional<T>, TResult> map,
-        Func<TResult> otherFactory)
+    private Task<Optional<T>> InnerOrAsync(
+        Func<Task<Optional<T>>> otherFactoryAsync)
         =>
-        hasValue ? map.Invoke(this) : otherFactory.Invoke();
+        hasValue ? Task.FromResult(this) : otherFactoryAsync.Invoke();
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private ValueTask<Optional<T>> InnerOrValueAsync(
+        Func<ValueTask<Optional<T>>> otherFactoryAsync)
+        =>
+        hasValue ? ValueTask.FromResult(this) : otherFactoryAsync.Invoke();
 }

@@ -11,13 +11,11 @@ partial struct Optional<T>
 
     public Task<Optional<T>> OrAsync(Func<Task<Optional<T>>> otherFactoryAsync)
         =>
-        InnerOr(
-            Task.FromResult,
+        InnerOrAsync(
             otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 
     public ValueTask<Optional<T>> OrValueAsync(Func<ValueTask<Optional<T>>> otherFactoryAsync)
         =>
-        InnerOr(
-            ValueTask.FromResult,
+        InnerOrValueAsync(
             otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 }
