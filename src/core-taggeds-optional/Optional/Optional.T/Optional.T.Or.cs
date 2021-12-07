@@ -8,20 +8,20 @@ partial struct Optional<T>
     {
         _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-        return InnerFoldThis(InnerPipeThis, otherFactory);
+        return InnerOr(optional => optional, otherFactory);
     }
 
     public Task<Optional<T>> OrAsync(Func<Task<Optional<T>>> otherFactoryAsync)
     {
         _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-        return InnerFoldThis(Task.FromResult, otherFactoryAsync);
+        return InnerOr(Task.FromResult, otherFactoryAsync);
     }
 
     public ValueTask<Optional<T>> OrValueAsync(Func<ValueTask<Optional<T>>> otherFactoryAsync)
     {
         _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-        return InnerFoldThis(ValueTask.FromResult, otherFactoryAsync);
+        return InnerOr(ValueTask.FromResult, otherFactoryAsync);
     }
 }

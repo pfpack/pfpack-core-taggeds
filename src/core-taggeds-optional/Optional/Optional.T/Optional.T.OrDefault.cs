@@ -1,11 +1,8 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace System;
+﻿namespace System;
 
 partial struct Optional<T>
 {
-    [return: MaybeNull]
-    public T OrDefault()
+    public T? OrDefault()
         =>
-        InnerFold(InnerPipe, static () => default!);
+        InnerOrDefault();
 }

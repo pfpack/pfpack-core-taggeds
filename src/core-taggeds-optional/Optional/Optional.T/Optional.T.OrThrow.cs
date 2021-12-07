@@ -4,12 +4,9 @@ partial struct Optional<T>
 {
     public T OrThrow()
         =>
-        InnerOrThrow(InnerCreateExpectedPresentException);
+        InnerOrThrow(() => new InvalidOperationException("The optional is expected to have a value."));
 
     public T OrThrow(Func<Exception> exceptionFactory)
-    {
-        _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
-
-        return InnerOrThrow(exceptionFactory);
-    }
+        =>
+        InnerOrThrow(exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory)));
 }

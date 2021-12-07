@@ -8,9 +8,7 @@ partial struct Optional<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private IEnumerable<T> InnerFlattenOrYield()
         =>
-        InnerFold(
-            InnerYieldSingle,
-            InnerYieldEmpty);
+        InnerFold(InnerYieldSingle, InnerYieldEmpty);
 
     private static IEnumerable<T> InnerYieldSingle(T value)
     {

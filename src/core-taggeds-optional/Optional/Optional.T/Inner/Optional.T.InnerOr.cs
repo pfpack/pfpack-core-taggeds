@@ -5,7 +5,7 @@ namespace System;
 partial struct Optional<T>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private T InnerOrThrow(Func<Exception> exceptionFactory)
+    private TResult InnerOr<TResult>(Func<Optional<T>, TResult> map, Func<TResult> otherFactory)
         =>
-        hasValue ? value : throw exceptionFactory.Invoke();
+        hasValue ? map.Invoke(this) : otherFactory.Invoke();
 }
