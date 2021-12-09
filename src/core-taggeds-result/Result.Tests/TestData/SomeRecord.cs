@@ -1,9 +1,6 @@
-﻿#nullable enable
+﻿namespace PrimeFuncPack.Core.Tests;
 
-namespace PrimeFuncPack.Core.Tests
+internal sealed record SomeRecord
 {
-    internal sealed record SomeRecord
-    {
-        public string? Text { get; set; }
-    }
+    public string? Text { get; set; }
 }

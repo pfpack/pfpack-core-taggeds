@@ -1,9 +1,5 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+public static partial class TaggedsExtensions
 {
-    // TODO: Consider to rename to TaggedExtensions in v2.0
-    public static partial class TaggedsExtensions
-    {
-    }
 }

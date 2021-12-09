@@ -1,18 +1,15 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+partial struct TaggedUnion<TFirst, TSecond>
 {
-    partial struct TaggedUnion<TFirst, TSecond>
+    public TSecond SecondOrThrow()
+        =>
+        InternalSecondOrThrow(CreateNotSecondException);
+
+    public TSecond SecondOrThrow(Func<Exception> exceptionFactory)
     {
-        public TSecond SecondOrThrow()
-            =>
-            InternalSecondOrThrow(CreateNotSecondException);
+        _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
 
-        public TSecond SecondOrThrow(Func<Exception> exceptionFactory)
-        {
-            _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
-
-            return InternalSecondOrThrow(exceptionFactory);
-        }
+        return InternalSecondOrThrow(exceptionFactory);
     }
 }

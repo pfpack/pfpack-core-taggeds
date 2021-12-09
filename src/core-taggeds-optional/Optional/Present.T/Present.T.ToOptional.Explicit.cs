@@ -1,11 +1,8 @@
-#nullable enable
+namespace System;
 
-namespace System
+partial struct Present<T>
 {
-    partial struct Present<T>
-    {
-        public Optional<T> ToOptional()
-            =>
-            new(value);
-    }
+    public Optional<T> ToOptional()
+        =>
+        new(value);
 }

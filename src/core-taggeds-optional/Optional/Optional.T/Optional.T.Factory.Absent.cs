@@ -1,9 +1,6 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+partial struct Optional<T>
 {
-    partial struct Optional<T>
-    {
-        public static readonly Optional<T> Absent;
-    }
+    public static readonly Optional<T> Absent;
 }

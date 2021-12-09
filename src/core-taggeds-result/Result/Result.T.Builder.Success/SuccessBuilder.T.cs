@@ -1,20 +1,17 @@
-﻿#nullable enable
+﻿using System;
 
-using System;
+namespace PrimeFuncPack.Core;
 
-namespace PrimeFuncPack.Core
+public readonly partial struct SuccessBuilder<TSuccess> : IEquatable<SuccessBuilder<TSuccess>>
 {
-    public readonly partial struct SuccessBuilder<TSuccess> : IEquatable<SuccessBuilder<TSuccess>>
-    {
-        private readonly TSuccess success;
+    private readonly TSuccess success;
 
-        internal SuccessBuilder(TSuccess success)
-            =>
-            this.success = success;
+    internal SuccessBuilder(TSuccess success)
+        =>
+        this.success = success;
 
-        public Result<TSuccess, TFailure> With<TFailure>()
-            where TFailure : struct
-            =>
-            new(success);
-    }
+    public Result<TSuccess, TFailure> With<TFailure>()
+        where TFailure : struct
+        =>
+        new(success);
 }

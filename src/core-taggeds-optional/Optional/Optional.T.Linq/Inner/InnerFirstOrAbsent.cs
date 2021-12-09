@@ -1,34 +1,31 @@
-﻿#nullable enable
+﻿using System.Collections.Generic;
 
-using System.Collections.Generic;
+namespace System.Linq;
 
-namespace System.Linq
+partial class OptionalLinqExtensions
 {
-    partial class OptionalLinqExtensions
+    private static Optional<TSource> InnerFirstOrAbsent<TSource>(
+        this IEnumerable<TSource> source)
     {
-        private static Optional<TSource> InnerFirstOrAbsent<TSource>(
-            this IEnumerable<TSource> source)
-        {
-            using var enumerator = source.GetEnumerator();
+        using var enumerator = source.GetEnumerator();
 
-            return enumerator.MoveNext()
-                ? new(enumerator.Current)
-                : default;
-        }
+        return enumerator.MoveNext()
+            ? new(enumerator.Current)
+            : default;
+    }
 
-        private static Optional<TSource> InnerFirstOrAbsent<TSource>(
-            this IEnumerable<TSource> source,
-            Func<TSource, bool> predicate)
+    private static Optional<TSource> InnerFirstOrAbsent<TSource>(
+        this IEnumerable<TSource> source,
+        Func<TSource, bool> predicate)
+    {
+        foreach (var current in source)
         {
-            foreach (var current in source)
+            if (predicate.Invoke(current))
             {
-                if (predicate.Invoke(current))
-                {
-                    return new(current);
-                }
+                return new(current);
             }
-
-            return default;
         }
+
+        return default;
     }
 }

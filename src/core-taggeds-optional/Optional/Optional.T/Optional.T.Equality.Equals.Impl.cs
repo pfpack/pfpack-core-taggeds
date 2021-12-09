@@ -1,24 +1,21 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+partial struct Optional<T>
 {
-    partial struct Optional<T>
+    public bool Equals(Optional<T> other)
     {
-        public bool Equals(Optional<T> other)
+        if (hasValue != other.hasValue)
         {
-            if (hasValue != other.hasValue)
-            {
-                return false;
-            }
+            return false;
+        }
 
-            if (hasValue)
-            {
-                return EqualityComparer.Equals(value, other.value);
-            }
-            else
-            {
-                return true;
-            }
+        if (hasValue)
+        {
+            return EqualityComparer.Equals(value, other.value);
+        }
+        else
+        {
+            return true;
         }
     }
 }

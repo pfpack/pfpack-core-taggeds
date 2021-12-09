@@ -1,15 +1,12 @@
-﻿#nullable enable
+﻿namespace PrimeFuncPack.Core.Tests;
 
-namespace PrimeFuncPack.Core.Tests
+internal sealed class StubType
 {
-    internal sealed class StubType
-    {
-        private readonly string? toStringValue;
+    private readonly string? toStringValue;
 
-        public StubType(string? toStringValue)
-            => this.toStringValue = toStringValue;
+    public StubType(string? toStringValue)
+        => this.toStringValue = toStringValue;
 
-        public override string? ToString()
-            => toStringValue;
-    }
+    public override string? ToString()
+        => toStringValue;
 }

@@ -1,15 +1,12 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+partial class Result
 {
-    partial class Result
-    {
-        public static Result<TSuccess, Unit> Present<TSuccess>(TSuccess success)
-            =>
-            new(success: success);
+    public static Result<TSuccess, Unit> Present<TSuccess>(TSuccess success)
+        =>
+        new(success: success);
 
-        public static Result<TSuccess, Unit> Absent<TSuccess>()
-            =>
-            new(failure: default);
-    }
+    public static Result<TSuccess, Unit> Absent<TSuccess>()
+        =>
+        new(failure: default);
 }

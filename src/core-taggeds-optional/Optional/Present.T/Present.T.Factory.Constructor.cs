@@ -1,11 +1,8 @@
-#nullable enable
+namespace System;
 
-namespace System
+partial struct Present<T>
 {
-    partial struct Present<T>
-    {
-        public Present(T value)
-            =>
-            this.value = value;
-    }
+    public Present(T value)
+        =>
+        this.value = value;
 }

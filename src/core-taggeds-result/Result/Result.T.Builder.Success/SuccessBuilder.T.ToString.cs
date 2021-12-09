@@ -1,13 +1,10 @@
-﻿#nullable enable
+﻿using System;
 
-using System;
+namespace PrimeFuncPack.Core;
 
-namespace PrimeFuncPack.Core
+partial struct SuccessBuilder<TSuccess>
 {
-    partial struct SuccessBuilder<TSuccess>
-    {
-        public override string ToString()
-            =>
-            success.ToStringOrEmpty();
-    }
+    public override string ToString()
+        =>
+        success.ToStringOrEmpty();
 }

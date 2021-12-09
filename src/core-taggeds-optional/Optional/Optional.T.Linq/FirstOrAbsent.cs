@@ -1,47 +1,44 @@
-﻿#nullable enable
+﻿using System.Collections.Generic;
 
-using System.Collections.Generic;
+namespace System.Linq;
 
-namespace System.Linq
+partial class OptionalLinqExtensions
 {
-    partial class OptionalLinqExtensions
+    public static Optional<TSource> FirstOrAbsent<TSource>(
+        this IEnumerable<TSource> source)
     {
-        public static Optional<TSource> FirstOrAbsent<TSource>(
-            this IEnumerable<TSource> source)
+        _ = source ?? throw new ArgumentNullException(nameof(source));
+
+        return source switch
         {
-            _ = source ?? throw new ArgumentNullException(nameof(source));
+            IReadOnlyList<TSource> list => list
+            .InnerFirstOrAbsent(),
 
-            return source switch
-            {
-                IReadOnlyList<TSource> list => list
-                .InnerFirstOrAbsent(),
+            IList<TSource> list => list
+            .InnerFirstOrAbsent(),
 
-                IList<TSource> list => list
-                .InnerFirstOrAbsent(),
+            _ => source
+            .InnerFirstOrAbsent()
+        };
+    }
 
-                _ => source
-                .InnerFirstOrAbsent()
-            };
-        }
+    public static Optional<TSource> FirstOrAbsent<TSource>(
+        this IEnumerable<TSource> source,
+        Func<TSource, bool> predicate)
+    {
+        _ = source ?? throw new ArgumentNullException(nameof(source));
+        _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
 
-        public static Optional<TSource> FirstOrAbsent<TSource>(
-            this IEnumerable<TSource> source,
-            Func<TSource, bool> predicate)
+        return source switch
         {
-            _ = source ?? throw new ArgumentNullException(nameof(source));
-            _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
+            IReadOnlyList<TSource> list => list
+            .InnerFirstOrAbsent(predicate),
 
-            return source switch
-            {
-                IReadOnlyList<TSource> list => list
-                .InnerFirstOrAbsent(predicate),
+            IList<TSource> list => list
+            .InnerFirstOrAbsent(predicate),
 
-                IList<TSource> list => list
-                .InnerFirstOrAbsent(predicate),
-
-                _ => source
-                .InnerFirstOrAbsent(predicate)
-            };
-        }
+            _ => source
+            .InnerFirstOrAbsent(predicate)
+        };
     }
 }

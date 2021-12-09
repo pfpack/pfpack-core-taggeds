@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
@@ -26,7 +26,7 @@
     <PackageReference Include="PrimeFuncPack.Core.Optional" Version="1.2.0-preview.2.0.0" />
     <PackageReference Include="PrimeFuncPack.Core.Result" Version="1.2.0-preview.1.0.0" />
     <PackageReference Include="PrimeFuncPack.Core.TaggedUnion" Version="1.2.0-preview.1.0.0" />
-    <PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.1.1" />
+    <PackageReference Include="PrimeFuncPack.Core.Unit" Version="2.1.0" />
   </ItemGroup>
 
 </Project>

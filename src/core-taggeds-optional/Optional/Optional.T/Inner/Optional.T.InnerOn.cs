@@ -1,27 +1,24 @@
-﻿#nullable enable
+﻿using System.Runtime.CompilerServices;
 
-using System.Runtime.CompilerServices;
+namespace System;
 
-namespace System
+partial struct Optional<T>
 {
-    partial struct Optional<T>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private TResult InnerOn<TOnPresentOut, TOnElseOut, TResult>(
+        Func<T, TOnPresentOut> onPresent,
+        Func<TOnElseOut> onElse,
+        Func<TResult> resultSupplier)
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TResult InnerOn<TOnPresentOut, TOnElseOut, TResult>(
-            Func<T, TOnPresentOut> onPresent,
-            Func<TOnElseOut> onElse,
-            Func<TResult> resultSupplier)
+        if (hasValue)
         {
-            if (hasValue)
-            {
-                _ = onPresent.Invoke(value);
-            }
-            else
-            {
-                _ = onElse.Invoke();
-            }
-
-            return resultSupplier.Invoke();
+            _ = onPresent.Invoke(value);
         }
+        else
+        {
+            _ = onElse.Invoke();
+        }
+
+        return resultSupplier.Invoke();
     }
 }

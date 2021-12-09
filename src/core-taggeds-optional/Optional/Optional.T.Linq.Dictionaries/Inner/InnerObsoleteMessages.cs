@@ -1,12 +1,9 @@
-﻿#nullable enable
+﻿namespace System.Linq;
 
-namespace System.Linq
+partial class OptionalLinqDictionariesExtensions
 {
-    partial class OptionalLinqDictionariesExtensions
+    private static class InnerObsoleteMessages
     {
-        private static class InnerObsoleteMessages
-        {
-            public const string TryGetValueOrAbsent = "This method is not intended for use. Call GetValueOrAbsent instead.";
-        }
+        public const string TryGetValueOrAbsent = "This method is not intended for use. Call GetValueOrAbsent instead.";
     }
 }

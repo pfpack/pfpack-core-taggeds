@@ -1,21 +1,18 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+partial class Optional
 {
-    partial class Optional
+    public static Optional<T> Present<T>(T value)
+        =>
+        new(value);
+
+    public static Optional<T> Absent<T>()
+        =>
+        default;
+
+    public static Optional<T> Absent<T>(Unit unit) => unit switch
     {
-        public static Optional<T> Present<T>(T value)
-            =>
-            new(value);
-
-        public static Optional<T> Absent<T>()
-            =>
-            default;
-
-        public static Optional<T> Absent<T>(Unit unit) => unit switch
-        {
-            _ =>
-            default
-        };
-    }
+        _ =>
+        default
+    };
 }

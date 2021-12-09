@@ -1,13 +1,10 @@
-﻿#nullable enable
+﻿using System;
 
-using System;
+namespace PrimeFuncPack.Core;
 
-namespace PrimeFuncPack.Core
+partial struct FailureBuilder<TFailure>
 {
-    partial struct FailureBuilder<TFailure>
-    {
-        public override string ToString()
-            =>
-            failure.ToString().OrEmpty();
-    }
+    public override string ToString()
+        =>
+        failure.ToString().OrEmpty();
 }

@@ -1,15 +1,12 @@
-﻿#nullable enable
+﻿using System.Runtime.CompilerServices;
 
-using System.Runtime.CompilerServices;
+namespace System;
 
-namespace System
+partial struct TaggedUnion<TFirst, TSecond>
 {
-    partial struct TaggedUnion<TFirst, TSecond>
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TFirst InternalFirstOrThrow(Func<Exception> exceptionFactory)
-            =>
-            InternalOrThrow(
-                Tag.First, First, exceptionFactory);
-    }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private TFirst InternalFirstOrThrow(Func<Exception> exceptionFactory)
+        =>
+        InternalOrThrow(
+            Tag.First, First, exceptionFactory);
 }

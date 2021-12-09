@@ -1,18 +1,15 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+partial struct Result<TSuccess, TFailure>
 {
-    partial struct Result<TSuccess, TFailure>
+    public TSuccess SuccessOrThrow()
+        =>
+        InternalSuccessOrThrow(CreateNotSuccessException);
+
+    public TSuccess SuccessOrThrow(Func<Exception> exceptionFactory)
     {
-        public TSuccess SuccessOrThrow()
-            =>
-            InternalSuccessOrThrow(CreateNotSuccessException);
+        _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
 
-        public TSuccess SuccessOrThrow(Func<Exception> exceptionFactory)
-        {
-            _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
-
-            return InternalSuccessOrThrow(exceptionFactory);
-        }
+        return InternalSuccessOrThrow(exceptionFactory);
     }
 }

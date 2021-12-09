@@ -1,11 +1,8 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+partial struct Optional<T>
 {
-    partial struct Optional<T>
-    {
-        public static Optional<T> Present(T value)
-            =>
-            new(value);
-    }
+    public static Optional<T> Present(T value)
+        =>
+        new(value);
 }

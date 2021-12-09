@@ -1,18 +1,15 @@
-﻿#nullable enable
+﻿using System.Runtime.CompilerServices;
 
-using System.Runtime.CompilerServices;
+namespace System;
 
-namespace System
+partial struct Result<TSuccess, TFailure>
 {
-    partial struct Result<TSuccess, TFailure>
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TResult InternalFold<TResult>(
-            Func<TSuccess, TResult> mapSuccess,
-            Func<TFailure, TResult> mapFailure)
-            =>
-            isSuccess
-                ? mapSuccess.Invoke(success)
-                : mapFailure.Invoke(failure);
-    }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private TResult InternalFold<TResult>(
+        Func<TSuccess, TResult> mapSuccess,
+        Func<TFailure, TResult> mapFailure)
+        =>
+        isSuccess
+            ? mapSuccess.Invoke(success)
+            : mapFailure.Invoke(failure);
 }

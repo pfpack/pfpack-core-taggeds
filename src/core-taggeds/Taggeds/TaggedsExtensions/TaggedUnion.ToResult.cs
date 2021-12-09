@@ -1,15 +1,12 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+partial class TaggedsExtensions
 {
-    partial class TaggedsExtensions
-    {
-        public static Result<TSuccess, TFailure> ToResult<TSuccess, TFailure>(
-            this TaggedUnion<TSuccess, TFailure> union)
-            where TFailure : struct
-            =>
-            union.Fold<Result<TSuccess, TFailure>>(
-                value => new(value),
-                value => new(value));
-    }
+    public static Result<TSuccess, TFailure> ToResult<TSuccess, TFailure>(
+        this TaggedUnion<TSuccess, TFailure> union)
+        where TFailure : struct
+        =>
+        union.Fold<Result<TSuccess, TFailure>>(
+            value => new(value),
+            value => new(value));
 }

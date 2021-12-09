@@ -1,12 +1,9 @@
-#nullable enable
+namespace System;
 
-namespace System
+partial struct Absent<T>
 {
-    partial struct Absent<T>
+    public static implicit operator Optional<T>(Absent<T> absent) => absent switch
     {
-        public static implicit operator Optional<T>(Absent<T> absent) => absent switch
-        {
-            _ => default
-        };
-    }
+        _ => default
+    };
 }

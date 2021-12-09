@@ -1,27 +1,24 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+partial struct TaggedUnion<TFirst, TSecond>
 {
-    partial struct TaggedUnion<TFirst, TSecond>
+    public bool Equals(TaggedUnion<TFirst, TSecond> other)
     {
-        public bool Equals(TaggedUnion<TFirst, TSecond> other)
+        if (tag != other.tag)
         {
-            if (tag != other.tag)
-            {
-                return false;
-            }
-
-            if (tag == Tag.First)
-            {
-                return FirstComparer.Equals(first, other.first);
-            }
-
-            if (tag == Tag.Second)
-            {
-                return SecondComparer.Equals(second, other.second);
-            }
-
-            return true;
+            return false;
         }
+
+        if (tag == Tag.First)
+        {
+            return FirstComparer.Equals(first, other.first);
+        }
+
+        if (tag == Tag.Second)
+        {
+            return SecondComparer.Equals(second, other.second);
+        }
+
+        return true;
     }
 }

@@ -1,14 +1,11 @@
-﻿#nullable enable
+﻿using System.Collections.Generic;
 
-using System.Collections.Generic;
+namespace System;
 
-namespace System
+partial struct Optional<T>
 {
-    partial struct Optional<T>
-    {
-        // TODO: Consider to open in v1.2
-        private IEnumerable<T> Flatten()
-            =>
-            InnerFlattenOrYield();
-    }
+    // TODO: Consider to open in v1.2
+    private IEnumerable<T> Flatten()
+        =>
+        InnerFlattenOrYield();
 }

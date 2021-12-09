@@ -1,22 +1,19 @@
-﻿#nullable enable
+﻿using System.Runtime.CompilerServices;
 
-using System.Runtime.CompilerServices;
+namespace System;
 
-namespace System
+partial struct Optional<T>
 {
-    partial struct Optional<T>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private TResult InnerOnAbsent<THandlerOut, TResult>(
+        Func<THandlerOut> handler,
+        Func<TResult> resultSupplier)
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TResult InnerOnAbsent<THandlerOut, TResult>(
-            Func<THandlerOut> handler,
-            Func<TResult> resultSupplier)
+        if (hasValue is false)
         {
-            if (hasValue is false)
-            {
-                _ = handler.Invoke();
-            }
-
-            return resultSupplier.Invoke();
+            _ = handler.Invoke();
         }
+
+        return resultSupplier.Invoke();
     }
 }

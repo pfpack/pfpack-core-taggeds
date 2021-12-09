@@ -1,10 +1,7 @@
-﻿#nullable enable
+﻿using System;
 
-using System;
+namespace PrimeFuncPack.Core.Tests;
 
-namespace PrimeFuncPack.Core.Tests
+internal sealed class SomeException : Exception
 {
-    internal sealed class SomeException : Exception
-    {
-    }
 }

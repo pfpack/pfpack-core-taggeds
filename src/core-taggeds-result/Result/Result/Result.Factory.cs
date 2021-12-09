@@ -1,18 +1,15 @@
-﻿#nullable enable
+﻿using PrimeFuncPack.Core;
 
-using PrimeFuncPack.Core;
+namespace System;
 
-namespace System
+partial class Result
 {
-    partial class Result
-    {
-        public static SuccessBuilder<TSuccess> Success<TSuccess>(TSuccess success)
-            =>
-            new(success);
+    public static SuccessBuilder<TSuccess> Success<TSuccess>(TSuccess success)
+        =>
+        new(success);
 
-        public static FailureBuilder<TFailure> Failure<TFailure>(TFailure failure)
-            where TFailure : struct
-            =>
-            new(failure);
-    }
+    public static FailureBuilder<TFailure> Failure<TFailure>(TFailure failure)
+        where TFailure : struct
+        =>
+        new(failure);
 }

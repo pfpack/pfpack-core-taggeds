@@ -1,30 +1,27 @@
-﻿#nullable enable
+﻿using System.Threading.Tasks;
 
-using System.Threading.Tasks;
+namespace System;
 
-namespace System
+partial struct Optional<T>
 {
-    partial struct Optional<T>
+    public Optional<T> Or(Func<Optional<T>> otherFactory)
     {
-        public Optional<T> Or(Func<Optional<T>> otherFactory)
-        {
-            _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
+        _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-            return InnerFoldThis(InnerPipeThis, otherFactory);
-        }
+        return InnerFoldThis(InnerPipeThis, otherFactory);
+    }
 
-        public Task<Optional<T>> OrAsync(Func<Task<Optional<T>>> otherFactoryAsync)
-        {
-            _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
+    public Task<Optional<T>> OrAsync(Func<Task<Optional<T>>> otherFactoryAsync)
+    {
+        _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return InnerFoldThis(Task.FromResult, otherFactoryAsync);
-        }
+        return InnerFoldThis(Task.FromResult, otherFactoryAsync);
+    }
 
-        public ValueTask<Optional<T>> OrValueAsync(Func<ValueTask<Optional<T>>> otherFactoryAsync)
-        {
-            _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
+    public ValueTask<Optional<T>> OrValueAsync(Func<ValueTask<Optional<T>>> otherFactoryAsync)
+    {
+        _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-            return InnerFoldThis(ValueTask.FromResult, otherFactoryAsync);
-        }
+        return InnerFoldThis(ValueTask.FromResult, otherFactoryAsync);
     }
 }

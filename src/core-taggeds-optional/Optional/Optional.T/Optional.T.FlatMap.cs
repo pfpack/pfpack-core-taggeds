@@ -1,30 +1,27 @@
-﻿#nullable enable
+﻿using System.Threading.Tasks;
 
-using System.Threading.Tasks;
+namespace System;
 
-namespace System
+partial struct Optional<T>
 {
-    partial struct Optional<T>
+    public Optional<TResult> FlatMap<TResult>(Func<T, Optional<TResult>> map)
     {
-        public Optional<TResult> FlatMap<TResult>(Func<T, Optional<TResult>> map)
-        {
-            _ = map ?? throw new ArgumentNullException(nameof(map));
+        _ = map ?? throw new ArgumentNullException(nameof(map));
 
-            return InnerBindOrFlatMap(map);
-        }
+        return InnerBindOrFlatMap(map);
+    }
 
-        public Task<Optional<TResult>> FlatMapAsync<TResult>(Func<T, Task<Optional<TResult>>> mapAsync)
-        {
-            _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
+    public Task<Optional<TResult>> FlatMapAsync<TResult>(Func<T, Task<Optional<TResult>>> mapAsync)
+    {
+        _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return InnerBindOrFlatMapAsync(mapAsync);
-        }
+        return InnerBindOrFlatMapAsync(mapAsync);
+    }
 
-        public ValueTask<Optional<TResult>> FlatMapValueAsync<TResult>(Func<T, ValueTask<Optional<TResult>>> mapAsync)
-        {
-            _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
+    public ValueTask<Optional<TResult>> FlatMapValueAsync<TResult>(Func<T, ValueTask<Optional<TResult>>> mapAsync)
+    {
+        _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
 
-            return InnerBindOrFlatMapValueAsync(mapAsync);
-        }
+        return InnerBindOrFlatMapValueAsync(mapAsync);
     }
 }

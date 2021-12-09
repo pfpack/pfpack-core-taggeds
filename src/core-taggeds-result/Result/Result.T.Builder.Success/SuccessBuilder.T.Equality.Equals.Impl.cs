@@ -1,11 +1,8 @@
-﻿#nullable enable
+﻿namespace PrimeFuncPack.Core;
 
-namespace PrimeFuncPack.Core
+partial struct SuccessBuilder<TSuccess>
 {
-    partial struct SuccessBuilder<TSuccess>
-    {
-        public bool Equals(SuccessBuilder<TSuccess> other)
-            =>
-            SuccessComparer.Equals(success, other.success);
-    }
+    public bool Equals(SuccessBuilder<TSuccess> other)
+        =>
+        SuccessComparer.Equals(success, other.success);
 }

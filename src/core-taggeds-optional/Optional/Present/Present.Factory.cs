@@ -1,11 +1,8 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+partial class Present
 {
-    partial class Present
-    {
-        public static Present<T> Of<T>(T value)
-            =>
-            new(value);
-    }
+    public static Present<T> Of<T>(T value)
+        =>
+        new(value);
 }

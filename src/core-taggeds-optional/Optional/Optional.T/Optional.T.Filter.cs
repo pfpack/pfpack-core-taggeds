@@ -1,50 +1,47 @@
-﻿#nullable enable
+﻿using System.Threading.Tasks;
 
-using System.Threading.Tasks;
+namespace System;
 
-namespace System
+partial struct Optional<T>
 {
-    partial struct Optional<T>
+    public Optional<T> Filter(Func<T, bool> predicate)
     {
-        public Optional<T> Filter(Func<T, bool> predicate)
-        {
-            _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
+        _ = predicate ?? throw new ArgumentNullException(nameof(predicate));
 
-            return InnerFold(value => FilterPresent(value, predicate, InnerThis), InnerThis);
+        return InnerFold(value => FilterPresent(value, predicate, InnerThis), InnerThis);
 
-            static Optional<T> FilterPresent(T value, Func<T, bool> predicate, Func<Optional<T>> thisSupplier)
-                =>
-                predicate.Invoke(value)
-                    ? thisSupplier.Invoke()
-                    : default;
-        }
+        static Optional<T> FilterPresent(T value, Func<T, bool> predicate, Func<Optional<T>> thisSupplier)
+            =>
+            predicate.Invoke(value)
+                ? thisSupplier.Invoke()
+                : default;
+    }
 
-        public Task<Optional<T>> FilterAsync(Func<T, Task<bool>> predicateAsync)
-        {
-            _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
+    public Task<Optional<T>> FilterAsync(Func<T, Task<bool>> predicateAsync)
+    {
+        _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
 
-            return InnerFold(value => FilterPresentAsync(value, predicateAsync, InnerThis), InnerThisAsync);
+        return InnerFold(value => FilterPresentAsync(value, predicateAsync, InnerThis), InnerThisAsync);
 
-            static async Task<Optional<T>> FilterPresentAsync(
-                T value, Func<T, Task<bool>> predicateAsync, Func<Optional<T>> thisSupplier)
-                =>
-                await predicateAsync.Invoke(value).ConfigureAwait(false)
-                    ? thisSupplier.Invoke()
-                    : default;
-        }
+        static async Task<Optional<T>> FilterPresentAsync(
+            T value, Func<T, Task<bool>> predicateAsync, Func<Optional<T>> thisSupplier)
+            =>
+            await predicateAsync.Invoke(value).ConfigureAwait(false)
+                ? thisSupplier.Invoke()
+                : default;
+    }
 
-        public ValueTask<Optional<T>> FilterValueAsync(Func<T, ValueTask<bool>> predicateAsync)
-        {
-            _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
+    public ValueTask<Optional<T>> FilterValueAsync(Func<T, ValueTask<bool>> predicateAsync)
+    {
+        _ = predicateAsync ?? throw new ArgumentNullException(nameof(predicateAsync));
 
-            return InnerFold(value => FilterPresentAsync(value, predicateAsync, InnerThis), InnerThisValueAsync);
+        return InnerFold(value => FilterPresentAsync(value, predicateAsync, InnerThis), InnerThisValueAsync);
 
-            static async ValueTask<Optional<T>> FilterPresentAsync(
-                T value, Func<T, ValueTask<bool>> predicateAsync, Func<Optional<T>> thisSupplier)
-                =>
-                await predicateAsync.Invoke(value).ConfigureAwait(false)
-                    ? thisSupplier.Invoke()
-                    : default;
-        }
+        static async ValueTask<Optional<T>> FilterPresentAsync(
+            T value, Func<T, ValueTask<bool>> predicateAsync, Func<Optional<T>> thisSupplier)
+            =>
+            await predicateAsync.Invoke(value).ConfigureAwait(false)
+                ? thisSupplier.Invoke()
+                : default;
     }
 }

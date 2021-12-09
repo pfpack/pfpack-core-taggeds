@@ -1,13 +1,10 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+partial struct Optional<T>
 {
-    partial struct Optional<T>
-    {
-        public override string ToString()
-            =>
-            InnerFold(
-                InternalToString<T>.OptionalPresent,
-                InternalToString<T>.OptionalAbsent);
-    }
+    public override string ToString()
+        =>
+        InnerFold(
+            InternalToString<T>.OptionalPresent,
+            InternalToString<T>.OptionalAbsent);
 }

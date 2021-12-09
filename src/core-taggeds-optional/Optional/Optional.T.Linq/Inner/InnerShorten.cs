@@ -1,9 +1,6 @@
-﻿#nullable enable
+﻿namespace System.Linq;
 
-namespace System.Linq
+partial class OptionalLinqExtensions
 {
-    partial class OptionalLinqExtensions
-    {
-        private static int InnerShorten(this long index) => unchecked((int)index);
-    }
+    private static int InnerShorten(this long index) => unchecked((int)index);
 }

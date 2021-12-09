@@ -1,48 +1,45 @@
-﻿#nullable enable
+﻿using System.Threading.Tasks;
 
-using System.Threading.Tasks;
+namespace System;
 
-namespace System
+partial struct Result<TSuccess, TFailure>
 {
-    partial struct Result<TSuccess, TFailure>
+    public Result<TResultSuccess, TResultFailure> Map<TResultSuccess, TResultFailure>(
+        Func<TSuccess, TResultSuccess> mapSuccess,
+        Func<TFailure, TResultFailure> mapFailure)
+        where TResultFailure : struct
     {
-        public Result<TResultSuccess, TResultFailure> Map<TResultSuccess, TResultFailure>(
-            Func<TSuccess, TResultSuccess> mapSuccess,
-            Func<TFailure, TResultFailure> mapFailure)
-            where TResultFailure : struct
-        {
-            _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
-            _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
+        _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
+        _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-            return InternalFold<Result<TResultSuccess, TResultFailure>>(
-                value => mapSuccess.Invoke(value),
-                value => mapFailure.Invoke(value));
-        }
+        return InternalFold<Result<TResultSuccess, TResultFailure>>(
+            value => mapSuccess.Invoke(value),
+            value => mapFailure.Invoke(value));
+    }
 
-        public Task<Result<TResultSuccess, TResultFailure>> MapAsync<TResultSuccess, TResultFailure>(
-            Func<TSuccess, Task<TResultSuccess>> mapSuccessAsync,
-            Func<TFailure, Task<TResultFailure>> mapFailureAsync)
-            where TResultFailure : struct
-        {
-            _ = mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync));
-            _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
+    public Task<Result<TResultSuccess, TResultFailure>> MapAsync<TResultSuccess, TResultFailure>(
+        Func<TSuccess, Task<TResultSuccess>> mapSuccessAsync,
+        Func<TFailure, Task<TResultFailure>> mapFailureAsync)
+        where TResultFailure : struct
+    {
+        _ = mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync));
+        _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-            return InternalFold<Task<Result<TResultSuccess, TResultFailure>>>(
-                async value => await mapSuccessAsync.Invoke(value).ConfigureAwait(false),
-                async value => await mapFailureAsync.Invoke(value).ConfigureAwait(false));
-        }
+        return InternalFold<Task<Result<TResultSuccess, TResultFailure>>>(
+            async value => await mapSuccessAsync.Invoke(value).ConfigureAwait(false),
+            async value => await mapFailureAsync.Invoke(value).ConfigureAwait(false));
+    }
 
-        public ValueTask<Result<TResultSuccess, TResultFailure>> MapValueAsync<TResultSuccess, TResultFailure>(
-            Func<TSuccess, ValueTask<TResultSuccess>> mapSuccessAsync,
-            Func<TFailure, ValueTask<TResultFailure>> mapFailureAsync)
-            where TResultFailure : struct
-        {
-            _ = mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync));
-            _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
+    public ValueTask<Result<TResultSuccess, TResultFailure>> MapValueAsync<TResultSuccess, TResultFailure>(
+        Func<TSuccess, ValueTask<TResultSuccess>> mapSuccessAsync,
+        Func<TFailure, ValueTask<TResultFailure>> mapFailureAsync)
+        where TResultFailure : struct
+    {
+        _ = mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync));
+        _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-            return InternalFold<ValueTask<Result<TResultSuccess, TResultFailure>>>(
-                async value => await mapSuccessAsync.Invoke(value).ConfigureAwait(false),
-                async value => await mapFailureAsync.Invoke(value).ConfigureAwait(false));
-        }
+        return InternalFold<ValueTask<Result<TResultSuccess, TResultFailure>>>(
+            async value => await mapSuccessAsync.Invoke(value).ConfigureAwait(false),
+            async value => await mapFailureAsync.Invoke(value).ConfigureAwait(false));
     }
 }

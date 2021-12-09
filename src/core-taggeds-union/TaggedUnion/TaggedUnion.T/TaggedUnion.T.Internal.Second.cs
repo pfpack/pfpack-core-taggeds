@@ -1,12 +1,9 @@
-﻿#nullable enable
+﻿using System.Runtime.CompilerServices;
 
-using System.Runtime.CompilerServices;
+namespace System;
 
-namespace System
+partial struct TaggedUnion<TFirst, TSecond>
 {
-    partial struct TaggedUnion<TFirst, TSecond>
-    {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private TSecond Second() => second;
-    }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private TSecond Second() => second;
 }

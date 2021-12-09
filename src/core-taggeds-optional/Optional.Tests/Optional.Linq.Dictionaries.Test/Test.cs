@@ -1,49 +1,46 @@
-﻿#nullable enable
-
-using Moq;
+﻿using Moq;
 using System.Collections.Generic;
 
-namespace PrimeFuncPack.Core.Tests
+namespace PrimeFuncPack.Core.Tests;
+
+public sealed partial class OptionalLinqDictionariesExtensionsTest
 {
-    public sealed partial class OptionalLinqDictionariesExtensionsTest
+    private static IEnumerable<KeyValuePair<TKey, TValue>> CreatePairsCollection<TKey, TValue>(
+        params KeyValuePair<TKey, TValue>[] pairs)
     {
-        private static IEnumerable<KeyValuePair<TKey, TValue>> CreatePairsCollection<TKey, TValue>(
-            params KeyValuePair<TKey, TValue>[] pairs)
+        foreach (var pair in pairs)
         {
-            foreach (var pair in pairs)
-            {
-                yield return pair;
-            }
+            yield return pair;
         }
+    }
 
-        private static Mock<IReadOnlyDictionary<TKey, TValue>> CreateMockReadOnlyDictionary<TKey, TValue>(
-            bool tryGetValueResult,
-            TValue returnedValue)
-        {
-            var mock = new Mock<IReadOnlyDictionary<TKey, TValue>>();
+    private static Mock<IReadOnlyDictionary<TKey, TValue>> CreateMockReadOnlyDictionary<TKey, TValue>(
+        bool tryGetValueResult,
+        TValue returnedValue)
+    {
+        var mock = new Mock<IReadOnlyDictionary<TKey, TValue>>();
 
-            _ = mock
+        _ = mock
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-                .Setup(d => d.TryGetValue(It.IsAny<TKey>(), out returnedValue))
+            .Setup(d => d.TryGetValue(It.IsAny<TKey>(), out returnedValue))
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-                .Returns(tryGetValueResult);
+            .Returns(tryGetValueResult);
 
-            return mock;
-        }
+        return mock;
+    }
 
-        private static Mock<IDictionary<TKey, TValue>> CreateMockDictionary<TKey, TValue>(
-            bool tryGetValueResult,
-            TValue returnedValue)
-        {
-            var mock = new Mock<IDictionary<TKey, TValue>>();
+    private static Mock<IDictionary<TKey, TValue>> CreateMockDictionary<TKey, TValue>(
+        bool tryGetValueResult,
+        TValue returnedValue)
+    {
+        var mock = new Mock<IDictionary<TKey, TValue>>();
 
-            _ = mock
+        _ = mock
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-                .Setup(d => d.TryGetValue(It.IsAny<TKey>(), out returnedValue))
+            .Setup(d => d.TryGetValue(It.IsAny<TKey>(), out returnedValue))
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-                .Returns(tryGetValueResult);
+            .Returns(tryGetValueResult);
 
-            return mock;
-        }
+        return mock;
     }
 }

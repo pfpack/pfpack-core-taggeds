@@ -1,9 +1,5 @@
-#nullable enable
+namespace PrimeFuncPack.Core.Tests;
 
-namespace PrimeFuncPack.Core.Tests
+public sealed partial class FailureBuilderTest
 {
-    public sealed partial class FailureBuilderTest
-    {
-        
-    }
 }

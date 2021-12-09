@@ -1,19 +1,16 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+public readonly partial struct Optional<T> : IEquatable<Optional<T>>
 {
-    public readonly partial struct Optional<T> : IEquatable<Optional<T>>
-    {
-        private readonly bool hasValue;
+    private readonly bool hasValue;
 
-        private readonly T value;
+    private readonly T value;
 
-        public bool IsPresent
-            =>
-            hasValue;
+    public bool IsPresent
+        =>
+        hasValue;
 
-        public bool IsAbsent
-            =>
-            hasValue is false;
-    }
+    public bool IsAbsent
+        =>
+        hasValue is false;
 }

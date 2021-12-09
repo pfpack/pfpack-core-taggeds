@@ -1,15 +1,12 @@
-﻿#nullable enable
+﻿using System;
 
-using System;
+namespace PrimeFuncPack.Core;
 
-namespace PrimeFuncPack.Core
+partial struct SuccessBuilder<TSuccess>
 {
-    partial struct SuccessBuilder<TSuccess>
-    {
-        public override int GetHashCode()
-            =>
-            success is not null
-                ? HashCode.Combine(EqualityContract, SuccessComparer.GetHashCode(success))
-                : HashCode.Combine(EqualityContract);
-    }
+    public override int GetHashCode()
+        =>
+        success is not null
+            ? HashCode.Combine(EqualityContract, SuccessComparer.GetHashCode(success))
+            : HashCode.Combine(EqualityContract);
 }

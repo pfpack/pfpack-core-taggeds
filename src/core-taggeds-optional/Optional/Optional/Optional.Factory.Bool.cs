@@ -1,15 +1,12 @@
-﻿#nullable enable
+﻿namespace System;
 
-namespace System
+partial class Optional
 {
-    partial class Optional
-    {
-        public static Optional<Unit> True()
-            =>
-            new(default);
+    public static Optional<Unit> True()
+        =>
+        new(default);
 
-        public static Optional<Unit> False()
-            =>
-            default;
-    }
+    public static Optional<Unit> False()
+        =>
+        default;
 }
