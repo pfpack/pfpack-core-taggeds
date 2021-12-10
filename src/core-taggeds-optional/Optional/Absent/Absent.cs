@@ -1,5 +1,5 @@
 ﻿namespace System;
 
-public static partial class Absent
+internal static partial class Absent
 {
 }

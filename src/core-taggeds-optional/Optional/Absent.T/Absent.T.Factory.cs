@@ -2,5 +2,6 @@
 
 partial struct Absent<T>
 {
-    public static readonly Absent<T> Value;
+    // TODO: Uncomment when Absent<T> becomes public
+    //public static readonly Absent<T> Value;
 }

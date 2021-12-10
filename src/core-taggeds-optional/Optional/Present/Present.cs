@@ -1,5 +1,5 @@
 ﻿namespace System;
 
-public static partial class Present
+internal static partial class Present
 {
 }
