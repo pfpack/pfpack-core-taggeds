@@ -5,50 +5,38 @@ namespace System;
 partial struct Optional<T>
 {
     internal Optional<T> OnPresent(
-        Func<T, Unit> handler)
-    {
-        _ = handler ?? throw new ArgumentNullException(nameof(handler));
+        Action handler)
+        =>
+        InnerOnPresent(
+            handler ?? throw new ArgumentNullException(nameof(handler)));
 
-        return InnerOnPresent(handler, InnerThis);
-    }
-
-    internal Optional<T> OnPresent(
-        Action<T> handler)
-    {
-        _ = handler ?? throw new ArgumentNullException(nameof(handler));
-
-        return InnerOnPresent(handler.InvokeThenToUnit, InnerThis);
-    }
+    internal Optional<T> OnPresent<TUnit>(
+        Func<TUnit> handler)
+        =>
+        InnerOnPresent(
+            handler ?? throw new ArgumentNullException(nameof(handler)));
 
     internal Task<Optional<T>> OnPresentAsync(
-        Func<T, Task<Unit>> handlerAsync)
-    {
-        _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
+        Func<Task> handlerAsync)
+        =>
+        InnerOnPresentAsync(
+            handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync)));
 
-        return InnerOnPresent(handlerAsync, InnerThisAsync);
-    }
-
-    internal Task<Optional<T>> OnPresentAsync(
-        Func<T, Task> handlerAsync)
-    {
-        _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
-
-        return InnerOnPresent(handlerAsync, InnerThisAsync);
-    }
+    internal Task<Optional<T>> OnPresentAsync<TUnit>(
+        Func<Task<TUnit>> handlerAsync)
+        =>
+        InnerOnPresentAsync(
+            handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync)));
 
     internal ValueTask<Optional<T>> OnPresentValueAsync(
-        Func<T, ValueTask<Unit>> handlerAsync)
-    {
-        _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
+        Func<ValueTask> handlerAsync)
+        =>
+        InnerOnPresentValueAsync(
+            handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync)));
 
-        return InnerOnPresent(handlerAsync, InnerThisValueAsync);
-    }
-
-    internal ValueTask<Optional<T>> OnPresentValueAsync(
-        Func<T, ValueTask> handlerAsync)
-    {
-        _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
-
-        return InnerOnPresent(handlerAsync, InnerThisValueAsync);
-    }
+    internal ValueTask<Optional<T>> OnPresentValueAsync<TUnit>(
+        Func<ValueTask<TUnit>> handlerAsync)
+        =>
+        InnerOnPresentValueAsync(
+            handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync)));
 }
