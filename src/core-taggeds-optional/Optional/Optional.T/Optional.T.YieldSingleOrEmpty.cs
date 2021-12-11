@@ -6,5 +6,5 @@ partial struct Optional<T>
 {
     public IEnumerable<T> YieldSingleOrEmpty()
         =>
-        InnerFlattenOrYield();
+        InnerYieldSingleOrEmpty();
 }
