@@ -7,19 +7,19 @@ partial struct Optional<T>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private Optional<TResult> InnerBindOrFlatMap<TResult>(
-        Func<T, Optional<TResult>> map)
+        Func<T, Optional<TResult>> binderOrMap)
         =>
-        hasValue ? map.Invoke(value) : default;
+        hasValue ? binderOrMap.Invoke(value) : default;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private Task<Optional<TResult>> InnerBindOrFlatMapAsync<TResult>(
-        Func<T, Task<Optional<TResult>>> mapAsync)
+        Func<T, Task<Optional<TResult>>> binderOrMapAsync)
         =>
-        hasValue ? mapAsync.Invoke(value) : Task.FromResult(default(Optional<TResult>));
+        hasValue ? binderOrMapAsync.Invoke(value) : Task.FromResult(default(Optional<TResult>));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private ValueTask<Optional<TResult>> InnerBindOrFlatMapValueAsync<TResult>(
-        Func<T, ValueTask<Optional<TResult>>> mapAsync)
+        Func<T, ValueTask<Optional<TResult>>> binderOrMapAsync)
         =>
-        hasValue ? mapAsync.Invoke(value) : default;
+        hasValue ? binderOrMapAsync.Invoke(value) : default;
 }
