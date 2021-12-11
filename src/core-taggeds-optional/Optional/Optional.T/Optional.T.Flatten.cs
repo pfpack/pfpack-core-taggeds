@@ -4,7 +4,8 @@ namespace System;
 
 partial struct Optional<T>
 {
-    public IEnumerable<T> Flatten()
+    // TODO: Consider to open in v1.2
+    private IEnumerable<T> Flatten()
         =>
         InnerFlattenOrYield();
 }
