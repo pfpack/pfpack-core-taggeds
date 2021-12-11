@@ -8,11 +8,10 @@ partial class OptionalLinqExtensions
     public static Optional<TValue> GetValueOrAbsent<TKey, TValue>(
         this IReadOnlyDictionary<TKey, TValue> dictionary,
         TKey key)
-    {
-        _ = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
-
-        return dictionary.InnerGetValueOrAbsent(key);
-    }
+        =>
+        InnerGetValueOrAbsent(
+            dictionary ?? throw new ArgumentNullException(nameof(dictionary)),
+            key);
 
     [Obsolete(InnerTryGetValueOrAbsentObsoleteMessage, error: true)]
     [DoesNotReturn]

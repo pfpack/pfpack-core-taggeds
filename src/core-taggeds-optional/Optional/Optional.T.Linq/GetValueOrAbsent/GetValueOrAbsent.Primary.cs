@@ -8,11 +8,10 @@ partial class OptionalLinqExtensions
     public static Optional<TValue> GetValueOrAbsent<TKey, TValue>(
         this IEnumerable<KeyValuePair<TKey, TValue>> pairs,
         TKey key)
-    {
-        _ = pairs ?? throw new ArgumentNullException(nameof(pairs));
-
-        return pairs.InnerGetValueOrAbsentPrimary(key);
-    }
+        =>
+        InnerGetValueOrAbsentPrimary(
+            pairs ?? throw new ArgumentNullException(nameof(pairs)),
+            key);
 
     [Obsolete(InnerTryGetValueOrAbsentObsoleteMessage, error: true)]
     [DoesNotReturn]
