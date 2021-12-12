@@ -1,6 +1,6 @@
 ﻿namespace System;
 
-// TODO: Consider to remove the class in v3.0
+// TODO: Consider to remove the class in v3.0 or v4.0
 [Obsolete(InnerClassObsoleteMessage, error: true)]
 public static partial class FilterNotNullOptionalExtensions
 {

@@ -6,7 +6,7 @@ namespace System;
 partial struct Optional<T>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private IEnumerable<T> InnerYield()
+    private IEnumerable<T> InnerYieldFlattened()
         =>
         InnerFold(InnerYieldSingle, InnerYieldEmpty);
 
