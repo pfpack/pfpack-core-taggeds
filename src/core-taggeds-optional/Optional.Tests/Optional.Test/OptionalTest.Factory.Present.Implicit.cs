@@ -10,28 +10,28 @@ partial class OptionalTest
     [Test]
     public void Present_Implicit_SourceIsNull_ExpectPresentIsTrue()
     {
-        var actual = Optional<StructType?>.Present(null);
+        Optional<StructType?> actual = null;
         Assert.True(actual.IsPresent);
     }
 
     [Test]
     public void Present_Implicit_SourceIsNull_ExpectAbsentIsFalse()
     {
-        var actual = Optional<StructType?>.Present(null);
+        Optional<StructType?> actual = null;
         Assert.False(actual.IsAbsent);
     }
 
     [Test]
     public void Present_Implicit_SourceIsNotNull_ExpectPresentIsTrue()
     {
-        var actual = Optional<RefType>.Present(PlusFifteenIdRefType);
+        Optional<RefType> actual = PlusFifteenIdRefType;
         Assert.True(actual.IsPresent);
     }
 
     [Test]
     public void Present_Implicit_SourceIsNotNull_ExpectAbsentIsFalse()
     {
-        var actual = Optional<RefType>.Present(MinusFifteenIdRefType);
+        Optional<RefType> actual = MinusFifteenIdRefType;
         Assert.False(actual.IsAbsent);
     }
 }

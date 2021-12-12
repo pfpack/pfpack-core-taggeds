@@ -6,17 +6,20 @@ namespace System;
 partial struct Optional<T>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private Optional<TResult> InnerBindOrFlatMap<TResult>(Func<T, Optional<TResult>> map)
+    private Optional<TResult> InnerBindOrFlatMap<TResult>(
+        Func<T, Optional<TResult>> binderOrMap)
         =>
-        InnerFold(map, static () => default);
+        hasValue ? binderOrMap.Invoke(value) : default;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private Task<Optional<TResult>> InnerBindOrFlatMapAsync<TResult>(Func<T, Task<Optional<TResult>>> mapAsync)
+    private Task<Optional<TResult>> InnerBindOrFlatMapAsync<TResult>(
+        Func<T, Task<Optional<TResult>>> binderOrMapAsync)
         =>
-        InnerFold(mapAsync, static () => Task.FromResult<Optional<TResult>>(default));
+        hasValue ? binderOrMapAsync.Invoke(value) : Task.FromResult(default(Optional<TResult>));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private ValueTask<Optional<TResult>> InnerBindOrFlatMapValueAsync<TResult>(Func<T, ValueTask<Optional<TResult>>> mapAsync)
+    private ValueTask<Optional<TResult>> InnerBindOrFlatMapValueAsync<TResult>(
+        Func<T, ValueTask<Optional<TResult>>> binderOrMapAsync)
         =>
-        InnerFold(mapAsync, static () => default);
+        hasValue ? binderOrMapAsync.Invoke(value) : default;
 }

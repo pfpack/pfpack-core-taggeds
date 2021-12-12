@@ -6,5 +6,5 @@ partial struct SuccessBuilder<TSuccess>
 {
     public override string ToString()
         =>
-        success.ToStringOrEmpty();
+        (success?.ToString()).OrEmpty();
 }

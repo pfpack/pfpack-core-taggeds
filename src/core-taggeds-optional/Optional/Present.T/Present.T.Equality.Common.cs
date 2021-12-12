@@ -6,5 +6,5 @@ partial struct Present<T>
 {
     private static Type EqualityContract => typeof(Present<T>);
 
-    private static IEqualityComparer<T> EqualityComparer => EqualityComparer<T>.Default;        
+    private static EqualityComparer<T> EqualityComparer => EqualityComparer<T>.Default;        
 }

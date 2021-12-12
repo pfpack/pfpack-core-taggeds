@@ -67,15 +67,23 @@ partial class OptionalLinqDictionariesExtensionsTest
         Assert.AreEqual(expected, actual);
     }
 
-    public void GetValueOrAbsent_PairsContainMoreThanOneKey_ExpectInvalidOperationException()
+    [Test]
+    public void GetValueOrAbsent_PairsContainMoreThanOneKey_ExpectFirst()
     {
-        var expectedValue = SomeTextStructType;
+        var expectedValue1 = NullTextStructType;
+        var expectedValue2 = SomeTextStructType;
 
         var sourcePairs = CreatePairsCollection(
             new KeyValuePair<RefType, StructType>(PlusFifteenIdRefType, NullTextStructType),
             new KeyValuePair<RefType, StructType>(MinusFifteenIdRefType, SomeTextStructType),
             new KeyValuePair<RefType, StructType>(PlusFifteenIdRefType, SomeTextStructType));
 
-        _ = Assert.Throws<InvalidOperationException>(() => _ = sourcePairs.GetValueOrAbsent(PlusFifteenIdRefType));
+        var actual = sourcePairs.GetValueOrAbsent(PlusFifteenIdRefType);
+
+        var expected1 = Optional<StructType>.Present(expectedValue1);
+        var expected2 = Optional<StructType>.Present(expectedValue2);
+
+        bool equalToAnExpected = actual.Equals(expected1) || actual.Equals(expected2);
+        Assert.True(equalToAnExpected);
     }
 }

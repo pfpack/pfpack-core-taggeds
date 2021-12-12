@@ -7,6 +7,7 @@ namespace PrimeFuncPack.Core.Tests;
 
 partial class OptionalTest
 {
+    [Obsolete]
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
     public void YieldSingleOrEmpty_SourceIsPresent_ExpectSingleValue(
@@ -21,6 +22,7 @@ partial class OptionalTest
         Assert.AreEqual(sourceValue, actualValue);
     }
 
+    [Obsolete]
     [Test]
     public void YieldSingleOrEmpty_SourceIsAbsent_ExpectEmpty()
     {

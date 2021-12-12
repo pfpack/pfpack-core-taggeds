@@ -7,5 +7,5 @@ partial struct Optional<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private T InnerOrThrow(Func<Exception> exceptionFactory)
         =>
-        InnerFold(InnerPipe, () => throw exceptionFactory.Invoke());
+        hasValue ? value : throw exceptionFactory.Invoke();
 }

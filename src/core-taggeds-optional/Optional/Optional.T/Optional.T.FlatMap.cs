@@ -4,24 +4,18 @@ namespace System;
 
 partial struct Optional<T>
 {
-    public Optional<TResult> FlatMap<TResult>(Func<T, Optional<TResult>> map)
-    {
-        _ = map ?? throw new ArgumentNullException(nameof(map));
+    public Optional<TResult> FlatMap<TResult>(
+        Func<T, Optional<TResult>> map)
+        =>
+        InnerBindOrFlatMap(map ?? throw new ArgumentNullException(nameof(map)));
 
-        return InnerBindOrFlatMap(map);
-    }
+    public Task<Optional<TResult>> FlatMapAsync<TResult>(
+        Func<T, Task<Optional<TResult>>> mapAsync)
+        =>
+        InnerBindOrFlatMapAsync(mapAsync ?? throw new ArgumentNullException(nameof(mapAsync)));
 
-    public Task<Optional<TResult>> FlatMapAsync<TResult>(Func<T, Task<Optional<TResult>>> mapAsync)
-    {
-        _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
-
-        return InnerBindOrFlatMapAsync(mapAsync);
-    }
-
-    public ValueTask<Optional<TResult>> FlatMapValueAsync<TResult>(Func<T, ValueTask<Optional<TResult>>> mapAsync)
-    {
-        _ = mapAsync ?? throw new ArgumentNullException(nameof(mapAsync));
-
-        return InnerBindOrFlatMapValueAsync(mapAsync);
-    }
+    public ValueTask<Optional<TResult>> FlatMapValueAsync<TResult>(
+        Func<T, ValueTask<Optional<TResult>>> mapAsync)
+        =>
+        InnerBindOrFlatMapValueAsync(mapAsync ?? throw new ArgumentNullException(nameof(mapAsync)));
 }

@@ -7,9 +7,6 @@ partial struct Optional<T>
         InnerOrThrow(InnerCreateExpectedPresentException);
 
     public T OrThrow(Func<Exception> exceptionFactory)
-    {
-        _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
-
-        return InnerOrThrow(exceptionFactory);
-    }
+        =>
+        InnerOrThrow(exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory)));
 }

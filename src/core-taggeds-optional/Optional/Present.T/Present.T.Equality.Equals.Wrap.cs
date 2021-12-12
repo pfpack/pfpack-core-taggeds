@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace System;
 
 partial struct Present<T>
@@ -14,7 +16,7 @@ partial struct Present<T>
         =>
         left.Equals(right) is false;
 
-    public override bool Equals(object? obj)
+    public override bool Equals([NotNullWhen(true)] object? obj)
         =>
         obj is Present<T> other &&
         Equals(other);

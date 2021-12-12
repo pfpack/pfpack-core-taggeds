@@ -1,5 +1,6 @@
 ﻿namespace System;
 
-public static partial class Present
+// TODO: Add the tests and open the type
+internal static partial class Present
 {
 }
