@@ -4,7 +4,7 @@ namespace System;
 
 partial struct Optional<T>
 {
-    public IEnumerable<T> YieldSingleOrEmpty()
+    public IEnumerable<T> YieldFlattened()
         =>
         InnerYield();
 }
