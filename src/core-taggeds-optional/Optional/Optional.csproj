@@ -2,17 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Description>PrimeFuncPack Core.Optional is a core library for .NET consisting of Optional monad targeted for use in functional programming.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/pfpack/pfpack-core-taggeds</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/pfpack/pfpack-core-taggeds</RepositoryUrl>
+    <Company>pfpack</Company>
+    <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
     <Copyright>Copyright © 2020-2021 Andrei Sergeev, Pavel Moskovoy</Copyright>
+    <Description>PrimeFuncPack Core.Optional is a core library for .NET consisting of Optional monad targeted for use in functional programming.</Description>
     <RootNamespace>System</RootNamespace>
     <AssemblyName>PrimeFuncPack.Core.Optional</AssemblyName>
-    <Version>1.2.0-preview.2.0.0</Version>
+    <Version>2.0.0-preview.1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,13 +25,14 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+    <None Include="..\..\..\docs\core-taggeds-optional\README.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
-  <!-- TODO: Remove redundant Primitives dependency in Optional v2.0 -->
-
   <ItemGroup>
-    <PackageReference Include="PrimeFuncPack.Core.Unit" Version="1.1.1" />
-    <PackageReference Include="PrimeFuncPack.Primitives" Version="1.2.0" />
+    <PackageReference Include="PrimeFuncPack.Core.Unit" Version="2.1.0" />
   </ItemGroup>
 
 </Project>
