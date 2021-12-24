@@ -10,7 +10,7 @@ partial class TaggedUnionExtensions
     {
         _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-        return union.InternalOrInitialize(Pipeline.Pipe, otherFactory);
+        return union.IsInitialized ? union : otherFactory.Invoke();
     }
 
     public static Task<TaggedUnion<TFirst, TSecond>> OrInitializeAsync<TFirst, TSecond>(
@@ -19,7 +19,7 @@ partial class TaggedUnionExtensions
     {
         _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-        return union.InternalOrInitialize(Task.FromResult, otherFactoryAsync);
+        return union.IsInitialized ? Task.FromResult(union) : otherFactoryAsync.Invoke();
     }
 
     public static ValueTask<TaggedUnion<TFirst, TSecond>> OrInitializeValueAsync<TFirst, TSecond>(
@@ -28,6 +28,6 @@ partial class TaggedUnionExtensions
     {
         _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-        return union.InternalOrInitialize(ValueTask.FromResult, otherFactoryAsync);
+        return union.IsInitialized ? ValueTask.FromResult(union) : otherFactoryAsync.Invoke();
     }
 }
