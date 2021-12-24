@@ -6,7 +6,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests;
 
-partial class TaggedUnionExtensionsTest
+partial class TaggedUnionTest
 {
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.TaggedUnionTestSource))]

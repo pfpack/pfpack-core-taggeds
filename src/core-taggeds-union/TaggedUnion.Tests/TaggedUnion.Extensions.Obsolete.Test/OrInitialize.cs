@@ -12,7 +12,7 @@ partial class TaggedUnionExtensionsTest
     public void OrInitialize_OtherFactoryIsNull_ExpectArgumentNullException(
         TaggedUnion<RefType, StructType> source)
     {
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.OrInitialize(null!));
+        var ex = Assert.Throws<ArgumentNullException>(() => _ = TaggedUnionExtensions.OrInitialize(source, null!));
         Assert.AreEqual("otherFactory", ex!.ParamName);
     }
 
@@ -22,7 +22,7 @@ partial class TaggedUnionExtensionsTest
         var source = TaggedUnion<object, StructType>.First(new object());
         var other = TaggedUnion<object, StructType>.Second(SomeTextStructType);
 
-        var actual = source.OrInitialize(() => other);
+        var actual = TaggedUnionExtensions.OrInitialize(source, () => other);
         Assert.AreEqual(source, actual);
     }
 
@@ -32,7 +32,7 @@ partial class TaggedUnionExtensionsTest
         var source = TaggedUnion<object, RefType>.Second(ZeroIdRefType);
         var other = TaggedUnion<object, RefType>.Second(PlusFifteenIdRefType);
 
-        var actual = source.OrInitialize(() => other);
+        var actual = TaggedUnionExtensions.OrInitialize(source, () => other);
         Assert.AreEqual(source, actual);
     }
 
@@ -42,7 +42,7 @@ partial class TaggedUnionExtensionsTest
         var source = default(TaggedUnion<object, StructType>);
         var other = TaggedUnion<object, StructType>.First(new object());
 
-        var actual = source.OrInitialize(() => other);
+        var actual = TaggedUnionExtensions.OrInitialize(source, () => other);
         Assert.AreEqual(other, actual);
     }
 }
