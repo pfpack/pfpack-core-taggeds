@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace System;
 
 partial struct TaggedUnion<TFirst, TSecond>
 {
@@ -14,7 +16,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         =>
         left.Equals(right) is false;
 
-    public override bool Equals(object? obj)
+    public override bool Equals([NotNullWhen(true)] object? obj)
         =>
         obj is TaggedUnion<TFirst, TSecond> other &&
         Equals(other);
