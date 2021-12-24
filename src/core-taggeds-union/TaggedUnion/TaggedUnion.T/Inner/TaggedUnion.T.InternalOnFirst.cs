@@ -9,6 +9,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         Func<TFirst, THandlerOut> handler,
         Func<TResult> resultSupplier)
         =>
-        InternalOn(
-            Tag.First, First, handler, resultSupplier);
+        throw new NotImplementedException();
+        //InternalOn(
+        //    Tag.First, First, handler, resultSupplier);
 }

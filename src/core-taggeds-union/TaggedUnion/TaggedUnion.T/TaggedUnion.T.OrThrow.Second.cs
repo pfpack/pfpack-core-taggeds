@@ -4,12 +4,9 @@ partial struct TaggedUnion<TFirst, TSecond>
 {
     public TSecond SecondOrThrow()
         =>
-        InternalSecondOrThrow(CreateNotSecondException);
+        InnerSecondOrThrow(InnerCreateExpectedSecondException);
 
     public TSecond SecondOrThrow(Func<Exception> exceptionFactory)
-    {
-        _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
-
-        return InternalSecondOrThrow(exceptionFactory);
-    }
+        =>
+        InnerSecondOrThrow(exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory)));
 }
