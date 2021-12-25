@@ -10,12 +10,12 @@ partial struct TaggedUnion<TFirst, TSecond>
         Func<TSecond, TResult> mapSecond,
         Func<TResult> otherFactory)
     {
-        if (tag == Tag.First)
+        if (tag is InternalTag.First)
         {
             return mapFirst.Invoke(first);
         }
 
-        if (tag == Tag.Second)
+        if (tag is InternalTag.Second)
         {
             return mapSecond.Invoke(second);
         }

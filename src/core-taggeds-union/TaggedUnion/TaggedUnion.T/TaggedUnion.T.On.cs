@@ -11,7 +11,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = onFirst ?? throw new ArgumentNullException(nameof(onFirst));
         _ = onSecond ?? throw new ArgumentNullException(nameof(onSecond));
 
-        return InternalOn(onFirst, onSecond, This);
+        throw new NotImplementedException();
     }
 
     public TaggedUnion<TFirst, TSecond> On(
@@ -21,7 +21,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = onFirst ?? throw new ArgumentNullException(nameof(onFirst));
         _ = onSecond ?? throw new ArgumentNullException(nameof(onSecond));
 
-        return InternalOn(onFirst.InvokeThenToUnit, onSecond.InvokeThenToUnit, This);
+        throw new NotImplementedException();
     }
 
     public Task<TaggedUnion<TFirst, TSecond>> OnAsync(
@@ -31,7 +31,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = onFirstAsync ?? throw new ArgumentNullException(nameof(onFirstAsync));
         _ = onSecondAsync ?? throw new ArgumentNullException(nameof(onSecondAsync));
 
-        return InternalOn(onFirstAsync, onSecondAsync, ThisAsync);
+        throw new NotImplementedException();
     }
 
     public Task<TaggedUnion<TFirst, TSecond>> OnAsync(
@@ -41,7 +41,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = onFirstAsync ?? throw new ArgumentNullException(nameof(onFirstAsync));
         _ = onSecondAsync ?? throw new ArgumentNullException(nameof(onSecondAsync));
 
-        return InternalOn(onFirstAsync, onSecondAsync, ThisAsync);
+        throw new NotImplementedException();
     }
 
     public ValueTask<TaggedUnion<TFirst, TSecond>> OnValueAsync(
@@ -51,7 +51,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = onFirstAsync ?? throw new ArgumentNullException(nameof(onFirstAsync));
         _ = onSecondAsync ?? throw new ArgumentNullException(nameof(onSecondAsync));
 
-        return InternalOn(onFirstAsync, onSecondAsync, ThisValueAsync);
+        throw new NotImplementedException();
     }
 
     public ValueTask<TaggedUnion<TFirst, TSecond>> OnValueAsync(
@@ -61,6 +61,6 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = onFirstAsync ?? throw new ArgumentNullException(nameof(onFirstAsync));
         _ = onSecondAsync ?? throw new ArgumentNullException(nameof(onSecondAsync));
 
-        return InternalOn(onFirstAsync, onSecondAsync, ThisValueAsync);
+        throw new NotImplementedException();
     }
 }

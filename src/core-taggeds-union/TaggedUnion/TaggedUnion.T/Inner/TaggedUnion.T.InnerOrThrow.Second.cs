@@ -7,5 +7,5 @@ partial struct TaggedUnion<TFirst, TSecond>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private TSecond InnerSecondOrThrow(Func<Exception> exceptionFactory)
         =>
-        tag == Tag.Second ? second : throw exceptionFactory.Invoke();
+        tag is InternalTag.Second ? second : throw exceptionFactory.Invoke();
 }

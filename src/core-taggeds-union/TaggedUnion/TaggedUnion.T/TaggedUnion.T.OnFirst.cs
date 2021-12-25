@@ -9,7 +9,7 @@ partial struct TaggedUnion<TFirst, TSecond>
     {
         _ = handler ?? throw new ArgumentNullException(nameof(handler));
 
-        return InternalOnFirst(handler, This);
+        throw new NotImplementedException();
     }
 
     public TaggedUnion<TFirst, TSecond> OnFirst(
@@ -17,7 +17,7 @@ partial struct TaggedUnion<TFirst, TSecond>
     {
         _ = handler ?? throw new ArgumentNullException(nameof(handler));
 
-        return InternalOnFirst(handler.InvokeThenToUnit, This);
+        throw new NotImplementedException();
     }
 
     public Task<TaggedUnion<TFirst, TSecond>> OnFirstAsync(
@@ -25,7 +25,7 @@ partial struct TaggedUnion<TFirst, TSecond>
     {
         _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-        return InternalOnFirst(handlerAsync, ThisAsync);
+        throw new NotImplementedException();
     }
 
     public Task<TaggedUnion<TFirst, TSecond>> OnFirstAsync(
@@ -33,7 +33,7 @@ partial struct TaggedUnion<TFirst, TSecond>
     {
         _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-        return InternalOnFirst(handlerAsync, ThisAsync);
+        throw new NotImplementedException();
     }
 
     public ValueTask<TaggedUnion<TFirst, TSecond>> OnFirstValueAsync(
@@ -41,7 +41,7 @@ partial struct TaggedUnion<TFirst, TSecond>
     {
         _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-        return InternalOnFirst(handlerAsync, ThisValueAsync);
+        throw new NotImplementedException();
     }
 
     public ValueTask<TaggedUnion<TFirst, TSecond>> OnFirstValueAsync(
@@ -49,6 +49,6 @@ partial struct TaggedUnion<TFirst, TSecond>
     {
         _ = handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync));
 
-        return InternalOnFirst(handlerAsync, ThisValueAsync);
+        throw new NotImplementedException();
     }
 }

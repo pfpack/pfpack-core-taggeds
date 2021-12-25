@@ -1,16 +1,18 @@
-﻿namespace System;
+﻿using static System.FormattableString;
+
+namespace System;
 
 partial struct TaggedUnion<TFirst, TSecond>
 {
     private static InvalidOperationException InnerCreateExpectedFirstException()
         =>
-        InnerCreateExpectedCategoryException("First");
+        new(InnerCreateExpectedTagMessage(InternalTag.First));
 
     private static InvalidOperationException InnerCreateExpectedSecondException()
         =>
-        InnerCreateExpectedCategoryException("Second");
+        new(InnerCreateExpectedTagMessage(InternalTag.Second));
 
-    private static InvalidOperationException InnerCreateExpectedCategoryException(string category)
+    private static string InnerCreateExpectedTagMessage(InternalTag tag)
         =>
-        new($"The tagged union is expected to represent a {category} instance.");
+        Invariant($"The tagged union is expected to represent the {tag} case.");
 }

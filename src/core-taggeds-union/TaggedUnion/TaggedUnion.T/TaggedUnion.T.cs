@@ -2,7 +2,7 @@
 
 public readonly partial struct TaggedUnion<TFirst, TSecond> : IEquatable<TaggedUnion<TFirst, TSecond>>
 {
-    private readonly Tag tag;
+    private readonly InternalTag tag;
 
     private readonly TFirst first;
 
@@ -14,9 +14,9 @@ public readonly partial struct TaggedUnion<TFirst, TSecond> : IEquatable<TaggedU
 
     public bool IsFirst
         =>
-        tag == Tag.First;
+        tag is InternalTag.First;
 
     public bool IsSecond
         =>
-        tag == Tag.Second;
+        tag is InternalTag.Second;
 }
