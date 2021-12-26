@@ -4,21 +4,21 @@ namespace System;
 
 partial struct TaggedUnion<TFirst, TSecond>
 {
-    public TaggedUnion<TFirst, TSecond> OrInitialize(
+    public TaggedUnion<TFirst, TSecond> Or(
         Func<TaggedUnion<TFirst, TSecond>> otherFactory)
         =>
-        InnerOrInitialize(
+        InnerOr(
             otherFactory ?? throw new ArgumentNullException(nameof(otherFactory)));
 
-    public Task<TaggedUnion<TFirst, TSecond>> OrInitializeAsync(
+    public Task<TaggedUnion<TFirst, TSecond>> OrAsync(
         Func<Task<TaggedUnion<TFirst, TSecond>>> otherFactoryAsync)
         =>
-        InnerOrInitializeAsync(
+        InnerOrAsync(
             otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 
-    public ValueTask<TaggedUnion<TFirst, TSecond>> OrInitializeValueAsync(
+    public ValueTask<TaggedUnion<TFirst, TSecond>> OrValueAsync(
         Func<ValueTask<TaggedUnion<TFirst, TSecond>>> otherFactoryAsync)
         =>
-        InnerOrInitializeValueAsync(
+        InnerOrValueAsync(
             otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 }

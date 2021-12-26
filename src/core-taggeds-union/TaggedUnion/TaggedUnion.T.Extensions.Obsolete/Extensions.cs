@@ -27,7 +27,7 @@ public static class TaggedUnionExtensions
         TaggedUnion<TFirst, TSecond> union,
         Func<TaggedUnion<TFirst, TSecond>> otherFactory)
         =>
-        union.OrInitialize(
+        union.Or(
             otherFactory ?? throw new ArgumentNullException(nameof(otherFactory)));
 
     [Obsolete(InnerOrInitializeAsyncMethodObsoleteMessage, error: true)]
@@ -35,7 +35,7 @@ public static class TaggedUnionExtensions
         TaggedUnion<TFirst, TSecond> union,
         Func<Task<TaggedUnion<TFirst, TSecond>>> otherFactoryAsync)
         =>
-        union.OrInitializeAsync(
+        union.OrAsync(
             otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 
     [Obsolete(InnerOrInitializeValueAsyncMethodObsoleteMessage, error: true)]
@@ -43,6 +43,6 @@ public static class TaggedUnionExtensions
         TaggedUnion<TFirst, TSecond> union,
         Func<ValueTask<TaggedUnion<TFirst, TSecond>>> otherFactoryAsync)
         =>
-        union.OrInitializeValueAsync(
+        union.OrValueAsync(
             otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync)));
 }
