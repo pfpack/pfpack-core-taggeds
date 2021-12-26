@@ -2,6 +2,7 @@
 
 internal enum InternalTag
 {
-    First = 1,
-    Second = 2
+    None,
+    First,
+    Second
 }

@@ -8,9 +8,15 @@ public readonly partial struct TaggedUnion<TFirst, TSecond> : IEquatable<TaggedU
 
     private readonly TSecond second;
 
+    // TODO: Consider to remove the method in v3.0 or v4.0
+    //[Obsolete("This property is obsolete. Consider to test IsNone for false instead.", error: true)]
     public bool IsInitialized
         =>
-        tag != default;
+        tag is not InternalTag.None;
+
+    public bool IsNone
+        =>
+        tag is InternalTag.None;
 
     public bool IsFirst
         =>

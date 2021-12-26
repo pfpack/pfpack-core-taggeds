@@ -16,7 +16,7 @@ partial struct TaggedUnion<TFirst, TSecond>
             return SecondHashCode();
         }
 
-        return UninitializedHashCode();
+        return NoneHashCode();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -34,7 +34,7 @@ partial struct TaggedUnion<TFirst, TSecond>
             : HashCode.Combine(EqualityContract, InternalTag.Second);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static int UninitializedHashCode()
+    private static int NoneHashCode()
         =>
         HashCode.Combine(EqualityContract);
 }
