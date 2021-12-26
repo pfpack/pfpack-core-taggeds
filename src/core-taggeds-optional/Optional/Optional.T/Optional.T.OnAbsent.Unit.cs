@@ -5,21 +5,21 @@ namespace System;
 partial struct Optional<T>
 {
     // TODO: Add the tests and open the methods
-    internal Optional<T> OnPresent(
-        Action handler)
+    internal Optional<T> OnAbsent(
+        Func<Unit> handler)
         =>
-        InnerOnPresent(
+        InnerOnAbsent(
             handler ?? throw new ArgumentNullException(nameof(handler)));
 
-    internal Task<Optional<T>> OnPresentAsync(
-        Func<Task> handlerAsync)
+    internal Task<Optional<T>> OnAbsentAsync(
+        Func<Task<Unit>> handlerAsync)
         =>
-        InnerOnPresentAsync(
+        InnerOnAbsentAsync(
             handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync)));
 
-    internal ValueTask<Optional<T>> OnPresentValueAsync(
-        Func<ValueTask> handlerAsync)
+    internal ValueTask<Optional<T>> OnAbsentValueAsync(
+        Func<ValueTask<Unit>> handlerAsync)
         =>
-        InnerOnPresentValueAsync(
+        InnerOnAbsentValueAsync(
             handlerAsync ?? throw new ArgumentNullException(nameof(handlerAsync)));
 }

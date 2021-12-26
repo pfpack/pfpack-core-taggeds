@@ -7,36 +7,27 @@ partial struct Optional<T>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private Optional<T> InnerOnAbsent(
-        Action handler)
+        Func<Unit> handler)
     {
-        if (hasValue is false)
-        {
-            handler.Invoke();
-        }
+        _ = hasValue is false ? handler.Invoke() : default;
 
         return this;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private async Task<Optional<T>> InnerOnAbsentAsync(
-        Func<Task> handlerAsync)
+        Func<Task<Unit>> handlerAsync)
     {
-        if (hasValue is false)
-        {
-            await handlerAsync.Invoke().ConfigureAwait(false);
-        }
+        _ = hasValue is false ? await handlerAsync.Invoke().ConfigureAwait(false) : default;
 
         return this;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private async ValueTask<Optional<T>> InnerOnAbsentValueAsync(
-        Func<ValueTask> handlerAsync)
+        Func<ValueTask<Unit>> handlerAsync)
     {
-        if (hasValue is false)
-        {
-            await handlerAsync.Invoke().ConfigureAwait(false);
-        }
+        _ = hasValue is false ? await handlerAsync.Invoke().ConfigureAwait(false) : default;
 
         return this;
     }
