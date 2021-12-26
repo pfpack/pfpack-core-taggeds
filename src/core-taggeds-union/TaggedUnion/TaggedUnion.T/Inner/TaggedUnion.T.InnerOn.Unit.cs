@@ -7,16 +7,16 @@ partial struct TaggedUnion<TFirst, TSecond>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private TaggedUnion<TFirst, TSecond> InnerOn(
-        Action<TFirst> onFirst,
-        Action<TSecond> onSecond)
+        Func<TFirst, Unit> onFirst,
+        Func<TSecond, Unit> onSecond)
     {
         if (tag is InternalTag.First)
         {
-            onFirst.Invoke(first);
+            _ = onFirst.Invoke(first);
         }
         else if (tag is InternalTag.Second)
         {
-            onSecond.Invoke(second);
+            _ = onSecond.Invoke(second);
         }
 
         return this;
@@ -24,16 +24,16 @@ partial struct TaggedUnion<TFirst, TSecond>
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private async Task<TaggedUnion<TFirst, TSecond>> InnerOnAsync(
-        Func<TFirst, Task> onFirstAsync,
-        Func<TSecond, Task> onSecondAsync)
+        Func<TFirst, Task<Unit>> onFirstAsync,
+        Func<TSecond, Task<Unit>> onSecondAsync)
     {
         if (tag is InternalTag.First)
         {
-            await onFirstAsync.Invoke(first).ConfigureAwait(false);
+            _ = await onFirstAsync.Invoke(first).ConfigureAwait(false);
         }
         else if (tag is InternalTag.Second)
         {
-            await onSecondAsync.Invoke(second).ConfigureAwait(false);
+            _ = await onSecondAsync.Invoke(second).ConfigureAwait(false);
         }
 
         return this;
@@ -41,16 +41,16 @@ partial struct TaggedUnion<TFirst, TSecond>
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private async ValueTask<TaggedUnion<TFirst, TSecond>> InnerOnValueAsync(
-        Func<TFirst, ValueTask> onFirstAsync,
-        Func<TSecond, ValueTask> onSecondAsync)
+        Func<TFirst, ValueTask<Unit>> onFirstAsync,
+        Func<TSecond, ValueTask<Unit>> onSecondAsync)
     {
         if (tag is InternalTag.First)
         {
-            await onFirstAsync.Invoke(first).ConfigureAwait(false);
+            _ = await onFirstAsync.Invoke(first).ConfigureAwait(false);
         }
         else if (tag is InternalTag.Second)
         {
-            await onSecondAsync.Invoke(second).ConfigureAwait(false);
+            _ = await onSecondAsync.Invoke(second).ConfigureAwait(false);
         }
 
         return this;
