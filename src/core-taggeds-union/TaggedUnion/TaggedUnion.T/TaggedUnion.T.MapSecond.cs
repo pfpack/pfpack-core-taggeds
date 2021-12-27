@@ -6,34 +6,19 @@ partial struct TaggedUnion<TFirst, TSecond>
 {
     public TaggedUnion<TFirst, TResultSecond> MapSecond<TResultSecond>(
         Func<TSecond, TResultSecond> mapSecond)
-    {
-        _ = mapSecond ?? throw new ArgumentNullException(nameof(mapSecond));
-
-        return InnerFold<TaggedUnion<TFirst, TResultSecond>>(
-            static value => value,
-            value => mapSecond.Invoke(value),
-            static () => default);
-    }
+        =>
+        InnerMapSecond(
+            mapSecond ?? throw new ArgumentNullException(nameof(mapSecond)));
 
     public Task<TaggedUnion<TFirst, TResultSecond>> MapSecondAsync<TResultSecond>(
         Func<TSecond, Task<TResultSecond>> mapSecondAsync)
-    {
-        _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
-
-        return InnerFold<Task<TaggedUnion<TFirst, TResultSecond>>>(
-            static value => Task.FromResult<TaggedUnion<TFirst, TResultSecond>>(value),
-            async value => await mapSecondAsync.Invoke(value).ConfigureAwait(false),
-            static () => Task.FromResult<TaggedUnion<TFirst, TResultSecond>>(default));
-    }
+        =>
+        InnerMapSecondAsync(
+            mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync)));
 
     public ValueTask<TaggedUnion<TFirst, TResultSecond>> MapSecondValueAsync<TResultSecond>(
         Func<TSecond, ValueTask<TResultSecond>> mapSecondAsync)
-    {
-        _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
-
-        return InnerFold<ValueTask<TaggedUnion<TFirst, TResultSecond>>>(
-            static value => ValueTask.FromResult<TaggedUnion<TFirst, TResultSecond>>(value),
-            async value => await mapSecondAsync.Invoke(value).ConfigureAwait(false),
-            static () => default);
-    }
+        =>
+        InnerMapSecondValueAsync(
+            mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync)));
 }
