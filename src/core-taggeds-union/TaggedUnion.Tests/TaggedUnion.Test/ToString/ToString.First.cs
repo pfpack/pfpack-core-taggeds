@@ -17,7 +17,7 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}].First:{2}",
+            "TaggedUnion[{0},{1}]:First:{2}",
             typeof(object),
             typeof(StructType),
             string.Empty);
@@ -34,7 +34,7 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}].First:{2}",
+            "TaggedUnion[{0},{1}]:First:{2}",
             typeof(StubToStringType),
             typeof(RefType),
             string.Empty);
@@ -61,7 +61,7 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}].First:{2}",
+            "TaggedUnion[{0},{1}]:First:{2}",
             typeof(StubToStringType),
             typeof(RefType),
             resultOfValueToString);
@@ -90,7 +90,7 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}].First:{2}",
+            "TaggedUnion[{0},{1}]:First:{2}",
             typeof(object),
             typeof(RefType),
             sourceValue);
@@ -108,7 +108,7 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}].First:{2}",
+            "TaggedUnion[{0},{1}]:First:{2}",
             typeof(object),
             typeof(RefType),
             expectedDecimalSubstr);

@@ -13,12 +13,12 @@ partial struct Optional<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static string InnerToStringPresent(T value)
         =>
-        Invariant($"{InnerToStringPrefix()}.Present:{value}");
+        Invariant($"{InnerToStringPrefix()}:Present:{value}");
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static string InnerToStringAbsent()
         =>
-        Invariant($"{InnerToStringPrefix()}.Absent:()");
+        Invariant($"{InnerToStringPrefix()}:Absent:()");
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static string InnerToStringPrefix()
