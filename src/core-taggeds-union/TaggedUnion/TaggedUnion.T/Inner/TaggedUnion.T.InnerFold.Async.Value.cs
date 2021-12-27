@@ -6,21 +6,21 @@ namespace System;
 partial struct TaggedUnion<TFirst, TSecond>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private async ValueTask<TResult?> InnerFoldValueAsync<TResult>(
+    private ValueTask<TResult?> InnerFoldValueAsync<TResult>(
         Func<TFirst, ValueTask<TResult>> mapFirstAsync,
         Func<TSecond, ValueTask<TResult>> mapSecondAsync)
     {
         if (tag is InternalTag.First)
         {
-            return await mapFirstAsync.Invoke(first).ConfigureAwait(false);
+            return mapFirstAsync.Invoke(first)!;
         }
 
         if (tag is InternalTag.Second)
         {
-            return await mapSecondAsync.Invoke(second).ConfigureAwait(false);
+            return mapSecondAsync.Invoke(second)!;
         }
 
-        return default;
+        return ValueTask.FromResult<TResult?>(default);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
