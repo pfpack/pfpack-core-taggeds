@@ -8,7 +8,7 @@ namespace PrimeFuncPack.Core.Tests;
 partial class TaggedUnionTest
 {
     [Test]
-    public void ImplicitSecond_ExpectIsFirstGetsFalse()
+    public void Second_Implicit_Alt_ExpectIsFirstGetsFalse()
     {
         TaggedUnion<StructType?, RefType> taggedUnion = ZeroIdRefType;
         Assert.False(taggedUnion.IsFirst);
@@ -16,7 +16,7 @@ partial class TaggedUnionTest
 
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
-    public void ImplicitSecond_ExpectIsSecondGetsTrue(
+    public void Second_Implicit_Alt_ExpectIsSecondGetsTrue(
         object? sourceValue)
     {
         TaggedUnion<StructType, object?> taggedUnion = sourceValue;
@@ -25,7 +25,7 @@ partial class TaggedUnionTest
 
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
-    public void ImplicitSecond_ExpectIsInitializedGetsTrue(
+    public void Second_Implicit_Alt_ExpectIsInitializedGetsTrue(
         object? sourceValue)
     {
         TaggedUnion<RefType, object?> taggedUnion = sourceValue;

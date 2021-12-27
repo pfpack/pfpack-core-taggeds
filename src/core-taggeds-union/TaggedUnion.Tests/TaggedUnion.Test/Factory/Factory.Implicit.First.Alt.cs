@@ -9,7 +9,7 @@ partial class TaggedUnionTest
 {
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
-    public void ImplicitFirst_ExpectIsFirstGetsTrue(
+    public void First_Implicit_Alt_ExpectIsFirstGetsTrue(
         object? sourceValue)
     {
         TaggedUnion<object?, RefType> taggedUnion = sourceValue;
@@ -17,7 +17,7 @@ partial class TaggedUnionTest
     }
 
     [Test]
-    public void ImplicitFirst_ExpectIsSecondGetsFalse()
+    public void First_Implicit_Alt_ExpectIsSecondGetsFalse()
     {
         TaggedUnion<RefType, StructType> taggedUnion = MinusFifteenIdRefType;
         Assert.False(taggedUnion.IsSecond);
@@ -25,7 +25,7 @@ partial class TaggedUnionTest
 
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
-    public void ImplicitFirst_ExpectIsInitializedGetsTrue(
+    public void First_Implicit_Alt_ExpectIsInitializedGetsTrue(
         object? sourceValue)
     {
         TaggedUnion<object?, StructType> taggedUnion = sourceValue;
