@@ -24,7 +24,7 @@ partial class TaggedUnionTest
         var source = TaggedUnion<StructType, RefType>.Second(PlusFifteenIdRefType);
 
         var ex = Assert.Throws<InvalidOperationException>(() => _ = source.FirstOrThrow());
-        AssertContainsFirst(First, ex!.Message);
+        AssertContains(First, ex!.Message);
     }
 
     [Test]
@@ -33,6 +33,6 @@ partial class TaggedUnionTest
         var source = default(TaggedUnion<int, string>);
 
         var ex = Assert.Throws<InvalidOperationException>(() => _ = source.FirstOrThrow());
-        AssertContainsFirst(First, ex!.Message);
+        AssertContains(First, ex!.Message);
     }
 }

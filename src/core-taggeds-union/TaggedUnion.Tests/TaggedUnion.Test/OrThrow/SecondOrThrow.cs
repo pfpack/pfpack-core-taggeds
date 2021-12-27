@@ -23,7 +23,7 @@ partial class TaggedUnionTest
         var source = TaggedUnion<object, StructType>.First(new { Text = SomeString });
 
         var ex = Assert.Throws<InvalidOperationException>(() => _ = source.SecondOrThrow());
-        AssertContainsFirst(Second, ex!.Message);
+        AssertContains(Second, ex!.Message);
     }
 
     [Test]
@@ -32,6 +32,6 @@ partial class TaggedUnionTest
         var source = default(TaggedUnion<RefType, string>);
 
         var ex = Assert.Throws<InvalidOperationException>(() => _ = source.SecondOrThrow());
-        AssertContainsFirst(Second, ex!.Message);
+        AssertContains(Second, ex!.Message);
     }
 }
