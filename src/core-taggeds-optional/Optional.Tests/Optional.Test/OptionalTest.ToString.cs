@@ -40,23 +40,7 @@ partial class OptionalTest
     }
 
     [Test]
-    public void ToString_SourceIsPresentAndValueToStringIsNull()
-    {
-        var sourceValue = new StubType(null);
-        var source = Optional<StubType>.Present(sourceValue);
-
-        var actual = source.ToString();
-
-        var expected = string.Format(
-            CultureInfo.InvariantCulture,
-            "Optional[{0}].Present:{1}",
-            typeof(StubType),
-            string.Empty);
-
-        Assert.AreEqual(expected, actual);
-    }
-
-    [Test]
+    [TestCase(null)]
     [TestCase(EmptyString)]
     [TestCase(TabString)]
     [TestCase(TwoTabsString)]
@@ -65,7 +49,7 @@ partial class OptionalTest
     [TestCase(ThreeWhiteSpacesString)]
     [TestCase(MixedWhiteSpacesString)]
     [TestCase(SomeString)]
-    public void ToString_SourceIsPresentAndValueToStringIsNotNull(
+    public void ToString_SourceIsPresent_ToStringResult(
         string sourceValueToStringResult)
     {
         var sourceValue = new StubType(sourceValueToStringResult);
@@ -95,7 +79,7 @@ partial class OptionalTest
     [TestCase(MinusOne)]
     [TestCase(Zero)]
     [TestCase(One)]
-    public void ToString_Common(
+    public void ToString_SourceIsPresent_Common(
         object? sourceValue)
     {
         var source = Optional<object?>.Present(sourceValue);
@@ -113,7 +97,7 @@ partial class OptionalTest
 
     [Test]
     [TestCaseSource(nameof(ToString_Decimal_TestCaseSource))]
-    public void ToString_DecimalPoint(
+    public void ToString_SourceIsPresent_DecimalPoint(
         decimal sourceValue, string expectedDecimalSubstr)
     {
         var source = Optional<decimal>.Present(sourceValue);
