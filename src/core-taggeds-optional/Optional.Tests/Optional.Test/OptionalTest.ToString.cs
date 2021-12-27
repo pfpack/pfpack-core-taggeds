@@ -113,7 +113,7 @@ partial class OptionalTest
     }
 
     [Test]
-    [TestCaseSource(nameof(ToString_Decimal_TestCaseSource))]
+    [TestCaseSource(nameof(ToString_SourceIsPresent_DecimalPoint_TestCaseSource))]
     public void ToString_SourceIsPresent_DecimalPoint(
         decimal sourceValue, string expectedDecimalSubstr)
     {
@@ -130,7 +130,7 @@ partial class OptionalTest
         Assert.AreEqual(expected, actual);
     }
 
-    private static IEnumerable<object[]> ToString_Decimal_TestCaseSource()
+    private static IEnumerable<object[]> ToString_SourceIsPresent_DecimalPoint_TestCaseSource()
     {
         yield return new object[] { -1.1m, "-1.1" };
         yield return new object[] { 0.0m, "0.0" };
