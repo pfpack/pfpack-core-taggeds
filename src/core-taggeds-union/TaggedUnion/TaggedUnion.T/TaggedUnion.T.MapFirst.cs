@@ -9,7 +9,7 @@ partial struct TaggedUnion<TFirst, TSecond>
     {
         _ = mapFirst ?? throw new ArgumentNullException(nameof(mapFirst));
 
-        return InternalFold<TaggedUnion<TResultFirst, TSecond>>(
+        return InnerFold<TaggedUnion<TResultFirst, TSecond>>(
             value => mapFirst.Invoke(value),
             static value => value,
             static () => default);
@@ -20,7 +20,7 @@ partial struct TaggedUnion<TFirst, TSecond>
     {
         _ = mapFirstAsync ?? throw new ArgumentNullException(nameof(mapFirstAsync));
 
-        return InternalFold<Task<TaggedUnion<TResultFirst, TSecond>>>(
+        return InnerFold<Task<TaggedUnion<TResultFirst, TSecond>>>(
             async value => await mapFirstAsync.Invoke(value).ConfigureAwait(false),
             static value => Task.FromResult<TaggedUnion<TResultFirst, TSecond>>(value),
             static () => Task.FromResult<TaggedUnion<TResultFirst, TSecond>>(default));
@@ -31,7 +31,7 @@ partial struct TaggedUnion<TFirst, TSecond>
     {
         _ = mapFirstAsync ?? throw new ArgumentNullException(nameof(mapFirstAsync));
 
-        return InternalFold<ValueTask<TaggedUnion<TResultFirst, TSecond>>>(
+        return InnerFold<ValueTask<TaggedUnion<TResultFirst, TSecond>>>(
             async value => await mapFirstAsync.Invoke(value).ConfigureAwait(false),
             static value => ValueTask.FromResult<TaggedUnion<TResultFirst, TSecond>>(value),
             static () => default);

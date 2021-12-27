@@ -5,7 +5,7 @@ namespace System;
 partial struct TaggedUnion<TFirst, TSecond>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private TResult InternalFold<TResult>(
+    private TResult InnerFold<TResult>(
         Func<TFirst, TResult> mapFirst,
         Func<TSecond, TResult> mapSecond,
         Func<TResult> otherFactory)

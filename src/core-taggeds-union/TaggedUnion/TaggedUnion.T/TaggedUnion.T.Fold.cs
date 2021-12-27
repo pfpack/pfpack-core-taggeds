@@ -15,7 +15,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = mapFirst ?? throw new ArgumentNullException(nameof(mapFirst));
         _ = mapSecond ?? throw new ArgumentNullException(nameof(mapSecond));
 
-        return InternalFold(mapFirst, mapSecond, static () => default!);
+        return InnerFold(mapFirst, mapSecond, static () => default!);
     }
 
     public TResult Fold<TResult>(
@@ -26,7 +26,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = mapFirst ?? throw new ArgumentNullException(nameof(mapFirst));
         _ = mapSecond ?? throw new ArgumentNullException(nameof(mapSecond));
 
-        return InternalFold(mapFirst, mapSecond, () => other);
+        return InnerFold(mapFirst, mapSecond, () => other);
     }
 
     public TResult Fold<TResult>(
@@ -38,7 +38,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = mapSecond ?? throw new ArgumentNullException(nameof(mapSecond));
         _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-        return InternalFold(mapFirst, mapSecond, otherFactory);
+        return InnerFold(mapFirst, mapSecond, otherFactory);
     }
 
     // Fold Async / Task
@@ -51,7 +51,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = mapFirstAsync ?? throw new ArgumentNullException(nameof(mapFirstAsync));
         _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
 
-        return InternalFold(mapFirstAsync, mapSecondAsync, () => Task.FromResult(other));
+        return InnerFold(mapFirstAsync, mapSecondAsync, () => Task.FromResult(other));
     }
 
     public Task<TResult> FoldAsync<TResult>(
@@ -63,7 +63,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
         _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-        return InternalFold(mapFirstAsync, mapSecondAsync, () => Task.FromResult(otherFactory.Invoke()));
+        return InnerFold(mapFirstAsync, mapSecondAsync, () => Task.FromResult(otherFactory.Invoke()));
     }
 
     public Task<TResult> FoldAsync<TResult>(
@@ -75,7 +75,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
         _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-        return InternalFold(mapFirstAsync, mapSecondAsync, otherFactoryAsync);
+        return InnerFold(mapFirstAsync, mapSecondAsync, otherFactoryAsync);
     }
 
     // Fold Async / ValueTask
@@ -88,7 +88,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = mapFirstAsync ?? throw new ArgumentNullException(nameof(mapFirstAsync));
         _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
 
-        return InternalFold(mapFirstAsync, mapSecondAsync, () => ValueTask.FromResult(other));
+        return InnerFold(mapFirstAsync, mapSecondAsync, () => ValueTask.FromResult(other));
     }
 
     public ValueTask<TResult> FoldValueAsync<TResult>(
@@ -100,7 +100,7 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
         _ = otherFactory ?? throw new ArgumentNullException(nameof(otherFactory));
 
-        return InternalFold(mapFirstAsync, mapSecondAsync, () => ValueTask.FromResult(otherFactory.Invoke()));
+        return InnerFold(mapFirstAsync, mapSecondAsync, () => ValueTask.FromResult(otherFactory.Invoke()));
     }
 
     public ValueTask<TResult> FoldValueAsync<TResult>(
@@ -112,6 +112,6 @@ partial struct TaggedUnion<TFirst, TSecond>
         _ = mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync));
         _ = otherFactoryAsync ?? throw new ArgumentNullException(nameof(otherFactoryAsync));
 
-        return InternalFold(mapFirstAsync, mapSecondAsync, otherFactoryAsync);
+        return InnerFold(mapFirstAsync, mapSecondAsync, otherFactoryAsync);
     }
 }
