@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace System;
 
@@ -7,8 +6,7 @@ partial struct TaggedUnion<TFirst, TSecond>
 {
     // Fold
 
-    [return: MaybeNull]
-    public TResult Fold<TResult>(
+    public TResult? Fold<TResult>(
         Func<TFirst, TResult> mapFirst,
         Func<TSecond, TResult> mapSecond)
     {
