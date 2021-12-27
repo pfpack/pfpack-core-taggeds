@@ -4,6 +4,15 @@ namespace System;
 
 partial struct TaggedUnion<TFirst, TSecond>
 {
+    // TODO: Add the tests and open the method
+    internal Task<TResult?> FoldAsync<TResult>(
+        Func<TFirst, Task<TResult>> mapFirstAsync,
+        Func<TSecond, Task<TResult>> mapSecondAsync)
+        =>
+        InnerFoldAsync(
+            mapFirstAsync ?? throw new ArgumentNullException(nameof(mapFirstAsync)),
+            mapSecondAsync ?? throw new ArgumentNullException(nameof(mapSecondAsync)));
+
     public Task<TResult> FoldAsync<TResult>(
         Func<TFirst, Task<TResult>> mapFirstAsync,
         Func<TSecond, Task<TResult>> mapSecondAsync,
