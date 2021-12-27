@@ -18,10 +18,10 @@ internal static partial class InternalToString<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string OptionalPresent(T value)
         =>
-        Invariant($"Optional.Present[{typeof(T)}]:{value}");
+        Invariant($"Optional[{typeof(T)}].Present:{value}");
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string OptionalAbsent()
         =>
-        Invariant($"Optional.Absent[{typeof(T)}]:()");
+        Invariant($"Optional[{typeof(T)}].Absent:()");
 }

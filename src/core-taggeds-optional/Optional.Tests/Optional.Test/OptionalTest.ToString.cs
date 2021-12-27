@@ -16,7 +16,7 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional.Absent[{0}]:()",
+            "Optional[{0}].Absent:()",
             typeof(StubType));
 
         Assert.AreEqual(expected, actual);
@@ -31,7 +31,7 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional.Present[{0}]:{1}",
+            "Optional[{0}].Present:{1}",
             typeof(StubType),
             string.Empty);
 
@@ -48,7 +48,7 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional.Present[{0}]:{1}",
+            "Optional[{0}].Present:{1}",
             typeof(StubType),
             string.Empty);
 
@@ -74,7 +74,7 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional.Present[{0}]:{1}",
+            "Optional[{0}].Present:{1}",
             typeof(StubType),
             sourceValueToStringResult);
 
@@ -104,7 +104,7 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional.Present[{0}]:{1}",
+            "Optional[{0}].Present:{1}",
             typeof(object),
             sourceValue);
 
