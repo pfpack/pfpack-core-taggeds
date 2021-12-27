@@ -9,7 +9,7 @@ namespace PrimeFuncPack.Core.Tests;
 partial class OptionalTest
 {
     [Test]
-    public void ToString_SourceIsAbsent_ExpectAbsentString()
+    public void ToString_SourceIsAbsent()
     {
         var source = Optional<StubType>.Absent;
 
@@ -24,7 +24,7 @@ partial class OptionalTest
     }
 
     [Test]
-    public void ToString_SourceIsPresentAndValueIsNull_ExpectPresentEmptyString()
+    public void ToString_SourceIsPresentAndValueIsNull()
     {
         var source = Optional<StubType?>.Present(null);
 
@@ -40,7 +40,7 @@ partial class OptionalTest
     }
 
     [Test]
-    public void ToString_SourceIsPresentAndValueToStringIsNull_ExpectPresentEmptyString()
+    public void ToString_SourceIsPresentAndValueToStringIsNull()
     {
         var sourceValue = new StubType(null);
         var source = Optional<StubType>.Present(sourceValue);
@@ -65,7 +65,7 @@ partial class OptionalTest
     [TestCase(ThreeWhiteSpacesString)]
     [TestCase(MixedWhiteSpacesString)]
     [TestCase(SomeString)]
-    public void ToString_SourceIsPresentAndValueToStringIsNotNull_ExpectSourceValueToStringResult(
+    public void ToString_SourceIsPresentAndValueToStringIsNotNull(
         string sourceValueToStringResult)
     {
         var sourceValue = new StubType(sourceValueToStringResult);
