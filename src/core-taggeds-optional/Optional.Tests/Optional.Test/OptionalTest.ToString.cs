@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using static PrimeFuncPack.UnitTest.TestData;
 
@@ -81,7 +82,6 @@ partial class OptionalTest
         Assert.AreEqual(expected, actual);
     }
 
-    // TODO: Add test case source including decimal with point
     [Test]
     [TestCase(null)]
     [TestCase(EmptyString)]
@@ -109,5 +109,30 @@ partial class OptionalTest
             sourceValue);
 
         Assert.AreEqual(expected, actual);
+    }
+
+    [Test]
+    [TestCaseSource(nameof(ToString_Decimal_TestCaseSource))]
+    public void ToString_DecimalPoint(
+        decimal sourceValue, string expectedDecimalSubstr)
+    {
+        var source = Optional<decimal>.Present(sourceValue);
+
+        var actual = source.ToString();
+
+        var expected = string.Format(
+            CultureInfo.InvariantCulture,
+            "Optional[{0}].Present:{1}",
+            typeof(decimal),
+            expectedDecimalSubstr);
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    private static IEnumerable<object[]> ToString_Decimal_TestCaseSource()
+    {
+        yield return new object[] { -1.1m, "-1.1" };
+        yield return new object[] { 0.0m, "0.0" };
+        yield return new object[] { 1.1m, "1.1" };
     }
 }
