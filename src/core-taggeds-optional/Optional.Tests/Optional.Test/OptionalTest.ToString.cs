@@ -40,6 +40,23 @@ partial class OptionalTest
     }
 
     [Test]
+    public void ToString_SourceIsPresentAndValueToStringIsNull()
+    {
+        var sourceValue = new StubType(null);
+        var source = Optional<StubType>.Present(sourceValue);
+
+        var actual = source.ToString();
+
+        var expected = string.Format(
+            CultureInfo.InvariantCulture,
+            "Optional[{0}].Present:{1}",
+            typeof(StubType),
+            string.Empty);
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    [Test]
     [TestCase(null)]
     [TestCase(EmptyString)]
     [TestCase(TabString)]
@@ -49,7 +66,7 @@ partial class OptionalTest
     [TestCase(ThreeWhiteSpacesString)]
     [TestCase(MixedWhiteSpacesString)]
     [TestCase(SomeString)]
-    public void ToString_SourceIsPresent_ToStringResult(
+    public void ToString_SourceIsPresent_ValueToString_Common(
         string sourceValueToStringResult)
     {
         var sourceValue = new StubType(sourceValueToStringResult);
