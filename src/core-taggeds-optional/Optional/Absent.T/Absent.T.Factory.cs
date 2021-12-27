@@ -2,6 +2,8 @@
 
 partial struct Absent<T>
 {
-    // TODO: Uncomment when Absent<T> becomes public
-    //public static readonly Absent<T> Value;
+    public static readonly Absent<T> Value;
+
+    // TODO: Remove the static constructor when Absent<T> becomes public (it is a workaround for the internal Absent<T>)
+    static Absent() => Value = default;
 }
