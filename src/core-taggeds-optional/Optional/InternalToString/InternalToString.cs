@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using static System.FormattableString;
 
 namespace System;
 
@@ -7,20 +8,20 @@ internal static partial class InternalToString<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Present(T value)
         =>
-        InnerFormat<T>.Invoke(InnerPrefix.Present, value);
+        Invariant($"Present[{typeof(T)}]:{value}");
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string Absent()
         =>
-        InnerFormat<string>.Invoke(InnerPrefix.Absent, InnerAbsentString);
+        Invariant($"Absent[{typeof(T)}]:()");
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string OptionalPresent(T value)
         =>
-        InnerFormat<T>.Invoke(InnerPrefix.OptionalPresent, value);
+        Invariant($"Optional.Present[{typeof(T)}]:{value}");
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string OptionalAbsent()
         =>
-        InnerFormat<string>.Invoke(InnerPrefix.OptionalAbsent, InnerAbsentString);
+        Invariant($"Optional.Absent[{typeof(T)}]:()");
 }
