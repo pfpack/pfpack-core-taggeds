@@ -25,10 +25,10 @@ partial class TaggedUnionTest
 
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
-    public void Second_ExpectIsInitializedGetsTrue(
+    public void Second_ExpectIsNoneGetsFalse(
         object? sourceValue)
     {
         var taggedUnion = new TaggedUnion<StructType, object?>(sourceValue);
-        Assert.True(taggedUnion.IsInitialized);
+        Assert.False(taggedUnion.IsNone);
     }
 }
