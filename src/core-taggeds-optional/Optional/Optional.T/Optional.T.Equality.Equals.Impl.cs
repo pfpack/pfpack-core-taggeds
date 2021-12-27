@@ -13,9 +13,7 @@ partial struct Optional<T>
         {
             return EqualityComparer.Equals(value, other.value);
         }
-        else
-        {
-            return true;
-        }
+
+        return true;
     }
 }
