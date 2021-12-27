@@ -12,15 +12,15 @@ public static class TaggedUnionExtensions
 
     private const string InnerOrInitializeMethodObsoleteMessage
         =
-        "This method is obsolete. Call OrInitialize instance method instead.";
+        "This method is obsolete. Call Or instance method instead.";
 
     private const string InnerOrInitializeAsyncMethodObsoleteMessage
         =
-        "This method is obsolete. Call OrInitializeAsync instance method instead.";
+        "This method is obsolete. Call OrAsync instance method instead.";
 
     private const string InnerOrInitializeValueAsyncMethodObsoleteMessage
         =
-        "This method is obsolete. Call OrInitializeValueAsync instance method instead.";
+        "This method is obsolete. Call OrValueAsync instance method instead.";
 
     [Obsolete(InnerOrInitializeMethodObsoleteMessage, error: true)]
     public static TaggedUnion<TFirst, TSecond> OrInitialize<TFirst, TSecond>(
