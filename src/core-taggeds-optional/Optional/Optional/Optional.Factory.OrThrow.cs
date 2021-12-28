@@ -17,5 +17,5 @@ partial class Optional
 
     private static ArgumentException InnerCreateExpectedSpecifiedException(string paramName)
         =>
-        new(message: "The value is expected to be specified.", paramName: paramName);
+        new("The value is expected to be specified.", paramName);
 }
