@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
+using static System.FormattableString;
 
 namespace System;
 
@@ -7,31 +7,16 @@ partial struct Optional<T>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal int InternalCompareTo(Optional<T> other)
+        =>
+        InnerCompareTo(other);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal int InternalCompareTo(object? obj, [CallerArgumentExpression("obj")] string? paramName = null) => obj switch
     {
-        const int greaterThan = 1;
-        const int lessThan = -1;
-        const int equalTo = default;
+        null => 1,
 
-        if (hasValue && other.hasValue)
-        {
-            return Comparer<T>.Default.Compare(value, other.value) switch // Normalize comparison result
-            {
-                > equalTo => greaterThan,
-                < equalTo => lessThan,
-                _ => equalTo
-            };
-        }
+        Optional<T> other => InnerCompareTo(other),
 
-        if (hasValue)
-        {
-            return greaterThan;
-        }
-
-        if (other.hasValue)
-        {
-            return lessThan;
-        }
-
-        return equalTo;
-    }
+        _ => throw new ArgumentException(Invariant($"The object is not Optional[{typeof(T)}]"), paramName)
+    };
 }
