@@ -12,25 +12,20 @@ partial struct Optional<T>
         const int lessThan = -1;
         const int equalTo = default;
 
-        if (hasValue && other.hasValue)
+        if (hasValue != other.hasValue)
         {
-            // Normalize comparison result
-            return Comparer<T>.Default.Compare(value, other.value) switch
-            {
-                > equalTo => greaterThan,
-                < equalTo => lessThan,
-                _ => equalTo
-            };
+            return hasValue ? greaterThan : lessThan;
         }
 
         if (hasValue)
         {
-            return greaterThan;
-        }
-
-        if (other.hasValue)
-        {
-            return lessThan;
+            return Comparer<T>.Default.Compare(value, other.value) switch
+            {
+                // Normalize comparison result:
+                > equalTo => greaterThan,
+                < equalTo => lessThan,
+                _ => equalTo
+            };
         }
 
         return equalTo;
