@@ -14,9 +14,8 @@ partial struct Optional<T>
 
         if (hasValue && other.hasValue)
         {
-            var result = Comparer<T>.Default.Compare(value, other.value);
-
-            return result switch // Normalize comparison result
+            // Normalize comparison result
+            return Comparer<T>.Default.Compare(value, other.value) switch
             {
                 > equalTo => greaterThan,
                 < equalTo => lessThan,
@@ -24,16 +23,6 @@ partial struct Optional<T>
             };
         }
 
-        if (hasValue)
-        {
-            return greaterThan;
-        }
-
-        if (other.hasValue)
-        {
-            return lessThan;
-        }
-
-        return equalTo;
+        return hasValue ? greaterThan : (other.hasValue ? lessThan : equalTo);
     }
 }
