@@ -7,5 +7,5 @@ partial struct SuccessBuilder<TSuccess>
 {
     private static Type EqualityContract => typeof(SuccessBuilder<TSuccess>);
 
-    private static IEqualityComparer<TSuccess> SuccessComparer => EqualityComparer<TSuccess>.Default;
+    private static EqualityComparer<TSuccess> SuccessComparer => EqualityComparer<TSuccess>.Default;
 }

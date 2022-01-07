@@ -2,7 +2,7 @@
 
 partial struct Result<TSuccess, TFailure>
 {
-    // TODO: For v1.2: Implement the ToString in according to Optional/Unit v1.2
+    // TODO: Implement ToString in according to TaggedUnion/Optional/Unit v2.0
     public override string ToString()
         =>
         InternalFold(

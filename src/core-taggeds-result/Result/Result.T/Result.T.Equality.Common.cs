@@ -6,7 +6,7 @@ partial struct Result<TSuccess, TFailure>
 {
     private static Type EqualityContract => typeof(Result<TSuccess, TFailure>);
 
-    private static IEqualityComparer<TSuccess> SuccessComparer => EqualityComparer<TSuccess>.Default;
+    private static EqualityComparer<TSuccess> SuccessComparer => EqualityComparer<TSuccess>.Default;
 
-    private static IEqualityComparer<TFailure> FailureComparer => EqualityComparer<TFailure>.Default;
+    private static EqualityComparer<TFailure> FailureComparer => EqualityComparer<TFailure>.Default;
 }
