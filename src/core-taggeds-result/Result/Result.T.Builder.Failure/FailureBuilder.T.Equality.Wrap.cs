@@ -1,4 +1,6 @@
-﻿namespace PrimeFuncPack.Core;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace PrimeFuncPack.Core;
 
 partial struct FailureBuilder<TFailure>
 {
@@ -15,7 +17,7 @@ partial struct FailureBuilder<TFailure>
         =>
         left.Equals(right) is false;
 
-    public override bool Equals(object? obj)
+    public override bool Equals([NotNullWhen(true)] object? obj)
         =>
         obj is FailureBuilder<TFailure> other &&
         Equals(other);

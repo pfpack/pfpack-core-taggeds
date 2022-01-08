@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace System;
 
 partial struct Result<TSuccess, TFailure>
 {
@@ -14,7 +16,7 @@ partial struct Result<TSuccess, TFailure>
         =>
         left.Equals(right) is false;
 
-    public override bool Equals(object? obj)
+    public override bool Equals([NotNullWhen(true)] object? obj)
         =>
         obj is Result<TSuccess, TFailure> other &&
         Equals(other);
