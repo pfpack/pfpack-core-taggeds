@@ -4,8 +4,7 @@ namespace PrimeFuncPack.Core;
 
 partial struct FailureBuilder<TFailure>
 {
-    // TODO: Add test and open the method
-    internal static bool Equals(FailureBuilder<TFailure> left, FailureBuilder<TFailure> right)
+    public static bool Equals(FailureBuilder<TFailure> left, FailureBuilder<TFailure> right)
         =>
         left.Equals(right);
 

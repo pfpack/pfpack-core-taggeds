@@ -4,8 +4,7 @@ namespace PrimeFuncPack.Core;
 
 partial struct SuccessBuilder<TSuccess>
 {
-    // TODO: Add test and open the method
-    internal static bool Equals(SuccessBuilder<TSuccess> left, SuccessBuilder<TSuccess> right)
+    public static bool Equals(SuccessBuilder<TSuccess> left, SuccessBuilder<TSuccess> right)
         =>
         left.Equals(right);
 
