@@ -4,7 +4,7 @@ partial struct Result<TSuccess, TFailure>
 {
     public TFailure FailureOrThrow()
         =>
-        InnerFailureOrThrow(CreateNotFailureException);
+        InnerFailureOrThrow(InnerCreateExpectedFailureException);
 
     public TFailure FailureOrThrow(Func<Exception> exceptionFactory)
     {
