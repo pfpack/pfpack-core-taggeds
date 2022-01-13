@@ -11,14 +11,14 @@ partial struct TaggedUnion<TFirst, TSecond>
         InnerFold(InnerToStringFirst, InnerToStringSecond, InnerToStringNone);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string InnerToStringFirst(TFirst value)
+    private static string InnerToStringFirst(TFirst first)
         =>
-        Invariant($"{InnerToStringPrefix()}:First:{value}");
+        Invariant($"{InnerToStringPrefix()}:First:{first}");
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string InnerToStringSecond(TSecond value)
+    private static string InnerToStringSecond(TSecond second)
         =>
-        Invariant($"{InnerToStringPrefix()}:Second:{value}");
+        Invariant($"{InnerToStringPrefix()}:Second:{second}");
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static string InnerToStringNone()
