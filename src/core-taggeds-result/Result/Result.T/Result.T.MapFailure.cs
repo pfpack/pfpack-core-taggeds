@@ -10,7 +10,7 @@ partial struct Result<TSuccess, TFailure>
     {
         _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-        return InternalFold<Result<TSuccess, TResultFailure>>(
+        return InnerFold<Result<TSuccess, TResultFailure>>(
             static value => value,
             value => mapFailure.Invoke(value));
     }
@@ -21,7 +21,7 @@ partial struct Result<TSuccess, TFailure>
     {
         _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-        return InternalFold<Task<Result<TSuccess, TResultFailure>>>(
+        return InnerFold<Task<Result<TSuccess, TResultFailure>>>(
             static value => Task.FromResult<Result<TSuccess, TResultFailure>>(value),
             async value => await mapFailureAsync.Invoke(value).ConfigureAwait(false));
     }
@@ -32,7 +32,7 @@ partial struct Result<TSuccess, TFailure>
     {
         _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
             
-        return InternalFold<ValueTask<Result<TSuccess, TResultFailure>>>(
+        return InnerFold<ValueTask<Result<TSuccess, TResultFailure>>>(
             static value => ValueTask.FromResult<Result<TSuccess, TResultFailure>>(value),
             async value => await mapFailureAsync.Invoke(value).ConfigureAwait(false));
     }

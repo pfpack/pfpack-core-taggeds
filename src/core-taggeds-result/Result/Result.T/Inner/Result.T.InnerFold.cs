@@ -5,7 +5,7 @@ namespace System;
 partial struct Result<TSuccess, TFailure>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private TResult InternalFold<TResult>(
+    private TResult InnerFold<TResult>(
         Func<TSuccess, TResult> mapSuccess,
         Func<TFailure, TResult> mapFailure)
         =>

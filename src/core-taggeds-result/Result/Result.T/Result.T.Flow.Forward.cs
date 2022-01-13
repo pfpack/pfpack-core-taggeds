@@ -14,7 +14,7 @@ partial struct Result<TSuccess, TFailure>
         _ = nextFactory ?? throw new ArgumentNullException(nameof(nextFactory));
         _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-        return InternalFold(nextFactory, failure => mapFailure.Invoke(failure));
+        return InnerFold(nextFactory, failure => mapFailure.Invoke(failure));
     }
 
     public Result<TNextSuccess, TFailure> Forward<TNextSuccess>(
@@ -22,7 +22,7 @@ partial struct Result<TSuccess, TFailure>
     {
         _ = nextFactory ?? throw new ArgumentNullException(nameof(nextFactory));
 
-        return InternalFold(nextFactory, failure => failure);
+        return InnerFold(nextFactory, failure => failure);
     }
 
     public Result<TSuccess, TFailure> Forward(
@@ -32,7 +32,7 @@ partial struct Result<TSuccess, TFailure>
 
         var @this = this;
 
-        return InternalFold(nextFactory, _ => @this);
+        return InnerFold(nextFactory, _ => @this);
     }
 
     // Forward Async / Task
@@ -45,7 +45,7 @@ partial struct Result<TSuccess, TFailure>
         _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
         _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-        return InternalFold<Task<Result<TNextSuccess, TNextFailure>>>(
+        return InnerFold<Task<Result<TNextSuccess, TNextFailure>>>(
             nextFactoryAsync,
             async failure => await mapFailureAsync.Invoke(failure).ConfigureAwait(false));
     }
@@ -55,7 +55,7 @@ partial struct Result<TSuccess, TFailure>
     {
         _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
 
-        return InternalFold(
+        return InnerFold(
             nextFactoryAsync,
             static failure => Task.FromResult<Result<TNextSuccess, TFailure>>(failure));
     }
@@ -67,7 +67,7 @@ partial struct Result<TSuccess, TFailure>
 
         var @this = this;
 
-        return InternalFold(nextFactoryAsync, _ => Task.FromResult(@this));
+        return InnerFold(nextFactoryAsync, _ => Task.FromResult(@this));
     }
 
     // Forward Async / ValueTask
@@ -80,7 +80,7 @@ partial struct Result<TSuccess, TFailure>
         _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
         _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-        return InternalFold<ValueTask<Result<TNextSuccess, TNextFailure>>>(
+        return InnerFold<ValueTask<Result<TNextSuccess, TNextFailure>>>(
             nextFactoryAsync,
             async failure => await mapFailureAsync.Invoke(failure).ConfigureAwait(false));
     }
@@ -90,7 +90,7 @@ partial struct Result<TSuccess, TFailure>
     {
         _ = nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync));
 
-        return InternalFold(
+        return InnerFold(
             nextFactoryAsync,
             static failure => ValueTask.FromResult<Result<TNextSuccess, TFailure>>(failure));
     }
@@ -102,6 +102,6 @@ partial struct Result<TSuccess, TFailure>
 
         var @this = this;
 
-        return InternalFold(nextFactoryAsync, _ => ValueTask.FromResult(@this));
+        return InnerFold(nextFactoryAsync, _ => ValueTask.FromResult(@this));
     }
 }

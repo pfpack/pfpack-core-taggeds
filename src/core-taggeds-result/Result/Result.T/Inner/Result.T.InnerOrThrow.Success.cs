@@ -5,7 +5,7 @@ namespace System;
 partial struct Result<TSuccess, TFailure>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private TSuccess InternalSuccessOrThrow(Func<Exception> exceptionFactory)
+    private TSuccess InnerSuccessOrThrow(Func<Exception> exceptionFactory)
         =>
         isSuccess
             ? success

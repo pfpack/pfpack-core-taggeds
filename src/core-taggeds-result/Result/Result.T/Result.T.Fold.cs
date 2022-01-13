@@ -11,7 +11,7 @@ partial struct Result<TSuccess, TFailure>
         _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
         _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-        return InternalFold(mapSuccess, mapFailure);
+        return InnerFold(mapSuccess, mapFailure);
     }
 
     public Task<TResult> FoldAsync<TResult>(
@@ -21,7 +21,7 @@ partial struct Result<TSuccess, TFailure>
         _ = mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync));
         _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-        return InternalFold(mapSuccessAsync, mapFailureAsync);
+        return InnerFold(mapSuccessAsync, mapFailureAsync);
     }
 
     public ValueTask<TResult> FoldValueAsync<TResult>(
@@ -31,6 +31,6 @@ partial struct Result<TSuccess, TFailure>
         _ = mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync));
         _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-        return InternalFold(mapSuccessAsync, mapFailureAsync);
+        return InnerFold(mapSuccessAsync, mapFailureAsync);
     }
 }
