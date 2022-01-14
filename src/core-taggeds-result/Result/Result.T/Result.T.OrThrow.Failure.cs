@@ -7,9 +7,6 @@ partial struct Result<TSuccess, TFailure>
         InnerFailureOrThrow(InnerCreateExpectedFailureException);
 
     public TFailure FailureOrThrow(Func<Exception> exceptionFactory)
-    {
-        _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
-
-        return InnerFailureOrThrow(exceptionFactory);
-    }
+        =>
+        InnerFailureOrThrow(exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory)));
 }
