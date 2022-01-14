@@ -2,10 +2,9 @@
 
 partial class TaggedsExtensions
 {
-    // TODO: Consider to shorten TSuccess to T in v2.0, or in v1.2 if no breaking change
-    public static Optional<TSuccess> ToOptional<TSuccess>(this Result<TSuccess, Unit> result)
+    public static Optional<T> ToOptional<T>(this Result<T, Unit> result)
         =>
-        result.Fold<Optional<TSuccess>>(
+        result.Fold<Optional<T>>(
             value => new(value),
             static _ => default);
 }
