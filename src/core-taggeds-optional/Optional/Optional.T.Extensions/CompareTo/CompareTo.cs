@@ -1,6 +1,4 @@
-﻿using static System.FormattableString;
-
-namespace System;
+﻿namespace System;
 
 partial class OptionalExtensions
 {
