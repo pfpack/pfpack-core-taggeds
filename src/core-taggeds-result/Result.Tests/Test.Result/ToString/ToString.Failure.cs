@@ -54,7 +54,6 @@ partial class ResultTest
     }
 
     [Test]
-    [TestCase(null)]
     [TestCase(MinusOne)]
     [TestCase(Zero)]
     [TestCase(One)]
@@ -79,13 +78,13 @@ partial class ResultTest
     public void ToString_SourceIsFailure_DecimalPoint(
         decimal sourceFailure, string expectedDecimalSubstr)
     {
-        var source = new Result<StructType, decimal>(sourceFailure);
+        var source = new Result<object, decimal>(sourceFailure);
         var actual = source.ToString();
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
             "Result[{0},{1}]:Failure:{2}",
-            typeof(StructType),
+            typeof(object),
             typeof(decimal),
             expectedDecimalSubstr);
 

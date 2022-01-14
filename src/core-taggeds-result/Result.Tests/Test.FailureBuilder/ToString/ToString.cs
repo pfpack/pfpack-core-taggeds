@@ -51,7 +51,6 @@ partial class FailureBuilderTest
     }
 
     [Test]
-    [TestCase(null)]
     [TestCase(MinusOne)]
     [TestCase(Zero)]
     [TestCase(One)]
