@@ -7,6 +7,6 @@ partial class TaggedsExtensions
         where TFailure : struct
         =>
         union.Fold<Result<TSuccess, TFailure>>(
-            value => new(value),
-            value => new(value));
+            success => new(success),
+            failure => new(failure));
 }
