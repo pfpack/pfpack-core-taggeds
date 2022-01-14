@@ -4,10 +4,10 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <InvariantGlobalization>true</InvariantGlobalization>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <IsPackable>false</IsPackable>
     <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
-    <Description>PrimeFuncPack: A Functional Programming Pack for .NET</Description>
     <Copyright>Copyright © 2020-2021 Andrei Sergeev, Pavel Moskovoy</Copyright>
     <RootNamespace>PrimeFuncPack.Core.Tests</RootNamespace>
     <AssemblyName>PrimeFuncPack.Core.Taggeds.Tests</AssemblyName>
