@@ -53,7 +53,7 @@ partial class TaggedUnionTest
     [TestCase(MixedWhiteSpacesString)]
     [TestCase(SomeString)]
     public void ToString_SourceIsFirst_ValueToString_Common(
-        string resultOfValueToString)
+        string? resultOfValueToString)
     {
         var sourceValue = new StubToStringType(resultOfValueToString);
         var source = TaggedUnion<StubToStringType, RefType>.First(sourceValue);

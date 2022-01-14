@@ -67,7 +67,7 @@ partial class OptionalTest
     [TestCase(MixedWhiteSpacesString)]
     [TestCase(SomeString)]
     public void ToString_SourceIsPresent_ValueToString_Common(
-        string sourceValueToStringResult)
+        string? sourceValueToStringResult)
     {
         var sourceValue = new StubType(sourceValueToStringResult);
         var source = Optional<StubType>.Present(sourceValue);
