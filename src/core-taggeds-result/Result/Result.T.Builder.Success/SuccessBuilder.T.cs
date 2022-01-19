@@ -10,6 +10,10 @@ public readonly partial struct SuccessBuilder<TSuccess> : IEquatable<SuccessBuil
         =>
         this.success = success;
 
+    internal TSuccess InternalSuccess
+        =>
+        success;
+
     public Result<TSuccess, TFailure> With<TFailure>()
         where TFailure : struct
         =>

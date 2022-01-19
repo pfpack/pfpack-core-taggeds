@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using static PrimeFuncPack.UnitTest.TestData;
 
@@ -8,7 +9,7 @@ namespace PrimeFuncPack.Core.Tests;
 partial class OptionalTest
 {
     [Test]
-    public void ToString_SourceIsAbsent_ExpectAbsentString()
+    public void ToString_SourceIsAbsent()
     {
         var source = Optional<StubType>.Absent;
 
@@ -16,14 +17,14 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional.Absent[{0}]:()",
+            "Optional[{0}]:Absent:()",
             typeof(StubType));
 
         Assert.AreEqual(expected, actual);
     }
 
     [Test]
-    public void ToString_SourceIsPresentAndValueIsNull_ExpectPresentEmptyString()
+    public void ToString_SourceIsPresentAndValueIsNull()
     {
         var source = Optional<StubType?>.Present(null);
 
@@ -31,7 +32,7 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional.Present[{0}]:{1}",
+            "Optional[{0}]:Present:{1}",
             typeof(StubType),
             string.Empty);
 
@@ -39,7 +40,7 @@ partial class OptionalTest
     }
 
     [Test]
-    public void ToString_SourceIsPresentAndValueToStringIsNull_ExpectPresentEmptyString()
+    public void ToString_SourceIsPresentAndValueToStringIsNull()
     {
         var sourceValue = new StubType(null);
         var source = Optional<StubType>.Present(sourceValue);
@@ -48,7 +49,7 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional.Present[{0}]:{1}",
+            "Optional[{0}]:Present:{1}",
             typeof(StubType),
             string.Empty);
 
@@ -56,6 +57,7 @@ partial class OptionalTest
     }
 
     [Test]
+    [TestCase(null)]
     [TestCase(EmptyString)]
     [TestCase(TabString)]
     [TestCase(TwoTabsString)]
@@ -64,8 +66,8 @@ partial class OptionalTest
     [TestCase(ThreeWhiteSpacesString)]
     [TestCase(MixedWhiteSpacesString)]
     [TestCase(SomeString)]
-    public void ToString_SourceIsPresentAndValueToStringIsNotNull_ExpectSourceValueToStringResult(
-        string sourceValueToStringResult)
+    public void ToString_SourceIsPresent_ValueToString_Common(
+        string? sourceValueToStringResult)
     {
         var sourceValue = new StubType(sourceValueToStringResult);
         var source = Optional<StubType>.Present(sourceValue);
@@ -74,14 +76,13 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional.Present[{0}]:{1}",
+            "Optional[{0}]:Present:{1}",
             typeof(StubType),
             sourceValueToStringResult);
 
         Assert.AreEqual(expected, actual);
     }
 
-    // TODO: Add test case source including decimal with point
     [Test]
     [TestCase(null)]
     [TestCase(EmptyString)]
@@ -95,7 +96,7 @@ partial class OptionalTest
     [TestCase(MinusOne)]
     [TestCase(Zero)]
     [TestCase(One)]
-    public void ToString_Common(
+    public void ToString_SourceIsPresent_Common(
         object? sourceValue)
     {
         var source = Optional<object?>.Present(sourceValue);
@@ -104,10 +105,35 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional.Present[{0}]:{1}",
+            "Optional[{0}]:Present:{1}",
             typeof(object),
             sourceValue);
 
         Assert.AreEqual(expected, actual);
+    }
+
+    [Test]
+    [TestCaseSource(nameof(ToString_SourceIsPresent_DecimalPoint_TestCaseSource))]
+    public void ToString_SourceIsPresent_DecimalPoint(
+        decimal sourceValue, string expectedDecimalSubstr)
+    {
+        var source = Optional<decimal>.Present(sourceValue);
+
+        var actual = source.ToString();
+
+        var expected = string.Format(
+            CultureInfo.InvariantCulture,
+            "Optional[{0}]:Present:{1}",
+            typeof(decimal),
+            expectedDecimalSubstr);
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    private static IEnumerable<object[]> ToString_SourceIsPresent_DecimalPoint_TestCaseSource()
+    {
+        yield return new object[] { -1.1m, "-1.1" };
+        yield return new object[] { 0.0m, "0.0" };
+        yield return new object[] { 1.1m, "1.1" };
     }
 }

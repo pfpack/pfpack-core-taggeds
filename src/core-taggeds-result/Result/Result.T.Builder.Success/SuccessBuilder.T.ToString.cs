@@ -1,4 +1,4 @@
-﻿using System;
+﻿using static System.FormattableString;
 
 namespace PrimeFuncPack.Core;
 
@@ -6,5 +6,5 @@ partial struct SuccessBuilder<TSuccess>
 {
     public override string ToString()
         =>
-        (success?.ToString()).OrEmpty();
+        Invariant($"SuccessBuilder[{typeof(TSuccess)}]:{success}");
 }

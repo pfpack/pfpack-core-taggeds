@@ -13,9 +13,7 @@ partial struct Result<TSuccess, TFailure>
         {
             return SuccessComparer.Equals(success, other.success);
         }
-        else
-        {
-            return FailureComparer.Equals(failure, other.failure);
-        }
+
+        return FailureComparer.Equals(failure, other.failure);
     }
 }

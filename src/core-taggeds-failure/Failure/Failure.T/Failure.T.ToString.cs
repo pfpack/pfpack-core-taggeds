@@ -7,5 +7,5 @@ partial struct Failure<TFailureCode>
     public override string ToString()
         =>
         Invariant(
-            $"Failure[{typeof(TFailureCode)}]:{{ \"{nameof(FailureCode)}\": {FailureCode}, \"{nameof(FailureMessage)}\": \"{FailureMessage}\" }}");
+            $"Failure[{typeof(TFailureCode)}]:{{ \"FailureCode\": {FailureCode}, \"FailureMessage\": \"{FailureMessage}\" }}");
 }

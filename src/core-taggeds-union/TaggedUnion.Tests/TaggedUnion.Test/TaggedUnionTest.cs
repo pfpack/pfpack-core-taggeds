@@ -5,15 +5,16 @@ namespace PrimeFuncPack.Core.Tests;
 
 public sealed partial class TaggedUnionTest
 {
-    private const string First = "first";
+    private const string First = "First";
 
-    private const string Second = "second";
+    private const string Second = "Second";
 
-    private static void AssertContainsFirst(
-        string expectedSubString,
-        string? actual)
+    private static void AssertContains(
+        string expectedSubstring,
+        string? actual,
+        StringComparison comparison = StringComparison.Ordinal)
     {
         Assert.NotNull(actual);
-        Assert.True(actual!.Contains(expectedSubString, StringComparison.InvariantCultureIgnoreCase));
+        Assert.True(actual!.Contains(expectedSubstring, comparison));
     }
 }

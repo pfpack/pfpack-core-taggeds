@@ -12,7 +12,7 @@ partial struct Result<TSuccess, TFailure>
         _ = mapSuccess ?? throw new ArgumentNullException(nameof(mapSuccess));
         _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-        return InternalFold<Result<TResultSuccess, TResultFailure>>(
+        return InnerFold<Result<TResultSuccess, TResultFailure>>(
             value => mapSuccess.Invoke(value),
             value => mapFailure.Invoke(value));
     }
@@ -25,7 +25,7 @@ partial struct Result<TSuccess, TFailure>
         _ = mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync));
         _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-        return InternalFold<Task<Result<TResultSuccess, TResultFailure>>>(
+        return InnerFold<Task<Result<TResultSuccess, TResultFailure>>>(
             async value => await mapSuccessAsync.Invoke(value).ConfigureAwait(false),
             async value => await mapFailureAsync.Invoke(value).ConfigureAwait(false));
     }
@@ -38,7 +38,7 @@ partial struct Result<TSuccess, TFailure>
         _ = mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync));
         _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-        return InternalFold<ValueTask<Result<TResultSuccess, TResultFailure>>>(
+        return InnerFold<ValueTask<Result<TResultSuccess, TResultFailure>>>(
             async value => await mapSuccessAsync.Invoke(value).ConfigureAwait(false),
             async value => await mapFailureAsync.Invoke(value).ConfigureAwait(false));
     }

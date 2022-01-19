@@ -7,6 +7,6 @@ partial class TaggedsExtensions
         where TFailure : struct
         =>
         result.Fold<TaggedUnion<TSuccess, TFailure>>(
-            value => new(value),
-            value => new(value));
+            success => new(success),
+            failure => new(failure));
 }

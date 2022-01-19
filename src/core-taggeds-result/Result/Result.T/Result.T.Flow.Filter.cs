@@ -16,7 +16,7 @@ partial struct Result<TSuccess, TFailure>
         _ = causeFactory ?? throw new ArgumentNullException(nameof(causeFactory));
         _ = mapFailure ?? throw new ArgumentNullException(nameof(mapFailure));
 
-        return InternalFold(FilterSuccess, failure => mapFailure.Invoke(failure));
+        return InnerFold(FilterSuccess, failure => mapFailure.Invoke(failure));
 
         Result<TSuccess, TCauseFailure> FilterSuccess(TSuccess success)
             =>
@@ -34,7 +34,7 @@ partial struct Result<TSuccess, TFailure>
 
         var @this = this;
 
-        return InternalFold(FilterSuccess, _ => @this);
+        return InnerFold(FilterSuccess, _ => @this);
 
         Result<TSuccess, TFailure> FilterSuccess(TSuccess success)
             =>
@@ -55,7 +55,7 @@ partial struct Result<TSuccess, TFailure>
         _ = causeFactoryAsync ?? throw new ArgumentNullException(nameof(causeFactoryAsync));
         _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-        return InternalFold(FilterSuccessAsync, MapFailureAsync);
+        return InnerFold(FilterSuccessAsync, MapFailureAsync);
 
         async Task<Result<TSuccess, TCauseFailure>> FilterSuccessAsync(TSuccess success)
             =>
@@ -77,7 +77,7 @@ partial struct Result<TSuccess, TFailure>
 
         var @this = this;
 
-        return InternalFold(FilterSuccessAsync, _ => Task.FromResult(@this));
+        return InnerFold(FilterSuccessAsync, _ => Task.FromResult(@this));
 
         async Task<Result<TSuccess, TFailure>> FilterSuccessAsync(TSuccess success)
             =>
@@ -98,7 +98,7 @@ partial struct Result<TSuccess, TFailure>
         _ = causeFactoryAsync ?? throw new ArgumentNullException(nameof(causeFactoryAsync));
         _ = mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync));
 
-        return InternalFold(FilterSuccessAsync, MapFailureAsync);
+        return InnerFold(FilterSuccessAsync, MapFailureAsync);
 
         async ValueTask<Result<TSuccess, TCauseFailure>> FilterSuccessAsync(TSuccess success)
             =>
@@ -120,7 +120,7 @@ partial struct Result<TSuccess, TFailure>
 
         var @this = this;
 
-        return InternalFold(FilterSuccessAsync, _ => ValueTask.FromResult(@this));
+        return InnerFold(FilterSuccessAsync, _ => ValueTask.FromResult(@this));
 
         async ValueTask<Result<TSuccess, TFailure>> FilterSuccessAsync(TSuccess success)
             =>

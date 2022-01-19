@@ -14,9 +14,9 @@ partial struct Result<TSuccess, TFailure>
 
     public static implicit operator Result<TSuccess, TFailure>(SuccessBuilder<TSuccess> success)
         =>
-        success.With<TFailure>();
+        new(success.InternalSuccess);
 
     public static implicit operator Result<TSuccess, TFailure>(FailureBuilder<TFailure> failure)
         =>
-        failure.With<TSuccess>();
+        new(failure.InternalFailure);
 }

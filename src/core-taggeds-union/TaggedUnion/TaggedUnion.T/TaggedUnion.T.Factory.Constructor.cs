@@ -4,9 +4,9 @@ partial struct TaggedUnion<TFirst, TSecond>
 {
     public TaggedUnion(TFirst first)
         =>
-        (this.first, second, tag) = (first, default!, Tag.First);
+        (this.first, tag, second) = (first, InternalTag.First, default!);
 
     public TaggedUnion(TSecond second)
         =>
-        (this.second, first, tag) = (second, default!, Tag.Second);
+        (this.second, tag, first) = (second, InternalTag.Second, default!);
 }
