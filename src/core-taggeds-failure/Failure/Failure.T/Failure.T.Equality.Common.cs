@@ -8,6 +8,10 @@ partial struct Failure<TFailureCode>
         =>
         typeof(Failure<TFailureCode>);
 
+    private static EqualityComparer<Type> EqualityContractComparer
+        =>
+        EqualityComparer<Type>.Default;
+
     private static EqualityComparer<TFailureCode> FailureCodeComparer
         =>
         EqualityComparer<TFailureCode>.Default;
