@@ -15,5 +15,6 @@ partial struct Absent<T>
 
     public override int GetHashCode()
         =>
-        HashCode.Combine(EqualityComparer<Type>.Default.GetHashCode(typeof(Absent<T>)));
+        HashCode.Combine(
+            EqualityComparer<Type>.Default.GetHashCode(typeof(Absent<T>)));
 }
