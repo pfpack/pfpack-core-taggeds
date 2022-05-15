@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace System;
 
@@ -14,5 +15,5 @@ partial struct Absent<T>
 
     public override int GetHashCode()
         =>
-        HashCode.Combine(typeof(Absent<T>));
+        HashCode.Combine(EqualityComparer<Type>.Default.GetHashCode(typeof(Absent<T>)));
 }
