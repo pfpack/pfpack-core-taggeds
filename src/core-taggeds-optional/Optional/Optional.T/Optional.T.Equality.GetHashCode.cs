@@ -12,11 +12,16 @@ partial struct Optional<T>
     private int PresentHashCode()
         =>
         value is not null
-            ? HashCode.Combine(EqualityContract, true, EqualityComparer.GetHashCode(value))
-            : HashCode.Combine(EqualityContract, true);
+            ? HashCode.Combine(EqualityContractHashCode(), true, EqualityComparer.GetHashCode(value))
+            : HashCode.Combine(EqualityContractHashCode(), true);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int AbsentHashCode()
         =>
-        HashCode.Combine(EqualityContract);
+        HashCode.Combine(EqualityContractHashCode());
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int EqualityContractHashCode()
+        =>
+        EqualityContractComparer.GetHashCode(EqualityContract);
 }

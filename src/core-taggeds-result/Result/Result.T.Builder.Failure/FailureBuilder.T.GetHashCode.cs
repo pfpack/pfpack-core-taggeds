@@ -6,5 +6,7 @@ partial struct FailureBuilder<TFailure>
 {
     public override int GetHashCode()
         =>
-        HashCode.Combine(EqualityContract, FailureComparer.GetHashCode(failure));
+        HashCode.Combine(
+            EqualityContractComparer.GetHashCode(EqualityContract),
+            FailureComparer.GetHashCode(failure));
 }

@@ -4,7 +4,15 @@ namespace System;
 
 partial struct Optional<T>
 {
-    private static Type EqualityContract => typeof(Optional<T>);
+    private static Type EqualityContract
+        =>
+        typeof(Optional<T>);
 
-    private static EqualityComparer<T> EqualityComparer => EqualityComparer<T>.Default;
+    private static EqualityComparer<Type> EqualityContractComparer
+        =>
+        EqualityComparer<Type>.Default;
+
+    private static EqualityComparer<T> EqualityComparer
+        =>
+        EqualityComparer<T>.Default;
 }

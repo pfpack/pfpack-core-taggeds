@@ -17,7 +17,7 @@
     <Description>PrimeFuncPack Core.TaggedUnion is a core library for .NET consisting of Tagged Union targeted for use in functional programming.</Description>
     <RootNamespace>System</RootNamespace>
     <AssemblyName>PrimeFuncPack.Core.TaggedUnion</AssemblyName>
-    <Version>2.0.0</Version>
+    <Version>2.0.1-preview.1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PrimeFuncPack.Core.Unit" Version="2.1.1" />
+    <PackageReference Include="PrimeFuncPack.Core.Unit" Version="2.1.2" />
   </ItemGroup>
 
 </Project>

@@ -23,18 +23,23 @@ partial struct TaggedUnion<TFirst, TSecond>
     private int FirstHashCode()
         =>
         first is not null
-            ? HashCode.Combine(EqualityContract, InternalTag.First, FirstComparer.GetHashCode(first))
-            : HashCode.Combine(EqualityContract, InternalTag.First);
+            ? HashCode.Combine(EqualityContractHashCode(), InternalTag.First, FirstComparer.GetHashCode(first))
+            : HashCode.Combine(EqualityContractHashCode(), InternalTag.First);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private int SecondHashCode()
         =>
         second is not null
-            ? HashCode.Combine(EqualityContract, InternalTag.Second, SecondComparer.GetHashCode(second))
-            : HashCode.Combine(EqualityContract, InternalTag.Second);
+            ? HashCode.Combine(EqualityContractHashCode(), InternalTag.Second, SecondComparer.GetHashCode(second))
+            : HashCode.Combine(EqualityContractHashCode(), InternalTag.Second);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int NoneHashCode()
         =>
-        HashCode.Combine(EqualityContract);
+        HashCode.Combine(EqualityContractHashCode());
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int EqualityContractHashCode()
+        =>
+        EqualityContractComparer.GetHashCode(EqualityContract);
 }
