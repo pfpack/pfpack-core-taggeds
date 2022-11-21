@@ -7,7 +7,7 @@ namespace PrimeFuncPack.Core.Tests;
 
 partial class ResultTest
 {
-    [Test]        
+    [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
     public void SuccessOrThrow_SourceIsSuccessAndValueIsNull_ExpectNull(
         Result<RefType?, StructType> source)
@@ -33,9 +33,12 @@ partial class ResultTest
     public void SuccessOrThrow_SourceIsDefaultOrFailure_ExpectInvalidOperationException(
         Result<RefType, StructType> source)
     {
-        var actualEx = Assert.Throws<InvalidOperationException>(
-            () => _ = source.SuccessOrThrow());
-                
+        var actualEx = Assert.Throws<InvalidOperationException>(Test);
+
         Assert.True(actualEx!.Message.Contains("Success", StringComparison.InvariantCultureIgnoreCase));
+
+        void Test()
+            =>
+            _ = source.SuccessOrThrow();
     }
 }

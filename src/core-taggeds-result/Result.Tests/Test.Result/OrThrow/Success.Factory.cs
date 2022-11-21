@@ -7,24 +7,47 @@ namespace PrimeFuncPack.Core.Tests;
 
 partial class ResultTest
 {
-    [Test]        
+    [Test]
+    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessMinusFifteenIdRefTypeTestSource))]
+    public void SuccessOrThrowWithExceptionFactory_ExceptionFactoryIsNull_ExpectArgumentNullException(
+        Result<RefType, StructType> source)
+    {
+        var exceptionFactory = (Func<Exception>)null!;
+        var actualException = Assert.Throws<ArgumentNullException>(Test);
+        
+        Assert.AreEqual("exceptionFactory", actualException?.ParamName);
+
+        void Test()
+            =>
+            _ = source.SuccessOrThrow(exceptionFactory);
+    }
+
+    [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
     public void SuccessOrThrowWithExceptionFactory_SourceIsSuccessAndValueIsNull_ExpectNull(
         Result<RefType, StructType> source)
     {
-        var actual = source.SuccessOrThrow(() => new SomeException());
+        var actual = source.SuccessOrThrow(CreateException);
         Assert.IsNull(actual);
+
+        static Exception CreateException()
+            =>
+            new SomeException();
     }
 
-    [Test]    
+    [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessMinusFifteenIdRefTypeTestSource))]
     public void SuccessOrThrowWithExceptionFactory_SourceIsSuccessAndValueIsNotNull_ExpectSuccessValue(
         Result<RefType, StructType> source)
     {
-        var actual = source.SuccessOrThrow(() => new SomeException());
+        var actual = source.SuccessOrThrow(CreateException);
         var expected = MinusFifteenIdRefType;
 
         Assert.AreEqual(expected, actual);
+
+        static Exception CreateException()
+            =>
+            new SomeException();
     }
 
     [Test]
@@ -34,10 +57,16 @@ partial class ResultTest
         Result<RefType, StructType> source)
     {
         var exceptionFromFactory = new SomeException();
+        var actualException = Assert.Throws<SomeException>(Test);
 
-        var actualException = Assert.Throws<SomeException>(
-            () => _ = source.SuccessOrThrow(() => exceptionFromFactory));
-                
         Assert.AreEqual(exceptionFromFactory, actualException);
+
+        void Test()
+            =>
+            _ = source.SuccessOrThrow(CreateException);
+
+        Exception CreateException()
+            =>
+            exceptionFromFactory;
     }
 }

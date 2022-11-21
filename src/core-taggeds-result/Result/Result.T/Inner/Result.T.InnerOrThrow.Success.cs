@@ -10,4 +10,11 @@ partial struct Result<TSuccess, TFailure>
         isSuccess
             ? success
             : throw exceptionFactory.Invoke();
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private TSuccess InnerSuccessOrThrow(Func<TFailure, Exception> exceptionFactory)
+        =>
+        isSuccess
+            ? success
+            : throw exceptionFactory.Invoke(failure);
 }
