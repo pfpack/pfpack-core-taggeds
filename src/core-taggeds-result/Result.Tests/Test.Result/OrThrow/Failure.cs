@@ -7,7 +7,7 @@ namespace PrimeFuncPack.Core.Tests;
 
 partial class ResultTest
 {
-    [Test]        
+    [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureDefaultTestSource))]
     public void FailureOrThrow_SourceIsDefault_ExpectDefaultFailureValue(
         Result<RefType, StructType> source)
@@ -29,15 +29,18 @@ partial class ResultTest
         Assert.AreEqual(expected, actual);
     }
 
-    [Test]        
+    [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
     public void FailureOrThrow_SourceIsSuccess_ExpectInvalidOperationException(
         Result<RefType, StructType> source)
     {
-        var actualEx = Assert.Throws<InvalidOperationException>(
-            () => _ = source.FailureOrThrow());
+        var actualEx = Assert.Throws<InvalidOperationException>(Test);
                 
         Assert.True(actualEx!.Message.Contains("Failure", StringComparison.InvariantCultureIgnoreCase));
+
+        void Test()
+            =>
+            _ = source.FailureOrThrow();
     }
 }
