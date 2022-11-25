@@ -1,5 +1,4 @@
-﻿using Moq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace PrimeFuncPack.Core.Tests;
 
@@ -12,35 +11,5 @@ public sealed partial class OptionalLinqDictionariesExtensionsTest
         {
             yield return pair;
         }
-    }
-
-    private static Mock<IReadOnlyDictionary<TKey, TValue>> CreateMockReadOnlyDictionary<TKey, TValue>(
-        bool tryGetValueResult,
-        TValue returnedValue)
-    {
-        var mock = new Mock<IReadOnlyDictionary<TKey, TValue>>();
-
-        _ = mock
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-            .Setup(d => d.TryGetValue(It.IsAny<TKey>(), out returnedValue))
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-            .Returns(tryGetValueResult);
-
-        return mock;
-    }
-
-    private static Mock<IDictionary<TKey, TValue>> CreateMockDictionary<TKey, TValue>(
-        bool tryGetValueResult,
-        TValue returnedValue)
-    {
-        var mock = new Mock<IDictionary<TKey, TValue>>();
-
-        _ = mock
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-            .Setup(d => d.TryGetValue(It.IsAny<TKey>(), out returnedValue))
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-            .Returns(tryGetValueResult);
-
-        return mock;
     }
 }

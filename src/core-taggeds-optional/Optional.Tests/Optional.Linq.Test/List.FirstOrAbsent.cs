@@ -1,5 +1,4 @@
-﻿using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using PrimeFuncPack.UnitTest;
 using System;
 using System.Collections.Generic;
@@ -15,8 +14,12 @@ partial class OptionalLinqExtensionsTest
     {
         IList<StructType> source = null!;
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FirstOrAbsent());
-        Assert.AreEqual("source", ex!.ParamName);
+        var ex = Assert.Throws<ArgumentNullException>(Test);
+        Assert.AreEqual("source", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = source.FirstOrAbsent();
     }
 
     [Test]
@@ -47,26 +50,34 @@ partial class OptionalLinqExtensionsTest
     public void FirstOrAbsentByPredicate_ListSourceIsNull_ExpectArgumentNullException()
     {
         IList<StructType> source = null!;
+        var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FirstOrAbsent(_ => true));
-        Assert.AreEqual("source", ex!.ParamName);
+        Assert.AreEqual("source", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = source.FirstOrAbsent(static _ => true);
     }
 
     [Test]
     public void FirstOrAbsentByPredicate_ListPredicateIsNull_ExpectArgumentNullException()
     {
         var source = CreateList(SomeTextStructType);
+        var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FirstOrAbsent(null!));
-        Assert.AreEqual("predicate", ex!.ParamName);
+        Assert.AreEqual("predicate", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = source.FirstOrAbsent(null!);
     }
 
     [Test]
     public void FirstOrAbsentByPredicate_ListPredicateResultIsAlreadyFalse_ExpectAbsent()
     {
-        var source = CreateList<RefType?>(PlusFifteenIdRefType, MinusFifteenIdRefType, ZeroIdRefType, null);
+        var source = CreateList(PlusFifteenIdRefType, MinusFifteenIdRefType, ZeroIdRefType, null);
 
-        var actual = source.FirstOrAbsent(_ => false);
+        var actual = source.FirstOrAbsent(static _ => false);
         var expected = Optional<RefType?>.Absent;
 
         Assert.AreEqual(expected, actual);
@@ -75,7 +86,8 @@ partial class OptionalLinqExtensionsTest
     [Test]
     public void FirstOrAbsentByPredicate_ListPredicateResultIsNotAlreadyFalse_ExpectPresentFirstSuccessful()
     {
-        var expectedId = 1015;
+        const int expectedId = 1015;
+
         var expectedValue = new RefType
         {
             Id = expectedId
@@ -85,27 +97,16 @@ partial class OptionalLinqExtensionsTest
         {
             Id = expectedId
         };
-        var source = CreateList<RefType?>(PlusFifteenIdRefType, expectedValue, MinusFifteenIdRefType, null, otherRefType);
 
-        var actual = source.FirstOrAbsent(item => item?.Id == expectedId);
+        var source = CreateList(PlusFifteenIdRefType, expectedValue, MinusFifteenIdRefType, null, otherRefType);
+
+        var actual = source.FirstOrAbsent(Predicate);
         var expected = Optional<RefType?>.Present(expectedValue);
 
         Assert.AreEqual(expected, actual);
-    }
 
-    [Test]
-    public void FirstOrAbsentByPredicate_ListPredicateResultIsNotAlreadyFalse_ExpectCallPredicate()
-    {
-        var expectedValue = new RefType
-        {
-            Id = -715
-        };
-        var source = CreateList<RefType?>(PlusFifteenIdRefType, null, expectedValue, MinusFifteenIdRefType, expectedValue);
-        var mockPredicate = CreateMockPredicate<RefType?>(item => item == expectedValue);
-
-        var actual = source.FirstOrAbsent(mockPredicate.Object.Invoke);
-        _ = Optional<RefType?>.Present(expectedValue);
-
-        mockPredicate.Verify(p => p.Invoke(It.IsAny<RefType>()), Times.Exactly(3));
+        static bool Predicate(RefType? item)
+            =>
+            item?.Id is expectedId;
     }
 }

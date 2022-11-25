@@ -44,7 +44,7 @@ partial class OptionalTest
         Func<int> otherFactory = null!;
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.OrElse(otherFactory));
-        Assert.AreEqual("otherFactory", ex!.ParamName);
+        Assert.AreEqual("otherFactory", ex?.ParamName);
     }
 
     [Test]
@@ -82,7 +82,7 @@ partial class OptionalTest
         var source = Optional<int>.Present(PlusFifteen);
 
         var ex = Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await source.OrElseAsync(null!));
-        Assert.AreEqual("otherFactoryAsync", ex!.ParamName);
+        Assert.AreEqual("otherFactoryAsync", ex?.ParamName);
     }
 
     [Test]
@@ -120,7 +120,7 @@ partial class OptionalTest
         var source = Optional<int>.Present(PlusFifteen);
 
         var ex = Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await source.OrElseValueAsync(null!));
-        Assert.AreEqual("otherFactoryAsync", ex!.ParamName);
+        Assert.AreEqual("otherFactoryAsync", ex?.ParamName);
     }
 
     [Test]

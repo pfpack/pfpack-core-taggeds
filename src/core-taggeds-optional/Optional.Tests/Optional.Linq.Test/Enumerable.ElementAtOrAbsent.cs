@@ -16,7 +16,7 @@ partial class OptionalLinqExtensionsTest
         int index = 1;
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.ElementAtOrAbsent(index));
-        Assert.AreEqual("source", ex!.ParamName);
+        Assert.AreEqual("source", ex?.ParamName);
     }
 
     [Test]
@@ -58,7 +58,7 @@ partial class OptionalLinqExtensionsTest
         long index = 1;
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.ElementAtOrAbsent(index));
-        Assert.AreEqual("source", ex!.ParamName);
+        Assert.AreEqual("source", ex?.ParamName);
     }
 
     [Test]

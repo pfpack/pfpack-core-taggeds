@@ -1,7 +1,4 @@
-﻿using Moq;
-using PrimeFuncPack.UnitTest.Moq;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace PrimeFuncPack.Core.Tests;
 
@@ -24,18 +21,6 @@ public sealed partial class OptionalLinqExtensionsTest
         {
             yield return item;
         }
-    }
-
-    private static Mock<IFunc<T, bool>> CreateMockPredicate<T>(
-        Func<T, bool> valueFunction)
-    {
-        var mock = new Mock<IFunc<T, bool>>();
-
-        _ = mock
-            .Setup(p => p.Invoke(It.IsAny<T>()))
-            .Returns(valueFunction);
-
-        return mock;
     }
 
     private static SomeException CreateSomeException()

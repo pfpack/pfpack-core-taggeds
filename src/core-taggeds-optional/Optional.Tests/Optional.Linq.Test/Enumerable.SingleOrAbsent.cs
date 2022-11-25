@@ -13,9 +13,13 @@ partial class OptionalLinqExtensionsTest
     public void SingleOrAbsent_CollectionSourceIsNull_ExpectArgumentNullException()
     {
         IEnumerable<StructType> source = null!;
+        var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent());
-        Assert.AreEqual("source", ex!.ParamName);
+        Assert.AreEqual("source", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = source.SingleOrAbsent();
     }
 
     [Test]
@@ -46,16 +50,24 @@ partial class OptionalLinqExtensionsTest
     public void SingleOrAbsent_CollectionSourceContainsMoreThanOneElement_ExpectInvalidOperationException()
     {
         var source = CreateCollection(PlusFifteenIdRefType, MinusFifteenIdRefType);
-        _ = Assert.Throws<InvalidOperationException>(() => _ = source.SingleOrAbsent());
+        _ = Assert.Throws<InvalidOperationException>(Test);
+
+        void Test()
+            =>
+            _ = source.SingleOrAbsent();
     }
 
     [Test]
     public void SingleOrAbsentWithExceptionFactory_CollectionSourceIsNull_ExpectArgumentNullException()
     {
         IEnumerable<StructType> source = null!;
+        var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(CreateSomeException));
-        Assert.AreEqual("source", ex!.ParamName);
+        Assert.AreEqual("source", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = source.SingleOrAbsent(CreateSomeException);
     }
 
     [Test]
@@ -64,8 +76,12 @@ partial class OptionalLinqExtensionsTest
         var source = CreateCollection(PlusFifteenIdRefType);
         Func<Exception> exceptionFactory = null!;
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(exceptionFactory));
-        Assert.AreEqual("moreThanOneElementExceptionFactory", ex!.ParamName);
+        var ex = Assert.Throws<ArgumentNullException>(Test);
+        Assert.AreEqual("moreThanOneElementExceptionFactory", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = source.SingleOrAbsent(exceptionFactory);
     }
 
     [Test]
@@ -98,17 +114,25 @@ partial class OptionalLinqExtensionsTest
         var source = CreateCollection(PlusFifteenIdRefType, MinusFifteenIdRefType);
         var createdException = new SomeException();
 
-        var ex = Assert.Throws<SomeException>(() => _ = source.SingleOrAbsent(() => createdException));
+        var ex = Assert.Throws<SomeException>(Test);
         Assert.AreSame(createdException, ex);
+
+        void Test()
+            =>
+            _ = source.SingleOrAbsent(() => createdException);
     }
 
     [Test]
     public void SingleOrAbsentByPredicate_CollectionSourceIsNull_ExpectArgumentNullException()
     {
         IEnumerable<StructType> source = null!;
+        var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(_ => false));
-        Assert.AreEqual("source", ex!.ParamName);
+        Assert.AreEqual("source", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = source.SingleOrAbsent(static _ => false);
     }
 
     [Test]
@@ -117,8 +141,12 @@ partial class OptionalLinqExtensionsTest
         var source = CreateCollection(MinusFifteenIdRefType);
         Func<RefType, bool> predicate = null!;
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(predicate));
-        Assert.AreEqual("predicate", ex!.ParamName);
+        var ex = Assert.Throws<ArgumentNullException>(Test);
+        Assert.AreEqual("predicate", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = source.SingleOrAbsent(predicate);
     }
 
     [Test]
@@ -126,7 +154,7 @@ partial class OptionalLinqExtensionsTest
     {
         var source = CreateCollection(SomeTextStructType, NullTextStructType);
 
-        var actual = source.SingleOrAbsent(_ => false);
+        var actual = source.SingleOrAbsent(static _ => false);
         var expected = Optional<StructType>.Absent;
 
         Assert.AreEqual(expected, actual);
@@ -152,7 +180,8 @@ partial class OptionalLinqExtensionsTest
     [Test]
     public void SingleOrAbsentByPredicate_CollectionPredicateResultIsTrueMoreThanOneTime_ExpectInvalidOperationException()
     {
-        var expectedText = "Expected Text";
+        const string expectedText = "Expected Text";
+
         var expectedValue = new StructType
         {
             Text = expectedText
@@ -162,23 +191,36 @@ partial class OptionalLinqExtensionsTest
         {
             Text = expectedText
         };
-        var source = CreateCollection<StructType?>(SomeTextStructType, expectedValue, NullTextStructType, null, expectedTextStructType);
-            
-        var mockPredicate = CreateMockPredicate<StructType?>(
-            item => expectedText.Equals(item?.Text, StringComparison.InvariantCultureIgnoreCase));
 
-        _ = Assert.Throws<InvalidOperationException>(() => _ = source.SingleOrAbsent(mockPredicate.Object.Invoke));
+        var source = CreateCollection<StructType?>(
+            SomeTextStructType, expectedValue, NullTextStructType, null, expectedTextStructType);
+
+        _ = Assert.Throws<InvalidOperationException>(Test);
+
+        void Test()
+            =>
+            _ = source.SingleOrAbsent(Predicate);
+
+        static bool Predicate(StructType? item)
+            =>
+            string.Equals(expectedText, item?.Text, StringComparison.InvariantCultureIgnoreCase);
     }
 
     [Test]
     public void SingleOrAbsentByPredicateAndFactory_CollectionSourceIsNull_ExpectArgumentNullException()
     {
         IEnumerable<StructType> source = null!;
+        var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(
-            _ => false, CreateSomeException));
+        Assert.AreEqual("source", ex?.ParamName);
 
-        Assert.AreEqual("source", ex!.ParamName);
+        void Test()
+            =>
+            _ = source.SingleOrAbsent(Predicate, CreateSomeException);
+
+        static bool Predicate(StructType _)
+            =>
+            false;
     }
 
     [Test]
@@ -187,17 +229,29 @@ partial class OptionalLinqExtensionsTest
         var source = CreateCollection(MinusFifteenIdRefType);
         Func<RefType, bool> predicate = null!;
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(predicate, CreateSomeException));
-        Assert.AreEqual("predicate", ex!.ParamName);
+        var ex = Assert.Throws<ArgumentNullException>(Test);
+        Assert.AreEqual("predicate", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = source.SingleOrAbsent(predicate, CreateSomeException);
     }
 
     [Test]
     public void SingleOrAbsentByPredicateAndFactory_CollectionExceptionFactoryIsNull_ExpectArgumentNullException()
     {
         var source = CreateCollection(MinusFifteenIdRefType);
+        var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.SingleOrAbsent(_ => false, null!));
-        Assert.AreEqual("moreThanOneMatchExceptionFactory", ex!.ParamName);
+        Assert.AreEqual("moreThanOneMatchExceptionFactory", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = source.SingleOrAbsent(Predicate, null!);
+
+        static bool Predicate(RefType _)
+            =>
+            false;
     }
 
     [Test]
@@ -205,7 +259,7 @@ partial class OptionalLinqExtensionsTest
     {
         var source = CreateCollection(SomeTextStructType, NullTextStructType);
 
-        var actual = source.SingleOrAbsent(_ => false, CreateSomeException);
+        var actual = source.SingleOrAbsent(static _ => false, CreateSomeException);
         var expected = Optional<StructType>.Absent;
 
         Assert.AreEqual(expected, actual);
@@ -233,7 +287,8 @@ partial class OptionalLinqExtensionsTest
     [Test]
     public void SingleOrAbsentByPredicateAndFactory_CollectionPredicateResultIsTrueMoreThanOneTime_ExpectCreatedException()
     {
-        var expectedText = "Expected Text";
+        const string expectedText = "Expected Text";
+
         var expectedValue = new StructType
         {
             Text = expectedText
@@ -243,15 +298,21 @@ partial class OptionalLinqExtensionsTest
         {
             Text = expectedText
         };
-        var source = CreateCollection<StructType?>(SomeTextStructType, expectedValue, NullTextStructType, null, expectedTextStructType);
 
-        var mockPredicate = CreateMockPredicate<StructType?>(
-            item => expectedText.Equals(item?.Text, StringComparison.InvariantCultureIgnoreCase));
+        var source = CreateCollection<StructType?>(
+            SomeTextStructType, expectedValue, NullTextStructType, null, expectedTextStructType);
 
         var createdException = new SomeException();
-        var actualException = Assert.Throws<SomeException>(() => _ = source.SingleOrAbsent(
-            mockPredicate.Object.Invoke, () => createdException));
+        var actualException = Assert.Throws<SomeException>(Test);
 
         Assert.AreSame(createdException, actualException);
+
+        void Test()
+            =>
+            _ = source.SingleOrAbsent(Predicate, () => createdException);
+
+        static bool Predicate(StructType? item)
+            =>
+            string.Equals(expectedText, item?.Text, StringComparison.InvariantCultureIgnoreCase);
     }
 }

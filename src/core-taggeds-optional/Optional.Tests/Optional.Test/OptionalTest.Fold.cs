@@ -14,7 +14,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Fold(null!, () => PlusFifteenIdRefType));
-        Assert.AreEqual("map", ex!.ParamName);
+        Assert.AreEqual("map", ex?.ParamName);
     }
 
     [Test]
@@ -23,7 +23,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Fold(_ => PlusFifteenIdRefType, null!));
-        Assert.AreEqual("otherFactory", ex!.ParamName);
+        Assert.AreEqual("otherFactory", ex?.ParamName);
     }
 
     [Test]
@@ -58,7 +58,7 @@ partial class OptionalTest
         var ex = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.FoldAsync(null!, () => Task.FromResult(MinusFifteenIdRefType)));
 
-        Assert.AreEqual("mapAsync", ex!.ParamName);
+        Assert.AreEqual("mapAsync", ex?.ParamName);
     }
 
     [Test]
@@ -69,7 +69,7 @@ partial class OptionalTest
         var ex = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.FoldAsync(_ => Task.FromResult(int.MaxValue), null!));
 
-        Assert.AreEqual("otherFactoryAsync", ex!.ParamName);
+        Assert.AreEqual("otherFactoryAsync", ex?.ParamName);
     }
 
     [Test]
@@ -104,7 +104,7 @@ partial class OptionalTest
         var ex = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.FoldValueAsync(null!, () => ValueTask.FromResult(MinusFifteenIdRefType)));
 
-        Assert.AreEqual("mapAsync", ex!.ParamName);
+        Assert.AreEqual("mapAsync", ex?.ParamName);
     }
 
     [Test]
@@ -115,7 +115,7 @@ partial class OptionalTest
         var ex = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.FoldValueAsync(_ => ValueTask.FromResult(int.MaxValue), null!));
 
-        Assert.AreEqual("otherFactoryAsync", ex!.ParamName);
+        Assert.AreEqual("otherFactoryAsync", ex?.ParamName);
     }
 
     [Test]
