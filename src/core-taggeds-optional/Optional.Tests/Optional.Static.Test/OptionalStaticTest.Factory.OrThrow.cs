@@ -22,7 +22,7 @@ partial class OptionalStaticTest
     public void PresentOrThrow_ValueIsNull_ExpectArgumentNullException()
     {
         var ex = Assert.Throws<ArgumentException>(() => _ = Optional.PresentOrThrow<RefType?>(null!));
-        Assert.AreEqual("value", ex!.ParamName);
+        Assert.AreEqual("value", ex?.ParamName);
     }
 
     [Test]
@@ -51,6 +51,6 @@ partial class OptionalStaticTest
     public void PresentOrThrowWithStructValue_ValueIsNull_ExpectArgumentNullException()
     {
         var ex = Assert.Throws<ArgumentException>(() => _ = Optional.PresentOrThrow<StructType>(null!));
-        Assert.AreEqual("value", ex!.ParamName);
+        Assert.AreEqual("value", ex?.ParamName);
     }
 }

@@ -13,18 +13,22 @@ partial class OptionalLinqDictionariesExtensionsTest
     public void GetValueOrAbsent_PairsAreNull_ExpectArgumentNullException()
     {
         IEnumerable<KeyValuePair<int, StructType>> sourcePairs = null!;
+        var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = sourcePairs.GetValueOrAbsent(PlusFifteen));
-        Assert.AreEqual("pairs", ex!.ParamName);
+        Assert.AreEqual("pairs", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = sourcePairs.GetValueOrAbsent(PlusFifteen);
     }
 
     [Test]
     public void GetValueOrAbsent_PairsDoNotContainKey_ExpectAbsent()
     {
-        var sourcePairs = CreatePairsCollection(
-            new KeyValuePair<int, RefType?>(MinusFifteen, ZeroIdRefType),
-            new KeyValuePair<int, RefType?>(Zero, null),
-            new KeyValuePair<int, RefType?>(int.MaxValue, PlusFifteenIdRefType));
+        var sourcePairs = CreatePairsCollection<int, RefType?>(
+            new(MinusFifteen, ZeroIdRefType),
+            new(Zero, null),
+            new(int.MaxValue, PlusFifteenIdRefType));
 
         var actual = sourcePairs.GetValueOrAbsent(PlusFifteen);
         var expected = Optional<RefType?>.Absent;
@@ -39,12 +43,12 @@ partial class OptionalLinqDictionariesExtensionsTest
     {
         var sourceKey = "Some Key";
 
-        var sourcePairs = CreatePairsCollection(
-            new KeyValuePair<string?, object?>(null, ZeroIdRefType),
-            new KeyValuePair<string?, object?>(SomeString, PlusFifteenIdRefType),
-            new KeyValuePair<string?, object?>(TabString, null),
-            new KeyValuePair<string?, object?>(sourceKey, expectedValue),
-            new KeyValuePair<string?, object?>(SomeString, MinusFifteenIdRefType));
+        var sourcePairs = CreatePairsCollection<string?, object?>(
+            new (null, ZeroIdRefType),
+            new (SomeString, PlusFifteenIdRefType),
+            new (TabString, null),
+            new (sourceKey, expectedValue),
+            new (SomeString, MinusFifteenIdRefType));
 
         var actual = sourcePairs.GetValueOrAbsent(sourceKey);
         var expected = Optional<object?>.Present(expectedValue);
@@ -57,9 +61,9 @@ partial class OptionalLinqDictionariesExtensionsTest
     {
         var expectedValue = SomeTextStructType;
 
-        var sourcePairs = CreatePairsCollection(
-            new KeyValuePair<RefType?, StructType>(PlusFifteenIdRefType, NullTextStructType),
-            new KeyValuePair<RefType?, StructType>(null, expectedValue));
+        var sourcePairs = CreatePairsCollection<RefType?, StructType>(
+            new(PlusFifteenIdRefType, NullTextStructType),
+            new(null, expectedValue));
 
         var actual = sourcePairs.GetValueOrAbsent(null);
         var expected = Optional<StructType>.Present(expectedValue);
@@ -73,10 +77,10 @@ partial class OptionalLinqDictionariesExtensionsTest
         var expectedValue1 = NullTextStructType;
         var expectedValue2 = SomeTextStructType;
 
-        var sourcePairs = CreatePairsCollection(
-            new KeyValuePair<RefType, StructType>(PlusFifteenIdRefType, NullTextStructType),
-            new KeyValuePair<RefType, StructType>(MinusFifteenIdRefType, SomeTextStructType),
-            new KeyValuePair<RefType, StructType>(PlusFifteenIdRefType, SomeTextStructType));
+        var sourcePairs = CreatePairsCollection<RefType, StructType>(
+            new(PlusFifteenIdRefType, NullTextStructType),
+            new(MinusFifteenIdRefType, SomeTextStructType),
+            new(PlusFifteenIdRefType, SomeTextStructType));
 
         var actual = sourcePairs.GetValueOrAbsent(PlusFifteenIdRefType);
 

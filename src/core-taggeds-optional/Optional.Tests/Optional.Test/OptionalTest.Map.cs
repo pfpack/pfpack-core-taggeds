@@ -14,7 +14,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Map<int>(null!));
-        Assert.AreEqual("map", ex!.ParamName);
+        Assert.AreEqual("map", ex?.ParamName);
     }
 
     [Test]
@@ -50,7 +50,7 @@ partial class OptionalTest
         var ex = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.MapAsync<decimal>(null!));
 
-        Assert.AreEqual("mapAsync", ex!.ParamName);
+        Assert.AreEqual("mapAsync", ex?.ParamName);
     }
 
     [Test]
@@ -83,7 +83,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await source.MapValueAsync<long>(null!));
-        Assert.AreEqual("mapAsync", ex!.ParamName);
+        Assert.AreEqual("mapAsync", ex?.ParamName);
     }
 
     [Test]

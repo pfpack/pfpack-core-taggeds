@@ -13,15 +13,22 @@ partial class OptionalLinqDictionariesExtensionsObsoleteTest
     public void GetValueOrAbsent_DictionaryPairsAreNull_ExpectArgumentNullException()
     {
         IDictionary<string, StructType> sourceDictionary = null!;
+        var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = OptionalLinqDictionariesExtensions.GetValueOrAbsent(sourceDictionary, SomeString));
-        Assert.AreEqual("pairs", ex!.ParamName);
+        Assert.AreEqual("pairs", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = OptionalLinqDictionariesExtensions.GetValueOrAbsent(sourceDictionary, SomeString);
     }
 
     [Test]
     public void GetValueOrAbsent_DictionaryPairsPairsTryGetValueReturnsFalse_ExpectAbsent()
     {
-        var sourceDictionary = CreateMockDictionary<RefType?, int>(false, PlusFifteen).Object;
+        var sourceDictionary = new StubDictionary<RefType, int>
+        {
+            [MinusFifteenIdRefType] = One
+        };
 
         var actual = OptionalLinqDictionariesExtensions.GetValueOrAbsent(sourceDictionary, PlusFifteenIdRefType);
         var expected = Optional<int>.Absent;
@@ -34,22 +41,14 @@ partial class OptionalLinqDictionariesExtensionsObsoleteTest
     public void GetValueOrAbsent_DictionaryPairsPairsTryGetValueReturnsTrue_ExpectPresent(
         object? expectedValue)
     {
-        var sourceDictionary = CreateMockDictionary<StructType, object?>(true, expectedValue).Object;
+        var sourceDictionary = new StubDictionary<StructType, object?>
+        {
+            [SomeTextStructType] = new object(),
+            [NullTextStructType] = expectedValue
+        };
 
         var actual = OptionalLinqDictionariesExtensions.GetValueOrAbsent(sourceDictionary, NullTextStructType);
         var expected = Optional<object?>.Present(expectedValue);
-
-        Assert.AreEqual(expected, actual);
-    }
-
-    [Test]
-    public void GetValueOrAbsent_DictionaryPairsPairsTryGetValueReturnsTrueAndKeyIsNull_ExpectPresent()
-    {
-        var expectedValue = SomeTextStructType;
-        var sourceDictionary = CreateMockDictionary<object?, StructType>(true, expectedValue).Object;
-
-        var actual = OptionalLinqDictionariesExtensions.GetValueOrAbsent(sourceDictionary, null);
-        var expected = Optional<StructType>.Present(expectedValue);
 
         Assert.AreEqual(expected, actual);
     }

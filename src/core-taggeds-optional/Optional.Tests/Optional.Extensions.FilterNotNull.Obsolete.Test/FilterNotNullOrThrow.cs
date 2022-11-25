@@ -29,7 +29,7 @@ partial class FilterNotNullOptionalExtensionsObsoleteTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = FilterNotNullOptionalExtensions.FilterNotNullOrThrow(source, null!));
-        Assert.AreEqual("exceptionFactory", ex!.ParamName);
+        Assert.AreEqual("exceptionFactory", ex?.ParamName);
     }
 
     [Test]
@@ -76,7 +76,7 @@ partial class FilterNotNullOptionalExtensionsObsoleteTest
         var source = Optional<RefType?>.Present(PlusFifteenIdRefType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = FilterNotNullOptionalExtensions.FilterNotNullOrThrow(source, null!));
-        Assert.AreEqual("exceptionFactory", ex!.ParamName);
+        Assert.AreEqual("exceptionFactory", ex?.ParamName);
     }
 
     [Test]
@@ -127,7 +127,7 @@ partial class FilterNotNullOptionalExtensionsObsoleteTest
         var source = Optional<StructType?>.Present(null);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = FilterNotNullOptionalExtensions.FilterNotNullOrThrow(source, null!));
-        Assert.AreEqual("exceptionFactory", ex!.ParamName);
+        Assert.AreEqual("exceptionFactory", ex?.ParamName);
     }
 
     [Test]

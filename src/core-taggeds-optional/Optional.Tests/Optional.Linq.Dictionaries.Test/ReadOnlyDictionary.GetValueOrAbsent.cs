@@ -13,15 +13,24 @@ partial class OptionalLinqDictionariesExtensionsTest
     public void GetValueOrAbsent_ReadOnlyDictionaryPairsAreNull_ExpectArgumentNullException()
     {
         IReadOnlyDictionary<int, StructType> sourceDictionary = null!;
+        var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = sourceDictionary.GetValueOrAbsent(PlusFifteen));
-        Assert.AreEqual("dictionary", ex!.ParamName);
+        Assert.AreEqual("dictionary", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = sourceDictionary.GetValueOrAbsent(PlusFifteen);
     }
 
     [Test]
     public void GetValueOrAbsent_ReadOnlyDictionaryPairsTryGetValueReturnsFalse_ExpectAbsent()
     {
-        var sourceDictionary = CreateMockReadOnlyDictionary<int, RefType>(false, PlusFifteenIdRefType).Object;
+        var source = new Dictionary<int, RefType>
+        {
+            [PlusFifteen] = MinusFifteenIdRefType
+        };
+
+        var sourceDictionary = new StubReadOnlyDictionary<int, RefType>(source);
 
         var actual = sourceDictionary.GetValueOrAbsent(MinusFifteen);
         var expected = Optional<RefType>.Absent;
@@ -32,24 +41,18 @@ partial class OptionalLinqDictionariesExtensionsTest
     [Test]
     public void GetValueOrAbsent_ReadOnlyDictionaryPairsTryGetValueReturnsTrue_ExpectPresent()
     {
-        var expectedValue = SomeTextStructType;
-        var sourceDictionary = CreateMockReadOnlyDictionary<int, StructType>(true, expectedValue).Object;
+        var expectedValue = MinusFifteenIdNullNameRecord;
 
-        var actual = sourceDictionary.GetValueOrAbsent(PlusFifteen);
-        var expected = Optional<StructType>.Present(expectedValue);
+        var source = new Dictionary<decimal, RecordType>
+        {
+            [decimal.MinusOne] = expectedValue,
+            [decimal.MaxValue] = PlusFifteenIdSomeStringNameRecord
+        };
 
-        Assert.AreEqual(expected, actual);
-    }
+        var sourceDictionary = new StubReadOnlyDictionary<decimal, RecordType>(source);
 
-    [Test]
-    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
-    public void GetValueOrAbsent_ReadOnlyDictionaryPairsTryGetValueReturnsTrueAndKeyIsNull_ExpectPresent(
-        object? expectedValue)
-    {
-        var sourceDictionary = CreateMockReadOnlyDictionary<string?, object?>(true, expectedValue).Object;
-
-        var actual = sourceDictionary.GetValueOrAbsent(null);
-        var expected = Optional<object?>.Present(expectedValue);
+        var actual = sourceDictionary.GetValueOrAbsent(decimal.MinusOne);
+        var expected = Optional<RecordType>.Present(expectedValue);
 
         Assert.AreEqual(expected, actual);
     }

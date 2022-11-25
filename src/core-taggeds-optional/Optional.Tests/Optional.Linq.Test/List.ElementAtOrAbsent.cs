@@ -15,8 +15,12 @@ partial class OptionalLinqExtensionsTest
         IList<RefType> source = null!;
         int index = 1;
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.ElementAtOrAbsent(index));
-        Assert.AreEqual("source", ex!.ParamName);
+        var ex = Assert.Throws<ArgumentNullException>(Test);
+        Assert.AreEqual("source", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = source.ElementAtOrAbsent(index);
     }
 
     [Test]
@@ -57,8 +61,12 @@ partial class OptionalLinqExtensionsTest
         IList<StructType> source = null!;
         long index = 1;
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.ElementAtOrAbsent(index));
-        Assert.AreEqual("source", ex!.ParamName);
+        var ex = Assert.Throws<ArgumentNullException>(Test);
+        Assert.AreEqual("source", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = source.ElementAtOrAbsent(index);
     }
 
     [Test]
@@ -85,7 +93,7 @@ partial class OptionalLinqExtensionsTest
     public void ElementAtOrAbsentByLong_ListIndexIsNotInRange_ExpectAbsent(
         long index)
     {
-        var source = CreateList<RefType?>(PlusFifteenIdRefType, MinusFifteenIdRefType, ZeroIdRefType, null);
+        var source = CreateList(PlusFifteenIdRefType, MinusFifteenIdRefType, ZeroIdRefType, null);
 
         var actual = source.ElementAtOrAbsent(index);
         var expected = Optional<RefType?>.Absent;

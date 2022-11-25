@@ -15,8 +15,12 @@ partial class OptionalLinqExtensionsTest
         IReadOnlyList<StructType> source = null!;
         int index = 1;
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.ElementAtOrAbsent(index));
-        Assert.AreEqual("source", ex!.ParamName);
+        var ex = Assert.Throws<ArgumentNullException>(Test);
+        Assert.AreEqual("source", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = source.ElementAtOrAbsent(index);
     }
 
     [Test]
@@ -27,7 +31,7 @@ partial class OptionalLinqExtensionsTest
     public void ElementAtOrAbsentByInt_ReadOnlyListIndexIsInRange_ExpectPresentItem(
         int index)
     {
-        var source = CreateReadOnlyList<RefType?>(null, MinusFifteenIdRefType, ZeroIdRefType, PlusFifteenIdRefType);
+        var source = CreateReadOnlyList(null, MinusFifteenIdRefType, ZeroIdRefType, PlusFifteenIdRefType);
         var actual = source.ElementAtOrAbsent(index);
 
         var expectedValue = source.ElementAt(index);
@@ -58,8 +62,12 @@ partial class OptionalLinqExtensionsTest
         IReadOnlyList<StructType> source = null!;
         long index = 1;
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.ElementAtOrAbsent(index));
-        Assert.AreEqual("source", ex!.ParamName);
+        var ex = Assert.Throws<ArgumentNullException>(Test);
+        Assert.AreEqual("source", ex?.ParamName);
+
+        void Test()
+            =>
+            _ = source.ElementAtOrAbsent(index);
     }
 
     [Test]
@@ -69,7 +77,7 @@ partial class OptionalLinqExtensionsTest
     public void ElementAtOrAbsentByLong_ReadOnlyListIndexIsInRange_ExpectPresentItem(
         int index)
     {
-        var source = CreateReadOnlyList<RefType?>(PlusFifteenIdRefType, null, ZeroIdRefType);
+        var source = CreateReadOnlyList(PlusFifteenIdRefType, null, ZeroIdRefType);
         var actual = source.ElementAtOrAbsent(index);
 
         var expectedValue = source.ElementAt(index);
@@ -86,7 +94,7 @@ partial class OptionalLinqExtensionsTest
     public void ElementAtOrAbsentByLong_ReadOnlyListIndexIsNotInRange_ExpectAbsent(
         long index)
     {
-        var source = CreateReadOnlyList<RefType?>(PlusFifteenIdRefType, MinusFifteenIdRefType, ZeroIdRefType, null);
+        var source = CreateReadOnlyList(PlusFifteenIdRefType, MinusFifteenIdRefType, ZeroIdRefType, null);
 
         var actual = source.ElementAtOrAbsent(index);
         var expected = Optional<RefType?>.Absent;
