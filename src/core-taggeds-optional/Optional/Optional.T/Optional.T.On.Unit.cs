@@ -4,8 +4,7 @@ namespace System;
 
 partial struct Optional<T>
 {
-    // TODO: Add the tests and open the methods
-    internal Optional<T> On(
+    public Optional<T> On(
         Func<T, Unit> onPresent,
         Func<Unit> onElse)
         =>
@@ -13,7 +12,7 @@ partial struct Optional<T>
             onPresent ?? throw new ArgumentNullException(nameof(onPresent)),
             onElse ?? throw new ArgumentNullException(nameof(onElse)));
 
-    internal Task<Optional<T>> OnAsync(
+    public Task<Optional<T>> OnAsync(
         Func<T, Task<Unit>> onPresentAsync,
         Func<Task<Unit>> onElseAsync)
         =>
@@ -21,7 +20,7 @@ partial struct Optional<T>
             onPresentAsync ?? throw new ArgumentNullException(nameof(onPresentAsync)),
             onElseAsync ?? throw new ArgumentNullException(nameof(onElseAsync)));
 
-    internal ValueTask<Optional<T>> OnValueAsync(
+    public ValueTask<Optional<T>> OnValueAsync(
         Func<T, ValueTask<Unit>> onPresentAsync,
         Func<ValueTask<Unit>> onElseAsync)
         =>

@@ -7,11 +7,11 @@ partial struct Optional<T>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private Optional<T> InnerOnPresent(
-        Action handler)
+        Action<T> handler)
     {
         if (hasValue)
         {
-            handler.Invoke();
+            handler.Invoke(value);
         }
 
         return this;
@@ -19,11 +19,11 @@ partial struct Optional<T>
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private async Task<Optional<T>> InnerOnPresentAsync(
-        Func<Task> handlerAsync)
+        Func<T, Task> handlerAsync)
     {
         if (hasValue)
         {
-            await handlerAsync.Invoke().ConfigureAwait(false);
+            await handlerAsync.Invoke(value).ConfigureAwait(false);
         }
 
         return this;
@@ -31,11 +31,11 @@ partial struct Optional<T>
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private async ValueTask<Optional<T>> InnerOnPresentValueAsync(
-        Func<ValueTask> handlerAsync)
+        Func<T, ValueTask> handlerAsync)
     {
         if (hasValue)
         {
-            await handlerAsync.Invoke().ConfigureAwait(false);
+            await handlerAsync.Invoke(value).ConfigureAwait(false);
         }
 
         return this;
