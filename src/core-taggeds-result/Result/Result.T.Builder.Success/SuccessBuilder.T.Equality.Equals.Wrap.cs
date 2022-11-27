@@ -14,7 +14,7 @@ partial struct SuccessBuilder<TSuccess>
 
     public static bool operator !=(SuccessBuilder<TSuccess> left, SuccessBuilder<TSuccess> right)
         =>
-        left.Equals(right) is false;
+        left.Equals(right) is not true;
 
     public override bool Equals([NotNullWhen(true)] object? obj)
         =>
