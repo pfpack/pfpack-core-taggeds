@@ -11,7 +11,7 @@ public readonly partial struct FailureBuilder<TFailure> : IEquatable<FailureBuil
         =>
         this.failure = failure;
 
-    internal TFailure InternalFailure
+    internal TFailure InternalValue
         =>
         failure;
 

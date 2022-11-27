@@ -10,7 +10,7 @@ public readonly partial struct SuccessBuilder<TSuccess> : IEquatable<SuccessBuil
         =>
         this.success = success;
 
-    internal TSuccess InternalSuccess
+    internal TSuccess InternalValue
         =>
         success;
 
