@@ -9,12 +9,12 @@ partial struct TaggedUnion<TFirst, TSecond>
             return false;
         }
 
-        if (tag is InternalTag.First)
+        if (tag is Tag.First)
         {
             return FirstComparer.Equals(first, other.first);
         }
 
-        if (tag is InternalTag.Second)
+        if (tag is Tag.Second)
         {
             return SecondComparer.Equals(second, other.second);
         }

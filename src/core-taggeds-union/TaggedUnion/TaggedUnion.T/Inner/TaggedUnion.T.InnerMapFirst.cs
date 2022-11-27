@@ -7,12 +7,12 @@ partial struct TaggedUnion<TFirst, TSecond>
     private TaggedUnion<TResultFirst, TSecond> InnerMapFirst<TResultFirst>(
         Func<TFirst, TResultFirst> mapFirst)
     {
-        if (tag is InternalTag.First)
+        if (tag is Tag.First)
         {
             return new(mapFirst.Invoke(first));
         }
 
-        if (tag is InternalTag.Second)
+        if (tag is Tag.Second)
         {
             return new(second);
         }
@@ -23,12 +23,12 @@ partial struct TaggedUnion<TFirst, TSecond>
     private async Task<TaggedUnion<TResultFirst, TSecond>> InnerMapFirstAsync<TResultFirst>(
         Func<TFirst, Task<TResultFirst>> mapFirstAsync)
     {
-        if (tag is InternalTag.First)
+        if (tag is Tag.First)
         {
             return new(await mapFirstAsync.Invoke(first).ConfigureAwait(false));
         }
 
-        if (tag is InternalTag.Second)
+        if (tag is Tag.Second)
         {
             return new(second);
         }
@@ -39,12 +39,12 @@ partial struct TaggedUnion<TFirst, TSecond>
     private async ValueTask<TaggedUnion<TResultFirst, TSecond>> InnerMapFirstValueAsync<TResultFirst>(
         Func<TFirst, ValueTask<TResultFirst>> mapFirstAsync)
     {
-        if (tag is InternalTag.First)
+        if (tag is Tag.First)
         {
             return new(await mapFirstAsync.Invoke(first).ConfigureAwait(false));
         }
 
-        if (tag is InternalTag.Second)
+        if (tag is Tag.Second)
         {
             return new(second);
         }

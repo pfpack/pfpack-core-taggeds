@@ -2,7 +2,7 @@
 
 public readonly partial struct TaggedUnion<TFirst, TSecond> : IEquatable<TaggedUnion<TFirst, TSecond>>
 {
-    private readonly InternalTag tag;
+    private readonly Tag tag;
 
     private readonly TFirst first;
 
@@ -10,19 +10,19 @@ public readonly partial struct TaggedUnion<TFirst, TSecond> : IEquatable<TaggedU
 
     public bool IsNone
         =>
-        tag is InternalTag.None;
+        tag is Tag.None;
 
     public bool IsFirst
         =>
-        tag is InternalTag.First;
+        tag is Tag.First;
 
     public bool IsSecond
         =>
-        tag is InternalTag.Second;
+        tag is Tag.Second;
 
     // TODO: Consider to remove the property in v3.0 or v4.0
     [Obsolete("This property is obsolete. Consider to test IsNone for false instead.", error: true)]
     public bool IsInitialized
         =>
-        tag is not InternalTag.None;
+        tag is not Tag.None;
 }

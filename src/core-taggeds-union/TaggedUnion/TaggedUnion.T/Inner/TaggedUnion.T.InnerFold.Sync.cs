@@ -9,12 +9,12 @@ partial struct TaggedUnion<TFirst, TSecond>
         Func<TFirst, TResult> mapFirst,
         Func<TSecond, TResult> mapSecond)
     {
-        if (tag is InternalTag.First)
+        if (tag is Tag.First)
         {
             return mapFirst.Invoke(first);
         }
 
-        if (tag is InternalTag.Second)
+        if (tag is Tag.Second)
         {
             return mapSecond.Invoke(second);
         }
@@ -28,12 +28,12 @@ partial struct TaggedUnion<TFirst, TSecond>
         Func<TSecond, TResult> mapSecond,
         TResult other)
     {
-        if (tag is InternalTag.First)
+        if (tag is Tag.First)
         {
             return mapFirst.Invoke(first);
         }
 
-        if (tag is InternalTag.Second)
+        if (tag is Tag.Second)
         {
             return mapSecond.Invoke(second);
         }
@@ -47,12 +47,12 @@ partial struct TaggedUnion<TFirst, TSecond>
         Func<TSecond, TResult> mapSecond,
         Func<TResult> otherFactory)
     {
-        if (tag is InternalTag.First)
+        if (tag is Tag.First)
         {
             return mapFirst.Invoke(first);
         }
 
-        if (tag is InternalTag.Second)
+        if (tag is Tag.Second)
         {
             return mapSecond.Invoke(second);
         }

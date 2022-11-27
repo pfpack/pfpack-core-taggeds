@@ -6,13 +6,13 @@ partial struct TaggedUnion<TFirst, TSecond>
 {
     private static InvalidOperationException InnerCreateExpectedFirstException()
         =>
-        new(InnerCreateExpectedTagMessage(InternalTag.First));
+        new(InnerCreateExpectedTagMessage(Tag.First));
 
     private static InvalidOperationException InnerCreateExpectedSecondException()
         =>
-        new(InnerCreateExpectedTagMessage(InternalTag.Second));
+        new(InnerCreateExpectedTagMessage(Tag.Second));
 
-    private static string InnerCreateExpectedTagMessage(InternalTag tag)
+    private static string InnerCreateExpectedTagMessage(Tag tag)
         =>
         Invariant($"The tagged union is expected to represent the {tag} case.");
 }
