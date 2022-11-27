@@ -16,7 +16,7 @@ partial struct Result<TSuccess, TFailure>
         Func<TSuccess, Task<TResult>> mapSuccessAsync,
         Func<TFailure, Task<TResult>> mapFailureAsync)
         =>
-        InnerFold(
+        InnerFoldAsync(
             mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync)),
             mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync)));
 
@@ -24,7 +24,7 @@ partial struct Result<TSuccess, TFailure>
         Func<TSuccess, ValueTask<TResult>> mapSuccessAsync,
         Func<TFailure, ValueTask<TResult>> mapFailureAsync)
         =>
-        InnerFold(
+        InnerFoldValueAsync(
             mapSuccessAsync ?? throw new ArgumentNullException(nameof(mapSuccessAsync)),
             mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync)));
 }
