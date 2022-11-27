@@ -6,38 +6,40 @@ namespace System;
 partial struct Result<TSuccess, TFailure>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private ValueTask<Result<TSuccess, TCauseFailure>> InnerFilterValueAsync<TCauseFailure>(
+    private async ValueTask<Result<TSuccess, TCauseFailure>> InnerFilterValueAsync<TCauseFailure>(
         Func<TSuccess, ValueTask<bool>> predicateAsync,
         Func<TSuccess, ValueTask<TCauseFailure>> causeFactoryAsync,
         Func<TFailure, ValueTask<TCauseFailure>> mapFailureAsync)
         where TCauseFailure : struct
     {
-        return InnerFold(FilterSuccessAsync, MapFailureAsync);
+        if (isSuccess is not true)
+        {
+            return new(await mapFailureAsync.Invoke(failure).ConfigureAwait(false));
+        }
 
-        async ValueTask<Result<TSuccess, TCauseFailure>> FilterSuccessAsync(TSuccess success)
-            =>
-            await predicateAsync.Invoke(success).ConfigureAwait(false)
-                ? success
-                : await causeFactoryAsync.Invoke(success).ConfigureAwait(false);
+        if (await predicateAsync.Invoke(success).ConfigureAwait(false))
+        {
+            return new(success);
+        }
 
-        async ValueTask<Result<TSuccess, TCauseFailure>> MapFailureAsync(TFailure failure)
-            =>
-            await mapFailureAsync.Invoke(failure).ConfigureAwait(false);
+        return new(await causeFactoryAsync.Invoke(success).ConfigureAwait(false));
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private ValueTask<Result<TSuccess, TFailure>> InnerFilterValueAsync(
+    private async ValueTask<Result<TSuccess, TFailure>> InnerFilterValueAsync(
         Func<TSuccess, ValueTask<bool>> predicateAsync,
         Func<TSuccess, ValueTask<TFailure>> causeFactoryAsync)
     {
-        var @this = this;
+        if (isSuccess is not true)
+        {
+            return this;
+        }
 
-        return InnerFold(FilterSuccessAsync, _ => ValueTask.FromResult(@this));
+        if (await predicateAsync.Invoke(success).ConfigureAwait(false))
+        {
+            return this;
+        }
 
-        async ValueTask<Result<TSuccess, TFailure>> FilterSuccessAsync(TSuccess success)
-            =>
-            await predicateAsync.Invoke(success).ConfigureAwait(false)
-                ? @this
-                : await causeFactoryAsync.Invoke(success).ConfigureAwait(false);
+        return new(await causeFactoryAsync.Invoke(success).ConfigureAwait(false));
     }
 }

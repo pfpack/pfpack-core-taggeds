@@ -11,13 +11,17 @@ partial struct Result<TSuccess, TFailure>
         Func<TFailure, TCauseFailure> mapFailure)
         where TCauseFailure : struct
     {
-        return InnerFold(FilterSuccess, failure => mapFailure.Invoke(failure));
+        if (isSuccess is not true)
+        {
+            return new(mapFailure.Invoke(failure));
+        }
 
-        Result<TSuccess, TCauseFailure> FilterSuccess(TSuccess success)
-            =>
-            predicate.Invoke(success)
-                ? success
-                : causeFactory.Invoke(success);
+        if (predicate.Invoke(success))
+        {
+            return new(success);
+        }
+
+        return new(causeFactory.Invoke(success));
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -25,14 +29,16 @@ partial struct Result<TSuccess, TFailure>
         Func<TSuccess, bool> predicate,
         Func<TSuccess, TFailure> causeFactory)
     {
-        var @this = this;
+        if (isSuccess is not true)
+        {
+            return this;
+        }
 
-        return InnerFold(FilterSuccess, _ => @this);
+        if (predicate.Invoke(success))
+        {
+            return this;
+        }
 
-        Result<TSuccess, TFailure> FilterSuccess(TSuccess success)
-            =>
-            predicate.Invoke(success)
-                ? @this
-                : causeFactory.Invoke(success);
+        return new(causeFactory.Invoke(success));
     }
 }
