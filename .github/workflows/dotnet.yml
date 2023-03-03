@@ -2,7 +2,7 @@ name: .NET
 
 on:
   push:
-    branches: [ main, dev, dev/*, feature/*, fix/*, release/* ]
+    branches: [ main, dev, feature/*, fix/*, release/* ]
 
   pull_request:
     branches: [ main ]
@@ -21,7 +21,9 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: |
+            6.0.x
+            7.0.x
 
     # Create Local NuGet Source
 
@@ -120,8 +122,4 @@ jobs:
 
     - name: Push Packages
       if: ${{ github.event_name == 'release' }}
-      run: >
-        dotnet nuget push "../../../nuget/*.nupkg"
-        -s https://api.nuget.org/v3/index.json
-        -k ${{ secrets.NuGetSourcePassword }}
-        --skip-duplicate
+      run: dotnet nuget push "../../../nuget/*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{ secrets.NuGetSourcePassword }} --skip-duplicate
