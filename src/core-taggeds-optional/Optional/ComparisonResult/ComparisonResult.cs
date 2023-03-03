@@ -4,14 +4,14 @@ namespace System;
 
 internal static class ComparisonResult
 {
-    internal const int LessThan = -1;
+    public const int LessThan = -1;
 
-    internal const int EqualTo = default;
+    public const int EqualTo = default;
 
-    internal const int GreaterThan = 1;
+    public const int GreaterThan = 1;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static int Normalize(int result) => result switch
+    public static int Normalize(int result) => result switch
     {
         < EqualTo => LessThan,
         > EqualTo => GreaterThan,
