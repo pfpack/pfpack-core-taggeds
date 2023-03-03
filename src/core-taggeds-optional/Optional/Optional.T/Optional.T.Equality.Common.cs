@@ -12,7 +12,7 @@ partial struct Optional<T>
         =>
         EqualityComparer<Type>.Default;
 
-    private static EqualityComparer<T> EqualityComparer
+    private static EqualityComparer<T> ValueEqualityComparer
         =>
         EqualityComparer<T>.Default;
 }

@@ -12,7 +12,7 @@ partial struct Optional<T>
     private int PresentHashCode()
         =>
         value is not null
-            ? HashCode.Combine(EqualityContractHashCode(), true, EqualityComparer.GetHashCode(value))
+            ? HashCode.Combine(EqualityContractHashCode(), true, ValueEqualityComparer.GetHashCode(value))
             : HashCode.Combine(EqualityContractHashCode(), true);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

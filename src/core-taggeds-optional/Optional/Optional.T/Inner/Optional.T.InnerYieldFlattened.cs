@@ -7,16 +7,10 @@ partial struct Optional<T>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private IEnumerable<T> InnerYieldFlattened()
-        =>
-        InnerFold(InnerYieldSingle, InnerYieldEmpty);
-
-    private static IEnumerable<T> InnerYieldSingle(T value)
     {
-        yield return value;
-    }
-
-    private static IEnumerable<T> InnerYieldEmpty()
-    {
-        yield break;
+        if (hasValue)
+        {
+            yield return value;
+        }
     }
 }

@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace System;
 
 partial struct Failure<TFailureCode>
@@ -8,4 +10,11 @@ partial struct Failure<TFailureCode>
         =>
         InnerMapFailureCode(
             mapFailureCode ?? throw new ArgumentNullException(nameof(mapFailureCode)));
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private Failure<TResultFailureCode> InnerMapFailureCode<TResultFailureCode>(
+        Func<TFailureCode, TResultFailureCode> mapFailureCode)
+        where TResultFailureCode : struct
+        =>
+        new(mapFailureCode.Invoke(FailureCode), failureMessage, default);
 }

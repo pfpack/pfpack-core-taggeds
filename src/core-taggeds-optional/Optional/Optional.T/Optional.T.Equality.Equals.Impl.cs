@@ -11,7 +11,7 @@ partial struct Optional<T>
 
         if (hasValue)
         {
-            return EqualityComparer.Equals(value, other.value);
+            return ValueEqualityComparer.Equals(value, other.value);
         }
 
         return true;

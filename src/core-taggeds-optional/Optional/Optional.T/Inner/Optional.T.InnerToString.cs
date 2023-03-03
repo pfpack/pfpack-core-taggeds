@@ -8,20 +8,12 @@ partial struct Optional<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private string InnerToString()
         =>
-        InnerFold(InnerToStringPresent, InnerToStringAbsent);
+        hasValue
+        ? InnerToString("Present", value)
+        : InnerToString("Absent", "()");
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string InnerToStringPresent(T value)
+    private static string InnerToString<TValue>(string tag, TValue value)
         =>
-        Invariant($"{InnerToStringPrefix()}:Present:{value}");
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string InnerToStringAbsent()
-        =>
-        Invariant($"{InnerToStringPrefix()}:Absent:()");
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string InnerToStringPrefix()
-        =>
-        Invariant($"Optional[{typeof(T)}]");
+        Invariant($"Optional<{typeof(T).Name}>:{tag}:{value}");
 }
