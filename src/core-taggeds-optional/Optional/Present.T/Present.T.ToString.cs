@@ -6,5 +6,5 @@ partial struct Present<T>
 {
     public override string ToString()
         =>
-        Invariant($"Present[{typeof(T)}]:{value}");
+        Invariant($"Present<{typeof(T).Name}>:{value}");
 }

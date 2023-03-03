@@ -6,5 +6,5 @@ partial struct Absent<T>
 {
     public override string ToString()
         =>
-        Invariant($"Absent[{typeof(T)}]:()");
+        Invariant($"Absent<{typeof(T).Name}>:()");
 }
