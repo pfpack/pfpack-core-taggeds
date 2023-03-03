@@ -10,17 +10,15 @@ partial struct Optional<T>
     {
         if (hasValue != other.hasValue)
         {
-            return hasValue ? ComparisonResult.GreaterThan : ComparisonResult.LessThan;
+            return hasValue
+                ? ComparisonResult.GreaterThan
+                : ComparisonResult.LessThan;
         }
 
         if (hasValue)
         {
-            return comparer.Compare(value, other.value) switch
-            {
-                > ComparisonResult.EqualTo => ComparisonResult.GreaterThan,
-                < ComparisonResult.EqualTo => ComparisonResult.LessThan,
-                _ => ComparisonResult.EqualTo
-            };
+            var result = comparer.Compare(value, other.value);
+            return ComparisonResult.Normalize(result);
         }
 
         return ComparisonResult.EqualTo;
