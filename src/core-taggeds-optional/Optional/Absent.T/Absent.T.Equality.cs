@@ -5,9 +5,7 @@ namespace System;
 
 partial struct Absent<T>
 {
-    public bool Equals(Absent<T> other)
-        =>
-        true;
+    public bool Equals(Absent<T> other) => true;
 
     public override bool Equals([NotNullWhen(true)] object? obj)
         =>
