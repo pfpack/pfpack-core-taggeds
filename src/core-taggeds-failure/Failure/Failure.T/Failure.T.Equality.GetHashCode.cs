@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
 namespace System;
 
 partial struct Failure<TFailureCode>
@@ -5,7 +8,12 @@ partial struct Failure<TFailureCode>
     public override int GetHashCode()
         =>
         HashCode.Combine(
-            EqualityContractComparer.GetHashCode(EqualityContract),
+            EqualityContractHashCode(),
             FailureCodeComparer.GetHashCode(FailureCode),
             FailureMessageComparer.GetHashCode(FailureMessage));
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int EqualityContractHashCode()
+        =>
+        EqualityComparer<Type>.Default.GetHashCode(typeof(Failure<TFailureCode>));
 }
