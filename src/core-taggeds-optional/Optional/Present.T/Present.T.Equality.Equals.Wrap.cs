@@ -14,7 +14,7 @@ partial struct Present<T>
 
     public static bool operator !=(Present<T> left, Present<T> right)
         =>
-        left.Equals(right) is false;
+        left.Equals(right) is not true;
 
     public override bool Equals([NotNullWhen(true)] object? obj)
         =>
