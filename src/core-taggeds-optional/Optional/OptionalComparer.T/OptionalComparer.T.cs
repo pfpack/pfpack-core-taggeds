@@ -5,25 +5,25 @@ namespace System;
 // TODO: Add the tests and open the class
 internal sealed class OptionalComparer<T> : IComparer<Optional<T>> where T : IComparable<T>
 {
-    private readonly IComparer<T> comparer;
+    private readonly Optional<T>.Comparer comparer;
 
-    private OptionalComparer(IComparer<T> comparer)
+    private OptionalComparer(Optional<T>.Comparer comparer)
         =>
         this.comparer = comparer;
 
     public static OptionalComparer<T> Create(IComparer<T>? comparer)
         =>
-        new(comparer ?? Comparer<T>.Default);
+        new(new(comparer ?? Comparer<T>.Default));
 
     public static OptionalComparer<T> Create()
         =>
-        new(Comparer<T>.Default);
+        new(new(Comparer<T>.Default));
 
     public static OptionalComparer<T> Default => InnerDefault.Value;
 
     public int Compare(Optional<T> x, Optional<T> y)
         =>
-        x.InternalCompareTo(y, comparer);
+        comparer.Compare(x, y);
 
     private static class InnerDefault
     {

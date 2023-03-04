@@ -9,7 +9,7 @@ partial struct Optional<T>
     {
         private readonly IComparer<T> comparer;
 
-        private Comparer(IComparer<T> comparer)
+        internal Comparer(IComparer<T> comparer)
             =>
             this.comparer = comparer;
 
@@ -18,7 +18,21 @@ partial struct Optional<T>
             new(comparer ?? throw new ArgumentNullException(nameof(comparer)));
 
         public int Compare(Optional<T> x, Optional<T> y)
-            =>
-            x.InternalCompareTo(y, comparer);
+        {
+            if (x.hasValue != y.hasValue)
+            {
+                return x.hasValue
+                    ? ComparisonResult.GreaterThan
+                    : ComparisonResult.LessThan;
+            }
+
+            if (x.hasValue)
+            {
+                var result = comparer.Compare(x.value, y.value);
+                return ComparisonResult.Normalize(result);
+            }
+
+            return ComparisonResult.EqualTo;
+        }
     }
 }
