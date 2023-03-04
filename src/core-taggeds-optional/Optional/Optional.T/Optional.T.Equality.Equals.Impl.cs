@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using System.Collections.Generic;
+
+namespace System;
 
 partial struct Optional<T>
 {
@@ -11,7 +13,7 @@ partial struct Optional<T>
 
         if (hasValue)
         {
-            return ValueEqualityComparer.Equals(value, other.value);
+            return EqualityComparer<T>.Default.Equals(value, other.value);
         }
 
         return true;

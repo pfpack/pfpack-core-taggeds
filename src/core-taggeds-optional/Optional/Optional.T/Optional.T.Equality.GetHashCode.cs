@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace System;
 
@@ -12,7 +13,7 @@ partial struct Optional<T>
     private int PresentHashCode()
         =>
         value is not null
-            ? HashCode.Combine(EqualityContractHashCode(), true, ValueEqualityComparer.GetHashCode(value))
+            ? HashCode.Combine(EqualityContractHashCode(), true, EqualityComparer<T>.Default.GetHashCode(value))
             : HashCode.Combine(EqualityContractHashCode(), true);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -23,5 +24,5 @@ partial struct Optional<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int EqualityContractHashCode()
         =>
-        EqualityContractComparer.GetHashCode(EqualityContract);
+        EqualityComparer<Type>.Default.GetHashCode(typeof(Optional<T>));
 }
