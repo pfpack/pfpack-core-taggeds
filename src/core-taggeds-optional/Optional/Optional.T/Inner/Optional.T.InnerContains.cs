@@ -1,11 +1,12 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace System;
 
 partial struct Optional<T>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private bool InnerContains(T value)
+    private bool InnerContains(T value, IEqualityComparer<T> comparer)
         =>
-        hasValue && EqualityComparer.Equals(this.value, value);
+        hasValue && comparer.Equals(this.value, value);
 }

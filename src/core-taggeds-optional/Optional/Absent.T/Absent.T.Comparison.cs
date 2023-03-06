@@ -1,6 +1,4 @@
-﻿using static System.FormattableString;
-
-namespace System;
+﻿namespace System;
 
 partial struct Absent<T>
 {
@@ -8,10 +6,10 @@ partial struct Absent<T>
 
     public int CompareTo(object? obj) => obj switch
     {
-        null => 1,
+        null => ComparisonResult.GreaterThan,
 
-        Absent<T> => default,
+        Absent<T> => ComparisonResult.EqualTo,
 
-        _ => throw new ArgumentException(Invariant($"The object is not Absent[{typeof(T)}]."), nameof(obj))
+        _ => throw new ArgumentException($"The object is not Absent<{typeof(T).Name}>.", nameof(obj))
     };
 }

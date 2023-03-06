@@ -6,5 +6,5 @@ partial class Optional
     internal static int Compare<T>(Optional<T> left, Optional<T> right)
         where T : IComparable<T>
         =>
-        left.InternalCompareTo(right);
+        left.CompareTo(right);
 }

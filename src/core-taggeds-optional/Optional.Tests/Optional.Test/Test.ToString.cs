@@ -17,8 +17,8 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional[{0}]:Absent:()",
-            typeof(StubType));
+            "Optional<{0}>:Absent:()",
+            typeof(StubType).Name);
 
         Assert.AreEqual(expected, actual);
     }
@@ -32,8 +32,8 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional[{0}]:Present:{1}",
-            typeof(StubType),
+            "Optional<{0}>:Present:{1}",
+            typeof(StubType).Name,
             string.Empty);
 
         Assert.AreEqual(expected, actual);
@@ -49,8 +49,8 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional[{0}]:Present:{1}",
-            typeof(StubType),
+            "Optional<{0}>:Present:{1}",
+            typeof(StubType).Name,
             string.Empty);
 
         Assert.AreEqual(expected, actual);
@@ -76,8 +76,8 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional[{0}]:Present:{1}",
-            typeof(StubType),
+            "Optional<{0}>:Present:{1}",
+            typeof(StubType).Name,
             sourceValueToStringResult);
 
         Assert.AreEqual(expected, actual);
@@ -105,8 +105,8 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional[{0}]:Present:{1}",
-            typeof(object),
+            "Optional<{0}>:Present:{1}",
+            typeof(object).Name,
             sourceValue);
 
         Assert.AreEqual(expected, actual);
@@ -123,8 +123,8 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional[{0}]:Present:{1}",
-            typeof(decimal),
+            "Optional<{0}>:Present:{1}",
+            typeof(decimal).Name,
             expectedDecimalSubstr);
 
         Assert.AreEqual(expected, actual);

@@ -9,7 +9,7 @@ partial struct TaggedUnion<TFirst, TSecond>
     private TaggedUnion<TFirst, TSecond> InnerOnFirst(
         Action<TFirst> handler)
     {
-        if (tag is InternalTag.First)
+        if (tag is Tag.First)
         {
             handler.Invoke(first);
         }
@@ -21,7 +21,7 @@ partial struct TaggedUnion<TFirst, TSecond>
     private async Task<TaggedUnion<TFirst, TSecond>> InnerOnFirstAsync(
         Func<TFirst, Task> handlerAsync)
     {
-        if (tag is InternalTag.First)
+        if (tag is Tag.First)
         {
             await handlerAsync.Invoke(first).ConfigureAwait(false);
         }
@@ -33,7 +33,7 @@ partial struct TaggedUnion<TFirst, TSecond>
     private async ValueTask<TaggedUnion<TFirst, TSecond>> InnerOnFirstValueAsync(
         Func<TFirst, ValueTask> handlerAsync)
     {
-        if (tag is InternalTag.First)
+        if (tag is Tag.First)
         {
             await handlerAsync.Invoke(first).ConfigureAwait(false);
         }

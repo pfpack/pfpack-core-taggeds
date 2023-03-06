@@ -17,9 +17,9 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}]:First:{2}",
-            typeof(object),
-            typeof(StructType),
+            "TaggedUnion<{0}, {1}>:First:{2}",
+            typeof(object).Name,
+            typeof(StructType).Name,
             string.Empty);
 
         Assert.AreEqual(expected, actual);
@@ -34,9 +34,9 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}]:First:{2}",
-            typeof(StubToStringType),
-            typeof(RefType),
+            "TaggedUnion<{0}, {1}>:First:{2}",
+            typeof(StubToStringType).Name,
+            typeof(RefType).Name,
             string.Empty);
 
         Assert.AreEqual(expected, actual);
@@ -61,9 +61,9 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}]:First:{2}",
-            typeof(StubToStringType),
-            typeof(RefType),
+            "TaggedUnion<{0}, {1}>:First:{2}",
+            typeof(StubToStringType).Name,
+            typeof(RefType).Name,
             resultOfValueToString);
 
         Assert.AreEqual(expected, actual);
@@ -90,9 +90,9 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}]:First:{2}",
-            typeof(object),
-            typeof(RefType),
+            "TaggedUnion<{0}, {1}>:First:{2}",
+            typeof(object).Name,
+            typeof(RefType).Name,
             sourceValue);
 
         Assert.AreEqual(expected, actual);
@@ -108,9 +108,9 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}]:First:{2}",
-            typeof(object),
-            typeof(RefType),
+            "TaggedUnion<{0}, {1}>:First:{2}",
+            typeof(object).Name,
+            typeof(RefType).Name,
             expectedDecimalSubstr);
 
         Assert.AreEqual(expected, actual);

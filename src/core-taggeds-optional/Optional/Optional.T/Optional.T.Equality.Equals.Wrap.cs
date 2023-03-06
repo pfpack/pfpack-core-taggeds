@@ -14,7 +14,7 @@ partial struct Optional<T>
 
     public static bool operator !=(Optional<T> left, Optional<T> right)
         =>
-        left.Equals(right) is false;
+        left.Equals(right) is not true;
 
     public override bool Equals([NotNullWhen(true)] object? obj)
         =>

@@ -16,9 +16,9 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}]:None:()",
-            typeof(StructType),
-            typeof(RefType));
+            "TaggedUnion<{0}, {1}>:None:()",
+            typeof(StructType).Name,
+            typeof(RefType).Name);
 
         Assert.AreEqual(expected, actual);
     }

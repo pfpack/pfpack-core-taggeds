@@ -12,5 +12,5 @@ public readonly partial struct Optional<T> : IEquatable<Optional<T>>
 
     public bool IsAbsent
         =>
-        hasValue is false;
+        hasValue is not true;
 }

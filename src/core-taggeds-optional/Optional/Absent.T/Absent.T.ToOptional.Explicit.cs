@@ -1,10 +1,9 @@
-#pragma warning disable CA1822 // Mark members as static
+using System.Runtime.CompilerServices;
 
 namespace System;
 
 partial struct Absent<T>
 {
-    public Optional<T> ToOptional()
-        =>
-        default;
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public Optional<T> ToOptional() => default;
 }

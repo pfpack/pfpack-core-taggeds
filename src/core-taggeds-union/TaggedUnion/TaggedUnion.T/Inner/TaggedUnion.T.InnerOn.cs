@@ -10,11 +10,11 @@ partial struct TaggedUnion<TFirst, TSecond>
         Action<TFirst> onFirst,
         Action<TSecond> onSecond)
     {
-        if (tag is InternalTag.First)
+        if (tag is Tag.First)
         {
             onFirst.Invoke(first);
         }
-        else if (tag is InternalTag.Second)
+        else if (tag is Tag.Second)
         {
             onSecond.Invoke(second);
         }
@@ -27,11 +27,11 @@ partial struct TaggedUnion<TFirst, TSecond>
         Func<TFirst, Task> onFirstAsync,
         Func<TSecond, Task> onSecondAsync)
     {
-        if (tag is InternalTag.First)
+        if (tag is Tag.First)
         {
             await onFirstAsync.Invoke(first).ConfigureAwait(false);
         }
-        else if (tag is InternalTag.Second)
+        else if (tag is Tag.Second)
         {
             await onSecondAsync.Invoke(second).ConfigureAwait(false);
         }
@@ -44,11 +44,11 @@ partial struct TaggedUnion<TFirst, TSecond>
         Func<TFirst, ValueTask> onFirstAsync,
         Func<TSecond, ValueTask> onSecondAsync)
     {
-        if (tag is InternalTag.First)
+        if (tag is Tag.First)
         {
             await onFirstAsync.Invoke(first).ConfigureAwait(false);
         }
-        else if (tag is InternalTag.Second)
+        else if (tag is Tag.Second)
         {
             await onSecondAsync.Invoke(second).ConfigureAwait(false);
         }

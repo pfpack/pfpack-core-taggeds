@@ -31,4 +31,13 @@ partial class TaggedUnionTest
         var taggedUnion = TaggedUnion<object?, RefType>.First(sourceValue);
         Assert.False(taggedUnion.IsNone);
     }
+
+    [Test]
+    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
+    public void First_Explicit_ExpectIsNotNoneGetsTrue(
+        object? sourceValue)
+    {
+        var taggedUnion = TaggedUnion<object?, RefType>.First(sourceValue);
+        Assert.True(taggedUnion.IsNotNone);
+    }
 }

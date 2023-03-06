@@ -15,8 +15,8 @@ partial class FailureTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Failure[{0}]:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\" }}",
-            typeof(SomeFailureCode),
+            "Failure<{0}>:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\" }}",
+            typeof(SomeFailureCode).Name,
             SomeFailureCode.Unknown,
             string.Empty);
 
@@ -39,8 +39,8 @@ partial class FailureTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Failure[{0}]:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\" }}",
-            typeof(int),
+            "Failure<{0}>:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\" }}",
+            typeof(int).Name,
             failureCode,
             failureMessage);
 
@@ -62,8 +62,8 @@ partial class FailureTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Failure[{0}]:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\" }}",
-            typeof(SomeFailureCode),
+            "Failure<{0}>:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\" }}",
+            typeof(SomeFailureCode).Name,
             failureCode,
             failureMessage);
 

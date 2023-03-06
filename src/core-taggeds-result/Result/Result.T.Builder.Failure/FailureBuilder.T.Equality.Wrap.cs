@@ -14,7 +14,7 @@ partial struct FailureBuilder<TFailure>
 
     public static bool operator !=(FailureBuilder<TFailure> left, FailureBuilder<TFailure> right)
         =>
-        left.Equals(right) is false;
+        left.Equals(right) is not true;
 
     public override bool Equals([NotNullWhen(true)] object? obj)
         =>

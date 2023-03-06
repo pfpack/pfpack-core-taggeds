@@ -17,9 +17,9 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}]:Second:{2}",
-            typeof(decimal),
-            typeof(StructType?),
+            "TaggedUnion<{0}, {1}>:Second:{2}",
+            typeof(decimal).Name,
+            typeof(StructType?).Name,
             string.Empty);
 
         Assert.AreEqual(expected, actual);
@@ -34,9 +34,9 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}]:Second:{2}",
-            typeof(string),
-            typeof(StubToStringType),
+            "TaggedUnion<{0}, {1}>:Second:{2}",
+            typeof(string).Name,
+            typeof(StubToStringType).Name,
             string.Empty);
 
         Assert.AreEqual(expected, actual);
@@ -61,9 +61,9 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}]:Second:{2}",
-            typeof(StructType),
-            typeof(StubToStringType),
+            "TaggedUnion<{0}, {1}>:Second:{2}",
+            typeof(StructType).Name,
+            typeof(StubToStringType).Name,
             resultOfValueToString);
 
         Assert.AreEqual(expected, actual);
@@ -90,9 +90,9 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}]:Second:{2}",
-            typeof(StructType),
-            typeof(object),
+            "TaggedUnion<{0}, {1}>:Second:{2}",
+            typeof(StructType).Name,
+            typeof(object).Name,
             sourceValue);
 
         Assert.AreEqual(expected, actual);
@@ -108,9 +108,9 @@ partial class TaggedUnionTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "TaggedUnion[{0},{1}]:Second:{2}",
-            typeof(StructType),
-            typeof(object),
+            "TaggedUnion<{0}, {1}>:Second:{2}",
+            typeof(StructType).Name,
+            typeof(object).Name,
             expectedDecimalSubstr);
 
         Assert.AreEqual(expected, actual);

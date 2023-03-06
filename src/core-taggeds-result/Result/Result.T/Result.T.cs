@@ -11,5 +11,5 @@ public readonly partial struct Result<TSuccess, TFailure> : IEquatable<Result<TS
 
     public bool IsSuccess => isSuccess;
 
-    public bool IsFailure => isSuccess is false;
+    public bool IsFailure => isSuccess is not true;
 }
