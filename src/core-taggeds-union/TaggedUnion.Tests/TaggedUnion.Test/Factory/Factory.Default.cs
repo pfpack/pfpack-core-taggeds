@@ -26,4 +26,11 @@ partial class TaggedUnionTest
         var taggedUnion = default(TaggedUnion<RefType?, StructType?>);
         Assert.True(taggedUnion.IsNone);
     }
+
+    [Test]
+    public void Default_ExpectIsNotNoneGetsFalse()
+    {
+        var taggedUnion = default(TaggedUnion<RefType?, StructType?>);
+        Assert.False(taggedUnion.IsNotNone);
+    }
 }

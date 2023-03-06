@@ -12,6 +12,10 @@ public readonly partial struct TaggedUnion<TFirst, TSecond> : IEquatable<TaggedU
         =>
         tag is Tag.None;
 
+    public bool IsNotNone
+        =>
+        tag is not Tag.None;
+
     public bool IsFirst
         =>
         tag is Tag.First;
@@ -21,7 +25,7 @@ public readonly partial struct TaggedUnion<TFirst, TSecond> : IEquatable<TaggedU
         tag is Tag.Second;
 
     // TODO: Remove the property in v3.0
-    [Obsolete("This property is obsolete. Consider to test IsNone for false instead.", error: true)]
+    [Obsolete("This property is obsolete. Call IsNotNone instead.", error: true)]
     public bool IsInitialized
         =>
         tag is not Tag.None;
