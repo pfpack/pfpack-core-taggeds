@@ -2,7 +2,7 @@
 
 namespace System;
 
-// TODO: Consider to remove the class in v3.0 or v4.0
+// TODO: Remove the class in v3.0
 [Obsolete(InnerClassObsoleteMessage, error: true)]
 public static class TaggedUnionExtensions
 {

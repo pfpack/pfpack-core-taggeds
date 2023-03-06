@@ -20,7 +20,7 @@ public readonly partial struct TaggedUnion<TFirst, TSecond> : IEquatable<TaggedU
         =>
         tag is Tag.Second;
 
-    // TODO: Consider to remove the property in v3.0 or v4.0
+    // TODO: Remove the property in v3.0
     [Obsolete("This property is obsolete. Consider to test IsNone for false instead.", error: true)]
     public bool IsInitialized
         =>

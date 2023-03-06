@@ -8,25 +8,13 @@ partial struct TaggedUnion<TFirst, TSecond>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private string InnerToString()
         =>
-        InnerFold(InnerToStringFirst, InnerToStringSecond, InnerToStringNone);
+        InnerFold(
+            first => InnerToString("First", first),
+            second => InnerToString("Second", second),
+            () => InnerToString("None", "()"));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string InnerToStringFirst(TFirst first)
+    private static string InnerToString<TValue>(string tag, TValue value)
         =>
-        Invariant($"{InnerToStringPrefix()}:First:{first}");
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string InnerToStringSecond(TSecond second)
-        =>
-        Invariant($"{InnerToStringPrefix()}:Second:{second}");
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string InnerToStringNone()
-        =>
-        Invariant($"{InnerToStringPrefix()}:None:()");
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string InnerToStringPrefix()
-        =>
-        Invariant($"TaggedUnion[{typeof(TFirst)},{typeof(TSecond)}]");
+        Invariant($"TaggedUnion<{typeof(TFirst).Name}, {typeof(TSecond).Name}>:{tag}:{value}");
 }
