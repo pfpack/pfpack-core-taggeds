@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using System.Collections.Generic;
+
+namespace System;
 
 partial struct TaggedUnion<TFirst, TSecond>
 {
@@ -11,12 +13,12 @@ partial struct TaggedUnion<TFirst, TSecond>
 
         if (tag is Tag.First)
         {
-            return FirstComparer.Equals(first, other.first);
+            return EqualityComparer<TFirst>.Default.Equals(first, other.first);
         }
 
         if (tag is Tag.Second)
         {
-            return SecondComparer.Equals(second, other.second);
+            return EqualityComparer<TSecond>.Default.Equals(second, other.second);
         }
 
         return true;

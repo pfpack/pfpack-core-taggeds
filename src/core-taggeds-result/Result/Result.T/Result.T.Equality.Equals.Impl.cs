@@ -1,4 +1,6 @@
-﻿namespace System;
+﻿using System.Collections.Generic;
+
+namespace System;
 
 partial struct Result<TSuccess, TFailure>
 {
@@ -10,7 +12,7 @@ partial struct Result<TSuccess, TFailure>
         }
 
         return isSuccess
-            ? SuccessComparer.Equals(success, other.success)
-            : FailureComparer.Equals(failure, other.failure);
+            ? EqualityComparer<TSuccess>.Default.Equals(success, other.success)
+            : EqualityComparer<TFailure>.Default.Equals(failure, other.failure);
     }
 }
