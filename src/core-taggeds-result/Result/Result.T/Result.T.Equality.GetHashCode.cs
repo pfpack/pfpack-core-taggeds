@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace System;
 
@@ -23,5 +24,5 @@ partial struct Result<TSuccess, TFailure>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int EqualityContractHashCode()
         =>
-        EqualityContractComparer.GetHashCode(EqualityContract);
+        EqualityComparer<Type>.Default.GetHashCode(typeof(Result<TSuccess, TFailure>));
 }

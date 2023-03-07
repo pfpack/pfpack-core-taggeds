@@ -9,11 +9,8 @@ partial struct Result<TSuccess, TFailure>
             return false;
         }
 
-        if (isSuccess)
-        {
-            return SuccessComparer.Equals(success, other.success);
-        }
-
-        return FailureComparer.Equals(failure, other.failure);
+        return isSuccess
+            ? SuccessComparer.Equals(success, other.success)
+            : FailureComparer.Equals(failure, other.failure);
     }
 }

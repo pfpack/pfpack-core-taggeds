@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace System;
 
@@ -41,5 +42,5 @@ partial struct TaggedUnion<TFirst, TSecond>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int EqualityContractHashCode()
         =>
-        EqualityContractComparer.GetHashCode(EqualityContract);
+        EqualityComparer<Type>.Default.GetHashCode(typeof(TaggedUnion<TFirst, TSecond>));
 }

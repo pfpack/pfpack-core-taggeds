@@ -1,8 +1,10 @@
-﻿namespace PrimeFuncPack.Core;
+﻿using System.Collections.Generic;
+
+namespace PrimeFuncPack.Core;
 
 partial struct FailureBuilder<TFailure>
 {
     public bool Equals(FailureBuilder<TFailure> other)
         =>
-        FailureComparer.Equals(failure, other.failure);
+        EqualityComparer<TFailure>.Default.Equals(failure, other.failure);
 }

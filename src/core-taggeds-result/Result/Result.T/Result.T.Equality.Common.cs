@@ -4,14 +4,6 @@ namespace System;
 
 partial struct Result<TSuccess, TFailure>
 {
-    private static Type EqualityContract
-        =>
-        typeof(Result<TSuccess, TFailure>);
-
-    private static EqualityComparer<Type> EqualityContractComparer
-        =>
-        EqualityComparer<Type>.Default;
-
     private static EqualityComparer<TSuccess> SuccessComparer
         =>
         EqualityComparer<TSuccess>.Default;
