@@ -77,6 +77,8 @@ public abstract class AbsentTestBase<T>
         Assert.False(actual);
     }
 
+    // Comparison
+
     [Test]
     public void Comparison_CompareTo_NewAndDefault_ExpectZero()
     {
