@@ -16,9 +16,9 @@ partial class ResultTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Result[{0},{1}]:Failure:{2}",
-            typeof(RefType),
-            typeof(StructType),
+            "Result<{0}, {1}>:Failure:{2}",
+            typeof(RefType).Name,
+            typeof(StructType).Name,
             default(StructType));
 
         Assert.AreEqual(expected, actual);

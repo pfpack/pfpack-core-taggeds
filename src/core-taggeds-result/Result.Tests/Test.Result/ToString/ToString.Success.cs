@@ -18,9 +18,9 @@ partial class ResultTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Result[{0},{1}]:Success:{2}",
-            typeof(RefType),
-            typeof(StructType),
+            "Result<{0}, {1}>:Success:{2}",
+            typeof(RefType).Name,
+            typeof(StructType).Name,
             string.Empty);
 
         Assert.AreEqual(expected, actual);
@@ -35,9 +35,9 @@ partial class ResultTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Result[{0},{1}]:Success:{2}",
-            typeof(StubToStringRefType),
-            typeof(StructType),
+            "Result<{0}, {1}>:Success:{2}",
+            typeof(StubToStringRefType).Name,
+            typeof(StructType).Name,
             string.Empty);
 
         Assert.AreEqual(expected, actual);
@@ -62,9 +62,9 @@ partial class ResultTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Result[{0},{1}]:Success:{2}",
-            typeof(StubToStringStructType),
-            typeof(SomeError),
+            "Result<{0}, {1}>:Success:{2}",
+            typeof(StubToStringStructType).Name,
+            typeof(SomeError).Name,
             resultOfValueToString);
 
         Assert.AreEqual(expected, actual);
@@ -91,9 +91,9 @@ partial class ResultTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Result[{0},{1}]:Success:{2}",
-            typeof(object),
-            typeof(StructType),
+            "Result<{0}, {1}>:Success:{2}",
+            typeof(object).Name,
+            typeof(StructType).Name,
             sourceSuccess);
 
         Assert.AreEqual(expected, actual);
@@ -109,9 +109,9 @@ partial class ResultTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Result[{0},{1}]:Success:{2}",
-            typeof(decimal),
-            typeof(StructType),
+            "Result<{0}, {1}>:Success:{2}",
+            typeof(decimal).Name,
+            typeof(StructType).Name,
             expectedDecimalSubstr);
 
         Assert.AreEqual(expected, actual);

@@ -17,8 +17,8 @@ partial class FailureBuilderTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "FailureBuilder[{0}]:{1}",
-            typeof(StubToStringStructType),
+            "FailureBuilder<{0}>:{1}",
+            typeof(StubToStringStructType).Name,
             string.Empty);
 
         Assert.AreEqual(expected, actual);
@@ -43,8 +43,8 @@ partial class FailureBuilderTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "FailureBuilder[{0}]:{1}",
-            typeof(StubToStringStructType),
+            "FailureBuilder<{0}>:{1}",
+            typeof(StubToStringStructType).Name,
             resultOfFailureToString);
 
         Assert.AreEqual(expected, actual);
@@ -62,8 +62,8 @@ partial class FailureBuilderTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "FailureBuilder[{0}]:{1}",
-            typeof(int),
+            "FailureBuilder<{0}>:{1}",
+            typeof(int).Name,
             sourceFailure);
 
         Assert.AreEqual(expected, actual);
@@ -79,8 +79,8 @@ partial class FailureBuilderTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "FailureBuilder[{0}]:{1}",
-            typeof(decimal),
+            "FailureBuilder<{0}>:{1}",
+            typeof(decimal).Name,
             expectedDecimalSubstr);
 
         Assert.AreEqual(expected, actual);

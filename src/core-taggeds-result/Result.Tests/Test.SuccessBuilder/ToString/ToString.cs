@@ -17,8 +17,8 @@ partial class SuccessBuilderTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "SuccessBuilder[{0}]:{1}",
-            typeof(RefType),
+            "SuccessBuilder<{0}>:{1}",
+            typeof(RefType).Name,
             string.Empty);
 
         Assert.AreEqual(expected, actual);
@@ -33,8 +33,8 @@ partial class SuccessBuilderTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "SuccessBuilder[{0}]:{1}",
-            typeof(StubToStringRefType),
+            "SuccessBuilder<{0}>:{1}",
+            typeof(StubToStringRefType).Name,
             string.Empty);
 
         Assert.AreEqual(expected, actual);
@@ -59,8 +59,8 @@ partial class SuccessBuilderTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "SuccessBuilder[{0}]:{1}",
-            typeof(StubToStringRefType),
+            "SuccessBuilder<{0}>:{1}",
+            typeof(StubToStringRefType).Name,
             resultOfSuccessToString);
 
         Assert.AreEqual(expected, actual);
@@ -87,8 +87,8 @@ partial class SuccessBuilderTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "SuccessBuilder[{0}]:{1}",
-            typeof(object),
+            "SuccessBuilder<{0}>:{1}",
+            typeof(object).Name,
             sourceSuccess);
 
         Assert.AreEqual(expected, actual);
@@ -104,8 +104,8 @@ partial class SuccessBuilderTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "SuccessBuilder[{0}]:{1}",
-            typeof(decimal),
+            "SuccessBuilder<{0}>:{1}",
+            typeof(decimal).Name,
             expectedDecimalSubstr);
 
         Assert.AreEqual(expected, actual);

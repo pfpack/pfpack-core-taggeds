@@ -6,5 +6,5 @@ partial struct SuccessBuilder<TSuccess>
 {
     public override string ToString()
         =>
-        Invariant($"SuccessBuilder[{typeof(TSuccess)}]:{success}");
+        Invariant($"SuccessBuilder<{typeof(TSuccess).Name}>:{success}");
 }
