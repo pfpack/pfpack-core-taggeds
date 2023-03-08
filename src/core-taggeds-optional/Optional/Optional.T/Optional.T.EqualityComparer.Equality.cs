@@ -29,8 +29,8 @@ partial struct Optional<T>
         private int PresentHashCode(T value)
             =>
             value is not null
-                ? HashCode.Combine(true, comparer.GetHashCode(value))
-                : HashCode.Combine(true);
+            ? HashCode.Combine(true, comparer.GetHashCode(value))
+            : HashCode.Combine(true);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static int AbsentHashCode()

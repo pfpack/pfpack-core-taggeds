@@ -26,8 +26,8 @@ partial struct Result<TSuccess, TFailure>
         private int SuccessHashCode(TSuccess success)
             =>
             success is not null
-                ? HashCode.Combine(true, successComparer.GetHashCode(success))
-                : HashCode.Combine(true);
+            ? HashCode.Combine(true, successComparer.GetHashCode(success))
+            : HashCode.Combine(true);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private int FailureHashCode(TFailure failure)

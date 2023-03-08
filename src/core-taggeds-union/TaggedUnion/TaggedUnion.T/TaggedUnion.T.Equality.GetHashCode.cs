@@ -24,8 +24,8 @@ partial struct TaggedUnion<TFirst, TSecond>
     private int PresentHashCode<TValue>(TValue value)
         =>
         value is not null
-            ? HashCode.Combine(EqualityContractHashCode(), tag, EqualityComparer<TValue>.Default.GetHashCode(value))
-            : HashCode.Combine(EqualityContractHashCode(), tag);
+        ? HashCode.Combine(EqualityContractHashCode(), tag, EqualityComparer<TValue>.Default.GetHashCode(value))
+        : HashCode.Combine(EqualityContractHashCode(), tag);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int NoneHashCode()

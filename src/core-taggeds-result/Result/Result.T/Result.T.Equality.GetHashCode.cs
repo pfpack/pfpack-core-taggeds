@@ -13,8 +13,8 @@ partial struct Result<TSuccess, TFailure>
     private int SuccessHashCode()
         =>
         success is not null
-            ? HashCode.Combine(EqualityContractHashCode(), true, EqualityComparer<TSuccess>.Default.GetHashCode(success))
-            : HashCode.Combine(EqualityContractHashCode(), true);
+        ? HashCode.Combine(EqualityContractHashCode(), true, EqualityComparer<TSuccess>.Default.GetHashCode(success))
+        : HashCode.Combine(EqualityContractHashCode(), true);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private int FailureHashCode()
