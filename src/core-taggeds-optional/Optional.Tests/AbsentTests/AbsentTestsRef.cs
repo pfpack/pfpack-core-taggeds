@@ -2,6 +2,6 @@
 
 namespace PrimeFuncPack.Core.Tests;
 
-public sealed class AbsentTestStructNullable : AbsentTestBase<StructType?>
+public sealed class AbsentTestsRef : AbsentTestsBase<RefType>
 {
 }
