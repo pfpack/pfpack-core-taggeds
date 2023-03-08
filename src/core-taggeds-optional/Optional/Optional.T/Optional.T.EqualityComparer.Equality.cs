@@ -23,11 +23,18 @@ partial struct Optional<T>
 
         public int GetHashCode(Optional<T> obj)
             =>
-            obj.hasValue ? PresentHashCode(obj.value) : default;
+            obj.hasValue ? PresentHashCode(obj.value) : AbsentHashCode();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private int PresentHashCode(T value)
             =>
-            value is not null ? HashCode.Combine(comparer.GetHashCode(value)) : 1;
+            value is not null
+                ? HashCode.Combine(true, comparer.GetHashCode(value))
+                : HashCode.Combine(true);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static int AbsentHashCode()
+            =>
+            HashCode.Combine(false);
     }
 }

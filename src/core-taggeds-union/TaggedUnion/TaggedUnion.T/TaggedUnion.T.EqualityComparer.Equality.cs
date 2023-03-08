@@ -38,7 +38,7 @@ partial struct TaggedUnion<TFirst, TSecond>
                 return SecondHashCode(obj.second);
             }
 
-            return default;
+            return NoneHashCode();
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -54,5 +54,10 @@ partial struct TaggedUnion<TFirst, TSecond>
             second is not null
                 ? HashCode.Combine(Tag.Second, secondComparer.GetHashCode(second))
                 : HashCode.Combine(Tag.Second);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static int NoneHashCode()
+            =>
+            HashCode.Combine(Tag.None);
     }
 }
