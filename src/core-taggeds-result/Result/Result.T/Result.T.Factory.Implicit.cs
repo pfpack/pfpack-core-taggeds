@@ -12,6 +12,16 @@ partial struct Result<TSuccess, TFailure>
         =>
         new(failure);
 
+    // TODO: Add the tests!
+    public static implicit operator Result<TSuccess, TFailure>(Success<TSuccess> success)
+        =>
+        new(success.InternalSuccess);
+
+    // TODO: Add the tests!
+    public static implicit operator Result<TSuccess, TFailure>(Nonsuccess<TFailure> nonsuccess)
+        =>
+        new(nonsuccess.InternalFailure);
+
     public static implicit operator Result<TSuccess, TFailure>(SuccessBuilder<TSuccess> success)
         =>
         new(success.InternalSuccess);

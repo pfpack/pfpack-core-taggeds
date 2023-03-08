@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace PrimeFuncPack.Core;
+namespace System;
 
-partial struct FailureBuilder<TFailure>
+partial struct Nonsuccess<TFailure>
 {
     public override int GetHashCode()
         =>
@@ -14,5 +13,5 @@ partial struct FailureBuilder<TFailure>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int EqualityContractHashCode()
         =>
-        EqualityComparer<Type>.Default.GetHashCode(typeof(FailureBuilder<TFailure>));
+        EqualityComparer<Type>.Default.GetHashCode(typeof(Nonsuccess<TFailure>));
 }

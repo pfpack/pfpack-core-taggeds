@@ -14,8 +14,4 @@ public readonly partial struct FailureBuilder<TFailure> : IEquatable<FailureBuil
     internal TFailure InternalFailure
         =>
         failure;
-
-    public Result<TSuccess, TFailure> With<TSuccess>()
-        =>
-        new(failure);
 }
