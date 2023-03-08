@@ -9,30 +9,23 @@ partial struct TaggedUnion<TFirst, TSecond>
     {
         if (tag is Tag.First)
         {
-            return FirstHashCode();
+            return PresentHashCode(first);
         }
 
         if (tag is Tag.Second)
         {
-            return SecondHashCode();
+            return PresentHashCode(second);
         }
 
         return NoneHashCode();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private int FirstHashCode()
+    private int PresentHashCode<TValue>(TValue value)
         =>
-        first is not null
-            ? HashCode.Combine(EqualityContractHashCode(), Tag.First, EqualityComparer<TFirst>.Default.GetHashCode(first))
-            : HashCode.Combine(EqualityContractHashCode(), Tag.First);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private int SecondHashCode()
-        =>
-        second is not null
-            ? HashCode.Combine(EqualityContractHashCode(), Tag.Second, EqualityComparer<TSecond>.Default.GetHashCode(second))
-            : HashCode.Combine(EqualityContractHashCode(), Tag.Second);
+        value is not null
+            ? HashCode.Combine(EqualityContractHashCode(), tag, EqualityComparer<TValue>.Default.GetHashCode(value))
+            : HashCode.Combine(EqualityContractHashCode(), tag);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int NoneHashCode()

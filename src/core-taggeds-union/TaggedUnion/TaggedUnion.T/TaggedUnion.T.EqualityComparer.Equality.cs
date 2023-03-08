@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace System;
 
@@ -30,30 +31,23 @@ partial struct TaggedUnion<TFirst, TSecond>
         {
             if (obj.tag is Tag.First)
             {
-                return FirstHashCode(obj.first);
+                return PresentHashCode(Tag.First, obj.first, firstComparer);
             }
 
             if (obj.tag is Tag.Second)
             {
-                return SecondHashCode(obj.second);
+                return PresentHashCode(Tag.Second, obj.second, secondComparer);
             }
 
             return NoneHashCode();
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private int FirstHashCode(TFirst first)
+        private static int PresentHashCode<TValue>(Tag tag, TValue value, IEqualityComparer<TValue> comparer)
             =>
-            first is not null
-                ? HashCode.Combine(Tag.First, firstComparer.GetHashCode(first))
-                : HashCode.Combine(Tag.First);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private int SecondHashCode(TSecond second)
-            =>
-            second is not null
-                ? HashCode.Combine(Tag.Second, secondComparer.GetHashCode(second))
-                : HashCode.Combine(Tag.Second);
+            value is not null
+            ? HashCode.Combine(tag, comparer.GetHashCode(value))
+            : HashCode.Combine(tag);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static int NoneHashCode()
