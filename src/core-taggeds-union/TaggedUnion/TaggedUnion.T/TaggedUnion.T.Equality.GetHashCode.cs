@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace System;
 
@@ -8,30 +9,23 @@ partial struct TaggedUnion<TFirst, TSecond>
     {
         if (tag is Tag.First)
         {
-            return FirstHashCode();
+            return PresentHashCode(first);
         }
 
         if (tag is Tag.Second)
         {
-            return SecondHashCode();
+            return PresentHashCode(second);
         }
 
         return NoneHashCode();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private int FirstHashCode()
+    private int PresentHashCode<TValue>(TValue value)
         =>
-        first is not null
-            ? HashCode.Combine(EqualityContractHashCode(), Tag.First, FirstComparer.GetHashCode(first))
-            : HashCode.Combine(EqualityContractHashCode(), Tag.First);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private int SecondHashCode()
-        =>
-        second is not null
-            ? HashCode.Combine(EqualityContractHashCode(), Tag.Second, SecondComparer.GetHashCode(second))
-            : HashCode.Combine(EqualityContractHashCode(), Tag.Second);
+        value is not null
+        ? HashCode.Combine(EqualityContractHashCode(), tag, EqualityComparer<TValue>.Default.GetHashCode(value))
+        : HashCode.Combine(EqualityContractHashCode(), tag);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int NoneHashCode()
@@ -41,5 +35,5 @@ partial struct TaggedUnion<TFirst, TSecond>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int EqualityContractHashCode()
         =>
-        EqualityContractComparer.GetHashCode(EqualityContract);
+        EqualityComparer<Type>.Default.GetHashCode(typeof(TaggedUnion<TFirst, TSecond>));
 }

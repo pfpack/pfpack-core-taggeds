@@ -18,9 +18,9 @@ partial class ResultTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Result[{0},{1}]:Failure:{2}",
-            typeof(RefType),
-            typeof(StubToStringStructType),
+            "Result<{0}, {1}>:Failure:{2}",
+            typeof(RefType).Name,
+            typeof(StubToStringStructType).Name,
             string.Empty);
 
         Assert.AreEqual(expected, actual);
@@ -45,9 +45,9 @@ partial class ResultTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Result[{0},{1}]:Failure:{2}",
-            typeof(StructType),
-            typeof(StubToStringStructType),
+            "Result<{0}, {1}>:Failure:{2}",
+            typeof(StructType).Name,
+            typeof(StubToStringStructType).Name,
             resultOfValueToString);
 
         Assert.AreEqual(expected, actual);
@@ -65,9 +65,9 @@ partial class ResultTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Result[{0},{1}]:Failure:{2}",
-            typeof(StructType),
-            typeof(int),
+            "Result<{0}, {1}>:Failure:{2}",
+            typeof(StructType).Name,
+            typeof(int).Name,
             sourceFailure);
 
         Assert.AreEqual(expected, actual);
@@ -83,9 +83,9 @@ partial class ResultTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Result[{0},{1}]:Failure:{2}",
-            typeof(object),
-            typeof(decimal),
+            "Result<{0}, {1}>:Failure:{2}",
+            typeof(object).Name,
+            typeof(decimal).Name,
             expectedDecimalSubstr);
 
         Assert.AreEqual(expected, actual);

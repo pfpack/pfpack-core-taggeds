@@ -13,8 +13,8 @@ partial struct Optional<T>
     private int PresentHashCode()
         =>
         value is not null
-            ? HashCode.Combine(EqualityContractHashCode(), true, EqualityComparer<T>.Default.GetHashCode(value))
-            : HashCode.Combine(EqualityContractHashCode(), true);
+        ? HashCode.Combine(EqualityContractHashCode(), true, EqualityComparer<T>.Default.GetHashCode(value))
+        : HashCode.Combine(EqualityContractHashCode(), true);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int AbsentHashCode()

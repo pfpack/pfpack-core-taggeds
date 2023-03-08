@@ -8,20 +8,12 @@ partial struct Result<TSuccess, TFailure>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private string InnerToString()
         =>
-        InnerFold(InnerToStringSuccess, InnerToStringFailure);
+        InnerFold(
+            success => InnerToString("Success", success),
+            failure => InnerToString("Failure", failure));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string InnerToStringSuccess(TSuccess success)
+    private static string InnerToString<TValue>(string tag, TValue value)
         =>
-        Invariant($"{InnerToStringPrefix()}:Success:{success}");
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string InnerToStringFailure(TFailure failure)
-        =>
-        Invariant($"{InnerToStringPrefix()}:Failure:{failure}");
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static string InnerToStringPrefix()
-        =>
-        Invariant($"Result[{typeof(TSuccess)},{typeof(TFailure)}]");
+        Invariant($"Result<{typeof(TSuccess).Name}, {typeof(TFailure).Name}>:{tag}:{value}");
 }

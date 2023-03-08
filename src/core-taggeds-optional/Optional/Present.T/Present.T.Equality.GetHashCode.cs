@@ -8,8 +8,8 @@ partial struct Present<T>
     public override int GetHashCode()
         =>
         value is not null
-            ? HashCode.Combine(EqualityContractHashCode(), EqualityComparer<T>.Default.GetHashCode(value))
-            : HashCode.Combine(EqualityContractHashCode());
+        ? HashCode.Combine(EqualityContractHashCode(), EqualityComparer<T>.Default.GetHashCode(value))
+        : HashCode.Combine(EqualityContractHashCode());
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int EqualityContractHashCode()
