@@ -3,18 +3,14 @@
 namespace System.Linq;
 
 // TODO: Remove the class in v3.0
-[Obsolete(InnerClassObsoleteMessage, error: true)]
+[Obsolete("This class is obsolete. Use GetValueOrAbsent extension methods instead.", error: true)]
 public static class OptionalLinqDictionariesExtensions
 {
-    private const string InnerClassObsoleteMessage
-        =
-        "This class is obsolete. Use GetValueOrAbsent extension methods instead.";
-
-    private const string InnerMethodObsoleteMessage
+    private const string ObsoleteMessage_GetValueOrAbsent
         =
         "This method is obsolete. Call GetValueOrAbsent extension method instead.";
 
-    [Obsolete(InnerMethodObsoleteMessage, error: true)]
+    [Obsolete(ObsoleteMessage_GetValueOrAbsent, error: true)]
     public static Optional<TValue> GetValueOrAbsent<TKey, TValue>(
         IReadOnlyDictionary<TKey, TValue> dictionary,
         TKey key)
@@ -24,7 +20,7 @@ public static class OptionalLinqDictionariesExtensions
         return dictionary.GetValueOrAbsent(key);
     }
 
-    [Obsolete(InnerMethodObsoleteMessage, error: true)]
+    [Obsolete(ObsoleteMessage_GetValueOrAbsent, error: true)]
     public static Optional<TValue> GetValueOrAbsent<TKey, TValue>(
         IEnumerable<KeyValuePair<TKey, TValue>> pairs,
         TKey key)

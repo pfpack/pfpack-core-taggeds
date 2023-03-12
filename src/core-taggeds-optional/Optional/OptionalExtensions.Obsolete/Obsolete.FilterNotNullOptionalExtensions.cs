@@ -1,44 +1,40 @@
 ﻿namespace System;
 
 // TODO: Remove the class in v3.0
-[Obsolete(InnerClassObsoleteMessage, error: true)]
+[Obsolete("This class is obsolete. Use FilterNotNull and FilterNotNullOrThrow extension methods instead.", error: true)]
 public static partial class FilterNotNullOptionalExtensions
 {
-    private const string InnerClassObsoleteMessage
-        =
-        "This class is obsolete. Use FilterNotNull and FilterNotNullOrThrow extension methods instead.";
-
-    private const string InnerFilterNotNullMethodObsoleteMessage
+    private const string ObsoleteMessage_FilterNotNull
         =
         "This method is obsolete. Call FilterNotNull extension method instead.";
 
-    private const string InnerFilterNotNullOrThrowMethodObsoleteMessage
+    private const string ObsoleteMessage_FilterNotNullOrThrow
         =
         "This method is obsolete. Call FilterNotNullOrThrow extension method instead.";
 
-    [Obsolete(InnerFilterNotNullMethodObsoleteMessage, error: true)]
+    [Obsolete(ObsoleteMessage_FilterNotNull, error: true)]
     public static Optional<T> FilterNotNull<T>(Optional<T?> optional)
         =>
         optional.FilterNotNull();
 
-    [Obsolete(InnerFilterNotNullMethodObsoleteMessage, error: true)]
+    [Obsolete(ObsoleteMessage_FilterNotNull, error: true)]
     public static Optional<T> FilterNotNull<T>(Optional<T?> optional)
         where T : struct
         =>
         optional.FilterNotNull();
 
-    [Obsolete(InnerFilterNotNullOrThrowMethodObsoleteMessage, error: true)]
+    [Obsolete(ObsoleteMessage_FilterNotNullOrThrow, error: true)]
     public static Optional<T> FilterNotNullOrThrow<T>(Optional<T?> optional)
         =>
         optional.FilterNotNullOrThrow();
 
-    [Obsolete(InnerFilterNotNullOrThrowMethodObsoleteMessage, error: true)]
+    [Obsolete(ObsoleteMessage_FilterNotNullOrThrow, error: true)]
     public static Optional<T> FilterNotNullOrThrow<T>(Optional<T?> optional)
         where T : struct
         =>
         optional.FilterNotNullOrThrow();
 
-    [Obsolete(InnerFilterNotNullOrThrowMethodObsoleteMessage, error: true)]
+    [Obsolete(ObsoleteMessage_FilterNotNullOrThrow, error: true)]
     public static Optional<T> FilterNotNullOrThrow<T>(Optional<T?> optional, Func<Exception> exceptionFactory)
     {
         _ = exceptionFactory ?? throw new ArgumentNullException(nameof(exceptionFactory));
@@ -46,7 +42,7 @@ public static partial class FilterNotNullOptionalExtensions
         return optional.FilterNotNullOrThrow(exceptionFactory);
     }
 
-    [Obsolete(InnerFilterNotNullOrThrowMethodObsoleteMessage, error: true)]
+    [Obsolete(ObsoleteMessage_FilterNotNullOrThrow, error: true)]
     public static Optional<T> FilterNotNullOrThrow<T>(Optional<T?> optional, Func<Exception> exceptionFactory)
         where T : struct
     {
