@@ -14,7 +14,7 @@ partial class OptionalLinqExtensions
 
             if (enumerator.MoveNext())
             {
-                var queue = new Queue<TSource>();
+                Queue<TSource> queue = new();
                 queue.Enqueue(enumerator.Current);
 
                 while (enumerator.MoveNext())
