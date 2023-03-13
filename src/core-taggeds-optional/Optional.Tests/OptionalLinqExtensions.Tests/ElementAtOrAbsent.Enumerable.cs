@@ -66,12 +66,12 @@ partial class OptionalLinqExtensionsTests
     [TestCase(1)]
     [TestCase(2)]
     public void ElementAtOrAbsentByLong_CollectionIndexIsInRange_ExpectPresentItem(
-        int index)
+        long index)
     {
         var source = CreateCollection<StructType?>(SomeTextStructType, NullTextStructType, null);
         var actual = source.ElementAtOrAbsent(index);
 
-        var expectedValue = source.ElementAt(index);
+        var expectedValue = source.ElementAt(checked((int)index));
         var expected = Optional<StructType?>.Present(expectedValue);
 
         Assert.AreEqual(expected, actual);

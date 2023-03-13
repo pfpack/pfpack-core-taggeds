@@ -75,12 +75,12 @@ partial class OptionalLinqExtensionsTests
     [TestCase(1)]
     [TestCase(2)]
     public void ElementAtOrAbsentByLong_ReadOnlyListIndexIsInRange_ExpectPresentItem(
-        int index)
+        long index)
     {
         var source = CreateReadOnlyList(PlusFifteenIdRefType, null, ZeroIdRefType);
         var actual = source.ElementAtOrAbsent(index);
 
-        var expectedValue = source.ElementAt(index);
+        var expectedValue = source.ElementAt(checked((int)index));
         var expected = Optional<RefType?>.Present(expectedValue);
 
         Assert.AreEqual(expected, actual);
