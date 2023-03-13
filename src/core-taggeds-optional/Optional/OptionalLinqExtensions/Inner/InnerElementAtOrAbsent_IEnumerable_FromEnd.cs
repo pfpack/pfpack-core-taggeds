@@ -12,25 +12,27 @@ partial class OptionalLinqExtensions
         {
             using var enumerator = source.GetEnumerator();
 
-            if (enumerator.MoveNext())
+            if (enumerator.MoveNext() is not true)
             {
-                Queue<TSource> queue = new();
-                queue.Enqueue(enumerator.Current);
+                return default;
+            }
 
-                while (enumerator.MoveNext())
-                {
-                    if (queue.Count == indexFromEnd)
-                    {
-                        _ = queue.Dequeue();
-                    }
+            Queue<TSource> queue = new();
+            queue.Enqueue(enumerator.Current);
 
-                    queue.Enqueue(enumerator.Current);
-                }
-
+            while (enumerator.MoveNext())
+            {
                 if (queue.Count == indexFromEnd)
                 {
-                    return queue.Dequeue();
+                    _ = queue.Dequeue();
                 }
+
+                queue.Enqueue(enumerator.Current);
+            }
+
+            if (queue.Count == indexFromEnd)
+            {
+                return queue.Dequeue();
             }
         }
 
