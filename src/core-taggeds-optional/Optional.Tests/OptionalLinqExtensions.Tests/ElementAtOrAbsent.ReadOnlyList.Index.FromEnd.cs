@@ -58,4 +58,21 @@ partial class OptionalLinqExtensionsTests
 
         Assert.AreEqual(expected, actual);
     }
+
+    [Test]
+    [TestCase(0)]
+    [TestCase(1)]
+    [TestCase(int.MaxValue)]
+    public void ElementAtOrAbsentByIndexFromEnd_ReadOnlyListIsEmpty_ExpectAbsent(
+        int indexValue)
+    {
+        var index = Index.FromEnd(indexValue);
+
+        var source = CreateReadOnlyList<StructType>();
+
+        var actual = source.ElementAtOrAbsent(index);
+        var expected = Optional<StructType>.Absent;
+
+        Assert.AreEqual(expected, actual);
+    }
 }

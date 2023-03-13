@@ -56,4 +56,21 @@ partial class OptionalLinqExtensionsTests
 
         Assert.AreEqual(expected, actual);
     }
+
+    [Test]
+    [TestCase(0)]
+    [TestCase(1)]
+    [TestCase(int.MaxValue)]
+    public void ElementAtOrAbsentByIndex_ListIsEmpty_ExpectAbsent(
+        int indexValue)
+    {
+        var index = Index.FromStart(indexValue);
+
+        var source = CreateList<StructType>();
+
+        var actual = source.ElementAtOrAbsent(index);
+        var expected = Optional<StructType>.Absent;
+
+        Assert.AreEqual(expected, actual);
+    }
 }
