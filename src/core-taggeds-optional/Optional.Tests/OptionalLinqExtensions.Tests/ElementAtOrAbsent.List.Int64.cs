@@ -10,52 +10,6 @@ namespace PrimeFuncPack.Core.Tests;
 partial class OptionalLinqExtensionsTests
 {
     [Test]
-    public void ElementAtOrAbsentByInt_ListSourceIsNull_ExpectArgumentNullException()
-    {
-        IList<RefType> source = null!;
-        int index = 1;
-
-        var ex = Assert.Throws<ArgumentNullException>(Test);
-        Assert.AreEqual("source", ex?.ParamName);
-
-        void Test()
-            =>
-            _ = source.ElementAtOrAbsent(index);
-    }
-
-    [Test]
-    [TestCase(0)]
-    [TestCase(1)]
-    [TestCase(2)]
-    public void ElementAtOrAbsentByInt_ListIndexIsInRange_ExpectPresentItem(
-        int index)
-    {
-        var source = CreateList<StructType?>(SomeTextStructType, null, NullTextStructType);
-        var actual = source.ElementAtOrAbsent(index);
-
-        var expectedValue = source.ElementAt(index);
-        var expected = Optional<StructType?>.Present(expectedValue);
-
-        Assert.AreEqual(expected, actual);
-    }
-
-    [Test]
-    [TestCase(int.MinValue)]
-    [TestCase(-1)]
-    [TestCase(2)]
-    [TestCase(int.MaxValue)]
-    public void ElementAtOrAbsentByInt_ListIndexIsNotInRange_ExpectAbsent(
-        int index)
-    {
-        var source = CreateList(SomeTextStructType, default);
-
-        var actual = source.ElementAtOrAbsent(index);
-        var expected = Optional<StructType>.Absent;
-
-        Assert.AreEqual(expected, actual);
-    }
-
-    [Test]
     public void ElementAtOrAbsentByLong_ListSourceIsNull_ExpectArgumentNullException()
     {
         IList<StructType> source = null!;
@@ -74,12 +28,12 @@ partial class OptionalLinqExtensionsTests
     [TestCase(1)]
     [TestCase(2)]
     public void ElementAtOrAbsentByLong_ListIndexIsInRange_ExpectPresentItem(
-        int index)
+        long index)
     {
         var source = CreateList(NullTextStructType, SomeTextStructType, SomeTextStructType);
         var actual = source.ElementAtOrAbsent(index);
 
-        var expectedValue = source.ElementAt(index);
+        var expectedValue = source.ElementAt(checked((int)index));
         var expected = Optional<StructType>.Present(expectedValue);
 
         Assert.AreEqual(expected, actual);
@@ -97,6 +51,23 @@ partial class OptionalLinqExtensionsTests
 
         var actual = source.ElementAtOrAbsent(index);
         var expected = Optional<RefType?>.Absent;
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    [Test]
+    [TestCase(long.MinValue)]
+    [TestCase(-1)]
+    [TestCase(0)]
+    [TestCase(1)]
+    [TestCase(long.MaxValue)]
+    public void ElementAtOrAbsentByLong_ListIsEmpty_ExpectAbsent(
+        long index)
+    {
+        var source = CreateList<RefType>();
+
+        var actual = source.ElementAtOrAbsent(index);
+        var expected = Optional<RefType>.Absent;
 
         Assert.AreEqual(expected, actual);
     }

@@ -6,6 +6,14 @@ partial class OptionalLinqExtensions
 {
     public static Optional<TSource> ElementAtOrAbsent<TSource>(
         this IEnumerable<TSource> source,
+        Index index)
+        =>
+        InnerElementAtOrAbsent(
+            source ?? throw new ArgumentNullException(nameof(source)),
+            index);
+
+    public static Optional<TSource> ElementAtOrAbsent<TSource>(
+        this IEnumerable<TSource> source,
         int index)
         =>
         InnerElementAtOrAbsent(

@@ -52,43 +52,18 @@ partial class OptionalLinqExtensionsTests
     }
 
     [Test]
-    public void ElementAtOrAbsentByLong_CollectionSourceIsNull_ExpectArgumentNullException()
-    {
-        IEnumerable<StructType> source = null!;
-        long index = 1;
-
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.ElementAtOrAbsent(index));
-        Assert.AreEqual("source", ex?.ParamName);
-    }
-
-    [Test]
+    [TestCase(int.MinValue)]
+    [TestCase(-1)]
     [TestCase(0)]
     [TestCase(1)]
-    [TestCase(2)]
-    public void ElementAtOrAbsentByLong_CollectionIndexIsInRange_ExpectPresentItem(
+    [TestCase(int.MaxValue)]
+    public void ElementAtOrAbsentByInt_CollectionIsEmpty_ExpectAbsent(
         int index)
     {
-        var source = CreateCollection<StructType?>(SomeTextStructType, NullTextStructType, null);
-        var actual = source.ElementAtOrAbsent(index);
-
-        var expectedValue = source.ElementAt(index);
-        var expected = Optional<StructType?>.Present(expectedValue);
-
-        Assert.AreEqual(expected, actual);
-    }
-
-    [Test]
-    [TestCase(long.MinValue)]
-    [TestCase(-1)]
-    [TestCase(3)]
-    [TestCase(long.MaxValue)]
-    public void ElementAtOrAbsentByLong_CollectionIndexIsNotInRange_ExpectAbsent(
-        long index)
-    {
-        var source = CreateCollection(PlusFifteenIdRefType, MinusFifteenIdRefType, ZeroIdRefType);
+        var source = CreateCollection<StructType>();
 
         var actual = source.ElementAtOrAbsent(index);
-        var expected = Optional<RefType>.Absent;
+        var expected = Optional<StructType>.Absent;
 
         Assert.AreEqual(expected, actual);
     }
