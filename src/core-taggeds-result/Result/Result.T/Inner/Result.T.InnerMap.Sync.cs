@@ -11,6 +11,6 @@ partial struct Result<TSuccess, TFailure>
         where TResultFailure : struct
         =>
         isSuccess
-            ? mapSuccess.Invoke(success)
-            : mapFailure.Invoke(failure);
+            ? new(mapSuccess.Invoke(success))
+            : new(mapFailure.Invoke(failure));
 }
