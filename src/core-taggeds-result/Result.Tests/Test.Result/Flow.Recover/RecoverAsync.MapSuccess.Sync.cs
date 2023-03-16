@@ -13,13 +13,13 @@ partial class ResultTest
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessMinusFifteenIdRefTypeTestSource))]
-    public void RecoverAsyncWithMapSuccess_OtherFactoryAsyncIsNull_ExpectArgumentNullException(
+    public void RecoverAsyncWithMapSuccessSync_OtherFactoryAsyncIsNull_ExpectArgumentNullException(
         Result<RefType, StructType> source)
     {
         var mappedSuccess = int.MaxValue;
 
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
-            async () => _ = await source.RecoverAsync<int, SomeError>(null!, _ => Task.FromResult(mappedSuccess)));
+            async () => _ = await source.RecoverAsync<int, SomeError>(null!, _ => mappedSuccess));
 
         Assert.AreEqual("otherFactoryAsync", actualException!.ParamName);
     }
@@ -29,28 +29,28 @@ partial class ResultTest
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
-    public void RecoverAsyncWithMapSuccess_MapSuccessIsNull_ExpectArgumentNullException(
+    public void RecoverAsyncWithMapSuccessSync_MapSuccessIsNull_ExpectArgumentNullException(
         Result<RefType, StructType> source)
     {
         var other = new Result<string, SomeError>(SomeString);
 
-        Func<RefType, Task<string>> mapSuccessAsync = null!;
+        Func<RefType, string> mapSuccess = null!;
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
-            async () => _ = await source.RecoverAsync(_ => Task.FromResult(other), mapSuccessAsync));
+            async () => _ = await source.RecoverAsync(_ => Task.FromResult(other), mapSuccess));
 
-        Assert.AreEqual("mapSuccessAsync", actualException!.ParamName);
+        Assert.AreEqual("mapSuccess", actualException!.ParamName);
     }
 
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
-    public async Task RecoverAsyncWithMapSuccess_SourceIsSuccess_ExpectSuccessResultOfMappedValue(
+    public async Task RecoverAsyncWithMapSuccessSync_SourceIsSuccess_ExpectSuccessResultOfMappedValue(
         Result<RefType, StructType> source)
     {
         var other = new Result<string, SomeError>(EmptyString);
         var mappedSuccess = SomeString;
 
-        var actual = await source.RecoverAsync(_ => Task.FromResult(other), _ => Task.FromResult(mappedSuccess));
+        var actual = await source.RecoverAsync(_ => Task.FromResult(other), _ => mappedSuccess);
         Result<string, SomeError> expected = mappedSuccess;
 
         Assert.AreEqual(expected, actual);
@@ -59,20 +59,20 @@ partial class ResultTest
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureDefaultTestSource))]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
-    public async Task RecoverAsyncWithMapSuccess_SourceIsDefaultOrFailureAndOtherIsDefault_ExpectOther(
+    public async Task RecoverAsyncWithMapSuccessSync_SourceIsDefaultOrFailureAndOtherIsDefault_ExpectOther(
         Result<RefType, StructType> source)
     {
         var other = default(Result<object, SomeError>);
         var mappedSuccess = new object();
 
-        var actual = await source.RecoverAsync(_ => Task.FromResult(other), _ => Task.FromResult(mappedSuccess));
+        var actual = await source.RecoverAsync(_ => Task.FromResult(other), _ => mappedSuccess);
         Assert.AreEqual(other, actual);
     }
 
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureDefaultTestSource))]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
-    public async Task RecoverAsyncWithMapSuccess_SourceIsDefaultOrFailureAndOtherIsSuccess_ExpectOther(
+    public async Task RecoverAsyncWithMapSuccessSync_SourceIsDefaultOrFailureAndOtherIsSuccess_ExpectOther(
         Result<RefType, StructType> source)
     {
         var other = Result.Success(new SomeRecord()).With<SomeError>();
@@ -81,20 +81,20 @@ partial class ResultTest
             Text = "Some property value"
         };
 
-        var actual = await source.RecoverAsync(_ => Task.FromResult(other), _ => Task.FromResult(mappedSuccess));
+        var actual = await source.RecoverAsync(_ => Task.FromResult(other), _ => mappedSuccess);
         Assert.AreEqual(other, actual);
     }
 
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureDefaultTestSource))]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
-    public async Task RecoverAsyncWithMapSuccess_SourceIsDefaultOrFailureAndOtherIsFailure_ExpectOther(
+    public async Task RecoverAsyncWithMapSuccessSync_SourceIsDefaultOrFailureAndOtherIsFailure_ExpectOther(
         Result<RefType, StructType> source)
     {
         Result<string, SomeError> other = new SomeError(PlusFifteen);
         var mappedValue = "Some success text value";
 
-        var actual = await source.RecoverAsync(_ => Task.FromResult(other), _ => Task.FromResult(mappedValue));
+        var actual = await source.RecoverAsync(_ => Task.FromResult(other), _ => mappedValue);
         Assert.AreEqual(other, actual);
     }
 }

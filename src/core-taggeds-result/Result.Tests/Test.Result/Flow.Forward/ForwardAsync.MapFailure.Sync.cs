@@ -13,13 +13,13 @@ partial class ResultTest
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessMinusFifteenIdRefTypeTestSource))]
-    public void ForwardValueAsyncMapFailure_NextFactoryAsyncIsNull_ExpectArgumentNullException(
+    public void ForwardAsyncMapFailureSync_NextFactoryAsyncIsNull_ExpectArgumentNullException(
         Result<RefType, StructType> source)
     {
         var mappedFailure = new SomeError(PlusFifteen);
 
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
-            async () => _ = await source.ForwardValueAsync<SomeRecord, SomeError>(null!,  _ => ValueTask.FromResult(mappedFailure)));
+            async () => _ = await source.ForwardAsync<SomeRecord, SomeError>(null!,  _ => mappedFailure));
 
         Assert.AreEqual("nextFactoryAsync", actualException!.ParamName);
     }
@@ -28,29 +28,29 @@ partial class ResultTest
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureDefaultTestSource))]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
-    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
-    public void ForwardValueAsyncMapFailure_MapFailureIsNull_ExpectArgumentNullException(
+    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessMinusFifteenIdRefTypeTestSource))]
+    public void ForwardAsyncMapFailureSync_MapFailureIsNull_ExpectArgumentNullException(
         Result<RefType, StructType> source)
     {
-        var next = new Result<SomeRecord, SomeError>(new SomeRecord());
+        Result<SomeRecord, SomeError> next = new SomeError(MinusFifteen);
 
-        Func<StructType, ValueTask<SomeError>> mapFailureAsync = null!;
+        Func<StructType, SomeError> mapFailure = null!;
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
-            async () => _ = await source.ForwardValueAsync(_ => ValueTask.FromResult(next), mapFailureAsync));
+            async () => _ = await source.ForwardAsync(_ => Task.FromResult(next), mapFailure));
 
-        Assert.AreEqual("mapFailureAsync", actualException!.ParamName);
+        Assert.AreEqual("mapFailure", actualException!.ParamName);
     }
 
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureDefaultTestSource))]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
-    public async Task ForwardValueAsyncMapFailure_SourceIsDefaultOrFailure_ExpectResultOfMappedFailure(
+    public async Task ForwardAsyncMapFailureSync_SourceIsDefaultOrFailure_ExpectResultOfMappedFailure(
         Result<RefType, StructType> source)
     {
-        var next = new Result<SomeRecord, SomeError>(new SomeError(MinusFifteen));
-        var mappedFailure = new SomeError(int.MaxValue);
+        Result<SomeRecord, SomeError> next = new SomeRecord();
+        var mappedFailure = new SomeError(MinusFifteen);
 
-        var actual = await source.ForwardValueAsync(_ => ValueTask.FromResult(next), _ => ValueTask.FromResult(mappedFailure));
+        var actual = await source.ForwardAsync(_ => Task.FromResult(next), _ => mappedFailure);
         var expected = new Result<SomeRecord, SomeError>(mappedFailure);
 
         Assert.AreEqual(expected, actual);
@@ -58,40 +58,40 @@ partial class ResultTest
 
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
-    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessMinusFifteenIdRefTypeTestSource))]
-    public async Task ForwardValueAsyncMapFailure_SourceIsSuccessAndNextIsDefault_ExpectDefault(
+    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
+    public async Task ForwardAsyncMapFailureSync_SourceIsSuccessAndNextIsDefault_ExpectDefault(
         Result<RefType, StructType> source)
     {
         var next = default(Result<string, SomeError>);
         var mappedFailure = new SomeError(PlusFifteen);
 
-        var actual = await source.ForwardValueAsync(_ => ValueTask.FromResult(next), _ => ValueTask.FromResult(mappedFailure));
+        var actual = await source.ForwardAsync(_ => Task.FromResult(next), _ => mappedFailure);
         Assert.AreEqual(next, actual);
     }
 
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
-    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessMinusFifteenIdRefTypeTestSource))]
-    public async Task ForwardValueAsyncMapFailure_SourceIsSuccessAndNextIsSuccess_ExpectNext(
+    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
+    public async Task ForwardAsyncMapFailureSync_SourceIsSuccessAndNextIsSuccess_ExpectNext(
         Result<RefType, StructType> source)
     {
-        Result<RefType, SomeError> next = Result.Success(PlusFifteenIdRefType);
+        var next = new Result<RefType, SomeError>(MinusFifteenIdRefType);
         var mappedFailure = new SomeError(int.MaxValue);
 
-        var actual = await source.ForwardValueAsync(_ => ValueTask.FromResult(next), _ => ValueTask.FromResult(mappedFailure));
+        var actual = await source.ForwardAsync(_ => Task.FromResult(next), _ => mappedFailure);
         Assert.AreEqual(next, actual);
     }
 
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
-    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessMinusFifteenIdRefTypeTestSource))]
-    public async Task ForwardValueAsyncMapFailure_SourceIsSuccessAndNextIsFailure_ExpectNext(
+    [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
+    public async Task ForwardAsyncMapFailureSync_SourceIsSuccessAndNextIsFailure_ExpectNext(
         Result<RefType, StructType> source)
     {
-        Result<SomeRecord, SomeError> next = Result.Failure(new SomeError(int.MinValue));
-        var mappedFailure = new SomeError(PlusFifteen);
+        Result<SomeRecord, SomeError> next = Result.Failure(new SomeError(MinusFifteen));
+        var mappedFailure = new SomeError(int.MinValue);
 
-        var actual = await source.ForwardValueAsync(_ => ValueTask.FromResult(next), _ => ValueTask.FromResult(mappedFailure));
+        var actual = await source.ForwardAsync(_ => Task.FromResult(next), _ => mappedFailure);
         Assert.AreEqual(next, actual);
     }
 }
