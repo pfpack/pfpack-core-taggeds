@@ -26,6 +26,26 @@ partial struct Result<TSuccess, TFailure>
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private async Task<Result<TSuccess, TCauseFailure>> InnerFilterAsync<TCauseFailure>(
+        Func<TSuccess, Task<bool>> predicateAsync,
+        Func<TSuccess, Task<TCauseFailure>> causeFactoryAsync,
+        Func<TFailure, TCauseFailure> mapFailure)
+        where TCauseFailure : struct
+    {
+        if (isSuccess is not true)
+        {
+            return mapFailure.Invoke(failure);
+        }
+
+        if (await predicateAsync.Invoke(success).ConfigureAwait(false))
+        {
+            return new(success);
+        }
+
+        return new(await causeFactoryAsync.Invoke(success).ConfigureAwait(false));
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private async Task<Result<TSuccess, TFailure>> InnerFilterAsync(
         Func<TSuccess, Task<bool>> predicateAsync,
         Func<TSuccess, Task<TFailure>> causeFactoryAsync)

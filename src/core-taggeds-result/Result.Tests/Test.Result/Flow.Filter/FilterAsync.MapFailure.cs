@@ -35,8 +35,9 @@ partial class ResultTest
     {
         var mapped = new SomeError(MinusFifteen);
 
+        Func<RefType, Task<SomeError>> causeFactoryAsync = null!;
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
-            async () => _ = await source.FilterAsync(_ => Task.FromResult(true), null!, _ => Task.FromResult(mapped)));
+            async () => _ = await source.FilterAsync(_ => Task.FromResult(true), causeFactoryAsync, _ => Task.FromResult(mapped)));
 
         Assert.AreEqual("causeFactoryAsync", actualException!.ParamName);
     }
@@ -51,8 +52,9 @@ partial class ResultTest
     {
         var cause = default(SomeError);
 
+        Func<StructType, Task<SomeError>> mapFailureAsync = null!;
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
-            async () => _ = await source.FilterAsync(_ => Task.FromResult(false), _ => Task.FromResult(cause), null!));
+            async () => _ = await source.FilterAsync(_ => Task.FromResult(false), _ => Task.FromResult(cause), mapFailureAsync));
 
         Assert.AreEqual("mapFailureAsync", actualException!.ParamName);
     }

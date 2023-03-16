@@ -16,6 +16,16 @@ partial struct Result<TSuccess, TFailure>
         : await otherFactoryAsync.Invoke(failure).ConfigureAwait(false);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private async ValueTask<Result<TOtherSuccess, TOtherFailure>> InnerRecoverValueAsync<TOtherSuccess, TOtherFailure>(
+        Func<TFailure, ValueTask<Result<TOtherSuccess, TOtherFailure>>> otherFactoryAsync,
+        Func<TSuccess, TOtherSuccess> mapSuccess)
+        where TOtherFailure : struct
+        =>
+        isSuccess
+        ? new(mapSuccess.Invoke(success))
+        : await otherFactoryAsync.Invoke(failure).ConfigureAwait(false);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private async ValueTask<Result<TSuccess, TOtherFailure>> InnerRecoverValueAsync<TOtherFailure>(
         Func<TFailure, ValueTask<Result<TSuccess, TOtherFailure>>> otherFactoryAsync)
         where TOtherFailure : struct

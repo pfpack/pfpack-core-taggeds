@@ -34,8 +34,9 @@ partial class ResultTest
     {
         var next = new Result<SomeRecord, SomeError>(new SomeRecord());
 
+        Func<StructType, ValueTask<SomeError>> mapFailureAsync = null!;
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
-            async () => _ = await source.ForwardValueAsync(_ => ValueTask.FromResult(next), null!));
+            async () => _ = await source.ForwardValueAsync(_ => ValueTask.FromResult(next), mapFailureAsync));
 
         Assert.AreEqual("mapFailureAsync", actualException!.ParamName);
     }

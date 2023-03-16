@@ -13,6 +13,15 @@ partial struct Result<TSuccess, TFailure>
             nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync)),
             mapFailureAsync ?? throw new ArgumentNullException(nameof(mapFailureAsync)));
 
+    public ValueTask<Result<TNextSuccess, TNextFailure>> ForwardValueAsync<TNextSuccess, TNextFailure>(
+        Func<TSuccess, ValueTask<Result<TNextSuccess, TNextFailure>>> nextFactoryAsync,
+        Func<TFailure, TNextFailure> mapFailure)
+        where TNextFailure : struct
+        =>
+        InnerForwardValueAsync(
+            nextFactoryAsync ?? throw new ArgumentNullException(nameof(nextFactoryAsync)),
+            mapFailure ?? throw new ArgumentNullException(nameof(mapFailure)));
+
     public ValueTask<Result<TNextSuccess, TFailure>> ForwardValueAsync<TNextSuccess>(
         Func<TSuccess, ValueTask<Result<TNextSuccess, TFailure>>> nextFactoryAsync)
         =>
