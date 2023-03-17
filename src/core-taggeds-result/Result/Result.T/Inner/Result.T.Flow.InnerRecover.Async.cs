@@ -11,9 +11,9 @@ partial struct Result<TSuccess, TFailure>
         Func<TSuccess, Task<TOtherSuccess>> mapSuccessAsync)
         where TOtherFailure : struct
         =>
-        isSuccess
-        ? new(await mapSuccessAsync.Invoke(success).ConfigureAwait(false))
-        : await otherFactoryAsync.Invoke(failure).ConfigureAwait(false);
+        isSuccess is not true
+        ? await otherFactoryAsync.Invoke(failure).ConfigureAwait(false)
+        : new(await mapSuccessAsync.Invoke(success).ConfigureAwait(false));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private async Task<Result<TOtherSuccess, TOtherFailure>> InnerRecoverAsync<TOtherSuccess, TOtherFailure>(
@@ -21,24 +21,24 @@ partial struct Result<TSuccess, TFailure>
         Func<TSuccess, TOtherSuccess> mapSuccess)
         where TOtherFailure : struct
         =>
-        isSuccess
-        ? new(mapSuccess.Invoke(success))
-        : await otherFactoryAsync.Invoke(failure).ConfigureAwait(false);
+        isSuccess is not true
+        ? await otherFactoryAsync.Invoke(failure).ConfigureAwait(false)
+        : new(mapSuccess.Invoke(success));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private async Task<Result<TSuccess, TOtherFailure>> InnerRecoverAsync<TOtherFailure>(
         Func<TFailure, Task<Result<TSuccess, TOtherFailure>>> otherFactoryAsync)
         where TOtherFailure : struct
         =>
-        isSuccess
-        ? new(success)
-        : await otherFactoryAsync.Invoke(failure).ConfigureAwait(false);
+        isSuccess is not true
+        ? await otherFactoryAsync.Invoke(failure).ConfigureAwait(false)
+        : new(success);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private async Task<Result<TSuccess, TFailure>> InnerRecoverAsync(
         Func<TFailure, Task<Result<TSuccess, TFailure>>> otherFactoryAsync)
         =>
-        isSuccess
-        ? this
-        : await otherFactoryAsync.Invoke(failure).ConfigureAwait(false);
+        isSuccess is not true
+        ? await otherFactoryAsync.Invoke(failure).ConfigureAwait(false)
+        : this;
 }

@@ -12,17 +12,14 @@ partial struct Result<TSuccess, TFailure>
         Func<TFailure, ValueTask<TCauseFailure>> mapFailureAsync)
         where TCauseFailure : struct
     {
-        if (isSuccess is not true)
+        if (isSuccess)
         {
-            return new(await mapFailureAsync.Invoke(failure).ConfigureAwait(false));
+            return await predicateAsync.Invoke(success).ConfigureAwait(false)
+                ? new(success)
+                : new(await causeFactoryAsync.Invoke(success).ConfigureAwait(false));
         }
 
-        if (await predicateAsync.Invoke(success).ConfigureAwait(false))
-        {
-            return new(success);
-        }
-
-        return new(await causeFactoryAsync.Invoke(success).ConfigureAwait(false));
+        return new(await mapFailureAsync.Invoke(failure).ConfigureAwait(false));
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -32,17 +29,14 @@ partial struct Result<TSuccess, TFailure>
         Func<TFailure, TCauseFailure> mapFailure)
         where TCauseFailure : struct
     {
-        if (isSuccess is not true)
+        if (isSuccess)
         {
-            return mapFailure.Invoke(failure);
+            return await predicateAsync.Invoke(success).ConfigureAwait(false)
+                ? new(success)
+                : new(await causeFactoryAsync.Invoke(success).ConfigureAwait(false));
         }
 
-        if (await predicateAsync.Invoke(success).ConfigureAwait(false))
-        {
-            return new(success);
-        }
-
-        return new(await causeFactoryAsync.Invoke(success).ConfigureAwait(false));
+        return new(mapFailure.Invoke(failure));
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -50,16 +44,13 @@ partial struct Result<TSuccess, TFailure>
         Func<TSuccess, ValueTask<bool>> predicateAsync,
         Func<TSuccess, ValueTask<TFailure>> causeFactoryAsync)
     {
-        if (isSuccess is not true)
+        if (isSuccess)
         {
-            return this;
+            return await predicateAsync.Invoke(success).ConfigureAwait(false)
+                ? this
+                : new(await causeFactoryAsync.Invoke(success).ConfigureAwait(false));
         }
 
-        if (await predicateAsync.Invoke(success).ConfigureAwait(false))
-        {
-            return this;
-        }
-
-        return new(await causeFactoryAsync.Invoke(success).ConfigureAwait(false));
+        return this;
     }
 }
