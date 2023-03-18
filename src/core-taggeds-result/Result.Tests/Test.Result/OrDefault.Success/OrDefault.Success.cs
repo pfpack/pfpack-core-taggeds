@@ -20,6 +20,7 @@ partial class ResultTest
         Assert.AreEqual(actual, success);
     }
 
+    [Test]
     public void SuccessOrDefault_Default_ExpectDefault_Struct()
     {
         var result = new Result<int, SomeError>();
@@ -28,6 +29,7 @@ partial class ResultTest
         Assert.Zero(actual);
     }
 
+    [Test]
     public void SuccessOrDefault_IsFailure_ExpectDefault_Struct()
     {
         var result = new Result<int, SomeError>(new SomeError(1));
@@ -36,6 +38,7 @@ partial class ResultTest
         Assert.Zero(actual);
     }
 
+    [Test]
     public void SuccessOrDefault_IsSuccess_ExpectSource_Ref()
     {
         var refObj = new RefType { Id = 1 };
@@ -45,6 +48,7 @@ partial class ResultTest
         Assert.AreSame(actual, refObj);
     }
 
+    [Test]
     public void SuccessOrDefault_Default_ExpectNull_Ref()
     {
         var result = new Result<RefType, SomeError>();
@@ -53,6 +57,7 @@ partial class ResultTest
         Assert.IsNull(actual);
     }
 
+    [Test]
     public void SuccessOrDefault_IsFailure_ExpectNull_Ref()
     {
         var result = new Result<RefType, SomeError>(new SomeError(1));
