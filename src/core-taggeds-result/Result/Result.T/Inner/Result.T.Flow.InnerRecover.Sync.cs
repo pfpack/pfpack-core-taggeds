@@ -10,24 +10,24 @@ partial struct Result<TSuccess, TFailure>
         Func<TSuccess, TOtherSuccess> mapSuccess)
         where TOtherFailure : struct
         =>
-        isSuccess
-        ? new(mapSuccess.Invoke(success))
-        : otherFactory.Invoke(failure);
+        isSuccess is not true
+        ? otherFactory.Invoke(failure)
+        : new(mapSuccess.Invoke(success));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private Result<TSuccess, TOtherFailure> InnerRecover<TOtherFailure>(
         Func<TFailure, Result<TSuccess, TOtherFailure>> otherFactory)
         where TOtherFailure : struct
         =>
-        isSuccess
-        ? new(success)
-        : otherFactory.Invoke(failure);
+        isSuccess is not true
+        ? otherFactory.Invoke(failure)
+        : new(success);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private Result<TSuccess, TFailure> InnerRecover(
         Func<TFailure, Result<TSuccess, TFailure>> otherFactory)
         =>
-        isSuccess
-        ? this
-        : otherFactory.Invoke(failure);
+        isSuccess is not true
+        ? otherFactory.Invoke(failure)
+        : this;
 }

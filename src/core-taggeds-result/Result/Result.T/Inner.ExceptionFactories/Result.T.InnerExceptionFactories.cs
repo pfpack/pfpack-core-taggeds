@@ -1,6 +1,4 @@
-﻿using static System.FormattableString;
-
-namespace System;
+﻿namespace System;
 
 partial struct Result<TSuccess, TFailure>
 {
@@ -14,5 +12,5 @@ partial struct Result<TSuccess, TFailure>
 
     private static string InnerCreateExpectedTagMessage(string tag)
         =>
-        Invariant($"The result is expected to represent the {tag} case.");
+        $"The result is expected to represent the {tag} case.";
 }
