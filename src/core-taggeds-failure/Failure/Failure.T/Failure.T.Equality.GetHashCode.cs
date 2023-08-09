@@ -7,19 +7,18 @@ partial struct Failure<TFailureCode>
 {
     public override int GetHashCode()
     {
+        HashCode builder = new();
+
+        builder.Add(EqualityContractHashCode());
+        builder.Add(FailureCodeComparer.GetHashCode(FailureCode));
+        builder.Add(FailureMessageComparer.GetHashCode(FailureMessage));
+
         if (SourceException is not null)
         {
-            return HashCode.Combine(
-                EqualityContractHashCode(),
-                FailureCodeComparer.GetHashCode(FailureCode),
-                FailureMessageComparer.GetHashCode(FailureMessage),
-                SourceExceptionComparer.GetHashCode(SourceException));
+            builder.Add(SourceExceptionComparer.GetHashCode(SourceException));
         }
 
-        return HashCode.Combine(
-            EqualityContractHashCode(),
-            FailureCodeComparer.GetHashCode(FailureCode),
-            FailureMessageComparer.GetHashCode(FailureMessage));
+        return builder.ToHashCode();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -16,14 +16,12 @@ public readonly partial struct Failure<TFailureCode> : IEquatable<Failure<TFailu
 
         this.failureCode = failureCode;
         this.failureMessage = failureMessage;
-        SourceException = null;
     }
 
     public Failure(TFailureCode failureCode, [AllowNull] string failureMessage)
     {
         this.failureCode = failureCode;
         this.failureMessage = string.IsNullOrEmpty(failureMessage) ? null : failureMessage;
-        SourceException = null;
 
         Debug.Assert(this.failureMessage is null || this.failureMessage.Length != default);
     }
@@ -36,5 +34,5 @@ public readonly partial struct Failure<TFailureCode> : IEquatable<Failure<TFailu
         =>
         failureMessage ?? string.Empty;
 
-    public Exception? SourceException { get; init; }
+    public Exception? SourceException { get; init; } = null;
 }
