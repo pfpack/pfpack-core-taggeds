@@ -6,11 +6,20 @@ namespace System;
 partial struct Failure<TFailureCode>
 {
     public override int GetHashCode()
-        =>
-        HashCode.Combine(
-            EqualityContractHashCode(),
-            FailureCodeComparer.GetHashCode(FailureCode),
-            FailureMessageComparer.GetHashCode(FailureMessage));
+    {
+        HashCode builder = new();
+
+        builder.Add(EqualityContractHashCode());
+        builder.Add(FailureCodeComparer.GetHashCode(FailureCode));
+        builder.Add(FailureMessageComparer.GetHashCode(FailureMessage));
+
+        if (SourceException is not null)
+        {
+            builder.Add(SourceExceptionComparer.GetHashCode(SourceException));
+        }
+
+        return builder.ToHashCode();
+    }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int EqualityContractHashCode()

@@ -7,29 +7,17 @@ namespace PrimeFuncPack.Core.Tests;
 
 partial class FailureStaticTest
 {
-    [Fact]
-    public void CreateUnitFailureCode_SourceFailureMessageIsNull_ExpectFailureCodeIsUnitAndMessageIsEmpty()
-    {
-        var actual = Failure.Create(null);
-
-        AssertEqualFailures(
-            (Unit.Value, EmptyString),
-            (actual.FailureCode, actual.FailureMessage));
-    }
-
     [Theory]
-    [InlineData(EmptyString)]
-    [InlineData(WhiteSpaceString)]
-    [InlineData(TabString)]
-    [InlineData(LowerSomeString)]
-    [InlineData(SomeString)]
-    public void CreateUnitFailureCode_SourceFailureMessageIsNotNull_ExpectFailureCodeIsUnitAndMessageIsEqualToSource(
-        string sourceFailureMessage)
+    [InlineData(null, EmptyString)]
+    [InlineData(EmptyString, EmptyString)]
+    [InlineData(SomeString, SomeString)]
+    public static void CreateUnitFailureCode_ExpectActualValues(
+        string? sourceFailureMessage, string expectedFailureMessage)
     {
         var actual = Failure.Create(sourceFailureMessage);
 
         AssertEqualFailures(
-            (Unit.Value, sourceFailureMessage),
-            (actual.FailureCode, actual.FailureMessage));
+            (Unit.Value, expectedFailureMessage, null),
+            (actual.FailureCode, actual.FailureMessage, actual.SourceException));
     }
 }

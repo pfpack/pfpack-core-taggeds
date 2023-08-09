@@ -1,5 +1,5 @@
 namespace PrimeFuncPack.Core.Tests;
 
-public sealed partial class FailureStaticTest
+public static partial class FailureStaticTest
 {
 }

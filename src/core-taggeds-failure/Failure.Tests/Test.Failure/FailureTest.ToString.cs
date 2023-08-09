@@ -8,14 +8,14 @@ namespace PrimeFuncPack.Core.Tests;
 partial class FailureTest
 {
     [Fact]
-    public void ToString_FailureIsDefault()
+    public static void ToString_FailureIsDefault()
     {
         var failure = default(Failure<SomeFailureCode>);
         var actual = failure.ToString();
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Failure<{0}>:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\" }}",
+            "Failure<{0}>:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\", \"SourceException\": null }}",
             typeof(SomeFailureCode).Name,
             SomeFailureCode.Unknown,
             string.Empty);
@@ -24,48 +24,52 @@ partial class FailureTest
     }
 
     [Theory]
-    [InlineData(Zero, null)]
-    [InlineData(PlusFifteen, null)]
-    [InlineData(Zero, EmptyString)]
-    [InlineData(MinusFifteen, EmptyString)]
-    [InlineData(Zero, SomeString)]
-    [InlineData(int.MaxValue, LowerSomeString)]
-    public void ToString_FailureIsNotDefault(
-        int failureCode,
-        string? failureMessage)
+    [InlineData(Zero, null, EmptyString)]
+    [InlineData(Zero, EmptyString, EmptyString)]
+    [InlineData(Zero, SomeString, SomeString)]
+    public static void ToString_SourceExceptionIsNull(
+        int failureCode, string? sourceFailureMessage, string expectedFailureMessage)
     {
-        var sourceFailure = new Failure<int>(failureCode, failureMessage);
+        var sourceFailure = new Failure<int>(failureCode, sourceFailureMessage)
+        {
+            SourceException = null
+        };
+
         var actual = sourceFailure.ToString();
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Failure<{0}>:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\" }}",
+            "Failure<{0}>:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\", \"SourceException\": null }}",
             typeof(int).Name,
             failureCode,
-            failureMessage);
+            expectedFailureMessage);
 
         Assert.Equal(expected, actual);
     }
 
     [Theory]
-    [InlineData(SomeFailureCode.Unknown, WhiteSpaceString)]
-    [InlineData(SomeFailureCode.First, TabString)]
-    [InlineData(SomeFailureCode.Unknown, SomeString)]
-    [InlineData(SomeFailureCode.Second, LowerSomeString)]
-    [InlineData(SomeFailureCode.Third, UpperSomeString)]
-    public void ToString_FailureMessageIsNotEmpty(
-        SomeFailureCode failureCode,
-        string failureMessage)
+    [InlineData(SomeFailureCode.Unknown, null, EmptyString)]
+    [InlineData(SomeFailureCode.First, EmptyString, EmptyString)]
+    [InlineData(SomeFailureCode.Unknown, SomeString, SomeString)]
+    public static void ToString_SourceExceptionIsNotNull(
+        SomeFailureCode failureCode, string? sourceFailureMessage, string expectedFailureMessage)
     {
-        var sourceFailure = new Failure<SomeFailureCode>(failureCode, failureMessage);
+        var sourceException = new InvalidOperationException("Some error message");
+
+        var sourceFailure = new Failure<SomeFailureCode>(failureCode, sourceFailureMessage)
+        {
+            SourceException = sourceException
+        };
+
         var actual = sourceFailure.ToString();
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Failure<{0}>:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\" }}",
+            "Failure<{0}>:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\", \"SourceException\": \"{3}\" }}",
             typeof(SomeFailureCode).Name,
             failureCode,
-            failureMessage);
+            expectedFailureMessage,
+            sourceException.ToString());
 
         Assert.Equal(expected, actual);
     }

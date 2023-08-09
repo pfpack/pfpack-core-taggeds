@@ -11,4 +11,8 @@ partial struct Failure<TFailureCode>
     private static StringComparer FailureMessageComparer
         =>
         StringComparer.Ordinal;
+
+    private static EqualityComparer<Exception> SourceExceptionComparer
+        =>
+        EqualityComparer<Exception>.Default;
 }
