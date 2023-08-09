@@ -13,14 +13,14 @@ partial class FailureTest
     [InlineData(Zero)]
     [InlineData(PlusFifteen)]
     [InlineData(int.MaxValue)]
-    public void Constructor_SourceFailureMessageIsNull_ExpectFailureCodeIsEqualToSourceAndMessageIsEmpty(
+    public static void Constructor_SourceFailureMessageIsNull_ExpectFailureCodeIsEqualToSourceAndMessageIsEmpty(
         int sourceFailureCode)
     {
         var actual = new Failure<int>(sourceFailureCode, null);
 
         AssertEqualFailures(
-            (sourceFailureCode, EmptyString),
-            (actual.FailureCode, actual.FailureMessage));
+            (sourceFailureCode, EmptyString, null),
+            (actual.FailureCode, actual.FailureMessage, actual.SourceException));
     }
 
     [Theory]
@@ -34,14 +34,14 @@ partial class FailureTest
     [InlineData(SomeFailureCode.Second, LowerSomeString)]
     [InlineData(SomeFailureCode.First, SomeString)]
     [InlineData(SomeFailureCode.Third, UpperSomeString)]
-    public void Constructor_SourceFailureMessageIsNotNull_ExpectFailureCodeAndMessageAreEqualToSource(
+    public static void Constructor_SourceFailureMessageIsNotNull_ExpectFailureCodeAndMessageAreEqualToSource(
         SomeFailureCode sourceFailureCode,
         string sourceFailureMessage)
     {
         var actual = new Failure<SomeFailureCode>(sourceFailureCode, sourceFailureMessage);
 
         AssertEqualFailures(
-            (sourceFailureCode, sourceFailureMessage),
-            (actual.FailureCode, actual.FailureMessage));
+            (sourceFailureCode, sourceFailureMessage, null),
+            (actual.FailureCode, actual.FailureMessage, actual.SourceException));
     }
 }

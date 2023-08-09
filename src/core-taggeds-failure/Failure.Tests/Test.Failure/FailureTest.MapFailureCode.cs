@@ -10,7 +10,7 @@ partial class FailureTest
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void MapFailureCode_MapFailureCodeIsNull_ExpectArgumentNullException(
+    public static void MapFailureCode_MapFailureCodeIsNull_ExpectArgumentNullException(
         bool isNotDefault)
     {
         var source = isNotDefault ? new Failure<SomeFailureCode>(SomeFailureCode.First, SomeString) : default;
@@ -24,7 +24,7 @@ partial class FailureTest
     [InlineData(SomeFailureCode.First)]
     [InlineData(SomeFailureCode.Second)]
     [InlineData(SomeFailureCode.Third)]
-    public void MapFailureCode_SourceIsDefault_ExpectFailureCodeIsMappedAndFailureMessageIsEmpty(
+    public static void MapFailureCode_SourceIsDefault_ExpectFailureCodeIsMappedAndFailureMessageIsEmpty(
         SomeFailureCode mappedFailureCode)
     {
         var source = default(Failure<int>);
@@ -32,51 +32,44 @@ partial class FailureTest
         var actual = source.MapFailureCode(_ => mappedFailureCode);
 
         AssertEqualFailures(
-            (mappedFailureCode, EmptyString),
-            (actual.FailureCode, actual.FailureMessage));
+            (mappedFailureCode, EmptyString, null),
+            (actual.FailureCode, actual.FailureMessage, actual.SourceException));
     }
 
     [Theory]
-    [InlineData(int.MinValue)]
-    [InlineData(MinusFifteen)]
-    [InlineData(Zero)]
-    [InlineData(PlusFifteen)]
-    [InlineData(int.MaxValue)]
-    public void MapFailureCode_SourceFailureMessageIsNull_ExpectFailureCodeIsMappedAndFailureMessageIsEmpty(
-        int mappedFailureCode)
+    [InlineData(int.MinValue, EmptyString, EmptyString)]
+    [InlineData(MinusFifteen, SomeString, SomeString)]
+    [InlineData(Zero, null, EmptyString)]
+    public static void MapFailureCode_SourceExceptionIsNull_ExpectFailureCodeIsMappedAndSourceExceptionIsNull(
+        int mappedFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
     {
-        var source = new Failure<decimal>(decimal.One, null);
+        var source = new Failure<decimal>(decimal.One, sourceFailureMessage);
 
         var actual = source.MapFailureCode(_ => mappedFailureCode);
 
         AssertEqualFailures(
-            (mappedFailureCode, EmptyString),
-            (actual.FailureCode, actual.FailureMessage));
+            (mappedFailureCode, expectedFailureMessage, null),
+            (actual.FailureCode, actual.FailureMessage, actual.SourceException));
     }
 
     [Theory]
-    [InlineData(SomeFailureCode.Unknown, EmptyString, Zero)]
-    [InlineData(SomeFailureCode.Unknown, WhiteSpaceString, Zero)]
-    [InlineData(SomeFailureCode.Unknown, TabString, Zero)]
-    [InlineData(SomeFailureCode.Unknown, LowerSomeString, Zero)]
-    [InlineData(SomeFailureCode.Unknown, SomeString, Zero)]
-    [InlineData(SomeFailureCode.Unknown, SomeString, PlusFifteen)]
-    [InlineData(SomeFailureCode.First, EmptyString, int.MinValue)]
-    [InlineData(SomeFailureCode.Second, WhiteSpaceString, MinusFifteen)]
-    [InlineData(SomeFailureCode.Third, TabString, PlusFifteen)]
-    [InlineData(SomeFailureCode.First, SomeString, Zero)]
-    [InlineData(SomeFailureCode.Third, UpperSomeString, int.MaxValue)]
-    public void MapFailureCode_SourceFailureMessageIsNotNull_ExpectFailureCodeIsMappedAndFailureMessageIsEqualToSource(
-        SomeFailureCode sourceFailureCode,
-        string sourceFailureMessage,
-        int mappedFailureCode)
+    [InlineData(SomeFailureCode.Unknown, null, EmptyString)]
+    [InlineData(SomeFailureCode.First, EmptyString, EmptyString)]
+    [InlineData(SomeFailureCode.Second, SomeString, SomeString)]
+    public static void MapFailureCode_SourceExceptionIsNotNull_ExpectFailureCodeIsMappedAndSourceExceptionIsSame(
+        SomeFailureCode mappedFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
     {
-        var source = new Failure<SomeFailureCode>(sourceFailureCode, sourceFailureMessage);
+        var sourceException = new Exception("Some error message");
+
+        var source = new Failure<int>(MinusFifteen, sourceFailureMessage)
+        {
+            SourceException = sourceException
+        };
 
         var actual = source.MapFailureCode(_ => mappedFailureCode);
 
         AssertEqualFailures(
-            (mappedFailureCode, sourceFailureMessage),
-            (actual.FailureCode, actual.FailureMessage));
+            (mappedFailureCode, expectedFailureMessage, sourceException),
+            (actual.FailureCode, actual.FailureMessage, actual.SourceException));
     }
 }
