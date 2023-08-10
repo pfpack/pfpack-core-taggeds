@@ -12,7 +12,7 @@ partial struct Failure<TFailureCode>
         =>
         StringComparer.Ordinal;
 
-    private static EqualityComparer<Exception> SourceExceptionComparer
+    private static ReferenceEqualityComparer SourceExceptionComparer
         =>
-        EqualityComparer<Exception>.Default;
+        ReferenceEqualityComparer.Instance;
 }
