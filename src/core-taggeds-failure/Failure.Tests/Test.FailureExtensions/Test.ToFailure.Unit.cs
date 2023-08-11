@@ -5,7 +5,7 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests;
 
-partial class FailureExceptionExtensionsTest
+partial class FailureExtensionsTest
 {
     [Theory]
     [InlineData(null, EmptyString)]
