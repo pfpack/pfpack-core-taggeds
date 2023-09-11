@@ -8,23 +8,19 @@ partial class OptionalLinqExtensions
         this IEnumerable<TSource> source,
         Index index)
         =>
-        index.IsFromEnd switch
+        source switch
         {
-            not true => source.InnerElementAtOrAbsent(index.Value),
+            IReadOnlyList<TSource> list
+            =>
+            list.InnerElementAtOrAbsent_IReadOnlyList(index.GetOffset(list.Count)),
 
-            _ => source switch
-            {
-                IReadOnlyList<TSource> list
-                =>
-                list.InnerElementAtOrAbsent_IReadOnlyList(list.Count - index.Value),
+            IList<TSource> list
+            =>
+            list.InnerElementAtOrAbsent_IList(index.GetOffset(list.Count)),
 
-                IList<TSource> list
-                =>
-                list.InnerElementAtOrAbsent_IList(list.Count - index.Value),
-
-                _ =>
-                source.InnerElementAtOrAbsent_IEnumerable_FromEnd(index.Value)
-            }
+            _ => index.IsFromEnd is false
+            ? source.InnerElementAtOrAbsent_IEnumerable(index.Value)
+            : source.InnerElementAtOrAbsent_IEnumerable_FromEnd(index.Value)
         };
 
     private static Optional<TSource> InnerElementAtOrAbsent<TSource>(
