@@ -13,60 +13,60 @@ partial class FailureTestSource
         {
             new object[]
             {
-                default(Failure<SomeFailureCode>),
-                InnerCreate(default(SomeFailureCode), null, null)
+                default(Failure<EnumType>),
+                InnerCreate(default(EnumType), null, null)
             },
             new object[]
             {
-                new Failure<SomeFailureCode>(SomeFailureCode.First, null),
-                InnerCreate(SomeFailureCode.First, null, null)
+                new Failure<EnumType>(EnumType.One, null),
+                InnerCreate(EnumType.One, null, null)
             },
             new object[]
             {
-                new Failure<SomeFailureCode>(SomeFailureCode.Second, string.Empty),
-                InnerCreate(SomeFailureCode.Second, null, null)
+                new Failure<EnumType>(EnumType.Two, string.Empty),
+                InnerCreate(EnumType.Two, null, null)
             },
             new object[]
             {
-                new Failure<SomeFailureCode>(SomeFailureCode.Unknown, TestData.WhiteSpaceString),
-                InnerCreate(SomeFailureCode.Unknown, TestData.WhiteSpaceString, null)
+                new Failure<EnumType>(EnumType.Zero, TestData.WhiteSpaceString),
+                InnerCreate(EnumType.Zero, TestData.WhiteSpaceString, null)
             },
             new object[]
             {
-                new Failure<SomeFailureCode>(SomeFailureCode.Second, TestData.SomeString),
-                InnerCreate(SomeFailureCode.Second, TestData.SomeString, null)
+                new Failure<EnumType>(EnumType.Two, TestData.SomeString),
+                InnerCreate(EnumType.Two, TestData.SomeString, null)
             },
             new object[]
             {
-                new Failure<SomeFailureCode>(SomeFailureCode.Third, null)
+                new Failure<EnumType>(EnumType.Three, null)
                 {
                     SourceException = new InvalidOperationException("Some error message")
                 },
-                InnerCreate(SomeFailureCode.Third, null, new InvalidOperationException("Some error message"))
+                InnerCreate(EnumType.Three, null, new InvalidOperationException("Some error message"))
             },
             new object[]
             {
-                new Failure<SomeFailureCode>(SomeFailureCode.First, string.Empty)
+                new Failure<EnumType>(EnumType.One, string.Empty)
                 {
                     SourceException = new("Some Exception")
                 },
-                InnerCreate(SomeFailureCode.First, null, new("Some Exception"))
+                InnerCreate(EnumType.One, null, new("Some Exception"))
             },
             new object[]
             {
-                new Failure<SomeFailureCode>(SomeFailureCode.First, TestData.MixedWhiteSpacesString)
+                new Failure<EnumType>(EnumType.One, TestData.MixedWhiteSpacesString)
                 {
                     SourceException = new("Some Exception")
                 },
-                InnerCreate(SomeFailureCode.First, TestData.MixedWhiteSpacesString, new("Some Exception"))
+                InnerCreate(EnumType.One, TestData.MixedWhiteSpacesString, new("Some Exception"))
             },
             new object[]
             {
-                new Failure<SomeFailureCode>(SomeFailureCode.Second, TestData.AnotherString)
+                new Failure<EnumType>(EnumType.Two, TestData.AnotherString)
                 {
                     SourceException = new InvalidCastException("Some error text", new SomeException())
                 },
-                InnerCreate(SomeFailureCode.Second, TestData.AnotherString, new InvalidCastException("Some error text", new SomeException()))
+                InnerCreate(EnumType.Two, TestData.AnotherString, new InvalidCastException("Some error text", new SomeException()))
             }
         };
 

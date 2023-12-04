@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using PrimeFuncPack.UnitTest;
 using Xunit;
 using static PrimeFuncPack.UnitTest.TestData;
 
@@ -10,14 +11,14 @@ partial class FailureTest
     [Fact]
     public static void ToString_FailureIsDefault()
     {
-        var failure = default(Failure<SomeFailureCode>);
+        var failure = default(Failure<EnumType>);
         var actual = failure.ToString();
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
             "Failure<{0}>:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\", \"SourceException\": null }}",
-            typeof(SomeFailureCode).Name,
-            SomeFailureCode.Unknown,
+            typeof(EnumType).Name,
+            EnumType.Zero,
             string.Empty);
 
         Assert.Equal(expected, actual);
@@ -48,15 +49,15 @@ partial class FailureTest
     }
 
     [Theory]
-    [InlineData(SomeFailureCode.Unknown, null, EmptyString)]
-    [InlineData(SomeFailureCode.First, EmptyString, EmptyString)]
-    [InlineData(SomeFailureCode.Unknown, SomeString, SomeString)]
+    [InlineData(EnumType.Zero, null, EmptyString)]
+    [InlineData(EnumType.One, EmptyString, EmptyString)]
+    [InlineData(EnumType.Zero, SomeString, SomeString)]
     public static void ToString_SourceExceptionIsNotNull(
-        SomeFailureCode failureCode, string? sourceFailureMessage, string expectedFailureMessage)
+        EnumType failureCode, string? sourceFailureMessage, string expectedFailureMessage)
     {
         var sourceException = new InvalidOperationException("Some error message");
 
-        var sourceFailure = new Failure<SomeFailureCode>(failureCode, sourceFailureMessage)
+        var sourceFailure = new Failure<EnumType>(failureCode, sourceFailureMessage)
         {
             SourceException = sourceException
         };
@@ -66,7 +67,7 @@ partial class FailureTest
         var expected = string.Format(
             CultureInfo.InvariantCulture,
             "Failure<{0}>:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\", \"SourceException\": \"{3}\" }}",
-            typeof(SomeFailureCode).Name,
+            typeof(EnumType).Name,
             failureCode,
             expectedFailureMessage,
             sourceException.ToString());

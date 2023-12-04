@@ -1,4 +1,5 @@
 using System;
+using PrimeFuncPack.UnitTest;
 using Xunit;
 using static PrimeFuncPack.Core.Tests.AssertHelper;
 using static PrimeFuncPack.UnitTest.TestData;
@@ -24,15 +25,15 @@ partial class FailureTest
     }
 
     [Theory]
-    [InlineData(SomeFailureCode.First, null, EmptyString)]
-    [InlineData(SomeFailureCode.Unknown, EmptyString, EmptyString)]
-    [InlineData(SomeFailureCode.Second, SomeString, SomeString)]
+    [InlineData(EnumType.One, null, EmptyString)]
+    [InlineData(EnumType.Zero, EmptyString, EmptyString)]
+    [InlineData(EnumType.Two, SomeString, SomeString)]
     public static void DeconstructWithSourceException_SourceExceptionIsNotNull_ExpectCorrectValue(
-        SomeFailureCode sourceFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
+        EnumType sourceFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
     {
         var sourceException = new Exception();
 
-        var source = new Failure<SomeFailureCode>(sourceFailureCode, sourceFailureMessage)
+        var source = new Failure<EnumType>(sourceFailureCode, sourceFailureMessage)
         {
             SourceException = sourceException
         };
