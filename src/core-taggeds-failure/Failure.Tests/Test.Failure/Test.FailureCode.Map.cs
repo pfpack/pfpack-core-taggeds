@@ -1,4 +1,5 @@
 using System;
+using PrimeFuncPack.UnitTest;
 using Xunit;
 using static PrimeFuncPack.Core.Tests.AssertHelper;
 using static PrimeFuncPack.UnitTest.TestData;
@@ -13,19 +14,19 @@ partial class FailureTest
     public static void MapFailureCode_MapFailureCodeIsNull_ExpectArgumentNullException(
         bool isNotDefault)
     {
-        var source = isNotDefault ? new Failure<SomeFailureCode>(SomeFailureCode.First, SomeString) : default;
+        var source = isNotDefault ? new Failure<EnumType>(EnumType.One, SomeString) : default;
 
-        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.MapFailureCode((Func<SomeFailureCode, int>)null!));
+        var ex = Assert.Throws<ArgumentNullException>(() => _ = source.MapFailureCode((Func<EnumType, int>)null!));
         Assert.Equal("mapFailureCode", ex.ParamName);
     }
 
     [Theory]
-    [InlineData(SomeFailureCode.Unknown)]
-    [InlineData(SomeFailureCode.First)]
-    [InlineData(SomeFailureCode.Second)]
-    [InlineData(SomeFailureCode.Third)]
+    [InlineData(EnumType.Zero)]
+    [InlineData(EnumType.One)]
+    [InlineData(EnumType.Two)]
+    [InlineData(EnumType.Three)]
     public static void MapFailureCode_SourceIsDefault_ExpectFailureCodeIsMappedAndFailureMessageIsEmpty(
-        SomeFailureCode mappedFailureCode)
+        EnumType mappedFailureCode)
     {
         var source = default(Failure<int>);
 
@@ -53,11 +54,11 @@ partial class FailureTest
     }
 
     [Theory]
-    [InlineData(SomeFailureCode.Unknown, null, EmptyString)]
-    [InlineData(SomeFailureCode.First, EmptyString, EmptyString)]
-    [InlineData(SomeFailureCode.Second, SomeString, SomeString)]
+    [InlineData(EnumType.Zero, null, EmptyString)]
+    [InlineData(EnumType.One, EmptyString, EmptyString)]
+    [InlineData(EnumType.Two, SomeString, SomeString)]
     public static void MapFailureCode_SourceExceptionIsNotNull_ExpectFailureCodeIsMappedAndSourceExceptionIsSame(
-        SomeFailureCode mappedFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
+        EnumType mappedFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
     {
         var sourceException = new Exception("Some error message");
 

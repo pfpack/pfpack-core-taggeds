@@ -12,47 +12,47 @@ partial class FailureTestSource
         {
             new object[]
             {
-                new Failure<SomeFailureCode>(),
-                new Failure<SomeFailureCode>(SomeFailureCode.First, null)
+                new Failure<EnumType>(),
+                new Failure<EnumType>(EnumType.One, null)
             },
             new object[]
             {
-                default(Failure<SomeFailureCode>),
-                new Failure<SomeFailureCode>(SomeFailureCode.Second, TestData.WhiteSpaceString)
+                default(Failure<EnumType>),
+                new Failure<EnumType>(EnumType.Two, TestData.WhiteSpaceString)
             },
             new object[]
             {
-                new Failure<SomeFailureCode>(SomeFailureCode.Third, null),
-                default(Failure<SomeFailureCode>)
+                new Failure<EnumType>(EnumType.Three, null),
+                default(Failure<EnumType>)
             },
             new object[]
             {
-                new Failure<SomeFailureCode>(SomeFailureCode.First, TestData.TabString),
-                new Failure<SomeFailureCode>()
+                new Failure<EnumType>(EnumType.One, TestData.TabString),
+                new Failure<EnumType>()
             },
             new object[]
             {
-                new Failure<SomeFailureCode>(SomeFailureCode.First, TestData.SomeString),
-                new Failure<SomeFailureCode>(SomeFailureCode.Second, TestData.SomeString)
+                new Failure<EnumType>(EnumType.One, TestData.SomeString),
+                new Failure<EnumType>(EnumType.Two, TestData.SomeString)
             },
             new object[]
             {
-                new Failure<SomeFailureCode>(SomeFailureCode.First, TestData.SomeString)
+                new Failure<EnumType>(EnumType.One, TestData.SomeString)
                 {
                     SourceException = SomeException.SomeInstance
                 },
-                new Failure<SomeFailureCode>(SomeFailureCode.First, TestData.UpperSomeString)
+                new Failure<EnumType>(EnumType.One, TestData.UpperSomeString)
                 {
                     SourceException = SomeException.SomeInstance
                 }
             },
             new object[]
             {
-                new Failure<SomeFailureCode>(SomeFailureCode.First, TestData.SomeString)
+                new Failure<EnumType>(EnumType.One, TestData.SomeString)
                 {
                     SourceException = new SomeException()
                 },
-                new Failure<SomeFailureCode>(SomeFailureCode.First, TestData.SomeString)
+                new Failure<EnumType>(EnumType.One, TestData.SomeString)
                 {
                     SourceException = new SomeException()
                 }

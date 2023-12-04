@@ -8,7 +8,7 @@ partial struct Failure<TFailureCode>
         failureMessage = FailureMessage;
     }
 
-    public void Deconstruct(out TFailureCode failureCode, out string failureMessage, out Exception? sourceException)
+    public void Deconstruct(out TFailureCode failureCode, out string failureMessage, out System.Exception? sourceException)
     {
         failureCode = FailureCode;
         failureMessage = FailureMessage;

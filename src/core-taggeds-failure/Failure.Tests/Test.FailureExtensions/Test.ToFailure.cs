@@ -1,4 +1,5 @@
 ﻿using System;
+using PrimeFuncPack.UnitTest;
 using Xunit;
 using static PrimeFuncPack.Core.Tests.AssertHelper;
 using static PrimeFuncPack.UnitTest.TestData;
@@ -8,11 +9,11 @@ namespace PrimeFuncPack.Core.Tests;
 partial class FailureExtensionsTest
 {
     [Theory]
-    [InlineData(SomeFailureCode.First, null, EmptyString)]
-    [InlineData(SomeFailureCode.Second, EmptyString, EmptyString)]
-    [InlineData(SomeFailureCode.Unknown, SomeString, SomeString)]
+    [InlineData(EnumType.One, null, EmptyString)]
+    [InlineData(EnumType.Two, EmptyString, EmptyString)]
+    [InlineData(EnumType.Zero, SomeString, SomeString)]
     public static void ToFailure_SourceExceptionIsNull_ExpectActualExceptionIsNull(
-        SomeFailureCode sourceFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
+        EnumType sourceFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
     {
         Exception? sourceException = null;
         var actual = sourceException.ToFailure(sourceFailureCode, sourceFailureMessage);
@@ -23,11 +24,11 @@ partial class FailureExtensionsTest
     }
 
     [Theory]
-    [InlineData(SomeFailureCode.First, null, EmptyString)]
-    [InlineData(SomeFailureCode.Second, EmptyString, EmptyString)]
-    [InlineData(SomeFailureCode.Unknown, SomeString, SomeString)]
+    [InlineData(EnumType.One, null, EmptyString)]
+    [InlineData(EnumType.Two, EmptyString, EmptyString)]
+    [InlineData(EnumType.Zero, SomeString, SomeString)]
     public static void ToFailure_SourceExceptionIsNull_ExpectActualExceptionIsSame(
-        SomeFailureCode sourceFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
+        EnumType sourceFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
     {
         var sourceException = new Exception("Some Exception Message");
         var actual = sourceException.ToFailure(sourceFailureCode, sourceFailureMessage);

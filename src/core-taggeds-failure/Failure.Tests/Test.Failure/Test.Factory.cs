@@ -1,4 +1,5 @@
 using System;
+using PrimeFuncPack.UnitTest;
 using Xunit;
 using static PrimeFuncPack.Core.Tests.AssertHelper;
 using static PrimeFuncPack.UnitTest.TestData;
@@ -24,21 +25,21 @@ partial class FailureTest
     }
 
     [Theory]
-    [InlineData(SomeFailureCode.Unknown, EmptyString)]
-    [InlineData(SomeFailureCode.Unknown, WhiteSpaceString)]
-    [InlineData(SomeFailureCode.Unknown, TabString)]
-    [InlineData(SomeFailureCode.Unknown, SomeString)]
-    [InlineData(SomeFailureCode.First, EmptyString)]
-    [InlineData(SomeFailureCode.Second, WhiteSpaceString)]
-    [InlineData(SomeFailureCode.Third, TabString)]
-    [InlineData(SomeFailureCode.Second, LowerSomeString)]
-    [InlineData(SomeFailureCode.First, SomeString)]
-    [InlineData(SomeFailureCode.Third, UpperSomeString)]
+    [InlineData(EnumType.Zero, EmptyString)]
+    [InlineData(EnumType.Zero, WhiteSpaceString)]
+    [InlineData(EnumType.Zero, TabString)]
+    [InlineData(EnumType.Zero, SomeString)]
+    [InlineData(EnumType.One, EmptyString)]
+    [InlineData(EnumType.Two, WhiteSpaceString)]
+    [InlineData(EnumType.Three, TabString)]
+    [InlineData(EnumType.Two, LowerSomeString)]
+    [InlineData(EnumType.One, SomeString)]
+    [InlineData(EnumType.Three, UpperSomeString)]
     public static void Constructor_SourceFailureMessageIsNotNull_ExpectFailureCodeAndMessageAreEqualToSource(
-        SomeFailureCode sourceFailureCode,
+        EnumType sourceFailureCode,
         string sourceFailureMessage)
     {
-        var actual = new Failure<SomeFailureCode>(sourceFailureCode, sourceFailureMessage);
+        var actual = new Failure<EnumType>(sourceFailureCode, sourceFailureMessage);
 
         AssertEqualFailures(
             (sourceFailureCode, sourceFailureMessage, null),
