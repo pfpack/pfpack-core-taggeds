@@ -17,7 +17,7 @@
     <Description>PrimeFuncPack Core.Failure is a core library for .NET consisting of Failure type targeted for use in functional programming.</Description>
     <RootNamespace>System</RootNamespace>
     <AssemblyName>PrimeFuncPack.Core.Failure</AssemblyName>
-    <Version>2.2.0-preview.2</Version>
+    <Version>2.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
