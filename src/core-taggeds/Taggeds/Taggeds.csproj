@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <InvariantGlobalization>true</InvariantGlobalization>
@@ -17,7 +17,7 @@
     <Description>PrimeFuncPack Core.Taggeds is a core pack for .NET consisting of fundamental tagged types targeted for use in functional programming: Optional and Result monads, Tagged Union, as well as the convert extensions.</Description>
     <RootNamespace>System</RootNamespace>
     <AssemblyName>PrimeFuncPack.Core.Taggeds</AssemblyName>
-    <Version>2.2.0-preview.7</Version>
+    <Version>2.2.0-preview.8</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,11 +32,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PrimeFuncPack.Core.Failure" Version="2.1.0" />
+    <PackageReference Include="PrimeFuncPack.Core.Failure" Version="2.2.0" />
     <PackageReference Include="PrimeFuncPack.Core.Optional" Version="2.2.0-preview.3" />
     <PackageReference Include="PrimeFuncPack.Core.Result" Version="2.1.0-preview.3" />
     <PackageReference Include="PrimeFuncPack.Core.TaggedUnion" Version="2.1.0-preview.2" />
-    <PackageReference Include="PrimeFuncPack.Core.Unit" Version="2.2.0" />
+    <PackageReference Include="PrimeFuncPack.Core.Unit" Version="2.2.1" />
   </ItemGroup>
 
 </Project>
