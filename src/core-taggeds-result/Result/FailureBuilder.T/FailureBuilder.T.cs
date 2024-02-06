@@ -1,5 +1,6 @@
 ﻿using System;
 
+// TODO: Move to System namespace in Result v3.0
 namespace PrimeFuncPack.Core;
 
 public readonly partial struct FailureBuilder<TFailure> : IEquatable<FailureBuilder<TFailure>>
@@ -10,8 +11,4 @@ public readonly partial struct FailureBuilder<TFailure> : IEquatable<FailureBuil
     internal FailureBuilder(TFailure failure)
         =>
         this.failure = failure;
-
-    internal TFailure InternalFailure
-        =>
-        failure;
 }

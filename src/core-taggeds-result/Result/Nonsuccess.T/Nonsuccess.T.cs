@@ -5,8 +5,4 @@ public readonly partial struct Nonsuccess<TFailure> : IEquatable<Nonsuccess<TFai
     where TFailure : struct
 {
     private readonly TFailure failure;
-
-    internal TFailure InternalFailure
-        =>
-        failure;
 }
