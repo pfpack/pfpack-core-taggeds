@@ -14,7 +14,7 @@ partial class FailureBuilderTest
         var other = new FailureBuilder<StructType>();
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -24,7 +24,7 @@ partial class FailureBuilderTest
         var other = Result.Failure(default(StructType));
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -34,7 +34,7 @@ partial class FailureBuilderTest
         var other = default(FailureBuilder<StructType>);
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -44,7 +44,7 @@ partial class FailureBuilderTest
         var other = Result.Failure(new SomeError());
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -59,7 +59,7 @@ partial class FailureBuilderTest
         var other = Result.Failure(otherFailure);
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -69,7 +69,7 @@ partial class FailureBuilderTest
         var other = Result.Failure(PlusFifteen);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -82,7 +82,7 @@ partial class FailureBuilderTest
         var other = Result.Failure(otherFailure);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -92,7 +92,7 @@ partial class FailureBuilderTest
         var other = Result.Success<SomeRecord>(new ());
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -102,6 +102,6 @@ partial class FailureBuilderTest
         var other = Result.Success<RefType>(null!);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 }

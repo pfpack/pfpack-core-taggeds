@@ -20,7 +20,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.Forward<SomeRecord, SomeError>(null!, _ => mappedFailure));
 
-        Assert.AreEqual("nextFactory", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("nextFactory"));
     }
 
     [Test]
@@ -36,7 +36,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.Forward(_ => next, null!));
 
-        Assert.AreEqual("mapFailure", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapFailure"));
     }
 
     [Test]
@@ -51,7 +51,7 @@ partial class ResultTest
         var actual = source.Forward(_ => next, _ => mappedFailure);
         var expected = new Result<SomeRecord, SomeError>(mappedFailure);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -64,7 +64,7 @@ partial class ResultTest
         var mappedFailure = MinusFifteen;
 
         var actual = source.Forward(_ => next, _ => mappedFailure);
-        Assert.AreEqual(next, actual);
+        Assert.That(actual, Is.EqualTo(next));
     }
 
     [Test]
@@ -77,7 +77,7 @@ partial class ResultTest
         var mappedFailure = decimal.One;
 
         var actual = source.Forward(_ => next, _ => mappedFailure);
-        Assert.AreEqual(next, actual);
+        Assert.That(actual, Is.EqualTo(next));
     }
 
     [Test]
@@ -90,6 +90,6 @@ partial class ResultTest
         var mappedFailure = new SomeError(int.MaxValue);
 
         var actual = source.Forward(_ => next, _ => mappedFailure);
-        Assert.AreEqual(next, actual);
+        Assert.That(actual, Is.EqualTo(next));
     }
 }

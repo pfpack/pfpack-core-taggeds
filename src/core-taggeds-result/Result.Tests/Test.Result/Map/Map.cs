@@ -18,7 +18,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.Map<int, decimal>(null!, _ => decimal.MaxValue));
 
-        Assert.AreEqual("mapSuccess", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapSuccess"));
     }
 
     [Test]        
@@ -32,7 +32,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.Map<object, SomeError>(_ => new object(), null!));
 
-        Assert.AreEqual("mapFailure", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapFailure"));
     }
 
     [Test]        
@@ -48,8 +48,8 @@ partial class ResultTest
             _ => successResult,
             _ => failureResult);
             
-        var exected = new Result<SomeRecord, SomeError>(successResult);
-        Assert.AreEqual(exected, actual);
+        var expected = new Result<SomeRecord, SomeError>(successResult);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]        
@@ -69,7 +69,7 @@ partial class ResultTest
             _ => successResult,
             _ => failureResult);
 
-        var exected = new Result<SomeRecord, SomeError>(failureResult);
-        Assert.AreEqual(exected, actual);
+        var expected = new Result<SomeRecord, SomeError>(failureResult);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

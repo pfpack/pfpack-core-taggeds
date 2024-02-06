@@ -18,7 +18,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.Recover<SomeError>(null!));
 
-        Assert.AreEqual("otherFactory", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("otherFactory"));
     }
 
     [Test]
@@ -31,7 +31,7 @@ partial class ResultTest
         var actual = source.Recover(_ => other);
         var expected = new Result<RefType?, SomeError>(null);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -44,7 +44,7 @@ partial class ResultTest
         var actual = source.Recover(_ => other);
         var expected = new Result<RefType, SomeError>(MinusFifteenIdRefType);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -56,7 +56,7 @@ partial class ResultTest
         var other = new Result<RefType, SomeError>();
         var actual = source.Recover(_ => other);
 
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 
     [Test]
@@ -68,7 +68,7 @@ partial class ResultTest
         Result<RefType, int> other = Result.Success(ZeroIdRefType);
         var actual = source.Recover(_ => other);
 
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 
     [Test]
@@ -80,6 +80,6 @@ partial class ResultTest
         var other = new Result<RefType, decimal>(decimal.One);
         var actual = source.Recover(_ => other);
 
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 }

@@ -13,7 +13,7 @@ partial class ResultTest
         Result<RefType?, StructType> source)
     {
         var actual = source.SuccessOrThrow();
-        Assert.IsNull(actual);
+        Assert.That(actual, Is.Null);
     }
 
     [Test]
@@ -24,7 +24,7 @@ partial class ResultTest
         var actual = source.SuccessOrThrow();
         var expected = PlusFifteenIdRefType;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -35,7 +35,7 @@ partial class ResultTest
     {
         var actualEx = Assert.Throws<InvalidOperationException>(Test);
 
-        Assert.True(actualEx!.Message.Contains("Success", StringComparison.InvariantCultureIgnoreCase));
+        Assert.That(actualEx!.Message.Contains("Success", StringComparison.Ordinal));
 
         void Test()
             =>

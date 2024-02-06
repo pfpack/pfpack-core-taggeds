@@ -23,7 +23,7 @@ partial class ResultTest
             typeof(StructType).Name,
             string.Empty);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -40,7 +40,7 @@ partial class ResultTest
             typeof(StructType).Name,
             string.Empty);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -67,7 +67,7 @@ partial class ResultTest
             typeof(SomeError).Name,
             resultOfValueToString);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -96,7 +96,7 @@ partial class ResultTest
             typeof(StructType).Name,
             sourceSuccess);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -114,7 +114,7 @@ partial class ResultTest
             typeof(StructType).Name,
             expectedDecimalSubstr);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     private static IEnumerable<object[]> ToString_SourceIsSuccess_DecimalPoint_TestCaseSource()

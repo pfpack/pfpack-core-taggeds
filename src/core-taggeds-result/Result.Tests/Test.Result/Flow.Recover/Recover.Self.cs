@@ -18,7 +18,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.Recover(null!));
 
-        Assert.AreEqual("otherFactory", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("otherFactory"));
     }
 
     [Test]
@@ -30,7 +30,7 @@ partial class ResultTest
         var other = new Result<RefType, StructType>(MinusFifteenIdRefType);
         var actual = source.Recover(_ => other);
 
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
     }
 
     [Test]
@@ -42,7 +42,7 @@ partial class ResultTest
         var other = default(Result<RefType, StructType>);
         var actual = source.Recover(_ => other);
 
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 
     [Test]
@@ -54,7 +54,7 @@ partial class ResultTest
         var other = Result.Success(PlusFifteenIdRefType).With<StructType>();
         var actual = source.Recover(_ => other);
 
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 
     [Test]
@@ -66,6 +66,6 @@ partial class ResultTest
         Result<RefType, StructType> other = Result.Failure(SomeTextStructType);
         var actual = source.Recover(_ => other);
 
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 }

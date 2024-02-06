@@ -14,7 +14,7 @@ partial class FailureBuilderTest
         object? other = default(FailureBuilder<StructType>);
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -24,7 +24,7 @@ partial class FailureBuilderTest
         object? other = Result.Failure(default(StructType));
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -34,7 +34,7 @@ partial class FailureBuilderTest
         object? other = default(FailureBuilder<StructType>);
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -44,7 +44,7 @@ partial class FailureBuilderTest
         object? other = Result.Failure(new SomeError());
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -59,7 +59,7 @@ partial class FailureBuilderTest
         object? other = Result.Failure(otherFailure);
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -69,7 +69,7 @@ partial class FailureBuilderTest
         object? other = new FailureBuilder<StructType>();
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -79,7 +79,7 @@ partial class FailureBuilderTest
         object? other = Result.Failure(default(SomeError));
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -89,7 +89,7 @@ partial class FailureBuilderTest
         object? other = default(FailureBuilder<StructType>);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -99,7 +99,7 @@ partial class FailureBuilderTest
         object? other = Result.Failure(new SomeError());
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -110,7 +110,7 @@ partial class FailureBuilderTest
         object? other = Result.Failure<decimal>(someValue);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -119,7 +119,7 @@ partial class FailureBuilderTest
         var source = new FailureBuilder<StructType>();
 
         var actual = source.Equals(null);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -128,7 +128,7 @@ partial class FailureBuilderTest
         var source = Result.Failure(MinusFifteen);
 
         var actual = source.Equals(null);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -138,7 +138,7 @@ partial class FailureBuilderTest
         object? other = Result.Failure(PlusFifteen);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -151,6 +151,6 @@ partial class FailureBuilderTest
         object? other = Result.Failure(otherFailure);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 }

@@ -18,7 +18,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.MapFailure<SomeError>(null!));
 
-        Assert.AreEqual("mapFailure", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapFailure"));
     }
 
     [Test]        
@@ -30,8 +30,8 @@ partial class ResultTest
         var failureResult = new SomeError(MinusFifteen);
         var actual = source.MapFailure(_ => failureResult);
 
-        var exected = new Result<RefType, SomeError>(failureResult);
-        Assert.AreEqual(exected, actual);
+        var expected = new Result<RefType, SomeError>(failureResult);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]        
@@ -42,8 +42,8 @@ partial class ResultTest
         var failureResult = MinusFifteen;
         var actual = source.MapFailure(_ => failureResult);
             
-        var exected = new Result<RefType, int>(null!);
-        Assert.AreEqual(exected, actual);
+        var expected = new Result<RefType, int>(null!);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]        
@@ -54,7 +54,7 @@ partial class ResultTest
         var failureResult = new SomeError(int.MaxValue);
         var actual = source.MapFailure(_ => failureResult);
             
-        var exected = new Result<RefType, SomeError>(MinusFifteenIdRefType);
-        Assert.AreEqual(exected, actual);
+        var expected = new Result<RefType, SomeError>(MinusFifteenIdRefType);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

@@ -19,7 +19,7 @@ partial class ResultTest
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.RecoverAsync(null!));
 
-        Assert.AreEqual("otherFactoryAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("otherFactoryAsync"));
     }
 
     [Test]
@@ -31,7 +31,7 @@ partial class ResultTest
         Result<RefType, StructType> other = null!;
         var actual = await source.RecoverAsync(_ => Task.FromResult(other));
 
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
     }
 
     [Test]
@@ -43,7 +43,7 @@ partial class ResultTest
         var other = new Result<RefType, StructType>();
         var actual = await source.RecoverAsync(_ => Task.FromResult(other));
 
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 
     [Test]
@@ -55,7 +55,7 @@ partial class ResultTest
         Result<RefType, StructType> other = Result.Success(PlusFifteenIdRefType);
         var actual = await source.RecoverAsync(_ => Task.FromResult(other));
 
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 
     [Test]
@@ -67,6 +67,6 @@ partial class ResultTest
         var other = new Result<RefType, StructType>(SomeTextStructType);
         var actual = await source.RecoverAsync(_ => Task.FromResult(other));
 
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 }

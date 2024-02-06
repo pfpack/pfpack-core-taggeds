@@ -11,55 +11,55 @@ partial class ResultTest
     public void ImplicitSuccess_SourceValueIsNullForgivenRef_ExpectIsSuccessReturnsTrue()
     {
         Result<RefType, StructType> actual = (RefType)null!;
-        Assert.True(actual.IsSuccess);
+        Assert.That(actual.IsSuccess, Is.True);
     }
 
     [Test]
     public void ImplicitSuccess_SourceValueIsNullForgivenRef_ExpectIsFailureReturnsFalse()
     {
         Result<RefType, StructType> actual = (RefType)null!;
-        Assert.False(actual.IsFailure);
+        Assert.That(actual.IsFailure, Is.False);
     }
 
     [Test]
     public void ImplicitSuccess_SourceValueIsNullableRef_ExpectIsSuccessReturnsTrue()
     {
         Result<RefType?, StructType> actual = (RefType?)null;
-        Assert.True(actual.IsSuccess);
+        Assert.That(actual.IsSuccess, Is.True);
     }
 
     [Test]
     public void ImplicitSuccess_SourceValueIsNullableRef_ExpectIsFailureReturnsFalse()
     {
         Result<RefType?, StructType> actual = (RefType?)null;
-        Assert.False(actual.IsFailure);
+        Assert.That(actual.IsFailure, Is.False);
     }
 
     [Test]
     public void ImplicitSuccess_SourceValueIsNullableStruct_ExpectIsSuccessReturnsTrue()
     {
         Result<StructType?, StructType> actual = (StructType?)null;
-        Assert.True(actual.IsSuccess);
+        Assert.That(actual.IsSuccess, Is.True);
     }
 
     [Test]
     public void ImplicitSuccess_SourceValueIsNullableStruct_ExpectIsFailureReturnsFalse()
     {
         Result<StructType?, StructType> actual = (StructType?)null;
-        Assert.False(actual.IsFailure);
+        Assert.That(actual.IsFailure, Is.False);
     }
 
     [Test]
     public void ImplicitSuccess_SourceValueIsNotNull_ExpectIsSuccessReturnsTrue()
     {
         Result<RefType, StructType> actual = ZeroIdRefType;
-        Assert.True(actual.IsSuccess);
+        Assert.That(actual.IsSuccess, Is.True);
     }
 
     [Test]
     public void ImplicitSuccess_SourceValueIsNotNull_ExpectIsFailureReturnsFalse()
     {
         Result<StructType, SomeError> actual = default(StructType);
-        Assert.False(actual.IsFailure);
+        Assert.That(actual.IsFailure, Is.False);
     }
 }

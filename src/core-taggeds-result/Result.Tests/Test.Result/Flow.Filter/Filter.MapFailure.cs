@@ -21,7 +21,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.Filter(null!, _ => causeFailure, _ => mappedFailure));
 
-        Assert.AreEqual("predicate", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("predicate"));
     }
 
     [Test]
@@ -37,7 +37,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.Filter(_ => false, null!, _ => mappedFailure));
 
-        Assert.AreEqual("causeFactory", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("causeFactory"));
     }
 
     [Test]
@@ -53,7 +53,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.Filter(_ => true, _ => causeFailure, null!));
 
-        Assert.AreEqual("mapFailure", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapFailure"));
     }
 
     [Test]
@@ -70,7 +70,7 @@ partial class ResultTest
             _ => mappedFailure);
 
         var expected = new Result<RefType?, int>(null);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -87,7 +87,7 @@ partial class ResultTest
             _ => mappedFailure);
 
         var expected = new Result<RefType, SomeError>(MinusFifteenIdRefType);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -105,7 +105,7 @@ partial class ResultTest
             _ => mappedFailure);
 
         var expected = new Result<RefType, SomeError>(mappedFailure);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -123,7 +123,7 @@ partial class ResultTest
             _ => mappedFailure);
 
         var expected = new Result<RefType, decimal>(causeFailure);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -141,6 +141,6 @@ partial class ResultTest
             _ => mappedFailure);
             
         var expected = new Result<RefType, SomeError>(mappedFailure);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

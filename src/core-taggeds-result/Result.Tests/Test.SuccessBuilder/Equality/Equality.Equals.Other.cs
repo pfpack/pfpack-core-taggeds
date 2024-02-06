@@ -13,7 +13,7 @@ partial class SuccessBuilderTest
         var other = default(SuccessBuilder<RefType>);
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -23,7 +23,7 @@ partial class SuccessBuilderTest
         var other = Result.Success<RefType?>(null);
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -33,7 +33,7 @@ partial class SuccessBuilderTest
         var other = default(SuccessBuilder<StructType>);
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -43,7 +43,7 @@ partial class SuccessBuilderTest
         var other = Result.Success<RefType>(null!);
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -64,7 +64,7 @@ partial class SuccessBuilderTest
         var other = Result.Success(otherSuccess);
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -74,7 +74,7 @@ partial class SuccessBuilderTest
         var other = Result.Success<SomeRecord>(new());
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -87,6 +87,6 @@ partial class SuccessBuilderTest
         var other = Result.Success(otherSuccess);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 }

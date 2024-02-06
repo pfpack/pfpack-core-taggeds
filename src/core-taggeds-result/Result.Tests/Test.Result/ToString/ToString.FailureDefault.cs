@@ -21,6 +21,6 @@ partial class ResultTest
             typeof(StructType).Name,
             default(StructType));
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

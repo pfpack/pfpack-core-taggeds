@@ -20,7 +20,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.Recover<int, SomeError>(null!, _ => mappedSuccess));
 
-        Assert.AreEqual("otherFactory", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("otherFactory"));
     }
 
     [Test]
@@ -36,7 +36,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.Recover(_ => other, null!));
 
-        Assert.AreEqual("mapSuccess", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapSuccess"));
     }
 
     [Test]
@@ -58,7 +58,7 @@ partial class ResultTest
         var actual = source.Recover(_ => other, _ => mappedSuccess);
         var expected = new Result<SomeRecord, SomeError>(mappedSuccess);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -71,7 +71,7 @@ partial class ResultTest
         var mappedSuccess = SomeString;
 
         var actual = source.Recover(_ => other, _ => mappedSuccess);
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 
     [Test]
@@ -84,7 +84,7 @@ partial class ResultTest
         var mappedSuccess = decimal.One;
 
         var actual = source.Recover(_ => other, _ => mappedSuccess);
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 
     [Test]
@@ -97,6 +97,6 @@ partial class ResultTest
         var mappedValue = new object();
 
         var actual = source.Recover(_ => other, _ => mappedValue);
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 }

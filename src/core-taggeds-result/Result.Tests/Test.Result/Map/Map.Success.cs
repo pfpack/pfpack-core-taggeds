@@ -18,7 +18,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.MapSuccess<int>(null!));
 
-        Assert.AreEqual("mapSuccess", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapSuccess"));
     }
 
     [Test]        
@@ -35,8 +35,8 @@ partial class ResultTest
         var actual = source.MapSuccess(
             _ => successResult);
             
-        var exected = new Result<SomeRecord, StructType>(successResult);
-        Assert.AreEqual(exected, actual);
+        var expected = new Result<SomeRecord, StructType>(successResult);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]        
@@ -47,8 +47,8 @@ partial class ResultTest
         var successResult = TabString;
         var actual = source.MapSuccess(_ => successResult);
 
-        var exected = default(Result<string, StructType>);
-        Assert.AreEqual(exected, actual);
+        var expected = default(Result<string, StructType>);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]        
@@ -59,7 +59,7 @@ partial class ResultTest
         var successResult = PlusFifteen;
         var actual = source.MapSuccess(_ => successResult);
 
-        var exected = new Result<int, StructType>(SomeTextStructType);
-        Assert.AreEqual(exected, actual);
+        var expected = new Result<int, StructType>(SomeTextStructType);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

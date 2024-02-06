@@ -23,7 +23,7 @@ partial class ResultTest
             async () => _ = await source.FilterValueAsync(
                 null!, _ => ValueTask.FromResult(cause), _ => mapped));
 
-        Assert.AreEqual("predicateAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("predicateAsync"));
     }
 
     [Test]
@@ -41,7 +41,8 @@ partial class ResultTest
             async () => _ = await source.FilterValueAsync(
                 _ => ValueTask.FromResult(true), causeFactoryAsync, _ => mapped));
 
-        Assert.AreEqual("causeFactoryAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("causeFactoryAsync"));
+        Assert.That(actualException!.ParamName, Is.EqualTo("causeFactoryAsync"));
     }
 
     [Test]
@@ -59,7 +60,7 @@ partial class ResultTest
             async () => _ = await source.FilterValueAsync(
                 _ => ValueTask.FromResult(false), _ => ValueTask.FromResult(cause), mapFailure));
 
-        Assert.AreEqual("mapFailure", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapFailure"));
     }
 
     [Test]
@@ -76,7 +77,7 @@ partial class ResultTest
             _ => mapped);
 
         var expected = new Result<RefType?, SomeError>(null);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -93,7 +94,7 @@ partial class ResultTest
             _ => mapped);
 
         var expected = new Result<RefType, int>(MinusFifteenIdRefType);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -111,7 +112,7 @@ partial class ResultTest
             _ => mapped);
 
         var expected = new Result<RefType, SomeError>(mapped);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -129,7 +130,7 @@ partial class ResultTest
             _ => mapped);
 
         var expected = new Result<RefType, decimal>(cause);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -147,6 +148,6 @@ partial class ResultTest
             _ => mapped);
             
         var expected = new Result<RefType, SomeError>(mapped);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

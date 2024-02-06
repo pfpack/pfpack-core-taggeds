@@ -21,7 +21,7 @@ partial class ResultTest
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.MapValueAsync<DateTime, SomeError>(null!, _ => ValueTask.FromResult(failureResult)));
 
-        Assert.AreEqual("mapSuccessAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapSuccessAsync"));
     }
 
     [Test]        
@@ -40,7 +40,7 @@ partial class ResultTest
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.MapValueAsync<SomeRecord, int>(_ => ValueTask.FromResult(successResult), null!));
 
-        Assert.AreEqual("mapFailureAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapFailureAsync"));
     }
 
     [Test]        
@@ -56,8 +56,8 @@ partial class ResultTest
             _ => ValueTask.FromResult(successResult),
             _ => ValueTask.FromResult(failureResult));
 
-        var exected = new Result<SomeRecord?, SomeError>(successResult);
-        Assert.AreEqual(exected, actual);
+        var expected = new Result<SomeRecord?, SomeError>(successResult);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]        
@@ -76,7 +76,7 @@ partial class ResultTest
             _ => ValueTask.FromResult(successResult),
             _ => ValueTask.FromResult(failureResult));
 
-        var exected = new Result<SomeRecord, int>(failureResult);
-        Assert.AreEqual(exected, actual);
+        var expected = new Result<SomeRecord, int>(failureResult);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

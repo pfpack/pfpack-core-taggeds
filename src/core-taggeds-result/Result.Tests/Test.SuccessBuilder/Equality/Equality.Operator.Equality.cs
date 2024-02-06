@@ -13,7 +13,7 @@ partial class SuccessBuilderTest
         var right = new SuccessBuilder<RefType>();
 
         var actual = left == right;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -23,7 +23,7 @@ partial class SuccessBuilderTest
         var right = Result.Success<SomeRecord?>(null);
 
         var actual = left == right;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -33,7 +33,7 @@ partial class SuccessBuilderTest
         var right = new SuccessBuilder<StructType>();
 
         var actual = left == right;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -43,7 +43,7 @@ partial class SuccessBuilderTest
         var right = Result.Success<SomeRecord?>(null);
 
         var actual = left == right;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -64,7 +64,7 @@ partial class SuccessBuilderTest
         var right = Result.Success(rightSuccess);
 
         var actual = left == right;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -74,7 +74,7 @@ partial class SuccessBuilderTest
         var right = Result.Success<object>(new());
 
         var actual = left == right;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -87,6 +87,6 @@ partial class SuccessBuilderTest
         var right = Result.Success(rightSuccess);
 
         var actual = left == right;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 }

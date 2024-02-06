@@ -13,7 +13,7 @@ partial class SuccessBuilderTest
         var right = new SuccessBuilder<SomeRecord?>();
 
         var actual = left != right;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -23,7 +23,7 @@ partial class SuccessBuilderTest
         var right = Result.Success<RefType>(null!);
 
         var actual = left != right;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -33,7 +33,7 @@ partial class SuccessBuilderTest
         var right = new SuccessBuilder<DateTimeOffset>();
 
         var actual = left != right;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -43,7 +43,7 @@ partial class SuccessBuilderTest
         var right = Result.Success<int?>(null);
 
         var actual = left != right;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -64,7 +64,7 @@ partial class SuccessBuilderTest
         var right = Result.Success(rightSuccess);
 
         var actual = left != right;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -74,7 +74,7 @@ partial class SuccessBuilderTest
         var right = Result.Success<RefType>(new());
 
         var actual = left != right;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -84,6 +84,6 @@ partial class SuccessBuilderTest
         var right = Result.Success<object>(new());
 
         var actual = left != right;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 }

@@ -14,7 +14,7 @@ partial class ResultTest
         var resultB = default(Result<StructType?, SomeError>);
 
         var actual = resultA != resultB;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -24,7 +24,7 @@ partial class ResultTest
         var resultB = Result<SomeError?, StructType>.Success(null);
 
         var actual = resultA != resultB;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -44,7 +44,7 @@ partial class ResultTest
         var resultB = new Result<SomeRecord, StructType>(bValue);
 
         var actual = resultA != resultB;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -58,7 +58,7 @@ partial class ResultTest
         var resultB = new Result<DateTimeOffset, SomeError>(bValue);
 
         var actual = resultA != resultB;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -68,7 +68,7 @@ partial class ResultTest
         var resultB = new Result<object, SomeError>(default(SomeError));
 
         var actual = resultA != resultB;
-        Assert.False(actual);            
+        Assert.That(actual, Is.False);            
     }
 
     [Test]
@@ -78,7 +78,7 @@ partial class ResultTest
         var resultB = new Result<SomeRecord?, StructType>();
 
         var actual = resultA != resultB;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -91,7 +91,7 @@ partial class ResultTest
         var resultB = Result<RefType?, SomeError>.Success(bValue);
 
         var actual = resultA != resultB;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -111,7 +111,7 @@ partial class ResultTest
         var resultB = Result<SomeRecord?, StructType>.Failure(bValue);
 
         var actual = resultA != resultB;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -123,7 +123,7 @@ partial class ResultTest
         var resultB = Result<StructType, StructType>.Failure(someValue);
 
         var actual = resultA != resultB;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -133,7 +133,7 @@ partial class ResultTest
         var resultB = default(Result<RefType?, StructType>);
 
         var actual = resultA != resultB;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -145,7 +145,7 @@ partial class ResultTest
         var resultB = Result<int, int>.Success(someValue);
 
         var actual = resultA != resultB;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -155,7 +155,7 @@ partial class ResultTest
         var resultB = default(Result<RefType, StructType>);
 
         var actual = resultA != resultB;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -165,7 +165,7 @@ partial class ResultTest
         var resultB = new Result<StructType, SomeError>(default(StructType));
 
         var actual = resultA != resultB;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -175,6 +175,6 @@ partial class ResultTest
         var resultB = new Result<StructType, SomeError>(new SomeError(PlusFifteen));
 
         var actual = resultA != resultB;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 }

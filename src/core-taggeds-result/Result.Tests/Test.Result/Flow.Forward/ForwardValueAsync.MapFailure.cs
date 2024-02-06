@@ -21,7 +21,7 @@ partial class ResultTest
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.ForwardValueAsync<SomeRecord, SomeError>(null!,  _ => ValueTask.FromResult(mappedFailure)));
 
-        Assert.AreEqual("nextFactoryAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("nextFactoryAsync"));
     }
 
     [Test]
@@ -38,7 +38,7 @@ partial class ResultTest
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.ForwardValueAsync(_ => ValueTask.FromResult(next), mapFailureAsync));
 
-        Assert.AreEqual("mapFailureAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapFailureAsync"));
     }
 
     [Test]
@@ -53,7 +53,7 @@ partial class ResultTest
         var actual = await source.ForwardValueAsync(_ => ValueTask.FromResult(next), _ => ValueTask.FromResult(mappedFailure));
         var expected = new Result<SomeRecord, SomeError>(mappedFailure);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -66,7 +66,7 @@ partial class ResultTest
         var mappedFailure = new SomeError(PlusFifteen);
 
         var actual = await source.ForwardValueAsync(_ => ValueTask.FromResult(next), _ => ValueTask.FromResult(mappedFailure));
-        Assert.AreEqual(next, actual);
+        Assert.That(actual, Is.EqualTo(next));
     }
 
     [Test]
@@ -79,7 +79,7 @@ partial class ResultTest
         var mappedFailure = new SomeError(int.MaxValue);
 
         var actual = await source.ForwardValueAsync(_ => ValueTask.FromResult(next), _ => ValueTask.FromResult(mappedFailure));
-        Assert.AreEqual(next, actual);
+        Assert.That(actual, Is.EqualTo(next));
     }
 
     [Test]
@@ -92,6 +92,6 @@ partial class ResultTest
         var mappedFailure = new SomeError(PlusFifteen);
 
         var actual = await source.ForwardValueAsync(_ => ValueTask.FromResult(next), _ => ValueTask.FromResult(mappedFailure));
-        Assert.AreEqual(next, actual);
+        Assert.That(actual, Is.EqualTo(next));
     }
 }

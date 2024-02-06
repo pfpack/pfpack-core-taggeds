@@ -19,7 +19,7 @@ partial class ResultTest
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.MapFailureValueAsync<SomeError>(null!));
 
-        Assert.AreEqual("mapFailureAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapFailureAsync"));
     }
 
     [Test]        
@@ -31,8 +31,8 @@ partial class ResultTest
         var failureResult = PlusFifteen;
         var actual = await source.MapFailureValueAsync(_ => ValueTask.FromResult(failureResult));
 
-        var exected = new Result<RefType, int>(failureResult);
-        Assert.AreEqual(exected, actual);
+        var expected = new Result<RefType, int>(failureResult);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]        
@@ -43,8 +43,8 @@ partial class ResultTest
         var failureResult = decimal.MinusOne;
         var actual = await source.MapFailureValueAsync(_ => ValueTask.FromResult(failureResult));
             
-        var exected = new Result<RefType?, decimal>(null);
-        Assert.AreEqual(exected, actual);
+        var expected = new Result<RefType?, decimal>(null);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]        
@@ -55,7 +55,7 @@ partial class ResultTest
         var failureResult = default(SomeError);
         var actual = await source.MapFailureValueAsync(_ => ValueTask.FromResult(failureResult));
             
-        var exected = new Result<RefType, SomeError>(PlusFifteenIdRefType);
-        Assert.AreEqual(exected, actual);
+        var expected = new Result<RefType, SomeError>(PlusFifteenIdRefType);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

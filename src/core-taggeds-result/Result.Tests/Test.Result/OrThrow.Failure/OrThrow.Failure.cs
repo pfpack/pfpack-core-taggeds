@@ -15,7 +15,7 @@ partial class ResultTest
         var actual = source.FailureOrThrow();
         var expected = default(StructType);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -26,7 +26,7 @@ partial class ResultTest
         var actual = source.FailureOrThrow();
         var expected = SomeTextStructType;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -37,7 +37,7 @@ partial class ResultTest
     {
         var actualEx = Assert.Throws<InvalidOperationException>(Test);
                 
-        Assert.True(actualEx!.Message.Contains("Failure", StringComparison.InvariantCultureIgnoreCase));
+        Assert.That(actualEx!.Message.Contains("Failure", StringComparison.Ordinal));
 
         void Test()
             =>

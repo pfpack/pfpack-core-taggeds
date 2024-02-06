@@ -16,7 +16,7 @@ partial class SuccessBuilderTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -28,7 +28,7 @@ partial class SuccessBuilderTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -40,7 +40,7 @@ partial class SuccessBuilderTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -52,7 +52,7 @@ partial class SuccessBuilderTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -69,7 +69,7 @@ partial class SuccessBuilderTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -81,7 +81,7 @@ partial class SuccessBuilderTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
             
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.Not.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -93,7 +93,7 @@ partial class SuccessBuilderTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.Not.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -105,7 +105,7 @@ partial class SuccessBuilderTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.Not.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -117,7 +117,7 @@ partial class SuccessBuilderTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.Not.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -130,7 +130,7 @@ partial class SuccessBuilderTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.Not.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -142,7 +142,7 @@ partial class SuccessBuilderTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.Not.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -157,7 +157,7 @@ partial class SuccessBuilderTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.Not.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -169,7 +169,7 @@ partial class SuccessBuilderTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
             
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.Not.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -181,6 +181,6 @@ partial class SuccessBuilderTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.Not.EqualTo(sourceHashCode));
     }
 }

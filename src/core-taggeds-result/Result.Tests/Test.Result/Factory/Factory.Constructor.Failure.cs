@@ -11,13 +11,13 @@ partial class ResultTest
     public void ConstructorFromFailureValue_ExpectIsSuccessReturnsFalse()
     {
         var actual = new Result<RefType?, StructType>(default(StructType));
-        Assert.False(actual.IsSuccess);
+        Assert.That(actual.IsSuccess, Is.False);
     }
 
     [Test]
     public void ConstructorFromFailureValue_ExpectIsFailureReturnsTrue()
     {
         var actual = new Result<RefType, SomeError>(new SomeError(MinusFifteen));
-        Assert.True(actual.IsFailure);
+        Assert.That(actual.IsFailure, Is.True);
     }
 }

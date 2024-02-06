@@ -24,7 +24,7 @@ partial class ResultTest
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.RecoverValueAsync<SomeRecord, SomeError>(null!, _ => ValueTask.FromResult(mappedSuccess)));
 
-        Assert.AreEqual("otherFactoryAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("otherFactoryAsync"));
     }
 
     [Test]
@@ -41,7 +41,7 @@ partial class ResultTest
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.RecoverValueAsync(_ => ValueTask.FromResult(other), mapSuccessAsync));
 
-        Assert.AreEqual("mapSuccessAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapSuccessAsync"));
     }
 
     [Test]
@@ -63,7 +63,7 @@ partial class ResultTest
         var actual = await source.RecoverValueAsync(_ => ValueTask.FromResult(other), _ => ValueTask.FromResult(mappedSuccess));
         var expected = Result.Success(mappedSuccess).With<SomeError>();
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -76,7 +76,7 @@ partial class ResultTest
         var mappedSuccess = "Some mapped value";
 
         var actual = await source.RecoverValueAsync(_ => ValueTask.FromResult(other), _ => ValueTask.FromResult(mappedSuccess));
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 
     [Test]
@@ -89,7 +89,7 @@ partial class ResultTest
         var mappedSuccess = MinusFifteen;
 
         var actual = await source.RecoverValueAsync(_ => ValueTask.FromResult(other), _ => ValueTask.FromResult(mappedSuccess));
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 
     [Test]
@@ -105,6 +105,6 @@ partial class ResultTest
         };
 
         var actual = await source.RecoverValueAsync(_ => ValueTask.FromResult(other), _ => ValueTask.FromResult(mappedValue));
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 }

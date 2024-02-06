@@ -15,7 +15,7 @@ partial class ResultTest
         var exceptionFactory = (Func<StructType, Exception>)null!;
         var actualException = Assert.Throws<ArgumentNullException>(Test);
         
-        Assert.AreEqual("exceptionFactory", actualException?.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("exceptionFactory"));
 
         void Test()
             =>
@@ -28,7 +28,7 @@ partial class ResultTest
         Result<RefType, StructType> source)
     {
         var actual = source.SuccessOrThrow(CreateException);
-        Assert.IsNull(actual);
+        Assert.That(actual, Is.Null);
 
         static Exception CreateException(StructType failure)
             =>
@@ -43,7 +43,7 @@ partial class ResultTest
         var actual = source.SuccessOrThrow(CreateException);
         var expected = PlusFifteenIdRefType;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
 
         static Exception CreateException(StructType failure)
             =>
@@ -55,9 +55,9 @@ partial class ResultTest
     public void SuccessOrThrowWithExceptionFactoryFromFailure_SourceIsDefaultOrFailure_ExpectExceptionFromFactory(
         Result<RefType, StructType> source)
     {
-        var actualException = Assert.Throws< SomeException<StructType>>(Test);
+        var actualException = Assert.Throws<SomeException<StructType>>(Test);
 
-        Assert.AreEqual(SomeTextStructType, actualException?.Value);
+        Assert.That(actualException!.Value, Is.EqualTo(SomeTextStructType));
 
         void Test()
             =>

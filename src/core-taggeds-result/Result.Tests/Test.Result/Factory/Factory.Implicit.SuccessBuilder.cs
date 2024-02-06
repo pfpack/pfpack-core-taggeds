@@ -13,7 +13,7 @@ partial class ResultTest
         var source = Result.Success(PlusFifteenIdRefType);
         Result<RefType, SomeError> actual = source;
 
-        Assert.True(actual.IsSuccess);
+        Assert.That(actual.IsSuccess, Is.True);
     }
 
     [Test]
@@ -22,6 +22,6 @@ partial class ResultTest
         var source = Result.Success<StructType?>(SomeTextStructType);
         Result<StructType?, StructType> actual = source;
 
-        Assert.False(actual.IsFailure);
+        Assert.That(actual.IsFailure, Is.False);
     }
 }

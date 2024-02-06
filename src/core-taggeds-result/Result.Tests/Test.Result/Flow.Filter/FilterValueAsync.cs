@@ -21,7 +21,7 @@ partial class ResultTest
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.FilterValueAsync(null!, _ => ValueTask.FromResult(causeFailure)));
 
-        Assert.AreEqual("predicateAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("predicateAsync"));
     }
 
     [Test]
@@ -35,7 +35,7 @@ partial class ResultTest
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.FilterValueAsync(_ => ValueTask.FromResult(false), null!));
 
-        Assert.AreEqual("causeFactoryAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("causeFactoryAsync"));
     }
 
     [Test]
@@ -52,7 +52,7 @@ partial class ResultTest
             _ => ValueTask.FromResult(true),
             _ => ValueTask.FromResult(causeFailure));
 
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
     }
 
     [Test]
@@ -71,7 +71,7 @@ partial class ResultTest
             _ => ValueTask.FromResult(causeFailure));
 
         var expected = new Result<RefType, StructType>(causeFailure);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -89,6 +89,6 @@ partial class ResultTest
             _ => ValueTask.FromResult(false),
             _ => ValueTask.FromResult(causeFailure));
 
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
     }
 }

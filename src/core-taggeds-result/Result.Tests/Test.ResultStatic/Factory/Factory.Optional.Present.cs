@@ -11,55 +11,55 @@ partial class ResultStaticTest
     public void Present_SourceValueIsNullForgivenRef_ExpectIsSuccessReturnsTrue()
     {
         var actual = Result.Present<SomeRecord>(null!);
-        Assert.True(actual.IsSuccess);
+        Assert.That(actual.IsSuccess, Is.True);
     }
 
     [Test]
     public void Present_SourceValueIsNullForgivenRef_ExpectIsFailureReturnsFalse()
     {
         var actual = Result.Present<SomeRecord>(null!);
-        Assert.False(actual.IsFailure);
+        Assert.That(actual.IsFailure, Is.False);
     }
 
     [Test]
     public void Present_SourceValueIsNullableRef_ExpectIsSuccessReturnsTrue()
     {
         var actual = Result.Present<SomeRecord?>(null);
-        Assert.True(actual.IsSuccess);
+        Assert.That(actual.IsSuccess, Is.True);
     }
 
     [Test]
     public void Present_SourceValueIsNullableRef_ExpectIsFailureReturnsFalse()
     {
         var actual = Result.Present<SomeRecord?>(null);
-        Assert.False(actual.IsFailure);
+        Assert.That(actual.IsFailure, Is.False);
     }
 
     [Test]
     public void Present_SourceValueIsNullableStruct_ExpectIsSuccessReturnsTrue()
     {
         var actual = Result.Present<StructType?>(null);
-        Assert.True(actual.IsSuccess);
+        Assert.That(actual.IsSuccess, Is.True);
     }
 
     [Test]
     public void Present_SourceValueIsNullableStruct_ExpectIsFailureReturnsFalse()
     {
         var actual = Result.Present<StructType?>(null);
-        Assert.False(actual.IsFailure);
+        Assert.That(actual.IsFailure, Is.False);
     }
 
     [Test]
     public void Present_SourceValueIsNotNull_ExpectIsSuccessReturnsTrue()
     {
         var actual = Result.Present<StructType>(default);
-        Assert.True(actual.IsSuccess);
+        Assert.That(actual.IsSuccess, Is.True);
     }
 
     [Test]
     public void Present_SourceValueIsNotNull_ExpectIsFailureReturnsFalse()
     {
         var actual = Result.Present(ZeroIdRefType);
-        Assert.False(actual.IsFailure);
+        Assert.That(actual.IsFailure, Is.False);
     }
 }

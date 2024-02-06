@@ -9,13 +9,13 @@ partial class ResultStaticTest
     public void False_ExpectIsSuccessReturnsFalse()
     {
         var actual = Result.False();
-        Assert.False(actual.IsSuccess);
+        Assert.That(actual.IsSuccess, Is.False);
     }
 
     [Test]
     public void False_ExpectIsFailureReturnsTrue()
     {
         var actual = Result.False();
-        Assert.True(actual.IsFailure);
+        Assert.That(actual.IsFailure, Is.True);
     }
 }

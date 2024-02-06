@@ -14,7 +14,7 @@ partial class ResultTest
         object? obj = new Result<RefType, StructType>();
 
         var actual = source.Equals(obj);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -24,7 +24,7 @@ partial class ResultTest
         object? other = Result<SomeRecord?, StructType>.Success(null);
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -44,7 +44,7 @@ partial class ResultTest
         object? obj = Result<SomeRecord, SomeError>.Success(objValue);
 
         var actual = source.Equals(obj);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -64,7 +64,7 @@ partial class ResultTest
         object? obj = Result<RefType, StructType>.Failure(objValue);
 
         var actual = source.Equals(obj);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -74,7 +74,7 @@ partial class ResultTest
         object? obj = default(Result<RefType, StructType>);
 
         var actual = source.Equals(obj);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -84,7 +84,7 @@ partial class ResultTest
         object? obj = Result<RefType, DateTime>.Failure(default);
             
         var actual = source.Equals(obj);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -97,7 +97,7 @@ partial class ResultTest
         object? obj = Result<RefType, StructType>.Success(objValue);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -117,7 +117,7 @@ partial class ResultTest
         object? obj = Result<RefType, StructType>.Failure(objValue);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -129,7 +129,7 @@ partial class ResultTest
         object? obj = Result<StructType, StructType>.Failure(sourceValue);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -139,7 +139,7 @@ partial class ResultTest
         object? obj = default(Result<StructType, SomeError>);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -151,7 +151,7 @@ partial class ResultTest
         object? obj = Result<StructType, StructType>.Success(sourceValue);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -161,7 +161,7 @@ partial class ResultTest
         object? obj = default(Result<RefType?, StructType>);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -171,7 +171,7 @@ partial class ResultTest
         object? obj = Result<int, SomeError>.Success(default);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -181,7 +181,7 @@ partial class ResultTest
         object? obj = Result<StructType, SomeError>.Failure(new SomeError(PlusFifteen));
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -192,7 +192,7 @@ partial class ResultTest
         object? obj = null;
         var actual = source.Equals(obj);
 
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -202,7 +202,7 @@ partial class ResultTest
         object? obj = new StructType();
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -212,7 +212,7 @@ partial class ResultTest
         object? obj = default(Result<RefType, int>);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -224,7 +224,7 @@ partial class ResultTest
         object? obj = sourceValue;
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -236,7 +236,7 @@ partial class ResultTest
         object? obj = Result<RefType, int>.Success(sourceValue);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -248,7 +248,7 @@ partial class ResultTest
         object? obj = sourceValue;
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -260,6 +260,6 @@ partial class ResultTest
         object? obj = Result<uint, StructType>.Failure(sourceValue);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 }

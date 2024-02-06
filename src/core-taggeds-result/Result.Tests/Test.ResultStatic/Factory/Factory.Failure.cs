@@ -11,13 +11,13 @@ partial class ResultStaticTest
     public void FailureThenWith_ExpectIsSuccessReturnsFalse()
     {
         var actual = Result.Failure(SomeTextStructType).With<RefType?>();
-        Assert.False(actual.IsSuccess);
+        Assert.That(actual.IsSuccess, Is.False);
     }
 
     [Test]
     public void FailureThenWith_ExpectIsFailureReturnsTrue()
     {
         var actual = Result.Failure<StructType>(default).With<SomeRecord>();
-        Assert.True(actual.IsFailure);
+        Assert.That(actual.IsFailure, Is.True);
     }
 }

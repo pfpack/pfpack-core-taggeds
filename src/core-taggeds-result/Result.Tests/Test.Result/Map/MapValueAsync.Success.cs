@@ -19,7 +19,7 @@ partial class ResultTest
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.MapSuccessValueAsync<SomeError>(null!));
 
-        Assert.AreEqual("mapSuccessAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapSuccessAsync"));
     }
 
     [Test]        
@@ -33,8 +33,8 @@ partial class ResultTest
         var actual = await source.MapSuccessValueAsync(
             _ => ValueTask.FromResult(successResult));
             
-        var exected = new Result<SomeRecord?, StructType>(successResult);
-        Assert.AreEqual(exected, actual);
+        var expected = new Result<SomeRecord?, StructType>(successResult);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]        
@@ -45,8 +45,8 @@ partial class ResultTest
         var successResult = SomeString;
         var actual = await source.MapSuccessValueAsync(_ => ValueTask.FromResult(successResult));
 
-        var exected = default(Result<string, StructType>);
-        Assert.AreEqual(exected, actual);
+        var expected = default(Result<string, StructType>);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]        
@@ -57,7 +57,7 @@ partial class ResultTest
         var successResult = new object();
         var actual = await source.MapSuccessValueAsync(_ => ValueTask.FromResult(successResult));
 
-        var exected = new Result<object, StructType>(SomeTextStructType);
-        Assert.AreEqual(exected, actual);
+        var expected = new Result<object, StructType>(SomeTextStructType);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

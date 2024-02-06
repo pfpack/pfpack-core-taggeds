@@ -17,7 +17,7 @@ partial class ResultTest
         var result = new Result<int, SomeError>(success);
 
         var actual = result.SuccessOrDefault();
-        Assert.AreEqual(actual, success);
+        Assert.That(actual, Is.EqualTo(success));
     }
 
     [Test]
@@ -26,7 +26,7 @@ partial class ResultTest
         var result = new Result<int, SomeError>();
 
         var actual = result.SuccessOrDefault();
-        Assert.Zero(actual);
+        Assert.That(actual, Is.Zero);
     }
 
     [Test]
@@ -35,7 +35,7 @@ partial class ResultTest
         var result = new Result<int, SomeError>(new SomeError(1));
 
         var actual = result.SuccessOrDefault();
-        Assert.Zero(actual);
+        Assert.That(actual, Is.Zero);
     }
 
     [Test]
@@ -45,7 +45,7 @@ partial class ResultTest
         var result = new Result<RefType, SomeError>(refObj);
 
         var actual = result.SuccessOrDefault();
-        Assert.AreSame(actual, refObj);
+        Assert.That(actual, Is.SameAs(refObj));
     }
 
     [Test]
@@ -54,7 +54,7 @@ partial class ResultTest
         var result = new Result<RefType, SomeError>();
 
         var actual = result.SuccessOrDefault();
-        Assert.IsNull(actual);
+        Assert.That(actual, Is.Null);
     }
 
     [Test]
@@ -63,6 +63,6 @@ partial class ResultTest
         var result = new Result<RefType, SomeError>(new SomeError(1));
 
         var actual = result.SuccessOrDefault();
-        Assert.IsNull(actual);
+        Assert.That(actual, Is.Null);
     }
 }

@@ -13,7 +13,7 @@ partial class ResultTest
         var source = Result.Failure(SomeTextStructType);
         Result<RefType?, StructType> actual = source;
 
-        Assert.False(actual.IsSuccess);
+        Assert.That(actual.IsSuccess, Is.False);
     }
 
     [Test]
@@ -22,6 +22,6 @@ partial class ResultTest
         var source = default(FailureBuilder<SomeError>);
         Result<SomeError, SomeError> actual = source;
 
-        Assert.True(actual.IsFailure);
+        Assert.That(actual.IsFailure, Is.True);
     }
 }

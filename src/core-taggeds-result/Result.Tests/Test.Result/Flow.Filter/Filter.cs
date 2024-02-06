@@ -18,7 +18,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.Filter(null!, _ => SomeTextStructType));
 
-        Assert.AreEqual("predicate", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("predicate"));
     }
 
     [Test]
@@ -32,7 +32,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.Filter(_ => true, null!));
 
-        Assert.AreEqual("causeFactory", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("causeFactory"));
     }
 
     [Test]
@@ -49,7 +49,7 @@ partial class ResultTest
             _ => true,
             _ => causeFailure);
 
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
     }
 
     [Test]
@@ -64,7 +64,7 @@ partial class ResultTest
             _ => causeFailure);
 
         var expected = new Result<RefType, StructType>(causeFailure);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -82,6 +82,6 @@ partial class ResultTest
             _ => false,
             _ => causeFailure);
 
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
     }
 }

@@ -18,7 +18,7 @@ partial class ResultTest
         var actualException = Assert.Throws<ArgumentNullException>(
             () => _ = source.Forward<SomeRecord>(null!));
 
-        Assert.AreEqual("nextFactory", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("nextFactory"));
     }
 
     [Test]
@@ -30,7 +30,7 @@ partial class ResultTest
         var actual = source.Forward(_ => next);
 
         var expected = default(Result<SomeRecord, StructType>);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -42,7 +42,7 @@ partial class ResultTest
         var actual = source.Forward(_ => next);
 
         var expected = new Result<int, StructType>(SomeTextStructType);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -54,7 +54,7 @@ partial class ResultTest
         var next = new Result<int, StructType>();
         var actual = source.Forward(_ => next);
 
-        Assert.AreEqual(next, actual);
+        Assert.That(actual, Is.EqualTo(next));
     }
 
     [Test]
@@ -66,7 +66,7 @@ partial class ResultTest
         var next = Result.Success(PlusFifteenIdRefType).With<StructType>();
         var actual = source.Forward(_ => next);
 
-        Assert.AreEqual(next, actual);
+        Assert.That(actual, Is.EqualTo(next));
     }
 
     [Test]
@@ -78,6 +78,6 @@ partial class ResultTest
         var next = new Result<SomeRecord?, StructType>(SomeTextStructType);
         var actual = source.Forward(_ => next);
 
-        Assert.AreEqual(next, actual);
+        Assert.That(actual, Is.EqualTo(next));
     }
 }

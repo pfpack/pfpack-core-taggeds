@@ -21,7 +21,7 @@ partial class ResultTest
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.RecoverAsync<int, SomeError>(null!, _ => mappedSuccess));
 
-        Assert.AreEqual("otherFactoryAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("otherFactoryAsync"));
     }
 
     [Test]
@@ -38,7 +38,7 @@ partial class ResultTest
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.RecoverAsync(_ => Task.FromResult(other), mapSuccess));
 
-        Assert.AreEqual("mapSuccess", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("mapSuccess"));
     }
 
     [Test]
@@ -53,7 +53,7 @@ partial class ResultTest
         var actual = await source.RecoverAsync(_ => Task.FromResult(other), _ => mappedSuccess);
         Result<string, SomeError> expected = mappedSuccess;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -66,7 +66,7 @@ partial class ResultTest
         var mappedSuccess = new object();
 
         var actual = await source.RecoverAsync(_ => Task.FromResult(other), _ => mappedSuccess);
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 
     [Test]
@@ -82,7 +82,7 @@ partial class ResultTest
         };
 
         var actual = await source.RecoverAsync(_ => Task.FromResult(other), _ => mappedSuccess);
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 
     [Test]
@@ -95,6 +95,6 @@ partial class ResultTest
         var mappedValue = "Some success text value";
 
         var actual = await source.RecoverAsync(_ => Task.FromResult(other), _ => mappedValue);
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 }

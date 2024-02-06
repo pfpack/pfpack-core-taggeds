@@ -14,7 +14,7 @@ partial class FailureBuilderTest
         var right = default(FailureBuilder<int>);
 
         var actual = left == right;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -24,7 +24,7 @@ partial class FailureBuilderTest
         var right = Result.Failure(default(SomeError));
 
         var actual = left == right;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -34,7 +34,7 @@ partial class FailureBuilderTest
         var right = default(FailureBuilder<StructType>);
 
         var actual = left == right;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -44,7 +44,7 @@ partial class FailureBuilderTest
         var right = Result.Failure(default(StructType));
 
         var actual = left == right;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -65,7 +65,7 @@ partial class FailureBuilderTest
         var right = Result.Failure(rightFailure);
 
         var actual = left == right;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -75,7 +75,7 @@ partial class FailureBuilderTest
         var right = Result.Failure<decimal>(decimal.One);
 
         var actual = left == right;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -88,6 +88,6 @@ partial class FailureBuilderTest
         var right = Result.Failure(rightFailure);
 
         var actual = left == right;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 }

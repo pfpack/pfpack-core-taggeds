@@ -19,7 +19,7 @@ partial class ResultTest
         var actualException = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.ForwardValueAsync(null!));
 
-        Assert.AreEqual("nextFactoryAsync", actualException!.ParamName);
+        Assert.That(actualException!.ParamName, Is.EqualTo("nextFactoryAsync"));
     }
 
     [Test]
@@ -34,7 +34,7 @@ partial class ResultTest
         });
 
         var actual = await source.ForwardValueAsync(_ => ValueTask.FromResult(next));
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
     }
 
     [Test]
@@ -43,8 +43,9 @@ partial class ResultTest
     public async Task ForwardValueAsyncSelf_SourceIsSuccessAndNextIsDefault_ExpectDefault(
         Result<RefType, StructType> source)
     {
-        var actual = await source.ForwardValueAsync(_ => default(ValueTask<Result<RefType, StructType>>));
-        Assert.AreEqual(default(Result<RefType, StructType>), actual);
+        var actual = await source.ForwardValueAsync(_ => default);
+
+        Assert.That(actual, Is.EqualTo(default(Result<RefType, StructType>)));
     }
 
     [Test]
@@ -56,7 +57,7 @@ partial class ResultTest
         var next = Result.Success<RefType>(PlusFifteenIdRefType).With<StructType>();
         var actual = await source.ForwardValueAsync(_ => ValueTask.FromResult(next));
 
-        Assert.AreEqual(next, actual);
+        Assert.That(actual, Is.EqualTo(next));
     }
 
     [Test]
@@ -68,6 +69,6 @@ partial class ResultTest
         var next = new Result<RefType, StructType>(SomeTextStructType);
         var actual = await source.ForwardValueAsync(_ => ValueTask.FromResult(next));
 
-        Assert.AreEqual(next, actual);
+        Assert.That(actual, Is.EqualTo(next));
     }
 }
