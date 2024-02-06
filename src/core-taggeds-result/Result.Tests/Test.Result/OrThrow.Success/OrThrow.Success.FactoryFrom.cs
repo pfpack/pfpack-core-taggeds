@@ -43,7 +43,7 @@ partial class ResultTest
         var actual = source.SuccessOrThrow(CreateException);
         var expected = PlusFifteenIdRefType;
 
-        Assert.That(actual, Is.EqualTo(expected));
+        Assert.That(actual, Is.SameAs(expected));
 
         static Exception CreateException(StructType failure)
             =>

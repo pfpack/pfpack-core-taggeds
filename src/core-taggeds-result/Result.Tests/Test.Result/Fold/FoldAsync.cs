@@ -56,7 +56,7 @@ partial class ResultTest
             _ => Task.FromResult(successResult),
             _ => Task.FromResult<string?>(failureResult));
 
-        Assert.That(actual, Is.EqualTo(successResult));
+        Assert.That(actual, Is.SameAs(successResult));
     }
 
     [Test]        
@@ -79,6 +79,6 @@ partial class ResultTest
             _ => Task.FromResult(successResult),
             _ => Task.FromResult(failureResult));
 
-        Assert.That(actual, Is.EqualTo(failureResult));
+        Assert.That(actual, Is.SameAs(failureResult));
     }
 }

@@ -24,7 +24,7 @@ partial class ResultTest
         var actual = source.SuccessOrThrow();
         var expected = PlusFifteenIdRefType;
 
-        Assert.That(actual, Is.EqualTo(expected));
+        Assert.That(actual, Is.SameAs(expected));
     }
 
     [Test]

@@ -48,7 +48,7 @@ partial class ResultTest
             _ => successResult,
             _ => failureResult);
 
-        Assert.That(actual, Is.EqualTo(successResult));
+        Assert.That(actual, Is.SameAs(successResult));
     }
 
     [Test]        
@@ -71,6 +71,6 @@ partial class ResultTest
             _ => successResult,
             _ => failureResult);
 
-         Assert.That(actual, Is.EqualTo(failureResult));
+         Assert.That(actual, Is.SameAs(failureResult));
     }
 }

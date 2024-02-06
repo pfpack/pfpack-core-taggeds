@@ -61,7 +61,7 @@ partial class ResultTest
         var exceptionFromFactory = new SomeException();
         var actualException = Assert.Throws<SomeException>(Test);
 
-        Assert.That(actualException, Is.EqualTo(exceptionFromFactory));
+        Assert.That(actualException, Is.SameAs(exceptionFromFactory));
 
         void Test()
             =>

@@ -59,7 +59,7 @@ partial class ResultTest
     {
         var actualException = Assert.Throws<SomeException<RefType>>(Test);
 
-        Assert.That(actualException!.Value, Is.EqualTo(PlusFifteenIdRefType));
+        Assert.That(actualException!.Value, Is.SameAs(PlusFifteenIdRefType));
 
         void Test()
             =>
