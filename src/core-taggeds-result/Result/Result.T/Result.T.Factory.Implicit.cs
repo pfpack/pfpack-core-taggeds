@@ -15,18 +15,18 @@ partial struct Result<TSuccess, TFailure>
     // TODO: Add the tests!
     public static implicit operator Result<TSuccess, TFailure>(Success<TSuccess> success)
         =>
-        new(success.InternalSuccess);
+        success.ToResult<TFailure>();
 
     // TODO: Add the tests!
     public static implicit operator Result<TSuccess, TFailure>(Nonsuccess<TFailure> nonsuccess)
         =>
-        new(nonsuccess.InternalFailure);
+        nonsuccess.ToResult<TSuccess>();
 
     public static implicit operator Result<TSuccess, TFailure>(SuccessBuilder<TSuccess> success)
         =>
-        new(success.InternalSuccess);
+        success.With<TFailure>();
 
     public static implicit operator Result<TSuccess, TFailure>(FailureBuilder<TFailure> failure)
         =>
-        new(failure.InternalFailure);
+        failure.With<TSuccess>();
 }

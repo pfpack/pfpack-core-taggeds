@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: |
             6.0.x
@@ -95,6 +95,12 @@ jobs:
 
     - name: Pack Result
       run: dotnet pack ./src/*/*/Result.csproj --no-restore -o ~/nuget  -c Release
+
+    - name: Restore Result.Tests.Old
+      run: dotnet restore ./src/*/*/Result.Tests.Old.csproj
+
+    - name: Test Result.Tests.Old
+      run: dotnet test ./src/*/*/Result.Tests.Old.csproj --no-restore  -c Release
 
     - name: Restore Result.Tests
       run: dotnet restore ./src/*/*/Result.Tests.csproj

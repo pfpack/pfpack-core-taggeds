@@ -1,5 +1,6 @@
 ﻿using System;
 
+// TODO: Move to System namespace in Result v3.0
 namespace PrimeFuncPack.Core;
 
 public readonly partial struct SuccessBuilder<TSuccess> : IEquatable<SuccessBuilder<TSuccess>>
@@ -9,8 +10,4 @@ public readonly partial struct SuccessBuilder<TSuccess> : IEquatable<SuccessBuil
     internal SuccessBuilder(TSuccess success)
         =>
         this.success = success;
-
-    internal TSuccess InternalSuccess
-        =>
-        success;
 }
