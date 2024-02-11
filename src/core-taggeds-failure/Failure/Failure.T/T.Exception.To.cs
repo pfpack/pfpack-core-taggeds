@@ -2,7 +2,7 @@
 
 partial struct Failure<TFailureCode>
 {
-    public Failure<TFailureCode>.Exception ToException()
+    public Exception ToException()
         =>
         new(
             failureCode: FailureCode,
