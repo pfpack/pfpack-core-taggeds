@@ -34,5 +34,5 @@ public readonly partial struct Failure<TFailureCode> : IEquatable<Failure<TFailu
         =>
         failureMessage ?? string.Empty;
 
-    public System.Exception? SourceException { get; init; } = null;
+    public System.Exception? SourceException { get; init; }
 }
