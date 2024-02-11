@@ -17,8 +17,8 @@ partial struct Failure<TFailureCode>
         where TResultFailureCode : struct
         =>
         new(
-            mapFailureCode.Invoke(FailureCode),
-            failureMessage, // pass the inner state
+            failureCode: mapFailureCode.Invoke(FailureCode),
+            failureMessage: failureMessage,
             default)
         {
             SourceException = SourceException

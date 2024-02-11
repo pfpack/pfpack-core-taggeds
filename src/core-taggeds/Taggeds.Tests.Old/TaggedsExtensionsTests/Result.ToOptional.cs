@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using PrimeFuncPack.UnitTest;
 using System;
 using static PrimeFuncPack.UnitTest.TestData;
@@ -15,7 +14,7 @@ partial class TaggedsExtensionsTests
         var actual = sourceResult.ToOptional();
         var expected = Optional<SomeRecord?>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -26,7 +25,7 @@ partial class TaggedsExtensionsTests
         var actual = sourceResult.ToOptional();
         var expected = Optional<RefType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -37,7 +36,7 @@ partial class TaggedsExtensionsTests
         var actual = sourceResult.ToOptional();
         var expected = Optional<object?>.Present(null);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -49,6 +48,6 @@ partial class TaggedsExtensionsTests
         var actual = sourceResult.ToOptional();
         var expected = Optional<RefType>.Present(sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using PrimeFuncPack.UnitTest;
 using System;
 using static PrimeFuncPack.UnitTest.TestData;
@@ -13,9 +12,9 @@ partial class TaggedUnionResultExtensions
         Result<RefType?, StructType> sourceResult)
     {
         var actual = sourceResult.ToTaggedUnion();
-        var expected = TaggedUnion<RefType?, StructType>.Second(default(StructType));
+        var expected = TaggedUnion<RefType?, StructType>.Second(default);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -26,7 +25,7 @@ partial class TaggedUnionResultExtensions
         var actual = sourceResult.ToTaggedUnion();
         var expected = TaggedUnion<RefType, StructType>.Second(SomeTextStructType);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -37,7 +36,7 @@ partial class TaggedUnionResultExtensions
         var actual = sourceResult.ToTaggedUnion();
         var expected = TaggedUnion<RefType?, StructType>.First(null);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -48,6 +47,6 @@ partial class TaggedUnionResultExtensions
         var actual = sourceResult.ToTaggedUnion();
         var expected = TaggedUnion<RefType, StructType>.First(PlusFifteenIdRefType);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

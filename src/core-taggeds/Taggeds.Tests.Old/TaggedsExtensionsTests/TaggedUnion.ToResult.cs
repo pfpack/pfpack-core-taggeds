@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using PrimeFuncPack.UnitTest;
 using System;
 using static PrimeFuncPack.UnitTest.TestData;
@@ -15,7 +14,7 @@ partial class TaggedUnionResultExtensions
         var actual = sourceUnion.ToResult();
         var expected = default(Result<SomeRecord, StructType>);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -27,7 +26,7 @@ partial class TaggedUnionResultExtensions
         var actual = sourceUnion.ToResult();
         var expected = Result<RefType?, SomeError>.Failure(sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -38,7 +37,7 @@ partial class TaggedUnionResultExtensions
         var actual = sourceUnion.ToResult();
         var expected = Result<RefType?, StructType>.Success(null);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -53,6 +52,6 @@ partial class TaggedUnionResultExtensions
         var actual = sourceUnion.ToResult();
         var expected = Result<SomeRecord, SomeError>.Success(sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

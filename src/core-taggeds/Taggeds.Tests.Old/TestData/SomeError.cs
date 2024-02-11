@@ -3,13 +3,9 @@ using System.Collections.Generic;
 
 namespace PrimeFuncPack.Core.Tests;
 
-internal readonly struct SomeError
+internal readonly struct SomeError(int errorCode)
 {
-    private readonly int errorCode;
-        
-    public SomeError(int errorCode)
-        =>
-        this.errorCode = errorCode;
+    private readonly int errorCode = errorCode;
 
     public bool Equals(SomeError other)
         =>
