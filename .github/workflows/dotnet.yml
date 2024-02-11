@@ -119,6 +119,12 @@ jobs:
     - name: Pack Taggeds
       run: dotnet pack ./src/*/*/Taggeds.csproj --no-restore -o ~/nuget  -c Release
 
+    - name: Restore Taggeds.Tests.Old
+      run: dotnet restore ./src/*/*/Taggeds.Tests.Old.csproj
+
+    - name: Test Taggeds.Tests.Old
+      run: dotnet test ./src/*/*/Taggeds.Tests.Old.csproj --no-restore  -c Release
+
     - name: Restore Taggeds.Tests
       run: dotnet restore ./src/*/*/Taggeds.Tests.csproj
 
