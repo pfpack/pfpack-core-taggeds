@@ -79,11 +79,11 @@ jobs:
     - name: Pack TaggedUnion
       run: dotnet pack ./src/*/*/TaggedUnion.csproj --no-restore -o ~/nuget  -c Release
 
-    - name: Restore TaggedUnion.Tests
-      run: dotnet restore ./src/*/*/TaggedUnion.Tests.csproj
+    - name: Restore TaggedUnion.Tests.Old
+      run: dotnet restore ./src/*/*/TaggedUnion.Tests.Old.csproj
 
-    - name: Test TaggedUnion.Tests
-      run: dotnet test ./src/*/*/TaggedUnion.Tests.csproj --no-restore  -c Release
+    - name: Test TaggedUnion.Tests.Old
+      run: dotnet test ./src/*/*/TaggedUnion.Tests.Old.csproj --no-restore  -c Release
 
     # Result
 
