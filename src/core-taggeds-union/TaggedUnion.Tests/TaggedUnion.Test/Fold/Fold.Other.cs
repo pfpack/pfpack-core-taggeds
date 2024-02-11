@@ -16,7 +16,7 @@ partial class TaggedUnionTest
         var other = int.MaxValue;
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Fold(null!, _ => second, other));
-        Assert.AreEqual("mapFirst", ex!.ParamName);
+        ClassicAssert.AreEqual("mapFirst", ex!.ParamName);
     }
 
     [Test]
@@ -28,7 +28,7 @@ partial class TaggedUnionTest
         var other = TabString;
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Fold(_ => first, null!, other));
-        Assert.AreEqual("mapSecond", ex!.ParamName);
+        ClassicAssert.AreEqual("mapSecond", ex!.ParamName);
     }
 
     [Test]
@@ -42,7 +42,7 @@ partial class TaggedUnionTest
         var second = new { Id = 251 };
 
         var actual = source.Fold(_ => first, _ => second, other);
-        Assert.AreEqual(other, actual);
+        ClassicAssert.AreEqual(other, actual);
     }
 
     [Test]
@@ -55,7 +55,7 @@ partial class TaggedUnionTest
         var other = PlusFifteenIdRefType;
 
         var actual = source.Fold(_ => first, _ => second, other);
-        Assert.AreEqual(first, actual);
+        ClassicAssert.AreEqual(first, actual);
     }
 
     [Test]
@@ -68,6 +68,6 @@ partial class TaggedUnionTest
         var other = PlusFifteenIdRefType;
 
         var actual = source.Fold(_ => first, _ => second, other);
-        Assert.AreEqual(second, actual);
+        ClassicAssert.AreEqual(second, actual);
     }
 }

@@ -14,7 +14,7 @@ partial class TaggedUnionTest
         object? obj = new TaggedUnion<StructType, RefType>();
 
         var actual = source.Equals(obj);
-        Assert.True(actual);
+        ClassicAssert.True(actual);
     }
 
     [Test]
@@ -24,7 +24,7 @@ partial class TaggedUnionTest
         object? obj = TaggedUnion<StructType?, RefType>.First(null);
 
         var actual = source.Equals(obj);
-        Assert.True(actual);
+        ClassicAssert.True(actual);
     }
 
     [Test]
@@ -34,7 +34,7 @@ partial class TaggedUnionTest
         object? obj = (TaggedUnion<StructType, RefType>)MinusFifteenIdRefType;
 
         var actual = source.Equals(obj);
-        Assert.True(actual);
+        ClassicAssert.True(actual);
     }
 
     [Test]
@@ -44,7 +44,7 @@ partial class TaggedUnionTest
         object? obj = TaggedUnion<RefType?, StructType>.First(null);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -54,7 +54,7 @@ partial class TaggedUnionTest
         object? obj = TaggedUnion<StructType, RefType>.Second(PlusFifteenIdRefType);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -64,7 +64,7 @@ partial class TaggedUnionTest
         object? obj = default(TaggedUnion<RefType, StructType>);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -74,7 +74,7 @@ partial class TaggedUnionTest
         object? obj = TaggedUnion<RefType?, RefType?>.Second(null);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -84,7 +84,7 @@ partial class TaggedUnionTest
         object? obj = default(TaggedUnion<StructType, RefType>);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -94,7 +94,7 @@ partial class TaggedUnionTest
         object? obj = TaggedUnion<StructType, StructType>.First(default);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -115,7 +115,7 @@ partial class TaggedUnionTest
         object? obj = TaggedUnion<RefType?, StructType?>.First(objValue);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -130,7 +130,7 @@ partial class TaggedUnionTest
         object? obj = TaggedUnion<RefType, StructType?>.Second(null);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -145,7 +145,7 @@ partial class TaggedUnionTest
         object? obj = TaggedUnion<RefType, StructType>.Second(sourceValue);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -157,7 +157,7 @@ partial class TaggedUnionTest
         object? obj = sourceValue;
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -169,6 +169,6 @@ partial class TaggedUnionTest
         object? obj = null;
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 }

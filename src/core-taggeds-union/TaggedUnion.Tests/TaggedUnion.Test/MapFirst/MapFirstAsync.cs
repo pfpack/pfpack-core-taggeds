@@ -16,7 +16,7 @@ partial class TaggedUnionTest
         var ex = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.MapFirstAsync<int>(null!));
 
-        Assert.AreEqual("mapFirstAsync", ex!.ParamName);
+        ClassicAssert.AreEqual("mapFirstAsync", ex!.ParamName);
     }
 
     [Test]
@@ -29,7 +29,7 @@ partial class TaggedUnionTest
         var actual = await source.MapFirstAsync(_ => Task.FromResult(mappedValue));
 
         var expected = TaggedUnion<StructType?, object>.First(mappedValue);
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -42,7 +42,7 @@ partial class TaggedUnionTest
         var actual = await source.MapFirstAsync(_ => Task.FromResult(mappedValue));
 
         var expected = TaggedUnion<string, object?>.Second(sourceValue);
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -54,6 +54,6 @@ partial class TaggedUnionTest
         var actual = await source.MapFirstAsync(_ => Task.FromResult(mappedValue));
 
         var expected = default(TaggedUnion<RefType, StructType?>);
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 }

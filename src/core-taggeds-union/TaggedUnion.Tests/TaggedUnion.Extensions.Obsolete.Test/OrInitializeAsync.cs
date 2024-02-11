@@ -14,7 +14,7 @@ partial class TaggedUnionExtensionsTest
         TaggedUnion<RefType, StructType> source)
     {
         var ex = Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await TaggedUnionExtensions.OrInitializeAsync(source, null!));
-        Assert.AreEqual("otherFactoryAsync", ex!.ParamName);
+        ClassicAssert.AreEqual("otherFactoryAsync", ex!.ParamName);
     }
 
     [Test]
@@ -24,7 +24,7 @@ partial class TaggedUnionExtensionsTest
         var other = TaggedUnion<RefType?, StructType>.First(ZeroIdRefType);
 
         var actual = await TaggedUnionExtensions.OrInitializeAsync(source, () => Task.FromResult(other));
-        Assert.AreEqual(source, actual);
+        ClassicAssert.AreEqual(source, actual);
     }
 
     [Test]
@@ -34,7 +34,7 @@ partial class TaggedUnionExtensionsTest
         var other = default(TaggedUnion<object, StructType>);
 
         var actual = await TaggedUnionExtensions.OrInitializeAsync(source, () => Task.FromResult(other));
-        Assert.AreEqual(source, actual);
+        ClassicAssert.AreEqual(source, actual);
     }
 
     [Test]
@@ -44,6 +44,6 @@ partial class TaggedUnionExtensionsTest
         var other = TaggedUnion<int, RefType>.Second(new RefType());
 
         var actual = await TaggedUnionExtensions.OrInitializeAsync(source, () => Task.FromResult(other));
-        Assert.AreEqual(other, actual);
+        ClassicAssert.AreEqual(other, actual);
     }
 }

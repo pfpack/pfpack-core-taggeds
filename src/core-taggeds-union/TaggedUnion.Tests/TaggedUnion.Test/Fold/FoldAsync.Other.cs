@@ -19,7 +19,7 @@ partial class TaggedUnionTest
         var ex = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.FoldAsync(null!, _ => Task.FromResult(second), other));
 
-        Assert.AreEqual("mapFirstAsync", ex!.ParamName);
+        ClassicAssert.AreEqual("mapFirstAsync", ex!.ParamName);
     }
 
     [Test]
@@ -33,7 +33,7 @@ partial class TaggedUnionTest
         var ex = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.FoldAsync(_ => Task.FromResult(first), null!, other));
 
-        Assert.AreEqual("mapSecondAsync", ex!.ParamName);
+        ClassicAssert.AreEqual("mapSecondAsync", ex!.ParamName);
     }
 
     [Test]
@@ -46,7 +46,7 @@ partial class TaggedUnionTest
         object other = SomeString;
 
         var actual = await source.FoldAsync(_ => Task.FromResult(first), _ => Task.FromResult(second), other);
-        Assert.AreEqual(other, actual);
+        ClassicAssert.AreEqual(other, actual);
     }
 
     [Test]
@@ -59,7 +59,7 @@ partial class TaggedUnionTest
         var other = PlusFifteenIdRefType;
 
         var actual = await source.FoldAsync(_ => Task.FromResult(first), _ => Task.FromResult(second), other);
-        Assert.AreEqual(first, actual);
+        ClassicAssert.AreEqual(first, actual);
     }
 
     [Test]
@@ -72,6 +72,6 @@ partial class TaggedUnionTest
         StructType? other = null;
 
         var actual = await source.FoldAsync(_ => Task.FromResult(first), _ => Task.FromResult(second), other);
-        Assert.AreEqual(second, actual);
+        ClassicAssert.AreEqual(second, actual);
     }
 }

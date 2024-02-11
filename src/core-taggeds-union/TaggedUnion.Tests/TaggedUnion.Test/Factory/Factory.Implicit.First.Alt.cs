@@ -13,14 +13,14 @@ partial class TaggedUnionTest
         object? sourceValue)
     {
         TaggedUnion<object?, RefType> taggedUnion = sourceValue;
-        Assert.True(taggedUnion.IsFirst);
+        ClassicAssert.True(taggedUnion.IsFirst);
     }
 
     [Test]
     public void First_Implicit_Alt_ExpectIsSecondGetsFalse()
     {
         TaggedUnion<RefType, StructType> taggedUnion = MinusFifteenIdRefType;
-        Assert.False(taggedUnion.IsSecond);
+        ClassicAssert.False(taggedUnion.IsSecond);
     }
 
     [Test]
@@ -29,7 +29,7 @@ partial class TaggedUnionTest
         object? sourceValue)
     {
         TaggedUnion<object?, StructType> taggedUnion = sourceValue;
-        Assert.False(taggedUnion.IsNone);
+        ClassicAssert.False(taggedUnion.IsNone);
     }
 
     [Test]
@@ -38,6 +38,6 @@ partial class TaggedUnionTest
         object? sourceValue)
     {
         TaggedUnion<object?, StructType> taggedUnion = sourceValue;
-        Assert.True(taggedUnion.IsNotNone);
+        ClassicAssert.True(taggedUnion.IsNotNone);
     }
 }

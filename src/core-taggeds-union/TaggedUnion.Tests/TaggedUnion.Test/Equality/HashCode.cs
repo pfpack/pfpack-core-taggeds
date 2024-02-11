@@ -16,7 +16,7 @@ partial class TaggedUnionTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreEqual(sourceHashCode, otherHashCode);
+        ClassicAssert.AreEqual(sourceHashCode, otherHashCode);
     }
 
     [Test]
@@ -30,7 +30,7 @@ partial class TaggedUnionTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreEqual(sourceHashCode, otherHashCode);
+        ClassicAssert.AreEqual(sourceHashCode, otherHashCode);
     }
 
     [Test]
@@ -44,7 +44,7 @@ partial class TaggedUnionTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreEqual(sourceHashCode, otherHashCode);
+        ClassicAssert.AreEqual(sourceHashCode, otherHashCode);
     }
 
     [Test]
@@ -56,7 +56,7 @@ partial class TaggedUnionTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        ClassicAssert.AreNotEqual(sourceHashCode, otherHashCode);
     }
 
     [Test]
@@ -70,7 +70,7 @@ partial class TaggedUnionTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        ClassicAssert.AreNotEqual(sourceHashCode, otherHashCode);
     }
 
     [Test]
@@ -82,7 +82,7 @@ partial class TaggedUnionTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        ClassicAssert.AreNotEqual(sourceHashCode, otherHashCode);
     }
 
     [Test]
@@ -104,7 +104,7 @@ partial class TaggedUnionTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        ClassicAssert.AreNotEqual(sourceHashCode, otherHashCode);
     }
 
     [Test]
@@ -118,7 +118,7 @@ partial class TaggedUnionTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        ClassicAssert.AreNotEqual(sourceHashCode, otherHashCode);
     }
 
     [Test]
@@ -132,7 +132,7 @@ partial class TaggedUnionTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        ClassicAssert.AreNotEqual(sourceHashCode, otherHashCode);
     }
 
     [Test]
@@ -144,6 +144,6 @@ partial class TaggedUnionTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        ClassicAssert.AreNotEqual(sourceHashCode, otherHashCode);
     }
 }

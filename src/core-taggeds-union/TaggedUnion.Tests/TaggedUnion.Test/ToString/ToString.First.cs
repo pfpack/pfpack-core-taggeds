@@ -22,7 +22,7 @@ partial class TaggedUnionTest
             typeof(StructType).Name,
             string.Empty);
 
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -39,7 +39,7 @@ partial class TaggedUnionTest
             typeof(RefType).Name,
             string.Empty);
 
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -66,7 +66,7 @@ partial class TaggedUnionTest
             typeof(RefType).Name,
             resultOfValueToString);
 
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -95,7 +95,7 @@ partial class TaggedUnionTest
             typeof(RefType).Name,
             sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -113,7 +113,7 @@ partial class TaggedUnionTest
             typeof(RefType).Name,
             expectedDecimalSubstr);
 
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 
     private static IEnumerable<object[]> ToString_SourceIsFirst_DecimalPoint_TestCaseSource()

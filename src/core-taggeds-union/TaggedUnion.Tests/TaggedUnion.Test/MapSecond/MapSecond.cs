@@ -13,7 +13,7 @@ partial class TaggedUnionTest
         TaggedUnion<RefType, StructType> source)
     {
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.MapSecond<object>(null!));
-        Assert.AreEqual("mapSecond", ex!.ParamName);
+        ClassicAssert.AreEqual("mapSecond", ex!.ParamName);
     }
 
     [Test]
@@ -26,7 +26,7 @@ partial class TaggedUnionTest
         var actual = source.MapSecond(_ => mappedValue);
 
         var expected = TaggedUnion<StructType?, RefType>.First(sourceValue);
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -39,7 +39,7 @@ partial class TaggedUnionTest
         var actual = source.MapSecond(_ => mappedValue);
 
         var expected = TaggedUnion<StructType, RefType>.Second(mappedValue);
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -51,6 +51,6 @@ partial class TaggedUnionTest
         var actual = source.MapSecond(_ => mappedValue);
 
         var expected = default(TaggedUnion<StructType, int>);
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 }

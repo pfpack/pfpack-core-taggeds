@@ -13,6 +13,6 @@ partial class TaggedUnionTest
         object? sourceValue)
     {
         TaggedUnion<object?, RefType> taggedUnion = sourceValue;
-        Assert.True(taggedUnion.IsInitialized);
+        ClassicAssert.True(taggedUnion.IsInitialized);
     }
 }

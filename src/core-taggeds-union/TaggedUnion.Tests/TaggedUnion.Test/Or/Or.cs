@@ -13,7 +13,7 @@ partial class TaggedUnionTest
         TaggedUnion<RefType, StructType> source)
     {
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Or(null!));
-        Assert.AreEqual("otherFactory", ex!.ParamName);
+        ClassicAssert.AreEqual("otherFactory", ex!.ParamName);
     }
 
     [Test]
@@ -23,7 +23,7 @@ partial class TaggedUnionTest
         var other = TaggedUnion<object, StructType>.Second(SomeTextStructType);
 
         var actual = source.Or(() => other);
-        Assert.AreEqual(source, actual);
+        ClassicAssert.AreEqual(source, actual);
     }
 
     [Test]
@@ -33,7 +33,7 @@ partial class TaggedUnionTest
         var other = TaggedUnion<object, RefType>.Second(PlusFifteenIdRefType);
 
         var actual = source.Or(() => other);
-        Assert.AreEqual(source, actual);
+        ClassicAssert.AreEqual(source, actual);
     }
 
     [Test]
@@ -43,6 +43,6 @@ partial class TaggedUnionTest
         var other = TaggedUnion<object, StructType>.First(new object());
 
         var actual = source.Or(() => other);
-        Assert.AreEqual(other, actual);
+        ClassicAssert.AreEqual(other, actual);
     }
 }

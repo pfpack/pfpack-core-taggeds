@@ -14,7 +14,7 @@ partial class TaggedUnionTest
         TaggedUnion<StructType?, RefType> source = sourceValue;
 
         var actual = source.SecondOrThrow();
-        Assert.AreEqual(sourceValue, actual);
+        ClassicAssert.AreEqual(sourceValue, actual);
     }
 
     [Test]

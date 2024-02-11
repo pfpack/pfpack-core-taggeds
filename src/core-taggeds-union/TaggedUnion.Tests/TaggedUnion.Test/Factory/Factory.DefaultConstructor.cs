@@ -10,27 +10,27 @@ partial class TaggedUnionTest
     public void DefaultConstructor_ExpectIsFirstGetsFalse()
     {
         var taggedUnion = new TaggedUnion<RefType?, StructType>();
-        Assert.False(taggedUnion.IsFirst);
+        ClassicAssert.False(taggedUnion.IsFirst);
     }
 
     [Test]
     public void DefaultConstructor_ExpectIsSecondGetsFalse()
     {
         var taggedUnion = new TaggedUnion<StructType?, RefType>();
-        Assert.False(taggedUnion.IsSecond);
+        ClassicAssert.False(taggedUnion.IsSecond);
     }
 
     [Test]
     public void DefaultConstructor_ExpectIsNoneGetsTrue()
     {
         var taggedUnion = new TaggedUnion<RefType?, StructType?>();
-        Assert.True(taggedUnion.IsNone);
+        ClassicAssert.True(taggedUnion.IsNone);
     }
 
     [Test]
     public void DefaultConstructor_ExpectIsNotNoneGetsFalse()
     {
         var taggedUnion = new TaggedUnion<RefType?, StructType?>();
-        Assert.False(taggedUnion.IsNotNone);
+        ClassicAssert.False(taggedUnion.IsNotNone);
     }
 }

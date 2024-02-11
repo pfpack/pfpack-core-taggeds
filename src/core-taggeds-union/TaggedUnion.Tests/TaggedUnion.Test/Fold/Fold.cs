@@ -13,7 +13,7 @@ partial class TaggedUnionTest
         var source = TaggedUnion<RefType, StructType>.First(PlusFifteenIdRefType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Fold(null!, _ => new object()));
-        Assert.AreEqual("mapFirst", ex!.ParamName);
+        ClassicAssert.AreEqual("mapFirst", ex!.ParamName);
     }
 
     [Test]
@@ -22,7 +22,7 @@ partial class TaggedUnionTest
         var source = TaggedUnion<RefType, StructType>.First(PlusFifteenIdRefType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Fold(_ => new object(), null!));
-        Assert.AreEqual("mapSecond", ex!.ParamName);
+        ClassicAssert.AreEqual("mapSecond", ex!.ParamName);
     }
 
     [Test]
@@ -34,7 +34,7 @@ partial class TaggedUnionTest
         var second = MinusFifteenIdRefType;
 
         var actual = source.Fold(_ => first, _ => second);
-        Assert.IsNull(actual);
+        ClassicAssert.IsNull(actual);
     }
 
     [Test]
@@ -46,7 +46,7 @@ partial class TaggedUnionTest
         var second = NullTextStructType;
 
         var actual = source.Fold(_ => first, _ => second);
-        Assert.AreEqual(first, actual);
+        ClassicAssert.AreEqual(first, actual);
     }
 
     [Test]
@@ -58,6 +58,6 @@ partial class TaggedUnionTest
         var second = ZeroIdRefType;
 
         var actual = source.Fold(_ => first, _ => second);
-        Assert.AreEqual(second, actual);
+        ClassicAssert.AreEqual(second, actual);
     }
 }

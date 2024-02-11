@@ -13,7 +13,7 @@ partial class TaggedUnionTest
         var source = TaggedUnion<StructType, RefType>.First(SomeTextStructType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FirstOrThrow(null!));
-        Assert.AreEqual("exceptionFactory", ex!.ParamName);
+        ClassicAssert.AreEqual("exceptionFactory", ex!.ParamName);
     }
 
     [Test]
@@ -25,7 +25,7 @@ partial class TaggedUnionTest
         var resultException = new SomeException();
 
         var actual = source.FirstOrThrow(() => resultException);
-        Assert.AreEqual(sourceValue, actual);
+        ClassicAssert.AreEqual(sourceValue, actual);
     }
 
     [Test]
@@ -34,10 +34,10 @@ partial class TaggedUnionTest
         var source = TaggedUnion<StructType, object?>.Second(new object());
         var resultException = new SomeException();
 
-        var actualExcepption = Assert.Throws<SomeException>(
+        var actualException = Assert.Throws<SomeException>(
             () => _ = source.FirstOrThrow(() => resultException));
 
-        Assert.AreSame(resultException, actualExcepption);
+        ClassicAssert.AreSame(resultException, actualException);
     }
 
     [Test]
@@ -49,6 +49,6 @@ partial class TaggedUnionTest
         var actualException = Assert.Throws<SomeException>(
             () => _ = source.FirstOrThrow(() => resultException));
 
-        Assert.AreSame(resultException, actualException);
+        ClassicAssert.AreSame(resultException, actualException);
     }
 }

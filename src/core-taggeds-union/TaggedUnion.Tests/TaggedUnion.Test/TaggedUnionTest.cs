@@ -14,7 +14,7 @@ public sealed partial class TaggedUnionTest
         string? actual,
         StringComparison comparison = StringComparison.Ordinal)
     {
-        Assert.NotNull(actual);
-        Assert.True(actual!.Contains(expectedSubstring, comparison));
+        ClassicAssert.NotNull(actual);
+        ClassicAssert.True(actual!.Contains(expectedSubstring, comparison));
     }
 }

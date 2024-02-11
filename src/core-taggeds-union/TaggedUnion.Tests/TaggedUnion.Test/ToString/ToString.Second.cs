@@ -22,7 +22,7 @@ partial class TaggedUnionTest
             typeof(StructType?).Name,
             string.Empty);
 
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -39,7 +39,7 @@ partial class TaggedUnionTest
             typeof(StubToStringType).Name,
             string.Empty);
 
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -66,7 +66,7 @@ partial class TaggedUnionTest
             typeof(StubToStringType).Name,
             resultOfValueToString);
 
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -95,7 +95,7 @@ partial class TaggedUnionTest
             typeof(object).Name,
             sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 
     [Test]
@@ -113,7 +113,7 @@ partial class TaggedUnionTest
             typeof(object).Name,
             expectedDecimalSubstr);
 
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 
     private static IEnumerable<object[]> ToString_SourceIsSecond_DecimalPoint_TestCaseSource()

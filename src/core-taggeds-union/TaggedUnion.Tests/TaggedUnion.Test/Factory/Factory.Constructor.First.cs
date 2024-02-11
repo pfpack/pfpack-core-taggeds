@@ -13,14 +13,14 @@ partial class TaggedUnionTest
         object? sourceValue)
     {
         var taggedUnion = new TaggedUnion<object?, StructType>(sourceValue);
-        Assert.True(taggedUnion.IsFirst);
+        ClassicAssert.True(taggedUnion.IsFirst);
     }
 
     [Test]
     public void First_Constructor_ExpectIsSecondGetsFalse()
     {
         var taggedUnion = new TaggedUnion<StructType, RefType>(SomeTextStructType);
-        Assert.False(taggedUnion.IsSecond);
+        ClassicAssert.False(taggedUnion.IsSecond);
     }
 
     [Test]
@@ -29,7 +29,7 @@ partial class TaggedUnionTest
         object? sourceValue)
     {
         var taggedUnion = new TaggedUnion<object?, RefType>(sourceValue);
-        Assert.False(taggedUnion.IsNone);
+        ClassicAssert.False(taggedUnion.IsNone);
     }
 
     [Test]
@@ -38,6 +38,6 @@ partial class TaggedUnionTest
         object? sourceValue)
     {
         var taggedUnion = new TaggedUnion<object?, RefType>(sourceValue);
-        Assert.True(taggedUnion.IsNotNone);
+        ClassicAssert.True(taggedUnion.IsNotNone);
     }
 }

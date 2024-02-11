@@ -20,6 +20,6 @@ partial class TaggedUnionTest
             typeof(StructType).Name,
             typeof(RefType).Name);
 
-        Assert.AreEqual(expected, actual);
+        ClassicAssert.AreEqual(expected, actual);
     }
 }

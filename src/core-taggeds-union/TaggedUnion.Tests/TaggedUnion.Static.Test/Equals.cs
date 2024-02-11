@@ -14,7 +14,7 @@ partial class TaggedUnionStaticTest
         var unionB = new TaggedUnion<StructType, RefType>();
 
         var actual = TaggedUnion.Equals(unionA, unionB);
-        Assert.True(actual);
+        ClassicAssert.True(actual);
     }
 
     [Test]
@@ -26,7 +26,7 @@ partial class TaggedUnionStaticTest
         var unionB = TaggedUnion<object?, StructType>.First(sourceValue);
 
         var actual = TaggedUnion.Equals(unionA, unionB);
-        Assert.True(actual);
+        ClassicAssert.True(actual);
     }
 
     [Test]
@@ -47,7 +47,7 @@ partial class TaggedUnionStaticTest
         var unionB = (TaggedUnion<RefType, StructType>)bValue;
 
         var actual = TaggedUnion.Equals(unionA, unionB);
-        Assert.True(actual);
+        ClassicAssert.True(actual);
     }
 
     [Test]
@@ -57,7 +57,7 @@ partial class TaggedUnionStaticTest
         var unionB = TaggedUnion<RefType?, StructType>.First(null);
 
         var actual = TaggedUnion.Equals(unionA, unionB);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -67,7 +67,7 @@ partial class TaggedUnionStaticTest
         var unionB = TaggedUnion<object, StructType>.Second(default);
 
         var actual = TaggedUnion.Equals(unionA, unionB);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -77,7 +77,7 @@ partial class TaggedUnionStaticTest
         var unionB = default(TaggedUnion<RefType, StructType>);
 
         var actual = TaggedUnion.Equals(unionA, unionB);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -87,7 +87,7 @@ partial class TaggedUnionStaticTest
         var unionB = TaggedUnion<StructType, StructType>.Second(SomeTextStructType);
 
         var actual = TaggedUnion.Equals(unionA, unionB);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -97,7 +97,7 @@ partial class TaggedUnionStaticTest
         var unionB = default(TaggedUnion<StructType, RefType>);
 
         var actual = TaggedUnion.Equals(unionA, unionB);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -107,7 +107,7 @@ partial class TaggedUnionStaticTest
         var unionB = TaggedUnion<RefType, RefType>.First(ZeroIdRefType);
 
         var actual = TaggedUnion.Equals(unionA, unionB);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -128,7 +128,7 @@ partial class TaggedUnionStaticTest
         var unionB = TaggedUnion<RefType, StructType?>.First(bValue);
 
         var actual = TaggedUnion.Equals(unionA, unionB);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -147,6 +147,6 @@ partial class TaggedUnionStaticTest
         var unionB = TaggedUnion<RefType, StructType>.Second(bValue);
 
         var actual = TaggedUnion.Equals(unionA, unionB);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 }

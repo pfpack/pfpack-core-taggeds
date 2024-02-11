@@ -14,7 +14,7 @@ partial class TaggedUnionTest
         var other = new TaggedUnion<StructType, RefType>();
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        ClassicAssert.True(actual);
     }
 
     [Test]
@@ -24,7 +24,7 @@ partial class TaggedUnionTest
         var other = TaggedUnion<StructType?, RefType>.First(null);
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        ClassicAssert.True(actual);
     }
 
     [Test]
@@ -34,7 +34,7 @@ partial class TaggedUnionTest
         var other = (TaggedUnion<StructType, RefType>)MinusFifteenIdRefType;
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        ClassicAssert.True(actual);
     }
 
     [Test]
@@ -44,7 +44,7 @@ partial class TaggedUnionTest
         var other = TaggedUnion<RefType?, StructType>.First(null);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -54,7 +54,7 @@ partial class TaggedUnionTest
         var other = TaggedUnion<StructType, RefType>.Second(PlusFifteenIdRefType);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -64,7 +64,7 @@ partial class TaggedUnionTest
         var other = default(TaggedUnion<RefType, StructType>);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -74,7 +74,7 @@ partial class TaggedUnionTest
         var other = TaggedUnion<RefType?, RefType?>.Second(null);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -84,7 +84,7 @@ partial class TaggedUnionTest
         var other = default(TaggedUnion<StructType, RefType>);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -94,7 +94,7 @@ partial class TaggedUnionTest
         var other = TaggedUnion<StructType, StructType>.First(default);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -115,7 +115,7 @@ partial class TaggedUnionTest
         var other = TaggedUnion<RefType?, StructType?>.First(otherValue);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 
     [Test]
@@ -130,6 +130,6 @@ partial class TaggedUnionTest
         var other = TaggedUnion<RefType, StructType?>.Second(null);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        ClassicAssert.False(actual);
     }
 }

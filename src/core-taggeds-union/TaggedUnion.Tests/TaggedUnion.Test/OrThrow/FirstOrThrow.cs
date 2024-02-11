@@ -15,7 +15,7 @@ partial class TaggedUnionTest
         var source = TaggedUnion<object?, StructType>.First(sourceValue);
 
         var actual = source.FirstOrThrow();
-        Assert.AreEqual(sourceValue, actual);
+        ClassicAssert.AreEqual(sourceValue, actual);
     }
 
     [Test]

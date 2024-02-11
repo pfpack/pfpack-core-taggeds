@@ -20,7 +20,7 @@ partial class TaggedUnionTest
             async () => _ = await source.FoldValueAsync(
                 null!, _ => ValueTask.FromResult(second), () => ValueTask.FromResult(other)));
 
-        Assert.AreEqual("mapFirstAsync", ex!.ParamName);
+        ClassicAssert.AreEqual("mapFirstAsync", ex!.ParamName);
     }
 
     [Test]
@@ -35,7 +35,7 @@ partial class TaggedUnionTest
             async () => _ = await source.FoldValueAsync(
                 _ => ValueTask.FromResult(first), null!, () => ValueTask.FromResult(other)));
 
-        Assert.AreEqual("mapSecondAsync", ex!.ParamName);
+        ClassicAssert.AreEqual("mapSecondAsync", ex!.ParamName);
     }
 
     [Test]
@@ -51,7 +51,7 @@ partial class TaggedUnionTest
             async () => _ = await source.FoldValueAsync(
                 _ => ValueTask.FromResult(first), _ => ValueTask.FromResult(second), otherFactoryAsync));
 
-        Assert.AreEqual("otherFactoryAsync", ex!.ParamName);
+        ClassicAssert.AreEqual("otherFactoryAsync", ex!.ParamName);
     }
 
     [Test]
@@ -68,7 +68,7 @@ partial class TaggedUnionTest
             _ => ValueTask.FromResult(second),
             () => ValueTask.FromResult(other));
 
-        Assert.AreEqual(other, actual);
+        ClassicAssert.AreEqual(other, actual);
     }
 
     [Test]
@@ -85,7 +85,7 @@ partial class TaggedUnionTest
             _ => ValueTask.FromResult(second),
             () => ValueTask.FromResult(other));
 
-        Assert.AreEqual(first, actual);
+        ClassicAssert.AreEqual(first, actual);
     }
 
     [Test]
@@ -102,6 +102,6 @@ partial class TaggedUnionTest
             _ => ValueTask.FromResult(second),
             () => ValueTask.FromResult(other));
 
-        Assert.AreEqual(second, actual);
+        ClassicAssert.AreEqual(second, actual);
     }
 }

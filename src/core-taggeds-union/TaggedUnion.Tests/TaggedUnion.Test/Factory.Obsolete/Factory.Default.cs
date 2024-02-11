@@ -11,6 +11,6 @@ partial class TaggedUnionTest
     public void Default_ExpectIsInitializedGetsFalse()
     {
         var taggedUnion = default(TaggedUnion<RefType?, StructType?>);
-        Assert.False(taggedUnion.IsInitialized);
+        ClassicAssert.False(taggedUnion.IsInitialized);
     }
 }
