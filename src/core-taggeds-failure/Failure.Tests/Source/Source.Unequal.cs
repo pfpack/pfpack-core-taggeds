@@ -1,36 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
 using PrimeFuncPack.UnitTest;
+using Xunit;
 
 namespace PrimeFuncPack.Core.Tests;
 
 partial class FailureTestSource
 {
-    public static IEnumerable<object[]> UnequalPairTestData
+    public static TheoryData<Failure<EnumType>, Failure<EnumType>> UnequalPairTestData
         =>
-        new object[][]
+        new()
         {
-            [
+            {
                 new Failure<EnumType>(),
                 new Failure<EnumType>(EnumType.One, null)
-            ],
-            [
-                default(Failure<EnumType>),
+            },
+            {
+                default,
                 new Failure<EnumType>(EnumType.Two, TestData.WhiteSpaceString)
-            ],
-            [
+            },
+            {
                 new Failure<EnumType>(EnumType.Three, null),
-                default(Failure<EnumType>)
-            ],
-            [
+                default
+            },
+            {
                 new Failure<EnumType>(EnumType.One, TestData.TabString),
                 new Failure<EnumType>()
-            ],
-            [
+            },
+            {
                 new Failure<EnumType>(EnumType.One, TestData.SomeString),
                 new Failure<EnumType>(EnumType.Two, TestData.SomeString)
-            ],
-            [
+            },
+            {
                 new Failure<EnumType>(EnumType.One, TestData.SomeString)
                 {
                     SourceException = SomeException.Instance
@@ -39,8 +39,8 @@ partial class FailureTestSource
                 {
                     SourceException = SomeException.Instance
                 }
-            ],
-            [
+            },
+            {
                 new Failure<EnumType>(EnumType.One, TestData.SomeString)
                 {
                     SourceException = new SomeException()
@@ -49,6 +49,6 @@ partial class FailureTestSource
                 {
                     SourceException = new SomeException()
                 }
-            ]
+            }
         };
 }

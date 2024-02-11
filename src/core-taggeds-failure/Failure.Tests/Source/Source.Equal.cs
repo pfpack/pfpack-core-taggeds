@@ -1,39 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
 using PrimeFuncPack.UnitTest;
+using Xunit;
 
 namespace PrimeFuncPack.Core.Tests;
 
 partial class FailureTestSource
 {
-    public static IEnumerable<object[]> EqualPairTestData
+    public static TheoryData<Failure<EnumType>, Failure<EnumType>> EqualPairTestData
         =>
-        new object[][]
+        new()
         {
-            [
+            {
                 new Failure<EnumType>(),
-                default(Failure<EnumType>)
-            ],
-            [
+                default
+            },
+            {
                 new Failure<EnumType>(),
                 new Failure<EnumType>(default, null)
-            ],
-            [
-                default(Failure<EnumType>),
+            },
+            {
+                default,
                 new Failure<EnumType>(default, string.Empty)
                 {
                     SourceException = null
                 }
-            ],
-            [
+            },
+            {
                 new Failure<EnumType>(default, null),
                 new Failure<EnumType>()
-            ],
-            [
+            },
+            {
                 new Failure<EnumType>(default, string.Empty),
-                default(Failure<EnumType>)
-            ],
-            [
+                default
+            },
+            {
                 new Failure<EnumType>(EnumType.One, null)
                 {
                     SourceException = SomeException.Instance
@@ -42,20 +42,20 @@ partial class FailureTestSource
                 {
                     SourceException = SomeException.Instance
                 }
-            ],
-            [
+            },
+            {
                 new Failure<EnumType>(EnumType.Two, string.Empty),
                 new Failure<EnumType>(EnumType.Two, null)
-            ],
-            [
+            },
+            {
                 new Failure<EnumType>(EnumType.Three, null),
                 new Failure<EnumType>(EnumType.Three, string.Empty)
-            ],
-            [
+            },
+            {
                 new Failure<EnumType>(EnumType.Zero, string.Empty),
                 new Failure<EnumType>(EnumType.Zero, string.Empty)
-            ],
-            [
+            },
+            {
                 new Failure<EnumType>(EnumType.One, TestData.SomeString)
                 {
                     SourceException = SomeException.Instance
@@ -64,6 +64,6 @@ partial class FailureTestSource
                 {
                     SourceException = SomeException.Instance
                 }
-            ]
+            }
         };
 }
