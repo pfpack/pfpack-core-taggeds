@@ -33,11 +33,11 @@ partial class FailureTestSource
             [
                 new Failure<EnumType>(EnumType.One, TestData.SomeString)
                 {
-                    SourceException = SomeException.SomeInstance
+                    SourceException = SomeException.Instance
                 },
                 new Failure<EnumType>(EnumType.One, TestData.UpperSomeString)
                 {
-                    SourceException = SomeException.SomeInstance
+                    SourceException = SomeException.Instance
                 }
             ],
             [
