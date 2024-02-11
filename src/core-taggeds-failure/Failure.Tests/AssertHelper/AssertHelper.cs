@@ -12,6 +12,6 @@ internal static class AssertHelper
     {
         Assert.StrictEqual(expected.FailureCode, actual.FailureCode);
         Assert.Equal(expected.FailureMessage, actual.FailureMessage);
-        Assert.Equal(expected.SourceException, actual.SourceException);
+        Assert.Same(expected.SourceException, actual.SourceException);
     }
 }
