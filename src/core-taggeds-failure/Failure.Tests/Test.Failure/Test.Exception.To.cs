@@ -1,7 +1,6 @@
 ﻿using System;
 using DeepEqual.Syntax;
 using PrimeFuncPack.UnitTest;
-using Xunit;
 
 namespace PrimeFuncPack.Core.Tests;
 

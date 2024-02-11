@@ -1,6 +1,5 @@
 using System;
 using PrimeFuncPack.UnitTest;
-using Xunit;
 using static PrimeFuncPack.Core.Tests.AssertHelper;
 using static PrimeFuncPack.UnitTest.TestData;
 
