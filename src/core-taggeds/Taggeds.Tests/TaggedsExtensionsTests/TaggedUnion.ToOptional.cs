@@ -15,7 +15,7 @@ partial class TaggedsExtensionsTests
         var actual = union.ToOptional();
 
         var expected = Optional.Present(sourceValue);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -25,7 +25,7 @@ partial class TaggedsExtensionsTests
         var actual = union.ToOptional();
 
         var expected = Optional.Absent<StructType>();
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -35,6 +35,6 @@ partial class TaggedsExtensionsTests
         var actual = union.ToOptional();
 
         var expected = Optional.Absent<RefType>();
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

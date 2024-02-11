@@ -20,7 +20,7 @@ partial class TaggedsExtensionsTests
         var actual = sourceOptional.ToResult();
         var expected = Result<string?, Unit>.Success(sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -31,6 +31,6 @@ partial class TaggedsExtensionsTests
         var actual = sourceOptional.ToResult();
         var expected = Result<SomeRecord, Unit>.Failure(Unit.Value);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

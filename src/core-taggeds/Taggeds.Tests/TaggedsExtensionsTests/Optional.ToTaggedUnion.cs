@@ -15,7 +15,7 @@ partial class TaggedsExtensionsTests
         var actual = optional.ToTaggedUnion();
 
         var expected = TaggedUnion<object?, Unit>.First(sourceValue);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -25,6 +25,6 @@ partial class TaggedsExtensionsTests
         var actual = optional.ToTaggedUnion();
 
         var expected = TaggedUnion<RefType, Unit>.Second(Unit.Value);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

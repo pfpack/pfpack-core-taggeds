@@ -6,76 +6,76 @@ using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests;
 
-    internal static class TestDataSource
-    {
-        public static IEnumerable<object[]> SuccessNullTestSource
-            =>
-            new Result<RefType?, StructType>[]
-            {
+internal static class TestDataSource
+{
+    public static IEnumerable<object[]> SuccessNullTestSource
+        =>
+        new Result<RefType?, StructType>[]
+        {
                 Result.Success<RefType?>(null).With<StructType>(),
                 Result.Success<RefType?>(null),
                 Result<RefType?, StructType>.Success(null),
-                new Result<RefType?, StructType>(null),
+                new(null),
                 null
-            }
-            .ToTestSource();
+        }
+        .ToTestSource();
 
-        public static IEnumerable<object[]> SuccessPlusFifteenIdRefTypeTestSource
-            =>
-            new Result<RefType, StructType>[]
-            {
+    public static IEnumerable<object[]> SuccessPlusFifteenIdRefTypeTestSource
+        =>
+        new Result<RefType, StructType>[]
+        {
                 Result.Success(PlusFifteenIdRefType).With<StructType>(),
                 Result.Success(PlusFifteenIdRefType),
                 Result<RefType, StructType>.Success(PlusFifteenIdRefType),
-                new Result<RefType, StructType>(PlusFifteenIdRefType),
+                new(PlusFifteenIdRefType),
                 PlusFifteenIdRefType
-            }
-            .ToTestSource();
+        }
+        .ToTestSource();
 
-        public static IEnumerable<object[]> FailureDefaultTestSource
-            =>
-            new Result<RefType, StructType>[]
-            {
+    public static IEnumerable<object[]> FailureDefaultTestSource
+        =>
+        new Result<RefType, StructType>[]
+        {
                 default,
-                new Result<RefType, StructType>(),
-                new Result<RefType, StructType>(default(StructType)),
+                new(),
+                new(default(StructType)),
                 Result.Failure(default(StructType)),
                 Result.Failure(default(StructType)).With<RefType>(),
                 Result<RefType, StructType>.Failure(default)
-            }
-            .ToTestSource();
-        
-        public static IEnumerable<object[]> FailureSomeTextStructTypeTestSource
-            =>
-            new Result<RefType, StructType>[]
-            {
-                new Result<RefType, StructType>(SomeTextStructType),
+        }
+        .ToTestSource();
+
+    public static IEnumerable<object[]> FailureSomeTextStructTypeTestSource
+        =>
+        new Result<RefType, StructType>[]
+        {
+                new(SomeTextStructType),
                 Result.Failure(SomeTextStructType),
                 Result.Failure(SomeTextStructType).With<RefType>(),
                 Result<RefType, StructType>.Failure(SomeTextStructType)
-            }
-            .ToTestSource();
+        }
+        .ToTestSource();
 
-        public static IEnumerable<object?[]> ObjectNullableTestSource
-            =>
-            new object?[]
-            {
+    public static IEnumerable<object?[]> ObjectNullableTestSource
+        =>
+        new object?[]
+        {
                 null,
-                new object(),
+                new(),
                 MinusFifteen,
                 PlusFifteenIdRefType,
                 SomeTextStructType
-            }
-            .ToNullableTestSource();
-        
-        private static IEnumerable<object[]> ToTestSource<T>(
-            this IEnumerable<T> source)
-            where T : notnull
-            =>
-            source.Select(
-                item => new object[] { item });
+        }
+        .ToNullableTestSource();
 
-        private static IEnumerable<object?[]> ToNullableTestSource(this IEnumerable<object?> source)
-            =>
-            source.Select(v => new[] { v });
-    }
+    private static IEnumerable<object[]> ToTestSource<T>(
+        this IEnumerable<T> source)
+        where T : notnull
+        =>
+        source.Select(
+            item => new object[] { item });
+
+    private static IEnumerable<object?[]> ToNullableTestSource(this IEnumerable<object?> source)
+        =>
+        source.Select(v => new[] { v });
+}
