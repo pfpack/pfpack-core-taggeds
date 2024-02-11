@@ -12,11 +12,11 @@ internal static class TestDataSource
         =>
         new Result<RefType?, StructType>[]
         {
-                Result.Success<RefType?>(null).With<StructType>(),
-                Result.Success<RefType?>(null),
-                Result<RefType?, StructType>.Success(null),
-                new(null),
-                null
+            Result.Success<RefType?>(null).With<StructType>(),
+            Result.Success<RefType?>(null),
+            Result<RefType?, StructType>.Success(null),
+            new(null),
+            null
         }
         .ToTestSource();
 
@@ -24,11 +24,11 @@ internal static class TestDataSource
         =>
         new Result<RefType, StructType>[]
         {
-                Result.Success(PlusFifteenIdRefType).With<StructType>(),
-                Result.Success(PlusFifteenIdRefType),
-                Result<RefType, StructType>.Success(PlusFifteenIdRefType),
-                new(PlusFifteenIdRefType),
-                PlusFifteenIdRefType
+            Result.Success(PlusFifteenIdRefType).With<StructType>(),
+            Result.Success(PlusFifteenIdRefType),
+            Result<RefType, StructType>.Success(PlusFifteenIdRefType),
+            new(PlusFifteenIdRefType),
+            PlusFifteenIdRefType
         }
         .ToTestSource();
 
@@ -36,12 +36,12 @@ internal static class TestDataSource
         =>
         new Result<RefType, StructType>[]
         {
-                default,
-                new(),
-                new(default(StructType)),
-                Result.Failure(default(StructType)),
-                Result.Failure(default(StructType)).With<RefType>(),
-                Result<RefType, StructType>.Failure(default)
+            default,
+            new(),
+            new(default(StructType)),
+            Result.Failure(default(StructType)),
+            Result.Failure(default(StructType)).With<RefType>(),
+            Result<RefType, StructType>.Failure(default)
         }
         .ToTestSource();
 
@@ -49,10 +49,10 @@ internal static class TestDataSource
         =>
         new Result<RefType, StructType>[]
         {
-                new(SomeTextStructType),
-                Result.Failure(SomeTextStructType),
-                Result.Failure(SomeTextStructType).With<RefType>(),
-                Result<RefType, StructType>.Failure(SomeTextStructType)
+            new(SomeTextStructType),
+            Result.Failure(SomeTextStructType),
+            Result.Failure(SomeTextStructType).With<RefType>(),
+            Result<RefType, StructType>.Failure(SomeTextStructType)
         }
         .ToTestSource();
 
@@ -60,11 +60,11 @@ internal static class TestDataSource
         =>
         new object?[]
         {
-                null,
-                new(),
-                MinusFifteen,
-                PlusFifteenIdRefType,
-                SomeTextStructType
+            null,
+            new(),
+            MinusFifteen,
+            PlusFifteenIdRefType,
+            SomeTextStructType
         }
         .ToNullableTestSource();
 
