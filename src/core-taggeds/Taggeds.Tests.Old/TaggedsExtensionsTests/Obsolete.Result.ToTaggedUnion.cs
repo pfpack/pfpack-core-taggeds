@@ -6,6 +6,7 @@ namespace PrimeFuncPack.Core.Tests;
 
 partial class TaggedUnionResultExtensions
 {
+    [Obsolete]
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureDefaultTestSource))]
     public void Result_ToTaggedUnion_SourceResultIsDefault_ExpectUnionSecondOfDefaultValue(
@@ -17,6 +18,7 @@ partial class TaggedUnionResultExtensions
         Assert.That(actual, Is.EqualTo(expected));
     }
 
+    [Obsolete]
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.FailureSomeTextStructTypeTestSource))]
     public void Result_ToTaggedUnion_SourceResultIsFailure_ExpectUnionSecondOfSourceFailureValue(
@@ -28,6 +30,7 @@ partial class TaggedUnionResultExtensions
         Assert.That(actual, Is.EqualTo(expected));
     }
 
+    [Obsolete]
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessNullTestSource))]
     public void Result_ToTaggedUnion_SourceResultIsSuccessAndSourceValueIsNull_ExpectUnionFirstOfNullValue(
@@ -39,6 +42,7 @@ partial class TaggedUnionResultExtensions
         Assert.That(actual, Is.EqualTo(expected));
     }
 
+    [Obsolete]
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.SuccessPlusFifteenIdRefTypeTestSource))]
     public void Result_ToTaggedUnion_SourceResultIsSuccessAndSourceValueIsNotNull_ExpectUnionFirstOfSourceSuccessValue(

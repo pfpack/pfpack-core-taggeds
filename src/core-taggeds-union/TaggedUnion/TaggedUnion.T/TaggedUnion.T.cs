@@ -1,5 +1,6 @@
 ﻿namespace System;
 
+[Obsolete("TaggedUnion is obsolete and will be removed in Taggeds v3.0.", error: false)]
 public readonly partial struct TaggedUnion<TFirst, TSecond> : IEquatable<TaggedUnion<TFirst, TSecond>>
 {
     private readonly Tag tag;

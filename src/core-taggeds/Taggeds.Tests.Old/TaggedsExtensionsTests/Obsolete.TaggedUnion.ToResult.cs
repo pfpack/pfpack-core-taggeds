@@ -6,6 +6,7 @@ namespace PrimeFuncPack.Core.Tests;
 
 partial class TaggedUnionResultExtensions
 {
+    [Obsolete]
     [Test]
     public void TaggedUnion_ToResult_SourceUnionIsDefault_ExpectDefaultResult()
     {
@@ -17,6 +18,7 @@ partial class TaggedUnionResultExtensions
         Assert.That(actual, Is.EqualTo(expected));
     }
 
+    [Obsolete]
     [Test]
     public void TaggedUnion_ToResult_SourceUnionIsSecond_ExpectFailureResult()
     {
@@ -29,6 +31,7 @@ partial class TaggedUnionResultExtensions
         Assert.That(actual, Is.EqualTo(expected));
     }
 
+    [Obsolete]
     [Test]
     public void TaggedUnion_ToResult_SourceUnionIsFirstAndSourceValueIsNull_ExpectSuccessResultOfNullValue()
     {
@@ -40,6 +43,7 @@ partial class TaggedUnionResultExtensions
         Assert.That(actual, Is.EqualTo(expected));
     }
 
+    [Obsolete]
     [Test]
     public void TaggedUnion_ToResult_SourceUnionIsFirstAndSourceValueIsNotNull_ExpectSuccessResultOfSourceValue()
     {

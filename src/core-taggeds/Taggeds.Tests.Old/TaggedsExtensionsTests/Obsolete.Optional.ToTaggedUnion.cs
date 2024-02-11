@@ -5,6 +5,7 @@ namespace PrimeFuncPack.Core.Tests;
 
 partial class TaggedsExtensionsTests
 {
+    [Obsolete]
     [Test]
     [TestCaseSource(typeof(TestDataSource), nameof(TestDataSource.ObjectNullableTestSource))]
     public void Optional_ToTaggedUnion_OptionalIsPresent_ExpectActualIsFirst(
@@ -17,6 +18,7 @@ partial class TaggedsExtensionsTests
         Assert.That(actual, Is.EqualTo(expected));
     }
 
+    [Obsolete]
     [Test]
     public void Optional_ToTaggedUnion_OptionalIsAbsent_ExpectActualIsSecond()
     {
