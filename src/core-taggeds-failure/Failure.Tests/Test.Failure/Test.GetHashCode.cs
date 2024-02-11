@@ -1,6 +1,5 @@
 using System;
 using PrimeFuncPack.UnitTest;
-using Xunit;
 using static PrimeFuncPack.UnitTest.TestData;
 
 namespace PrimeFuncPack.Core.Tests;
@@ -15,7 +14,7 @@ partial class FailureTest
         var firstHashCode = first.GetHashCode();
         var secondHashCode = second.GetHashCode();
 
-        Assert.Equal(firstHashCode, secondHashCode);
+        Assert.StrictEqual(firstHashCode, secondHashCode);
     }
 
     [Fact]
@@ -27,7 +26,7 @@ partial class FailureTest
         var firstHashCode = first.GetHashCode();
         var secondHashCode = second.GetHashCode();
 
-        Assert.NotEqual(firstHashCode, secondHashCode);
+        Assert.NotStrictEqual(firstHashCode, secondHashCode);
     }
 
     [Theory]
@@ -38,6 +37,6 @@ partial class FailureTest
         var firstHashCode = first.GetHashCode();
         var secondHashCode = second.GetHashCode();
 
-        Assert.NotEqual(firstHashCode, secondHashCode);
+        Assert.NotStrictEqual(firstHashCode, secondHashCode);
     }
 }

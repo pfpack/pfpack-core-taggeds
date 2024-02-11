@@ -1,78 +1,67 @@
 ﻿using System;
-using System.Collections.Generic;
 using PrimeFuncPack.UnitTest;
 
 namespace PrimeFuncPack.Core.Tests;
 
 partial class FailureTestSource
 {
-    public static IEnumerable<object[]> EqualPairTestData
+    public static TheoryData<Failure<EnumType>, Failure<EnumType>> EqualPairTestData
         =>
-        new[]
+        new()
         {
-            new object[]
             {
                 new Failure<EnumType>(),
-                default(Failure<EnumType>)
+                default
             },
-            new object[]
             {
                 new Failure<EnumType>(),
                 new Failure<EnumType>(default, null)
             },
-            new object[]
             {
-                default(Failure<EnumType>),
+                default,
                 new Failure<EnumType>(default, string.Empty)
                 {
                     SourceException = null
                 }
             },
-            new object[]
             {
                 new Failure<EnumType>(default, null),
                 new Failure<EnumType>()
             },
-            new object[]
             {
                 new Failure<EnumType>(default, string.Empty),
-                default(Failure<EnumType>)
+                default
             },
-            new object[]
             {
                 new Failure<EnumType>(EnumType.One, null)
                 {
-                    SourceException = SomeException.SomeInstance
+                    SourceException = SomeException.Instance
                 },
                 new Failure<EnumType>(EnumType.One, null)
                 {
-                    SourceException = SomeException.SomeInstance
+                    SourceException = SomeException.Instance
                 }
             },
-            new object[]
             {
                 new Failure<EnumType>(EnumType.Two, string.Empty),
                 new Failure<EnumType>(EnumType.Two, null)
             },
-            new object[]
             {
                 new Failure<EnumType>(EnumType.Three, null),
                 new Failure<EnumType>(EnumType.Three, string.Empty)
             },
-            new object[]
             {
                 new Failure<EnumType>(EnumType.Zero, string.Empty),
                 new Failure<EnumType>(EnumType.Zero, string.Empty)
             },
-            new object[]
             {
                 new Failure<EnumType>(EnumType.One, TestData.SomeString)
                 {
-                    SourceException = SomeException.SomeInstance
+                    SourceException = SomeException.Instance
                 },
                 new Failure<EnumType>(EnumType.One, TestData.SomeString)
                 {
-                    SourceException = SomeException.SomeInstance
+                    SourceException = SomeException.Instance
                 }
             }
         };

@@ -6,10 +6,6 @@ internal static partial class FailureTestSource
 {
     private sealed class SomeException : Exception
     {
-        public static readonly SomeException SomeInstance;
-
-        static SomeException()
-            =>
-            SomeInstance = new();
+        internal static SomeException Instance { get; } = new();
     }
 }

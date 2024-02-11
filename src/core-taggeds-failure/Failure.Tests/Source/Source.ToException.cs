@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
 using PrimeFuncPack.UnitTest;
 
@@ -7,36 +6,30 @@ namespace PrimeFuncPack.Core.Tests;
 
 partial class FailureTestSource
 {
-    public static IEnumerable<object[]> ToExceptionTestData
+    public static TheoryData<Failure<EnumType>, Failure<EnumType>.Exception> ToExceptionTestData
         =>
-        new[]
+        new()
         {
-            new object[]
             {
-                default(Failure<EnumType>),
+                default,
                 InnerCreate(default(EnumType), null, null)
             },
-            new object[]
             {
                 new Failure<EnumType>(EnumType.One, null),
                 InnerCreate(EnumType.One, null, null)
             },
-            new object[]
             {
                 new Failure<EnumType>(EnumType.Two, string.Empty),
                 InnerCreate(EnumType.Two, null, null)
             },
-            new object[]
             {
                 new Failure<EnumType>(EnumType.Zero, TestData.WhiteSpaceString),
                 InnerCreate(EnumType.Zero, TestData.WhiteSpaceString, null)
             },
-            new object[]
             {
                 new Failure<EnumType>(EnumType.Two, TestData.SomeString),
                 InnerCreate(EnumType.Two, TestData.SomeString, null)
             },
-            new object[]
             {
                 new Failure<EnumType>(EnumType.Three, null)
                 {
@@ -44,7 +37,6 @@ partial class FailureTestSource
                 },
                 InnerCreate(EnumType.Three, null, new InvalidOperationException("Some error message"))
             },
-            new object[]
             {
                 new Failure<EnumType>(EnumType.One, string.Empty)
                 {
@@ -52,7 +44,6 @@ partial class FailureTestSource
                 },
                 InnerCreate(EnumType.One, null, new("Some Exception"))
             },
-            new object[]
             {
                 new Failure<EnumType>(EnumType.One, TestData.MixedWhiteSpacesString)
                 {
@@ -60,7 +51,6 @@ partial class FailureTestSource
                 },
                 InnerCreate(EnumType.One, TestData.MixedWhiteSpacesString, new("Some Exception"))
             },
-            new object[]
             {
                 new Failure<EnumType>(EnumType.Two, TestData.AnotherString)
                 {
@@ -78,9 +68,9 @@ partial class FailureTestSource
 
         var constructor = typeof(Failure<TFailureCode>.Exception).GetConstructor(
             bindingAttr: BindingFlags.NonPublic | BindingFlags.Instance,
-            types: new[] { typeof(TFailureCode), typeof(string), typeof(Exception) })
+            types: [typeof(TFailureCode), typeof(string), typeof(Exception)])
             ?? throw new InvalidOperationException($"Required constructor in type {type} was not found");
 
-        return (Failure<TFailureCode>.Exception)constructor.Invoke(new object?[] { failureCode, message, innerException });
+        return (Failure<TFailureCode>.Exception)constructor.Invoke([failureCode, message, innerException]);
     }
 }
