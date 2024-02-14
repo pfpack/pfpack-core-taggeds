@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using PrimeFuncPack.UnitTest;
+﻿using PrimeFuncPack.UnitTest;
 using System;
 using System.Linq;
 
