@@ -62,6 +62,12 @@ jobs:
     - name: Pack Optional
       run: dotnet pack ./src/*/*/Optional.csproj --no-restore -o ~/nuget  -c Release
 
+    - name: Restore Optional.Tests.Old
+      run: dotnet restore ./src/*/*/Optional.Tests.Old.csproj
+
+    - name: Test Optional.Tests.Old
+      run: dotnet test ./src/*/*/Optional.Tests.Old.csproj --no-restore  -c Release
+
     - name: Restore Optional.Tests
       run: dotnet restore ./src/*/*/Optional.Tests.csproj
 
