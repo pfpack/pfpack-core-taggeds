@@ -16,7 +16,7 @@ partial class OptionalLinqExtensionsTests
         var index = Index.FromStart(1);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.ElementAtOrAbsent(index));
-        Assert.AreEqual("source", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("source"));
     }
 
     [Test]
@@ -34,7 +34,7 @@ partial class OptionalLinqExtensionsTests
         var expectedValue = source.ElementAt(index);
         var expected = Optional<RefType?>.Present(expectedValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -50,7 +50,7 @@ partial class OptionalLinqExtensionsTests
         var actual = source.ElementAtOrAbsent(index);
         var expected = Optional<StructType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -67,6 +67,6 @@ partial class OptionalLinqExtensionsTests
         var actual = source.ElementAtOrAbsent(index);
         var expected = Optional<StructType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

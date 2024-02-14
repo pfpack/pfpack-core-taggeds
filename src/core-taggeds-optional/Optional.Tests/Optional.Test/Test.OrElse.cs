@@ -20,7 +20,7 @@ partial class OptionalTest
         var source = Optional<RefType?>.Present(sourceValue);
         var actual = source.OrElse(otherValue);
 
-        Assert.AreSame(sourceValue, actual);
+        Assert.That(actual, Is.SameAs(sourceValue));
     }
 
     [Test]
@@ -34,7 +34,7 @@ partial class OptionalTest
         var source = Optional<StructType?>.Absent;
         var actual = source.OrElse(otherValue);
 
-        Assert.AreEqual(otherValue, actual);
+        Assert.That(actual, Is.EqualTo(otherValue));
     }
 
     [Test]
@@ -44,7 +44,7 @@ partial class OptionalTest
         Func<int> otherFactory = null!;
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.OrElse(otherFactory));
-        Assert.AreEqual("otherFactory", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("otherFactory"));
     }
 
     [Test]
@@ -59,7 +59,7 @@ partial class OptionalTest
         var source = Optional<RefType?>.Present(sourceValue);
         var actual = source.OrElse(() => otherValue);
 
-        Assert.AreSame(sourceValue, actual);
+        Assert.That(actual, Is.SameAs(sourceValue));
     }
 
     [Test]
@@ -73,7 +73,7 @@ partial class OptionalTest
         var source = Optional<StructType?>.Absent;
         var actual = source.OrElse(() => otherValue);
 
-        Assert.AreEqual(otherValue, actual);
+        Assert.That(actual, Is.EqualTo(otherValue));
     }
 
     [Test]
@@ -82,7 +82,7 @@ partial class OptionalTest
         var source = Optional<int>.Present(PlusFifteen);
 
         var ex = Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await source.OrElseAsync(null!));
-        Assert.AreEqual("otherFactoryAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("otherFactoryAsync"));
     }
 
     [Test]
@@ -97,7 +97,7 @@ partial class OptionalTest
         var source = Optional<RefType?>.Present(sourceValue);
         var actual = await source.OrElseAsync(() => Task.FromResult<RefType?>(otherValue));
 
-        Assert.AreSame(sourceValue, actual);
+        Assert.That(actual, Is.SameAs(sourceValue));
     }
 
     [Test]
@@ -111,7 +111,7 @@ partial class OptionalTest
         var source = Optional<StructType?>.Absent;
         var actual = await source.OrElseAsync(() => Task.FromResult(otherValue));
 
-        Assert.AreEqual(otherValue, actual);
+        Assert.That(actual, Is.EqualTo(otherValue));
     }
 
     [Test]
@@ -120,7 +120,7 @@ partial class OptionalTest
         var source = Optional<int>.Present(PlusFifteen);
 
         var ex = Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await source.OrElseValueAsync(null!));
-        Assert.AreEqual("otherFactoryAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("otherFactoryAsync"));
     }
 
     [Test]
@@ -135,7 +135,7 @@ partial class OptionalTest
         var source = Optional<RefType?>.Present(sourceValue);
         var actual = await source.OrElseValueAsync(() => ValueTask.FromResult<RefType?>(otherValue));
 
-        Assert.AreSame(sourceValue, actual);
+        Assert.That(actual, Is.SameAs(sourceValue));
     }
 
     [Test]
@@ -149,6 +149,6 @@ partial class OptionalTest
         var source = Optional<StructType?>.Absent;
         var actual = await source.OrElseValueAsync(() => ValueTask.FromResult(otherValue));
 
-        Assert.AreEqual(otherValue, actual);
+        Assert.That(actual, Is.EqualTo(otherValue));
     }
 }

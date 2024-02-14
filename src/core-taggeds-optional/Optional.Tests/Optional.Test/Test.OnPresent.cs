@@ -17,7 +17,7 @@ partial class OptionalTest
         var source = Optional<RecordStruct>.Present(SomeTextRecordStruct);
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("handler", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("handler"));
 
         void Test()
             =>
@@ -45,7 +45,7 @@ partial class OptionalTest
         var source = isPresent ? new(SomeTextStructType) : Optional<StructType>.Absent;
 
         var actual = source.OnPresent(OnPresent);
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
 
         static void OnPresent(StructType _)
         {
@@ -60,7 +60,7 @@ partial class OptionalTest
         var source = Optional<long?>.Present(long.MaxValue);
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
 
-        Assert.AreEqual("handlerAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("handlerAsync"));
 
         async Task TestAsync()
             =>
@@ -88,7 +88,7 @@ partial class OptionalTest
         var source = isPresent ? new(SomeTextRecordStruct) : Optional.Absent<RecordStruct?>();
 
         var actual = await source.OnPresentAsync(OnPresentAsync);
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
 
         static Task OnPresentAsync(RecordStruct? _)
             =>
@@ -103,7 +103,7 @@ partial class OptionalTest
         var source = Optional<int>.Present(MinusOne);
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
 
-        Assert.AreEqual("handlerAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("handlerAsync"));
 
         async Task TestAsync()
             =>
@@ -131,7 +131,7 @@ partial class OptionalTest
         var source = isPresent ? new(ZeroIdRefType) : Optional.Absent<RefType>();
 
         var actual = await source.OnPresentValueAsync(OnPresentAsync);
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
 
         static ValueTask OnPresentAsync(RefType _)
             =>

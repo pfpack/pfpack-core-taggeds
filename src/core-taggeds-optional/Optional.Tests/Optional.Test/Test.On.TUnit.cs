@@ -15,7 +15,7 @@ partial class OptionalTest
         var source = Optional<string>.Present(SomeString);
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("onPresent", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("onPresent"));
 
         void Test()
             =>
@@ -32,7 +32,7 @@ partial class OptionalTest
         var source = Optional<decimal?>.Present(decimal.One);
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("onElse", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("onElse"));
 
         void Test()
             =>
@@ -74,7 +74,7 @@ partial class OptionalTest
         var source = isPresent ? new(SomeTextStructType) : Optional<StructType>.Absent;
 
         var actual = source.On(OnPresent, OnElse);
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
 
         static string OnPresent(StructType _)
             =>
@@ -91,7 +91,7 @@ partial class OptionalTest
         var source = Optional<int>.Present(One);
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
 
-        Assert.AreEqual("onPresentAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("onPresentAsync"));
 
         async Task TestAsync()
             =>
@@ -108,7 +108,7 @@ partial class OptionalTest
         var source = Optional<RefType>.Present(ZeroIdRefType);
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
 
-        Assert.AreEqual("onElseAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("onElseAsync"));
 
         async Task TestAsync()
             =>
@@ -150,7 +150,7 @@ partial class OptionalTest
         var source = isPresent ? new(int.MinValue) : Optional.Absent<int>();
 
         var actual = await source.OnAsync(OnPresentAsync, OnElseAsync);
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
 
         static Task<RecordType> OnPresentAsync(int _)
             =>
@@ -167,7 +167,7 @@ partial class OptionalTest
         var source = Optional<RefType>.Present(MinusFifteenIdRefType);
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
 
-        Assert.AreEqual("onPresentAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("onPresentAsync"));
 
         async Task TestAsync()
             =>
@@ -184,7 +184,7 @@ partial class OptionalTest
         var source = Optional<RecordStruct?>.Present(SomeTextRecordStruct);
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
 
-        Assert.AreEqual("onElseAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("onElseAsync"));
 
         async Task TestAsync()
             =>
@@ -226,7 +226,7 @@ partial class OptionalTest
         var source = isPresent ? new(PlusFifteen) : Optional.Absent<int>();
 
         var actual = await source.OnValueAsync(OnPresentAsync, OnElseAsync);
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
 
         static ValueTask<RecordType> OnPresentAsync(int _)
             =>

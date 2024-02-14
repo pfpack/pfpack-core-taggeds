@@ -13,7 +13,7 @@ partial class OptionalExtensionsTests
         var source = Optional<RefType?>.Present(PlusFifteenIdRefType);
 
         var actual = source.FilterNotNull();
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
     }
 
     [Test]
@@ -22,8 +22,8 @@ partial class OptionalExtensionsTests
         var source = Optional<int?>.Present(PlusFifteen);
 
         var actual = source.FilterNotNull();
-        Assert.True(actual.IsPresent);
-        Assert.AreEqual(source.OrThrow()!.Value, actual.OrThrow());
+        Assert.That(actual.IsPresent, Is.True);
+        Assert.That(actual.OrThrow(), Is.EqualTo(source.OrThrow()!.Value));
     }
 
     [Test]
@@ -34,7 +34,7 @@ partial class OptionalExtensionsTests
         var actual = source.FilterNotNull();
         var expected = Optional<RefType?>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -46,7 +46,7 @@ partial class OptionalExtensionsTests
         var actual = source.FilterNotNull();
         var expected = Optional<RefType>.Present(sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -57,7 +57,7 @@ partial class OptionalExtensionsTests
         var actual = source.FilterNotNull();
         var expected = Optional<RefType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -69,7 +69,7 @@ partial class OptionalExtensionsTests
         var actual = source.FilterNotNull();
         var expected = Optional<StructType>.Present(sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -80,6 +80,6 @@ partial class OptionalExtensionsTests
         var actual = source.FilterNotNull();
         var expected = Optional<StructType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

@@ -15,7 +15,7 @@ partial class OptionalLinqExtensionsTests
         IEnumerable<StructType> source = null!;
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("source", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("source"));
 
         void Test()
             =>
@@ -30,7 +30,7 @@ partial class OptionalLinqExtensionsTests
         var actual = source.FirstOrAbsent();
         var expected = Optional<RefType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -43,7 +43,7 @@ partial class OptionalLinqExtensionsTests
         var actual = source.FirstOrAbsent();
         var expected = Optional<object?>.Present(firstItem);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -52,7 +52,7 @@ partial class OptionalLinqExtensionsTests
         IEnumerable<StructType> source = null!;
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("source", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("source"));
 
         void Test()
             =>
@@ -65,7 +65,7 @@ partial class OptionalLinqExtensionsTests
         var source = CreateCollection(SomeTextStructType);
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("predicate", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("predicate"));
 
         void Test()
             =>
@@ -80,7 +80,7 @@ partial class OptionalLinqExtensionsTests
         var actual = source.FirstOrAbsent(static _ => false);
         var expected = Optional<StructType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -102,6 +102,6 @@ partial class OptionalLinqExtensionsTests
         var actual = source.FirstOrAbsent(item => item?.Id == expectedId);
         var expected = Optional<RefType?>.Present(expectedValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

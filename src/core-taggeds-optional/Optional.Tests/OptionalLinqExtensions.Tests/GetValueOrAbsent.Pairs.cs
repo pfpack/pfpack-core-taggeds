@@ -15,7 +15,7 @@ partial class OptionalLinqExtensionsTests
         IEnumerable<KeyValuePair<int, StructType>> sourcePairs = null!;
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("pairs", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("pairs"));
 
         void Test()
             =>
@@ -33,7 +33,7 @@ partial class OptionalLinqExtensionsTests
         var actual = sourcePairs.GetValueOrAbsent(PlusFifteen);
         var expected = Optional<RefType?>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -53,7 +53,7 @@ partial class OptionalLinqExtensionsTests
         var actual = sourcePairs.GetValueOrAbsent(sourceKey);
         var expected = Optional<object?>.Present(expectedValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [TestCase]
@@ -68,7 +68,7 @@ partial class OptionalLinqExtensionsTests
         var actual = sourcePairs.GetValueOrAbsent(null);
         var expected = Optional<StructType>.Present(expectedValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -88,6 +88,6 @@ partial class OptionalLinqExtensionsTests
         var expected2 = Optional<StructType>.Present(expectedValue2);
 
         bool equalToAnExpected = actual.Equals(expected1) || actual.Equals(expected2);
-        Assert.True(equalToAnExpected);
+        Assert.That(equalToAnExpected);
     }
 }

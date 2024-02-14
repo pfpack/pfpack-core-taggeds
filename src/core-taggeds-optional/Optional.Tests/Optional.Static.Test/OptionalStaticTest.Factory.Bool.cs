@@ -11,7 +11,7 @@ partial class OptionalStaticTest
         var actual = Optional.True();
         var expected = Optional<Unit>.Present(Unit.Value);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -20,6 +20,6 @@ partial class OptionalStaticTest
         var actual = Optional.False();
         var expected = Optional<Unit>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

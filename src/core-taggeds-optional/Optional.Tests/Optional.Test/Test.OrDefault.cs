@@ -14,7 +14,7 @@ partial class OptionalTest
         var source = Optional<object>.Present(sourceValue);
 
         var actual = source.OrDefault();
-        Assert.AreEqual(sourceValue, actual);
+        Assert.That(actual, Is.SameAs(sourceValue));
     }
 
     [Test]
@@ -23,7 +23,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Absent;
 
         var actual = source.OrDefault();
-        Assert.AreEqual(default(StructType), actual);
+        Assert.That(actual, Is.EqualTo(default(StructType)));
     }
 
     [Test]
@@ -32,6 +32,6 @@ partial class OptionalTest
         var source = Optional<RefType>.Absent;
 
         var actual = source.OrDefault();
-        Assert.Null(actual);
+        Assert.That(actual, Is.Null);
     }
 }

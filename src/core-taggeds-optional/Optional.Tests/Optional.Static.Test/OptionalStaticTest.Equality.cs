@@ -14,7 +14,7 @@ partial class OptionalStaticTest
         var optionalB = Optional<RefType>.Absent;
 
         var actual = Optional.Equals(optionalA, optionalB);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -24,7 +24,7 @@ partial class OptionalStaticTest
         var optionalB = Optional<RefType>.Absent;
 
         var actual = Optional.Equals(optionalA, optionalB);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -34,7 +34,7 @@ partial class OptionalStaticTest
         var optionalB = default(Optional<RefType>);
 
         var actual = Optional.Equals(optionalA, optionalB);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -46,7 +46,7 @@ partial class OptionalStaticTest
         var optionalB = Optional<RefType>.Present(value);
 
         var actual = Optional.Equals(optionalA, optionalB);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -56,7 +56,7 @@ partial class OptionalStaticTest
         var optionalB = Optional<StructType?>.Present(null);
 
         var actual = Optional.Equals(optionalA, optionalB);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -66,7 +66,7 @@ partial class OptionalStaticTest
         var optionalB = Optional<RefType>.Present(MinusFifteenIdRefType);
 
         var actual = Optional.Equals(optionalA, optionalB);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -76,7 +76,7 @@ partial class OptionalStaticTest
         var optionalB = Optional<StructType>.Absent;
 
         var actual = Optional.Equals(optionalA, optionalB);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -86,6 +86,6 @@ partial class OptionalStaticTest
         var optionalB = Optional<RefType>.Present(ZeroIdRefType);
 
         var actual = Optional.Equals(optionalA, optionalB);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 }

@@ -16,10 +16,10 @@ partial class OptionalTest
         var source = Optional<object?>.Present(sourceValue);
         var actual = source.YieldSingleOrEmpty();
 
-        Assert.AreEqual(1, actual.Count());
-        var actualValue = actual.Single();
+        Assert.That(actual.Count(), Is.EqualTo(1));
 
-        Assert.AreEqual(sourceValue, actualValue);
+        var actualValue = actual.Single();
+        Assert.That(actualValue, Is.SameAs(sourceValue));
     }
 
     [Obsolete]
@@ -29,6 +29,6 @@ partial class OptionalTest
         var source = Optional<RefType>.Absent;
         var actual = source.YieldSingleOrEmpty();
 
-        Assert.IsEmpty(actual);
+        Assert.That(actual, Is.Empty);
     }
 }

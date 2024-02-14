@@ -8,12 +8,12 @@ partial class AbsentTestsBase<T>
     [Test]
     public void Factory_New_ExpectDefault()
     {
-        Assert.AreEqual(default(Absent<T>), new Absent<T>());
+        Assert.That(new Absent<T>(), Is.EqualTo(default(Absent<T>)));
     }
 
     [Test]
     public void Factory_Value_ExpectDefault()
     {
-        Assert.AreEqual(default(Absent<T>), Absent<T>.Value);
+        Assert.That(Absent<T>.Value, Is.EqualTo(default(Absent<T>)));
     }
 }

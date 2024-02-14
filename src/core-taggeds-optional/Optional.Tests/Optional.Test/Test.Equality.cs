@@ -14,7 +14,7 @@ partial class OptionalTest
         var optionalB = Optional<RefType>.Absent;
 
         var actual = Optional<RefType>.Equals(optionalA, optionalB);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -24,7 +24,7 @@ partial class OptionalTest
         var optionalB = Optional<RefType>.Absent;
 
         var actual = Optional<RefType>.Equals(optionalA, optionalB);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -34,7 +34,7 @@ partial class OptionalTest
         var optionalB = default(Optional<RefType>);
 
         var actual = Optional<RefType>.Equals(optionalA, optionalB);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -46,7 +46,7 @@ partial class OptionalTest
         var optionalB = Optional<RefType>.Present(value);
 
         var actual = Optional<RefType>.Equals(optionalA, optionalB);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -56,7 +56,7 @@ partial class OptionalTest
         var optionalB = Optional<StructType?>.Present(null);
 
         var actual = Optional<StructType?>.Equals(optionalA, optionalB);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -66,7 +66,7 @@ partial class OptionalTest
         var optionalB = Optional<RefType>.Present(MinusFifteenIdRefType);
 
         var actual = Optional<RefType>.Equals(optionalA, optionalB);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -76,7 +76,7 @@ partial class OptionalTest
         var optionalB = Optional<StructType>.Absent;
 
         var actual = Optional<StructType>.Equals(optionalA, optionalB);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -86,7 +86,7 @@ partial class OptionalTest
         var optionalB = Optional<RefType>.Present(ZeroIdRefType);
 
         var actual = Optional<RefType>.Equals(optionalA, optionalB);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -96,7 +96,7 @@ partial class OptionalTest
         var optionalB = Optional<StructType>.Absent;
 
         var actual = optionalA == optionalB;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -108,7 +108,7 @@ partial class OptionalTest
         var optionalB = Optional<StructType>.Present(value);
 
         var actual = optionalA == optionalB;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -118,7 +118,7 @@ partial class OptionalTest
         var optionalB = Optional<RefType?>.Present(null);
 
         var actual = optionalA == optionalB;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -128,7 +128,7 @@ partial class OptionalTest
         var optionalB = Optional<RefType?>.Present(PlusFifteenIdRefType);
 
         var actual = optionalA == optionalB;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -138,7 +138,7 @@ partial class OptionalTest
         var optionalB = Optional<RefType?>.Absent;
 
         var actual = optionalA == optionalB;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -148,7 +148,7 @@ partial class OptionalTest
         var optionalB = Optional<StructType>.Present(SomeTextStructType);
 
         var actual = optionalA == optionalB;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -158,7 +158,7 @@ partial class OptionalTest
         var optionalB = Optional<StructType>.Absent;
 
         var actual = optionalA != optionalB;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -170,7 +170,7 @@ partial class OptionalTest
         var optionalB = Optional<RefType>.Present(value);
 
         var actual = optionalA != optionalB;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -180,7 +180,7 @@ partial class OptionalTest
         var optionalB = Optional<StructType?>.Present(null);
 
         var actual = optionalA != optionalB;
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -190,7 +190,7 @@ partial class OptionalTest
         var optionalB = Optional<StructType?>.Present(SomeTextStructType);
 
         var actual = optionalA != optionalB;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -200,7 +200,7 @@ partial class OptionalTest
         var optionalB = Optional<StructType>.Absent;
 
         var actual = optionalA != optionalB;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -210,7 +210,7 @@ partial class OptionalTest
         var optionalB = Optional<RefType?>.Present(PlusFifteenIdRefType);
 
         var actual = optionalA != optionalB;
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -220,7 +220,7 @@ partial class OptionalTest
         var other = Optional<StructType>.Absent;
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -232,7 +232,7 @@ partial class OptionalTest
         var other = Optional<StructType>.Present(value);
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -242,7 +242,7 @@ partial class OptionalTest
         var other = Optional<RefType?>.Present(null);
 
         var actual = source.Equals(other);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -252,7 +252,7 @@ partial class OptionalTest
         var other = Optional<StructType>.Present(default);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -262,7 +262,7 @@ partial class OptionalTest
         var other = Optional<RefType>.Absent;
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -272,7 +272,7 @@ partial class OptionalTest
         var other = Optional<StructType>.Present(NullTextStructType);
 
         var actual = source.Equals(other);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -282,7 +282,7 @@ partial class OptionalTest
         var obj = (object?)Optional<StructType>.Absent;
 
         var actual = source.Equals(obj);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -294,7 +294,7 @@ partial class OptionalTest
         var obj = (object?)Optional<StructType>.Present(value);
 
         var actual = source.Equals(obj);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -304,7 +304,7 @@ partial class OptionalTest
         var obj = (object?)Optional<RefType?>.Present(null);
 
         var actual = source.Equals(obj);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -314,7 +314,7 @@ partial class OptionalTest
         var obj = (object?)Optional<RefType?>.Present(PlusFifteenIdRefType);
 
         var actual = source.Equals(obj);
-        Assert.True(actual);
+        Assert.That(actual, Is.True);
     }
 
     [Test]
@@ -324,7 +324,7 @@ partial class OptionalTest
         var obj = (object?)Optional<StructType>.Present(default);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -334,7 +334,7 @@ partial class OptionalTest
         var obj = (object?)Optional<RefType>.Absent;
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -344,7 +344,7 @@ partial class OptionalTest
         var obj = (object?)Optional<StructType>.Present(NullTextStructType);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -355,7 +355,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Absent;
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -366,7 +366,7 @@ partial class OptionalTest
         var source = Optional<RefType>.Present(MinusFifteenIdRefType);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -376,7 +376,7 @@ partial class OptionalTest
         var obj = Optional<RefType>.Absent;
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -386,7 +386,7 @@ partial class OptionalTest
         var obj = Optional<object>.Present(MinusFifteenIdRefType);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -396,7 +396,7 @@ partial class OptionalTest
         var obj = (object?)Optional<StructType?>.Present(SomeTextStructType);
 
         var actual = source.Equals(obj);
-        Assert.False(actual);
+        Assert.That(actual, Is.False);
     }
 
     [Test]
@@ -408,7 +408,7 @@ partial class OptionalTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -422,7 +422,7 @@ partial class OptionalTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -434,7 +434,7 @@ partial class OptionalTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -446,7 +446,7 @@ partial class OptionalTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.Not.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -458,7 +458,7 @@ partial class OptionalTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.Not.EqualTo(sourceHashCode));
     }
 
     [Test]
@@ -470,6 +470,6 @@ partial class OptionalTest
         var sourceHashCode = source.GetHashCode();
         var otherHashCode = other.GetHashCode();
 
-        Assert.AreNotEqual(sourceHashCode, otherHashCode);
+        Assert.That(otherHashCode, Is.Not.EqualTo(sourceHashCode));
     }
 }

@@ -19,9 +19,8 @@ partial class OptionalLinqExtensionsTests
             .Where(method => method.Name == nameof(OptionalLinqExtensions.TryGetValueOrAbsent))
             .ToArray();
 
-        Assert.AreEqual(
-            1,
-            methods.Count(
+        Assert.That(
+             methods.Count(
                 method =>
                 method.CustomAttributes.Any(
                     attr
@@ -35,6 +34,7 @@ partial class OptionalLinqExtensionsTests
                     attr.ConstructorArguments[0].ArgumentType == typeof(string) &&
                     attr.ConstructorArguments[0].Value is expectedObsoleteMessage &&
                     attr.ConstructorArguments[1].ArgumentType == typeof(bool) &&
-                    attr.ConstructorArguments[1].Value is true)));
+                    attr.ConstructorArguments[1].Value is true)),
+             Is.EqualTo(1));
     }
 }

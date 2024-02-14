@@ -10,14 +10,14 @@ partial class AbsentTestsBase<T>
     {
         var optional = default(Absent<T>).ToOptional();
 
-        Assert.IsTrue(optional.IsAbsent);
+        Assert.That(optional.IsAbsent, Is.True);
     }
     [Test]
     public void ToOptionalImplicit_FromDefault_ExpectAbsent()
     {
         Optional<T> optional = default(Absent<T>);
 
-        Assert.IsTrue(optional.IsAbsent);
+        Assert.That(optional.IsAbsent, Is.True);
     }
 
     [Test]
@@ -25,14 +25,14 @@ partial class AbsentTestsBase<T>
     {
         var optional = new Absent<T>().ToOptional();
 
-        Assert.IsTrue(optional.IsAbsent);
+        Assert.That(optional.IsAbsent, Is.True);
     }
     [Test]
     public void ToOptionalImplicit_FromNew_ExpectAbsent()
     {
         Optional<T> optional = new Absent<T>();
 
-        Assert.IsTrue(optional.IsAbsent);
+        Assert.That(optional.IsAbsent, Is.True);
     }
 
     [Test]
@@ -40,13 +40,13 @@ partial class AbsentTestsBase<T>
     {
         var optional = Absent<T>.Value.ToOptional();
 
-        Assert.IsTrue(optional.IsAbsent);
+        Assert.That(optional.IsAbsent, Is.True);
     }
     [Test]
     public void ToOptionalImplicit_FromValue_ExpectAbsent()
     {
         Optional<T> optional = Absent<T>.Value;
 
-        Assert.IsTrue(optional.IsAbsent);
+        Assert.That(optional.IsAbsent, Is.True);
     }
 }

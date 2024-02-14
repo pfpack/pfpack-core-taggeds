@@ -15,7 +15,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         IReadOnlyList<StructType> source = null!;
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("source", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("source"));
 
         void Test()
             =>
@@ -30,7 +30,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         var actual = OptionalLinqExtensions.SingleOrAbsent(source);
         var expected = Optional<StructType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -43,7 +43,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         var actual = OptionalLinqExtensions.SingleOrAbsent(source);
         var expected = Optional<object?>.Present(singleItem);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -63,7 +63,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         IReadOnlyList<StructType> source = null!;
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("source", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("source"));
 
         void Test()
             =>
@@ -77,7 +77,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         Func<Exception> exceptionFactory = null!;
 
         var ex = Assert.Throws<ArgumentNullException>(Test);
-        Assert.AreEqual("moreThanOneElementExceptionFactory", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("moreThanOneElementExceptionFactory"));
 
         void Test()
             =>
@@ -92,7 +92,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         var actual = OptionalLinqExtensions.SingleOrAbsent(source, CreateSomeException);
         var expected = Optional<StructType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -105,7 +105,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         var actual = OptionalLinqExtensions.SingleOrAbsent(source, CreateSomeException);
         var expected = Optional<object?>.Present(singleItem);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -115,7 +115,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         var createdException = new SomeException();
 
         var ex = Assert.Throws<SomeException>(Test);
-        Assert.AreSame(createdException, ex);
+        Assert.That(ex, Is.SameAs(createdException));
 
         void Test()
             =>
@@ -128,7 +128,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         IReadOnlyList<StructType> source = null!;
 
         var ex = Assert.Throws<ArgumentNullException>(Test);
-        Assert.AreEqual("source", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("source"));
 
         void Test()
             =>
@@ -142,7 +142,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         Func<RefType, bool> predicate = null!;
 
         var ex = Assert.Throws<ArgumentNullException>(Test);
-        Assert.AreEqual("predicate", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("predicate"));
 
         void Test()
             =>
@@ -157,7 +157,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         var actual = OptionalLinqExtensions.SingleOrAbsent(source, static _ => false);
         var expected = Optional<StructType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -174,7 +174,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         var actual = OptionalLinqExtensions.SingleOrAbsent(source, item => expectedText.Equals(item?.Text, StringComparison.InvariantCultureIgnoreCase));
         var expected = Optional<StructType?>.Present(expectedValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -212,7 +212,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         IReadOnlyList<StructType> source = null!;
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("source", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("source"));
 
         void Test()
             =>
@@ -226,7 +226,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         Func<RefType, bool> predicate = null!;
 
         var ex = Assert.Throws<ArgumentNullException>(Test);
-        Assert.AreEqual("predicate", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("predicate"));
 
         void Test()
             =>
@@ -239,7 +239,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         var source = CreateReadOnlyList(MinusFifteenIdRefType);
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("moreThanOneMatchExceptionFactory", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("moreThanOneMatchExceptionFactory"));
 
         void Test()
             =>
@@ -254,7 +254,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         var actual = OptionalLinqExtensions.SingleOrAbsent(source, static _ => false, CreateSomeException);
         var expected = Optional<StructType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -271,7 +271,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         var actual = OptionalLinqExtensions.SingleOrAbsent(source, item => expectedText.Equals(item?.Text, StringComparison.InvariantCultureIgnoreCase), CreateSomeException);
 
         var expected = Optional<StructType?>.Present(expectedValue);
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -295,7 +295,7 @@ partial class ObsoleteReadOnlyOptionalLinqExtensionsTests
         var createdException = new SomeException();
         var actualException = Assert.Throws<SomeException>(Test);
 
-        Assert.AreSame(createdException, actualException);
+        Assert.That(actualException, Is.SameAs(createdException));
 
         void Test()
             =>

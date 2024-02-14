@@ -14,7 +14,7 @@ partial class OptionalTest
         var source = Optional<RefType>.Present(PlusFifteenIdRefType);
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("map", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("map"));
 
         void Test()
             =>
@@ -28,7 +28,7 @@ partial class OptionalTest
         var result = Optional<RefType>.Present(PlusFifteenIdRefType);
 
         var actual = source.FlatMap(_ => result);
-        Assert.True(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.True);
     }
 
     [Test]
@@ -41,7 +41,7 @@ partial class OptionalTest
         var result = isResultPresent ? Optional<RefType?>.Present(PlusFifteenIdRefType) : Optional<RefType?>.Absent;
 
         var actual = source.FlatMap(_ => result);
-        Assert.AreEqual(result, actual);
+        Assert.That(actual, Is.EqualTo(result));
     }
 
     [Test]
@@ -50,7 +50,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
-        Assert.AreEqual("mapAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("mapAsync"));
 
         async Task TestAsync()
             =>
@@ -64,7 +64,7 @@ partial class OptionalTest
         var result = Optional<RefType>.Present(PlusFifteenIdRefType);
 
         var actual = await source.FlatMapAsync(_ => Task.FromResult(result));
-        Assert.True(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.True);
     }
 
     [Test]
@@ -77,7 +77,7 @@ partial class OptionalTest
         var result = isResultPresent ? Optional<StructType?>.Present(SomeTextStructType) : Optional<StructType?>.Absent;
 
         var actual = await source.FlatMapAsync(_ => Task.FromResult(result));
-        Assert.AreEqual(result, actual);
+        Assert.That(actual, Is.EqualTo(result));
     }
 
     [Test]
@@ -86,7 +86,7 @@ partial class OptionalTest
         var source = Optional<RefType?>.Present(PlusFifteenIdRefType);
 
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
-        Assert.AreEqual("mapAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("mapAsync"));
 
         async Task TestAsync()
             =>
@@ -100,7 +100,7 @@ partial class OptionalTest
         var result = Optional<StructType>.Present(SomeTextStructType);
 
         var actual = await source.FlatMapValueAsync(_ => ValueTask.FromResult(result));
-        Assert.True(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.True);
     }
 
     [Test]
@@ -113,6 +113,6 @@ partial class OptionalTest
         var result = isResultPresent ? Optional<RefType?>.Present(MinusFifteenIdRefType) : Optional<RefType?>.Absent;
 
         var actual = await source.FlatMapValueAsync(_ => ValueTask.FromResult(result));
-        Assert.AreEqual(result, actual);
+        Assert.That(actual, Is.EqualTo(result));
     }
 }

@@ -9,44 +9,44 @@ partial class AbsentTestsBase<T>
     public void Comparison_CompareTo_NewAndDefault_ExpectZero()
     {
         var actual = new Absent<T>().CompareTo(default);
-        Assert.Zero(actual);
+        Assert.That(actual, Is.Zero);
     }
 
     [Test]
     public void Comparison_CompareTo_ValueAndDefault_ExpectZero()
     {
         var actual = Absent<T>.Value.CompareTo(default);
-        Assert.Zero(actual);
+        Assert.That(actual, Is.Zero);
     }
 
     [Test]
     public void Comparison_CompareToObj_NewAndNull_ExpectOne()
     {
         var actual = new Absent<T>().CompareTo(null);
-        Assert.Positive(actual);
-        Assert.AreEqual(1, actual);
+        Assert.That(actual, Is.Positive);
+        Assert.That(actual, Is.EqualTo(1));
     }
 
     [Test]
     public void Comparison_CompareToObj_ValueAndNull_ExpectOne()
     {
         var actual = Absent<T>.Value.CompareTo(null);
-        Assert.Positive(actual);
-        Assert.AreEqual(1, actual);
+        Assert.That(actual, Is.Positive);
+        Assert.That(actual, Is.EqualTo(1));
     }
 
     [Test]
     public void Comparison_CompareToObj_NewAndDefault_ExpectZero()
     {
         var actual = new Absent<T>().CompareTo((object?)default(Absent<T>));
-        Assert.Zero(actual);
+        Assert.That(actual, Is.Zero);
     }
 
     [Test]
     public void Comparison_CompareToObj_ValueAndDefault_ExpectZero()
     {
         var actual = Absent<T>.Value.CompareTo((object?)new Absent<T>());
-        Assert.Zero(actual);
+        Assert.That(actual, Is.Zero);
     }
 
     [Test]

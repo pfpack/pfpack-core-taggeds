@@ -13,7 +13,7 @@ partial class OptionalExtensionsTests
         var source = Optional<RefType?>.Present(ZeroIdRefType);
 
         var actual = source.FilterNotNullOrThrow();
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
     }
 
     [Test]
@@ -29,7 +29,7 @@ partial class OptionalExtensionsTests
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FilterNotNullOrThrow(null!));
-        Assert.AreEqual("exceptionFactory", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("exceptionFactory"));
     }
 
     [Test]
@@ -38,7 +38,7 @@ partial class OptionalExtensionsTests
         var source = Optional<RefType?>.Present(ZeroIdRefType);
 
         var actual = source.FilterNotNullOrThrow(() => new SomeException());
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
     }
 
     [Test]
@@ -48,7 +48,7 @@ partial class OptionalExtensionsTests
         var resultException = new SomeException();
 
         var ex = Assert.Throws<SomeException>(() => _ = source.FilterNotNullOrThrow(() => resultException));
-        Assert.AreSame(resultException, ex);
+        Assert.That(ex, Is.SameAs(resultException));
     }
 
     [Test]
@@ -60,7 +60,7 @@ partial class OptionalExtensionsTests
         var actual = source.FilterNotNullOrThrow();
         var expected = Optional<RefType>.Present(sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -76,7 +76,7 @@ partial class OptionalExtensionsTests
         var source = Optional<RefType?>.Present(PlusFifteenIdRefType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FilterNotNullOrThrow(null!));
-        Assert.AreEqual("exceptionFactory", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("exceptionFactory"));
     }
 
     [Test]
@@ -88,7 +88,7 @@ partial class OptionalExtensionsTests
         var actual = source.FilterNotNullOrThrow(() => new SomeException());
         var expected = Optional<RefType>.Present(sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -97,9 +97,9 @@ partial class OptionalExtensionsTests
         var source = Optional<RefType?>.Present(null);
         var createdException = new SomeException();
 
-        var actualExcepton = Assert.Throws<SomeException>(
+        var actualException = Assert.Throws<SomeException>(
             () => _ = source.FilterNotNullOrThrow(() => createdException));
-        Assert.AreSame(createdException, actualExcepton);
+        Assert.That(actualException, Is.SameAs(createdException));
     }
 
     [Test]
@@ -111,7 +111,7 @@ partial class OptionalExtensionsTests
         var actual = source.FilterNotNullOrThrow();
         var expected = Optional<StructType>.Present(sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -127,7 +127,7 @@ partial class OptionalExtensionsTests
         var source = Optional<StructType?>.Present(null);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.FilterNotNullOrThrow(null!));
-        Assert.AreEqual("exceptionFactory", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("exceptionFactory"));
     }
 
     [Test]
@@ -139,7 +139,7 @@ partial class OptionalExtensionsTests
         var actual = source.FilterNotNullOrThrow(() => new SomeException());
         var expected = Optional<StructType>.Present(sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -148,8 +148,8 @@ partial class OptionalExtensionsTests
         var source = Optional<StructType?>.Present(null);
         var createdException = new SomeException();
 
-        var actualExcepton = Assert.Throws<SomeException>(
+        var actualException = Assert.Throws<SomeException>(
             () => _ = source.FilterNotNullOrThrow(() => createdException));
-        Assert.AreSame(createdException, actualExcepton);
+        Assert.That(actualException, Is.SameAs(createdException));
     }
 }

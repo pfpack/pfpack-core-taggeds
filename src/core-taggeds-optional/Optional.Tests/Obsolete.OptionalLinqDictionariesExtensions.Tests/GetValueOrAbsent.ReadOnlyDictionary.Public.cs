@@ -15,7 +15,7 @@ partial class ObsoleteOptionalLinqDictionariesExtensionsTests
         IReadOnlyDictionary<int, StructType> sourceDictionary = null!;
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("dictionary", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("dictionary"));
 
         void Test()
             =>
@@ -35,7 +35,7 @@ partial class ObsoleteOptionalLinqDictionariesExtensionsTests
         var actual = OptionalLinqDictionariesExtensions.GetValueOrAbsent(sourceDictionary, MinusFifteen);
         var expected = Optional<RefType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -56,6 +56,6 @@ partial class ObsoleteOptionalLinqDictionariesExtensionsTests
         var actual = OptionalLinqDictionariesExtensions.GetValueOrAbsent(sourceDictionary, PlusFifteen);
         var expected = Optional<string?>.Present(expectedValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

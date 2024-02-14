@@ -10,13 +10,13 @@ partial class OptionalTest
     public void Absent_Value_ExpectAbsentIsTrue()
     {
         var actual = Optional<StructType>.Absent;
-        Assert.True(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.True);
     }
 
     [Test]
     public void Absent_Value_ExpectPresentIsFalse()
     {
         var actual = Optional<StructType>.Absent;
-        Assert.False(actual.IsPresent);
+        Assert.That(actual.IsPresent, Is.False);
     }
 }

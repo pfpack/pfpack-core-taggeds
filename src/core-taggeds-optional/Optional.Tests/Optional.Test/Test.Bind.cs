@@ -14,7 +14,7 @@ partial class OptionalTest
         var source = Optional<RefType>.Present(PlusFifteenIdRefType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Bind<StructType>(null!));
-        Assert.AreEqual("binder", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("binder"));
     }
 
     [Test]
@@ -24,7 +24,7 @@ partial class OptionalTest
         var result = Optional<RefType>.Present(PlusFifteenIdRefType);
 
         var actual = source.Bind(_ => result);
-        Assert.True(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.True);
     }
 
     [Test]
@@ -37,7 +37,7 @@ partial class OptionalTest
         var result = isResultPresent ? Optional<RefType?>.Present(PlusFifteenIdRefType) : Optional<RefType?>.Absent;
 
         var actual = source.Bind(_ => result);
-        Assert.AreEqual(result, actual);
+        Assert.That(actual, Is.EqualTo(result));
     }
 
     [Test]
@@ -46,7 +46,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
-        Assert.AreEqual("binderAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("binderAsync"));
 
         async Task TestAsync()
             =>
@@ -60,7 +60,7 @@ partial class OptionalTest
         var result = Optional<RefType>.Present(PlusFifteenIdRefType);
 
         var actual = await source.BindAsync(_ => Task.FromResult(result));
-        Assert.True(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.True);
     }
 
     [Test]
@@ -73,7 +73,7 @@ partial class OptionalTest
         var result = isResultPresent ? Optional<StructType?>.Present(SomeTextStructType) : Optional<StructType?>.Absent;
 
         var actual = await source.BindAsync(_ => Task.FromResult(result));
-        Assert.AreEqual(result, actual);
+        Assert.That(actual, Is.EqualTo(result));
     }
 
     [Test]
@@ -82,7 +82,7 @@ partial class OptionalTest
         var source = Optional<RefType?>.Present(PlusFifteenIdRefType);
 
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
-        Assert.AreEqual("binderAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("binderAsync"));
 
         async Task TestAsync()
             =>
@@ -96,7 +96,7 @@ partial class OptionalTest
         var result = Optional<StructType>.Present(SomeTextStructType);
 
         var actual = await source.BindValueAsync(_ => ValueTask.FromResult(result));
-        Assert.True(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.True);
     }
 
     [Test]
@@ -109,6 +109,6 @@ partial class OptionalTest
         var result = isResultPresent ? Optional<RefType?>.Present(MinusFifteenIdRefType) : Optional<RefType?>.Absent;
 
         var actual = await source.BindValueAsync(_ => ValueTask.FromResult(result));
-        Assert.AreEqual(result, actual);
+        Assert.That(actual, Is.EqualTo(result));
     }
 }

@@ -15,7 +15,7 @@ partial class OptionalTest
         var source = Optional<int>.Present(One);
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("handler", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("handler"));
 
         void Test()
             =>
@@ -43,7 +43,7 @@ partial class OptionalTest
         var source = isPresent ? new(MinusFifteenIdRefType) : Optional<RefType>.Absent;
 
         var actual = source.OnPresent(OnPresent);
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
 
         static decimal OnPresent(RefType _)
             =>
@@ -56,7 +56,7 @@ partial class OptionalTest
         var source = Optional<RecordType>.Present(MinusFifteenIdSomeStringNameRecord);
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
 
-        Assert.AreEqual("handlerAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("handlerAsync"));
 
         async Task TestAsync()
             =>
@@ -84,7 +84,7 @@ partial class OptionalTest
         var source = isPresent ? new(MinusFifteenIdNullNameRecord) : Optional.Absent<RecordType?>();
 
         var actual = await source.OnPresentAsync(OnPresentAsync);
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
 
         static Task<decimal> OnPresentAsync(RecordType? _)
             =>
@@ -97,7 +97,7 @@ partial class OptionalTest
         var source = Optional<string>.Present(SomeString);
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
 
-        Assert.AreEqual("handlerAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("handlerAsync"));
 
         async Task TestAsync()
             =>
@@ -125,7 +125,7 @@ partial class OptionalTest
         var source = isPresent ? new(SomeTextRecordStruct) : Optional.Absent<RecordStruct>();
 
         var actual = await source.OnPresentValueAsync(OnPresentAsync);
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
 
         static ValueTask<int> OnPresentAsync(RecordStruct _)
             =>

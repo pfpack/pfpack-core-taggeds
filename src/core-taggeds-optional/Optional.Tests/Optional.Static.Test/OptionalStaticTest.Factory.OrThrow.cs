@@ -15,14 +15,14 @@ partial class OptionalStaticTest
         var actual = Optional.PresentOrThrow<RefType?>(sourceValue);
         var expected = Optional<RefType?>.Present(sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
     public void PresentOrThrow_ValueIsNull_ExpectArgumentNullException()
     {
         var ex = Assert.Throws<ArgumentException>(() => _ = Optional.PresentOrThrow<RefType?>(null!));
-        Assert.AreEqual("value", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("value"));
     }
 
     [Test]
@@ -33,7 +33,7 @@ partial class OptionalStaticTest
         var actual = Optional.PresentOrThrow(sourceValue);
         var expected = Optional<StructType>.Present(SomeTextStructType);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -44,13 +44,13 @@ partial class OptionalStaticTest
         var actual = Optional.PresentOrThrow(sourceValue);
         var expected = Optional<StructType>.Present(SomeTextStructType);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
     public void PresentOrThrowWithStructValue_ValueIsNull_ExpectArgumentNullException()
     {
         var ex = Assert.Throws<ArgumentException>(() => _ = Optional.PresentOrThrow<StructType>(null!));
-        Assert.AreEqual("value", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("value"));
     }
 }

@@ -14,7 +14,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Fold(null!, () => PlusFifteenIdRefType));
-        Assert.AreEqual("map", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("map"));
     }
 
     [Test]
@@ -23,7 +23,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Fold(_ => PlusFifteenIdRefType, null!));
-        Assert.AreEqual("otherFactory", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("otherFactory"));
     }
 
     [Test]
@@ -35,7 +35,7 @@ partial class OptionalTest
         var other = MinusFifteenIdRefType;
 
         var actual = source.Fold(_ => mapped, () => other);
-        Assert.AreSame(mapped, actual);
+        Assert.That(actual, Is.SameAs(mapped));
     }
 
     [Test]
@@ -47,7 +47,7 @@ partial class OptionalTest
         var other = SomeTextStructType;
 
         var actual = source.Fold(_ => mapped, () => other);
-        Assert.AreEqual(mapped, actual);
+        Assert.That(actual, Is.EqualTo(mapped));
     }
 
     [Test]
@@ -58,7 +58,7 @@ partial class OptionalTest
         var ex = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.FoldAsync(null!, () => Task.FromResult(MinusFifteenIdRefType)));
 
-        Assert.AreEqual("mapAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("mapAsync"));
     }
 
     [Test]
@@ -69,7 +69,7 @@ partial class OptionalTest
         var ex = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.FoldAsync(_ => Task.FromResult(int.MaxValue), null!));
 
-        Assert.AreEqual("otherFactoryAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("otherFactoryAsync"));
     }
 
     [Test]
@@ -81,7 +81,7 @@ partial class OptionalTest
         var other = SomeTextStructType;
 
         var actual = await source.FoldAsync(_ => Task.FromResult(mapped), () => Task.FromResult(other));
-        Assert.AreEqual(mapped, actual);
+        Assert.That(actual, Is.EqualTo(mapped));
     }
 
     [Test]
@@ -93,7 +93,7 @@ partial class OptionalTest
         var other = SomeString;
 
         var actual = await source.FoldAsync(_ => Task.FromResult(mapped), () => Task.FromResult(other));
-        Assert.AreEqual(mapped, actual);
+        Assert.That(actual, Is.SameAs(mapped));
     }
 
     [Test]
@@ -104,7 +104,7 @@ partial class OptionalTest
         var ex = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.FoldValueAsync(null!, () => ValueTask.FromResult(MinusFifteenIdRefType)));
 
-        Assert.AreEqual("mapAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("mapAsync"));
     }
 
     [Test]
@@ -115,7 +115,7 @@ partial class OptionalTest
         var ex = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.FoldValueAsync(_ => ValueTask.FromResult(int.MaxValue), null!));
 
-        Assert.AreEqual("otherFactoryAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("otherFactoryAsync"));
     }
 
     [Test]
@@ -127,7 +127,7 @@ partial class OptionalTest
         var other = MinusFifteenIdRefType;
 
         var actual = await source.FoldValueAsync(_ => ValueTask.FromResult(mapped), () => ValueTask.FromResult(other));
-        Assert.AreEqual(mapped, actual);
+        Assert.That(actual, Is.SameAs(mapped));
     }
 
     [Test]
@@ -139,6 +139,6 @@ partial class OptionalTest
         var other = MinusFifteenIdRefType;
 
         var actual = await source.FoldValueAsync(_ => ValueTask.FromResult(mapped), () => ValueTask.FromResult(other));
-        Assert.AreEqual(mapped, actual);
+        Assert.That(actual, Is.SameAs(mapped));
     }
 }

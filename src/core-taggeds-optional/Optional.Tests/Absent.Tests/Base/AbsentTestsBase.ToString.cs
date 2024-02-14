@@ -12,6 +12,6 @@ partial class AbsentTestsBase<T>
 
         var expected = string.Format("Absent<{0}>:()", typeof(T).Name);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

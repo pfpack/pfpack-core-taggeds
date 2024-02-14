@@ -8,18 +8,18 @@ partial class AbsentStaticTestsBase<T>
     [Test]
     public void Factory_Of_ExpectEqualToDefault()
     {
-        Assert.AreEqual(default(Absent<T>), Absent.Of<T>());
+        Assert.That(Absent.Of<T>(), Is.EqualTo(default(Absent<T>)));
     }
 
     [Test]
     public void Factory_Of_ExpectEqualToNew()
     {
-        Assert.AreEqual(new Absent<T>(), Absent.Of<T>());
+        Assert.That(Absent.Of<T>(), Is.EqualTo(new Absent<T>()));
     }
 
     [Test]
     public void Factory_Of_ExpectEqualToValue()
     {
-        Assert.AreEqual(Absent<T>.Value, Absent.Of<T>());
+        Assert.That(Absent.Of<T>(), Is.EqualTo(Absent<T>.Value));
     }
 }

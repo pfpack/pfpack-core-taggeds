@@ -10,13 +10,13 @@ partial class OptionalTest
     public void Absent_Default_ExpectAbsentIsTrue()
     {
         var actual = default(Optional<RefType>);
-        Assert.True(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.True);
     }
 
     [Test]
     public void Absent_Default_ExpectPresentIsFalse()
     {
         var actual = default(Optional<RefType>);
-        Assert.False(actual.IsPresent);
+        Assert.That(actual.IsPresent, Is.False);
     }
 }

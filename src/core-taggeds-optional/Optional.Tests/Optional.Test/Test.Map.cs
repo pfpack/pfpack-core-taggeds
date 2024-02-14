@@ -14,7 +14,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Map<int>(null!));
-        Assert.AreEqual("map", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("map"));
     }
 
     [Test]
@@ -27,7 +27,7 @@ partial class OptionalTest
         var actual = source.Map(_ => mapped);
         var expected = Optional<object?>.Present(mapped);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -39,7 +39,7 @@ partial class OptionalTest
         var actual = source.Map(_ => mapped);
         var expected = Optional<StructType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -50,7 +50,7 @@ partial class OptionalTest
         var ex = Assert.ThrowsAsync<ArgumentNullException>(
             async () => _ = await source.MapAsync<decimal>(null!));
 
-        Assert.AreEqual("mapAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("mapAsync"));
     }
 
     [Test]
@@ -62,7 +62,7 @@ partial class OptionalTest
         var actual = await source.MapAsync(_ => Task.FromResult(mapped));
         var expected = Optional<StructType>.Present(mapped);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -74,7 +74,7 @@ partial class OptionalTest
         var actual = await source.MapAsync(_ => Task.FromResult(mapped));
         var expected = Optional<string>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -83,7 +83,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await source.MapValueAsync<long>(null!));
-        Assert.AreEqual("mapAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("mapAsync"));
     }
 
     [Test]
@@ -95,7 +95,7 @@ partial class OptionalTest
         var actual = await source.MapValueAsync(_ => ValueTask.FromResult(mapped));
         var expected = Optional<RefType>.Present(mapped);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -107,6 +107,6 @@ partial class OptionalTest
         var actual = await source.MapValueAsync(_ => ValueTask.FromResult(mapped));
         var expected = Optional<RefType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

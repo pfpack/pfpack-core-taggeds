@@ -20,7 +20,7 @@ partial class OptionalTest
             "Optional<{0}>:Absent:()",
             typeof(StubType).Name);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -36,7 +36,7 @@ partial class OptionalTest
             typeof(StubType).Name,
             string.Empty);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -53,7 +53,7 @@ partial class OptionalTest
             typeof(StubType).Name,
             string.Empty);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -80,7 +80,7 @@ partial class OptionalTest
             typeof(StubType).Name,
             sourceValueToStringResult);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -109,7 +109,7 @@ partial class OptionalTest
             typeof(object).Name,
             sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -127,7 +127,7 @@ partial class OptionalTest
             typeof(decimal).Name,
             expectedDecimalSubstr);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     private static IEnumerable<object[]> ToString_SourceIsPresent_DecimalPoint_TestCaseSource()

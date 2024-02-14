@@ -17,7 +17,7 @@ partial class OptionalTest
         var source = Optional<int>.Present(MinusOne);
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("handler", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("handler"));
 
         void Test()
             =>
@@ -55,7 +55,7 @@ partial class OptionalTest
         var source = isPresent ? new(SomeString) : Optional<string>.Absent;
 
         var actual = source.OnAbsent(OnAbsent);
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
 
         static void OnAbsent()
         {
@@ -70,7 +70,7 @@ partial class OptionalTest
         var source = Optional<StructType?>.Present(LowerSomeTextStructType);
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
 
-        Assert.AreEqual("handlerAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("handlerAsync"));
 
         async Task TestAsync()
             =>
@@ -108,7 +108,7 @@ partial class OptionalTest
         var source = isPresent ? new(MinusFifteenIdNullNameRecord) : Optional.Absent<RecordType?>();
 
         var actual = await source.OnAbsentAsync(OnAbsentAsync);
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
 
         static Task OnAbsentAsync()
             =>
@@ -123,7 +123,7 @@ partial class OptionalTest
         var source = Optional<RecordStruct>.Present(SomeTextRecordStruct);
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
 
-        Assert.AreEqual("handlerAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("handlerAsync"));
 
         async Task TestAsync()
             =>
@@ -161,7 +161,7 @@ partial class OptionalTest
         var source = isPresent ? new(decimal.One) : Optional.Absent<decimal>();
 
         var actual = await source.OnAbsentValueAsync(OnAbsentAsync);
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
 
         static ValueTask OnAbsentAsync()
             =>

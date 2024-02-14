@@ -14,7 +14,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.Or(null!));
-        Assert.AreEqual("otherFactory", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("otherFactory"));
     }
 
     [Test]
@@ -26,7 +26,7 @@ partial class OptionalTest
         var other = Optional<object?>.Absent;
 
         var actual = source.Or(() => other);
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
     }
 
     [Test]
@@ -39,7 +39,7 @@ partial class OptionalTest
         var other = isOtherPresent ? Optional<RefType>.Present(MinusFifteenIdRefType) : default;
 
         var actual = source.Or(() => other);
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 
     [Test]
@@ -48,7 +48,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await source.OrAsync(null!));
-        Assert.AreEqual("otherFactoryAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("otherFactoryAsync"));
     }
 
     [Test]
@@ -60,7 +60,7 @@ partial class OptionalTest
         var other = Optional<object?>.Absent;
 
         var actual = await source.OrAsync(() => Task.FromResult(other));
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
     }
 
     [Test]
@@ -73,7 +73,7 @@ partial class OptionalTest
         var other = isOtherPresent ? Optional<RefType?>.Present(MinusFifteenIdRefType) : default;
 
         var actual = await source.OrAsync(() => Task.FromResult(other));
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 
     [Test]
@@ -82,7 +82,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.ThrowsAsync<ArgumentNullException>(async () => _ = await source.OrValueAsync(null!));
-        Assert.AreEqual("otherFactoryAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("otherFactoryAsync"));
     }
 
     [Test]
@@ -94,7 +94,7 @@ partial class OptionalTest
         var other = Optional<object?>.Absent;
 
         var actual = await source.OrValueAsync(() => ValueTask.FromResult(other));
-        Assert.AreEqual(source, actual);
+        Assert.That(actual, Is.EqualTo(source));
     }
 
     [Test]
@@ -107,6 +107,6 @@ partial class OptionalTest
         var other = isOtherPresent ? Optional<string>.Present(SomeString) : Optional<string>.Absent;
 
         var actual = await source.OrValueAsync(() => ValueTask.FromResult(other));
-        Assert.AreEqual(other, actual);
+        Assert.That(actual, Is.EqualTo(other));
     }
 }

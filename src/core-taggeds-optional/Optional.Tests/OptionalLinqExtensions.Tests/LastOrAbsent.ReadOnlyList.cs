@@ -15,7 +15,7 @@ partial class OptionalLinqExtensionsTests
         IReadOnlyList<StructType> source = null!;
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("source", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("source"));
 
         void Test()
             =>
@@ -30,7 +30,7 @@ partial class OptionalLinqExtensionsTests
         var actual = source.LastOrAbsent();
         var expected = Optional<RefType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -43,7 +43,7 @@ partial class OptionalLinqExtensionsTests
         var actual = source.LastOrAbsent();
         var expected = Optional<object?>.Present(lastItem);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -52,7 +52,7 @@ partial class OptionalLinqExtensionsTests
         IReadOnlyList<StructType> source = null!;
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("source", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("source"));
 
         void Test()
             =>
@@ -65,7 +65,7 @@ partial class OptionalLinqExtensionsTests
         var source = CreateReadOnlyList(SomeTextStructType);
         var ex = Assert.Throws<ArgumentNullException>(Test);
 
-        Assert.AreEqual("predicate", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("predicate"));
 
         void Test()
             =>
@@ -80,7 +80,7 @@ partial class OptionalLinqExtensionsTests
         var actual = source.LastOrAbsent(static _ => false);
         var expected = Optional<StructType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -104,7 +104,7 @@ partial class OptionalLinqExtensionsTests
         var actual = source.LastOrAbsent(Predicate);
         var expected = Optional<RefType?>.Present(expectedValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
 
         static bool Predicate(RefType? item)
             =>

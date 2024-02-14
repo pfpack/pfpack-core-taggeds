@@ -14,7 +14,7 @@ partial class OptionalTest
         var source = Optional<RefType>.Present(PlusFifteenIdRefType);
 
         var ex = Assert.Throws<ArgumentNullException>(Test);
-        Assert.AreEqual("predicate", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("predicate"));
 
         void Test()
             =>
@@ -27,7 +27,7 @@ partial class OptionalTest
         var source = Optional<RefType>.Absent;
         var actual = source.Filter(static _ => true);
 
-        Assert.True(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.True);
     }
 
     [Test]
@@ -36,7 +36,7 @@ partial class OptionalTest
         var source = Optional<StructType?>.Present(SomeTextStructType);
         var actual = source.Filter(static _ => false);
 
-        Assert.True(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.True);
     }
 
     [Test]
@@ -45,7 +45,7 @@ partial class OptionalTest
         var source = Optional<RefType>.Present(ZeroIdRefType);
         var actual = source.Filter(static _ => true);
 
-        Assert.True(actual.IsPresent);
+        Assert.That(actual.IsPresent, Is.True);
     }
 
     [Test]
@@ -54,7 +54,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
 
-        Assert.AreEqual("predicateAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("predicateAsync"));
 
         async Task TestAsync()
             =>
@@ -67,7 +67,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Absent;
         var actual = await source.FilterAsync(static _ => Task.FromResult(true));
 
-        Assert.True(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.True);
     }
 
     [Test]
@@ -76,7 +76,7 @@ partial class OptionalTest
         var source = Optional<RefType>.Present(PlusFifteenIdRefType);
         var actual = await source.FilterAsync(static _ => Task.FromResult(false));
 
-        Assert.True(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.True);
     }
 
     [Test]
@@ -85,7 +85,7 @@ partial class OptionalTest
         var source = Optional<StructType?>.Present(null);
         var actual = await source.FilterAsync(static _ => Task.FromResult(true));
 
-        Assert.True(actual.IsPresent);
+        Assert.That(actual.IsPresent, Is.True);
     }
 
     [Test]
@@ -94,7 +94,7 @@ partial class OptionalTest
         var source = Optional<RefType?>.Present(null);
         var ex = Assert.ThrowsAsync<ArgumentNullException>(TestAsync);
 
-        Assert.AreEqual("predicateAsync", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("predicateAsync"));
 
         async Task TestAsync()
             =>
@@ -107,7 +107,7 @@ partial class OptionalTest
         var source = Optional<RefType>.Absent;
         var actual = await source.FilterValueAsync(static _ => ValueTask.FromResult(true));
 
-        Assert.True(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.True);
     }
 
     [Test]
@@ -116,7 +116,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
         var actual = await source.FilterValueAsync(static _ => ValueTask.FromResult(false));
 
-        Assert.True(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.True);
     }
 
     [Test]
@@ -125,6 +125,6 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(default);
         var actual = await source.FilterValueAsync(static _ => ValueTask.FromResult(true));
 
-        Assert.True(actual.IsPresent);
+        Assert.That(actual.IsPresent, Is.True);
     }
 }

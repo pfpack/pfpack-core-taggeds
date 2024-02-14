@@ -15,7 +15,7 @@ partial class OptionalStaticTest
         var actual = Optional.PresentOrElse<RefType?>(sourceValue);
         var expected = Optional<RefType?>.Present(sourceValue);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -24,7 +24,7 @@ partial class OptionalStaticTest
         var actual = Optional.PresentOrElse<RefType?>(null!);
         var expected = Optional<RefType?>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -35,7 +35,7 @@ partial class OptionalStaticTest
         var actual = Optional.PresentOrElse(sourceValue);
         var expected = Optional<StructType>.Present(SomeTextStructType);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -46,7 +46,7 @@ partial class OptionalStaticTest
         var actual = Optional.PresentOrElse(sourceValue);
         var expected = Optional<StructType>.Present(SomeTextStructType);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 
     [Test]
@@ -55,6 +55,6 @@ partial class OptionalStaticTest
         var actual = Optional.PresentOrElse<StructType>(null!);
         var expected = Optional<StructType>.Absent;
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }

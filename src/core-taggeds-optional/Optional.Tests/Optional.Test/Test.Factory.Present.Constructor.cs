@@ -11,27 +11,27 @@ partial class OptionalTest
     public void Present_Constructor_SourceIsNull_ExpectPresentIsTrue()
     {
         var actual = new Optional<StructType?>(null);
-        Assert.True(actual.IsPresent);
+        Assert.That(actual.IsPresent, Is.True);
     }
 
     [Test]
     public void Present_Constructor_SourceIsNull_ExpectAbsentIsFalse()
     {
         var actual = new Optional<StructType?>(null);
-        Assert.False(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.False);
     }
 
     [Test]
     public void Present_Constructor_SourceIsNotNull_ExpectPresentIsTrue()
     {
         var actual = new Optional<RefType>(PlusFifteenIdRefType);
-        Assert.True(actual.IsPresent);
+        Assert.That(actual.IsPresent, Is.True);
     }
 
     [Test]
     public void Present_Constructor_SourceIsNotNull_ExpectAbsentIsFalse()
     {
         var actual = new Optional<RefType>(MinusFifteenIdRefType);
-        Assert.False(actual.IsAbsent);
+        Assert.That(actual.IsAbsent, Is.False);
     }
 }

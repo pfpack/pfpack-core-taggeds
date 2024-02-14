@@ -15,7 +15,7 @@ partial class OptionalTest
         var source = Optional<object?>.Present(sourceValue);
 
         var actual = source.OrThrow();
-        Assert.AreEqual(sourceValue, actual);
+        Assert.That(actual, Is.SameAs(sourceValue));
     }
 
     [Test]
@@ -31,7 +31,7 @@ partial class OptionalTest
         var source = Optional<StructType>.Present(SomeTextStructType);
 
         var ex = Assert.Throws<ArgumentNullException>(() => _ = source.OrThrow(null!));
-        Assert.AreEqual("exceptionFactory", ex?.ParamName);
+        Assert.That(ex!.ParamName, Is.EqualTo("exceptionFactory"));
     }
 
     [Test]
@@ -42,7 +42,7 @@ partial class OptionalTest
         var source = Optional<object?>.Present(sourceValue);
 
         var actual = source.OrThrow(() => new SomeException());
-        Assert.AreEqual(sourceValue, actual);
+        Assert.That(actual, Is.SameAs(sourceValue));
     }
 
     [Test]
@@ -52,6 +52,6 @@ partial class OptionalTest
         var resultException = new SomeException();
 
         var actualException = Assert.Throws<SomeException>(() => _ = source.OrThrow(() => resultException));
-        Assert.AreSame(resultException, actualException);
+        Assert.That(actualException, Is.SameAs(resultException));
     }
 }
