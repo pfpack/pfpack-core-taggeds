@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -18,7 +18,7 @@
     <Description>PrimeFuncPack Core.Failure is a core library for .NET consisting of Failure type targeted for use in functional programming.</Description>
     <RootNamespace>System</RootNamespace>
     <AssemblyName>PrimeFuncPack.Core.Failure</AssemblyName>
-    <Version>2.2.0</Version>
+    <Version>3.0-preview.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PrimeFuncPack.Core.Unit" Version="2.2.1" />
+    <PackageReference Include="PrimeFuncPack.Core.Unit" Version="3.0.0" />
   </ItemGroup>
 
 </Project>
