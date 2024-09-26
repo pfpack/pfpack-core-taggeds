@@ -32,7 +32,7 @@ public readonly partial struct Failure<TFailureCode> : IEquatable<Failure<TFailu
 
     public string FailureMessage
         =>
-        failureMessage ?? string.Empty;
+        failureMessage ?? "";
 
     public System.Exception? SourceException { get; init; }
 }
