@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace PrimeFuncPack.Core;
+namespace System;
 
 partial struct FailureBuilder<TFailure>
 {

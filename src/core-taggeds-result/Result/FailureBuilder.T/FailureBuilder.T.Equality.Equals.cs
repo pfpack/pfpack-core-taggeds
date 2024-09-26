@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PrimeFuncPack.Core;
+namespace System;
 
 partial struct FailureBuilder<TFailure>
 {
