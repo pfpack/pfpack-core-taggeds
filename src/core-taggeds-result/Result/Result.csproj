@@ -18,7 +18,7 @@
     <Description>PrimeFuncPack Core.Result is a core library for .NET consisting of Result monad targeted for use in functional programming.</Description>
     <RootNamespace>System</RootNamespace>
     <AssemblyName>PrimeFuncPack.Core.Result</AssemblyName>
-    <Version>3.0-preview.2</Version>
+    <Version>3.0.0-preview.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
