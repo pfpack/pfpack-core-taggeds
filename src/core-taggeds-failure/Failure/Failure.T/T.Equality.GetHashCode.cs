@@ -9,7 +9,7 @@ partial struct Failure<TFailureCode>
         EqualityContractHashCode(),
         FailureCodeComparer.GetHashCode(FailureCode),
         FailureMessageComparer.GetHashCode(FailureMessage),
-        SourceException is not null ? SourceExceptionComparer.GetHashCode(SourceException) : default);
+        SourceException is null ? default : SourceExceptionComparer.GetHashCode(SourceException));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int EqualityContractHashCode()
