@@ -5,21 +5,11 @@ namespace System;
 
 partial struct Failure<TFailureCode>
 {
-    public override int GetHashCode()
-    {
-        HashCode builder = new();
-
-        builder.Add(EqualityContractHashCode());
-        builder.Add(FailureCodeComparer.GetHashCode(FailureCode));
-        builder.Add(FailureMessageComparer.GetHashCode(FailureMessage));
-
-        if (SourceException is not null)
-        {
-            builder.Add(SourceExceptionComparer.GetHashCode(SourceException));
-        }
-
-        return builder.ToHashCode();
-    }
+    public override int GetHashCode() => HashCode.Combine(
+        EqualityContractHashCode(),
+        FailureCodeComparer.GetHashCode(FailureCode),
+        FailureMessageComparer.GetHashCode(FailureMessage),
+        SourceException is not null ? SourceExceptionComparer.GetHashCode(SourceException) : default);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static int EqualityContractHashCode()
