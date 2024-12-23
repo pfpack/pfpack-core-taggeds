@@ -9,10 +9,4 @@ partial class OptionalLinqExtensions
         int index)
         =>
         index >= 0 && index < source.Count ? new(source[index]) : default;
-
-    private static Optional<TSource> InnerElementAtOrAbsent_IReadOnlyList<TSource>(
-        this IReadOnlyList<TSource> source,
-        long index)
-        =>
-        index >= 0 && index < source.Count ? new(source[(int)index]) : default;
 }

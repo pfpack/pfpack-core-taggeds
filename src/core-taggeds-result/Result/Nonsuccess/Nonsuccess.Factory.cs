@@ -1,4 +1,4 @@
-﻿namespace System.Success;
+﻿namespace System;
 
 partial class Nonsuccess
 {

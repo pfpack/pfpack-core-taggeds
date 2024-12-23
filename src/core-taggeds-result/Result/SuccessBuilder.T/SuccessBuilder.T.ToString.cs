@@ -1,6 +1,6 @@
 ﻿using static System.FormattableString;
 
-namespace PrimeFuncPack.Core;
+namespace System;
 
 partial struct SuccessBuilder<TSuccess>
 {

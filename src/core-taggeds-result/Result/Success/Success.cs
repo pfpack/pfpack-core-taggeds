@@ -1,4 +1,4 @@
-﻿namespace System.Success;
+﻿namespace System;
 
 // TODO: Add the tests!
 public static partial class Success

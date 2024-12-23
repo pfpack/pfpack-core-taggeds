@@ -1,6 +1,4 @@
-﻿using PrimeFuncPack.Core;
-
-namespace System;
+﻿namespace System;
 
 partial class Result
 {

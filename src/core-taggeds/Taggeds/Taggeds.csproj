@@ -18,7 +18,7 @@
     <Description>PrimeFuncPack Core.Taggeds is a core pack for .NET consisting of fundamental tagged types targeted for use in functional programming: Optional and Result monads, Tagged Union, as well as the convert extensions.</Description>
     <RootNamespace>System</RootNamespace>
     <AssemblyName>PrimeFuncPack.Core.Taggeds</AssemblyName>
-    <Version>3.0-preview.1</Version>
+    <Version>3.0.0-preview.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,9 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PrimeFuncPack.Core.Failure" Version="3.0-preview.1" />
-    <PackageReference Include="PrimeFuncPack.Core.Optional" Version="3.0-preview.1" />
-    <PackageReference Include="PrimeFuncPack.Core.Result" Version="3.0-preview.1" />
+    <PackageReference Include="PrimeFuncPack.Core.Failure" Version="3.0.0-preview.2" />
+    <PackageReference Include="PrimeFuncPack.Core.Optional" Version="3.0.0-preview.2" />
+    <PackageReference Include="PrimeFuncPack.Core.Result" Version="3.0.0-preview.2" />
     <PackageReference Include="PrimeFuncPack.Core.Unit" Version="3.0.0" />
   </ItemGroup>
 

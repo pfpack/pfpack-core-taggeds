@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace PrimeFuncPack.Core;
+namespace System;
 
 partial struct FailureBuilder<TFailure>
 {
