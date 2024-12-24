@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace System.Linq;
 
 partial class OptionalLinqExtensions
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Optional<TValue> InnerGetValueOrAbsent<TKey, TValue>(
         this IEnumerable<KeyValuePair<TKey, TValue>> pairs,
         TKey key)

@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace System.Linq;
 
 partial class OptionalLinqExtensions
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Optional<TSource> InnerElementAtOrAbsent<TSource>(
         this IEnumerable<TSource> source,
         Index index)
@@ -23,6 +25,7 @@ partial class OptionalLinqExtensions
             : source.InnerElementAtOrAbsent_IEnumerable_FromEnd(index.Value)
         };
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Optional<TSource> InnerElementAtOrAbsent<TSource>(
         this IEnumerable<TSource> source,
         int index)

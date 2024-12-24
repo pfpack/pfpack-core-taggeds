@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace System.Linq;
 
 partial class OptionalLinqExtensions
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Optional<TSource> InnerLastOrAbsent<TSource>(
         this IEnumerable<TSource> source)
         =>
@@ -21,6 +23,7 @@ partial class OptionalLinqExtensions
             source.InnerLastOrAbsent_IEnumerable()
         };
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Optional<TSource> InnerLastOrAbsent<TSource>(
         this IEnumerable<TSource> source,
         Func<TSource, bool> predicate)
