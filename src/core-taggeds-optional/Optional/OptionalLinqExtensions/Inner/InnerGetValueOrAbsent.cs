@@ -12,13 +12,16 @@ partial class OptionalLinqExtensions
         {
             IReadOnlyDictionary<TKey, TValue> dictionary
             =>
-            dictionary.InnerGetValueOrAbsent_IReadOnlyDictionary(key),
+            dictionary.TryGetValue(key, out var value) ? new(value) : default,
 
             IDictionary<TKey, TValue> dictionary
             =>
-            dictionary.InnerGetValueOrAbsent_IDictionary(key),
+            dictionary.TryGetValue(key, out var value) ? new(value) : default,
 
             _ =>
-            pairs.InnerGetValueOrAbsent_IEnumerable(key)
+            pairs.InnerFirstOrAbsent(
+                pair => EqualityComparer<TKey>.Default.Equals(pair.Key, key))
+            .Map(
+                pair => pair.Value)
         };
 }
