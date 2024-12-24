@@ -13,10 +13,6 @@ partial class OptionalLinqExtensions
             pairs ?? throw new ArgumentNullException(nameof(pairs)),
             key);
 
-    private const string NotIntendedMessage_TryGetValueOrAbsent
-        =
-        "This method is not intended for use. Call GetValueOrAbsent instead.";
-
     [Obsolete(NotIntendedMessage_TryGetValueOrAbsent, error: true)]
     [DoesNotReturn]
     public static Optional<TValue> TryGetValueOrAbsent<TKey, TValue>(
@@ -24,4 +20,8 @@ partial class OptionalLinqExtensions
         TKey key)
         =>
         throw new NotImplementedException(NotIntendedMessage_TryGetValueOrAbsent);
+
+    private const string NotIntendedMessage_TryGetValueOrAbsent
+        =
+        $"This method is not intended for use. Call {nameof(GetValueOrAbsent)} instead.";
 }
