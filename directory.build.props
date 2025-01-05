@@ -1,6 +1,0 @@
-﻿<Project>
-  <PropertyGroup>
-    <!-- IDE0130 // Namespace does not match folder structure -->
-    <NoWarn>$(NoWarn);IDE0130</NoWarn>
-  </PropertyGroup>
-</Project>
