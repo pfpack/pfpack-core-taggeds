@@ -8,7 +8,7 @@ partial class Optional
     internal static int Compare<T>(Optional<T> left, Optional<T> right)
         where T : IComparable<T>
         =>
-        left.CompareTo(right);
+        left.InternalCompareTo(right, Comparer<T>.Default);
 
     // TODO: Add the tests and open the method
     internal static IComparer<Optional<T>> CreateComparer<T>(IComparer<T> comparer)
