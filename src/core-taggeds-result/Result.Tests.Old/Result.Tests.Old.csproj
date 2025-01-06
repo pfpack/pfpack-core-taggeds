@@ -28,7 +28,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
-    <PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="3.1.0" />
+    <PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -23,7 +23,7 @@
     </PackageReference>
     <PackageReference Include="DeepEqual" Version="5.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
-    <PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="3.1.0" />
+    <PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="3.1.1" />
     <PackageReference Include="xunit" Version="2.9.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
