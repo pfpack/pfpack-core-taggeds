@@ -7,5 +7,5 @@ partial struct Optional<T>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private T? InnerOrDefault()
         =>
-        hasValue ? value : default;
+        value;
 }
