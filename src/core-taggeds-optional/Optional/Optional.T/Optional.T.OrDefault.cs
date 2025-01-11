@@ -4,5 +4,5 @@ partial struct Optional<T>
 {
     public T? OrDefault()
         =>
-        InnerOrDefault();
+        value;
 }
