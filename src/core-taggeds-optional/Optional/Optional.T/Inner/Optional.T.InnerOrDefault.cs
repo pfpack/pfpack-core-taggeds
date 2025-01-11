@@ -4,8 +4,9 @@ namespace System;
 
 partial struct Optional<T>
 {
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private T? InnerOrDefault()
-        =>
-        value;
+    private T? InnerOrDefault
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => value;
+    }
 }
