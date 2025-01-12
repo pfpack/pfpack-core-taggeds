@@ -1,6 +1,6 @@
 ﻿namespace System;
 
-// TODO: Add the tests!
-public static partial class Nonsuccess
+// TODO: Add the tests and open the type
+internal static partial class Nonsuccess
 {
 }

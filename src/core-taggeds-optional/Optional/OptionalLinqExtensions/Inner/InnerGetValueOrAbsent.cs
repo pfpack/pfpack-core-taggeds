@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace System.Linq;
 
 partial class OptionalLinqExtensions
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Optional<TValue> InnerGetValueOrAbsent<TKey, TValue>(
         this IEnumerable<KeyValuePair<TKey, TValue>> pairs,
         TKey key)
@@ -12,13 +14,16 @@ partial class OptionalLinqExtensions
         {
             IReadOnlyDictionary<TKey, TValue> dictionary
             =>
-            dictionary.InnerGetValueOrAbsent_IReadOnlyDictionary(key),
+            dictionary.TryGetValue(key, out var value) ? new(value) : default,
 
             IDictionary<TKey, TValue> dictionary
             =>
-            dictionary.InnerGetValueOrAbsent_IDictionary(key),
+            dictionary.TryGetValue(key, out var value) ? new(value) : default,
 
             _ =>
-            pairs.InnerGetValueOrAbsent_IEnumerable(key)
+            pairs.InnerFirstOrAbsent(
+                pair => EqualityComparer<TKey>.Default.Equals(pair.Key, key))
+            .Map(
+                pair => pair.Value)
         };
 }

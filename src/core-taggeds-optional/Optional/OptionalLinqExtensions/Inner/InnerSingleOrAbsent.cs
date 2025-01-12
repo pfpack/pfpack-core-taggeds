@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace System.Linq;
 
 partial class OptionalLinqExtensions
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Optional<TSource> InnerSingleOrAbsent<TSource>(
         this IEnumerable<TSource> source,
         Func<Exception> moreThanOneElementExceptionFactory)
@@ -22,6 +24,7 @@ partial class OptionalLinqExtensions
             source.InnerSingleOrAbsent_IEnumerable(moreThanOneElementExceptionFactory)
         };
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static Optional<TSource> InnerSingleOrAbsent<TSource>(
         this IEnumerable<TSource> source,
         Func<TSource, bool> predicate,

@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace System;
+﻿namespace System;
 
 partial struct Result<TSuccess, TFailure>
 {
@@ -13,25 +11,24 @@ partial struct Result<TSuccess, TFailure>
                 return false;
             }
 
-            return x.isSuccess
-                ? successComparer.Equals(x.success, y.success)
-                : failureComparer.Equals(x.failure, y.failure);
+            if (x.isSuccess)
+            {
+                return successComparer.Equals(x.success, y.success);
+            }
+
+            return failureComparer.Equals(x.failure, y.failure);
         }
 
         public int GetHashCode(Result<TSuccess, TFailure> obj)
-            =>
-            obj.isSuccess ? SuccessHashCode(obj.success) : FailureHashCode(obj.failure);
+        {
+            if (obj.isSuccess)
+            {
+                return obj.success is not null
+                    ? HashCode.Combine(true, successComparer.GetHashCode(obj.success))
+                    : HashCode.Combine(true);
+            }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private int SuccessHashCode(TSuccess success)
-            =>
-            success is not null
-            ? HashCode.Combine(true, successComparer.GetHashCode(success))
-            : HashCode.Combine(true);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private int FailureHashCode(TFailure failure)
-            =>
-            HashCode.Combine(false, failureComparer.GetHashCode(failure));
+            return HashCode.Combine(false, failureComparer.GetHashCode(obj.failure));
+        }
     }
 }

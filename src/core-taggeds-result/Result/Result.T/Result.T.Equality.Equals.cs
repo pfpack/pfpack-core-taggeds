@@ -11,8 +11,11 @@ partial struct Result<TSuccess, TFailure>
             return false;
         }
 
-        return isSuccess
-            ? EqualityComparer<TSuccess>.Default.Equals(success, other.success)
-            : EqualityComparer<TFailure>.Default.Equals(failure, other.failure);
+        if (isSuccess)
+        {
+            return EqualityComparer<TSuccess>.Default.Equals(success, other.success);
+        }
+
+        return EqualityComparer<TFailure>.Default.Equals(failure, other.failure);
     }
 }

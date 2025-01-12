@@ -4,7 +4,7 @@ namespace System;
 
 partial struct Result<TSuccess, TFailure>
 {
-    // TODO: Add the tests and open the class
+    // TODO: Add the tests and open the type
     internal sealed partial class EqualityComparer : IEqualityComparer<Result<TSuccess, TFailure>>
     {
         private readonly IEqualityComparer<TSuccess> successComparer;

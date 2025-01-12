@@ -6,7 +6,7 @@ namespace System;
 partial struct Optional<T>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private bool InnerContains(T value, IEqualityComparer<T> comparer)
+    private bool InnerContains(T value, EqualityComparer<T> comparer)
         =>
         hasValue && comparer.Equals(this.value, value);
 }

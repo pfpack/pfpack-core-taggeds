@@ -2,8 +2,9 @@
 
 namespace System;
 
-// TODO: Add the tests and open the class
-internal sealed class OptionalComparer<T> : IComparer<Optional<T>> where T : IComparable<T>
+// TODO: Add the tests and open the type
+internal sealed class OptionalComparer<T> : IComparer<Optional<T>>
+    where T : IComparable<T>
 {
     private readonly IComparer<T> comparer;
 

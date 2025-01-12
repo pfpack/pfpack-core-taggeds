@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace System;
+﻿namespace System;
 
 partial struct Optional<T>
 {
@@ -22,19 +20,14 @@ partial struct Optional<T>
         }
 
         public int GetHashCode(Optional<T> obj)
-            =>
-            obj.hasValue ? PresentHashCode(obj.value) : AbsentHashCode();
+        {
+            if (obj.hasValue)
+            {
+                return HashCode.Combine(
+                    obj.value is null ? default : comparer.GetHashCode(obj.value));
+            }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private int PresentHashCode(T value)
-            =>
-            value is not null
-            ? HashCode.Combine(true, comparer.GetHashCode(value))
-            : HashCode.Combine(true);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static int AbsentHashCode()
-            =>
-            HashCode.Combine(false);
+            return default;
+        }
     }
 }
