@@ -4,7 +4,7 @@ namespace System;
 
 partial struct Optional<T>
 {
-    // TODO: Add the tests and open the class
+    // TODO: Add the tests and open the type
     internal sealed partial class EqualityComparer : IEqualityComparer<Optional<T>>
     {
         private readonly IEqualityComparer<T> comparer;

@@ -8,13 +8,13 @@ partial struct FailureBuilder<TFailure>
         =>
         new(failure);
 
-    // TODO: Add the tests
-    public Task<Result<TSuccess, TFailure>> WithAsync<TSuccess>()
+    // TODO: Add the tests and open the method
+    internal Task<Result<TSuccess, TFailure>> WithAsync<TSuccess>()
         =>
         Task.FromResult<Result<TSuccess, TFailure>>(new(failure));
 
-    // TODO: Add the tests
-    public ValueTask<Result<TSuccess, TFailure>> WithValueAsync<TSuccess>()
+    // TODO: Add the tests and open the method
+    internal ValueTask<Result<TSuccess, TFailure>> WithValueAsync<TSuccess>()
         =>
         ValueTask.FromResult<Result<TSuccess, TFailure>>(new(failure));
 }

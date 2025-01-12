@@ -9,14 +9,14 @@ partial struct SuccessBuilder<TSuccess>
         =>
         new(success);
 
-    // TODO: Add the tests
-    public Task<Result<TSuccess, TFailure>> WithAsync<TFailure>()
+    // TODO: Add the tests and open the method
+    internal Task<Result<TSuccess, TFailure>> WithAsync<TFailure>()
         where TFailure : struct
         =>
         Task.FromResult<Result<TSuccess, TFailure>>(new(success));
 
-    // TODO: Add the tests
-    public ValueTask<Result<TSuccess, TFailure>> WithValueAsync<TFailure>()
+    // TODO: Add the tests and open the method
+    internal ValueTask<Result<TSuccess, TFailure>> WithValueAsync<TFailure>()
         where TFailure : struct
         =>
         ValueTask.FromResult<Result<TSuccess, TFailure>>(new(success));

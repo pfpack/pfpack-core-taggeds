@@ -10,15 +10,15 @@ partial struct Result<TSuccess, TFailure>
         =>
         new(failure);
 
-    // TODO: Add the tests!
-    public static implicit operator Result<TSuccess, TFailure>(Success<TSuccess> success)
-        =>
-        success.ToResult<TFailure>();
+    // TODO: Add the tests and open the operator
+    //public static implicit operator Result<TSuccess, TFailure>(Success<TSuccess> success)
+    //    =>
+    //    success.ToResult<TFailure>();
 
-    // TODO: Add the tests!
-    public static implicit operator Result<TSuccess, TFailure>(Nonsuccess<TFailure> nonsuccess)
-        =>
-        nonsuccess.ToResult<TSuccess>();
+    // TODO: Add the tests and open the operator
+    //public static implicit operator Result<TSuccess, TFailure>(Nonsuccess<TFailure> nonsuccess)
+    //    =>
+    //    nonsuccess.ToResult<TSuccess>();
 
     public static implicit operator Result<TSuccess, TFailure>(SuccessBuilder<TSuccess> success)
         =>
