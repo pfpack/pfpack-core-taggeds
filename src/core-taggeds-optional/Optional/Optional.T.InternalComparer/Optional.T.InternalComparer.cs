@@ -18,24 +18,15 @@ partial struct Optional<T>
         {
             if (x.hasValue != y.hasValue)
             {
-                return x.hasValue ? GreaterThan : LessThan;
+                return x.hasValue ? ComparisonResult.GreaterThan : ComparisonResult.LessThan;
             }
 
             if (x.hasValue)
             {
-                return comparer.Compare(x.value, y.value) switch
-                {
-                    > EqualTo => GreaterThan,
-                    < EqualTo => LessThan,
-                    _ => EqualTo
-                };
+                return ComparisonResult.Normalize(comparer.Compare(x.value, y.value));
             }
 
-            return EqualTo;
+            return ComparisonResult.EqualTo;
         }
-
-        private const int GreaterThan = 1;
-        private const int EqualTo = default;
-        private const int LessThan = -1;
     }
 }
