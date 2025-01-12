@@ -20,4 +20,15 @@ partial struct Optional<T>
 
         return ComparisonResult.EqualTo;
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal int InternalCompareTo(T other, Comparer<T> comparer)
+    {
+        if (hasValue)
+        {
+            return ComparisonResult.Normalize(comparer.Compare(value, other));
+        }
+
+        return ComparisonResult.LessThan;
+    }
 }
