@@ -6,11 +6,11 @@ namespace System;
 internal sealed class OptionalComparer<T> : IComparer<Optional<T>>
     where T : IComparable<T>
 {
-    private readonly Optional<T>.InternalComparer comparer;
+    private readonly IComparer<T> comparer;
 
     private OptionalComparer(IComparer<T> comparer)
         =>
-        this.comparer = new(comparer);
+        this.comparer = comparer;
 
     public static OptionalComparer<T> Create(IComparer<T>? comparer)
         =>
@@ -24,7 +24,7 @@ internal sealed class OptionalComparer<T> : IComparer<Optional<T>>
 
     public int Compare(Optional<T> x, Optional<T> y)
         =>
-        comparer.Compare(x, y);
+        x.InternalCompareTo(y, comparer);
 
     private static class InnerDefault
     {
