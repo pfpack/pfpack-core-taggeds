@@ -3,13 +3,14 @@
 namespace System;
 
 // TODO: Add the tests and open the class
-internal sealed class OptionalComparer<T> : IComparer<Optional<T>> where T : IComparable<T>
+internal sealed class OptionalComparer<T> : IComparer<Optional<T>>
+    where T : IComparable<T>
 {
-    private readonly IComparer<T> comparer;
+    private readonly Optional<T>.InternalComparer comparer;
 
     private OptionalComparer(IComparer<T> comparer)
         =>
-        this.comparer = comparer;
+        this.comparer = new(comparer);
 
     public static OptionalComparer<T> Create(IComparer<T>? comparer)
         =>
@@ -23,7 +24,7 @@ internal sealed class OptionalComparer<T> : IComparer<Optional<T>> where T : ICo
 
     public int Compare(Optional<T> x, Optional<T> y)
         =>
-        x.InternalCompareTo(y, comparer);
+        comparer.Compare(x, y);
 
     private static class InnerDefault
     {

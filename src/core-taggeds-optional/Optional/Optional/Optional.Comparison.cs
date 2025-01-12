@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace System;
+﻿namespace System;
 
 partial class Optional
 {
@@ -8,10 +6,5 @@ partial class Optional
     internal static int Compare<T>(Optional<T> left, Optional<T> right)
         where T : IComparable<T>
         =>
-        left.InternalCompareTo(right, Comparer<T>.Default);
-
-    // TODO: Add the tests and open the method
-    internal static IComparer<Optional<T>> CreateComparer<T>(IComparer<T> comparer)
-        =>
-        new Optional<T>.InternalComparer(comparer ?? throw new ArgumentNullException(nameof(comparer)));
+        OptionalComparer<T>.Default.Compare(left, right);
 }
