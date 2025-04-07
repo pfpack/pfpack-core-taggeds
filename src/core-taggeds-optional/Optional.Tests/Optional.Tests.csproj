@@ -18,7 +18,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Optional\Optional.csproj" />
-    <ProjectReference Include="..\Optional.Analyzer\Optional.Analyzer.csproj" OutputItemType="Analyzer" />
+    <ProjectReference Include="..\Optional.Analyzer\Optional.Analyzer.csproj">
+      <OutputItemType>Analyzer</OutputItemType>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +28,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Analyzer.Testing" Version="1.1.2" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.13.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
     <PackageReference Include="PrimeFuncPack.UnitTest.Data" Version="3.1.1" />
     <PackageReference Include="xunit" Version="2.9.3" />

@@ -20,7 +20,7 @@
     <Description>PrimeFuncPack Core.Optional is a core library for .NET consisting of Optional monad targeted for use in functional programming.</Description>
     <RootNamespace>PrimeFuncPack.Analyzer</RootNamespace>
     <AssemblyName>PrimeFuncPack.Core.Optional.Analyzer</AssemblyName>
-    <Version>0.0.1-preview.1</Version>
+    <Version>1.0.0-preview.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

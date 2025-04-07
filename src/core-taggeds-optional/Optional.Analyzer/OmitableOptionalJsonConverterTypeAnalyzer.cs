@@ -1,7 +1,10 @@
 using System.Collections.Immutable;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
+
+[assembly: InternalsVisibleTo("PrimeFuncPack.Core.Optional.Tests")]
 
 namespace PrimeFuncPack.Analyzer;
 
@@ -46,7 +49,7 @@ internal sealed class OmitableOptionalJsonConverterTypeAnalyzer : DiagnosticAnal
         context.RegisterSymbolAction(AnalyzeProperty, SymbolKind.Property);
     }
 
-    private void AnalyzeProperty(SymbolAnalysisContext context)
+    private static void AnalyzeProperty(SymbolAnalysisContext context)
     {
         if (context.Symbol is not IPropertySymbol property || property.GetAttributes().Any(IsOmitableOptionalJsonConverterAttribute) is false)
         {
