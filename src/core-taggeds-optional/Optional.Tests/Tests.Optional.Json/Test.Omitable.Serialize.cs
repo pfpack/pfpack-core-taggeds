@@ -8,7 +8,7 @@ namespace PrimeFuncPack.Core.Tests;
 partial class OptionalJsonSerializerTest
 {
     [Theory]
-    [MemberData(nameof(OmitableValueOptionalTestData))]
+    [MemberData(nameof(OmitableOptionalValueTestData))]
     public static void SerializeOmitable_SourceValueIsOptional_ExpectCorrectJson(
         Optional<string> source, JsonSerializerOptions options, string expected)
     {
@@ -17,7 +17,7 @@ partial class OptionalJsonSerializerTest
     }
 
     [Theory]
-    [MemberData(nameof(OmitableValueRefTypeTestData))]
+    [MemberData(nameof(OmitableRefTypeWithOptionsTestData))]
     public static void SerializeOmitable_SourceValueIsRefType_ExpectCorrectJson(
         RefTypeValue source, JsonSerializerOptions options, string expected)
     {
@@ -26,15 +26,15 @@ partial class OptionalJsonSerializerTest
     }
 
     [Theory]
-    [MemberData(nameof(OmitableValueStructTypeTestData))]
+    [MemberData(nameof(OmitableStructTypeWithAttributeTestData))]
     public static void SerializeOmitable_SourceValueIsStructType_ExpectCorrectJson(
-        StructTypeValue source, JsonSerializerOptions options, string expected)
+        StructTypeValue source, JsonSerializerOptions? options, string expected)
     {
         var actual = JsonSerializer.Serialize(source, options);
         Assert.Equal(expected, actual);
     }
 
-    public static TheoryData<Optional<string>, JsonSerializerOptions, string> OmitableValueOptionalTestData
+    public static TheoryData<Optional<string>, JsonSerializerOptions, string> OmitableOptionalValueTestData
         =>
         new()
         {
@@ -70,7 +70,7 @@ partial class OptionalJsonSerializerTest
             }
         };
 
-    public static TheoryData<RefTypeValue, JsonSerializerOptions, string> OmitableValueRefTypeTestData
+    public static TheoryData<RefTypeValue, JsonSerializerOptions, string> OmitableRefTypeWithOptionsTestData
         =>
         new()
         {
@@ -138,7 +138,7 @@ partial class OptionalJsonSerializerTest
             }
         };
 
-    public static TheoryData<StructTypeValue, JsonSerializerOptions, string> OmitableValueStructTypeTestData
+    public static TheoryData<StructTypeValue, JsonSerializerOptions?, string> OmitableStructTypeWithAttributeTestData
         =>
         new()
         {
@@ -147,7 +147,7 @@ partial class OptionalJsonSerializerTest
                 {
                     Value = default
                 },
-                Optional.JsonSerializerOptionsOmitableGeneral,
+                null,
                 "{}"
             },
             {
@@ -163,7 +163,7 @@ partial class OptionalJsonSerializerTest
                 {
                     Value = ((int?)null).InitializePresentOptional()
                 },
-                Optional.JsonSerializerOptionsOmitableGeneral,
+                new(),
                 "{\"Value\":null}"
             },
             {
@@ -171,7 +171,7 @@ partial class OptionalJsonSerializerTest
                 {
                     Value = ((int?)null).InitializePresentOptional()
                 },
-                Optional.JsonSerializerOptionsOmitableWeb,
+                new(JsonSerializerDefaults.Web),
                 "{\"value\":null}"
             },
             {
@@ -179,7 +179,7 @@ partial class OptionalJsonSerializerTest
                 {
                     Value = ((int?)TestData.PlusFifteen).InitializePresentOptional()
                 },
-                Optional.JsonSerializerOptionsOmitableGeneral,
+                new(JsonSerializerDefaults.General),
                 $"{{\"Value\":{TestData.PlusFifteen}}}"
             },
             {
@@ -187,7 +187,7 @@ partial class OptionalJsonSerializerTest
                 {
                     Value = ((int?)TestData.PlusFifteen).InitializePresentOptional()
                 },
-                Optional.JsonSerializerOptionsOmitableWeb,
+                new(Optional.JsonSerializerOptionsOmitableWeb),
                 $"{{\"value\":{TestData.PlusFifteen}}}"
             }
         };

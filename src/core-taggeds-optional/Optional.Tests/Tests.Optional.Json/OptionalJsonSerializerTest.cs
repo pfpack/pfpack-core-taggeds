@@ -18,6 +18,8 @@ public static partial class OptionalJsonSerializerTest
 
     public readonly record struct StructTypeValue
     {
+        [OmitableOptionalJsonConverter]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public Optional<int?> Value { get; init; }
     }
 }

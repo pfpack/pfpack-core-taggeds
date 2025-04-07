@@ -35,9 +35,9 @@ partial class OptionalJsonSerializerTest
     }
 
     [Theory]
-    [MemberData(nameof(OmitableJsonSerializerOptionsTestData))]
-    public static void DeserializeOmitable_SourceValueIsStructType_OptionalFieldIsAbsent_ExpectDefault(
-        JsonSerializerOptions options)
+    [MemberData(nameof(NullableJsonSerializerOptionsTestData))]
+    public static void DeserializeOmitable_SourceValueIsStructTypeWithAttribute_OptionalFieldIsAbsent_ExpectDefault(
+        JsonSerializerOptions? options)
     {
         const string json = "{}";
         var actual = JsonSerializer.Deserialize<StructTypeValue>(json, options);
@@ -48,7 +48,7 @@ partial class OptionalJsonSerializerTest
     [Theory]
     [MemberData(nameof(OmitableNullableInt32TestData))]
     public static void DeserializeOmitable_SourceValueIsStructType_OptionalFieldIsPresent_ExpectInnerValueIsEqualToSourceValue(
-        JsonSerializerOptions options, int? sourceValue)
+        JsonSerializerOptions? options, int? sourceValue)
     {
         var source = new
         {
@@ -65,6 +65,27 @@ partial class OptionalJsonSerializerTest
         =>
         new()
         {
+            {
+                Optional.JsonSerializerOptionsOmitableGeneral
+            },
+            {
+                Optional.JsonSerializerOptionsOmitableWeb
+            }
+        };
+
+    public static TheoryData<JsonSerializerOptions?> NullableJsonSerializerOptionsTestData
+        =>
+        new()
+        {
+            {
+                null
+            },
+            {
+                new()
+            },
+            {
+                new(JsonSerializerDefaults.Web)
+            },
             {
                 Optional.JsonSerializerOptionsOmitableGeneral
             },
@@ -92,14 +113,14 @@ partial class OptionalJsonSerializerTest
         }
     }
 
-    public static TheoryData<JsonSerializerOptions, int?> OmitableNullableInt32TestData
+    public static TheoryData<JsonSerializerOptions?, int?> OmitableNullableInt32TestData
     {
         get
         {
-            var data = new TheoryData<JsonSerializerOptions, int?>();
+            var data = new TheoryData<JsonSerializerOptions?, int?>();
             int?[] values = [null, TestData.Zero, TestData.PlusFifteen];
 
-            foreach (var options in OmitableJsonSerializerOptionsTestData)
+            foreach (var options in NullableJsonSerializerOptionsTestData)
             {
                 foreach (var value in values)
                 {
