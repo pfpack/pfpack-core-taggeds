@@ -19,26 +19,14 @@ partial struct Optional<T>
                 throw InnerJsonExceptionFactory.JsonTokenNotStartObject();
             }
 
-            //JsonSerializer.Deserialize(ref reader, )
-
-            var isPresentPropertyName = InnerGetPropertyName(options, nameof(IsPresent));
-            var isPresent = false;
-
-            var valuePropertyName = InnerGetPropertyName(options, ValuePropertyName);
-            var isValueFound = false;
-            var value = default(T?);
+            var absentPropertyName = InnerGetPropertyName(options, AbsentPropertyName);
+            var presentPropertyName = InnerGetPropertyName(options, PresentPropertyName);
 
             while (InnerReadNextToken(ref reader) is not JsonTokenType.EndObject)
             {
-                if (reader.TokenType is JsonTokenType.StartArray)
+                if (reader.TokenType is JsonTokenType.StartObject or JsonTokenType.StartArray)
                 {
-                    InnerReadUntil(ref reader, JsonTokenType.EndArray);
-                    continue;
-                }
-
-                if (reader.TokenType is JsonTokenType.StartObject)
-                {
-                    InnerReadUntil(ref reader, JsonTokenType.EndObject);
+                    reader.Skip();
                     continue;
                 }
 
@@ -48,82 +36,49 @@ partial struct Optional<T>
                 }
 
                 var propertyName = reader.GetString();
-                if (isPresent is false && string.Equals(isPresentPropertyName, propertyName, StringComparison.InvariantCulture))
+                if (string.Equals(absentPropertyName, propertyName, StringComparison.InvariantCulture))
                 {
-                    isPresent = InnerReadNextBoolean(ref reader, isPresentPropertyName);
-                    if (isPresent is false || isValueFound)
+                    var nextToken = InnerReadNextToken(ref reader);
+                    if (nextToken is JsonTokenType.StartObject or JsonTokenType.StartArray)
                     {
-                        InnerReadUntil(ref reader, JsonTokenType.EndObject);
-                        break;
+                        reader.Skip();
                     }
-                    continue;
+
+                    InnerReadUntilEndObject(ref reader);
+                    return default;
                 }
 
-                if (isValueFound is false && string.Equals(valuePropertyName, propertyName, StringComparison.InvariantCulture))
+                if (string.Equals(presentPropertyName, propertyName, StringComparison.InvariantCulture))
                 {
                     _ = InnerReadNextToken(ref reader);
+                    var value = valueConverter.Read(ref reader, InnerValueType.Value, options);
 
-                    value = valueConverter.Read(ref reader, InnerValueType.Value, options);
-                    isValueFound = true;
-
-                    if (isPresent)
-                    {
-                        InnerReadUntil(ref reader, JsonTokenType.EndObject);
-                        break;
-                    }
-                    continue;
+                    InnerReadUntilEndObject(ref reader);
+                    return new(value!);
                 }
             }
 
-            if (isPresent is false)
-            {
-                return default;
-            }
-
-            return new(value!);
+            return default;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static bool InnerReadNextBoolean(ref Utf8JsonReader reader, string propertyName)
-        {
-            var nextToken = InnerReadNextToken(ref reader);
-            if (nextToken is JsonTokenType.True)
-            {
-                return true;
-            }
-
-            if (nextToken is JsonTokenType.False)
-            {
-                return false;
-            }
-
-            throw InnerJsonExceptionFactory.JsonUnexpectedToken(nextToken, propertyName);
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void InnerReadUntil(ref Utf8JsonReader reader, JsonTokenType expectedTokenType)
+        private static void InnerReadUntilEndObject(ref Utf8JsonReader reader)
         {
             while (reader.Read())
             {
-                if (reader.TokenType == expectedTokenType)
+                if (reader.TokenType is JsonTokenType.EndObject)
                 {
                     return;
                 }
 
-                if (reader.TokenType is JsonTokenType.StartArray)
+                if (reader.TokenType is JsonTokenType.StartObject or JsonTokenType.StartArray)
                 {
-                    InnerReadUntil(ref reader, JsonTokenType.EndArray);
-                    continue;
-                }
-
-                if (reader.TokenType is JsonTokenType.StartObject)
-                {
-                    InnerReadUntil(ref reader, JsonTokenType.EndObject);
+                    reader.Skip();
                     continue;
                 }
             }
 
-            throw InnerJsonExceptionFactory.JsonReadCompletedNoExpectedObject(expectedTokenType);
+            throw InnerJsonExceptionFactory.JsonReadCompletedNoEndObject();
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

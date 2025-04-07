@@ -8,7 +8,9 @@ partial struct Optional<T>
 {
     internal sealed partial class DefaultJsonConverter : JsonConverter<Optional<T>>
     {
-        private const string ValuePropertyName = "Value";
+        private const string AbsentPropertyName = "Absent";
+
+        private const string PresentPropertyName = "Present";
 
         private readonly JsonConverter<T> valueConverter;
 
@@ -41,14 +43,6 @@ partial struct Optional<T>
             internal static JsonException JsonReadCompletedNoEndObject()
                 =>
                 new("Reading the JSON completed, but the end of the JSON object was not found.");
-
-            internal static JsonException JsonReadCompletedNoExpectedObject(JsonTokenType expectedTokenType)
-                =>
-                new("Reading the JSON completed, but the JSON token '{expectedTokenType}' was not found.");
-
-            internal static JsonException JsonUnexpectedToken(JsonTokenType tokenType, string propertyName)
-                =>
-                new($"JSON property '{propertyName}' token type is unexpected: {tokenType}.");
         }
     }
 }

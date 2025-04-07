@@ -23,7 +23,7 @@ partial class OptionalJsonSerializerTest
             {
                 default,
                 null,
-                "{\"IsPresent\":false}"
+                "{\"Absent\":{}}"
             },
             {
                 default,
@@ -31,12 +31,12 @@ partial class OptionalJsonSerializerTest
                 {
                     WriteIndented = true
                 },
-                "{\n  \"IsPresent\": false\n}"
+                "{\n  \"Absent\": {}\n}"
             },
             {
                 default,
                 new(JsonSerializerDefaults.Web),
-                "{\"isPresent\":false}"
+                "{\"absent\":{}}"
             },
             {
                 default,
@@ -44,12 +44,12 @@ partial class OptionalJsonSerializerTest
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.KebabCaseLower
                 },
-                "{\"is-present\":false}"
+                "{\"absent\":{}}"
             },
             {
                 ((string)null!).InitializePresentOptional(),
                 null,
-                "{\"IsPresent\":true,\"Value\":null}"
+                "{\"Present\":null}"
             },
             {
                 TestData.EmptyString.InitializePresentOptional(),
@@ -57,12 +57,12 @@ partial class OptionalJsonSerializerTest
                 {
                     WriteIndented = true
                 },
-                "{\n  \"IsPresent\": true,\n  \"Value\": \"\"\n}"
+                "{\n  \"Present\": \"\"\n}"
             },
             {
                 TestData.SomeString.InitializePresentOptional(),
                 new(JsonSerializerDefaults.Web),
-                $"{{\"isPresent\":true,\"value\":\"{TestData.SomeString}\"}}"
+                $"{{\"present\":\"{TestData.SomeString}\"}}"
             },
             {
                 TestData.SomeString.InitializePresentOptional(),
@@ -70,7 +70,7 @@ partial class OptionalJsonSerializerTest
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.KebabCaseLower
                 },
-                $"{{\"is-present\":true,\"value\":\"{TestData.SomeString}\"}}"
+                $"{{\"present\":\"{TestData.SomeString}\"}}"
             }
         };
 }

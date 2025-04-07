@@ -9,18 +9,18 @@ partial struct Optional<T>
         public override void Write(Utf8JsonWriter writer, Optional<T> value, JsonSerializerOptions options)
         {
             writer.WriteStartObject();
-            writer.WritePropertyName(InnerGetPropertyName(options, nameof(IsPresent)));
 
-            if (value.hasValue is false)
+            if (value.hasValue)
             {
-                writer.WriteBooleanValue(false);
+                writer.WritePropertyName(InnerGetPropertyName(options, PresentPropertyName));
+                valueConverter.Write(writer, value.value, options);
             }
             else
             {
-                writer.WriteBooleanValue(true);
+                writer.WritePropertyName(InnerGetPropertyName(options, AbsentPropertyName));
 
-                writer.WritePropertyName(InnerGetPropertyName(options, ValuePropertyName));
-                valueConverter.Write(writer, value.value, options);
+                writer.WriteStartObject();
+                writer.WriteEndObject();
             }
 
             writer.WriteEndObject();

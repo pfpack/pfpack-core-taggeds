@@ -8,7 +8,7 @@ partial class OptionalJsonSerializerTest
 {
     [Theory]
     [MemberData(nameof(DefaultDeserializerAbsentTestData))]
-    public static void DeserializeDefault_JsonIsPresentIsNotTrue_ExpectDefault(
+    public static void DeserializeDefault_JsonAbsentIsFoundOrPresentIsNotFound_ExpectDefault(
         string source, JsonSerializerOptions? options)
     {
         var actual = JsonSerializer.Deserialize<Optional<State?>>(source, options);
@@ -17,7 +17,7 @@ partial class OptionalJsonSerializerTest
 
     [Theory]
     [MemberData(nameof(DefaultDeserializerPresentTestData))]
-    public static void DeserializeDefault_JsonIsPresentIsTrue_ExpectPresentInnerState(
+    public static void DeserializeDefault_JsonPresentIsFound_ExpectPresentInnerState(
         string source, JsonSerializerOptions? options, State? state)
     {
         var actual = JsonSerializer.Deserialize<Optional<State?>>(source, options);
@@ -45,24 +45,32 @@ partial class OptionalJsonSerializerTest
                 new(JsonSerializerDefaults.Web)
             },
             {
-                "{\"IsPresent\":false}",
+                "{\"Absent\":false}",
                 null
             },
             {
-                "{\"isPresent\":false,\"value\":{}}",
+                "{\"isPresent\":false,\"absent\":{}}",
                 new(JsonSerializerDefaults.Web)
             },
             {
-                "{\"name\":{},\"is_present\":false}",
+                "{\"name\":{},\"absent\":{}}",
                 new()
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
                 }
             },
             {
-                "{\"isPresent\":true,\"Items\":[],\"IsPresent\":false}",
+                "{\"Items\":[],\"Absent\":{}}",
                 new(JsonSerializerDefaults.General)
             },
+            {
+                "{\"Absent\":null}",
+                new(JsonSerializerDefaults.General)
+            },
+            {
+                "{\"Absent\":[1,2,3]}",
+                null
+            }
         };
 
     public static TheoryData<string, JsonSerializerOptions?, State?> DefaultDeserializerPresentTestData
@@ -70,12 +78,12 @@ partial class OptionalJsonSerializerTest
         new()
         {
             {
-                "{\"IsPresent\":true}",
+                "{\"Present\":null}",
                 null,
                 null
             },
             {
-                "{\"VALUE\":null,\"IS-PRESENT\":true}",
+                "{\"PRESENT\":null}",
                 new()
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.KebabCaseUpper
@@ -83,7 +91,7 @@ partial class OptionalJsonSerializerTest
                 null
             },
             {
-                "{\"IsPresent\":true,\"Value\":{\"Value\":15}}",
+                "{\"Present\":{\"Value\":15}}",
                 null,
                 new()
                 {
@@ -91,7 +99,7 @@ partial class OptionalJsonSerializerTest
                 }
             },
             {
-                "{\"value\":{},\"isPresent\":true}",
+                "{\"present\":{}}",
                 new(JsonSerializerDefaults.Web),
                 new()
                 {
@@ -99,7 +107,7 @@ partial class OptionalJsonSerializerTest
                 }
             },
             {
-                "{\"Value\":null,\"isPresent\":true,\"value\":{\"value\":0}}",
+                "{\"Present\":null,\"isPresent\":true,\"present\":{\"value\":0}}",
                 new(JsonSerializerDefaults.Web),
                 new()
                 {
