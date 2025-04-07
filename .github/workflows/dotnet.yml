@@ -52,6 +52,15 @@ jobs:
 
     # Optional
 
+    - name: Restore Optional.Analyzer
+      run: dotnet restore ./src/*/*/Optional.Analyzer.csproj
+
+    - name: Build Optional.Analyzer
+      run: dotnet build ./src/*/*/Optional.Analyzer.csproj --no-restore  -c Release
+
+    - name: Pack Optional.Analyzer
+      run: dotnet pack ./src/*/*/Optional.Analyzer.csproj --no-restore -o ~/nuget  -c Release
+
     - name: Restore Optional
       run: dotnet restore ./src/*/*/Optional.csproj
 

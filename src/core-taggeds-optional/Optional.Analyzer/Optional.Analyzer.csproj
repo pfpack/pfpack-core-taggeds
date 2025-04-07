@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <InvariantGlobalization>true</InvariantGlobalization>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <NoWarn>$(NoWarn);IDE0130</NoWarn>
+    <NoWarn>$(NoWarn);IDE0028;IDE0130;IDE0290;IDE0305;RS2008</NoWarn>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -17,9 +18,9 @@
     <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
     <Copyright>Copyright © 2020-2025 Andrei Sergeev, Pavel Moskovoy</Copyright>
     <Description>PrimeFuncPack Core.Optional is a core library for .NET consisting of Optional monad targeted for use in functional programming.</Description>
-    <RootNamespace>System</RootNamespace>
-    <AssemblyName>PrimeFuncPack.Core.Optional</AssemblyName>
-    <Version>3.0.0-preview.4</Version>
+    <RootNamespace>PrimeFuncPack.Analyzer</RootNamespace>
+    <AssemblyName>PrimeFuncPack.Core.Optional.Analyzer</AssemblyName>
+    <Version>0.0.1-preview.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,14 +35,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Optional.Analyzer\Optional.Analyzer.csproj">
-      <PrivateAssets>contentfiles; build</PrivateAssets>
-      <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
-    </ProjectReference>
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PrimeFuncPack.Core.Unit" Version="3.0.2" />
+    <PackageReference Include="EarlyFuncPack.CodeAnalysis.Extensions" Version="0.0.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
