@@ -163,7 +163,7 @@ jobs:
   # Taggeds
 
   build-taggeds:
-
+    needs: [build-failure, build-optional, build-result]
     runs-on: ubuntu-latest
 
     steps:
@@ -177,6 +177,24 @@ jobs:
 
     - name: Create Local NuGet Directory
       run: mkdir ~/nuget
+
+    - name: Download Failure artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: nuget-failure
+        path: ~/nuget
+
+    - name: Download Optional artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: nuget-optional
+        path: ~/nuget
+
+    - name: Download Result artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: nuget-result
+        path: ~/nuget
 
     - name: Add Local Nuget Source
       run: dotnet nuget add source ~/nuget
@@ -212,7 +230,7 @@ jobs:
   # Publish
 
   publish:
-    needs: [build-failure, build-optional, build-result, build-taggeds]
+    needs: [build-taggeds]
     runs-on: ubuntu-latest
     if: github.event_name == 'release'
 
@@ -225,29 +243,11 @@ jobs:
             8.0.x
             9.0.x
 
-    - name: Download Failure artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: nuget-failure
-        path: ./nuget
-
-    - name: Download Optional artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: nuget-optional
-        path: ./nuget
-
-    - name: Download Result artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: nuget-result
-        path: ./nuget
-
     - name: Download Taggeds artifacts
       uses: actions/download-artifact@v4
       with:
         name: nuget-taggeds
-        path: ./nuget
+        path: ~/nuget
 
     - name: Publish Packages
       run: >
