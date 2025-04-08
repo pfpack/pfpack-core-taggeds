@@ -1,5 +1,8 @@
-﻿namespace System;
+﻿using System.Text.Json.Serialization;
 
+namespace System;
+
+[JsonConverter(typeof(DefaultOptionalJsonConverterFactory))]
 public readonly partial struct Optional<T> : IEquatable<Optional<T>>
 {
     private readonly bool hasValue;
