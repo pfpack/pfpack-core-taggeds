@@ -69,7 +69,7 @@ partial class FailureTest
             typeof(EnumType).Name,
             failureCode,
             expectedFailureMessage,
-            sourceException.ToString());
+            sourceException);
 
         Assert.Equal(expected, actual);
     }
