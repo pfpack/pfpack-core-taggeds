@@ -14,7 +14,7 @@ public readonly partial struct Failure<TFailureCode> : IEquatable<Failure<TFailu
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private Failure(TFailureCode failureCode, string? failureMessage, int _)
     {
-        Debug.Assert(failureMessage is null || failureMessage.Length != default);
+        Debug.Assert(failureMessage is null or { Length: not 0 });
 
         this.failureCode = failureCode;
         this.failureMessage = failureMessage;
@@ -25,7 +25,7 @@ public readonly partial struct Failure<TFailureCode> : IEquatable<Failure<TFailu
         this.failureCode = failureCode;
         this.failureMessage = string.IsNullOrEmpty(failureMessage) ? null : failureMessage;
 
-        Debug.Assert(this.failureMessage is null || this.failureMessage.Length != default);
+        Debug.Assert(this.failureMessage is null or { Length: not 0 });
     }
 
     public TFailureCode FailureCode
