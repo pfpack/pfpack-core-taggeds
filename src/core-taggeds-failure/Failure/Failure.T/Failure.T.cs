@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 namespace System;
 
@@ -10,6 +11,7 @@ public readonly partial struct Failure<TFailureCode> : IEquatable<Failure<TFailu
 
     private readonly string? failureMessage;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private Failure(TFailureCode failureCode, string? failureMessage, int _)
     {
         Debug.Assert(failureMessage is null || failureMessage.Length != default);
