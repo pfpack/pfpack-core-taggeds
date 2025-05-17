@@ -94,7 +94,7 @@ partial class FailureTest
         where TFailureCode : struct
         =>
         string.Format(
-            "Failure<{0}>:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\", \"SourceException\": null }}",
+            "Failure<{0}>:{{ \"FailureCode\": \"{1}\", \"FailureMessage\": \"{2}\", \"SourceException\": null }}",
             typeof(TFailureCode).Name,
             failureCodeString,
             failureMessage);
@@ -106,7 +106,7 @@ partial class FailureTest
         where TFailureCode : struct
         =>
         string.Format(
-            "Failure<{0}>:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\", \"SourceException\": \"{3}\" }}",
+            "Failure<{0}>:{{ \"FailureCode\": \"{1}\", \"FailureMessage\": \"{2}\", \"SourceException\": \"{3}\" }}",
             typeof(TFailureCode).Name,
             failureCodeString,
             failureMessage,

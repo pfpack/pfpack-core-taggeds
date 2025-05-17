@@ -8,7 +8,7 @@ partial struct Failure<TFailureCode>
         =>
         string.Format(
             CultureInfo.InvariantCulture,
-            "Failure<{0}>:{{ \"FailureCode\": {1}, \"FailureMessage\": \"{2}\", \"SourceException\": {3}{4}{5} }}",
+            "Failure<{0}>:{{ \"FailureCode\": \"{1}\", \"FailureMessage\": \"{2}\", \"SourceException\": {3}{4}{5} }}",
             typeof(TFailureCode).Name,
             FailureCode,
             FailureMessage,
