@@ -10,7 +10,7 @@ partial struct Failure<TFailureCode>
 
     private static StringComparer FailureMessageComparer
         =>
-        StringComparer.Ordinal;
+        StringComparer.InvariantCulture;
 
     private static ReferenceEqualityComparer SourceExceptionComparer
         =>
