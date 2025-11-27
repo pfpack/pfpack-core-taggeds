@@ -31,9 +31,8 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional<{0}>:Present:{1}",
-            typeof(StubType).Name,
-            string.Empty);
+            "Optional<{0}>:Present:null",
+            typeof(StubType).Name);
 
         Assert.That(actual, Is.EqualTo(expected));
     }
@@ -48,9 +47,8 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional<{0}>:Present:{1}",
-            typeof(StubType).Name,
-            string.Empty);
+            "Optional<{0}>:Present:\"\"",
+            typeof(StubType).Name);
 
         Assert.That(actual, Is.EqualTo(expected));
     }
@@ -75,7 +73,7 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional<{0}>:Present:{1}",
+            "Optional<{0}>:Present:\"{1}\"",
             typeof(StubType).Name,
             sourceValueToStringResult);
 
@@ -83,7 +81,6 @@ partial class OptionalTest
     }
 
     [Test]
-    [TestCase(null)]
     [TestCase(EmptyString)]
     [TestCase(TabString)]
     [TestCase(TwoTabsString)]
@@ -95,8 +92,8 @@ partial class OptionalTest
     [TestCase(MinusOne)]
     [TestCase(Zero)]
     [TestCase(One)]
-    public void ToString_SourceIsPresent_Common(
-        object? sourceValue)
+    public void ToString_SourceIsPresentAndNotNull_Common(
+        object sourceValue)
     {
         var source = Optional<object?>.Present(sourceValue);
 
@@ -104,7 +101,7 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional<{0}>:Present:{1}",
+            "Optional<{0}>:Present:\"{1}\"",
             typeof(object).Name,
             sourceValue);
 
@@ -122,7 +119,7 @@ partial class OptionalTest
 
         var expected = string.Format(
             CultureInfo.InvariantCulture,
-            "Optional<{0}>:Present:{1}",
+            "Optional<{0}>:Present:\"{1}\"",
             typeof(decimal).Name,
             expectedDecimalSubstr);
 

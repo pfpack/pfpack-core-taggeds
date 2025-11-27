@@ -1,5 +1,5 @@
-using System.Runtime.CompilerServices;
-using static System.FormattableString;
+using System.Globalization;
+using System.Text;
 
 namespace System;
 
@@ -7,11 +7,24 @@ partial struct Failure<TFailureCode>
 {
     public override string ToString()
         =>
-        Invariant(
-            $"Failure<{typeof(TFailureCode).Name}>:{{ \"FailureCode\": {FailureCode}, \"FailureMessage\": \"{FailureMessage}\", \"SourceException\": {InnerSourceExceptionString()} }}");
+        string.Format(
+            CultureInfo.InvariantCulture,
+            FailureToStringCompositeFormat.Value,
+            typeof(TFailureCode).Name,
+            FailureCode,
+            FailureMessage,
+            SourceException is null ? null : "\"",
+            SourceException ?? (object)"null",
+            SourceException is null ? null : "\"");
+}
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private string InnerSourceExceptionString()
-        =>
-        SourceException is null ? "null" : Invariant($"\"{SourceException}\"");
+internal static class FailureToStringCompositeFormat
+{
+    internal static CompositeFormat Value => Instance.Value;
+
+    private static class Instance
+    {
+        internal static readonly CompositeFormat Value = CompositeFormat.Parse(
+            "Failure<{0}>:{{ \"FailureCode\": \"{1}\", \"FailureMessage\": \"{2}\", \"SourceException\": {3}{4}{5} }}");
+    }
 }
