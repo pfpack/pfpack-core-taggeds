@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Taggeds.Tests.Old/Taggeds.Tests.Old.csproj" />
+  <Project Path="Taggeds.Tests/Taggeds.Tests.csproj" />
+  <Project Path="Taggeds/Taggeds.csproj" />
+</Solution>

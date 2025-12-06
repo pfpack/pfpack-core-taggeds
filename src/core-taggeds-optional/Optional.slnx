@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Optional.Analyzer/Optional.Analyzer.csproj" />
+  <Project Path="Optional.Tests.Old/Optional.Tests.Old.csproj" />
+  <Project Path="Optional.Tests/Optional.Tests.csproj" />
+  <Project Path="Optional/Optional.csproj" />
+</Solution>

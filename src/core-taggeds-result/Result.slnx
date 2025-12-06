@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Result.Tests.Old/Result.Tests.Old.csproj" />
+  <Project Path="Result.Tests/Result.Tests.csproj" />
+  <Project Path="Result/Result.csproj" />
+</Solution>
