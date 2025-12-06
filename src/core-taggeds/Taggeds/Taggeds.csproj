@@ -34,9 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PrimeFuncPack.Core.Failure" Version="3.0.0-preview.3" />
+    <PackageReference Include="PrimeFuncPack.Core.Failure" Version="3.0.0-preview.4" />
     <PackageReference Include="PrimeFuncPack.Core.Optional" Version="3.0.0-preview.4" />
-    <PackageReference Include="PrimeFuncPack.Core.Result" Version="3.0.0-preview.3" />
+    <PackageReference Include="PrimeFuncPack.Core.Result" Version="3.0.0-preview.4" />
+    <PackageReference Include="PrimeFuncPack.Core.Unit" Version="3.0.2" />
   </ItemGroup>
 
 </Project>
