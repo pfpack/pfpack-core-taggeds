@@ -31,7 +31,7 @@ partial class OptionalJsonSerializerTest
                 {
                     WriteIndented = true
                 },
-                "{\n  \"Absent\": {}\n}"
+                $"{{{Environment.NewLine}  \"Absent\": {{}}{Environment.NewLine}}}"
             },
             {
                 default,
@@ -57,7 +57,7 @@ partial class OptionalJsonSerializerTest
                 {
                     WriteIndented = true
                 },
-                "{\n  \"Present\": \"\"\n}"
+                $"{{{Environment.NewLine}  \"Present\": \"\"{Environment.NewLine}}}"
             },
             {
                 TestData.SomeString.InitializePresentOptional(),
