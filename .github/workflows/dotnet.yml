@@ -4,15 +4,15 @@ on:
   push:
     branches: [ main, dev, feature/*, fix/*, release/* ]
 
-  pull_request:
-    branches: [ main ]
-
   release:
     types: [ published ]
     branches: [ main ]
 
 jobs:
-  build:
+
+  # Failure
+
+  build-failure:
 
     runs-on: ubuntu-latest
 
@@ -25,15 +25,11 @@ jobs:
             8.0.x
             9.0.x
 
-    # Create Local NuGet Source
-
     - name: Create Local NuGet Directory
       run: mkdir ~/nuget
 
     - name: Add Local Nuget Source
       run: dotnet nuget add source ~/nuget
-
-    # Failure
 
     - name: Restore Failure
       run: dotnet restore ./src/*/*/Failure.csproj
@@ -50,7 +46,42 @@ jobs:
     - name: Test Failure.Tests
       run: dotnet test ./src/*/*/Failure.Tests.csproj --no-restore  -c Release
 
-    # Optional
+    - name: Upload artifcats
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-failure
+        path: ~/nuget/*.nupkg
+        retention-days: 1
+
+  # Optional
+
+  build-optional:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+            8.0.x
+            9.0.x
+
+    - name: Create Local NuGet Directory
+      run: mkdir ~/nuget
+
+    - name: Add Local Nuget Source
+      run: dotnet nuget add source ~/nuget
+
+    - name: Restore Optional.Analyzer
+      run: dotnet restore ./src/*/*/Optional.Analyzer.csproj
+
+    - name: Build Optional.Analyzer
+      run: dotnet build ./src/*/*/Optional.Analyzer.csproj --no-restore  -c Release
+
+    - name: Pack Optional.Analyzer
+      run: dotnet pack ./src/*/*/Optional.Analyzer.csproj --no-restore -o ~/nuget  -c Release
 
     - name: Restore Optional
       run: dotnet restore ./src/*/*/Optional.csproj
@@ -73,7 +104,33 @@ jobs:
     - name: Test Optional.Tests
       run: dotnet test ./src/*/*/Optional.Tests.csproj --no-restore  -c Release
 
-    # Result
+    - name: Upload artifcats
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-optional
+        path: ~/nuget/*.nupkg
+        retention-days: 1
+
+  # Result
+
+  build-result:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+            8.0.x
+            9.0.x
+
+    - name: Create Local NuGet Directory
+      run: mkdir ~/nuget
+
+    - name: Add Local Nuget Source
+      run: dotnet nuget add source ~/nuget
 
     - name: Restore Result
       run: dotnet restore ./src/*/*/Result.csproj
@@ -96,7 +153,51 @@ jobs:
     - name: Test Result.Tests
       run: dotnet test ./src/*/*/Result.Tests.csproj --no-restore  -c Release
 
-    # Taggeds
+    - name: Upload artifcats
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-result
+        path: ~/nuget/*.nupkg
+        retention-days: 1
+
+  # Taggeds
+
+  build-taggeds:
+    needs: [build-failure, build-optional, build-result]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+            8.0.x
+            9.0.x
+
+    - name: Create Local NuGet Directory
+      run: mkdir ~/nuget
+
+    - name: Download Failure artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: nuget-failure
+        path: ~/nuget
+
+    - name: Download Optional artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: nuget-optional
+        path: ~/nuget
+
+    - name: Download Result artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: nuget-result
+        path: ~/nuget
+
+    - name: Add Local Nuget Source
+      run: dotnet nuget add source ~/nuget
 
     - name: Restore Taggeds
       run: dotnet restore ./src/*/*/Taggeds.csproj
@@ -119,10 +220,36 @@ jobs:
     - name: Test Taggeds.Tests
       run: dotnet test ./src/*/*/Taggeds.Tests.csproj --no-restore  -c Release
 
-      # Push
+    - name: Upload artifcats
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-taggeds
+        path: ~/nuget/*.nupkg
+        retention-days: 1
 
-    - name: Push Packages
-      if: ${{ github.event_name == 'release' }}
+  # Publish
+
+  publish:
+    needs: [build-taggeds]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+            8.0.x
+            9.0.x
+
+    - name: Download Taggeds artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: nuget-taggeds
+        path: ~/nuget
+
+    - name: Publish Packages
       run: >
         dotnet nuget push "../../../nuget/*.nupkg"
         -s https://api.nuget.org/v3/index.json
