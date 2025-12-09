@@ -7,9 +7,9 @@ partial struct Failure<TFailureCode>
         where TNextFailureCode : struct
         =>
         new(
-            failureCode: nextFailureCode,
-            failureMessage: failureMessage,
-            _: default)
+            nextFailureCode,
+            failureMessage,
+            default)
         {
             SourceException = SourceException
         };
@@ -18,9 +18,9 @@ partial struct Failure<TFailureCode>
         TFailureCode nextFailureCode)
         =>
         new(
-            failureCode: nextFailureCode,
-            failureMessage: failureMessage,
-            _: default)
+            nextFailureCode,
+            failureMessage,
+            default)
         {
             SourceException = SourceException
         };
