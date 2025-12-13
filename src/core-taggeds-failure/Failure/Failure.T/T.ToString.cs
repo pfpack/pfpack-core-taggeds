@@ -9,7 +9,7 @@ partial struct Failure<TFailureCode>
         =>
         string.Format(
             CultureInfo.InvariantCulture,
-            FailureToStringCompositeFormat.Value,
+            ToStringCompositeFormat.Value,
             typeof(TFailureCode).Name,
             FailureCode,
             FailureMessage,
@@ -18,7 +18,7 @@ partial struct Failure<TFailureCode>
             SourceException is null ? null : "\"");
 }
 
-internal static class FailureToStringCompositeFormat
+internal static class ToStringCompositeFormat
 {
     internal static CompositeFormat Value => Instance.Value;
 
