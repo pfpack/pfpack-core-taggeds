@@ -6,23 +6,30 @@ namespace System;
 partial struct Failure<TFailureCode>
 {
     public override string ToString()
-        =>
-        string.Format(
+    {
+        (object sourceExObj, string? sourceExQuote) = SourceException is not null
+            ? ((object)SourceException, "\"")
+            : ("null", null);
+
+        return string.Format(
             CultureInfo.InvariantCulture,
-            ToStringCompositeFormat.Value,
-            typeof(TFailureCode).Name,
-            FailureCode,
-            FailureMessage,
-            SourceException is null ? null : "\"",
-            SourceException ?? (object)"null",
-            SourceException is null ? null : "\"");
+            ToStringFormat.Value,
+            [
+                typeof(TFailureCode).Name,
+                FailureCode,
+                FailureMessage,
+                sourceExQuote,
+                sourceExObj,
+                sourceExQuote
+            ]);
+    }
 }
 
-internal static class ToStringCompositeFormat
+internal static class ToStringFormat
 {
-    internal static CompositeFormat Value => Instance.Value;
+    internal static CompositeFormat Value => InnerInstance.Value;
 
-    private static class Instance
+    private static class InnerInstance
     {
         internal static readonly CompositeFormat Value = CompositeFormat.Parse(
             "Failure<{0}>:{{ \"FailureCode\": \"{1}\", \"FailureMessage\": \"{2}\", \"SourceException\": {3}{4}{5} }}");
