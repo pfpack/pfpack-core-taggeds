@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
@@ -7,34 +6,16 @@ namespace System;
 public readonly partial struct Failure<TFailureCode> : IEquatable<Failure<TFailureCode>>
     where TFailureCode : struct
 {
-    private readonly TFailureCode failureCode;
-
-    private readonly string? failureMessage;
-
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private Failure(TFailureCode failureCode, string? failureMessage, int _)
-    {
-        Debug.Assert(failureMessage is null or { Length: not 0 });
-
-        this.failureCode = failureCode;
-        this.failureMessage = failureMessage;
-    }
-
     public Failure(TFailureCode failureCode, [AllowNull] string failureMessage)
     {
-        this.failureCode = failureCode;
-        this.failureMessage = string.IsNullOrEmpty(failureMessage) ? null : failureMessage;
-
-        Debug.Assert(this.failureMessage is null or { Length: not 0 });
+        FailureCode = failureCode;
+        FailureMessage = string.IsNullOrEmpty(failureMessage) ? null : failureMessage;
     }
 
-    public TFailureCode FailureCode
-        =>
-        failureCode;
+    public TFailureCode FailureCode { get; }
 
-    public string FailureMessage
-        =>
-        failureMessage ?? "";
+    public string FailureMessage { get => field ?? ""; }
 
     public System.Exception? SourceException { get; init; }
 }

@@ -18,8 +18,7 @@ partial struct Failure<TFailureCode>
         =>
         new(
             mapFailureCode.Invoke(FailureCode),
-            failureMessage,
-            default)
+            FailureMessage)
         {
             SourceException = SourceException
         };

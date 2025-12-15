@@ -8,8 +8,7 @@ partial struct Failure<TFailureCode>
         =>
         new(
             nextFailureCode,
-            failureMessage,
-            default)
+            FailureMessage)
         {
             SourceException = SourceException
         };
@@ -19,8 +18,7 @@ partial struct Failure<TFailureCode>
         =>
         new(
             nextFailureCode,
-            failureMessage,
-            default)
+            FailureMessage)
         {
             SourceException = SourceException
         };
