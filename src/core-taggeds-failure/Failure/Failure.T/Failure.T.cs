@@ -8,6 +8,7 @@ public readonly partial struct Failure<TFailureCode> :
     where TFailureCode : struct
 {
     // We normalize empty message to null to get the same inner state as the default struct
+    // The outer state is non-nullable
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Failure(TFailureCode failureCode, [AllowNull] string failureMessage)
