@@ -7,6 +7,8 @@ public readonly partial struct Failure<TFailureCode> :
     IEquatable<Failure<TFailureCode>>
     where TFailureCode : struct
 {
+    // We normalize empty message to null to get the same inner state as the default struct
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Failure(TFailureCode failureCode, [AllowNull] string failureMessage)
     {
