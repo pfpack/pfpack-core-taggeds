@@ -14,14 +14,12 @@ partial struct Failure<TFailureCode>
         return string.Format(
             CultureInfo.InvariantCulture,
             ToStringFormat.Value,
-            [
-                typeof(TFailureCode).Name,
-                FailureCode,
-                FailureMessage,
-                sourceExQuote,
-                sourceExObj,
-                sourceExQuote
-            ]);
+            typeof(TFailureCode).Name,
+            FailureCode,
+            FailureMessage,
+            sourceExQuote,
+            sourceExObj,
+            sourceExQuote);
     }
 }
 
