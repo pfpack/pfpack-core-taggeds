@@ -7,7 +7,7 @@ partial struct Failure<TFailureCode>
     public Exception ToException()
         =>
         new(
-            FailureCode,
-            string.IsNullOrEmpty(FailureMessage) ? null : FailureMessage,
-            SourceException);
+            failureCode: FailureCode,
+            message: failureMessage,
+            innerException: SourceException);
 }

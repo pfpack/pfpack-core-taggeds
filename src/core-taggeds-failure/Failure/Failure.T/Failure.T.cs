@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
@@ -7,19 +8,34 @@ public readonly partial struct Failure<TFailureCode> :
     IEquatable<Failure<TFailureCode>>
     where TFailureCode : struct
 {
-    // We normalize empty message to null to get the same inner state as the default struct
-    // The outer state is non-nullable
+    private readonly TFailureCode failureCode;
+
+    private readonly string? failureMessage;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public Failure(TFailureCode failureCode, [AllowNull] string failureMessage)
+    private Failure(TFailureCode failureCode, string? failureMessage, int _)
     {
-        FailureCode = failureCode;
-        FailureMessage = string.IsNullOrEmpty(failureMessage) ? null : failureMessage;
+        Debug.Assert(failureMessage is null or { Length: not 0 });
+
+        this.failureCode = failureCode;
+        this.failureMessage = failureMessage;
     }
 
-    public TFailureCode FailureCode { get; }
+    public Failure(TFailureCode failureCode, [AllowNull] string failureMessage)
+    {
+        this.failureCode = failureCode;
+        this.failureMessage = string.IsNullOrEmpty(failureMessage) ? null : failureMessage;
 
-    public string FailureMessage { get => field ?? ""; }
+        Debug.Assert(this.failureMessage is null or { Length: not 0 });
+    }
+
+    public TFailureCode FailureCode
+        =>
+        failureCode;
+
+    public string FailureMessage
+        =>
+        failureMessage ?? "";
 
     public System.Exception? SourceException { get; init; }
 }
