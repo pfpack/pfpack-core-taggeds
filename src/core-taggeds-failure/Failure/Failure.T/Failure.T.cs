@@ -4,8 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace System;
 
-public readonly partial struct Failure<TFailureCode> :
-    IEquatable<Failure<TFailureCode>>
+public readonly partial struct Failure<TFailureCode> : IEquatable<Failure<TFailureCode>>
     where TFailureCode : struct
 {
     private readonly TFailureCode failureCode;
