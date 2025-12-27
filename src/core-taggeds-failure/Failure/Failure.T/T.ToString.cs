@@ -13,7 +13,8 @@ partial struct Failure<TFailureCode>
 
         return string.Format(
             CultureInfo.InvariantCulture,
-            ToStringFormat.Value,
+            FailureToStringFormat.Value,
+            // params:
             typeof(TFailureCode).Name,
             FailureCode,
             FailureMessage,
@@ -23,7 +24,7 @@ partial struct Failure<TFailureCode>
     }
 }
 
-internal static class ToStringFormat
+internal static class FailureToStringFormat
 {
     internal static CompositeFormat Value => InnerInstance.Value;
 
