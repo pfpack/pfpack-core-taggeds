@@ -8,20 +8,14 @@ partial struct Failure<TFailureCode>
         =>
         new(
             nextFailureCode,
-            failureMessage,
-            default)
-        {
-            SourceException = SourceException
-        };
+            failureMessage, // pass the inner state
+            SourceException);
 
     public Failure<TFailureCode> WithFailureCode(
         TFailureCode nextFailureCode)
         =>
         new(
             nextFailureCode,
-            failureMessage,
-            default)
-        {
-            SourceException = SourceException
-        };
+            failureMessage, // pass the inner state
+            SourceException);
 }
