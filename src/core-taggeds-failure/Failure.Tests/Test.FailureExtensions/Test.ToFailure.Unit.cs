@@ -10,7 +10,7 @@ partial class FailureExtensionsTest
     [InlineData(null, EmptyString)]
     [InlineData(EmptyString, EmptyString)]
     [InlineData(SomeString, SomeString)]
-    public static void ToFailureUnitFailureCode_SourceExceptionIsNull_ExpectActualExceptionIsNull(
+    public static void ToFailureUnitFailureCode_SourceExceptionIsNull_ExpectCorrespondingValues(
         string? sourceFailureMessage, string expectedFailureMessage)
     {
         Exception? sourceException = null;
@@ -25,7 +25,7 @@ partial class FailureExtensionsTest
     [InlineData(null, EmptyString)]
     [InlineData(EmptyString, EmptyString)]
     [InlineData(SomeString, SomeString)]
-    public static void ToFailureUnitFailureCode_SourceExceptionIsNotNull_ExpectActualExceptionIsSame(
+    public static void ToFailureUnitFailureCode_SourceExceptionIsNotNull_ExpectCorrespondingValues(
         string? sourceFailureMessage, string expectedFailureMessage)
     {
         var sourceException = new InvalidOperationException(

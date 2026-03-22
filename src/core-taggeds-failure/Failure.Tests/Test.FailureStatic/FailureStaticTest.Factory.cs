@@ -11,7 +11,7 @@ partial class FailureStaticTest
     [InlineData(EnumType.One, null, EmptyString)]
     [InlineData(EnumType.Two, EmptyString, EmptyString)]
     [InlineData(EnumType.Zero, SomeString, SomeString)]
-    public static void Create_ExpectActualValues(
+    public static void Create_ExpectCorrespondingValues(
         EnumType sourceFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
     {
         var actual = Failure.Create(sourceFailureCode, sourceFailureMessage);

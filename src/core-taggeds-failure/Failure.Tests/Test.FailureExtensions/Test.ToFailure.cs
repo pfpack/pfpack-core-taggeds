@@ -11,7 +11,7 @@ partial class FailureExtensionsTest
     [InlineData(EnumType.One, null, EmptyString)]
     [InlineData(EnumType.Two, EmptyString, EmptyString)]
     [InlineData(EnumType.Zero, SomeString, SomeString)]
-    public static void ToFailure_SourceExceptionIsNull_ExpectActualExceptionIsNull(
+    public static void ToFailure_SourceExceptionIsNull_ExpectCorrespondingValues(
         EnumType sourceFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
     {
         Exception? sourceException = null;
@@ -26,7 +26,7 @@ partial class FailureExtensionsTest
     [InlineData(EnumType.One, null, EmptyString)]
     [InlineData(EnumType.Two, EmptyString, EmptyString)]
     [InlineData(EnumType.Zero, SomeString, SomeString)]
-    public static void ToFailure_SourceExceptionIsNull_ExpectActualExceptionIsSame(
+    public static void ToFailure_SourceExceptionIsNotNull_ExpectCorrespondingValues(
         EnumType sourceFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
     {
         var sourceException = new Exception("Some Exception Message");

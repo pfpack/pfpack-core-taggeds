@@ -11,7 +11,7 @@ partial class FailureStaticTest
     [InlineData(EnumType.One, null, EmptyString)]
     [InlineData(EnumType.Two, EmptyString, EmptyString)]
     [InlineData(EnumType.Zero, SomeString, SomeString)]
-    public static void CreateWithSourceException_SourceExceptionIsNull_ExpectActualExceptionIsNull(
+    public static void CreateWithSourceException_SourceExceptionIsNull_ExpectCorrespondingValues(
         EnumType sourceFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
     {
         var actual = Failure.Create(sourceFailureCode, sourceFailureMessage, null);
@@ -25,7 +25,7 @@ partial class FailureStaticTest
     [InlineData(EnumType.One, null, EmptyString)]
     [InlineData(EnumType.Two, EmptyString, EmptyString)]
     [InlineData(EnumType.Zero, SomeString, SomeString)]
-    public static void CreateWithSourceException_SourceExceptionIsNull_ExpectActualExceptionIsSame(
+    public static void CreateWithSourceException_SourceExceptionIsNotNull_ExpectCorrespondingValues(
         EnumType sourceFailureCode, string? sourceFailureMessage, string expectedFailureMessage)
     {
         var sourceException = new InvalidOperationException("Some Exception Message");

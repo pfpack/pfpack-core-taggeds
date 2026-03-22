@@ -10,7 +10,7 @@ partial class FailureStaticTest
     [InlineData(null, EmptyString)]
     [InlineData(EmptyString, EmptyString)]
     [InlineData(SomeString, SomeString)]
-    public static void CreateUnitFailureCodeWithSourceException_SourceExceptionIsNull_ExpectActualExceptionIsNull(
+    public static void CreateUnitFailureCodeWithSourceException_SourceExceptionIsNull_ExpectCorrespondingValues(
         string? sourceFailureMessage, string expectedFailureMessage)
     {
         var actual = Failure.Create(sourceFailureMessage, null);
@@ -24,7 +24,7 @@ partial class FailureStaticTest
     [InlineData(null, EmptyString)]
     [InlineData(EmptyString, EmptyString)]
     [InlineData(SomeString, SomeString)]
-    public static void CreateUnitFailureCodeWithSourceException_SourceExceptionIsNotNull_ExpectActualExceptionIsSame(
+    public static void CreateUnitFailureCodeWithSourceException_SourceExceptionIsNotNull_ExpectCorrespondingValues(
         string? sourceFailureMessage, string expectedFailureMessage)
     {
         var sourceException = new Exception(

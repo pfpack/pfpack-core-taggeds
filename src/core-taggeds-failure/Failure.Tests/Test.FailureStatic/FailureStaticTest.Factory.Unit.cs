@@ -10,7 +10,7 @@ partial class FailureStaticTest
     [InlineData(null, EmptyString)]
     [InlineData(EmptyString, EmptyString)]
     [InlineData(SomeString, SomeString)]
-    public static void CreateUnitFailureCode_ExpectActualValues(
+    public static void CreateUnitFailureCode_ExpectCorrespondingValues(
         string? sourceFailureMessage, string expectedFailureMessage)
     {
         var actual = Failure.Create(sourceFailureMessage);
