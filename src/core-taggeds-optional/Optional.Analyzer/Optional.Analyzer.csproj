@@ -16,7 +16,7 @@
     <RepositoryUrl>https://github.com/pfpack/pfpack-core-taggeds</RepositoryUrl>
     <Company>pfpack</Company>
     <Authors>Andrei Sergeev, Pavel Moskovoy</Authors>
-    <Copyright>Copyright © 2020-2025 Andrei Sergeev, Pavel Moskovoy</Copyright>
+    <Copyright>Copyright © 2020-2026 Andrei Sergeev, Pavel Moskovoy</Copyright>
     <Description>PrimeFuncPack Core.Optional is a core library for .NET consisting of Optional monad targeted for use in functional programming.</Description>
     <RootNamespace>PrimeFuncPack.Analyzer</RootNamespace>
     <AssemblyName>PrimeFuncPack.Core.Optional.Analyzer</AssemblyName>
