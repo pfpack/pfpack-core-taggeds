@@ -1,4 +1,4 @@
-name: .NET
+name: Setup Taggeds .NET
 
 on:
   push:
@@ -17,13 +17,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+    - uses: actions/checkout@v5
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: |
-            8.0.x
-            9.0.x
+          10.0.x
+      # dotnet-quality: 'preview' # When using preview versions
+        dotnet-quality: 'ga' # General Availability
 
     - name: Create Local NuGet Directory
       run: mkdir ~/nuget
@@ -60,13 +61,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+    - uses: actions/checkout@v5
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: |
-            8.0.x
-            9.0.x
+          10.0.x
+      # dotnet-quality: 'preview' # When using preview versions
+        dotnet-quality: 'ga' # General Availability
 
     - name: Create Local NuGet Directory
       run: mkdir ~/nuget
@@ -118,13 +120,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+    - uses: actions/checkout@v5
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: |
-            8.0.x
-            9.0.x
+          10.0.x
+      # dotnet-quality: 'preview' # When using preview versions
+        dotnet-quality: 'ga' # General Availability
 
     - name: Create Local NuGet Directory
       run: mkdir ~/nuget
@@ -167,13 +170,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+    - uses: actions/checkout@v5
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: |
-            8.0.x
-            9.0.x
+          10.0.x
+      # dotnet-quality: 'preview' # When using preview versions
+        dotnet-quality: 'ga' # General Availability
 
     - name: Create Local NuGet Directory
       run: mkdir ~/nuget
@@ -235,13 +239,14 @@ jobs:
     if: github.event_name == 'release'
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+    - uses: actions/checkout@v5
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: |
-            8.0.x
-            9.0.x
+          10.0.x
+      # dotnet-quality: 'preview' # When using preview versions
+        dotnet-quality: 'ga' # General Availability
 
     - name: Download Taggeds artifacts
       uses: actions/download-artifact@v4
