@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace PrimeFuncPack.Analyzer;
 
-[DiagnosticAnalyzer(LanguageNames.CSharp)]
+[DiagnosticAnalyzer(LanguageNames.CSharp, LanguageNames.VisualBasic)]
 internal sealed class OmitableOptionalJsonConverterTypeAnalyzer : DiagnosticAnalyzer
 {
     private const string AttributeName = "OmitableOptionalJsonConverterAttribute";
