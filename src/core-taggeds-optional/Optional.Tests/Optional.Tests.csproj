@@ -17,16 +17,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!--
-    This template uses native xUnit.net command line options when using 'dotnet run' and
-    VSTest by default when using 'dotnet test'. For more information on how to enable support
-    for Microsoft Testing Platform, please visit:
-      https://xunit.net/docs/getting-started/v3/microsoft-testing-platform
-    -->
-    <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="10.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
