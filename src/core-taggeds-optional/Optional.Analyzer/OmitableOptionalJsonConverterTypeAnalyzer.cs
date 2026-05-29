@@ -1,8 +1,8 @@
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Diagnostics;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Diagnostics;
 
 [assembly: InternalsVisibleTo("PrimeFuncPack.Core.Optional.Tests")]
 
@@ -15,31 +15,15 @@ internal sealed class OmitableOptionalJsonConverterTypeAnalyzer : DiagnosticAnal
 
     private const int ConditionWhenWritingDefault = 2;
 
-    private static readonly DiagnosticDescriptor PropertyMustBeOptionalRule
-        =
-        new(
-            id: "PFPack001",
-            title: "Property must be of type Optional<T>",
-            messageFormat: $"Property '{{0}}' has {AttributeName} but is not of type Optional<T>",
-            category: "Usage",
-            defaultSeverity: DiagnosticSeverity.Error,
-            isEnabledByDefault: true,
-            description: $"Properties using {AttributeName} must be Optional<T>.");
-
-    private static readonly DiagnosticDescriptor JsonIgnoreRequiredRule
-        =
-        new(
-            id: "PFPack002",
-            title: "JsonIgnore attribute required",
-            messageFormat: $"Property '{{0}}' must have [JsonIgnore(Condition = WhenWritingDefault)] when using {AttributeName}",
-            category: "Usage",
-            defaultSeverity: DiagnosticSeverity.Error,
-            isEnabledByDefault: true,
-            description: $"Properties using {AttributeName} must also be decorated with [JsonIgnore(Condition = WhenWritingDefault)].");
+    private static readonly ImmutableArray<DiagnosticDescriptor> InnerSupportedDiagnostics =
+    [
+        InnerRules.PropertyMustBeOptional,
+        InnerRules.JsonIgnoreRequired,
+    ];
 
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
         =>
-        [PropertyMustBeOptionalRule, JsonIgnoreRequiredRule];
+        InnerSupportedDiagnostics;
 
     public override void Initialize(AnalysisContext context)
     {
@@ -58,7 +42,7 @@ internal sealed class OmitableOptionalJsonConverterTypeAnalyzer : DiagnosticAnal
 
         if (IsOptionalType(property.Type) is false)
         {
-            var diagnostic = Diagnostic.Create(PropertyMustBeOptionalRule, property.Locations[0], property.Name);
+            var diagnostic = Diagnostic.Create(InnerRules.PropertyMustBeOptional, property.Locations[0], property.Name);
             context.ReportDiagnostic(diagnostic);
 
             return;
@@ -66,7 +50,7 @@ internal sealed class OmitableOptionalJsonConverterTypeAnalyzer : DiagnosticAnal
 
         if (IsJsonIgnoreDecorated(property) is false)
         {
-            var diagnostic = Diagnostic.Create(JsonIgnoreRequiredRule, property.Locations[0], property.Name);
+            var diagnostic = Diagnostic.Create(InnerRules.JsonIgnoreRequired, property.Locations[0], property.Name);
             context.ReportDiagnostic(diagnostic);
 
             return;
@@ -78,7 +62,7 @@ internal sealed class OmitableOptionalJsonConverterTypeAnalyzer : DiagnosticAnal
 
         static bool IsOptionalType(ITypeSymbol propertyType)
             =>
-            propertyType is INamedTypeSymbol type && type.TypeArguments.Length is 1 && type.IsAnyType("System", "Optional");
+            propertyType is INamedTypeSymbol type && type.TypeArguments is { Length: 1 } && type.IsAnyType("System", "Optional");
     }
 
     private static bool IsJsonIgnoreDecorated(IPropertySymbol property)
@@ -89,5 +73,26 @@ internal sealed class OmitableOptionalJsonConverterTypeAnalyzer : DiagnosticAnal
         static bool IsJsonIgnoreAttribute(AttributeData attribute)
             =>
             attribute.AttributeClass?.IsAnyType("System.Text.Json.Serialization", "JsonIgnoreAttribute") is true;
+    }
+
+    private static class InnerRules
+    {
+        internal static readonly DiagnosticDescriptor PropertyMustBeOptional = new(
+            id: "PFPack001",
+            title: "Property must be of type Optional<T>",
+            messageFormat: $"Property '{{0}}' has {AttributeName} but is not of type Optional<T>",
+            category: "Usage",
+            defaultSeverity: DiagnosticSeverity.Error,
+            isEnabledByDefault: true,
+            description: $"Properties using {AttributeName} must be Optional<T>.");
+
+        internal static readonly DiagnosticDescriptor JsonIgnoreRequired = new(
+            id: "PFPack002",
+            title: "JsonIgnore attribute required",
+            messageFormat: $"Property '{{0}}' must have [JsonIgnore(Condition = WhenWritingDefault)] when using {AttributeName}",
+            category: "Usage",
+            defaultSeverity: DiagnosticSeverity.Error,
+            isEnabledByDefault: true,
+            description: $"Properties using {AttributeName} must also be decorated with [JsonIgnore(Condition = WhenWritingDefault)].");
     }
 }
