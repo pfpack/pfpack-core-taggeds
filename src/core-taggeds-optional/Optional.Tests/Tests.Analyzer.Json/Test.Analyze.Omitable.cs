@@ -23,7 +23,7 @@ partial class OptionalJsonConverterTypeAnalyzerTest
         """;
 
         var expected = DiagnosticResult.CompilerError("PFPack001").WithLocation(0).WithArguments("Name");
-        await BuildAnalyzerTest(testCode, expected).RunAsync();
+        await BuildAnalyzerTest(testCode, expected).RunAsync(TestContext.Current.CancellationToken);
     }
 
     [Fact]
@@ -42,7 +42,7 @@ partial class OptionalJsonConverterTypeAnalyzerTest
         """;
 
         var expected = DiagnosticResult.CompilerError("PFPack002").WithLocation(0).WithArguments("Name");
-        await BuildAnalyzerTest(testCode, expected).RunAsync();
+        await BuildAnalyzerTest(testCode, expected).RunAsync(TestContext.Current.CancellationToken);
     }
 
     [Theory]
@@ -70,7 +70,7 @@ partial class OptionalJsonConverterTypeAnalyzerTest
         """;
 
         var expected = DiagnosticResult.CompilerError("PFPack002").WithLocation(0).WithArguments("Id");
-        await BuildAnalyzerTest(testCode, expected).RunAsync();
+        await BuildAnalyzerTest(testCode, expected).RunAsync(TestContext.Current.CancellationToken);
     }
 
     [Fact]
@@ -90,6 +90,6 @@ partial class OptionalJsonConverterTypeAnalyzerTest
         }
         """;
 
-        await BuildAnalyzerTest(testCode).RunAsync();
+        await BuildAnalyzerTest(testCode).RunAsync(TestContext.Current.CancellationToken);
     }
 }

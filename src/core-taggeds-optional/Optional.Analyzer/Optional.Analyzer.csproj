@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EarlyFuncPack.CodeAnalysis.Extensions" Version="0.0.1" />
+    <PackageReference Include="EarlyFuncPack.CodeAnalysis.Extensions" Version="0.0.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="5.3.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>

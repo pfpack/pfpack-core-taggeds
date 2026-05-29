@@ -1,10 +1,11 @@
-using System;
-using System.Reflection;
-using System.Runtime.Versioning;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Testing;
 using Microsoft.CodeAnalysis.Testing;
 using PrimeFuncPack.Analyzer;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Runtime.Versioning;
 
 namespace PrimeFuncPack.Core.Tests;
 
@@ -35,14 +36,27 @@ public static partial class OptionalJsonConverterTypeAnalyzerTest
 
         static ReferenceAssemblies GetReferenceAssemblies()
         {
-            var framework = Assembly.GetExecutingAssembly().GetCustomAttribute<TargetFrameworkAttribute>()?.FrameworkName;
+            // Add supported frameworks versions in descending order
+            // to ensure the most recent compatible framework is selected.
+            IEnumerable<KeyValuePair<string, ReferenceAssemblies>> supportedFrameworks =
+            [
+                new("v10.0", ReferenceAssemblies.Net.Net100),
+            ];
 
-            if (framework?.Contains("v9.0", System.StringComparison.InvariantCultureIgnoreCase) is true)
+            var target = Assembly.GetExecutingAssembly().GetCustomAttribute<TargetFrameworkAttribute>()
+                ?? throw new InvalidOperationException($"{nameof(TargetFrameworkAttribute)} not found.");
+
+            var frameworkName = target.FrameworkName;
+
+            foreach (var (version, referenceAssemblies) in supportedFrameworks)
             {
-                return ReferenceAssemblies.Net.Net90;
+                if (frameworkName.Contains(version, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return referenceAssemblies;
+                }
             }
 
-            return ReferenceAssemblies.Net.Net80;
+            throw new InvalidOperationException($"Unsupported framework: {frameworkName}");
         }
     }
 }

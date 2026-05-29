@@ -78,13 +78,13 @@ partial class OptionalJsonSerializerTest
         new()
         {
             {
-                null
+                (JsonSerializerOptions?)null
             },
             {
-                new()
+                new JsonSerializerOptions()
             },
             {
-                new(JsonSerializerDefaults.Web)
+                new JsonSerializerOptions(JsonSerializerDefaults.Web)
             },
             {
                 Optional.JsonSerializerOptionsOmitableGeneral
