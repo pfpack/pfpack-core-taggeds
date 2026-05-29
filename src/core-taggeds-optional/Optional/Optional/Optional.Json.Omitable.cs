@@ -5,12 +5,12 @@ namespace System;
 
 partial class Optional
 {
-    public static readonly JsonSerializerOptions JsonSerializerOptionsOmitableGeneral
-        =
+    public static JsonSerializerOptions JsonSerializerOptionsOmitableGeneral
+        =>
         InnerJsonSerializerOptionsOmitable.General;
 
-    public static readonly JsonSerializerOptions JsonSerializerOptionsOmitableWeb
-        =
+    public static JsonSerializerOptions JsonSerializerOptionsOmitableWeb
+        =>
         InnerJsonSerializerOptionsOmitable.Web;
 
     private static class InnerJsonSerializerOptionsOmitable
