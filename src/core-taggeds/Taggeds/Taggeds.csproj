@@ -34,10 +34,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PrimeFuncPack.Core.Failure" Version="3.0.0-preview.5" />
-    <PackageReference Include="PrimeFuncPack.Core.Optional" Version="3.0.0-preview.5" />
-    <PackageReference Include="PrimeFuncPack.Core.Result" Version="3.0.0-preview.5" />
     <PackageReference Include="PrimeFuncPack.Core.Unit" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\core-taggeds-failure\Failure\Failure.csproj" />
+    <ProjectReference Include="..\..\core-taggeds-optional\Optional\Optional.csproj" />
+    <ProjectReference Include="..\..\core-taggeds-result\Result\Result.csproj" />
   </ItemGroup>
 
 </Project>

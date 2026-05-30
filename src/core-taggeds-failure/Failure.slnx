@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="Failure.Tests/Failure.Tests.csproj" />
-  <Project Path="Failure/Failure.csproj" />
-</Solution>

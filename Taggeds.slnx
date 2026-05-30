@@ -1,0 +1,41 @@
+<Solution>
+  <Folder Name="/.sln/">
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/docs/" />
+  <Folder Name="/docs/core-taggeds-failure/">
+    <File Path="docs/core-taggeds-failure/README.md" />
+  </Folder>
+  <Folder Name="/docs/core-taggeds-optional/">
+    <File Path="docs/core-taggeds-optional/README.md" />
+  </Folder>
+  <Folder Name="/docs/core-taggeds-result/">
+    <File Path="docs/core-taggeds-result/README.md" />
+  </Folder>
+  <Folder Name="/docs/core-taggeds/">
+    <File Path="docs/core-taggeds/README.md" />
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/core-taggeds-failure/">
+    <Project Path="src/core-taggeds-failure/Failure.Tests/Failure.Tests.csproj" />
+    <Project Path="src/core-taggeds-failure/Failure/Failure.csproj" />
+  </Folder>
+  <Folder Name="/src/core-taggeds-optional/">
+    <Project Path="src/core-taggeds-optional/Optional.Analyzer/Optional.Analyzer.csproj" />
+    <Project Path="src/core-taggeds-optional/Optional.Tests.Old/Optional.Tests.Old.csproj" />
+    <Project Path="src/core-taggeds-optional/Optional.Tests/Optional.Tests.csproj" />
+    <Project Path="src/core-taggeds-optional/Optional/Optional.csproj" />
+  </Folder>
+  <Folder Name="/src/core-taggeds-result/">
+    <Project Path="src/core-taggeds-result/Result.Tests.Old/Result.Tests.Old.csproj" />
+    <Project Path="src/core-taggeds-result/Result.Tests/Result.Tests.csproj" />
+    <Project Path="src/core-taggeds-result/Result/Result.csproj" />
+  </Folder>
+  <Folder Name="/src/core-taggeds/">
+    <Project Path="src/core-taggeds/Taggeds.Tests.Old/Taggeds.Tests.Old.csproj" />
+    <Project Path="src/core-taggeds/Taggeds.Tests/Taggeds.Tests.csproj" />
+    <Project Path="src/core-taggeds/Taggeds/Taggeds.csproj" />
+  </Folder>
+</Solution>
